@@ -116,7 +116,7 @@ return [
         ],
         [
             'text'        => 'Ontology drawing',
-            'url'         => 'admin/mxgraph',
+            'url'         => 'https://jgraph.github.io/mxgraph/javascript/examples/grapheditor/www/index.html',
             'icon'        => 'object-group',
             'label'       => 4,
             'label_color' => 'success',
