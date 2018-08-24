@@ -8,5 +8,6 @@
 
 @section('content')
     <p>You are logged in!</p>
+    <script type="text/javascript" src="mxgraph\mxClient.js"></script>
 
 @stop
