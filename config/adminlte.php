@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'OF',
+    'title' => 'Ontology Framework',
 
     'title_prefix' => '',
 
@@ -32,7 +32,7 @@ return [
 
     'logo' => '<b>Ontology Framework</b>',
 
-    'logo_mini' => '<b>A</b>LT',
+    'logo_mini' => '<b>OF</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -121,6 +121,13 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
+        [
+            'text'        => 'Ontology drawing',
+            'url'         => '/mxgraph',
+            'icon'        => 'object-group',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',
@@ -131,7 +138,7 @@ return [
             'text' => 'Change Password',
             'url'  => 'admin/settings',
             'icon' => 'lock',
-        ],
+        ],/*
         [
             'text'    => 'Multilevel',
             'icon'    => 'share',
@@ -169,7 +176,7 @@ return [
                     'url'  => '#',
                 ],
             ],
-        ],
+        ],*/
         'LABELS',
         [
             'text'       => 'Important',
