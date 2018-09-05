@@ -297,11 +297,12 @@ var mxClient =
 			var link = doc.createElement('link');
 
 			link.setAttribute('rel', rel);
-			link.setAttribute('href', href);
+			link.setAttribute('href', 'css/mxgraph/common.css');
 			link.setAttribute('charset', 'UTF-8');
 			link.setAttribute('type', 'text/css');
 
-			var head = doc.getElementsByTagName('head')[0];
+            var head = doc.getElementsByTagName('head')[0];
+            console.log(link)
 	   		head.appendChild(link);
 		}
 	},
@@ -11107,7 +11108,7 @@ mxXmlRequest.prototype.send = function(onload, onerror, timeout, ontimeout)
 		this.request.open(this.method, this.url, this.async,
 			this.username, this.password);
 		this.setRequestHeaders(this.request, this.params);
-
+            console.log(this.url);
 		if (window.XMLHttpRequest && this.withCredentials)
 		{
 			this.request.withCredentials = 'true';
@@ -11119,7 +11120,7 @@ mxXmlRequest.prototype.send = function(onload, onerror, timeout, ontimeout)
 			this.request.timeout = timeout;
 			this.request.ontimeout = ontimeout;
 		}
-
+        console.log(this.params);
 		this.request.send(this.params);
 	}
 };

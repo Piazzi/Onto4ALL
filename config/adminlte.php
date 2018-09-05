@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'red-light',
+    'skin' => 'black',
 
     /*
     |--------------------------------------------------------------------------
@@ -115,68 +115,64 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text'        => 'What is a ontology?',
+            'url'         => '/tutorial',
+            'icon'        => 'question-circle',
+            'label'       => 0,
+            'label_color' => 'success',
+        ],
+        [
+            'text'    => 'Examples',
+            'icon'    => 'share',
+            'submenu' => [
+                [
+                    'text' => 'Ontology Example 1',
+                    'url'  => '#',
+                ],
+
+                [
+                    'text' => 'Ontology Example 2',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Ontology Example 3',
+                    'url'  => '#',
+                ],
+            ],
+        ],
+        [
             'text'        => 'Ontology drawing',
             'url'         => 'http://localhost/mxgraph/javascript/examples/grapheditor/www/index.html',
             'icon'        => 'object-group',
-            'label'       => 4,
+            'label'       => 0,
             'label_color' => 'success',
         ],
         [
             'text'        => 'Ontology drawing',
             'url'         => '/mxgraph',
             'icon'        => 'object-group',
-            'label'       => 4,
+            'label'       => 0,
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Diagram Editor',
+            'url'         => '/diagrameditor',
+            'icon'        => 'object-group',
+            'label'       => 0,
             'label_color' => 'success',
         ],
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',
-            'url'  => 'admin/settings',
+            'url'  => 'profile',
             'icon' => 'user',
         ],
         [
             'text' => 'Change Password',
             'url'  => 'admin/settings',
             'icon' => 'lock',
-        ],/*
-        [
-            'text'    => 'Multilevel',
-            'icon'    => 'share',
-            'submenu' => [
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'Level One',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'Level Two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'Level Two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'Level Three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'Level One',
-                    'url'  => '#',
-                ],
-            ],
-        ],*/
+        ],
+
         'LABELS',
         [
             'text'       => 'Important',
