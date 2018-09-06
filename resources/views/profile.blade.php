@@ -14,7 +14,6 @@
             <div class="box-tools pull-right">
                 <!-- Buttons, labels, and many other things can be placed here! -->
                 <!-- Here is a label for example -->
-                <span class="label label-primary">Label</span>
             </div>
         <!-- /.box-tools -->
     </div>
@@ -31,13 +30,15 @@
     <!-- /.box -->
 
 
-<div class="box box-solid box-info">
+<div class="box box-solid box-warning">
     <div class="box-header with-border">
         <h3 class="box-title">Your username</h3>
             <div class="box-tools pull-right">
                 <!-- Buttons, labels, and many other things can be placed here! -->
                 <!-- Here is a label for example -->
-                <button class="btn btn-primary"> Change </button>
+                <a href="/admin/settings">
+                    <button class="btn btn-danger"> Change </button>
+                </a>
             </div>
         <!-- /.box-tools -->
     </div>
@@ -48,13 +49,15 @@
     <!-- /.box-body -->
 </div>
     <!-- /.box -->
-    <div class="box box-solid box-info">
+    <div class="box box-solid box-warning">
         <div class="box-header with-border">
             <h3 class="box-title">Your email</h3>
                 <div class="box-tools pull-right">
                     <!-- Buttons, labels, and many other things can be placed here! -->
                     <!-- Here is a label for example -->
-                    <button class="btn btn-primary"> Change </button>
+                    <a href="/admin/settings">
+                        <button class="btn btn-danger"> Change </button>
+                    </a>
                 </div>
             <!-- /.box-tools -->
         </div>

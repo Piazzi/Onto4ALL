@@ -118,7 +118,14 @@ return [
             'text'        => 'What is a ontology?',
             'url'         => '/tutorial',
             'icon'        => 'question-circle',
-            'label'       => 0,
+            'label'       => '',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Ontology drawing',
+            'url'         => '/mxgraph',
+            'icon'        => 'object-group',
+            'label'       => 'Start now',
             'label_color' => 'success',
         ],
         [
@@ -140,27 +147,7 @@ return [
                 ],
             ],
         ],
-        [
-            'text'        => 'Ontology drawing',
-            'url'         => 'http://localhost/mxgraph/javascript/examples/grapheditor/www/index.html',
-            'icon'        => 'object-group',
-            'label'       => 0,
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Ontology drawing',
-            'url'         => '/mxgraph',
-            'icon'        => 'object-group',
-            'label'       => 0,
-            'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Diagram Editor',
-            'url'         => '/diagrameditor',
-            'icon'        => 'object-group',
-            'label'       => 0,
-            'label_color' => 'success',
-        ],
+
         'ACCOUNT SETTINGS',
         [
             'text' => 'Profile',
@@ -173,17 +160,10 @@ return [
             'icon' => 'lock',
         ],
 
-        'LABELS',
+        'INFO',
+
         [
-            'text'       => 'Important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'Warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'Information',
+            'text'       => 'About Us',
             'icon_color' => 'aqua',
         ],
     ],

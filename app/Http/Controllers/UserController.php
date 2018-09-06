@@ -70,10 +70,16 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
         $user = User::findOrFail($id);
         $user->update($request->all());
 
-        return redirect('profile')->with('Sucesso', 'Your password was changed with sucess')->withInput();
+        return redirect('admin/settings')->with('Sucess', 'Your account has been successfully updated')->withInput();
 
     }
 
