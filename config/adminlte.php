@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'black',
+    'skin' => 'green',
 
     /*
     |--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ return [
     |
     */
 
-    'layout' => 'fixed',
+    'layout' => 'top-nav',
 
     /*
     |--------------------------------------------------------------------------
@@ -126,7 +126,7 @@ return [
             'url'         => '/mxgraph',
             'icon'        => 'object-group',
             'label'       => 'Start now',
-            'label_color' => 'success',
+            'label_color' => 'danger',
         ],
         [
             'text'    => 'Examples',
@@ -164,7 +164,8 @@ return [
 
         [
             'text'       => 'About Us',
-            'icon_color' => 'aqua',
+            'icon_color' => 'red',
+            'url'        => '/aboutUs',
         ],
     ],
 
