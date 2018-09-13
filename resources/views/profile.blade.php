@@ -18,14 +18,14 @@
         <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
         <div class="info-box-content">
           <span class="info-box-text"><strong> Ontologies made </strong></span>
-          <span class="info-box-number">3</span>
+        <span class="info-box-number">{{Auth::user()->ontologies_made}}</span>
         </div>
         <!-- /.info-box-content -->
 </div>
 <!-- /.info-box -->
 
 
-<div class="box box-solid box-success">
+<div class="box box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">Your username</h3>
             <div class="box-tools pull-right">
@@ -44,7 +44,7 @@
     <!-- /.box-body -->
 </div>
     <!-- /.box -->
-    <div class="box box-solid box-success">
+    <div class="box box-solid ">
         <div class="box-header with-border">
             <h3 class="box-title">Your email</h3>
                 <div class="box-tools pull-right">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     /**
@@ -70,6 +72,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email',
@@ -77,6 +80,7 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail($id);
+
         $user->update($request->all());
 
         return redirect('admin/settings')->with('Sucess', 'Your account has been successfully updated')->withInput();

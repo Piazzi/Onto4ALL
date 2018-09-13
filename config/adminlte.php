@@ -134,7 +134,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Ontology Example 1',
-                    'url'  => '#',
+                    'url'  => '/example1',
                 ],
 
                 [

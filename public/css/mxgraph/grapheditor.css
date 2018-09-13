@@ -19,7 +19,7 @@
 	color:#000000;
 	text-decoration:none;
 }
-.geMenubarContainer, .geToolbarContainer, .geDiagramContainer, .geSidebarContainer, .geFooterContainer, .geHsplit, .geVsplit {
+.geDiagramContainer,  .geFooterContainer, .geHsplit, .geVsplit {
 	overflow:hidden;
 	position:absolute;
 	cursor:default;
@@ -713,4 +713,29 @@ html td.mxWindowTitle {
  	font-size:12px;
  	color:rgb(112, 112, 112);
  	padding:4px;
+}
+
+
+
+
+
+
+
+
+
+  .geToolbarContainer {
+    position: absolute;
+    cursor: default;
+    margin-top: 18px;
+    z-index: 10;
+}
+
+.geSidebarContainer, .geFormatContainer {
+    margin-top: 10px;
+}
+
+.geMenubarContainer {
+
+    margin-bottom: 18px;
+    z-index: 11;
 }
