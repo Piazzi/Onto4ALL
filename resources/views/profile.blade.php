@@ -63,4 +63,23 @@
         <!-- /.box-body -->
     </div>
         <!-- /.box -->
+        <div class="box box-solid ">
+            <div class="box-header with-border">
+                <h3 class="box-title">Your password</h3>
+                    <div class="box-tools pull-right">
+                        <!-- Buttons, labels, and many other things can be placed here! -->
+                        <!-- Here is a label for example -->
+                        <a href="/admin/settings">
+                            <button class="btn btn-danger"> Change </button>
+                        </a>
+                    </div>
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+               <strong> <input disabled value="{{Auth::user()->password}}" type="password" class="form-control" > </strong>
+            </div>
+            <!-- /.box-body -->
+        </div>
+            <!-- /.box -->
 @stop

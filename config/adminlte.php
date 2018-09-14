@@ -115,18 +115,18 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text'        => 'Ontology drawing',
+            'url'         => '/home',
+            'icon'        => 'object-group',
+            'label'       => 'Start now',
+            'label_color' => 'danger',
+        ],
+        [
             'text'        => 'What is a ontology?',
             'url'         => '/tutorial',
             'icon'        => 'question-circle',
             'label'       => '',
             'label_color' => 'success',
-        ],
-        [
-            'text'        => 'Ontology drawing',
-            'url'         => '/mxgraph',
-            'icon'        => 'object-group',
-            'label'       => 'Start now',
-            'label_color' => 'danger',
         ],
         [
             'text'    => 'Examples',
@@ -150,21 +150,16 @@ return [
 
         'ACCOUNT SETTINGS',
         [
-            'text' => 'Profile',
+            'text' => 'Account Settings',
             'url'  => 'profile',
             'icon' => 'user',
-        ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
         ],
 
         'INFO',
 
         [
             'text'       => 'About Us',
-            'icon_color' => 'red',
+            'icon'       => 'book',
             'url'        => '/aboutUs',
         ],
     ],

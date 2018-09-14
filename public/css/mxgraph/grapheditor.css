@@ -19,7 +19,7 @@
 	color:#000000;
 	text-decoration:none;
 }
-.geDiagramContainer,  .geFooterContainer, .geHsplit, .geVsplit {
+.geDiagramContainer,  .geFooterContainer,  .geHsplit, .geVsplit {
 	overflow:hidden;
 	position:absolute;
 	cursor:default;
@@ -723,19 +723,20 @@ html td.mxWindowTitle {
 
 
 
-  .geToolbarContainer {
+.geToolbarContainer {
     position: absolute;
     cursor: default;
     margin-top: 18px;
     z-index: 10;
 }
 
-.geSidebarContainer, .geFormatContainer {
-    margin-top: 10px;
+.geSidebarContainer, .geFormatContainer , .geDiagramContainer {
+    margin-top: 16px;
 }
 
 .geMenubarContainer {
-
-    margin-bottom: 18px;
+    position: absolute;
+    padding-top: 50px;
+    padding-left: 550px;
     z-index: 11;
 }
