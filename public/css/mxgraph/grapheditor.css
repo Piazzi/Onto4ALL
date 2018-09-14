@@ -721,8 +721,10 @@ html td.mxWindowTitle {
 
 
 
-
-
+/*
+    ALTERAÇÕES PARA ENCAIXAR O DIAGRAMA
+    NA HOME
+*/
 .geToolbarContainer {
     position: absolute;
     cursor: default;
