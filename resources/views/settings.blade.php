@@ -31,9 +31,10 @@
             <h3 class="box-title">Account Settings</h3>
         </div>
         <form role="form" action="users/{{Auth::user()->id}}" token="{{ csrf_token() }}" method="PUT">
+            {{ csrf_field() }}
             <div class="box-body">
                 <div class="form-group">
-                        <label for="inputName" class="col-sm-1-4 col-form-label">Password</label>
+                        <label for="inputPassword" class="col-sm-1-4 col-form-label">Password</label>
                         <div class="col-sm-1-4">
                         <input value="{{Auth::user()->password}}" type="password" class="form-control" name="password" id="inputPassword" placeholder="Insert your new password">
                         </div>
@@ -45,7 +46,7 @@
                         </div>
                 </div>
                 <div class="form-group">
-                        <label for="inputName" class="col-sm-1-4 col-form-label">Email</label>
+                        <label for="inputEmail" class="col-sm-1-4 col-form-label">Email</label>
                         <div class="col-sm-1-4">
                             <input value="{{Auth::user()->email}}" type="text" class="form-control" name="email" id="inputPassword" placeholder="Insert your email here">
                         </div>

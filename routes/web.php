@@ -16,13 +16,15 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('auth/logout', 'Auth\AuthController@logout');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/mxgraph', 'MxGraphController@index')->name('mxgraph');
 Route::get('/admin/settings', 'UserController@index')->name('settings');
 Route::get('/profile', 'ProfileController@index');
 Route::get('/admin/users/{user}', 'UserController@update');
-
+Route::post('/open', 'MxGraphController@open')->name('open');
 
 Route::get('/aboutUs', function (){
     return view('aboutUs');
@@ -35,5 +37,7 @@ Route::get('tutorial', function() {
 Route::get('/example1', function () {
     return view('ontology_example1');
 });
+
+
 
 

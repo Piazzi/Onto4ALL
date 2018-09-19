@@ -9,5 +9,9 @@ class MxGraphController extends Controller
     function index(){
         return view('index');
     }
+
+    function open() {
+        return view('open');
+    }
 }
 

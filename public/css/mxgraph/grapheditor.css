@@ -445,7 +445,9 @@ div.mxWindow .geButton {
 	-moz-box-shadow:0px 0px 2px 2px #d5d5d5;
 	box-shadow:0px 0px 2px 2px #d5d5d5;
 	_filter:progid:DXImageTransform.Microsoft.DropShadow(OffX=2, OffY=2, Color='#d5d5d5', Positive='true');
-	z-index: 2;
+    z-index: 2;
+    height: 500px !important;
+    width: 295px !important;
 }
 .geDialogClose {
 	position:absolute;
@@ -733,7 +735,7 @@ html td.mxWindowTitle {
 }
 
 .geSidebarContainer, .geFormatContainer , .geDiagramContainer {
-    margin-top: 16px;
+    margin-top: 17px;
 }
 
 .geMenubarContainer {
