@@ -447,7 +447,7 @@ div.mxWindow .geButton {
 	_filter:progid:DXImageTransform.Microsoft.DropShadow(OffX=2, OffY=2, Color='#d5d5d5', Positive='true');
     z-index: 2;
     height: 500px !important;
-    width: 295px !important;
+    width: 385px !important;
 }
 .geDialogClose {
 	position:absolute;
@@ -743,7 +743,7 @@ html td.mxWindowTitle {
     position: absolute;
     padding-top: 50px;
     z-index: 12;
-    right: 300px !important;
+    right: 267px !important;
     cursor: default;
     background-color: #ffffff !important;
 }
@@ -752,4 +752,10 @@ html td.mxWindowTitle {
     background: whitesmoke !important;
     border-bottom: 1px solid #e0e0e0;
     width: 26%;
+}
+
+.geFooterContainer {
+
+    background: #00A65A !important;
+
 }

@@ -20,11 +20,11 @@ Route::get('auth/logout', 'Auth\AuthController@logout');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/mxgraph', 'MxGraphController@index')->name('mxgraph');
 Route::get('/admin/settings', 'UserController@index')->name('settings');
 Route::get('/profile', 'ProfileController@index');
 Route::get('/admin/users/{user}', 'UserController@update');
 Route::post('/open', 'MxGraphController@open')->name('open');
+Route::post('/save', 'MxGraphController@save')->name('save');
 
 Route::get('/aboutUs', function (){
     return view('aboutUs');

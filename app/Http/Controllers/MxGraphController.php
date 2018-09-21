@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 
 class MxGraphController extends Controller
 {
-    function index(){
-        return view('index');
-    }
+
 
     function open() {
 
 
+    }
+
+    function save() {
+        return view('server');
     }
 }
