@@ -11,7 +11,7 @@ class MxGraphController extends Controller
     }
 
     function open() {
-        return view('open');
+
+
     }
 }
-

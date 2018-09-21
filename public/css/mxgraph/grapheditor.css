@@ -730,17 +730,26 @@ html td.mxWindowTitle {
 .geToolbarContainer {
     position: absolute;
     cursor: default;
-    margin-top: 18px;
+    margin-top: 19px;
     z-index: 10;
+    left: 275px !important;
 }
 
 .geSidebarContainer, .geFormatContainer , .geDiagramContainer {
-    margin-top: 17px;
+    margin-top: 18px;
 }
 
 .geMenubarContainer {
     position: absolute;
     padding-top: 50px;
-    padding-left: 550px;
-    z-index: 11;
+    z-index: 12;
+    right: 300px !important;
+    cursor: default;
+    background-color: #ffffff !important;
+}
+
+.geMenubar {
+    background: whitesmoke !important;
+    border-bottom: 1px solid #e0e0e0;
+    width: 26%;
 }
