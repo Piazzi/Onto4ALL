@@ -15,7 +15,7 @@ return [
 
     'title' => 'Ontology Framework',
 
-    'title_prefix' => '',
+    'title_prefix' => 'Ontology Framework',
 
     'title_postfix' => '',
 
@@ -89,7 +89,7 @@ return [
 
     'logout_url' => 'logout',
 
-    'logout_method' => null,
+    'logout_method' => 'get',
 
     'login_url' => 'login',
 

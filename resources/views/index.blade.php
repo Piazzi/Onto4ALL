@@ -18,7 +18,7 @@
 		// Parses URL parameters. Supported parameters are:
 		// - lang=xy: Specifies the language of the user interface.
 		// - touch=1: Enables a touch-style user interface.
-		// - storage=local: Enables HTML5 local storage.
+		 - storage=local: Enables HTML5 local storage.
 		// - chrome=0: Chromeless mode.
 		var urlParams = (function(url)
 		{
@@ -115,7 +115,5 @@
 		})();
 	</script>
 </body>
-
-
 
 @stop
