@@ -123,7 +123,13 @@
     //Codigo das relações
     function relation() {
 
-
+     mxGraphModel.prototype.getCell = function(	id	)
+    {
+        if(mxCell.prototype.isEdge)
+        {
+        alert("Você conectou algo");
+        }
+    }
 
     }
 
