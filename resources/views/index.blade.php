@@ -18,7 +18,7 @@
 		// Parses URL parameters. Supported parameters are:
 		// - lang=xy: Specifies the language of the user interface.
 		// - touch=1: Enables a touch-style user interface.
-		 - storage=local: Enables HTML5 local storage.
+		// - storage=local: Enables HTML5 local storage.
 		// - chrome=0: Chromeless mode.
 		var urlParams = (function(url)
 		{
@@ -113,7 +113,25 @@
 				document.body.innerHTML = '<center style="margin-top:10%;">Error loading resource files. Please check browser console.</center>';
 			});
 		})();
-	</script>
+    </script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+    //Codigo das relações
+    function relation() {
+
+
+
+    }
+
+    setInterval(relation, 5000);
+
+    </script>
+
+
 </body>
 
 @stop

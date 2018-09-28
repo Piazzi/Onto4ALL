@@ -732,7 +732,7 @@ html td.mxWindowTitle {
     cursor: default;
     margin-top: 19px;
     z-index: 10;
-    left: 275px !important;
+    left: 282px !important;
 }
 
 .geSidebarContainer, .geFormatContainer , .geDiagramContainer {
@@ -758,4 +758,12 @@ html td.mxWindowTitle {
 
     background: #00A65A !important;
 
+}
+
+.geDialog {
+    width: 800px !important;
+}
+
+center {
+    padding-right: 500px;
 }

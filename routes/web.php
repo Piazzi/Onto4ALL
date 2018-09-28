@@ -25,7 +25,7 @@ Route::get('/profile', 'ProfileController@index');
 Route::get('/admin/users/{user}', 'UserController@update');
 
 Route::get('/aboutUs', function (){
-    return view('aboutUs');
+    return view('about_us');
 });
 
 Route::get('tutorial', function() {
@@ -33,7 +33,7 @@ Route::get('tutorial', function() {
 });
 
 Route::get('/example1', function () {
-    return view('ontology_example1');
+    return view('ontology_example_1');
 });
 
 
