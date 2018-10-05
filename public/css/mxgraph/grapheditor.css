@@ -767,3 +767,13 @@ html td.mxWindowTitle {
 center {
     padding-right: 500px;
 }
+
+#modal {
+    z-index: 100000 !important;
+    margin-top: 440px;
+    margin-left: 1000px;
+    position: absolute;
+    background-color: #00A65A;
+    color: #000000;
+
+}

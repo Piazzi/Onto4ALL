@@ -114,17 +114,25 @@
 			});
 		})();
     </script>
+</body>
+<script src="js/relation.js"></script>
 
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script>
     //Codigo das relações
+
+ /*   $(function popup() {
+        $( "#dynamicList" ).dialog({ autoOpen: false });
+        ( "#opener" ).click(function() {
+        $( "#dynamicList" ).dialog( "open" );
+        });
+    })
+
     function relation() {
         // determina se duas classes estão conectadas
+
      mxGraphModel.prototype.getCell = function(	id	)
     {
 
@@ -134,8 +142,15 @@
             {
                 if(mxCell.prototype.isVertex)
                 {
+                    if(mxCell.prototype.getGeometry != null)
+                    {
+                        if(mxCell.prototype.isConnectable)
+                        {
+                            alert("Você conectou algo");
 
-                    alert("Você conectou algo");
+                        }
+
+                    }
 
                 }
             }
@@ -146,10 +161,34 @@
     }
 
     setInterval(relation, 5000);
-
+*/
     </script>
 
 
-</body>
+    <div id="modal" class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i> Mensagem</h4>
+        <strong>IHAA</strong>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+    </div>
+
 
 @stop

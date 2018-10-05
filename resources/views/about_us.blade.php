@@ -4,15 +4,38 @@
 
 @section('content_header')
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
 <script src="js/teste.js"></script>
 @stop
 
 @section('content')
     <button id="target">Clique aqui</button>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<button id="opener">open the dialog</button>
+<div id="dynamicList" class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i> Mensagem</h4>
+        <strong>IHAA</strong>
+    </div>
+
+<script>
+
+
+ $(function popup() {
+                                $( "#dynamicList" ).dialog({ autoOpen: false });
+                                $( "#opener" ).click(function() {
+                                $( "#dynamicList" ).dialog( "open" );
+                                });
+
+    })
+
+
+</script>
+
+</body>
+</html>
 
 @stop
