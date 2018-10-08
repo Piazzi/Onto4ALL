@@ -760,6 +760,14 @@ html td.mxWindowTitle {
 
 }
 
+/*
+   FIM DAS ALTERAÇÕES
+*/
+
+/*
+    ALTERAÇÕES PARA ORGANIZER AS CAIXAS DE DIALOGO
+    DO SISTEMA
+*/
 .geDialog {
     width: 800px !important;
 }
