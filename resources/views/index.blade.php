@@ -4,6 +4,7 @@
 
 @section('content_header')
 
+
 @stop
 
 @section('content')
@@ -115,7 +116,10 @@
 		})();
     </script>
 </body>
-<script src="js/relation.js"></script>
+
+
+<!-- <script src="js/relation.js"></script> -->
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -123,12 +127,7 @@
     <script>
     //Codigo das relações
 
- /*   $(function popup() {
-        $( "#dynamicList" ).dialog({ autoOpen: false });
-        ( "#opener" ).click(function() {
-        $( "#dynamicList" ).dialog( "open" );
-        });
-    })
+/*
 
     function relation() {
         // determina se duas classes estão conectadas
@@ -147,7 +146,12 @@
                         if(mxCell.prototype.isConnectable)
                         {
                             alert("Você conectou algo");
-
+                            $(function popup() {
+        $( "#dynamicList" ).dialog({ autoOpen: false });
+        ( "#opener" ).click(function() {
+        $( "#dynamicList" ).dialog( "open" );
+        });
+    })
                         }
 
                     }
@@ -171,6 +175,9 @@
         <strong>IHAA</strong>
     </div>
 
+
+
+
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -189,6 +196,11 @@
             </div>
           </div>
     </div>
+
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        This is an alert box.
+      </div>
 
 
 @stop

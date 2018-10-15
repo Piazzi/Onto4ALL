@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'title' => 'Ontology Framework',
+    'title' => 'Ontology For All',
 
-    'title_prefix' => 'Ontology Framework',
+    'title_prefix' => '04All',
 
     'title_postfix' => '',
 
@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>Ontology Framework</b>',
+    'logo' => '<b>Onto4All</b>',
 
-    'logo_mini' => '<b>OF</b>',
+    'logo_mini' => '<b>O4A</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -161,6 +161,8 @@ return [
             'text'       => 'About Us',
             'icon'       => 'book',
             'url'        => '/aboutUs',
+            'label'      => 'Info',
+            'label_color'=> 'warning'
         ],
     ],
 
