@@ -994,13 +994,38 @@ Sidebar.prototype.addOntologyPalette = function(expand)
 			cell.edge = true;
 
 		    return this.createEdgeTemplateFromCells([cell], cell.geometry.width, cell.geometry.height, 'Curve');
-	 	})),
+         })),
+
 	 	this.createEdgeTemplateEntry('endArrow=none;dashed=1;html=1;', 50, 50, '', 'Dashed Line', null, lineTags + 'dashed undirected no'),
 	 	this.createEdgeTemplateEntry('endArrow=none;html=1;', 50, 50, '', 'Line', null, lineTags + 'simple undirected plain blank no'),
 	 	this.createEdgeTemplateEntry('endArrow=classic;startArrow=classic;html=1;', 50, 50, '', 'Bidirectional Connector', null, lineTags + 'bidirectional'),
-	 	this.createEdgeTemplateEntry('endArrow=classic;html=1;', 50, 50, '', 'Directional Connector', null, lineTags + 'directional directed')
-	];
+        this.createEdgeTemplateEntry('endArrow=classic;html=1;', 50, 50, '', 'Directional Connector', null, lineTags + 'directional directed'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'is a', 'Is A', null, 'uml sequence message call invoke dispatch'),
 
+    ];
+// DISPATCH POINTER
+    this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
+		{
+	    	var cell = new mxCell('', new mxGeometry(0, 0, 10, 80), 'html=1;points=[];perimeter=orthogonalPerimeter;');
+	    	cell.vertex = true;
+
+			var edge1 = new mxCell('dispatch', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;');
+			edge1.geometry.setTerminalPoint(new mxPoint(-70, 0), true);
+			edge1.geometry.relative = true;
+			edge1.edge = true;
+
+			cell.insertEdge(edge1, false);
+
+			var edge2 = new mxCell('return', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;');
+			edge2.geometry.setTerminalPoint(new mxPoint(-70, 76), false);
+			edge2.geometry.relative = true;
+			edge2.edge = true;
+
+			cell.insertEdge(edge2, true);
+
+			return sb.createVertexTemplateFromCells([cell, edge1, edge2], 10, 80, 'Synchronous Invocation');
+		}),
+// end
 	this.addPaletteFunctions('Ontology', 'Ontology', (expand != null) ? expand : true, fns);
 };
 

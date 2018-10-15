@@ -9,6 +9,7 @@
 @section('body_class', 'login-page')
 
 @section('body')
+    <!--<img id="login-image"src="css/images/imageLogin.jpg" alt="" srcset=""> -->
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>

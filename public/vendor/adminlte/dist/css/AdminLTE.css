@@ -4975,3 +4975,8 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+
+
+#login-image {
+    position: relative;
+}

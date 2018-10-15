@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'title' => 'Ontology For All',
+    'title' => 'Ontology Framework',
 
-    'title_prefix' => '04All',
+    'title_prefix' => '04All |',
 
     'title_postfix' => '',
 
