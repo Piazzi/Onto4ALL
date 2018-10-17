@@ -17,7 +17,7 @@ return [
 
     'title_prefix' => '04All |',
 
-    'title_postfix' => '',
+    'title_postfix' => 'ALL',
 
     /*
     |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Onto4All</b>',
+    'logo' => '<b>Onto4</b>ALL',
 
     'logo_mini' => '<b>O4A</b>',
 

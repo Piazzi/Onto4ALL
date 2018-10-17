@@ -54,6 +54,7 @@
                                 class="btn btn-primary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
                     </div>
                     <!-- /.col -->
+
                 </div>
             </form>
             <div class="auth-links">
@@ -66,6 +67,23 @@
                        class="text-center"
                     >{{ trans('adminlte::adminlte.register_a_new_membership') }}</a>
                 @endif
+            </div>
+            <div class="social-auth-links text-center">
+                <p>- OR -</p>
+                <a href="redirect/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+                  Facebook</a>
+                <a href="redirect/google" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+                  Google+</a>
+                <a href="redirect/github" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-fw fa-github fa-2x"></i> Sign in using
+                    GitHub</a>
+            </div>
+            <div class="row">
+                <!-- /.col -->
+                <div class="col-md-6">
+                    <i class="fa fa-fw fa-github fa-2x"></i>
+                    <a href="https://github.com/Piazzi/ontologyFramework">Fork us on github </a>
+                </div>
+                <!-- /.col -->
             </div>
         </div>
         <!-- /.login-box-body -->
