@@ -999,8 +999,17 @@ Sidebar.prototype.addOntologyPalette = function(expand)
 	 	this.createEdgeTemplateEntry('endArrow=none;dashed=1;html=1;', 50, 50, '', 'Dashed Line', null, lineTags + 'dashed undirected no'),
 	 	this.createEdgeTemplateEntry('endArrow=none;html=1;', 50, 50, '', 'Line', null, lineTags + 'simple undirected plain blank no'),
 	 	this.createEdgeTemplateEntry('endArrow=classic;startArrow=classic;html=1;', 50, 50, '', 'Bidirectional Connector', null, lineTags + 'bidirectional'),
-        this.createEdgeTemplateEntry('endArrow=classic;html=1;', 50, 50, '', 'Directional Connector', null, lineTags + 'directional directed'),
         this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'is a', 'Is A', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'part_of', 'Part_Of', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'has_part', 'Has_Part', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'contains', 'Contains', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'realizes', 'Realizes', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'realized_in', 'Realized_in', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'contained_in', 'Contained_in', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'involved_in', 'Involved_in', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'located_in', 'Located_in', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'member_of', 'Member_Of', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, '', '', null, 'uml sequence message call invoke dispatch'),
 
     ];
 // DISPATCH POINTER

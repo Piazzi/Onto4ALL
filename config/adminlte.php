@@ -17,7 +17,7 @@ return [
 
     'title_prefix' => '04All |',
 
-    'title_postfix' => 'ALL',
+    'title_postfix' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Onto4</b>ALL',
+    'logo' => '<b>Onto4ALL</b>',
 
     'logo_mini' => '<b>O4A</b>',
 
@@ -110,11 +110,6 @@ return [
     'menu' => [
         'MAIN NAVIGATION',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
             'text'        => 'Ontology drawing',
             'url'         => '/home',
             'icon'        => 'object-group',
@@ -152,7 +147,7 @@ return [
         [
             'text' => 'Account Settings',
             'url'  => 'profile',
-            'icon' => 'user',
+            'icon' => 'cog',
         ],
 
         'INFO',

@@ -1,3 +1,5 @@
+ #################################### Onto4ALL ######################################################################
+
 # Desenvolvimento de metodologia e framework para elaboracão de modelos conceituais para sistemas de informação baseado em ontologias.
 
  
@@ -5,6 +7,7 @@
 * Ferramenta 1: Laravel 5.4+ / https://laravel.com/docs/5.7 
 * Ferramente 2: AdminLTE / https://adminlte.io/themes/AdminLTE/pages/UI/general.html
 * Ferramenta 3: mxGraph / https://jgraph.github.io/mxgraph/ 
+* Ferramenta 4: Jquery / https://api.jquery.com/
 
 ### Guia de instalaçao 
 #### Pré-requisitos 
