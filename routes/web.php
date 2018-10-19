@@ -37,6 +37,10 @@ Route::get('/example1', function () {
     return view('ontology_example_1');
 });
 
+Route::get('/ontologies', function (){
+    return view('user_ontologies');
+});
+
 // Rotas do Socialite
 Route::get('/redirect/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback');

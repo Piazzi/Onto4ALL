@@ -150,6 +150,13 @@ return [
             'icon' => 'cog',
         ],
 
+        'YOUR ONTOLOGIES',
+        [
+            'text' => 'Your Ontologies',
+            'url'  => '/ontologies',
+            'icon' => 'folder-open',
+        ],
+
         'INFO',
 
         [

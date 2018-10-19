@@ -1,4 +1,4 @@
- #################################### Onto4ALL ######################################################################
+ <p align="center"> <strong> ONTO4ALL </strong> </p>
 
 # Desenvolvimento de metodologia e framework para elaboracão de modelos conceituais para sistemas de informação baseado em ontologias.
 
@@ -44,6 +44,7 @@
 * 6. Foram realizadas uma série de mudanças no CSS do diagrama para que ele se encaixasse com o layout do sistema. Essas alterações podem ser vistas em public/css/mxgraph/grapheditor.css. (Estão separadas no final do arquivo).
 * 7. A pasta config possui outra série de arquivos relacionados a compatibilidade do diagrama com o sistema.
 * 9. Todo design do sistema foi desenvolvido para ser utilizado no modo top-nav do AdminLTE, trocar o estilo de menu irá acarretar em bugs.
+* 10. O arquivo Dialogs.js foi modificado para receber novas propriedades("Domain", "Range") referentes as ontologias. A partir da **linha 1473**.
 
 
 *  As demais funcionalidades do sistema foram feitas utilizando as ferramentas padrões do laravel sem nenhum tipo de integração por cima.

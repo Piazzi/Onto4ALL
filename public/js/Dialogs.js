@@ -1442,8 +1442,9 @@ var EditDataDialog = function(ui, cell)
 		text.setAttribute('readOnly', 'true');
 		text.setAttribute('value', id);
 
-		form.addField(mxResources.get('id') + ':', text);
-	}
+        form.addField(mxResources.get('id') + ':', text);
+
+    }
 
 	for (var i = 0; i < temp.length; i++)
 	{
@@ -1467,7 +1468,104 @@ var EditDataDialog = function(ui, cell)
 
 	newProp.appendChild(nameInput);
 	top.appendChild(newProp);
-	div.appendChild(top);
+    div.appendChild(top);
+
+///////////////////////// ADD NEW PROPERTIES TO THE CELL ///////////////////////////////////////////////////
+
+    var name = 'Domain';
+
+    // Avoid ':' in attribute names which seems to be valid in Chrome
+    if (name.length > 0 && name != 'label' && name != 'placeholders' && name.indexOf(':') < 0)
+    {
+        try
+        {
+            var idx = mxUtils.indexOf(names, name);
+
+            if (idx >= 0 && texts[idx] != null)
+            {
+                texts[idx].focus();
+            }
+            else
+            {
+                // Checks if the name is valid
+                var clone = value.cloneNode(false);
+                clone.setAttribute(name, '');
+
+                if (idx >= 0)
+                {
+                    names.splice(idx, 1);
+                    texts.splice(idx, 1);
+                }
+
+                names.push(name);
+                var text = form.addTextarea(name + ':', '', 2);
+                text.style.width = '100%';
+                texts.push(text);
+                addRemoveButton(text, name);
+
+                text.focus();
+            }
+
+            nameInput.value = '';
+        }
+        catch (e)
+        {
+            mxUtils.alert(e);
+        }
+    }
+    else
+    {
+        mxUtils.alert(mxResources.get('invalidName'));
+    }
+
+    var name = 'Range';
+
+    // Avoid ':' in attribute names which seems to be valid in Chrome
+    if (name.length > 0 && name != 'label' && name != 'placeholders' && name.indexOf(':') < 0)
+    {
+        try
+        {
+            var idx = mxUtils.indexOf(names, name);
+
+            if (idx >= 0 && texts[idx] != null)
+            {
+                texts[idx].focus();
+            }
+            else
+            {
+                // Checks if the name is valid
+                var clone = value.cloneNode(false);
+                clone.setAttribute(name, '');
+
+                if (idx >= 0)
+                {
+                    names.splice(idx, 1);
+                    texts.splice(idx, 1);
+                }
+
+                names.push(name);
+                var text = form.addTextarea(name + ':', '', 2);
+                text.style.width = '100%';
+                texts.push(text);
+                addRemoveButton(text, name);
+
+                text.focus();
+            }
+
+            nameInput.value = '';
+        }
+        catch (e)
+        {
+            mxUtils.alert(e);
+        }
+    }
+    else
+    {
+        mxUtils.alert(mxResources.get('invalidName'));
+    }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	var addBtn = mxUtils.button(mxResources.get('addProperty'), function()
 	{
