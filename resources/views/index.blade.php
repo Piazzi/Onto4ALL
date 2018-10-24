@@ -122,50 +122,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-    <script>
-    //Codigo das relações
-
-/*
-
-    function relation() {
-        // determina se duas classes estão conectadas
-
-     mxGraphModel.prototype.getCell = function(	id	)
-    {
-
-        if(mxCell.prototype.isEdge)
-        {
-            if(mxCell.prototype.getStyle)
-            {
-                if(mxCell.prototype.isVertex)
-                {
-                    if(mxCell.prototype.getGeometry != null)
-                    {
-                        if(mxCell.prototype.isConnectable)
-                        {
-                            alert("Você conectou algo");
-                            $(function popup() {
-                                $( "#dynamicList" ).dialog({ autoOpen: false });
-                                ( "#opener" ).click(function() {
-                                $( "#dynamicList" ).dialog( "open" );
-                                });
-                            })
-                        }
-
-                    }
-
-                }
-            }
-
-        }
-    }
-
-    }
-
-    setInterval(relation, 5000);
-*/
-    </script>
-
 <div id="dica" class="box box-success box-solid">
     <div class="box-header with-border">
       <h3 class="box-title">Dicas</h3>
@@ -193,7 +149,7 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body">
-     Clique em uma célula para adiciona-la mais rápido ao diagrama
+     Clique em uma célula para adicioná-la mais rápido ao diagrama
     </div>
     <!-- /.box-body -->
 </div>
