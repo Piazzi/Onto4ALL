@@ -25,4 +25,9 @@ class HomeController extends Controller
     {
         return view('index'); /* Editor */
     }
+
+    public function save()
+    {
+        return 'a';
+    }
 }

@@ -1,5 +1,5 @@
 
-
+/*
 function relation() {
     // determina se duas classes estão conectadas
 
@@ -30,6 +30,11 @@ function relation() {
     }
 
 }
+*/
 
+//setInterval(relation, 5000);
 
-setInterval(relation, 5000);
+setTimeout(function(){
+    $("#dica").show();
+}, 10000);
+

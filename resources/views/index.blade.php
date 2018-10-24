@@ -118,9 +118,7 @@
 </body>
 
 
-<!-- <script src="js/relation.js"></script> -->
-
-
+<script src="js/relation.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
@@ -147,11 +145,11 @@
                         {
                             alert("Você conectou algo");
                             $(function popup() {
-        $( "#dynamicList" ).dialog({ autoOpen: false });
-        ( "#opener" ).click(function() {
-        $( "#dynamicList" ).dialog( "open" );
-        });
-    })
+                                $( "#dynamicList" ).dialog({ autoOpen: false });
+                                ( "#opener" ).click(function() {
+                                $( "#dynamicList" ).dialog( "open" );
+                                });
+                            })
                         }
 
                     }
@@ -168,39 +166,52 @@
 */
     </script>
 
+<div id="dica" class="box box-success box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Dicas</h3>
 
-    <div id="modal" class="alert alert-danger alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa fa-check"></i> Mensagem</h4>
-        <strong>IHAA</strong>
-    </div>
-
-
-
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              ...
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-    </div>
-
-    <div class="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        This is an alert box.
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
       </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+     Selecione e Aperte CTRL + M para mostrar as propriedades da classe
+    </div>
+    <!-- /.box-body -->
+</div>
 
+<div id="dica" class="box box-success box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Dicas</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+     Clique em uma célula para adiciona-la mais rápido ao diagrama
+    </div>
+    <!-- /.box-body -->
+</div>
+
+<div id="dica" class="box box-success box-solid">
+    <div class="box-header with-border">
+      <h3 class="box-title">Bem-vindo(a) ao Onto4ALL</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+      <!-- /.box-tools -->
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        Me feche para ver mais dicas
+    </div>
+    <!-- /.box-body -->
+</div>
 
 @stop
