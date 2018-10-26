@@ -796,8 +796,8 @@ center {
 }
 */
 #dica {
-    z-index: 12 !important;
-    margin-top: 440px;
+    z-index: 15 !important;
+    margin-top: 435px;
     width: 20%;
     height: 15%;
     margin-left: 950px;

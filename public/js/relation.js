@@ -33,8 +33,9 @@ function relation() {
 */
 
 //setInterval(relation, 5000);
-
+/*
 setTimeout(function(){
     $("#dica").show();
 }, 10000);
 
+*/

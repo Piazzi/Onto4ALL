@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>Onto4ALL</b>',
+    'logo' => '<b style="color: #00A65A">Onto4ALL</b>',
 
     'logo_mini' => '<b>O4A</b>',
 
@@ -117,21 +117,18 @@ return [
             'label_color' => 'danger',
         ],
         [
-            'text'        => 'What is a ontology?',
-            'url'         => '/tutorial',
-            'icon'        => 'question-circle',
-            'label'       => '',
-            'label_color' => 'success',
-        ],
-        [
-            'text'    => 'Examples',
-            'icon'    => 'share',
+            'text'    => 'Tutorial',
+            'icon'    => 'info-circle',
             'submenu' => [
+                [
+                    'text' => 'What is a ontology?',
+                    'url'  => '/tutorial',
+                    'icon' => 'question-circle',
+                ],
                 [
                     'text' => 'Ontology Example 1',
                     'url'  => '/example1',
                 ],
-
                 [
                     'text' => 'Ontology Example 2',
                     'url'  => '#',

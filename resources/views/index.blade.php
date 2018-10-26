@@ -117,57 +117,42 @@
     </script>
 </body>
 
+<!-- MODIFICAÇÕES PARA O SISTEMA -->
 
 <script src="js/relation.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-<div id="dica" class="box box-success box-solid">
-    <div class="box-header with-border">
-      <h3 class="box-title">Dicas</h3>
+<!-- DICAS -->
 
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-      </div>
-      <!-- /.box-tools -->
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-     Selecione e Aperte CTRL + M para mostrar as propriedades da classe
-    </div>
-    <!-- /.box-body -->
-</div>
+@component('tip')
+    @slot('title')
+        Dica
+    @endslot
+    Tem alguma dúvida? Acesse nosso <a href="http://localhost:8000/tutorial"> <strong> Tutorial </strong></a>
+@endcomponent
 
-<div id="dica" class="box box-success box-solid">
-    <div class="box-header with-border">
-      <h3 class="box-title">Dicas</h3>
+@component('tip')
+    @slot('title')
+        Dica
+    @endslot
+    Selecione e Aperte <strong> CTRL + M </strong> para mostrar as propriedades da classe
+@endcomponent
 
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-      </div>
-      <!-- /.box-tools -->
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-     Clique em uma célula para adicioná-la mais rápido ao diagrama
-    </div>
-    <!-- /.box-body -->
-</div>
+@component('tip')
+    @slot('title')
+        Dica
+    @endslot
+    Clique em uma célula para adicioná-la mais rápido ao diagrama
+@endcomponent
 
-<div id="dica" class="box box-success box-solid">
-    <div class="box-header with-border">
-      <h3 class="box-title">Bem-vindo(a) ao Onto4ALL</h3>
+@component('tip')
+    @slot('title')
+    Bem-vindo(a) ao Onto4ALL
+    @endslot
+   <strong>  Me feche para ver mais dicas  </strong>
+@endcomponent
 
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-      </div>
-      <!-- /.box-tools -->
-    </div>
-    <!-- /.box-header -->
-    <div class="box-body">
-        Me feche para ver mais dicas
-    </div>
-    <!-- /.box-body -->
-</div>
+
 
 @stop
