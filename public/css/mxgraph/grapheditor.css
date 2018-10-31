@@ -795,7 +795,7 @@ center {
 
 }
 */
-#dica {
+#tip {
     z-index: 15 !important;
     margin-top: 435px;
     width: 20%;
@@ -805,4 +805,18 @@ center {
     position: fixed;
 }
 
+#warning {
+    z-index: 15 !important;
+    margin-top: 435px;
+    width: 20%;
+    height: 15%;
+    margin-left: 150px;
+    opacity: 0.9;
+    position: fixed;
+}
 
+#notification-button{
+    z-index: 3;
+    margin-top: 480px;
+    margin-right: 20px;
+}

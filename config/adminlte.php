@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b style="color: #00A65A">Onto4ALL</b>',
+    'logo' => '<b style="color: #ffffff">Onto4ALL</b> ',
 
     'logo_mini' => '<b>O4A</b>',
 
@@ -119,25 +119,7 @@ return [
         [
             'text'    => 'Tutorial',
             'icon'    => 'info-circle',
-            'submenu' => [
-                [
-                    'text' => 'What is a ontology?',
-                    'url'  => '/tutorial',
-                    'icon' => 'question-circle',
-                ],
-                [
-                    'text' => 'Ontology Example 1',
-                    'url'  => '/example1',
-                ],
-                [
-                    'text' => 'Ontology Example 2',
-                    'url'  => '#',
-                ],
-                [
-                    'text' => 'Ontology Example 3',
-                    'url'  => '#',
-                ],
-            ],
+            'url'  => '/tutorial',
         ],
 
         'ACCOUNT SETTINGS',
@@ -147,9 +129,9 @@ return [
             'icon' => 'cog',
         ],
 
-        'YOUR ONTOLOGIES',
+        'ONTOLOGIES',
         [
-            'text' => 'Your Ontologies',
+            'text' => 'Ontologies',
             'url'  => '/ontologies',
             'icon' => 'folder-open',
         ],

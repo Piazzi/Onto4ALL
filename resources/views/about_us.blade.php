@@ -159,6 +159,8 @@
     <!-- /.box-body -->
 </div>
 
+<img src="/Logo.jpeg">
 
+<img src="public\vendor\adminlte\dist\css\logo.jpeg" alt="" srcset="">
 
 @stop

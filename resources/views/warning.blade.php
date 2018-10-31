@@ -1,4 +1,4 @@
-<div id="tip" class="box box-success box-solid">
+<div id="warning" class="box box-danger box-solid">
     <div class="box-header with-border">
     <h3 class="box-title"><strong> {{$title}} </strong></h3>
 

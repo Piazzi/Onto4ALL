@@ -153,6 +153,16 @@
    <strong>  Me feche para ver mais dicas  </strong>
 @endcomponent
 
+@component('warning')
+    @slot('title')
+    Cuidado
+    @endslot
+    <strong>Você não pode realizar essa ação</strong>
+@endcomponent
 
+<a id="notification-button"class="btn btn-app">
+    <span class="badge bg-yellow">Dicas</span>
+    <i class="fa fa-bullhorn"></i> Notifications
+</a>
 
 @stop

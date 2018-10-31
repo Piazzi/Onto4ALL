@@ -33,12 +33,9 @@ Route::get('tutorial', function() {
     return view('tutorial');
 });
 
-Route::get('/example1', function () {
-    return view('ontology_example_1');
-});
-
-Route::get('/ontologies', function (){
-    return view('user_ontologies');
+Route::resource('/ontologies', 'OntologyController');
+Route::get('/ontologies_store', function () {
+    return view('ontologies.ontologies_store');
 });
 
 // Rotas do Socialite
