@@ -55,6 +55,7 @@
               <th>Description</th>
               <th>Link</th>
               <th>Created By</th>
+              <th>Actions</th>
             </tr>
             @foreach ($ontologies as $ontology)
             <tr>
@@ -76,6 +77,7 @@
                     <a href="{{$ontology->link}}">{{$Link}}</a>
                 </td>
                 <td>{{$ontology->created_by}}</td>
+                <td><form method="GET" action="/ontologies/ontologies_show/{{$ontology->id}}"> <button type="submit" class="btn btn-block btn-info">Info</button></form></td>
 
             </tr>
             @endforeach

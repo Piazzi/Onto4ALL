@@ -52,7 +52,10 @@ class OntologyController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $ontology = Ontology::findOrFail($id);
+
+        return view('ontologies.ontologies_show', compact('ontology'));
     }
 
     /**

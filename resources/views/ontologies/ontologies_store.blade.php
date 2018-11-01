@@ -50,7 +50,7 @@
 
             <div class="form-group">
                 <label>Created By</label>
-            <input disabled name="created_by" type="text" class="form-control" value="{{Auth::user()->email}}">
+                <input disabled name="created_by" type="text" class="form-control" value="{{Auth::user()->email}}">
             </div>
 
             <button class="btn btn-success btn-block" type="submit">Submit</button>

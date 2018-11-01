@@ -37,6 +37,7 @@ Route::resource('/ontologies', 'OntologyController');
 Route::get('/ontologies_store', function () {
     return view('ontologies.ontologies_store');
 });
+Route::get('/ontologies/ontologies_show/{id}', 'OntologyController@show');
 
 // Rotas do Socialite
 Route::get('/redirect/{service}', 'Auth\LoginController@redirectToProvider');
