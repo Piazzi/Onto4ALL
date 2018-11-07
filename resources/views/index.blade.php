@@ -119,9 +119,10 @@
 
 <!-- MODIFICAÇÕES PARA O SISTEMA -->
 
-<script src="js/relation.js"></script>
+<script src="js/Relation.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
 <!-- DICAS -->
 
@@ -134,7 +135,7 @@
 
 @component('tip')
     @slot('title')
-        Dica
+    Dica
     @endslot
     Selecione e Aperte <strong> CTRL + M </strong> para mostrar as propriedades da classe
 @endcomponent
@@ -150,19 +151,25 @@
     @slot('title')
     Bem-vindo(a) ao Onto4ALL
     @endslot
-   <strong>  Me feche para ver mais dicas  </strong>
+    Me feche para ver mais dicas ou <strong><a>CLIQUE AQUI</a></strong> para esconder as dicas
 @endcomponent
 
-@component('warning')
-    @slot('title')
-    Cuidado
-    @endslot
-    <strong>Você não pode realizar essa ação</strong>
-@endcomponent
 
 <a id="notification-button"class="btn btn-app">
-    <span class="badge bg-yellow">Dicas</span>
-    <i class="fa fa-bullhorn"></i> Notifications
+    <span class="badge bg-yellow">Clique Aqui</span>
+    <i class="fa fa-bullhorn"></i> Dicas
 </a>
+
+<script>
+
+    $(".texto").click(function () {
+        $(".tip").slideToggle();
+    });
+
+    $("#notification-button").click(function () {
+        $(".tip").slideToggle();
+    });
+
+</script>
 
 @stop

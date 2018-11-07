@@ -1,5 +1,5 @@
 
-/*
+
 function relation() {
     // determina se duas classes estão conectadas
 
@@ -18,7 +18,7 @@ function relation() {
                             if(mxCell.prototype.getId != 0)
                                 {
 
-                                    return   alert("aaa");
+                                  alert("aaa");
                                 }
                         }
                     }
@@ -30,9 +30,9 @@ function relation() {
     }
 
 }
-*/
 
-//setInterval(relation, 5000);
+
+setInterval(relation, 5000);
 /*
 setTimeout(function(){
     $("#dica").show();
