@@ -43,3 +43,4 @@ Route::get('/ontologies/ontologies_show/{id}', 'OntologyController@show');
 Route::get('/redirect/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback');
 
+Route::resource('/menus', 'MenuController');

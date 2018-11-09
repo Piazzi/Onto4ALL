@@ -820,3 +820,18 @@ center {
     margin-top: 480px;
     margin-right: 20px;
 }
+
+.loading-screen {
+
+    position: fixed;
+    z-index: 16;
+    opacity: 0.5;
+    width: 73%;
+    height: 85%;
+}
+
+.fa-refresh {
+   margin-bottom: 550px;
+}
+
+

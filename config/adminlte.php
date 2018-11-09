@@ -145,6 +145,16 @@ return [
             'label'      => 'Info',
             'label_color'=> 'warning'
         ],
+
+        'Menus',
+
+        [
+            'text'       => 'Menus',
+            'icon'       => 'th-list',
+            'url'        => '/menus',
+            'label'      => 'Info',
+            'label_color'=> 'warning'
+        ],
     ],
 
     /*

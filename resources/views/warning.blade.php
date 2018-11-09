@@ -1,4 +1,4 @@
-<div id="warning" class="box box-danger box-solid">
+<div style="display:block" id="warning" class="box box-danger box-solid warning">
     <div class="box-header with-border">
     <h3 class="box-title"><strong> {{$title}} </strong></h3>
 

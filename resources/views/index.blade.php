@@ -4,6 +4,29 @@
 
 @section('content_header')
 
+<!-- Loading Screen -->
+<div class="box loading-screen">
+    <div class="box-header">
+      <h3 class="box-title"><strong> Loading </strong></h3>
+    </div>
+    <div class="box-body">
+      <strong> Please... Wait </strong>
+    </div>
+    <!-- /.box-body -->
+    <!-- Loading (remove the following to stop the loading)-->
+    <div class="overlay">
+      <i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <!-- end loading -->
+</div>
+
+<script>
+
+    setTimeout(function(){
+    $('.loading-screen').remove();
+    }, 2500)
+
+</script>
 
 @stop
 
@@ -124,6 +147,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
+
+
 <!-- DICAS -->
 
 @component('tip')
@@ -154,6 +179,12 @@
     Me feche para ver mais dicas ou <strong><a>CLIQUE AQUI</a></strong> para esconder as dicas
 @endcomponent
 
+@slot('warning')
+    @slot('title')
+        aaa
+    @endslot
+    sasas
+@endslot
 
 <a id="notification-button"class="btn btn-app">
     <span class="badge bg-yellow">Clique Aqui</span>
@@ -171,5 +202,6 @@
     });
 
 </script>
+
 
 @stop

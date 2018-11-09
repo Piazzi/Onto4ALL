@@ -1,12 +1,10 @@
 
-
+/*
 function relation() {
     // determina se duas classes estão conectadas
 
     mxGraphModel.prototype.getCell = function(id)
     {
-
-
         if(mxCell.prototype.getGeometry)
         {
             if(mxCell.prototype.isConnectable)
@@ -15,11 +13,7 @@ function relation() {
                     {
                         if(mxGraphSelectionModel.prototype.isSelected)
                         {
-                            if(mxCell.prototype.getId != 0)
-                                {
-
-                                  alert("aaa");
-                                }
+                            alert(mxCell.prototype.getValue);
                         }
                     }
             }
@@ -32,8 +26,9 @@ function relation() {
 }
 
 
+
 setInterval(relation, 5000);
-/*
+
 setTimeout(function(){
     $("#dica").show();
 }, 10000);
