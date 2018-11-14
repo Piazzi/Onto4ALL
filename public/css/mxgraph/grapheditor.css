@@ -781,23 +781,9 @@ center {
    FIM DAS ALTERAÇÕES
 */
 
-/*
-    ALTERAÇÕES DO MODAL DE DICAS
-*/
-/*
-#modal {
-    z-index: 12 !important;
-    margin-top: 440px;
-    width: 20%;
-    margin-left: 950px;
-    opacity: 0.85;
-
-
-}
-*/
 #tip {
-    z-index: 15 !important;
-    margin-top: 435px;
+    z-index: 150 !important;
+    margin-top: 405px;
     width: 20%;
     height: 15%;
     margin-left: 950px;
@@ -816,15 +802,20 @@ center {
 }
 
 #notification-button{
-    z-index: 3;
-    margin-top: 480px;
-    margin-right: 20px;
+    z-index: 150;
+    margin-top: 5px;
+    margin-left: 100px;
+}
+
+#sidebar-control {
+    z-index: 150;
+    margin-bottom: 3px;
 }
 
 .loading-screen {
 
     position: fixed;
-    z-index: 16;
+    z-index: 18;
     opacity: 0.5;
     width: 73%;
     height: 85%;
@@ -834,4 +825,23 @@ center {
    margin-bottom: 550px;
 }
 
+.menu {
+    position: fixed;
+    z-index: 17;
+    margin-left: 800px;
+    width: 30%;
+    height: 60%;
+    margin-bottom: 200px;
+}
 
+aside {
+    margin-left: 200px !important;
+    opacity: 0.9;
+    position: fixed;
+    background-color: #00A65A;
+}
+
+.control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open+.control-sidebar-bg {
+    position: fixed;
+
+}

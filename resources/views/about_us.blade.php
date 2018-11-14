@@ -8,18 +8,133 @@
 @stop
 
 @section('content')
+<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+<aside class="control-sidebar control-sidebar-dark control-sidebar-open">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+          <li class="active"><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab"><i class="fa fa-wrench"></i></a></li><li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- Home tab content -->
+          <div class="tab-pane" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+              <li>
+
+              </li>
+              <li>
+
+              </li>
+              <li>
+
+              </li>
+              <li>
+
+              </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+          </div>
+          <!-- /.tab-pane -->
+                <div id="control-sidebar-theme-demo-options-tab" class="tab-pane active">
+                        <div class="box box-default collapsed-box box-solid">
+                                <div class="box-header with-border">
+                                  <h3 class="box-title">Expandable</h3>
+
+                                  <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                    </button>
+                                  </div>
+                                  <!-- /.box-tools -->
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                  The body of the box
+                                </div>
+                                <!-- /.box-body -->
+                              </div>
+                              <div class="box box-default collapsed-box box-solid">
+                                    <div class="box-header with-border">
+                                      <h3 class="box-title">Expandable</h3>
+
+                                      <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                        </button>
+                                      </div>
+                                      <!-- /.box-tools -->
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <div class="box-body">
+                                      The body of the box
+                                    </div>
+                                    <!-- /.box-body -->
+                                  </div>
+                                  <div class="box box-default collapsed-box box-solid">
+                                        <div class="box-header with-border">
+                                          <h3 class="box-title">Expandable</h3>
+
+                                          <div class="box-tools pull-right">
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                                            </button>
+                                          </div>
+                                          <!-- /.box-tools -->
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                          The body of the box
+                                        </div>
+                                        <!-- /.box-body -->
+                                      </div>
+
+                </div>
+          <!-- Settings tab content -->
+          <div class="tab-pane" id="control-sidebar-settings-tab">
+
+              <h3 class="control-sidebar-heading">General Settings</h3>
 
 
+              <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Show me as online
+                  <input type="checkbox" class="pull-right" checked="">
+                </label>
+              </div>
+              <!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Turn off notifications
+                  <input type="checkbox" class="pull-right">
+                </label>
+              </div>
+              <!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Delete chat history
+                  <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                </label>
+              </div>
+              <!-- /.form-group -->
+            </form>
+          </div>
+          <!-- /.tab-pane -->
+        </div>
+      </aside>
 
 
 <!-- Construct the box with style you want. Here we are using box-danger -->
 <!-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
 <!-- The contextual class should match the box, so we are using direct-chat-danger -->
-<div class="box box-danger direct-chat direct-chat-danger menu">
+
+<div class="box box-success direct-chat direct-chat-success menu">
     <div class="box-header with-border">
-      <h3 class="box-title">Direct Chat</h3>
+    <h3 class="box-title"></h3>
       <div class="box-tools pull-right">
-        <span data-toggle="tooltip" title="3 New Messages" class="badge bg-red">3</span>
+        <span data-toggle="tooltip" title="Need help?" class="badge bg-green">Need help?</span>
         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
         <!-- In box-tools add this button if you intend to use the contacts pane -->
         <button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle"><i class="fa fa-comments"></i></button>
@@ -29,8 +144,11 @@
     <!-- /.box-header -->
     <div class="box-body">
       <!-- Conversations are loaded here -->
+
       <div class="direct-chat-messages">
         <!-- Message. Default to the left -->
+
+
 
       </div>
       <!--/.direct-chat-messages-->
@@ -44,17 +162,6 @@
                 <span class="contacts-list-name">
                     <div class="callout callout-info">
                         <h4>I am an info callout!</h4>
-
-                        <p>Follow the steps to continue to payment.</p>
-                    </div>
-                    <div class="callout callout-info">
-                        <h4>I am an info callout!</h4>
-
-                        <p>Follow the steps to continue to payment.</p>
-                    </div>
-                    <div class="callout callout-info">
-                        <h4>I am an info callout!</h4>
-
                         <p>Follow the steps to continue to payment.</p>
                     </div>
               </div>
@@ -77,10 +184,51 @@
   </div>
   <!--/.direct-chat -->
 
-  <a id="notification-button"class="btn btn-app">
-    <span class="badge bg-yellow">Clique Aqui</span>
-    <i class="fa fa-bullhorn"></i> Dicas
-</a>
+  <div id="accordion">
+    <div class="card">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            Collapsible Group Item #1
+          </button>
+        </h5>
+      </div>
+
+      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Collapsible Group Item #2
+          </button>
+        </h5>
+      </div>
+      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Collapsible Group Item #3
+          </button>
+        </h5>
+      </div>
+      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script>
     $("#notification-button").click(function () {

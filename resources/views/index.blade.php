@@ -4,7 +4,98 @@
 
 @section('content_header')
 
-<!-- Loading Screen -->
+<aside class="control-sidebar control-sidebar-light control-sidebar-open">
+        <!-- Create the tabs -->
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+          <li class="active"><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab"><i class="fa fa-wrench"></i></a></li><li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <!-- Home tab content -->
+            <div class="tab-pane" id="control-sidebar-home-tab">
+                <h3 class="control-sidebar-heading">Recent Activity</h3>
+                <ul class="control-sidebar-menu">
+                <li>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            <input type="checkbox" data-controlsidebar="control-sidebar-open" class="pull-right"> Toggle Right Sidebar Slide
+                        </label>
+                        <p>Toggle between slide over content and push content effects</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-group">
+                        <label class="control-sidebar-subheading">
+                            <input type="checkbox" data-sidebarskin="toggle" class="pull-right"> Toggle Right Sidebar Skin
+                        </label>
+                        <p>Toggle between dark and light skins for the right sidebar</p>
+                    </div>
+                </li>
+                <li>
+
+                </li>
+                <li>
+
+                </li>
+                </ul>
+                <!-- /.control-sidebar-menu -->
+            </div>
+            <!-- /.tab-pane -->
+            <div id="control-sidebar-theme-demo-options-tab" class="tab-pane active">
+                @foreach($menus as $menu)
+                <div class="box box-default collapsed-box box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">{{$menu->title}}</h3>
+                        <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                    {{$menu->description}}
+                    </div>
+                </div>
+                @endforeach
+            </div>
+          <!-- Settings tab content -->
+          <div class="tab-pane" id="control-sidebar-settings-tab">
+
+              <h3 class="control-sidebar-heading">General Settings</h3>
+
+
+              <h3 class="control-sidebar-heading">Chat Settings</h3>
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Show me as online
+                  <input type="checkbox" class="pull-right" checked="">
+                </label>
+              </div>
+              <!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Turn off notifications
+                  <input type="checkbox" class="pull-right">
+                </label>
+              </div>
+              <!-- /.form-group -->
+
+              <div class="form-group">
+                <label class="control-sidebar-subheading">
+                  Delete chat history
+                  <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
+                </label>
+              </div>
+              <!-- /.form-group -->
+            </form>
+          </div>
+          <!-- /.tab-pane -->
+        </div>
+</aside>
+
+<!--
 <div class="box loading-screen">
     <div class="box-header">
       <h3 class="box-title"><strong> Loading </strong></h3>
@@ -12,14 +103,11 @@
     <div class="box-body">
       <strong> Please... Wait </strong>
     </div>
-    <!-- /.box-body -->
-    <!-- Loading (remove the following to stop the loading)-->
     <div class="overlay">
       <i class="fa fa-refresh fa-spin"></i>
     </div>
-    <!-- end loading -->
 </div>
-
+-->
 <script>
 
     setTimeout(function(){
@@ -186,12 +274,21 @@
     sasas
 @endslot
 
-<a id="notification-button"class="btn btn-app">
+<a id="notification-button" class="btn btn-app">
     <span class="badge bg-yellow">Clique Aqui</span>
     <i class="fa fa-bullhorn"></i> Dicas
 </a>
 
+<a id="sidebar-control"  class="btn btn-app">
+    <span class="badge bg-green">Clique aqui</span>
+    <i class="fa fa-fw fa-th-list"></i> Sidebar
+</a>
+
 <script>
+    $("#sidebar-control").click(function () {
+        $('aside').slideToggle();
+
+    });
 
     $(".texto").click(function () {
         $(".tip").slideToggle();
@@ -199,6 +296,7 @@
 
     $("#notification-button").click(function () {
         $(".tip").slideToggle();
+        $(".menu").slideToggle();
     });
 
 </script>

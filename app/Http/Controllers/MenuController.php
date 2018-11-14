@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Menu;
 use Illuminate\Support\Facades\Validator;
-//use App\Http\Requests\OntologyStoreRequest;
+use App\Http\Requests\MenuStoreRequest;
 class MenuController extends Controller
 {
     /**
@@ -35,7 +35,7 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MenuStoreRequest $request)
     {
         $menu = Menu::create($request->all());
         return redirect()->route('menus.index')->with('Sucess', 'Your menu has been successfully stored')->withInput();
@@ -73,7 +73,7 @@ class MenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MenuStoreRequest $request, $id)
     {
         $menu = Menu::findOrFail($id);
         $menu->update($request->all());
