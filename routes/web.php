@@ -44,3 +44,4 @@ Route::get('/redirect/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback');
 
 Route::resource('/menus', 'MenuController');
+Route::resource('/tips_relations', 'TipsRelationController');

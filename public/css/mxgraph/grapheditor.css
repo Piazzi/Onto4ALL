@@ -781,6 +781,7 @@ center {
    FIM DAS ALTERAÇÕES
 */
 
+
 #tip {
     z-index: 150 !important;
     margin-top: 405px;
@@ -804,12 +805,12 @@ center {
 #notification-button{
     z-index: 150;
     margin-top: 5px;
-    margin-left: 100px;
+    margin-left: 850px;
 }
 
 #sidebar-control {
     z-index: 150;
-    margin-bottom: 3px;
+    margin-left: 850px;
 }
 
 .loading-screen {
@@ -824,7 +825,7 @@ center {
 .fa-refresh {
    margin-bottom: 550px;
 }
-
+/*
 .menu {
     position: fixed;
     z-index: 17;
@@ -833,12 +834,11 @@ center {
     height: 60%;
     margin-bottom: 200px;
 }
-
+*/
 aside {
     margin-left: 200px !important;
     opacity: 0.9;
     position: fixed;
-    background-color: #00A65A;
 }
 
 .control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open+.control-sidebar-bg {

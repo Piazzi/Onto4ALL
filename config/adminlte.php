@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b style="color: #ffffff">Onto4ALL</b> ',
+    'logo' => '<b style="color: #ffffff">OntoForALL</b> ',
 
     'logo_mini' => '<b>O4A</b>',
 
@@ -146,14 +146,19 @@ return [
             'label_color'=> 'warning'
         ],
 
-        'Menus',
-
         [
-            'text'       => 'Menus',
-            'icon'       => 'th-list',
-            'url'        => '/menus',
-            'label'      => 'Info',
-            'label_color'=> 'warning'
+            'text'    => 'Menus e Dicas',
+            'icon'    => 'th-list',
+            'submenu' => [
+                [
+                    'text' => 'Menus',
+                    'url'  => '/menus',
+                ],
+                [
+                    'text'    => 'Tips Relations',
+                    'url'     => '/tips_relations',
+                ],
+            ],
         ],
     ],
 

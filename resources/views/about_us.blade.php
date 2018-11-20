@@ -86,6 +86,128 @@
                                         </div>
                                         <!-- /.box-body -->
                                       </div>
+                                      <!-- Construct the box with style you want. Here we are using box-danger -->
+<!-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
+<!-- The contextual class should match the box, so we are using direct-chat-danger -->
+
+<div class="box box-success direct-chat direct-chat-success menu">
+        <div class="box-header with-border">
+        <h3 class="box-title"></h3>
+          <div class="box-tools pull-right">
+            <span data-toggle="tooltip" title="Need help?" class="badge bg-green">Need help?</span>
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <!-- In box-tools add this button if you intend to use the contacts pane -->
+            <button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle"><i class="fa fa-comments"></i></button>
+            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <!-- Conversations are loaded here -->
+
+          <div class="direct-chat-messages">
+            <!-- Message. Default to the left -->
+
+
+
+          </div>
+          <!--/.direct-chat-messages-->
+
+          <!-- Contacts are loaded here -->
+          <div class="direct-chat-contacts">
+            <ul class="contacts-list">
+              <li>
+                <a href="#">
+                  <div class="contacts-list-info">
+                    <span class="contacts-list-name">
+                        <div class="callout callout-info">
+                            <h4>I am an info callout!</h4>
+                            <p>Follow the steps to continue to payment.</p>
+                        </div>
+                  </div>
+                  <!-- /.contacts-list-info -->
+                </a>
+              </li>
+              <!-- End Contact Item -->
+            </ul>
+            <!-- /.contatcts-list -->
+          </div>
+          <!-- /.direct-chat-pane -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <div class="input-group">
+
+          </div>
+        </div>
+        <!-- /.box-footer-->
+      </div>
+      <!--/.direct-chat -->
+
+
+      </div>
+<!-- Construct the box with style you want. Here we are using box-danger -->
+<!-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
+<!-- The contextual class should match the box, so we are using direct-chat-danger -->
+
+<div class="box box-success direct-chat direct-chat-success menu">
+        <div class="box-header with-border">
+        <h3 class="box-title"></h3>
+          <div class="box-tools pull-right">
+            <span data-toggle="tooltip" title="Need help?" class="badge bg-green">Need help?</span>
+            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <!-- In box-tools add this button if you intend to use the contacts pane -->
+            <button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle"><i class="fa fa-comments"></i></button>
+            <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <!-- Conversations are loaded here -->
+
+          <div class="direct-chat-messages">
+            <!-- Message. Default to the left -->
+
+
+
+          </div>
+          <!--/.direct-chat-messages-->
+
+          <!-- Contacts are loaded here -->
+          <div class="direct-chat-contacts">
+            <ul class="contacts-list">
+              <li>
+                <a href="#">
+                  <div class="contacts-list-info">
+                    <span class="contacts-list-name">
+                        <div class="callout callout-info">
+                            <h4>I am an info callout!</h4>
+                            <p>Follow the steps to continue to payment.</p>
+                        </div>
+                  </div>
+                  <!-- /.contacts-list-info -->
+                </a>
+              </li>
+              <!-- End Contact Item -->
+            </ul>
+            <!-- /.contatcts-list -->
+          </div>
+          <!-- /.direct-chat-pane -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <div class="input-group">
+
+          </div>
+        </div>
+        <!-- /.box-footer-->
+      </div>
+      <!--/.direct-chat -->
+
+
+      </div>
+
+
 
                 </div>
           <!-- Settings tab content -->
@@ -184,50 +306,7 @@
   </div>
   <!--/.direct-chat -->
 
-  <div id="accordion">
-    <div class="card">
-      <div class="card-header" id="headingOne">
-        <h5 class="mb-0">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Collapsible Group Item #1
-          </button>
-        </h5>
-      </div>
 
-      <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header" id="headingTwo">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            Collapsible Group Item #2
-          </button>
-        </h5>
-      </div>
-      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header" id="headingThree">
-        <h5 class="mb-0">
-          <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            Collapsible Group Item #3
-          </button>
-        </h5>
-      </div>
-      <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-        <div class="card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-        </div>
-      </div>
-    </div>
   </div>
 
 <script>

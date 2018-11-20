@@ -34,7 +34,7 @@
 
 * Algumas mudanças foram necessárias para a integração da biblioteca mxgraph com o laravel.
 
-* 0. O arquivo index.blade.php é o arquivo principal do sistema e onde o diagrama é inicializado. Grande parte dos arquivos de JS são carregados aqui e por enquanto todas as relações (regras de negócio) são feitas no arquivo relation.js que é chamado no final da página. **CUIDADO AO ALTERAR**
+* 0. O arquivo index.blade.php é o arquivo principal do sistema e onde o diagrama é inicializado. Grande parte dos arquivos de JS são carregados aqui. O arquivo possui também todo o menu de dicas (Sidebar) **CUIDADO AO ALTERAR**
 * 1. Os arquivos de view (open.html / viewer.html) que deveriam estar localizados na pasta resources/views estão, por motivos de compatibilidade, localizados na pasta public.
 * 2. A grande maioria de arquivos de javascript do mxgraph foi colocada e integrada a pasta public/js 
  padrão do laravel.

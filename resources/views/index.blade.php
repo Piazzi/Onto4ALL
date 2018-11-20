@@ -4,10 +4,11 @@
 
 @section('content_header')
 
+<!--tips menu-->
 <aside class="control-sidebar control-sidebar-light control-sidebar-open">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li class="active"><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab"><i class="fa fa-wrench"></i></a></li><li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+          <li class="active"><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab"><i class="fa fa-fw fa-archive"></i></a></li><li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
           <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
         </ul>
         <!-- Tab panes -->
@@ -63,7 +64,6 @@
 
               <h3 class="control-sidebar-heading">General Settings</h3>
 
-
               <h3 class="control-sidebar-heading">Chat Settings</h3>
 
               <div class="form-group">
@@ -94,8 +94,8 @@
           <!-- /.tab-pane -->
         </div>
 </aside>
+<!-- /.tips menu -->
 
-<!--
 <div class="box loading-screen">
     <div class="box-header">
       <h3 class="box-title"><strong> Loading </strong></h3>
@@ -107,7 +107,7 @@
       <i class="fa fa-refresh fa-spin"></i>
     </div>
 </div>
--->
+
 <script>
 
     setTimeout(function(){
@@ -262,7 +262,7 @@
 
 @component('tip')
     @slot('title')
-    Bem-vindo(a) ao Onto4ALL
+    Bem-vindo ao Onto4ALL
     @endslot
     Me feche para ver mais dicas ou <strong><a>CLIQUE AQUI</a></strong> para esconder as dicas
 @endcomponent
@@ -281,7 +281,7 @@
 
 <a id="sidebar-control"  class="btn btn-app">
     <span class="badge bg-green">Clique aqui</span>
-    <i class="fa fa-fw fa-th-list"></i> Sidebar
+    <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i> Sidebar
 </a>
 
 <script>
