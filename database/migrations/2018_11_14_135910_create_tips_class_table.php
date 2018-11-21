@@ -18,7 +18,7 @@ class CreateTipsClassTable extends Migration
             $table->timestamps();
             $table->string('superclass');
             $table->string('subclass');
-            $table->string('synonims');
+            $table->string('synonyms');
         });
     }
 

@@ -21,28 +21,24 @@
 
 <div class="box box-success">
         <div class="box-header with-border">
-          <h3 class="box-title">Edit Relation</h3>
+          <h3 class="box-title">Edit Tip's Class</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-        <form  method="post" action="{{route('tips_relations.update', $tips_relation->id)}}" role="form" ">
+        <form  method="post" action="{{route('tips_class.update', $tip_class->id)}}" role="form" ">
             @csrf
             <input name="_method" type="hidden" value="PATCH">
             <div class="form-group">
-                <label>Domain</label>
-            <input required value="{{$tips_relation->domain}}" name="domain" type="text" class="form-control" >
+                <label>Super Class</label>
+            <input required value="{{$tip_class->superclass}}" name="superclass" type="text" class="form-control" >
             </div>
             <div class="form-group">
-                <label>Range</label>
-                <input required value="{{$tips_relation->range}}" name="range" type="text" class="form-control"  >
+                <label>Sub Class</label>
+                <input required value="{{$tip_class->subclass}}" name="subclass" type="text" class="form-control"  >
             </div>
             <div class="form-group">
-                <label>Similar Relation</label>
-            <input required value="{{$tips_relation->similar_relation}}" name="similar_relation"  type="text" class="form-control" >
-            </div>
-            <div class="form-group">
-                <label>Cardinality</label>
-                <input required value="{{$tips_relation->cardinality}}" name="cardinality" type="text" class="form-control"  >
+                <label>Synonyms</label>
+            <input required value="{{$tip_class->synonyms}}" name="synonyms"  type="text" class="form-control" >
             </div>
             <button class="btn btn-success btn-block" type="submit">Submit</button>
         </form>

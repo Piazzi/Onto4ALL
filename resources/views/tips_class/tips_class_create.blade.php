@@ -20,37 +20,31 @@
 
 <div class="box box-success">
         <div class="box-header with-border">
-          <h3 class="box-title">Add a Tip Relation</h3>
+          <h3 class="box-title">Add a Tip Class</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-        <form  method="POST" action="{{route('tips_relations.store')}}" role="form" token="{{ csrf_token() }}">
+        <form  method="POST" action="{{route('tips_class.store')}}" role="form" token="{{ csrf_token() }}">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Domain</label>
-                        <input required value="{{old('domain')}}" name="domain" type="text" class="form-control" placeholder="">
+                        <label>Super Class</label>
+                        <input required value="{{old('superclass')}}" name="superclass" type="text" class="form-control" placeholder="">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Range</label>
-                        <input required value="{{old('range')}}" name="range" type="text" class="form-control">
+                        <label>Sub Class</label>
+                        <input required value="{{old('subclass')}}" name="subclass" type="text" class="form-control">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Similar Relation</label>
-                        <input required value="{{old('similar_relation')}}" name="similar_relation" type="textarea" class="form-control"  >
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Cardinality</label>
-                        <input required value="{{old('cardinality')}}" name="cardinality" type="number" class="form-control"  >
+                        <label>Synonyms</label>
+                        <input required value="{{old('synonyms')}}" name="synonyms" type="textarea" class="form-control"  >
                     </div>
                 </div>
             </div>

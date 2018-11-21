@@ -158,6 +158,10 @@ return [
                     'text'    => 'Tips Relations',
                     'url'     => '/tips_relations',
                 ],
+                [
+                    'text'    => 'Tips Class',
+                    'url'     => '/tips_class',
+                ],
             ],
         ],
     ],

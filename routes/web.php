@@ -45,3 +45,4 @@ Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback')
 
 Route::resource('/menus', 'MenuController');
 Route::resource('/tips_relations', 'TipsRelationController');
+Route::resource('/tips_class', 'TipClassController');
