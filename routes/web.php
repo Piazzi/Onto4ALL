@@ -33,12 +33,6 @@ Route::get('tutorial', function() {
     return view('tutorial');
 });
 
-Route::resource('/ontologies', 'OntologyController');
-Route::get('/ontologies_store', function () {
-    return view('ontologies.ontologies_store');
-});
-Route::get('/ontologies/ontologies_show/{id}', 'OntologyController@show');
-
 // Rotas do Socialite
 Route::get('/redirect/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback');
@@ -46,3 +40,4 @@ Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback')
 Route::resource('/menus', 'MenuController');
 Route::resource('/tips_relations', 'TipsRelationController');
 Route::resource('/tips_class', 'TipClassController');
+Route::resource('/ontologies', 'OntologyController');

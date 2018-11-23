@@ -49,17 +49,20 @@
           <table class="table table-hover">
             <tbody><tr>
               <th>ID</th>
+              <th>Name</th>
               <th>Domain</th>
               <th>Range</th>
               <th>Similar Relation</th>
               <th>Cardinality</th>
-              <th>Actions</th>
+              <th></th>
+              <th></th>
+              <th></th>
 
             </tr>
             @foreach ($tips_relations as $tips_relation)
             <tr>
-
                 <td>{{$tips_relation->id}}</td>
+                <td>{{$tips_relation->name}}</td>
                 <td>{{$tips_relation->domain}}</td>
                 <td>{{$tips_relation->range}}</td>
                 <td>{{$tips_relation->similar_relation}}</td>

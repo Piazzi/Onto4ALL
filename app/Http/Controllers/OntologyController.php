@@ -28,7 +28,7 @@ class OntologyController extends Controller
      */
     public function create()
     {
-        //
+        return view('ontologies.ontologies_store');
     }
 
     /**

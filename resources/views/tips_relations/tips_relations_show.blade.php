@@ -15,6 +15,10 @@
         <!-- /.box-header -->
         <div class="box-body">
             <div class="form-group">
+                <label>Name</label>
+                <input disabled value="{{$tips_relation->name}}"  type="text" class="form-control" >
+            </div>
+            <div class="form-group">
                 <label>Domain</label>
             <input disabled value="{{$tips_relation->domain}}"  type="text" class="form-control" >
             </div>
@@ -29,6 +33,10 @@
             <div class="form-group">
                 <label>Cardinality</label>
                 <input disabled value="{{$tips_relation->cardinality}}"  type="text" class="form-control"  >
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea disabled class="form-control form-textarea"> {{$tips_relation->description}}</textarea>
             </div>
             <a href="/tips_relations"><button class="btn btn-success btn-block" type="button">Go back</button></a>
         </div>

@@ -8,8 +8,13 @@
 <aside class="control-sidebar control-sidebar-light control-sidebar-open">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li class="active"><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab"><i class="fa fa-fw fa-archive"></i></a></li><li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+          <li class="active"><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab"><i class="fa fa-fw fa-archive"></i></a></li>
+          <li><div class="input-group input-group-sm" style="width: 150px;">
+            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+            <div class="input-group-btn">
+              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div></li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
@@ -44,17 +49,17 @@
             </div>
             <!-- /.tab-pane -->
             <div id="control-sidebar-theme-demo-options-tab" class="tab-pane active">
-                @foreach($menus as $menu)
+                @foreach($tips_relations as $tips_relation)
                 <div class="box box-default collapsed-box box-solid">
                     <div class="box-header with-border">
-                        <h3 class="box-title">{{$menu->title}}</h3>
+                        <h3 class="box-title">{{$tips_relation->name}}</h3>
                         <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
                         </button>
                         </div>
                     </div>
                     <div class="box-body">
-                    {{$menu->description}}
+                    {{$tips_relation->description}}
                     </div>
                 </div>
                 @endforeach
@@ -298,6 +303,10 @@
         $(".tip").slideToggle();
         $(".menu").slideToggle();
     });
+
+    $( 'svg' ).mousemove(function( event ) {
+        alert('aaaa');
+});
 
 </script>
 

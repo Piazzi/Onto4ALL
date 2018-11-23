@@ -27,13 +27,19 @@
         <form  method="POST" action="{{route('tips_relations.store')}}" role="form" token="{{ csrf_token() }}">
             {{ csrf_field() }}
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input required value="{{old('name')}}" name="name" type="text" class="form-control" placeholder="">
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Domain</label>
                         <input required value="{{old('domain')}}" name="domain" type="text" class="form-control" placeholder="">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Range</label>
                         <input required value="{{old('range')}}" name="range" type="text" class="form-control">
@@ -53,6 +59,10 @@
                         <input required value="{{old('cardinality')}}" name="cardinality" type="number" class="form-control"  >
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea required value="{{old('description')}}" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
             </div>
             <button class="btn btn-success btn-block" type="submit">Submit</button>
         </form>

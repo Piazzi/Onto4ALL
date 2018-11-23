@@ -787,7 +787,7 @@ center {
     margin-top: 405px;
     width: 20%;
     height: 15%;
-    margin-left: 950px;
+    margin-left: 90px;
     opacity: 0.9;
     position: fixed;
 }
@@ -816,7 +816,7 @@ center {
 .loading-screen {
 
     position: fixed;
-    z-index: 18;
+    z-index: 200;
     opacity: 0.5;
     width: 73%;
     height: 85%;

@@ -29,8 +29,12 @@
             @csrf
             <input name="_method" type="hidden" value="PATCH">
             <div class="form-group">
+                <label>Name</label>
+                <input required value="{{$tips_relation->name}}" name="name" type="text" class="form-control" placeholder="">
+            </div>
+            <div class="form-group">
                 <label>Domain</label>
-            <input required value="{{$tips_relation->domain}}" name="domain" type="text" class="form-control" >
+                <input required value="{{$tips_relation->domain}}" name="domain" type="text" class="form-control" >
             </div>
             <div class="form-group">
                 <label>Range</label>
@@ -43,6 +47,10 @@
             <div class="form-group">
                 <label>Cardinality</label>
                 <input required value="{{$tips_relation->cardinality}}" name="cardinality" type="text" class="form-control"  >
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea required value="{{$tips_relation->description}}" name="description" class="form-control" rows="3" placeholder="Enter ...">{{$tips_relation->description}}</textarea>
             </div>
             <button class="btn btn-success btn-block" type="submit">Submit</button>
         </form>

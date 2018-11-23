@@ -29,7 +29,7 @@
 <div class="row">
     <div class="col-xs-12">
       <div class="box">
-        <a href="/ontologies_store">  <button  type="button" class="btn btn-block btn-success">Add</button> </a>
+      <a href="{{route('ontologies.create')}}">  <button  type="button" class="btn btn-block btn-success">Add</button> </a>
 
         <div class="box-header">
 
@@ -77,7 +77,7 @@
                     <a href="{{$ontology->link}}">{{$Link}}</a>
                 </td>
                 <td>{{$ontology->created_by}}</td>
-                <td><form method="GET" action="/ontologies/ontologies_show/{{$ontology->id}}"> <button type="submit" class="btn btn-block btn-info">Info</button></form></td>
+                <td><a href="{{route('ontologies.show', $ontology->id)}}"> <button type="submit" class="btn btn-block btn-info">Info</button></a></td>
 
             </tr>
             @endforeach

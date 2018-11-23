@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b style="color: #ffffff">OntoForALL</b> ',
+    'logo' => '<b style="color: #ffffff; font-family: initial;">OntoForALL</b> ',
 
     'logo_mini' => '<b>O4A</b>',
 
@@ -147,7 +147,7 @@ return [
         ],
 
         [
-            'text'    => 'Menus e Dicas',
+            'text'    => 'Tips',
             'icon'    => 'th-list',
             'submenu' => [
                 [

@@ -4980,3 +4980,7 @@ table.text-center th {
 #login-image {
     position: relative;
 }
+
+b {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

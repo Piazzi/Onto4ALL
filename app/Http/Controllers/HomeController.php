@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Menu;
+use App\TipsRelation;
+
 class HomeController extends Controller
 {
     /**
@@ -24,8 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $menus = Menu::all();
-
-        return view('index', compact('menus')); /* Editor */
+        $tips_relations = TipsRelation::all();
+        return view('index', compact('menus','tips_relations')); /* Editor */
     }
 
     public function save()

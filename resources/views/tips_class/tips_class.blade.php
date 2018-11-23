@@ -52,8 +52,9 @@
               <th>Superclass</th>
               <th>Subclass</th>
               <th>Synonyms</th>
-              <th>Actions</th>
-
+              <th></th>
+              <th></th>
+              <th></th>
             </tr>
             @foreach ($tips_class as $tip_class)
             <tr>
