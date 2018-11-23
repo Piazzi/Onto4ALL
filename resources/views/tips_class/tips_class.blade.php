@@ -37,7 +37,7 @@
 
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+              <input id="table-search-input" type="text" name="table_search" class="form-control pull-right" placeholder="Search">
               <div class="input-group-btn">
                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
               </div>
@@ -47,7 +47,7 @@
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
-            <tbody><tr>
+            <tbody id="table-search"><tr>
               <th>ID</th>
               <th>Superclass</th>
               <th>Subclass</th>

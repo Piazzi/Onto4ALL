@@ -843,5 +843,9 @@ aside {
 
 .control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open+.control-sidebar-bg {
     position: fixed;
+}
 
+#searchBar{
+    margin-top: 15px;
+    height: 150%;
 }
