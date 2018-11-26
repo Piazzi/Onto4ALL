@@ -849,3 +849,13 @@ aside {
     margin-top: 15px;
     height: 150%;
 }
+
+#call-tip {
+    z-index: 20000000;
+    width: 16px;
+    height: 16px;
+    margin-right: 950px;
+    margin-top: 10px;
+    opacity: 0.5;
+
+}

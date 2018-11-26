@@ -47,17 +47,19 @@
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Publication Date</th>
+                    <th>Last Uploaded</th>
+                    <th>Description</th>
+                    <th>Link</th>
+                    <th>Created By</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
             <tbody id="table-search">
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Publication Date</th>
-              <th>Last Uploaded</th>
-              <th>Description</th>
-              <th>Link</th>
-              <th>Created By</th>
-              <th>Actions</th>
-            </tr>
             @foreach ($ontologies as $ontology)
             <tr>
 

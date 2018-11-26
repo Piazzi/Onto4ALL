@@ -47,15 +47,18 @@
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
-            <tbody id="table-search"><tr>
-              <th>ID</th>
-              <th>Superclass</th>
-              <th>Subclass</th>
-              <th>Synonyms</th>
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Superclass</th>
+                    <th>Subclass</th>
+                    <th>Synonyms</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="table-search">
             @foreach ($tips_class as $tip_class)
             <tr>
 

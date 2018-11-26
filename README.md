@@ -32,6 +32,8 @@
 
 #### Desenvolvimento 
 
+* OntoForAll usa a biblioteca de Javascript mxGraph como componente principal para diagramação das ontologias, com o GraphEditor Example como base para tudo.
+
 * Algumas mudanças foram necessárias para a integração da biblioteca mxgraph com o laravel.
 
 * 0. O arquivo index.blade.php é o arquivo principal do sistema e onde o diagrama é inicializado. Grande parte dos arquivos de JS são carregados aqui. O arquivo possui também todo o menu de dicas (Sidebar) **CUIDADO AO ALTERAR**
@@ -45,7 +47,7 @@
 * 7. A pasta config possui outra série de arquivos relacionados a compatibilidade do diagrama com o sistema.
 * 9. Todo design do sistema foi desenvolvido para ser utilizado no modo top-nav do AdminLTE, trocar o estilo de menu irá acarretar em bugs.
 * 10. O arquivo Dialogs.js foi modificado para receber novas propriedades("Domain", "Range") referentes as ontologias. A partir da **linha 1473**.
-
+* 11. Dezenas de alterações foram feitas no CSS para encaixar a SideBar e as caixas de dicas. A maioria das mudanças feitas estão localizadas em public/css/mxgraph/grapheditor.css.
 
 *  As demais funcionalidades do sistema foram feitas utilizando as ferramentas padrões do laravel sem nenhum tipo de integração por cima.
 

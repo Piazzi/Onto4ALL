@@ -48,19 +48,20 @@
         <!-- /.box-header -->
         <div  class="box-body table-responsive no-padding">
           <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Domain</th>
+                    <th>Range</th>
+                    <th>Similar Relation</th>
+                    <th>Cardinality</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
             <tbody id="table-search">
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Domain</th>
-              <th>Range</th>
-              <th>Similar Relation</th>
-              <th>Cardinality</th>
-              <th></th>
-              <th></th>
-              <th></th>
-
-            </tr>
             @foreach ($tips_relations as $tips_relation)
             <tr>
                 <td>{{$tips_relation->id}}</td>

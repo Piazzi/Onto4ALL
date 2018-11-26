@@ -10,7 +10,7 @@
           <li class="active"><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab"><i class="fa fa-fw fa-archive"></i></a></li>
           <li>
                 <div id="searchBar" class="input-group input-group-sm" style="width: 150px;">
-                    <input id="search-tip-input" type="text" class="form-control pull-right" placeholder="Search">
+                    <input value="" id="search-tip-input" type="text" class="form-control pull-right" placeholder="Search tips">
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
@@ -20,34 +20,6 @@
         <!-- Tab panes -->
         <div class="tab-content">
           <!-- Home tab content -->
-            <div class="tab-pane" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Recent Activity</h3>
-                <ul class="control-sidebar-menu">
-                <li>
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            <input type="checkbox" data-controlsidebar="control-sidebar-open" class="pull-right"> Toggle Right Sidebar Slide
-                        </label>
-                        <p>Toggle between slide over content and push content effects</p>
-                    </div>
-                </li>
-                <li>
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            <input type="checkbox" data-sidebarskin="toggle" class="pull-right"> Toggle Right Sidebar Skin
-                        </label>
-                        <p>Toggle between dark and light skins for the right sidebar</p>
-                    </div>
-                </li>
-                <li>
-
-                </li>
-                <li>
-
-                </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
-            </div>
             <!-- /.tab-pane -->
             <div id="control-sidebar-theme-demo-options-tab table-search" class="tab-pane active table-search">
                 @foreach($tips_relations as $tips_relation)
@@ -65,39 +37,8 @@
                 @endforeach
             </div>
           <!-- Settings tab content -->
-          <div class="tab-pane" id="control-sidebar-settings-tab">
-
-              <h3 class="control-sidebar-heading">General Settings</h3>
-
-              <h3 class="control-sidebar-heading">Chat Settings</h3>
-
-              <div class="form-group">
-                <label class="control-sidebar-subheading">
-                  Show me as online
-                  <input type="checkbox" class="pull-right" checked="">
-                </label>
-              </div>
-              <!-- /.form-group -->
-
-              <div class="form-group">
-                <label class="control-sidebar-subheading">
-                  Turn off notifications
-                  <input type="checkbox" class="pull-right">
-                </label>
-              </div>
-              <!-- /.form-group -->
-
-              <div class="form-group">
-                <label class="control-sidebar-subheading">
-                  Delete chat history
-                  <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-                </label>
-              </div>
-              <!-- /.form-group -->
-            </form>
-          </div>
-          <!-- /.tab-pane -->
         </div>
+
 </aside>
 <!-- /.tips menu -->
 
@@ -112,14 +53,6 @@
       <i class="fa fa-refresh fa-spin"></i>
     </div>
 </div>
-
-<script>
-
-    setTimeout(function(){
-    $('.loading-screen').remove();
-    }, 2500)
-
-</script>
 
 @stop
 
@@ -240,8 +173,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 
-
-
 <!-- DICAS -->
 
 @component('tip')
@@ -279,6 +210,8 @@
     sasas
 @endslot
 
+<!-- /.DICAS -->
+
 <a id="notification-button" class="btn btn-app">
     <span class="badge bg-yellow">Clique Aqui</span>
     <i class="fa fa-bullhorn"></i> Dicas
@@ -289,10 +222,10 @@
     <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i> Sidebar
 </a>
 
+
 <script>
     $("#sidebar-control").click(function () {
         $('aside').slideToggle();
-
     });
 
     $(".texto").click(function () {
@@ -304,9 +237,11 @@
         $(".menu").slideToggle();
     });
 
-    $( 'svg' ).mousemove(function( event ) {
-        alert('aaaa');
-});
+    setTimeout(function(){
+    $('.loading-screen').remove();
+    }, 2500)
+
+
 
 </script>
 
