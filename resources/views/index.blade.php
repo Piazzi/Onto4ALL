@@ -18,27 +18,30 @@
           </li>
         </ul>
         <!-- Tab panes -->
-        <div class="tab-content">
-          <!-- Home tab content -->
-            <!-- /.tab-pane -->
-            <div id="control-sidebar-theme-demo-options-tab table-search" class="tab-pane active table-search">
-                @foreach($tips_relations as $tips_relation)
-                <div id="tipSearch" class="box box-default collapsed-box box-solid">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">{{$tips_relation->name}}</h3>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+            <div id="menu-wrapper">
+                <div class="tab-content">
+                    <div id="menu-scroll">
+                    <!-- Home tab content -->
+                        <!-- /.tab-pane -->
+                        <div id="control-sidebar-theme-demo-options-tab table-search" class="tab-pane active table-search">
+                            @foreach($tips_relations as $tips_relation)
+                            <div id="tipSearch" class="box box-default collapsed-box box-solid">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">{{$tips_relation->name}}</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                {{$tips_relation->description}}
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
-                    </div>
-                    <div class="box-body">
-                    {{$tips_relation->description}}
+                    <!-- Settings tab content -->
                     </div>
                 </div>
-                @endforeach
             </div>
-          <!-- Settings tab content -->
-        </div>
-
 </aside>
 <!-- /.tips menu -->
 
@@ -240,8 +243,6 @@
     setTimeout(function(){
     $('.loading-screen').remove();
     }, 2500)
-
-
 
 </script>
 

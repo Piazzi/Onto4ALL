@@ -719,8 +719,11 @@ html td.mxWindowTitle {
 
 
 
+/* --------------------------------------------------------------------------------------------------------*/
 
-
+html {
+    overflow-y: hidden;
+}
 
 
 /*
@@ -781,7 +784,7 @@ center {
    FIM DAS ALTERAÇÕES
 */
 
-
+/* Dicas */
 #tip {
     z-index: 150 !important;
     margin-top: 405px;
@@ -801,7 +804,9 @@ center {
     opacity: 0.9;
     position: fixed;
 }
+ /* /.Dicas */
 
+ /* Botões*/
 #notification-button{
     z-index: 150;
     margin-top: 5px;
@@ -812,6 +817,8 @@ center {
     z-index: 150;
     margin-left: 850px;
 }
+
+/* /.botões */
 
 .loading-screen {
 
@@ -825,30 +832,7 @@ center {
 .fa-refresh {
    margin-bottom: 550px;
 }
-/*
-.menu {
-    position: fixed;
-    z-index: 17;
-    margin-left: 800px;
-    width: 30%;
-    height: 60%;
-    margin-bottom: 200px;
-}
-*/
-aside {
-    margin-left: 200px !important;
-    opacity: 0.9;
-    position: fixed;
-}
 
-.control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open+.control-sidebar-bg {
-    position: fixed;
-}
-
-#searchBar{
-    margin-top: 15px;
-    height: 150%;
-}
 
 #call-tip {
     z-index: 20000000;
@@ -859,3 +843,37 @@ aside {
     opacity: 0.5;
 
 }
+
+/* MENU DE DICAS */
+#menu-wrapper {
+    position:relative;
+  }
+  #menu-scroll {
+    height:500px;
+    overflow:auto;
+    margin-top:20px;
+  }
+  #menu-wrapper table {
+    width:100%;
+
+  }
+
+  #menu-wrapper table  {
+    position:absolute;
+    border:1px solid red;
+  }
+
+  .control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open+.control-sidebar-bg {
+    position: fixed;
+}
+#searchBar{
+    margin-top: 15px;
+    height: 150%;
+}
+
+aside {
+    margin-left: 200px !important;
+    opacity: 0.9;
+}
+
+/* /.MENU DE DICAS */
