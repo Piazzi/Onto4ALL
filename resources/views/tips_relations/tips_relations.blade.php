@@ -56,6 +56,8 @@
                     <th>Range</th>
                     <th>Similar Relation</th>
                     <th>Cardinality</th>
+                    <th>Example Of Usage</th>
+                    <th>Imported From</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -70,6 +72,8 @@
                 <td>{{$tips_relation->range}}</td>
                 <td>{{$tips_relation->similar_relation}}</td>
                 <td>{{$tips_relation->cardinality}}</td>
+                <td>{{$tips_relation->example_of_usage}}</td>
+                <td><a>{{$tips_relation->imported_from}}</a></td>
                 <td><a href="{{route('tips_relations.show', $tips_relation->id)}}"> <button type="button" class="btn btn-block btn-info btn-sm">Info</button></a></td>
                 <td><a href="{{route('tips_relations.edit', $tips_relation->id)}}"> <button type="button" class="btn btn-block btn-warning btn-sm">Edit</button></a></td>
                 <td><form method="post" action="{{route('tips_relations.destroy', $tips_relation->id)}}">

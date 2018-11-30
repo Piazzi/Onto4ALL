@@ -60,6 +60,20 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Imported From </label>
+                        <input required value="{{old('imported_from')}}" name="imported_from" type="text" class="form-control"  >
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Example Of Usage</label>
+                        <input required value="{{old('example_of_usage')}}" name="example_of_usage" type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
             <div class="form-group">
                 <label>Description</label>
                 <textarea required value="{{old('description')}}" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>

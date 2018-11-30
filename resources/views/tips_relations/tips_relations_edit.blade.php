@@ -49,6 +49,14 @@
                 <input required value="{{$tips_relation->cardinality}}" name="cardinality" type="text" class="form-control"  >
             </div>
             <div class="form-group">
+                <label>Imported From</label>
+                <input required value="{{$tips_relation->imported_from}}" name="imported_from" type="text" class="form-control"  >
+            </div>
+            <div class="form-group">
+                <label>Example Of Usage</label>
+            <input required value="{{$tips_relation->example_of_usage}}" name="example_of_usage"  type="text" class="form-control" >
+            </div>
+            <div class="form-group">
                 <label>Description</label>
                 <textarea required value="{{$tips_relation->description}}" name="description" class="form-control" rows="3" placeholder="Enter ...">{{$tips_relation->description}}</textarea>
             </div>

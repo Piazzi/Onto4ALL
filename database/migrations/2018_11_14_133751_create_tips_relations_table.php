@@ -21,6 +21,8 @@ class CreateTipsRelationsTable extends Migration
             $table->string('similar_relation');
             $table->integer('cardinality');
             $table->string('description');
+            $table->string('example_of_usage');
+            $table->string('imported_from');
             $table->timestamps();
         });
     }

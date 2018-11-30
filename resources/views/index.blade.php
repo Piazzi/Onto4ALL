@@ -25,7 +25,7 @@
                         <!-- /.tab-pane -->
                         <div id="control-sidebar-theme-demo-options-tab table-search" class="tab-pane active table-search">
                             @foreach($tips_relations as $tips_relation)
-                            <div id="tipSearch" class="box box-default collapsed-box box-solid">
+                            <div id="tipSearch" class="box box-primary collapsed-box box-solid">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">{{$tips_relation->name}}</h3>
                                     <div class="box-tools pull-right">
@@ -33,7 +33,42 @@
                                     </div>
                                 </div>
                                 <div class="box-body">
-                                {{$tips_relation->description}}
+                                    <dl>
+                                        <dt>Description</dt>
+                                        <dd>{{$tips_relation->description}}</dd>
+                                        <dt>Domain</dt>
+                                        <dd>{{$tips_relation->domain}}</dd>
+                                        <dt>Range</dt>
+                                        <dd>{{$tips_relation->range}}</dd>
+                                        <dt>Example Of Usage</dt>
+                                        <dd>{{$tips_relation->example_of_usage}}</dd>
+                                        <dt>Imported From</dt>
+                                        <dd><a href="{{$tips_relation->imported_from}}">{{$tips_relation->imported_from}}</a></dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            @endforeach
+                            @foreach ($tips_class as $tip_class)
+                            <div id="tipSearch" class="box box-success collapsed-box box-solid">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">{{$tip_class->name}}</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <dl>
+                                        <dt>Description</dt>
+                                        <dd>{{$tip_class->description}}</dd>
+                                        <dt>SuperClass</dt>
+                                        <dd>{{$tip_class->superclass}}</dd>
+                                        <dt>Synomyms</dt>
+                                        <dd>{{$tip_class->synonyms}}</dd>
+                                        <dt>Example Of Usage</dt>
+                                        <dd>{{$tip_class->example_of_usage}}</dd>
+                                        <dt>Imported From</dt>
+                                        <dd><a href="{{$tip_class->imported_from}}">{{$tips_relation->imported_from}}</a></dd>
+                                    </dl>
                                 </div>
                             </div>
                             @endforeach
@@ -172,6 +207,7 @@
 <!-- MODIFICAÇÕES PARA O SISTEMA -->
 
 <script src="js/Relation.js"></script>
+<script defer src="js/Movement.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 

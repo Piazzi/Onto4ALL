@@ -35,6 +35,14 @@
                 <input disabled value="{{$tips_relation->cardinality}}"  type="text" class="form-control"  >
             </div>
             <div class="form-group">
+                <label>Imported From</label>
+            <input disabled value="{{$tips_relation->imported_from}}"  type="text" class="form-control" >
+            </div>
+            <div class="form-group">
+                <label>Example Of Usage</label>
+            <input disabled value="{{$tips_relation->example_of_usage}}"  type="text" class="form-control" >
+            </div>
+            <div class="form-group">
                 <label>Description</label>
                 <textarea disabled class="form-control form-textarea"> {{$tips_relation->description}}</textarea>
             </div>

@@ -50,9 +50,12 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Name</th>
                     <th>Superclass</th>
                     <th>Subclass</th>
                     <th>Synonyms</th>
+                    <th>Example Of Usage</th>
+                    <th>Imported From</th>
                     <th></th>
                     <th></th>
                     <th></th>
@@ -63,9 +66,12 @@
             <tr>
 
                 <td>{{$tip_class->id}}</td>
+                <td>{{$tip_class->name}}</td>
                 <td>{{$tip_class->superclass}}</td>
                 <td>{{$tip_class->subclass}}</td>
                 <td>{{$tip_class->synonyms}}</td>
+                <td>{{$tip_class->example_of_usage}}</td>
+                <td><a href="{{$tip_class->imported_from}}">{{$tip_class->imported_from}}</a></td>
                 <td><a href="{{route('tips_class.show', $tip_class->id)}}"> <button type="button" class="btn btn-block btn-info btn-sm">Info</button></a></td>
                 <td><a href="{{route('tips_class.edit', $tip_class->id)}}"> <button type="button" class="btn btn-block btn-warning btn-sm">Edit</button></a></td>
                 <td><form method="post" action="{{route('tips_class.destroy', $tip_class->id)}}">

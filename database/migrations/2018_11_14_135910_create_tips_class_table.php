@@ -16,9 +16,13 @@ class CreateTipsClassTable extends Migration
         Schema::create('tips_class', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
+            $table->string('name');
             $table->string('superclass');
             $table->string('subclass');
+            $table->string('description');
             $table->string('synonyms');
+            $table->string('example_of_usage');
+            $table->string('imported_from');
         });
     }
 

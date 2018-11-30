@@ -15,6 +15,10 @@
         <!-- /.box-header -->
         <div class="box-body">
             <div class="form-group">
+                <label>Name</label>
+                <input disabled value="{{$tip_class->name}}"  type="text" class="form-control" >
+            </div>
+            <div class="form-group">
                 <label>Super Class</label>
             <input disabled value="{{$tip_class->superclass}}"  type="text" class="form-control" >
             </div>
@@ -25,6 +29,18 @@
             <div class="form-group">
                 <label>Synonyms</label>
             <input disabled value="{{$tip_class->synonyms}}"  type="text" class="form-control" >
+            </div>
+            <div class="form-group">
+                <label>Imported From</label>
+            <input disabled value="{{$tip_class->imported_from}}"  type="text" class="form-control" >
+            </div>
+            <div class="form-group">
+                <label>Example Of Usage</label>
+            <input disabled value="{{$tip_class->example_of_usage}}"  type="text" class="form-control" >
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea disabled class="form-control form-textarea"> {{$tip_class->description}}</textarea>
             </div>
             <a href="/tips_class"><button class="btn btn-success btn-block" type="button">Go back</button></a>
         </div>
