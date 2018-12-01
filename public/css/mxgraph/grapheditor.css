@@ -831,6 +831,11 @@ center {
 
 .fa-refresh {
    margin-bottom: 550px;
+   color: #00A65A !important;
+}
+
+#loading {
+    color: #00A65A !important;
 }
 
 

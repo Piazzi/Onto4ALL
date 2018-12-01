@@ -999,7 +999,7 @@ Sidebar.prototype.addOntologyPalette = function(expand)
 	 	this.createEdgeTemplateEntry('endArrow=none;dashed=1;html=1;', 50, 50, '', 'Dashed Line', null, lineTags + 'dashed undirected no'),
 	 	this.createEdgeTemplateEntry('endArrow=none;html=1;', 50, 50, '', 'Line', null, lineTags + 'simple undirected plain blank no'),
 	 	this.createEdgeTemplateEntry('endArrow=classic;startArrow=classic;html=1;', 50, 50, '', 'Bidirectional Connector', null, lineTags + 'bidirectional'),
-        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'is a', 'Is A', null, 'uml sequence message call invoke dispatch'),
+        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'is_a', 'Is_A', null, 'uml sequence message call invoke dispatch'),
         this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'part_of', 'Part_Of', null, 'uml sequence message call invoke dispatch'),
         this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'has_part', 'Has_Part', null, 'uml sequence message call invoke dispatch'),
         this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'contains', 'Contains', null, 'uml sequence message call invoke dispatch'),
@@ -1947,7 +1947,7 @@ Sidebar.prototype.createItem = function(cells, title, showLabel, showTitle, widt
 {
 	var elt = document.createElement('a');
 	elt.setAttribute('href', 'javascript:void(0);');
-	elt.className = 'geItem';
+	elt.className = 'geItem '+title; //Adiciona o nome da célula a classe
 	elt.style.overflow = 'hidden';
 	var border = (mxClient.IS_QUIRKS) ? 8 + 2 * this.thumbPadding : 2 * this.thumbBorder;
 	elt.style.width = (this.thumbWidth + border) + 'px';

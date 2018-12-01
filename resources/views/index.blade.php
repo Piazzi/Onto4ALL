@@ -208,6 +208,7 @@
 
 <script src="js/Relation.js"></script>
 <script defer src="js/Movement.js"></script>
+<script defer type="text/javascript" src="js/SearchTip.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
