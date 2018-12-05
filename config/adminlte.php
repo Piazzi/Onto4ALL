@@ -149,18 +149,25 @@ return [
         [
             'text'    => 'Tips',
             'icon'    => 'th-list',
+            'can'     => 'eAdmin',
             'submenu' => [
                 [
                     'text' => 'Menus',
                     'url'  => '/menus',
+                    'can'     => 'eAdmin',
+
                 ],
                 [
                     'text'    => 'Tips Relations',
                     'url'     => '/tips_relations',
+                    'can'     => 'eAdmin',
+
                 ],
                 [
                     'text'    => 'Tips Class',
                     'url'     => '/tips_class',
+                    'can'     => 'eAdmin',
+
                 ],
             ],
         ],

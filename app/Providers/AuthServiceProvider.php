@@ -25,6 +25,15 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+           // nivel 1
+        Gate::define('eAdmin', function ($user) {
+            return $user->categoria == "administrador";
+        });
+        // nivel 2
+        Gate::define('eModelador', function ($user) {
+            return ($user->categoria == "modelador" ? true : $user->categoria == "administrador");
+        });
+
+
     }
 }

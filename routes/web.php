@@ -37,7 +37,7 @@ Route::get('tutorial', function() {
 Route::get('/redirect/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback');
 
-Route::resource('/menus', 'MenuController');
-Route::resource('/tips_relations', 'TipsRelationController');
-Route::resource('/tips_class', 'TipClassController');
+Route::resource('/menus', 'MenuController')->middleware('can:eAdmin');
+Route::resource('/tips_relations', 'TipsRelationController')->middleware('can:eAdmin');
+Route::resource('/tips_class', 'TipClassController')->middleware('can:eAdmin');
 Route::resource('/ontologies', 'OntologyController');
