@@ -25,6 +25,7 @@ Route::get('/admin/settings', 'UserController@index')->name('settings');
 Route::get('/profile', 'ProfileController@index');
 Route::get('/admin/users/{user}', 'UserController@update');
 
+
 Route::get('/aboutUs', function (){
     return view('about_us');
 });

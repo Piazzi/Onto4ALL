@@ -72,7 +72,8 @@
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <textarea required value="{{old('description')}}" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                <textarea required  name="description" class="form-control" rows="3" placeholder="Enter ...">{{{ Input::old('content') }}}
+                </textarea>
             </div>
             <button class="btn btn-success btn-block" type="submit">Submit</button>
         </form>

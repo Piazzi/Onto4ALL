@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TipsRelation;
+use App\Http\Requests\TipRelationStoreRequest;
+
 
 class TipsRelationController extends Controller
 {
@@ -34,7 +36,7 @@ class TipsRelationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TipRelationStoreRequest $request)
     {
         $tips_relation = TipsRelation::create($request->all());
         return redirect()->route('tips_relations.index')->with('Sucess', 'Your relation has been successfully stored')->withInput();
@@ -72,7 +74,7 @@ class TipsRelationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TipRelationStoreRequest $request, $id)
     {
         $tips_relation = TipsRelation::findOrFail($id);
         $tips_relation->update($request->all());

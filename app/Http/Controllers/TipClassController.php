@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TipClass;
+use App\Http\Requests\TipClassStoreRequest;
 
 class TipClassController extends Controller
 {
@@ -34,7 +35,7 @@ class TipClassController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TipClassStoreRequest $request)
     {
         $tip_class = TipClass::create($request->all());
         return redirect()->route('tips_class.index')->with('Sucess', 'Your Tip Class has been successfully stored')->withInput();
@@ -72,7 +73,7 @@ class TipClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TipClassStoreRequest $request, $id)
     {
         $tip_class = TipClass::findOrFail($id);
         $tip_class->update($request->all());
