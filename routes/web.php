@@ -38,7 +38,13 @@ Route::get('tutorial', function() {
 Route::get('/redirect/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback');
 
+// Rotas do CRUD's
 Route::resource('/menus', 'MenuController')->middleware('can:eAdmin');
 Route::resource('/tips_relations', 'TipsRelationController')->middleware('can:eAdmin');
 Route::resource('/tips_class', 'TipClassController')->middleware('can:eAdmin');
-Route::resource('/ontologies', 'OntologyController');
+Route::resource('/ontologies', 'OntologyController')->middleware('can:eModelador');
+
+
+Route::post('/save', 'HomeController@save');
+Route::get('/open');
+Route::get('/export');
