@@ -45,6 +45,6 @@ Route::resource('/tips_class', 'TipClassController')->middleware('can:eAdmin');
 Route::resource('/ontologies', 'OntologyController')->middleware('can:eModelador');
 
 
-Route::post('/save', 'HomeController@save');
+//Route::post('/save', 'HomeController@save');
 Route::get('/open');
-Route::get('/export');
+//Route::get('/export');

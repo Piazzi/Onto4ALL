@@ -3449,7 +3449,7 @@ EditorUi.prototype.isCompatibleString = function(data)
 /**
  * Adds the label menu items to the given menu and parent.
  */
-EditorUi.prototype.saveFile = function(forceDialog)
+EditorUi.prototype.saveFile = function(forceDialog) // função chamada pelo CTRL + S
 {
 	if (!forceDialog && this.editor.filename != null)
 	{
@@ -3457,6 +3457,7 @@ EditorUi.prototype.saveFile = function(forceDialog)
 	}
 	else
 	{
+        alert('O arquivo será baixado!');
 		var dlg = new FilenameDialog(this, this.editor.getOrCreateFilename(), mxResources.get('save'), mxUtils.bind(this, function(name)
 		{
 			this.save(name);
@@ -3479,16 +3480,21 @@ EditorUi.prototype.saveFile = function(forceDialog)
 /**
  * Saves the current graph under the given filename.
  */
-EditorUi.prototype.save = function(name)
+EditorUi.prototype.save = function(name) // FUNÇÃO CHAMADA DEPOIS DA saveFile
 {
 	if (name != null)
 	{
+
 		if (this.editor.graph.isEditing())
 		{
 			this.editor.graph.stopEditing();
 		}
 
-		var xml = mxUtils.getXml(this.editor.getGraphXml());
+		var xml = mxUtils.getXml(this.editor.getGraphXml()); // XML DO DIAGRAMA A SER SALVO
+        console.log(xml);
+        console.log('----------------------------------------------------------------------');
+        uriContent = "data:Application/octet-stream,"+ encodeURIComponent(xml); // BAIXA O ARQUIVO EM XML
+        newWindow = window.open(uriContent, 'neuesDokument');
 
 		try
 		{
@@ -3521,7 +3527,8 @@ EditorUi.prototype.save = function(name)
 
 			this.editor.setModified(false);
 			this.editor.setFilename(name);
-			this.updateDocumentTitle();
+            this.updateDocumentTitle();
+
 		}
 		catch (e)
 		{

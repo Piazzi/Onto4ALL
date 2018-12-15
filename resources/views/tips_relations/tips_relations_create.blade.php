@@ -50,13 +50,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Similar Relation</label>
-                        <input required value="{{old('similar_relation')}}" name="similar_relation" type="textarea" class="form-control"  >
+                        <input  value="{{old('similar_relation')}}" name="similar_relation" type="textarea" class="form-control"  >
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Cardinality</label>
-                        <input required value="{{old('cardinality')}}" name="cardinality" type="number" class="form-control"  >
+                        <input  value="{{old('cardinality')}}" name="cardinality" type="number" class="form-control"  >
                     </div>
                 </div>
             </div>
@@ -64,19 +64,19 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Imported From </label>
-                        <input required value="{{old('imported_from')}}" name="imported_from" type="text" class="form-control"  >
+                        <input value="{{old('imported_from')}}" name="imported_from" type="text" class="form-control"  >
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Example Of Usage</label>
-                        <input required value="{{old('example_of_usage')}}" name="example_of_usage" type="text" class="form-control">
+                        <input  value="{{old('example_of_usage')}}" name="example_of_usage" type="text" class="form-control">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <textarea required value="{{old('description')}}" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                <textarea value="{{old('description')}}" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
             </div>
             <button class="btn btn-success btn-block" type="submit">Submit</button>
         </form>

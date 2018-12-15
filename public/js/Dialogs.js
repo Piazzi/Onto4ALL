@@ -1183,12 +1183,11 @@ var ExportDialog = function(editorUi)
 			{
 				bg = '#ffffff';
 			}
-
 			ExportDialog.lastBorderValue = b;
 			ExportDialog.exportFile(editorUi, name, format, bg, s, b);
 		}
 	}));
-	saveBtn.className = 'geBtn gePrimaryBtn';
+	saveBtn.className = 'geBtn gePrimaryBtn SaveButton'; // BOTÃO QUE ACIONA A EXPORTAÇÃO
 
 	var cancelBtn = mxUtils.button(mxResources.get('cancel'), function()
 	{
@@ -1238,7 +1237,8 @@ ExportDialog.exportFile = function(editorUi, name, format, bg, s, b)
 {
 	var graph = editorUi.editor.graph;
 
-	if (format == 'xml')
+    if (format == 'xml')
+
 	{
     	ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(editorUi.editor.getGraphXml()), name, format);
 	}

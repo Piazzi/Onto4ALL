@@ -9,5 +9,6 @@
 
 @section('content')
 
+<script src="js/mxClient.js"></script>
 
 @stop

@@ -72,7 +72,7 @@
             </div>
             <div class="form-group">
                 <label>Description</label>
-                <textarea required  name="description" class="form-control" rows="3" placeholder="Enter ...">{{{ Input::old('content') }}}
+                <textarea required  name="description" class="form-control" rows="3" placeholder="Enter ...">
                 </textarea>
             </div>
             <button class="btn btn-success btn-block" type="submit">Submit</button>

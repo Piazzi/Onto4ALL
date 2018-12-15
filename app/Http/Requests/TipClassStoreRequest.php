@@ -25,8 +25,8 @@ class TipClassStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:3|max:50',
-            'superclass' => 'required|string|min:1|max:30',
-            'subclass' => 'required|string|min:1|max:30',
+            'superclass' => 'required|string|min:1|max:50',
+            'subclass' => 'required|string|min:1|max:50',
             'description' => 'required|min:1|max:500',
             'synonyms' => 'required|min:1|max:20|string',
             'example_of_usage' => 'required|min:1|max:200|string',

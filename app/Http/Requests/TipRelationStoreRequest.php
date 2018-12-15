@@ -25,13 +25,13 @@ class TipRelationStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:3|max:50',
-            'domain' => 'required|string|min:2|max:50',
-            'range' => 'required|string|min:2|max:50',
-            'similar_relation' => 'required|string|min:3|max:30',
-            'cardinality' => 'required|numeric',
-            'description' => 'required|min:1|max:500',
-            'example_of_usage' => 'required|min:1|max:200|string',
-            'imported_from' => 'required|url|max:255',
+            'domain' => 'required|string|min:3|max:50',
+            'range' => 'required|string|min:3|max:50',
+            'similar_relation' => 'string|min:3|max:50',
+            'cardinality' => 'numeric',
+            'description' => 'min:1|max:500',
+            'example_of_usage' => 'min:1|max:200|string',
+            'imported_from' => 'url|max:255',
         ];
     }
 }
