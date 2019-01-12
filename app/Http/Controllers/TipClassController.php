@@ -32,14 +32,13 @@ class TipClassController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param TipClassStoreRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(TipClassStoreRequest $request)
     {
         $tip_class = TipClass::create($request->all());
         return redirect()->route('tips_class.index')->with('Sucess', 'Your Tip Class has been successfully stored')->withInput();
-
     }
 
     /**
@@ -69,8 +68,8 @@ class TipClassController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param TipClassStoreRequest $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(TipClassStoreRequest $request, $id)

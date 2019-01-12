@@ -3482,6 +3482,8 @@ EditorUi.prototype.saveFile = function(forceDialog) // função chamada pelo CTR
  */
 EditorUi.prototype.save = function(name) // FUNÇÃO CHAMADA DEPOIS DA saveFile
 {
+    console.log(name);
+
 	if (name != null)
 	{
 
@@ -3493,13 +3495,36 @@ EditorUi.prototype.save = function(name) // FUNÇÃO CHAMADA DEPOIS DA saveFile
 		var xml = mxUtils.getXml(this.editor.getGraphXml()); // XML DO DIAGRAMA A SER SALVO
         console.log(xml);
         console.log('----------------------------------------------------------------------');
-        uriContent = "data:Application/octet-stream,"+ encodeURIComponent(xml); // BAIXA O ARQUIVO EM XML
-        newWindow = window.open(uriContent, 'neuesDokument');
+       	uriContent = "data:Application/octet-stream,"+ encodeURIComponent(xml); // BAIXA O ARQUIVO EM XML
+    	newWindow = window.open(uriContent, 'neuesDokument');
+
+
+	/*
+       var myXML = mxUtils.getXml(this.editor.getGraphXml());
+       var request = new XMLHttpRequest();
+       console.log(request);
+
+       request.open("GET", "http://localhost:8000/"+name, true);
+       request.onreadystatechange = function(){
+           if (request.readyState == 4) {
+               if (request.status == 200 || request.status == 0) {
+                   myXML = request.responseXML;
+               }
+           }
+       }
+       request.send();
+
+*/
+
+
+
+        console.log('-----------------------------------------------------------------------------');
 
 		try
 		{
 			if (Editor.useLocalStorage)
 			{
+                console.log(localStorage.getItem(name));
 				if (localStorage.getItem(name) != null &&
 					!mxUtils.confirm(mxResources.get('replaceIt', [name])))
 				{
@@ -3507,7 +3532,8 @@ EditorUi.prototype.save = function(name) // FUNÇÃO CHAMADA DEPOIS DA saveFile
 				}
 
 				localStorage.setItem(name, xml);
-				this.editor.setStatus(mxUtils.htmlEntities(mxResources.get('saved')) + ' ' + new Date());
+                this.editor.setStatus(mxUtils.htmlEntities(mxResources.get('saved')) + ' ' + new Date());
+
 			}
 			else
 			{

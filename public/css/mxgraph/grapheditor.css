@@ -786,7 +786,7 @@ center {
 
 /* Dicas */
 #tip {
-    z-index: 150 !important;
+    z-index: 15 !important;
     margin-top: 455px;
     width: 20%;
     height: 15%;
@@ -797,10 +797,10 @@ center {
 
 #warning {
     z-index: 15 !important;
-    margin-top: 435px;
+    margin-top: 455px;
     width: 20%;
     height: 15%;
-    margin-left: 150px;
+    margin-left: 450px;
     opacity: 0.9;
     position: fixed;
 }

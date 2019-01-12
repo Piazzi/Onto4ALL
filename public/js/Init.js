@@ -16,6 +16,7 @@ window.IMAGE_PATH = window.IMAGE_PATH || 'images';
 window.STYLE_PATH = window.STYLE_PATH || 'styles';
 window.CSS_PATH = window.CSS_PATH || 'styles';
 window.OPEN_FORM = window.OPEN_FORM || 'open.html';
+window.HOME_URL = window.HOME_URL || '/home'; // URL PARA PÁGINA PRINCIPAL DO DIAGRAMA
 
 // Sets the base path, the UI language via URL param and configures the
 // supported languages to avoid 404s. The loading of all core language

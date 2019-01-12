@@ -56,9 +56,9 @@
     Principais arquivos:
 
 * **resources/views/index.blade.php** - Principal arquivo do sistema onde é carregado grande parte do javascript e várias componentes como menus e dicas.
-* **public/Actions.js** - Define as ações do editor como Salvar, importar, exportar, etc...
+* **public/Actions.js** - Define as ações (Atalhos) do editor como Salvar, importar, exportar, etc...
 * **public/Dialogs.js** - Define e implementa as caixas (modal) e as suas respectivas funções (Ex: Exportar).
-* **public/EditorUI.js** - Onde está localizada as princioais funções do diagrama e seus atalhos. (Ex: Salvar).
+* **public/EditorUI.js** - Onde está localizada as principais funções do diagrama. (Ex: Salvar). **IMPORTANTE**
 * **public/Init.js** - Onde está definido as rotas para as funções do diagrama.
 * **public/SearchTip** - Contém as funções de busca/filtro de dicas da sidebar de dicas do editor.
 * **public/SearchBar** - Contém a função de filtro de todos os CRUD's.

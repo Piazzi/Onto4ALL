@@ -1169,6 +1169,8 @@ var ExportDialog = function(editorUi)
 		}
 		else
 		{
+            console.log(name);
+
 	    	var name = nameInput.value;
 			var format = imageFormatSelect.value;
 	    	var s = Math.max(0, parseFloat(zoomInput.value) || 100) / 100;
@@ -1183,11 +1185,13 @@ var ExportDialog = function(editorUi)
 			{
 				bg = '#ffffff';
 			}
+
 			ExportDialog.lastBorderValue = b;
 			ExportDialog.exportFile(editorUi, name, format, bg, s, b);
 		}
 	}));
-	saveBtn.className = 'geBtn gePrimaryBtn SaveButton'; // BOTÃO QUE ACIONA A EXPORTAÇÃO
+    saveBtn.className = 'geBtn gePrimaryBtn ExportButton';
+
 
 	var cancelBtn = mxUtils.button(mxResources.get('cancel'), function()
 	{
@@ -1233,12 +1237,11 @@ ExportDialog.showXmlOption = true;
  * parameter and value to be used in the request in the form
  * key=value, where value should be URL encoded.
  */
-ExportDialog.exportFile = function(editorUi, name, format, bg, s, b)
+ExportDialog.exportFile = function(editorUi, name, format, bg, s, b) // Define para qual função de export o arquivo vai
 {
 	var graph = editorUi.editor.graph;
 
-    if (format == 'xml')
-
+	if (format == 'xml')
 	{
     	ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(editorUi.editor.getGraphXml()), name, format);
 	}
@@ -1292,14 +1295,15 @@ ExportDialog.exportFile = function(editorUi, name, format, bg, s, b)
  * parameter and value to be used in the request in the form
  * key=value, where value should be URL encoded.
  */
-ExportDialog.saveLocalFile = function(editorUi, data, filename, format)
+ExportDialog.saveLocalFile = function(editorUi, data, filename, format) // FUNÇÃO DE EXPORTAR
 {
 	if (data.length < MAX_REQUEST_SIZE)
 	{
-		editorUi.hideDialog();
-		var req = new mxXmlRequest(SAVE_URL, 'xml=' + encodeURIComponent(data) + '&filename=' +
+		editorUi.hideDialog();  // SAVE_URL
+		var req = new mxXmlRequest(HOME_URL, 'xml=' + encodeURIComponent(data) + '&filename=' +
 			encodeURIComponent(filename) + '&format=' + format);
-		req.simulate(document, '_blank');
+        req.simulate(document, '_blank');
+        console.log(req);
 	}
 	else
 	{

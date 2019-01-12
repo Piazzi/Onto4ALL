@@ -60,8 +60,6 @@ $(document).ready(function () {
         rows.filter(":contains('member of')").show();
     });
 
-
-
     $("#search-tip-input").on("keyup", function () {
         var value = $(this).val().toLowerCase();
         $(".collapsed-box").filter(function(){

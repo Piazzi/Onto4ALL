@@ -214,6 +214,13 @@
 
 <!-- DICAS -->
 
+@component('warning')
+    @slot('title')
+        <strong>Importante</strong>
+    @endslot
+        Aperte <strong>CTRL + S </strong> para baixar sua ontologia!
+@endcomponent
+
 @component('tip')
     @slot('title')
         Dica
@@ -274,12 +281,29 @@
     $("#notification-button").click(function () {
         $(".tip").slideToggle();
         $(".menu").slideToggle();
+        $("#warning").slideToggle();
     });
 
     setTimeout(function(){
     $('.loading-screen').remove();
     }, 2500)
 
+    /*
+    $(".ExportButton").click(function(e) {
+        let xml = mxUtils.getXml(this.editor.getGraphXml());
+        console.log(xml);
+
+        if(window.navigator && window.navigator.msSaveBlob)
+        {
+            e.preventDefault();
+            navigator.msSaveBlob(new Blob([xml], {type:'application/xml'}), "teste.xml")
+        }
+        else
+        {
+            $(this).attr("href","data:application/xml,"+ encodeURIComponent(xml));
+        }
+    })
+    */
 </script>
 
 
