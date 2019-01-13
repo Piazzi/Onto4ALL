@@ -248,39 +248,4 @@
         <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i> Sidebar
     </a>
 
-
-    <script>
-        $("#sidebar-control").click(function () {
-            $('aside').slideToggle();
-        });
-
-        $(".texto").click(function () {
-            $(".tip").slideToggle();
-        });
-
-        $("#notification-button").click(function () {
-            $(".tip").slideToggle();
-            $(".menu").slideToggle();
-            $("#warning").slideToggle();
-        });
-
-        /*
-        $(".ExportButton").click(function(e) {
-            let xml = mxUtils.getXml(this.editor.getGraphXml());
-            console.log(xml);
-
-            if(window.navigator && window.navigator.msSaveBlob)
-            {
-                e.preventDefault();
-                navigator.msSaveBlob(new Blob([xml], {type:'application/xml'}), "teste.xml")
-            }
-            else
-            {
-                $(this).attr("href","data:application/xml,"+ encodeURIComponent(xml));
-            }
-        })
-        */
-    </script>
-
-
 @stop

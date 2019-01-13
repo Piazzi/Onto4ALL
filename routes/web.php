@@ -26,11 +26,11 @@ Route::get('/profile', 'ProfileController@index');
 Route::get('/admin/users/{user}', 'UserController@update');
 
 
-Route::get('/aboutUs', function (){
+Route::get('/aboutUs', function () {
     return view('about_us');
 });
 
-Route::get('tutorial', function() {
+Route::get('tutorial', function () {
     return view('tutorial');
 });
 
@@ -45,6 +45,6 @@ Route::resource('/tips_class', 'TipClassController')->middleware('can:eAdmin');
 Route::resource('/ontologies', 'OntologyController')->middleware('can:eModelador');
 
 
-//Route::post('/save', 'HomeController@save');
+Route::post('/save', 'HomeController@save');
+Route::post('/saveXML', 'HomeController@saveXML');
 Route::get('/open');
-//Route::get('/export');

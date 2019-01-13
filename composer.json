@@ -10,7 +10,8 @@
         "jeroennoten/laravel-adminlte": "^1.23",
         "laravel/framework": "5.6.*",
         "laravel/socialite": "^3.1",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+      "ext-simplexml": "*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

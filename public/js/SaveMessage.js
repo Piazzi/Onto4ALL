@@ -10,6 +10,7 @@ $(document).ready(function () {
             $("#warning").animate({opacity: '0.8'}, "slow");
         });
     }
+
     setInterval(showSaveMessage, 5000);
 });
 
