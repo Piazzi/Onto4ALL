@@ -33,6 +33,28 @@ class HomeController extends Controller
         return view('index', compact('menus', 'tips_relations', 'tips_class')); /* Editor */
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function aboutUs()
+    {
+        return view('about_us');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function tutorial()
+    {
+        return view('tutorial');
+    }
+
+    /**
+     * Save the editor diagram into a XML file.
+     * @param Request $request
+     * @return Response
+     *
+     */
     public function saveXML(Request $request)
     {
         $response = Response::create($request->xml, 200);

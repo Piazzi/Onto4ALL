@@ -194,6 +194,7 @@
     <!-- MODIFICAÇÕES PARA O SISTEMA -->
 
     <script src="js/Relation.js"></script>
+    <script src="js/Relation.js"></script>
     <script src="js/SaveMessage.js"></script>
     <script defer type="text/javascript" src="js/SearchTip.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -247,5 +248,18 @@
         <span class="badge bg-green">Clique aqui</span>
         <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i> Sidebar
     </a>
+
+    <script>
+        $("#sidebar-control").click(function () {
+            $('aside').slideToggle();
+        });
+        $(".texto").click(function () {
+            $(".tip").slideToggle();
+        });
+        $("#notification-button").click(function () {
+            $(".tip").slideToggle();
+            $(".menu").slideToggle();
+        });
+    </script>
 
 @stop
