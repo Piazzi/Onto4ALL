@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Ontology;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\OntologyStoreRequest;
 
@@ -17,7 +19,7 @@ class OntologyController extends Controller
      */
     public function index()
     {
-        $ontologies = Ontology::select()->paginate(10);
+        $ontologies = Ontology::where('user_id','=', Auth::user()->id)->paginate(10);
         return view('ontologies.ontologies', compact('ontologies'));
     }
 
@@ -34,7 +36,7 @@ class OntologyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param OntologyStoreRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(OntologyStoreRequest $request)
@@ -90,5 +92,24 @@ class OntologyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Finds the ontology user and then download
+     * @param Request $request
+     * @return Response
+     */
+    public function download(Request $request)
+    {
+        $file = Ontology::where('user_id','=', $request->userId)->where('id','=', $request->ontologyId)->first();
+
+        $response = Response::create($file->file, 200);
+        $response->header('Content-Type', 'text/xml');
+        $response->header('Cache-Control', 'public');
+        $response->header('Content-Description', 'File Transfer');
+        $response->header('Content-Disposition', 'attachment; filename=' . $file->name . '');
+        $response->header('Content-Transfer-Encoding', 'binary');
+
+        return $response;
     }
 }

@@ -11,7 +11,7 @@ $(document).ready(function () {
         });
     }
 
-    setInterval(showSaveMessage, 5000);
+    setInterval(showSaveMessage, 10000);
 });
 
 

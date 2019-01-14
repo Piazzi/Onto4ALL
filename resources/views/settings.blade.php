@@ -34,22 +34,25 @@
             {{ csrf_field() }}
             <div class="box-body">
                 <div class="form-group">
-                        <label for="inputPassword" class="col-sm-1-4 col-form-label">Password</label>
-                        <div class="col-sm-1-4">
-                        <input value="{{Auth::user()->password}}" type="password" class="form-control" name="password" id="inputPassword" placeholder="Insert your new password">
-                        </div>
+                    <label for="inputPassword" class="col-sm-1-4 col-form-label">Password</label>
+                    <div class="col-sm-1-4">
+                        <input value="{{Auth::user()->password}}" type="password" class="form-control" name="password"
+                               id="inputPassword" placeholder="Insert your new password">
+                    </div>
                 </div>
                 <div class="form-group">
-                        <label for="inputName" class="col-sm-1-4 col-form-label">Username</label>
-                        <div class="col-sm-1-4">
-                        <input value="{{Auth::user()->name}}" type="text" class="form-control" name="name" id="inputUsername" placeholder="Insert your name here">
-                        </div>
+                    <label for="inputName" class="col-sm-1-4 col-form-label">Username</label>
+                    <div class="col-sm-1-4">
+                        <input value="{{Auth::user()->name}}" type="text" class="form-control" name="name"
+                               id="inputUsername" placeholder="Insert your name here">
+                    </div>
                 </div>
                 <div class="form-group">
-                        <label for="inputEmail" class="col-sm-1-4 col-form-label">Email</label>
-                        <div class="col-sm-1-4">
-                            <input value="{{Auth::user()->email}}" type="text" class="form-control" name="email" id="inputPassword" placeholder="Insert your email here">
-                        </div>
+                    <label for="inputEmail" class="col-sm-1-4 col-form-label">Email</label>
+                    <div class="col-sm-1-4">
+                        <input value="{{Auth::user()->email}}" type="text" class="form-control" name="email"
+                               id="inputPassword" placeholder="Insert your email here">
+                    </div>
                 </div>
             </div>
             <div class="box-footer">

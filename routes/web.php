@@ -25,8 +25,7 @@ Route::get('/admin/settings', 'UserController@index')->name('settings');
 Route::get('/profile', 'ProfileController@index');
 Route::get('/admin/users/{user}', 'UserController@update');
 
-Route::get('/aboutUs', 'HomeController@aboutUs');
-Route::get('/tutorial', 'HomeController@tutorial');
+
 
 // Rotas do Socialite
 Route::get('/redirect/{service}', 'Auth\LoginController@redirectToProvider');
@@ -36,9 +35,14 @@ Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback')
 Route::resource('/menus', 'MenuController')->middleware('can:eAdmin');
 Route::resource('/tips_relations', 'TipsRelationController')->middleware('can:eAdmin');
 Route::resource('/tips_class', 'TipClassController')->middleware('can:eAdmin');
+
+
 Route::resource('/ontologies', 'OntologyController')->middleware('can:eModelador');
+Route::get('/ontologies/download/{userId}/{ontologyId}', 'OntologyController@download')->name('ontologies.download')->middleware('can:eModelador');
 
 // Rotas do Editor
 Route::post('/save', 'HomeController@save');
 Route::post('/saveXML', 'HomeController@saveXML');
+Route::get('/aboutUs', 'HomeController@aboutUs');
+Route::get('/tutorial', 'HomeController@tutorial');
 Route::get('/open');

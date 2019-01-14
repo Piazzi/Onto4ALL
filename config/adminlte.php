@@ -131,7 +131,7 @@ return [
 
         'ONTOLOGIES',
         [
-            'text' => 'Ontologies',
+            'text' => 'My Ontologies',
             'url'  => '/ontologies',
             'icon' => 'folder-open',
         ],

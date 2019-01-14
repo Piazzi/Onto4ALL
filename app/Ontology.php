@@ -6,18 +6,52 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ontology extends Model
 {
+    /**
+     * @var array
+     */
     protected $fillable = [
-        'name', 'publication_date', 'last_uploaded', 'description', 'link',
+        'name',
+        'publication_date',
+        'last_uploaded',
+        'description',
+        'link',
+        'user_id'
     ];
 
+    /**
+     * @var array
+     */
     protected $hidden = [
         'created_by',
     ];
 
+    /**
+     * @var array
+     */
     protected $dates = [
         'created_at',
         'updated_at'
     ];
 
+    protected $rules = [
+        'name' => 'required|string',
+        'publication_date' => 'nullable',
+        'last_uploaded' => 'nullable',
+        'description' => 'nullable',
+        'link' => 'nullable',
+        'created_by' => 'nullable'
+    ];
+
     protected $table = 'ontologies';
+
+    /*************************** Relations **********************************/
+
+    /**
+     * One to many relation with user Model.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

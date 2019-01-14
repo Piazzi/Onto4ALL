@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ontology;
 use Illuminate\Http\Request;
 use App\Menu;
 use App\TipsRelation;
@@ -63,7 +64,17 @@ class HomeController extends Controller
         $response->header('Content-Description', 'File Transfer');
         $response->header('Content-Disposition', 'attachment; filename=' . $request->fileName . '');
         $response->header('Content-Transfer-Encoding', 'binary');
-        $response->header('Content-Type', 'text/xml');
+
+        $size = Ontology::where('user_id', '=', $request->user()->id)->count();
+        if ($size > 9) {
+            Ontology::where('user_id', '=', $request->user()->id)->orderBy('created_at', 'asc')->first()->delete();
+        }
+        $ontology = new Ontology();
+        $ontology->name = $request->fileName;
+        $ontology->file = $request->xml;
+        $ontology->user_id = $request->user()->id;
+        $ontology->created_by = $request->user()->name;
+        $ontology->save();
 
         return $response;
     }
