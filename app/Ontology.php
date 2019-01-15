@@ -15,7 +15,8 @@ class Ontology extends Model
         'last_uploaded',
         'description',
         'link',
-        'user_id'
+        'user_id',
+        'favourite'
     ];
 
     /**
@@ -39,7 +40,8 @@ class Ontology extends Model
         'last_uploaded' => 'nullable',
         'description' => 'nullable',
         'link' => 'nullable',
-        'created_by' => 'nullable'
+        'created_by' => 'nullable',
+        'favourite' => 'boolean'
     ];
 
     protected $table = 'ontologies';

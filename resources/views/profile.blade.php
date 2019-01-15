@@ -18,7 +18,7 @@
         <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
         <div class="info-box-content">
           <span class="info-box-text"><strong> Ontologies made </strong></span>
-        <span class="info-box-number">{{Auth::user()->ontologies_made}}</span>
+        <span class="info-box-number">{{Auth::user()->ontologies()->first()->count()}}</span>
         </div>
         <!-- /.info-box-content -->
 </div>

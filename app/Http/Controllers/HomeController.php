@@ -65,15 +65,16 @@ class HomeController extends Controller
         $response->header('Content-Disposition', 'attachment; filename=' . $request->fileName . '');
         $response->header('Content-Transfer-Encoding', 'binary');
 
-        $size = Ontology::where('user_id', '=', $request->user()->id)->count();
+        $size = Ontology::where('user_id', '=', $request->user()->id)->where('favourite','=', 0)->count();
         if ($size > 9) {
-            Ontology::where('user_id', '=', $request->user()->id)->orderBy('created_at', 'asc')->first()->delete();
+            Ontology::where('user_id', '=', $request->user()->id)->where('favourite','=', 0)->orderBy('created_at', 'asc')->first()->delete();
         }
         $ontology = new Ontology();
         $ontology->name = $request->fileName;
         $ontology->file = $request->xml;
         $ontology->user_id = $request->user()->id;
         $ontology->created_by = $request->user()->name;
+        $ontology->favourite = 0;
         $ontology->save();
 
         return $response;

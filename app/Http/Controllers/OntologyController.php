@@ -13,14 +13,15 @@ use App\Http\Requests\OntologyStoreRequest;
 class OntologyController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the user ontologies .
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $ontologies = Ontology::where('user_id','=', Auth::user()->id)->paginate(10);
-        return view('ontologies.ontologies', compact('ontologies'));
+        $ontologies = Ontology::where('user_id','=', Auth::user()->id)->where('favourite','=', 0)->paginate(10);
+        $favouriteOntologies = Ontology::where('user_id','=', Auth::user()->id)->where('favourite','=', 1)->get();
+        return view('ontologies.ontologies', compact('ontologies', 'favouriteOntologies'));
     }
 
     /**
@@ -54,9 +55,7 @@ class OntologyController extends Controller
      */
     public function show($id)
     {
-
         $ontology = Ontology::findOrFail($id);
-
         return view('ontologies.ontologies_show', compact('ontology'));
     }
 
@@ -68,7 +67,8 @@ class OntologyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $ontology = Ontology::findOrFail($id);
+        return view('ontologies.ontologies_edit', compact('ontology', 'id'));
     }
 
     /**
@@ -80,18 +80,23 @@ class OntologyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ontology = Ontology::where('id','=', $id)->where('user_id','=', $request->user()->id)->first();
+        $ontology->update($request->all());
+        return redirect()->route('ontologies.index')->with('Sucess', 'Your ontology has been updated with success');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $ontology = Ontology::where('id','=', $id)->where('user_id','=', $request->user()->id)->first();
+        $ontology->delete();
+        return redirect()->route('ontologies.index')->with('Sucess', 'Your ontology has been deleted with success');
     }
 
     /**
@@ -111,5 +116,41 @@ class OntologyController extends Controller
         $response->header('Content-Transfer-Encoding', 'binary');
 
         return $response;
+    }
+
+    /**
+     * Change the status of the 'favourite' column
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveAsFavourite(Request $request)
+    {
+        $countOntologies = Ontology::where('user_id','=', $request->userId)->where('favourite','=', 1)->count();
+        if($countOntologies >= 5)
+        {
+            return redirect()->route('ontologies.index')->with('Error', 'You already have 5 ontologies marked as favourite.');
+        }
+        $ontology = Ontology::where('id','=', $request->ontologyId)->where('user_id','=', $request->userId)->first();
+        $ontology->favourite = 1;
+        $ontology->save();
+        return redirect()->route('ontologies.index')->with('Sucess', 'Your ontology has been added to favorites');
+    }
+
+    /**
+     * Unmark the favourite column from a ontology
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function saveAsNormal(Request $request)
+    {
+        $countOntologies = Ontology::where('user_id','=', $request->userId)->where('favourite','=', 0)->count();
+        if($countOntologies >= 10)
+        {
+            Ontology::where('user_id', '=', $request->user()->id)->where('favourite','=', 0)->orderBy('created_at', 'asc')->first()->delete();
+        }
+        $ontology = Ontology::where('id','=', $request->ontologyId)->where('user_id','=', $request->userId)->first();
+        $ontology->favourite = 0;
+        $ontology->save();
+        return redirect()->route('ontologies.index')->with('Sucess', 'Your ontology has been unmarked as favorite');
     }
 }

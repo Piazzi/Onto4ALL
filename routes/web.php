@@ -39,6 +39,8 @@ Route::resource('/tips_class', 'TipClassController')->middleware('can:eAdmin');
 
 Route::resource('/ontologies', 'OntologyController')->middleware('can:eModelador');
 Route::get('/ontologies/download/{userId}/{ontologyId}', 'OntologyController@download')->name('ontologies.download')->middleware('can:eModelador');
+Route::put('/ontologies/favourite/{userId}/{ontologyId}', 'OntologyController@saveAsFavourite')->name('ontologies.favourite')->middleware('can:eModelador');
+Route::put('/ontologies/normal/{userId}/{ontologyId}', 'OntologyController@saveAsNormal')->name('ontologies.normal')->middleware('can:eModelador');
 
 // Rotas do Editor
 Route::post('/save', 'HomeController@save');
