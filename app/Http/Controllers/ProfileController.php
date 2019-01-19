@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Ontology;
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Auth;
+
 class ProfileController extends Controller
 {
     /**
@@ -13,8 +16,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        return view('profile', compact('user'));
+        $count = Ontology::where('user_id','=', Auth::user()->id)->count();
+        return view('profile', compact('count'));
     }
 
     /**

@@ -79,4 +79,14 @@ class HomeController extends Controller
 
         return $response;
     }
+
+    public function export(Request $request)
+    {
+        /*
+       if($request->format == 'pdf')
+       {
+           $response = Response::create($request->xml)
+       }
+            */
+    }
 }

@@ -78,7 +78,7 @@ class OntologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(OntologyStoreRequest $request, $id)
     {
         $ontology = Ontology::where('id','=', $id)->where('user_id','=', $request->user()->id)->first();
         $ontology->update($request->all());
@@ -100,7 +100,7 @@ class OntologyController extends Controller
     }
 
     /**
-     * Finds the ontology user and then download
+     * Finds the ontology user and then download as a XML file.
      * @param Request $request
      * @return Response
      */

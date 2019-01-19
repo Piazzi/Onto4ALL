@@ -25,10 +25,10 @@ class OntologyStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'publication_date' => 'required|date',
-            'last_uploaded' => 'required|date',
-            'description' => 'required|string|max:555',
-            'link' => 'required|string|max:255',
+            'publication_date' => 'nullable|date',
+            'last_uploaded' => 'nullable|date',
+            'description' => 'nullable|string|max:555',
+            'link' => 'nullable|url|max:255',
             'created_by' => 'nullable',
         ];
     }

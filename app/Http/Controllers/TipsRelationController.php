@@ -93,4 +93,15 @@ class TipsRelationController extends Controller
         $tips_relation->delete();
         return redirect()->back()->with('Sucess', 'Your relation has been deleted with success');
     }
+
+    /**
+     * Search's for the given name on the database
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function search(Request $request)
+    {
+        $tips_relations = TipsRelation::where('name','Like',  '%' .$request->search. '%')->paginate(10);
+        return view('tips_relations.tips_relations', compact('tips_relations'));
+    }
 }

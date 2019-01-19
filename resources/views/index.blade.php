@@ -193,8 +193,6 @@
 
     <!-- MODIFICAÇÕES PARA O SISTEMA -->
 
-    <script src="js/Relation.js"></script>
-    <script src="js/Relation.js"></script>
     <script src="js/SaveMessage.js"></script>
     <script defer type="text/javascript" src="js/SearchTip.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

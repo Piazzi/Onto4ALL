@@ -38,15 +38,19 @@
 
                     <h3 class="box-title">Tips Relations Database </h3>
 
-                    <div class="box-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input id="table-search-input" type="text" class="form-control pull-right"
-                                   placeholder="Search">
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <form style="float: right;" method="post" action="{{route('tips_relations.search', ['search' => 'search'])}}">
+                        @csrf
+                        @method('POST')
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input  id="table-search-input" type="text" name="search"
+                                        class="form-control pull-right" placeholder="Search">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">

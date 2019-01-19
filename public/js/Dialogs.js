@@ -1266,7 +1266,7 @@ ExportDialog.exportFile = function(editorUi, name, format, bg, s, b) // Define p
 
 		var imgExport = new mxImageExport()
 	    imgExport.drawState(graph.getView().getState(graph.model.root), xmlCanvas);
-
+        console.log(imgExport);
 		// Puts request data together
 		var param = 'xml=' + encodeURIComponent(mxUtils.getXml(root));
 		var w = Math.ceil(bounds.width * s / graph.view.scale + 2 * b);
@@ -1275,12 +1275,35 @@ ExportDialog.exportFile = function(editorUi, name, format, bg, s, b) // Define p
 		// Requests image if request is valid
 		if (param.length <= MAX_REQUEST_SIZE && w * h < MAX_AREA)
 		{
+		    return EditorUi.prototype.saveXML('/export', {fileName: name, format: format, bg: bg, w: w, h: h});
 			editorUi.hideDialog();
 			var req = new mxXmlRequest(EXPORT_URL, 'format=' + format +
 				'&filename=' + encodeURIComponent(name) +
 				'&bg=' + ((bg != null) ? bg : 'none') +
 				'&w=' + w + '&h=' + h + '&' + param);
 			req.simulate(document, '_blank');
+            /*
+            Document doc = mxXmlUtils.parseXml(erXmlString);
+            mxGraph graph = new mxGraph();
+            mxCodec codec = new mxCodec(doc);
+            codec.decode(doc.getDocumentElement(), graph.getModel());
+
+            mxGraphComponent graphComponent = new mxGraphComponent(graph);
+            BufferedImage image = mxCellRenderer.createBufferedImage(graphComponent.getGraph(), null, 1, Color.WHITE, graphComponent.isAntiAlias(), null, graphComponent.getCanvas());
+            mxPngEncodeParam param = mxPngEncodeParam.getDefaultEncodeParam(image);
+            param.setCompressedText(new String[] { "mxGraphModel", erXmlString });
+
+            FileOutputStream outputStream = new FileOutputStream(new File(filename));
+            mxPngImageEncoder encoder = new mxPngImageEncoder(outputStream, param);
+
+            if (image != null) {
+                encoder.encode(image);
+                return image;
+            }
+            outputStream.close();
+            return null;
+
+        }*/
 		}
 		else
 		{
@@ -1300,10 +1323,14 @@ ExportDialog.saveLocalFile = function(editorUi, data, filename, format) // FUNÇ
 	if (data.length < MAX_REQUEST_SIZE)
 	{
 		editorUi.hideDialog();  // SAVE_URL
-		var req = new mxXmlRequest(HOME_URL, 'xml=' + encodeURIComponent(data) + '&filename=' +
+        /*
+		var req = new mxXmlRequest(SAVEXML_URL, 'xml=' + encodeURIComponent(data) + '&filename=' +
 			encodeURIComponent(filename) + '&format=' + format);
+		console.log(req);
         req.simulate(document, '_blank');
         console.log(req);
+        */
+        return EditorUi.prototype.saveXML('/saveXML', {fileName: filename, xml: data});
 	}
 	else
 	{

@@ -153,13 +153,7 @@
                     <h3 class="box-title">Your recent ontologies </h3>
 
                     <div class="box-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input id="table-search-input" type="text" name="table_search"
-                                   class="form-control pull-right" placeholder="Search">
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -222,5 +216,7 @@
     <ul class="pagination pagination-sm no-margin ">
         {{ $ontologies->links() }}
     </ul>
+    <!-- Filter -->
+    <script type="text/javascript" src="js/SearchBar.js"></script>
 
 @stop

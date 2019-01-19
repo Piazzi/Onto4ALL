@@ -36,16 +36,19 @@
                 <div class="box-header">
 
                     <h3 class="box-title">Tips Class Database </h3>
-
-                    <div class="box-tools">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input id="table-search-input" type="text" name="table_search"
-                                   class="form-control pull-right" placeholder="Search">
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    <form style="float: right;" method="post" action="{{route('tips_class.search', ['search' => 'search'])}}">
+                        @csrf
+                        @method('POST')
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input  id="table-search-input" type="text" name="search"
+                                       class="form-control pull-right" placeholder="Search">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">

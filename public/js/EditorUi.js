@@ -287,7 +287,7 @@ EditorUi = function (editor, container, lightbox) {
                 }
             };
 
-            mxEvent.addListener(graph.cellEditor.textarea, 'input', updateCssHandler)
+            mxEvent.addListener(graph.cellEditor.textarea, 'input', updateCssHandler);
             mxEvent.addListener(graph.cellEditor.textarea, 'touchend', updateCssHandler);
             mxEvent.addListener(graph.cellEditor.textarea, 'mouseup', updateCssHandler);
             mxEvent.addListener(graph.cellEditor.textarea, 'keyup', updateCssHandler);
@@ -358,7 +358,7 @@ EditorUi = function (editor, container, lightbox) {
         if (state != null) {
             // Ignores default styles
             var clone = cell.clone();
-            clone.style = ''
+            clone.style = '';
             var defaultStyle = graph.getCellStyle(clone);
             var values = [];
             var keys = [];
@@ -837,6 +837,38 @@ EditorUi.prototype.lightboxVerticalDivider = 4;
  * Specifies if single click on horizontal split should collapse sidebar. Default is false.
  */
 EditorUi.prototype.hsplitClickEnabled = false;
+
+/**
+ * sends a request to the specified url from a form. this will change the window location
+ * and the download the file (HomeController@saveXML).
+ * @param {string} path the path to send the post request to
+ * @param {object} params the parameters to add to the url
+ * @param {string} [method=post] the method to use on the form
+ */
+
+EditorUi.prototype.saveXML = function(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    let form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+    form.target = "_blank";
+
+    for(let key in params) {
+        if(params.hasOwnProperty(key)) {
+            let hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    return form.submit();
+};
+
 
 /**
  * Installs the listeners to update the action states.
@@ -1824,7 +1856,7 @@ EditorUi.prototype.open = function () {
                         this.updateDocumentTitle();
                     }
 
-                    return;
+
                 } catch (e) {
                     mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
                 }
@@ -2710,14 +2742,12 @@ EditorUi.prototype.addSplitHandler = function (elt, horizontal, dx, onChange) {
                 last = null;
             }
         }
-    };
-
+    }
     function dropHandler(evt) {
         moveHandler(evt);
         initial = null;
         start = null;
-    };
-
+    }
     mxEvent.addGestureListeners(elt, function (evt) {
         start = new mxPoint(mxEvent.getClientX(evt), mxEvent.getClientY(evt));
         initial = getValue();
@@ -2923,6 +2953,9 @@ EditorUi.prototype.save = function (name) // FUNÇÃO CHAMADA DEPOIS DA saveFile
 
         //Cria um formulário e redireciona para a rota de download se o desenho for do tamanho permitido
         if (xml.length < MAX_REQUEST_SIZE) {
+
+            // MODO PURO
+            /*
             var mapForm = document.createElement("form");
             mapForm.target = "_blank";
             mapForm.method = "POST";
@@ -2952,6 +2985,12 @@ EditorUi.prototype.save = function (name) // FUNÇÃO CHAMADA DEPOIS DA saveFile
 
             // Envia para a rota de download
             return mapForm.submit();
+            */
+
+            // MODO DINÂMICO
+
+            return EditorUi.prototype.saveXML('/saveXML', {fileName: name, xml: xml});
+
         } else {
             mxUtils.alert(mxResources.get('drawingTooLarge'));
             mxUtils.popup(xml);
@@ -3276,8 +3315,7 @@ EditorUi.prototype.createKeyHandler = function (editor) {
                 graph.scrollCellToVisible(graph.getSelectionCell());
             }
         }, 200);
-    };
-
+    }
     // Overridden to handle special alt+shift+cursor keyboard shortcuts
     var directions = {
         37: mxConstants.DIRECTION_WEST, 38: mxConstants.DIRECTION_NORTH,
