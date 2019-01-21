@@ -25,7 +25,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <form method="post" action="{{route('ontologies.update', $ontology->id)}}" role="form"">
+            <form method="post" action="{{route('ontologies.update', $ontology->id)}}" role="form">
             @csrf
             <input name="_method" type="hidden" value="PATCH">
             <div class="form-group">

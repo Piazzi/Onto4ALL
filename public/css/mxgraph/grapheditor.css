@@ -1224,7 +1224,7 @@ html {
     position: absolute;
     cursor: default;
     margin-top: 19px;
-    z-index: 10;
+    z-index: 1000;
     left: 282px !important;
 }
 
@@ -1346,7 +1346,7 @@ center {
 }
 
 #menu-scroll {
-    height: 500px;
+    height: 1000px;
     overflow: auto;
     margin-top: 20px;
 }

@@ -110,63 +110,65 @@ return [
     'menu' => [
         'MAIN NAVIGATION',
         [
-            'text'        => 'Ontology drawing',
-            'url'         => '/home',
-            'icon'        => 'object-group',
-            'label'       => 'Start now',
+            'text' => 'Ontology drawing',
+            'url' => '/home',
+            'icon' => 'object-group',
+            'label' => 'Start now',
             'label_color' => 'danger',
         ],
+
         [
-            'text'    => 'Tutorial',
-            'icon'    => 'info-circle',
-            'url'  => '/tutorial',
+            'text' => 'Info',
+            'icon' => 'info-circle',
+            'submenu' => [
+                [
+                    'text' => 'Tutorial',
+                    'url' => '/tutorial',
+                    'icon' => 'info',
+                ],
+                [
+                    'text' => 'About Us',
+                    'url' => '/aboutUs',
+                    'icon' => 'book',
+                ]
+            ],
         ],
 
-        'ACCOUNT SETTINGS',
+        'PROFILE',
         [
-            'text' => 'Account Settings',
-            'url'  => 'profile',
-            'icon' => 'cog',
+            'text' => 'Profile',
+            'url' => 'profile',
+            'icon' => 'user-plus',
         ],
 
         'ONTOLOGIES',
         [
             'text' => 'My Ontologies',
-            'url'  => '/ontologies',
+            'url' => '/ontologies',
             'icon' => 'folder-open',
         ],
 
-        'INFO',
-
         [
-            'text'       => 'About Us',
-            'icon'       => 'book',
-            'url'        => '/aboutUs',
-            'label'      => 'Info',
-            'label_color'=> 'warning'
-        ],
-
-        [
-            'text'    => 'Tips',
-            'icon'    => 'th-list',
-            'can'     => 'eAdmin',
+            'text' => 'Tips',
+            'icon' => 'th-list',
+            'can' => 'eAdmin',
             'submenu' => [
                 [
                     'text' => 'Menus',
-                    'url'  => '/menus',
-                    'can'     => 'eAdmin',
+                    'url' => '/menus',
+                    'can' => 'eAdmin',
 
                 ],
                 [
-                    'text'    => 'Tips Relations',
-                    'url'     => '/tips_relations',
-                    'can'     => 'eAdmin',
+                    'text' => 'Tips Relations',
+                    'url' => '/tips_relations',
+                    'can' => 'eAdmin',
 
                 ],
                 [
-                    'text'    => 'Tips Class',
-                    'url'     => '/tips_class',
-                    'can'     => 'eAdmin',
+                    'text' => 'Tips Class',
+                    'url' => '/tips_class',
+                    'can' => 'eAdmin',
 
                 ],
             ],
@@ -206,7 +208,7 @@ return [
 
     'plugins' => [
         'datatables' => true,
-        'select2'    => true,
-        'chartjs'    => true,
+        'select2' => true,
+        'chartjs' => true,
     ],
 ];

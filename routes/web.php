@@ -20,22 +20,21 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Auth::routes();
 
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin/settings', 'UserController@index')->name('settings');
-Route::get('/profile', 'ProfileController@index');
-Route::get('/admin/users/{user}', 'UserController@update');
-
-
+Route::resource('/profile', 'ProfileController')->middleware('can:eModelador');
+Route::get('/change_password/{id}', 'ProfileController@changePassword')->middleware('can:eModelador');
+Route::put('/update_password/{id}', 'ProfileController@updatePassword')->name('profile.updatePassword')->middleware('can:eModelador');
 
 // Rotas do Socialite
 Route::get('/redirect/{service}', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback');
+
 
 // Rotas do CRUD's
 Route::resource('/menus', 'MenuController')->middleware('can:eAdmin');
 
 Route::any('/tips_relations/search', 'TipsRelationController@search')->name('tips_relations.search')->middleware('can:eAdmin');
 Route::resource('/tips_relations', 'TipsRelationController')->middleware('can:eAdmin');
+
 
 Route::any('/tips_class/search', 'TipClassController@search')->name('tips_class.search')->middleware('can:eAdmin');
 Route::resource('/tips_class', 'TipClassController')->middleware('can:eAdmin');
@@ -46,7 +45,9 @@ Route::get('/ontologies/download/{userId}/{ontologyId}', 'OntologyController@dow
 Route::put('/ontologies/favourite/{userId}/{ontologyId}', 'OntologyController@saveAsFavourite')->name('ontologies.favourite')->middleware('can:eModelador');
 Route::put('/ontologies/normal/{userId}/{ontologyId}', 'OntologyController@saveAsNormal')->name('ontologies.normal')->middleware('can:eModelador');
 
+
 // Rotas do Editor
+Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/save', 'HomeController@save');
 Route::post('/saveXML', 'HomeController@saveXML');
 Route::get('/aboutUs', 'HomeController@aboutUs');

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OntologyStoreRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,6 @@ class OntologyStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'publication_date' => 'nullable|date',
-            'last_uploaded' => 'nullable|date',
-            'description' => 'nullable|string|max:1555',
-            'link' => 'nullable|url|max:255',
-            'created_by' => 'nullable',
         ];
     }
 }

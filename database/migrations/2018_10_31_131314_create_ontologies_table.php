@@ -18,7 +18,7 @@ class CreateOntologiesTable extends Migration
             $table->string('name');
             $table->date('publication_date')->nullable();
             $table->date('last_uploaded')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->string('link')->nullable();
             $table->string('created_by')->nullable();
             $table->timestamps();

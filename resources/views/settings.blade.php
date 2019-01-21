@@ -30,16 +30,10 @@
         <div class="box-header with-border">
             <h3 class="box-title">Account Settings</h3>
         </div>
-        <form role="form" action="users/{{Auth::user()->id}}" token="{{ csrf_token() }}" method="PUT">
-            {{ csrf_field() }}
+        <form role="form" action="{{route('profile.update', Auth::user()->id)}}" method="post">
+            @csrf
+            @method('PATCH')
             <div class="box-body">
-                <div class="form-group">
-                    <label for="inputPassword" class="col-sm-1-4 col-form-label">Password</label>
-                    <div class="col-sm-1-4">
-                        <input value="{{Auth::user()->password}}" type="password" class="form-control" name="password"
-                               id="inputPassword" placeholder="Insert your new password">
-                    </div>
-                </div>
                 <div class="form-group">
                     <label for="inputName" class="col-sm-1-4 col-form-label">Username</label>
                     <div class="col-sm-1-4">
@@ -51,16 +45,62 @@
                     <label for="inputEmail" class="col-sm-1-4 col-form-label">Email</label>
                     <div class="col-sm-1-4">
                         <input value="{{Auth::user()->email}}" type="text" class="form-control" name="email"
-                               id="inputPassword" placeholder="Insert your email here">
+                                placeholder="Insert your email here">
                     </div>
                 </div>
             </div>
             <div class="box-footer">
                 <div class="offset-sm-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </div>
         </form>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary collapsed-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">More Settings</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body" style="display: none;">
+                    <a href="/change_password/{{Auth::user()->id}}"><button type="button" class="btn btn-block btn-danger btn-sm">Change password</button></a>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-6">
+                <div class="box box-danger collapsed-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Delete Account</h3>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <!-- /.box-tools -->
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body" style="display: none;">
+                        <strong>If you do this you will lost all your saved ontologies</strong>
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box box-footer">
+                        <button type="button" class="btn btn-block btn-danger btn-sm">Delete Account</button>
+                    </div>
+                </div>
+                <!-- /.box -->
+        </div>
+        <!-- /.col -->
     </div>
 
 @stop

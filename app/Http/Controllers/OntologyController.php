@@ -19,7 +19,7 @@ class OntologyController extends Controller
      */
     public function index()
     {
-        $ontologies = Ontology::where('user_id','=', Auth::user()->id)->where('favourite','=', 0)->paginate(10);
+        $ontologies = Ontology::where('user_id','=', Auth::user()->id)->where('favourite','=', 0)->latest()->paginate(10);
         $favouriteOntologies = Ontology::where('user_id','=', Auth::user()->id)->where('favourite','=', 1)->get();
         return view('ontologies.ontologies', compact('ontologies', 'favouriteOntologies'));
     }

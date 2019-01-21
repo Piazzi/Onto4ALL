@@ -34,11 +34,11 @@
 
 @section('content')
 
-    <div  class="callout callout-warning">
+    <div  class="callout callout-info">
 
         <h4> <i class="icon fa fa-info"></i> Suas ontologias marcadas como favoritas!</h4>
 
-        <p>Você pode marcar até 5 ontologias como favoritas. Elas ficaram salvas aqui</p>
+        <p><strong>Você pode marcar até 5 ontologias como favoritas. Elas ficaram salvas aqui</strong></p>
     </div>
 
     <div class="row">
@@ -141,7 +141,7 @@
     <div class="callout callout-info">
         <h4> <i class="icon fa fa-info"></i> Suas Ontologias!</h4>
 
-        <p>Suas últimas 10 ontologias salvas ficaram guardadas aqui.</p>
+        <p><strong>Suas últimas 10 ontologias salvas ficaram guardadas aqui.</strong></p>
     </div>
 
     <div class="row">
