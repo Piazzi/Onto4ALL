@@ -7,7 +7,10 @@
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class=""><a  data-toggle="tab" aria-expanded="false"><i class="fa fa-fw fa-compass"></i>Tips database</a></li>
+            <li class=""><a data-toggle="tab" aria-expanded="false"><i class="fa fa-fw fa-compass"></i>Tips database</a>
+            </li>
+            <li class=""><a data-toggle="modal" data-target="#exampleModal" aria-expanded="false"><i
+                            class="fa fa-fw fa-object-group "></i>Your ontologies</a></li>
         </ul>
         <div id="searchBar" class="input-group input-group-sm">
             <input value="" id="search-tip-input" type="text" class="form-control"
@@ -81,6 +84,66 @@
     </aside>
     <!-- /.tips menu -->
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Your Ontologies</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="timeline">
+                        <!-- timeline time label -->
+                        @foreach($ontologies as $ontology)
+                            <li class="time-label">
+                              <span class="bg-blue">
+                                {{$ontology->created_at}}
+                              </span>
+                            </li>
+                            <!-- /.timeline-label -->
+                            <!-- timeline item -->
+                            <li>
+                                <i class="fa fa-fw fa-object-group bg-green "></i>
+
+                                <div class="timeline-item">
+                                    <span class="time"><strong>Publication Date:  <i class="fa fa-clock-o"></i> {{$ontology->publication_date}}</strong></span>
+                                    <span class="time"><strong>Last Upload:  <i class="fa fa-clock-o"></i> {{$ontology->last_uploaded}}</strong></span>
+
+                                    <h3 class="timeline-header"><a href="#">{{$ontology->name}}</a></h3>
+
+                                    <div class="timeline-body">
+                                        {{$ontology->description}}
+                                    </div>
+                                    <div class="timeline-footer">
+                                        @if($ontology->link != null)
+                                            <a href="{{$ontology->link}}"
+                                               class="btn btn-primary btn-sm">{{$ontology->link}}</a>
+                                        @endif
+                                        <a class="btn btn-success btn-sm">{{$ontology->created_by}}</a>
+                                        <a href="/ontologies/download/{{Auth::user()->id}}/{{$ontology->id}}"
+                                           class="btn btn-info btn-file btn-sm ">
+                                            <i class="fa fa-fw fa-file-code-o"></i> Download
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- END timeline item -->
+                            <!-- timeline item -->
+                        @endforeach
+                        <li>
+                            <i class="fa fa-clock-o bg-gray"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     @stop
 
 @section('content')

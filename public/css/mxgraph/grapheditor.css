@@ -1277,7 +1277,7 @@ center {
 /* Dicas */
 #tip {
     z-index: 15 !important;
-    top: 655px;
+    top: 455px;
     width: 20%;
     height: 10%;
     left: 10px;
@@ -1287,7 +1287,7 @@ center {
 
 #warning {
     z-index: 15 !important;
-    top: 755px;
+    top: 555px;
     width: 20%;
     height: 10%;
     left: 10px;
@@ -1327,7 +1327,7 @@ center {
 }
 
 #menu-scroll {
-    height: 1000px;
+    height: 80vh;
     overflow: auto;
     margin-top: 20px;
 }

@@ -8,6 +8,7 @@ use App\Menu;
 use App\TipsRelation;
 use App\TipClass;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Imagick;
 
 class HomeController extends Controller
@@ -32,7 +33,8 @@ class HomeController extends Controller
         $menus = Menu::all();
         $tips_relations = TipsRelation::all();
         $tips_class = TipClass::all();
-        return view('index', compact('menus', 'tips_relations', 'tips_class')); /* Editor */
+        $ontologies = Ontology::where('user_id','=', Auth::user()->id)->get();
+        return view('index', compact('menus', 'tips_relations', 'tips_class','ontologies')); /* Editor */
     }
 
     /**
