@@ -22,7 +22,7 @@ class ProfileController extends Controller
         $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->get();
         $user = User::find(Auth::user()->id);
         $favouriteOntologies = Ontology::where('user_id', '=', Auth::user()->id)->where('favourite', '=', 1)->latest()->get();
-        return view('profile', compact('count', 'user', 'ontologies', 'favouriteOntologies'));
+        return view('profiles.profile', compact('count', 'user', 'ontologies', 'favouriteOntologies'));
     }
 
     /**
@@ -34,7 +34,7 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        return view('settings', compact('user'));
+        return view('profiles.settings', compact('user'));
     }
 
     /**
@@ -77,7 +77,7 @@ class ProfileController extends Controller
      */
     public function changePassword($id)
     {
-        return view('change_password');
+        return view('profiles.change_password');
     }
 
     /**

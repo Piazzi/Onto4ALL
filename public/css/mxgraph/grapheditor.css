@@ -1277,20 +1277,20 @@ center {
 /* Dicas */
 #tip {
     z-index: 15 !important;
-    margin-top: 455px;
+    top: 655px;
     width: 20%;
     height: 10%;
-    margin-left: 90px;
+    left: 10px;
     opacity: 0.9;
     position: fixed;
 }
 
 #warning {
     z-index: 15 !important;
-    margin-top: 455px;
+    top: 755px;
     width: 20%;
     height: 10%;
-    margin-left: 490px;
+    left: 10px;
     opacity: 0.9;
     position: fixed;
 }
@@ -1311,14 +1311,6 @@ center {
 
 /* /.botões */
 
-.loading-screen {
-
-    position: fixed;
-    z-index: 200;
-    opacity: 0.5;
-    width: 73%;
-    height: 85%;
-}
 
 .fa-refresh {
     margin-bottom: 550px;
@@ -1327,17 +1319,6 @@ center {
 
 #loading {
     color: #00A65A !important;
-}
-
-
-#call-tip {
-    z-index: 20000000;
-    width: 16px;
-    height: 16px;
-    margin-right: 950px;
-    margin-top: 10px;
-    opacity: 0.5;
-
 }
 
 /* MENU DE DICAS */
@@ -1366,12 +1347,10 @@ center {
 }
 
 #searchBar {
-    margin-top: 15px;
     height: 150%;
 }
 
 aside {
-    margin-left: 200px !important;
     opacity: 0.9;
 }
 

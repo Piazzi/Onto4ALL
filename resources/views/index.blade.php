@@ -7,24 +7,18 @@
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class="active"><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab"><i
-                            class="fa fa-fw fa-archive"></i></a></li>
-            <li>
-                <div id="searchBar" class="input-group input-group-sm" style="width: 150px;">
-                    <input value="" id="search-tip-input" type="text" class="form-control pull-right"
-                           placeholder="Search tips">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                </div>
-            </li>
+            <li class=""><a  data-toggle="tab" aria-expanded="false"><i class="fa fa-fw fa-compass"></i>Tips database</a></li>
         </ul>
-        <!-- Tab panes -->
+        <div id="searchBar" class="input-group input-group-sm">
+            <input value="" id="search-tip-input" type="text" class="form-control"
+                   placeholder="Search for tips">
+            <div class="input-group-btn">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
         <div id="menu-wrapper">
             <div class="tab-content">
                 <div id="menu-scroll">
-                    <!-- Home tab content -->
-                    <!-- /.tab-pane -->
                     <div id="control-sidebar-theme-demo-options-tab table-search" class="tab-pane active table-search">
                         @foreach($tips_relations as $tips_relation)
                             <div id="tipSearch" class="box box-primary collapsed-box box-solid">
@@ -81,7 +75,6 @@
                             </div>
                         @endforeach
                     </div>
-                    <!-- Settings tab content -->
                 </div>
             </div>
         </div>
@@ -237,7 +230,7 @@
 
     <a id="notification-button" class="btn btn-app">
         <span class="badge bg-yellow">Clique Aqui</span>
-        <i class="fa fa-bullhorn"></i> Dicas
+        <i class="fa fa-bullhorn"></i> Tips
     </a>
 
     <a id="sidebar-control" class="btn btn-app">

@@ -1251,6 +1251,9 @@ ExportDialog.exportFile = function(editorUi, name, format, bg, s, b) // Define p
 	}
     else
     {
+
+    	return ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(graph.getSvg(bg, s, b)), name, format);
+
     	var bounds = graph.getGraphBounds();
 
 		// New image export
@@ -1282,28 +1285,7 @@ ExportDialog.exportFile = function(editorUi, name, format, bg, s, b) // Define p
 				'&bg=' + ((bg != null) ? bg : 'none') +
 				'&w=' + w + '&h=' + h + '&' + param);
 			req.simulate(document, '_blank');
-            /*
-            Document doc = mxXmlUtils.parseXml(erXmlString);
-            mxGraph graph = new mxGraph();
-            mxCodec codec = new mxCodec(doc);
-            codec.decode(doc.getDocumentElement(), graph.getModel());
 
-            mxGraphComponent graphComponent = new mxGraphComponent(graph);
-            BufferedImage image = mxCellRenderer.createBufferedImage(graphComponent.getGraph(), null, 1, Color.WHITE, graphComponent.isAntiAlias(), null, graphComponent.getCanvas());
-            mxPngEncodeParam param = mxPngEncodeParam.getDefaultEncodeParam(image);
-            param.setCompressedText(new String[] { "mxGraphModel", erXmlString });
-
-            FileOutputStream outputStream = new FileOutputStream(new File(filename));
-            mxPngImageEncoder encoder = new mxPngImageEncoder(outputStream, param);
-
-            if (image != null) {
-                encoder.encode(image);
-                return image;
-            }
-            outputStream.close();
-            return null;
-
-        }*/
 		}
 		else
 		{
@@ -1322,18 +1304,16 @@ ExportDialog.saveLocalFile = function(editorUi, data, filename, format) // FUNÇ
 {
 	if (data.length < MAX_REQUEST_SIZE)
 	{
-		editorUi.hideDialog();  // SAVE_URL
-        /*
-		var req = new mxXmlRequest(SAVEXML_URL, 'xml=' + encodeURIComponent(data) + '&filename=' +
-			encodeURIComponent(filename) + '&format=' + format);
-		console.log(req);
-        req.simulate(document, '_blank');
-        console.log(req);
-        */
+		editorUi.hideDialog();
+		if(format == 'png' || format == 'jpeg' || format == 'svg')
+			return EditorUi.prototype.exportImage({fileName: filename, imageFormat: format, data: data});
+		else
         return EditorUi.prototype.saveXML('/saveXML', {fileName: filename, xml: data});
+
 	}
 	else
 	{
+
 		mxUtils.alert(mxResources.get('drawingTooLarge'));
 		mxUtils.popup(xml);
 	}

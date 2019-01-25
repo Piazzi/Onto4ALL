@@ -54,3 +54,4 @@ Route::get('/aboutUs', 'HomeController@aboutUs');
 Route::get('/tutorial', 'HomeController@tutorial');
 Route::get('/open');
 Route::post('/export', 'HomeController@export');
+Route::post('/exportImage', 'HomeController@exportImage');

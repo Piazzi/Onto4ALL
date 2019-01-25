@@ -15,5 +15,6 @@ class VerifyCsrfToken extends Middleware
         '/saveXML',
         '/open',
         '/export',
+        '/exportImage'
     ];
 }

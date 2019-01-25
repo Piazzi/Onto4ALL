@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Ontology;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\OntologyStoreRequest;
 
 
@@ -74,8 +73,8 @@ class OntologyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param OntologyStoreRequest $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(OntologyStoreRequest $request, $id)

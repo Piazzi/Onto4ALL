@@ -869,6 +869,33 @@ EditorUi.prototype.saveXML = function(path, params, method) {
     return form.submit();
 };
 
+/**
+ * Get the user post request, create a form, and then send to the HomeController@exportImage
+ * @param path
+ * @param params
+ * @returns {*|void}
+ */
+EditorUi.prototype.exportImage = function(params) {
+
+    let form = document.createElement("form");
+    form.setAttribute("method","post");
+    form.setAttribute("action", '/exportImage');
+    form.target = "_blank";
+
+    for (let key in params) {
+        if (params.hasOwnProperty(key)) {
+            let hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    return form.submit();
+};
 
 /**
  * Installs the listeners to update the action states.
