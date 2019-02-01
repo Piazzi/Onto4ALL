@@ -50,6 +50,7 @@ Route::put('/ontologies/normal/{userId}/{ontologyId}', 'OntologyController@saveA
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/save', 'HomeController@save');
 Route::post('/saveXML', 'HomeController@saveXML');
+Route::post('/exportOWL', 'HomeController@exportOWL');
 Route::get('/aboutUs', 'HomeController@aboutUs');
 Route::get('/tutorial', 'HomeController@tutorial');
 Route::get('/open');

@@ -96,6 +96,14 @@ class HomeController extends Controller
         $response->header('Content-Disposition', 'attachment; filename=' . $request->fileName . '');
         $response->header('Content-Type', 'image/svg');
         return $response;
+    }
 
+    /**
+     * Export the diagram to .OWL format
+     * @param Request $request
+     */
+    public function exportOWL(Request $request)
+    {
+        dd($request->all());
     }
 }

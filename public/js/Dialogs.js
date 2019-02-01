@@ -898,7 +898,7 @@ var ExportDialog = function(editorUi)
 	var pngOption = document.createElement('option');
 	pngOption.setAttribute('value', 'png');
 	mxUtils.write(pngOption, mxResources.get('formatPng'));
-	imageFormatSelect.appendChild(pngOption);
+	//imageFormatSelect.appendChild(pngOption);
 
 	var gifOption = document.createElement('option');
 
@@ -906,23 +906,28 @@ var ExportDialog = function(editorUi)
 	{
 		gifOption.setAttribute('value', 'gif');
 		mxUtils.write(gifOption, mxResources.get('formatGif'));
-		imageFormatSelect.appendChild(gifOption);
+		//imageFormatSelect.appendChild(gifOption);
 	}
 
 	var jpgOption = document.createElement('option');
 	jpgOption.setAttribute('value', 'jpg');
 	mxUtils.write(jpgOption, mxResources.get('formatJpg'));
-	imageFormatSelect.appendChild(jpgOption);
+	//imageFormatSelect.appendChild(jpgOption);
 
 	var pdfOption = document.createElement('option');
 	pdfOption.setAttribute('value', 'pdf');
 	mxUtils.write(pdfOption, mxResources.get('formatPdf'));
-	imageFormatSelect.appendChild(pdfOption);
+	//imageFormatSelect.appendChild(pdfOption);
 
 	var svgOption = document.createElement('option');
 	svgOption.setAttribute('value', 'svg');
 	mxUtils.write(svgOption, mxResources.get('formatSvg'));
 	imageFormatSelect.appendChild(svgOption);
+
+	var owlOption = document.createElement('option');
+	owlOption.setAttribute('value', 'owl');
+	mxUtils.write(owlOption, 'OWL');
+	imageFormatSelect.appendChild(owlOption);
 
 	if (ExportDialog.showXmlOption)
 	{
@@ -1239,9 +1244,10 @@ ExportDialog.showXmlOption = true;
  */
 ExportDialog.exportFile = function(editorUi, name, format, bg, s, b) // Define para qual função de export o arquivo vai
 {
+	console.log(format);
 	var graph = editorUi.editor.graph;
 
-	if (format == 'xml')
+	if (format == 'xml' || format == 'owl')
 	{
     	ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(editorUi.editor.getGraphXml()), name, format);
 	}
@@ -1307,8 +1313,10 @@ ExportDialog.saveLocalFile = function(editorUi, data, filename, format) // FUNÇ
 		editorUi.hideDialog();
 		if(format == 'png' || format == 'jpeg' || format == 'svg')
 			return EditorUi.prototype.exportImage({fileName: filename, imageFormat: format, data: data});
+		else if(format == 'xml')
+        	return EditorUi.prototype.saveXML('/saveXML', {fileName: filename, xml: data});
 		else
-        return EditorUi.prototype.saveXML('/saveXML', {fileName: filename, xml: data});
+			return EditorUi.prototype.saveXML('/exportOWL', {fileName: filename, xml: data});
 
 	}
 	else

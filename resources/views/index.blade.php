@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <div id="preloader" >Wait until ONTO4ALL is ready!</div>
+    <div id="preloader" style="color: #00A65A" ><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>
     <script type="text/javascript" src="js/HomeFunctions.js"></script>
     <script type="text/javascript" src="js/SaveMessage.js"></script>
     <script defer type="text/javascript" src="js/SearchTip.js"></script>
