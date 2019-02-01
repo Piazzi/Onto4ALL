@@ -9,7 +9,6 @@ use App\TipsRelation;
 use App\TipClass;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Imagick;
 
 class HomeController extends Controller
 {
@@ -33,8 +32,8 @@ class HomeController extends Controller
         $menus = Menu::all();
         $tips_relations = TipsRelation::all();
         $tips_class = TipClass::all();
-        $ontologies = Ontology::where('user_id','=', Auth::user()->id)->get();
-        return view('index', compact('menus', 'tips_relations', 'tips_class','ontologies')); /* Editor */
+        $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->get();
+        return view('index', compact('menus', 'tips_relations', 'tips_class', 'ontologies')); /* Editor */
     }
 
     /**
@@ -44,7 +43,7 @@ class HomeController extends Controller
     {
         $tips_relations = TipsRelation::all();
         $tips_class = TipClass::all();
-        return view('about_us', compact( 'tips_relations', 'tips_class'));
+        return view('about_us', compact('tips_relations', 'tips_class'));
     }
 
     /**
@@ -70,10 +69,9 @@ class HomeController extends Controller
         $response->header('Content-Disposition', 'attachment; filename=' . $request->fileName . '');
         $response->header('Content-Transfer-Encoding', 'binary');
 
-        $size = Ontology::where('user_id', '=', $request->user()->id)->where('favourite','=', 0)->count();
-        if ($size > 9)
-        {
-            Ontology::where('user_id', '=', $request->user()->id)->where('favourite','=', 0)->orderBy('created_at', 'asc')->first()->delete();
+        $size = Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->count();
+        if ($size > 9) {
+            Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->orderBy('created_at', 'asc')->first()->delete();
         }
         $ontology = new Ontology();
         $ontology->name = $request->fileName;
@@ -86,32 +84,18 @@ class HomeController extends Controller
         return $response;
     }
 
+    /**
+     * Export the diagram to .SVG format
+     * @param Request $request
+     * @return Response
+     */
     public function exportImage(Request $request)
     {
+        $response = Response::create($request->data, 200);
+        $response->header('Content-Description', 'File Transfer');
+        $response->header('Content-Disposition', 'attachment; filename=' . $request->fileName . '');
+        $response->header('Content-Type', 'image/svg');
+        return $response;
 
-       if($request->imageFormat == 'svg')
-       {
-           $response = Response::create($request->data, 200);
-           $response->header('Content-Description', 'File Transfer');
-           $response->header('Content-Disposition', 'attachment; filename=' . $request->fileName . '');
-           $response->header('Content-Type', 'image/svg');
-           return $response;
-       }
-       else if($request->imageFormat == 'png')
-       {
-           $response = Response::create($request->image, 200);
-           $response->header('Content-Description', 'File Transfer');
-           $response->header('Content-Disposition', 'attachment; filename=' . $request->fileName . '');
-           $response->header('Content-Type', 'image/png');
-
-           $image = new Imagick();
-           $image->setBackgroundColor(new ImagickPixel('transparent'));
-           $image->readImageBlob(file_get_contents($response));
-           $image->setImageFormat("png24");
-           $image->resizeImage(1024, 768, imagick::FILTER_LANCZOS, 1);
-           $image->writeImage('image.png');
-           return $response;
-       }
-        return 'a';
     }
 }

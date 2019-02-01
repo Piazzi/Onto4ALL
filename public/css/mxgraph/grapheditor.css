@@ -1,3 +1,19 @@
+/* Loading Screen */
+#preloader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    text-align: center;
+    opacity: 0.9;
+    background: #FFF
+    url('/css/images/loading.gif')
+    no-repeat center center;
+}
+
 .geEditor {
     font-family: Helvetica Neue, Helvetica, Arial Unicode MS, Arial;
     font-size: 10pt;
@@ -1287,10 +1303,10 @@ center {
 
 #warning {
     z-index: 15 !important;
-    top: 555px;
+    top: 455px;
     width: 20%;
     height: 10%;
-    left: 10px;
+    left: 450px;
     opacity: 0.9;
     position: fixed;
 }
@@ -1354,4 +1370,7 @@ aside {
     opacity: 0.9;
 }
 
-/* /.MENU DE DICAS */
+
+
+
+

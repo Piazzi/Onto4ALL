@@ -3,6 +3,115 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
+    <div id="preloader" >Wait until ONTO4ALL is ready!</div>
+    <script type="text/javascript" src="js/HomeFunctions.js"></script>
+    <script type="text/javascript" src="js/SaveMessage.js"></script>
+    <script defer type="text/javascript" src="js/SearchTip.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/mxgraph/grapheditor.css">
+
+    <title>Grapheditor</title>
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=5,IE=9"><![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script type="text/javascript">
+        // Parses URL parameters. Supported parameters are:
+        // - lang=xy: Specifies the language of the user interface.
+        // - touch=1: Enables a touch-style user interface.
+        // - storage=local: Enables HTML5 local storage.
+        // - chrome=0: Chromeless mode.
+        var urlParams = (function (url) {
+            var result = new Object();
+            var idx = url.lastIndexOf('?');
+
+            if (idx > 0) {
+                var params = url.substring(idx + 1).split('&');
+
+                for (var i = 0; i < params.length; i++) {
+                    idx = params[i].indexOf('=');
+
+                    if (idx > 0) {
+                        result[params[i].substring(0, idx)] = params[i].substring(idx + 1);
+                    }
+                }
+            }
+
+            return result;
+        })(window.location.href);
+
+        // Default resources are included in grapheditor resources
+        mxLoadResources = false;
+    </script>
+    <script type="text/javascript" src="js/Init.js"></script>
+    <script type="text/javascript" src="js/pako.min.js"></script>
+    <script type="text/javascript" src="js/base64.js"></script>
+    <script type="text/javascript" src="js/jscolor.js"></script>
+    <script type="text/javascript" src="js/sanitizer.min.js"></script>
+    <script type="text/javascript" src="js/mxClient.js"></script>
+    <script type="text/javascript" src="js/EditorUi.js"></script>
+    <script type="text/javascript" src="js/Editor.js"></script>
+    <script type="text/javascript" src="js/Sidebar.js"></script>
+    <script type="text/javascript" src="js/Graph.js"></script>
+    <script type="text/javascript" src="js/Format.js"></script>
+    <script type="text/javascript" src="js/Shapes.js"></script>
+    <script type="text/javascript" src="js/Actions.js"></script>
+    <script type="text/javascript" src="js/Menus.js"></script>
+    <script type="text/javascript" src="js/Toolbar.js"></script>
+    <script type="text/javascript" src="js/Dialogs.js"></script>
+
+
+@stop
+
+@section('content')
+
+    <body class="geEditor">
+    <script type="text/javascript">
+        // Extends EditorUi to update I/O action states based on availability of backend
+        (function () {
+            var editorUiInit = EditorUi.prototype.init;
+
+            EditorUi.prototype.init = function () {
+                editorUiInit.apply(this, arguments);
+                this.actions.get('export').setEnabled(false);
+
+                // Updates action states which require a backend
+                if (!Editor.useLocalStorage) {
+                    mxUtils.post(OPEN_URL, '', mxUtils.bind(this, function (req) {
+                        var enabled = req.getStatus() != 404;
+                        this.actions.get('open').setEnabled(enabled || Graph.fileSupport);
+                        this.actions.get('import').setEnabled(enabled || Graph.fileSupport);
+                        this.actions.get('save').setEnabled(enabled);
+                        this.actions.get('saveAs').setEnabled(enabled);
+                        this.actions.get('export').setEnabled(enabled);
+                    }));
+                }
+            };
+
+            // Adds required resources (disables loading of fallback properties, this can only
+            // be used if we know that all keys are defined in the language specific file)
+            mxResources.loadDefaultBundle = false;
+            var bundle = mxResources.getDefaultBundle(RESOURCE_BASE, mxLanguage) ||
+                mxResources.getSpecialBundle(RESOURCE_BASE, mxLanguage);
+
+            // Fixes possible asynchronous requests
+            mxUtils.getAll([bundle, STYLE_PATH + '/default.xml'], function (xhr) {
+                // Adds bundle text to resources
+                mxResources.parse(xhr[0].getText());
+
+                // Configures the default graph theme
+                var themes = new Object();
+                themes[Graph.prototype.defaultThemeName] = xhr[1].getDocumentElement();
+
+                // Main
+                new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
+            }, function () {
+                document.body.innerHTML = '<center style="margin-top:10%;">Error loading resource files. Please check browser console.</center>';
+            });
+        })();
+    </script>
+
+    <!-- MODIFICAÇÕES PARA O SISTEMA -->
+
     <!--tips menu-->
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
         <!-- Create the tabs -->
@@ -106,8 +215,11 @@
                             <!-- /.timeline-label -->
                             <!-- timeline item -->
                             <li>
-                                <i class="fa fa-fw fa-object-group bg-green "></i>
-
+                                @if($ontology->favourite == 1)
+                                    <i style="color: #ffe70a; background-color: #00A65A" class="fa fa-fw fa-star"></i>
+                                @else
+                                    <i class="fa fa-fw fa-object-group bg-green "></i>
+                                @endif
                                 <div class="timeline-item">
                                     <span class="time"><strong>Publication Date:  <i class="fa fa-clock-o"></i> {{$ontology->publication_date}}</strong></span>
                                     <span class="time"><strong>Last Upload:  <i class="fa fa-clock-o"></i> {{$ontology->last_uploaded}}</strong></span>
@@ -144,113 +256,6 @@
             </div>
         </div>
     </div>
-    @stop
-
-@section('content')
-<!--[if IE]>
-    <meta http-equiv="X-UA-Compatible" content="IE=5,IE=9"><![endif]-->
-
-    <head>
-        <title>Grapheditor</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <link rel="stylesheet" type="text/css" href="css/mxgraph/grapheditor.css">
-        <script type="text/javascript">
-            // Parses URL parameters. Supported parameters are:
-            // - lang=xy: Specifies the language of the user interface.
-            // - touch=1: Enables a touch-style user interface.
-            // - storage=local: Enables HTML5 local storage.
-            // - chrome=0: Chromeless mode.
-            var urlParams = (function (url) {
-                var result = new Object();
-                var idx = url.lastIndexOf('?');
-
-                if (idx > 0) {
-                    var params = url.substring(idx + 1).split('&');
-
-                    for (var i = 0; i < params.length; i++) {
-                        idx = params[i].indexOf('=');
-
-                        if (idx > 0) {
-                            result[params[i].substring(0, idx)] = params[i].substring(idx + 1);
-                        }
-                    }
-                }
-
-                return result;
-            })(window.location.href);
-
-            // Default resources are included in grapheditor resources
-            mxLoadResources = false;
-        </script>
-        <script type="text/javascript" src="js/Init.js"></script>
-        <script type="text/javascript" src="js/pako.min.js"></script>
-        <script type="text/javascript" src="js/base64.js"></script>
-        <script type="text/javascript" src="js/jscolor.js"></script>
-        <script type="text/javascript" src="js/sanitizer.min.js"></script>
-        <script type="text/javascript" src="js/mxClient.js"></script>
-        <script type="text/javascript" src="js/EditorUi.js"></script>
-        <script type="text/javascript" src="js/Editor.js"></script>
-        <script type="text/javascript" src="js/Sidebar.js"></script>
-        <script type="text/javascript" src="js/Graph.js"></script>
-        <script type="text/javascript" src="js/Format.js"></script>
-        <script type="text/javascript" src="js/Shapes.js"></script>
-        <script type="text/javascript" src="js/Actions.js"></script>
-        <script type="text/javascript" src="js/Menus.js"></script>
-        <script type="text/javascript" src="js/Toolbar.js"></script>
-        <script type="text/javascript" src="js/Dialogs.js"></script>
-    </head>
-    <body class="geEditor">
-    <script type="text/javascript">
-        // Extends EditorUi to update I/O action states based on availability of backend
-        (function () {
-            var editorUiInit = EditorUi.prototype.init;
-
-            EditorUi.prototype.init = function () {
-                editorUiInit.apply(this, arguments);
-                this.actions.get('export').setEnabled(false);
-
-                // Updates action states which require a backend
-                if (!Editor.useLocalStorage) {
-                    mxUtils.post(OPEN_URL, '', mxUtils.bind(this, function (req) {
-                        var enabled = req.getStatus() != 404;
-                        this.actions.get('open').setEnabled(enabled || Graph.fileSupport);
-                        this.actions.get('import').setEnabled(enabled || Graph.fileSupport);
-                        this.actions.get('save').setEnabled(enabled);
-                        this.actions.get('saveAs').setEnabled(enabled);
-                        this.actions.get('export').setEnabled(enabled);
-                    }));
-                }
-            };
-
-            // Adds required resources (disables loading of fallback properties, this can only
-            // be used if we know that all keys are defined in the language specific file)
-            mxResources.loadDefaultBundle = false;
-            var bundle = mxResources.getDefaultBundle(RESOURCE_BASE, mxLanguage) ||
-                mxResources.getSpecialBundle(RESOURCE_BASE, mxLanguage);
-
-            // Fixes possible asynchronous requests
-            mxUtils.getAll([bundle, STYLE_PATH + '/default.xml'], function (xhr) {
-                // Adds bundle text to resources
-                mxResources.parse(xhr[0].getText());
-
-                // Configures the default graph theme
-                var themes = new Object();
-                themes[Graph.prototype.defaultThemeName] = xhr[1].getDocumentElement();
-
-                // Main
-                new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
-            }, function () {
-                document.body.innerHTML = '<center style="margin-top:10%;">Error loading resource files. Please check browser console.</center>';
-            });
-        })();
-    </script>
-    </body>
-
-    <!-- MODIFICAÇÕES PARA O SISTEMA -->
-
-    <script src="js/SaveMessage.js"></script>
-    <script defer type="text/javascript" src="js/SearchTip.js"></script>
 
     <!-- DICAS -->
 
@@ -300,18 +305,6 @@
         <span class="badge bg-green">Clique aqui</span>
         <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i> Sidebar
     </a>
-
-    <script>
-        $("#sidebar-control").click(function () {
-            $('aside').slideToggle();
-        });
-        $(".texto").click(function () {
-            $(".tip").slideToggle();
-        });
-        $("#notification-button").click(function () {
-            $(".tip").slideToggle();
-            $(".menu").slideToggle();
-        });
-    </script>
+    </body>
 
 @stop
