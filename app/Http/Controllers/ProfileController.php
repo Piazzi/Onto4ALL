@@ -19,7 +19,7 @@ class ProfileController extends Controller
     public function index()
     {
         $count = Ontology::where('user_id', '=', Auth::user()->id)->count();
-        $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->get();
+        $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->latest()->get();
         $user = User::find(Auth::user()->id);
         $favouriteOntologies = Ontology::where('user_id', '=', Auth::user()->id)->where('favourite', '=', 1)->latest()->get();
         return view('profiles.profile', compact('count', 'user', 'ontologies', 'favouriteOntologies'));
@@ -68,7 +68,10 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $ontologies = Ontology::where('user_id','=', $user->id)->delete();
+        $user->delete();
+        return redirect()->route('login');
     }
 
     /**

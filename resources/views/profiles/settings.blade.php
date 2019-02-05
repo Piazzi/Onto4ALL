@@ -45,7 +45,7 @@
                     <label for="inputEmail" class="col-sm-1-4 col-form-label">Email</label>
                     <div class="col-sm-1-4">
                         <input value="{{Auth::user()->email}}" type="text" class="form-control" name="email"
-                                placeholder="Insert your email here">
+                               placeholder="Insert your email here">
                     </div>
                 </div>
             </div>
@@ -70,7 +70,9 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body" style="display: none;">
-                    <a href="/change_password/{{Auth::user()->id}}"><button type="button" class="btn btn-block btn-danger btn-sm">Change password</button></a>
+                    <a href="/change_password/{{Auth::user()->id}}">
+                        <button type="button" class="btn btn-block btn-danger btn-sm">Change password</button>
+                    </a>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -78,27 +80,31 @@
         </div>
         <!-- /.col -->
         <div class="col-md-6">
-                <div class="box box-danger collapsed-box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Delete Account</h3>
+            <div class="box box-danger collapsed-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Delete Account</h3>
 
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                            </button>
-                        </div>
-                        <!-- /.box-tools -->
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                        </button>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body" style="display: none;">
-                        <strong>If you do this you will lost all your saved ontologies</strong>
-                    </div>
-                    <!-- /.box-body -->
-
-                    <div class="box box-footer">
-                        <button type="button" class="btn btn-block btn-danger btn-sm">Delete Account</button>
-                    </div>
+                    <!-- /.box-tools -->
                 </div>
-                <!-- /.box -->
+                <!-- /.box-header -->
+                <div class="box-body" style="display: none;">
+                    <strong>If you do this you will lost all your saved ontologies</strong>
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box box-footer">
+                    <form role="form" method="post" action="{{route('profile.destroy', Auth::user()->id)}}">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-block btn-danger btn-sm">Delete Account</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /.box -->
         </div>
         <!-- /.col -->
     </div>
