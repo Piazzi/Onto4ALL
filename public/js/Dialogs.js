@@ -1060,6 +1060,13 @@ var ExportDialog = function(editorUi)
 			heightInput.setAttribute('disabled', 'true');
 			borderInput.setAttribute('disabled', 'true');
 		}
+        else if (imageFormatSelect.value === 'owl')
+        {
+            zoomInput.setAttribute('disabled', 'true');
+            widthInput.setAttribute('disabled', 'true');
+            heightInput.setAttribute('disabled', 'true');
+            borderInput.setAttribute('disabled', 'true');
+        }
 		else
 		{
 			zoomInput.removeAttribute('disabled');

@@ -3,10 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <div id="preloader" style="color: #00A65A" ><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>
-    <script type="text/javascript" src="js/HomeFunctions.js"></script>
-    <script type="text/javascript" src="js/SaveMessage.js"></script>
-    <script defer type="text/javascript" src="js/SearchTip.js"></script>
+    <div id="preloader"><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>
     <link rel="stylesheet" type="text/css" href="css/mxgraph/grapheditor.css">
 
     <title>Grapheditor</title>
@@ -58,6 +55,9 @@
     <script type="text/javascript" src="js/Menus.js"></script>
     <script type="text/javascript" src="js/Toolbar.js"></script>
     <script type="text/javascript" src="js/Dialogs.js"></script>
+    <script type="text/javascript" src="js/HomeFunctions.js"></script>
+    <script type="text/javascript" src="js/SaveMessage.js"></script>
+    <script defer type="text/javascript" src="js/SearchTip.js"></script>
 
 
 @stop
@@ -109,6 +109,7 @@
             });
         })();
     </script>
+
 
     <!-- MODIFICAÇÕES PARA O SISTEMA -->
 
