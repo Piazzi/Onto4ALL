@@ -157,12 +157,20 @@ class HomeController extends Controller
                     $declaration->appendChild($class);
                     $ontology->appendChild($declaration);
                 }
-                else
+                else if($element['source'] && $element['target'])
                 {
-
+                   $declaration = $dom->createElement('Declaration');
+                   $objectProperty = $dom->createElement('ObjectProperty');
+                   $objectProperty->setAttribute('IRI','#' . $element['value']);
+                   $declaration->appendChild($objectProperty);
+                   $ontology->appendChild($declaration);
                 }
             }
         }
+
+        // Formating the XML text
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
 
         $response = Response::create($dom->saveXML(), 200);
         $response->header('Content-Description', 'File Transfer');
