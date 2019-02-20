@@ -56,8 +56,6 @@
     <script type="text/javascript" src="js/Toolbar.js"></script>
     <script type="text/javascript" src="js/Dialogs.js"></script>
     <script type="text/javascript" src="js/HomeFunctions.js"></script>
-    <script type="text/javascript" src="js/SaveMessage.js"></script>
-    <script defer type="text/javascript" src="js/SearchTip.js"></script>
 
 
 @stop
@@ -307,5 +305,9 @@
         <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i> Sidebar
     </a>
     </body>
+
+    <!-- Search Script -->
+    <script defer type="text/javascript" src="js/SaveMessage.js"></script>
+    <script defer type="text/javascript" src="js/SearchTip.js"></script>
 
 @stop

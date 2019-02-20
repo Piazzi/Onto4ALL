@@ -1297,9 +1297,9 @@ center {
 /* Dicas */
 #tip {
     z-index: 15 !important;
-    top: 455px;
-    width: 20%;
-    height: 10%;
+    top: 550px;
+    width: 30%;
+    height: 15%;
     left: 10px;
     opacity: 0.9;
     position: fixed;
@@ -1307,10 +1307,10 @@ center {
 
 #warning {
     z-index: 15 !important;
-    top: 455px;
-    width: 20%;
-    height: 10%;
-    left: 450px;
+    top: 440px;
+    width: 30%;
+    height: 15%;
+    left: 10px;
     opacity: 0.9;
     position: fixed;
 }
