@@ -114,13 +114,13 @@ class HomeController extends Controller
         $ontology->setAttribute('xsi:schemaLocation','http://www.w3.org/2002/07/owl# http://www.w3.org/2009/09/owl2-xml.xsd');
         $ontology->setAttribute('xmlns','http://www.w3.org/2002/07/owl#');
         $ontology->setAttribute('xml:base','http://example.com/myOntology');
-        //$ontology->setAttribute('xmlns:rdfs','http://www.w3.org/2000/01/rdf-schema#');
-        //$ontology->setAttribute('xmlns:xsd','http://www.w3.org/2001/XMLSchema#');
-        //$ontology->setAttribute('xmlns:rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#');
-        //$ontology->setAttribute('xmlns:xml','http://www.w3.org/XML/1998/namespace');
+        $ontology->setAttribute('xmlns:rdfs','http://www.w3.org/2000/01/rdf-schema#');
+        $ontology->setAttribute('xmlns:xsd','http://www.w3.org/2001/XMLSchema#');
+        $ontology->setAttribute('xmlns:rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#');
+        $ontology->setAttribute('xmlns:xml','http://www.w3.org/XML/1998/namespace');
         $ontology->setAttribute('ontologyIRI','http://example.com/myOntology');
 
-        /*
+
         $prefixRdf = $dom->createElement('Prefix');
         $prefixRdf->setAttribute('name','rdf');
         $prefixRdf->setAttribute('IRI','http://www.w3.org/1999/02/22-rdf-syntax-ns#');
@@ -141,10 +141,53 @@ class HomeController extends Controller
         $ontology->appendChild($prefixRdfs);
         $ontology->appendChild($prefixXsd);
         $ontology->appendChild($prefixOwl);
-        */
+
         $dom->appendChild($ontology);
 
         $xml = simplexml_load_string($request->xml); // Convert the XML string into a XML object
+
+        foreach ($xml->root->object as $object)
+        {
+            if($object->mxCell['edge'] == null)
+            {
+                $declaration = $dom->createElement('Declaration');
+                $class = $dom->createElement('Class');
+                $class->setAttribute('IRI', '#' . $object['label']);
+                $declaration->appendChild($class);
+                $ontology->appendChild($declaration);
+            }
+            else if($object->mxCell['source'] && $object->mxCell['target'])
+            {
+                $declaration = $dom->createElement('Declaration');
+                $objectProperty = $dom->createElement('ObjectProperty');
+                $objectProperty->setAttribute('IRI','#' . $object['label']);
+                $declaration->appendChild($objectProperty);
+                $ontology->appendChild($declaration);
+            }
+            foreach ($object->attributes() as $name => $value)
+            {
+                if($name != 'Domain' && $name != 'Range' && $name != 'id')
+                {
+                    echo $name;
+                    echo $value;
+                    $annotationAssertion = $dom->createElement('AnnotationAssertion');
+                    $annotationProperty = $dom->createElement('AnnotationProperty');
+                    $annotationProperty->setAttribute('IRI',$name);
+                    $iri = $dom->createElement('IRI');
+                    $iri->textContent = $object['label'] ? $object['label'] : null;
+                    $literal = $dom->createElement('Literal');
+                    $literal->setAttribute('datatypeIRI','&rdf;PlainLiteral');
+                    $literal->textContent = $value;
+
+                    $annotationAssertion->appendChild($annotationProperty);
+                    $annotationAssertion->appendChild($iri);
+                    $annotationAssertion->appendChild($literal);
+                    $ontology->appendChild($annotationAssertion);
+
+                }
+            }
+        }
+
         foreach($xml->root->mxCell as $element)
         {
             if($element['value'])
