@@ -152,7 +152,7 @@ class HomeController extends Controller
             {
                 $declaration = $dom->createElement('Declaration');
                 $class = $dom->createElement('Class');
-                $class->setAttribute('IRI', '#' . $object['label']);
+                $class->setAttribute('IRI', $object['label']);
                 $declaration->appendChild($class);
                 $ontology->appendChild($declaration);
             }
@@ -160,25 +160,22 @@ class HomeController extends Controller
             {
                 $declaration = $dom->createElement('Declaration');
                 $objectProperty = $dom->createElement('ObjectProperty');
-                $objectProperty->setAttribute('IRI','#' . $object['label']);
+                $objectProperty->setAttribute('IRI', $object['label']);
                 $declaration->appendChild($objectProperty);
                 $ontology->appendChild($declaration);
             }
             foreach ($object->attributes() as $name => $value)
             {
-                if($name != 'Domain' && $name != 'Range' && $name != 'id')
+                if($name != 'Domain' && $name != 'Range' && $name != 'id' && $name != 'label')
                 {
-                    echo $name;
-                    echo $value;
                     $annotationAssertion = $dom->createElement('AnnotationAssertion');
                     $annotationProperty = $dom->createElement('AnnotationProperty');
-                    $annotationProperty->setAttribute('IRI',$name);
+                    $annotationProperty->setAttribute('IRI','#'.$name);
                     $iri = $dom->createElement('IRI');
-                    $iri->textContent = $object['label'] ? $object['label'] : null;
+                    $iri->textContent = $object['label'];
                     $literal = $dom->createElement('Literal');
                     $literal->setAttribute('datatypeIRI','&rdf;PlainLiteral');
                     $literal->textContent = $value;
-
                     $annotationAssertion->appendChild($annotationProperty);
                     $annotationAssertion->appendChild($iri);
                     $annotationAssertion->appendChild($literal);
@@ -186,6 +183,7 @@ class HomeController extends Controller
 
                 }
             }
+
         }
 
         foreach($xml->root->mxCell as $element)
