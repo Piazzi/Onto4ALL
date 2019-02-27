@@ -151,6 +151,8 @@ class HomeController extends Controller
         {
             $name = trim($name);
             $name = str_replace(' ', '_', $name);
+            $name =  html_entity_decode($name);
+            $name = trim($name);
             return $name;
         }
 
@@ -252,7 +254,7 @@ class HomeController extends Controller
                     $annotationProperty->setAttribute('IRI',sanitize($name));
 
                     $iri = $dom->createElement('IRI');
-                    $iri->textContent = $object['label'];
+                    $iri->textContent = sanitize($object['label']);
                     $literal = $dom->createElement('Literal');
                     $literal->setAttribute('datatypeIRI','&rdf;PlainLiteral');
                     $literal->textContent = $value;
