@@ -147,11 +147,18 @@ class HomeController extends Controller
 
         $xml = simplexml_load_string($request->xml); // Convert the XML string into a XML object
 
+        function sanitize($name)
+        {
+            $name = trim($name);
+            $name = str_replace(' ', '_', $name);
+            return $name;
+        }
+
         function createClassElement($name, $dom, $ontology)
         {
             $declaration = $dom->createElement('Declaration');
             $class = $dom->createElement('Class');
-            $class->setAttribute('IRI', $name);
+            $class->setAttribute('IRI', sanitize($name));
             $declaration->appendChild($class);
             $ontology->appendChild($declaration);
         }
@@ -160,7 +167,7 @@ class HomeController extends Controller
         {
             $declaration = $dom->createElement('Declaration');
             $objectProperty = $dom->createElement('ObjectProperty');
-            $objectProperty->setAttribute('IRI', $name);
+            $objectProperty->setAttribute('IRI', sanitize($name));
             $declaration->appendChild($objectProperty);
             $ontology->appendChild($declaration);
         }
@@ -204,9 +211,9 @@ class HomeController extends Controller
             $names = findDomainRangeName($domain,$range,$xml);
             $subClassOf = $dom->createElement('SubClassOf');
             $domainClass = $dom->createElement('Class');
-            $domainClass->setAttribute('IRI', $names['Domain']);
+            $domainClass->setAttribute('IRI', sanitize($names['Domain']));
             $rangeClass = $dom->createElement('Class');
-            $rangeClass->setAttribute('IRI', $names['Range']);
+            $rangeClass->setAttribute('IRI', sanitize($names['Range']));
             $subClassOf->appendChild($domainClass);
             $subClassOf->appendChild($rangeClass);
             $ontology->appendChild($subClassOf);
@@ -242,7 +249,7 @@ class HomeController extends Controller
                     else if ($name == 'SubClassOf')
                         $annotationProperty->setAttribute('IRI','SubClass_Of');
                     else
-                    $annotationProperty->setAttribute('IRI',$name);
+                    $annotationProperty->setAttribute('IRI',sanitize($name));
 
                     $iri = $dom->createElement('IRI');
                     $iri->textContent = $object['label'];
