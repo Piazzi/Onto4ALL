@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ontology;
 use DOMDocument;
+use function foo\func;
 use Illuminate\Http\Request;
 use App\Menu;
 use App\TipsRelation;
@@ -164,6 +165,53 @@ class HomeController extends Controller
             $ontology->appendChild($declaration);
         }
 
+        function findDomainRangeName($domain, $range, $xml)
+        {
+            foreach ($xml->root->object as $object)
+            {
+                if($object['id'] == ''. $domain .'')
+                {
+                    $domain = $object['label'];
+                }
+                if ($object['id'] == ''.$range.'')
+                {
+                    $range = $object['label'];
+                }
+            }
+
+            foreach ($xml->root->mxCell as $mxCell)
+            {
+                if ($mxCell['id'] == ''. $domain .'')
+                {
+                    $domain = $mxCell['value'];
+                }
+                else if ($mxCell['id'] == ''.$range.'')
+                {
+                    $range = $mxCell['value'];
+                }
+            }
+
+            $names = [
+                'Domain' => $domain,
+                'Range' => $range,
+            ];
+
+            return $names;
+        }
+
+        function createSubClassOfElement($domain, $range, $dom, $ontology, $xml)
+        {
+            $names = findDomainRangeName($domain,$range,$xml);
+            $subClassOf = $dom->createElement('SubClassOf');
+            $domainClass = $dom->createElement('Class');
+            $domainClass->setAttribute('IRI', $names['Domain']);
+            $rangeClass = $dom->createElement('Class');
+            $rangeClass->setAttribute('IRI', $names['Range']);
+            $subClassOf->appendChild($domainClass);
+            $subClassOf->appendChild($rangeClass);
+            $ontology->appendChild($subClassOf);
+        }
+
         foreach ($xml->root->object as $object)
         {
             if($object->mxCell['edge'] == null)
@@ -173,6 +221,10 @@ class HomeController extends Controller
             else if($object->mxCell['source'] && $object->mxCell['target'])
             {
                 createObjectPropertyElement($object['label'], $dom, $ontology);
+                if($object['label'] == 'is_a')
+                {
+                    createSubClassOfElement($object->mxCell['source'], $object->mxCell['target'], $dom, $ontology, $xml);
+                }
             }
             foreach ($object->attributes() as $name => $value)
             {
@@ -218,6 +270,10 @@ class HomeController extends Controller
                 else if($element['source'] && $element['target'])
                 {
                    createObjectPropertyElement($element['value'], $dom, $ontology);
+                    if($element['value'] == 'is_a')
+                    {
+                        createSubClassOfElement($element['source'], $element['target'], $dom, $ontology, $xml);
+                    }
                 }
             }
         }
