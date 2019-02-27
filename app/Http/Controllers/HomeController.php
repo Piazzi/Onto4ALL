@@ -146,31 +146,52 @@ class HomeController extends Controller
 
         $xml = simplexml_load_string($request->xml); // Convert the XML string into a XML object
 
+        function createClassElement($name, $dom, $ontology)
+        {
+            $declaration = $dom->createElement('Declaration');
+            $class = $dom->createElement('Class');
+            $class->setAttribute('IRI', $name);
+            $declaration->appendChild($class);
+            $ontology->appendChild($declaration);
+        }
+
+        function createObjectPropertyElement($name, $dom, $ontology)
+        {
+            $declaration = $dom->createElement('Declaration');
+            $objectProperty = $dom->createElement('ObjectProperty');
+            $objectProperty->setAttribute('IRI', $name);
+            $declaration->appendChild($objectProperty);
+            $ontology->appendChild($declaration);
+        }
+
         foreach ($xml->root->object as $object)
         {
             if($object->mxCell['edge'] == null)
             {
-                $declaration = $dom->createElement('Declaration');
-                $class = $dom->createElement('Class');
-                $class->setAttribute('IRI', $object['label']);
-                $declaration->appendChild($class);
-                $ontology->appendChild($declaration);
+                createClassElement($object['label'], $dom, $ontology);
             }
             else if($object->mxCell['source'] && $object->mxCell['target'])
             {
-                $declaration = $dom->createElement('Declaration');
-                $objectProperty = $dom->createElement('ObjectProperty');
-                $objectProperty->setAttribute('IRI', $object['label']);
-                $declaration->appendChild($objectProperty);
-                $ontology->appendChild($declaration);
+                createObjectPropertyElement($object['label'], $dom, $ontology);
             }
             foreach ($object->attributes() as $name => $value)
             {
-                if($name != 'Domain' && $name != 'Range' && $name != 'id' && $name != 'label')
+                if($name != 'id' && $name != 'label' && $value != null)
                 {
                     $annotationAssertion = $dom->createElement('AnnotationAssertion');
                     $annotationProperty = $dom->createElement('AnnotationProperty');
-                    $annotationProperty->setAttribute('IRI','#'.$name);
+                    
+                    if($name == 'importedFrom')
+                        $annotationProperty->setAttribute('IRI','imported_from');
+                    else if ($name == 'alternativeTerm')
+                        $annotationProperty->setAttribute('IRI','alternative_term');
+                    else if ($name == 'exampleOfUsage')
+                        $annotationProperty->setAttribute('IRI','example_of_usage');
+                    else if ($name == 'SubClassOf')
+                        $annotationProperty->setAttribute('IRI','SubClass_Of');
+                    else
+                    $annotationProperty->setAttribute('IRI',$name);
+
                     $iri = $dom->createElement('IRI');
                     $iri->textContent = $object['label'];
                     $literal = $dom->createElement('Literal');
@@ -192,19 +213,11 @@ class HomeController extends Controller
             {
                 if($element['edge'] == null)
                 {
-                    $declaration = $dom->createElement('Declaration');
-                    $class = $dom->createElement('Class');
-                    $class->setAttribute('IRI', '#' . $element['value']);
-                    $declaration->appendChild($class);
-                    $ontology->appendChild($declaration);
+                    createClassElement($element['value'], $dom, $ontology);
                 }
                 else if($element['source'] && $element['target'])
                 {
-                   $declaration = $dom->createElement('Declaration');
-                   $objectProperty = $dom->createElement('ObjectProperty');
-                   $objectProperty->setAttribute('IRI','#' . $element['value']);
-                   $declaration->appendChild($objectProperty);
-                   $ontology->appendChild($declaration);
+                   createObjectPropertyElement($element['value'], $dom, $ontology);
                 }
             }
         }
