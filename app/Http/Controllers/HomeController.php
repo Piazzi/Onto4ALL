@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Ontology;
 use DOMDocument;
-use function foo\func;
 use Illuminate\Http\Request;
 use App\Menu;
 use App\TipsRelation;
@@ -114,7 +113,7 @@ class HomeController extends Controller
         $ontology->setAttribute('xmlns:xsi','http://www.w3.org/2001/XMLSchema-instance');
         $ontology->setAttribute('xsi:schemaLocation','http://www.w3.org/2002/07/owl# http://www.w3.org/2009/09/owl2-xml.xsd');
         $ontology->setAttribute('xmlns','http://www.w3.org/2002/07/owl#');
-        $ontology->setAttribute('xml:base','http://example.com/myOntology');
+        $ontology->setAttribute('xml:base','http://example.com/');
         $ontology->setAttribute('xmlns:rdfs','http://www.w3.org/2000/01/rdf-schema#');
         $ontology->setAttribute('xmlns:xsd','http://www.w3.org/2001/XMLSchema#');
         $ontology->setAttribute('xmlns:rdf','http://www.w3.org/1999/02/22-rdf-syntax-ns#');
@@ -147,6 +146,11 @@ class HomeController extends Controller
 
         $xml = simplexml_load_string($request->xml); // Convert the XML string into a XML object
 
+        /**
+         * Clear white spaces from the name and replace them with underscore ('_')
+         * @param $name
+         * @return mixed|string
+         */
         function sanitize($name)
         {
             $name = trim($name);
@@ -156,6 +160,12 @@ class HomeController extends Controller
             return $name;
         }
 
+        /**
+         * Create a <Class/> Element for the given name
+         * @param $name
+         * @param $dom
+         * @param $ontology
+         */
         function createClassElement($name, $dom, $ontology)
         {
             $declaration = $dom->createElement('Declaration');
@@ -165,6 +175,12 @@ class HomeController extends Controller
             $ontology->appendChild($declaration);
         }
 
+        /**
+         * Create a relation (<ObjectProperty>) for the given name
+         * @param $name
+         * @param $dom
+         * @param $ontology
+         */
         function createObjectPropertyElement($name, $dom, $ontology)
         {
             $declaration = $dom->createElement('Declaration');
@@ -174,6 +190,13 @@ class HomeController extends Controller
             $ontology->appendChild($declaration);
         }
 
+        /**
+         * Searches for the domain class name and the range class name, given the id's
+         * @param $domain
+         * @param $range
+         * @param $xml
+         * @return array
+         */
         function findDomainRangeName($domain, $range, $xml)
         {
             foreach ($xml->root->object as $object)
@@ -208,6 +231,14 @@ class HomeController extends Controller
             return $names;
         }
 
+        /**
+         * Create a <SubClassOf> element for the given relation
+         * @param $domain
+         * @param $range
+         * @param $dom
+         * @param $ontology
+         * @param $xml
+         */
         function createSubClassOfElement($domain, $range, $dom, $ontology, $xml)
         {
             $names = findDomainRangeName($domain,$range,$xml);
@@ -218,6 +249,74 @@ class HomeController extends Controller
             $rangeClass->setAttribute('IRI', sanitize($names['Range']));
             $subClassOf->appendChild($domainClass);
             $subClassOf->appendChild($rangeClass);
+            $ontology->appendChild($subClassOf);
+        }
+
+        /**
+         * Create a <ObjectCardinality> type of element, according to the $cardinality parameter
+         * @param $domain
+         * @param $range
+         * @param $relation
+         * @param $cardinality
+         * @param $dom
+         * @param $ontology
+         * @param $xml
+         */
+        function createCardinalityElement($domain, $range, $relation, $cardinality, $dom,$ontology, $xml)
+        {
+            if (preg_replace('/[^a-z]/i', '', $cardinality) != 'some' &&
+                preg_replace('/[^a-z]/i', '', $cardinality) != 'only' &&
+                preg_replace('/[^a-z]/i', '', $cardinality) != 'min' &&
+                preg_replace('/[^a-z]/i', '', $cardinality) != 'max' &&
+                preg_replace('/[^a-z]/i', '', $cardinality) != 'exactly')
+                return;
+
+            $names = findDomainRangeName($domain,$range,$xml);
+            $subClassOf = $dom->createElement('SubClassOf');
+            $domainClass = $dom->createElement('Class');
+            $domainClass->setAttribute('IRI', sanitize($names['Domain']));
+            $rangeClass = $dom->createElement('Class');
+            $rangeClass->setAttribute('IRI', sanitize($names['Range']));
+            $objectProperty = $dom->createElement('ObjectProperty');
+            $objectProperty->setAttribute('IRI', sanitize($relation));
+            sanitize($cardinality);
+
+            if(preg_replace('/[^a-z]/i', '', $cardinality) == 'some')//some, only, min, max, exactly
+            {
+                $objectSomeValuesFrom = $dom->createElement('ObjectSomeValuesFrom');
+                $subClassOf->appendChild($domainClass);
+                $subClassOf->appendChild($objectSomeValuesFrom);
+                $objectSomeValuesFrom->appendChild($objectProperty);
+                $objectSomeValuesFrom->appendChild($rangeClass);
+            }
+            else if(preg_replace('/[^a-z]/i', '', $cardinality) == 'min')
+            {
+                $objectMinCardinality = $dom->createElement('ObjectMinCardinality');
+                $objectMinCardinality->setAttribute('cardinality', (int) filter_var($cardinality, FILTER_SANITIZE_NUMBER_INT));
+                $subClassOf->appendChild($domainClass);
+                $subClassOf->appendChild($objectMinCardinality);
+                $objectMinCardinality->appendChild($objectProperty);
+                $objectMinCardinality->appendChild($rangeClass);
+            }
+            else if(preg_replace('/[^a-z]/i', '', $cardinality) == 'max')
+            {
+                $objectMaxCardinality = $dom->createElement('ObjectMaxCardinality');
+                $objectMaxCardinality->setAttribute('cardinality', (int) filter_var($cardinality, FILTER_SANITIZE_NUMBER_INT));
+                $subClassOf->appendChild($domainClass);
+                $subClassOf->appendChild($objectMaxCardinality);
+                $objectMaxCardinality->appendChild($objectProperty);
+                $objectMaxCardinality->appendChild($rangeClass);
+            }
+            else if(preg_replace('/[^a-z]/i', '', $cardinality) == 'exactly')
+            {
+                $objectExactCardinality = $dom->createElement('ObjectExactCardinality');
+                $objectExactCardinality->setAttribute('cardinality', (int) filter_var($cardinality, FILTER_SANITIZE_NUMBER_INT));
+                $subClassOf->appendChild($domainClass);
+                $subClassOf->appendChild($objectExactCardinality);
+                $objectExactCardinality->appendChild($objectProperty);
+                $objectExactCardinality->appendChild($rangeClass);
+            }
+
             $ontology->appendChild($subClassOf);
         }
 
@@ -234,6 +333,8 @@ class HomeController extends Controller
                 {
                     createSubClassOfElement($object->mxCell['source'], $object->mxCell['target'], $dom, $ontology, $xml);
                 }
+                else if($object['cardinality'])
+                    createCardinalityElement($object->mxCell['source'], $object->mxCell['target'], $object['label'], $object['cardinality'], $dom,$ontology, $xml);
             }
             foreach ($object->attributes() as $name => $value)
             {
@@ -283,6 +384,9 @@ class HomeController extends Controller
                     {
                         createSubClassOfElement($element['source'], $element['target'], $dom, $ontology, $xml);
                     }
+                    else if ($element['cardinality'])
+                        createCardinalityElement($element['source'], $element['target'], $element['value'], $element['cardinality'], $dom,$ontology, $xml);
+
                 }
             }
         }
