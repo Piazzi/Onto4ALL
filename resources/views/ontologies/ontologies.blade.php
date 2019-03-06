@@ -81,6 +81,7 @@
                                     <th>Link</th>
                                     <th>Created By</th>
                                     <th>XML File</th>
+                                    <th>OWL File</th>
                                     <th>Details</th>
                                     <th>Update</th>
                                     <th>Favourite</th>
@@ -109,6 +110,12 @@
                                         <td>
                                             <a href="{{route('ontologies.download', [ 'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
                                                 <button class="btn btn-success"><i class="fa fa-fw fa-download"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{route('ontologies.downloadOWL', [ 'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
+                                                <button class="btn btn-success">OWL
                                                 </button>
                                             </a>
                                         </td>
@@ -188,6 +195,7 @@
                                     <th>Created At</th>
                                     <th>Created By</th>
                                     <th>XML File</th>
+                                    <th>OWL File</th>
                                     <th>Details</th>
                                     <th>Favourite</th>
                                     <th>Delete</th>
@@ -203,6 +211,12 @@
                                         <td>
                                             <a href="{{route('ontologies.download', [ 'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
                                                 <button class="btn btn-success"><i class="fa fa-fw fa-download"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{route('ontologies.downloadOWL', [ 'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
+                                                <button class="btn btn-success">OWL
                                                 </button>
                                             </a>
                                         </td>

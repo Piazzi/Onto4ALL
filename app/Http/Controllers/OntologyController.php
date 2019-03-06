@@ -152,4 +152,19 @@ class OntologyController extends Controller
         $ontology->save();
         return redirect()->route('ontologies.index')->with('Sucess', 'Your ontology has been unmarked as favorite');
     }
+
+    /**
+     * Download the diagram to OWL format
+     * @param Request $request
+     * @return
+     */
+    public function downloadOWL(Request $request)
+    {
+        $file = Ontology::where('user_id','=', $request->userId)->where('id','=', $request->ontologyId)->first();
+        $fileRequest = new Request();
+        $fileRequest->setMethod('POST');
+        $fileRequest->request->add(['xml' => $file->file]);
+        $fileRequest->request->add(['fileName' => str_replace('.xml','',$file->name . '.owl')]);
+        return app('App\Http\Controllers\HomeController')->exportOWL($fileRequest);
+    }
 }

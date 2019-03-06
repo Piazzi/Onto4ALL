@@ -33,7 +33,7 @@ class HomeController extends Controller
         $menus = Menu::all();
         $tips_relations = TipsRelation::all();
         $tips_class = TipClass::all();
-        $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->get();
+        $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->orderBy('created_at','desc')->get();
         return view('index', compact('menus', 'tips_relations', 'tips_class', 'ontologies')); /* Editor */
     }
 

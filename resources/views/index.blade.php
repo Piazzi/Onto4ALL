@@ -236,7 +236,11 @@
                                         <a class="btn btn-success btn-sm">{{$ontology->created_by}}</a>
                                         <a href="/ontologies/download/{{Auth::user()->id}}/{{$ontology->id}}"
                                            class="btn btn-info btn-file btn-sm ">
-                                            <i class="fa fa-fw fa-file-code-o"></i> Download
+                                            <i class="fa fa-fw fa-file-code-o"></i> Download XML
+                                        </a>
+                                        <a href="/ontologies/downloadOWL/{{Auth::user()->id}}/{{$ontology->id}}"
+                                           class="btn btn-info btn-file btn-sm ">
+                                            <i class="fa fa-fw fa-file-code-o"></i> Download OWL
                                         </a>
                                     </div>
                                 </div>
