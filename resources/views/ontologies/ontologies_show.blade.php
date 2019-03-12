@@ -8,9 +8,9 @@
 
 @section('content')
 
-<div class="box box-success">
+    <div class="box box-success">
         <div class="box-header with-border">
-          <h3  class="box-title"><strong> {{$ontology->name}} </strong></h3>
+            <h3 class="box-title"><strong> {{$ontology->name}} </strong></h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -28,12 +28,12 @@
             </div>
 
             <div class="form-group">
-              <label>Description</label>
-              <textarea disabled class="form-control form-textarea"> {{$ontology->description}}</textarea>
+                <label>Description</label>
+                <textarea disabled class="form-control form-textarea"> {{$ontology->description}}</textarea>
             </div>
             <div class="form-group">
-              <label>Link</label>
-            <label class="form-control"><a href="{{$ontology->link}}"> {{$ontology->link}} </a></label>
+                <label>Link</label>
+                <label class="form-control"><a href="{{$ontology->link}}"> {{$ontology->link}} </a></label>
             </div>
 
             <div class="form-group">
@@ -41,8 +41,10 @@
                 <label class="form-control"> {{$ontology->created_by}}</label>
             </div>
 
-             <a href="/ontologies"><button class="btn btn-success btn-block" type="button">Go back</button></a>
+            <a href="/ontologies">
+                <button class="btn btn-success btn-block" type="button">Go back</button>
+            </a>
         </div>
         <!-- /.box-body -->
-      </div>
+    </div>
 @stop

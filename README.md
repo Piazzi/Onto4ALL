@@ -96,12 +96,12 @@ DB_PASSWORD=sua_password
 * **resources/views/index.blade.php** - Principal arquivo do sistema onde é carregado grande parte do javascript e várias componentes como menus e dicas.
 * **public/Actions.js** - Define as ações (Atalhos) do editor como Salvar, importar, exportar, etc...
 * **public/Dialogs.js** - Define e implementa as caixas de dialog (modal) e as suas respectivas funções (Ex: Exportar, Salvar, Importar) **IMPORTANTE**.
-* **public/EditorUI.js** - Onde está localizada as principais funções do diagrama. (Ex: Salvar). **IMPORTANTE**
+* **public/EditorUI.js** - Onde está localizada a função de salvar em XML do editor. **EditorUI.prototype.saveXML**.  **IMPORTANTE**
 * **public/Init.js** - Onde está definido as rotas para algumas funções do diagrama.
 * **public/SearchTip** - Contém as funções de busca/filtro de dicas da sidebar de dicas do editor.
 * **public/SearchBar** - Contém a função de filtro de todos os CRUD's.
 * **public/css/mxgraph/grapheditor.css**- Contém todas as alterações feitas para encaixar o editor com o tema do adminlte.
 * **public/css/resources/grapheditor.txt** - Contém os nomes de todos os botões e funções do diagrama.
-
+* **app/Http/Controllers/HomeController** - É o controller que gerencia as principais funções de salvar e exportar do editor.
 
 #### Desenvolvido por Lucas Piazzi de Castro ####

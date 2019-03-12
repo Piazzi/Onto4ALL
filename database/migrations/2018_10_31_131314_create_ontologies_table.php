@@ -16,10 +16,10 @@ class CreateOntologiesTable extends Migration
         Schema::create('ontologies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->date('publication_date');
-            $table->date('last_uploaded');
-            $table->string('description');
-            $table->string('link');
+            $table->date('publication_date')->nullable();
+            $table->date('last_uploaded')->nullable();
+            $table->text('description')->nullable();
+            $table->string('link')->nullable();
             $table->string('created_by')->nullable();
             $table->timestamps();
         });
