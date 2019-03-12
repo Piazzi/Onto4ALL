@@ -8,7 +8,6 @@
           <img src="https://media.giphy.com/media/bqTHbDkxK4hZWmGHeO/giphy.gif"/>
 </p>
 
-<p align="center"> Desenvolvimento de metodologia e framework para elaboracão de modelos conceituais para sistemas de informação baseado em ontologias.</p>
  
 <p align="center">
           <img src="https://media.giphy.com/media/1xOPY52mlgKp1wrsfm/giphy.gif"/>
