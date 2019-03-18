@@ -109,7 +109,7 @@
     </script>
 
 
-    <!-- MODIFICAÇÕES PARA O SISTEMA -->
+    <!-- ONTO4ALL MODIFICATIONS -->
 
     <!--tips menu-->
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
@@ -260,53 +260,44 @@
         </div>
     </div>
 
-    <!-- DICAS -->
+    <!-- TIPS -->
 
     @component('warning')
         @slot('title')
-            <strong>Importante</strong>
+            <strong>Important</strong>
         @endslot
-        Aperte <strong>CTRL + S </strong> para baixar sua ontologia!
+        Press <strong>CTRL + S </strong> to download your ontology!
     @endcomponent
 
     @component('tip')
         @slot('title')
-            Dica
+            Tip
         @endslot
-        Tem alguma dúvida? Acesse nosso <a href="http://localhost:8000/tutorial"> <strong> Tutorial </strong></a>
+        Have any question? Access our <a href="http://localhost:8000/tutorial"> <strong> Tutorial </strong></a>
     @endcomponent
 
     @component('tip')
         @slot('title')
-            Dica
+            Tip
         @endslot
-        Selecione e Aperte <strong> CTRL + M </strong> para mostrar as propriedades da classe
+        Press <strong> CTRL + M </strong> to show the properties froom the selected class/relation
     @endcomponent
 
     @component('tip')
         @slot('title')
-            Dica
+            Welcome to ONTO4ALL
         @endslot
-        Clique em uma célula para adicioná-la mais rápido ao diagrama
+        Close me to see more tips or <strong><a>CLICK HERE</a></strong> to hide the tips
     @endcomponent
 
-    @component('tip')
-        @slot('title')
-            Bem-vindo ao Onto4ALL
-        @endslot
-        Me feche para ver mais dicas ou <strong><a>CLIQUE AQUI</a></strong> para esconder as dicas
-    @endcomponent
-
-    <!-- /.DICAS -->
+    <!-- /.TIPS -->
 
     <a id="notification-button" class="btn btn-app">
-        <span class="badge bg-yellow">Clique Aqui</span>
-        <i class="fa fa-bullhorn"></i> Tips
+        <i class="fa fa-bullhorn"></i> Hide Tips
     </a>
 
     <a id="sidebar-control" class="btn btn-app">
-        <span class="badge bg-green">Clique aqui</span>
-        <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i> Sidebar
+        <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i>Hide Sidebar
     </a>
     </body>
 
