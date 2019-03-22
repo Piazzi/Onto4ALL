@@ -109,7 +109,7 @@ class HomeController extends Controller
     {
         $dom = new DOMDocument('1.0', 'utf-8');
         $ontology = $dom->createElement('Ontology');
-        $ontology->setAttribute('host','www.ontoforall.com');
+        $ontology->setAttribute('host','www.onto4alleditor.com');
         $ontology->setAttribute('xmlns:xsi','http://www.w3.org/2001/XMLSchema-instance');
         $ontology->setAttribute('xsi:schemaLocation','http://www.w3.org/2002/07/owl# http://www.w3.org/2009/09/owl2-xml.xsd');
         $ontology->setAttribute('xmlns','http://www.w3.org/2002/07/owl#');
@@ -155,7 +155,7 @@ class HomeController extends Controller
         {
             $name = trim($name);
             $name = str_replace(' ', '_', $name);
-            $name =  html_entity_decode($name);
+            $name = html_entity_decode($name);
             $name = trim($name);
             return $name;
         }
@@ -320,6 +320,28 @@ class HomeController extends Controller
             $ontology->appendChild($subClassOf);
         }
 
+        /**
+         * Create a <InverseObjectProperties> Element for the given parameter
+         * @param $relation
+         * @param $property
+         * @param $dom
+         * @param $ontology
+         */
+        function createInverseObjectPropertiesElement($relation, $property, $dom, $ontology)
+        {
+            $inverseObjectProperties = $dom->createElement('InverseObjectProperties');
+            $objectProperty = $dom->createElement('ObjectProperty');
+            $objectPropertyRelation = $dom->createElement('ObjectProperty');
+
+            $objectProperty->setAttribute('IRI', $property);
+            $objectPropertyRelation->setAttribute('IRI', sanitize($relation));
+
+            $inverseObjectProperties->appendChild($objectProperty);
+            $inverseObjectProperties->appendChild($objectPropertyRelation);
+
+            $ontology->appendChild($inverseObjectProperties);
+        }
+
         foreach ($xml->root->object as $object)
         {
             if($object->mxCell['edge'] == null)
@@ -342,8 +364,12 @@ class HomeController extends Controller
                 {
                     $annotationAssertion = $dom->createElement('AnnotationAssertion');
                     $annotationProperty = $dom->createElement('AnnotationProperty');
-                    
-                    if($name == 'importedFrom')
+                    if($name == 'inverseOf')
+                    {
+                        $annotationProperty->setAttribute('IRI','inverse_of');
+                        createInverseObjectPropertiesElement($object['label'],$value,$dom,$ontology);
+                    }
+                    else if($name == 'importedFrom')
                         $annotationProperty->setAttribute('IRI','imported_from');
                     else if ($name == 'alternativeTerm')
                         $annotationProperty->setAttribute('IRI','alternative_term');
