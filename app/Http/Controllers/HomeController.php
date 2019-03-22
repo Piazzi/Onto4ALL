@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ontology;
 use DOMDocument;
+use function GuzzleHttp\Psr7\str;
 use Illuminate\Http\Request;
 use App\Menu;
 use App\TipsRelation;
@@ -264,6 +265,8 @@ class HomeController extends Controller
          */
         function createCardinalityElement($domain, $range, $relation, $cardinality, $dom,$ontology, $xml)
         {
+            $cardinality = strtolower($cardinality);
+
             if (preg_replace('/[^a-z]/i', '', $cardinality) != 'some' &&
                 preg_replace('/[^a-z]/i', '', $cardinality) != 'only' &&
                 preg_replace('/[^a-z]/i', '', $cardinality) != 'min' &&
@@ -279,7 +282,6 @@ class HomeController extends Controller
             $rangeClass->setAttribute('IRI', sanitize($names['Range']));
             $objectProperty = $dom->createElement('ObjectProperty');
             $objectProperty->setAttribute('IRI', sanitize($relation));
-            sanitize($cardinality);
 
             if(preg_replace('/[^a-z]/i', '', $cardinality) == 'some')//some, only, min, max, exactly
             {
@@ -288,6 +290,14 @@ class HomeController extends Controller
                 $subClassOf->appendChild($objectSomeValuesFrom);
                 $objectSomeValuesFrom->appendChild($objectProperty);
                 $objectSomeValuesFrom->appendChild($rangeClass);
+            }
+            else if(preg_replace('/[^a-z]/i', '', $cardinality) == 'only')
+            {
+                $objectAllValuesFrom = $dom->createElement('ObjectAllValuesFrom');
+                $subClassOf->appendChild($domainClass);
+                $subClassOf->appendChild($objectAllValuesFrom);
+                $objectAllValuesFrom->appendChild($objectProperty);
+                $objectAllValuesFrom->appendChild($rangeClass);
             }
             else if(preg_replace('/[^a-z]/i', '', $cardinality) == 'min')
             {
