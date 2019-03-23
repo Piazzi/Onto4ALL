@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ontology;
 use DOMDocument;
+use function foo\func;
 use function GuzzleHttp\Psr7\str;
 use Illuminate\Http\Request;
 use App\Menu;
@@ -352,6 +353,46 @@ class HomeController extends Controller
             $ontology->appendChild($inverseObjectProperties);
         }
 
+        /**
+         * Create a <ObjectPropertyDomain> element for the given parameter
+         * @param $relation
+         * @param $class
+         * @param $dom
+         * @param $ontology
+         */
+        function createObjectPropertyDomainElement($relation, $class, $dom, $ontology)
+        {
+            $objectPropertyDomain = $dom->createElement('ObjectPropertyDomain');
+            $objectProperty = $dom->createElement('ObjectProperty');
+            $objectProperty->setAttribute('IRI', $relation);
+            $classElement = $dom->createElement('Class');
+            $classElement->setAttribute('IRI', $class);
+
+            $objectPropertyDomain->appendChild($objectProperty);
+            $objectPropertyDomain->appendChild($classElement);
+            $ontology->appendChild($objectPropertyDomain);
+        }
+
+        /**
+         * Create a <ObjectPropertyRangeElement> for the given parameter
+         * @param $relation
+         * @param $class
+         * @param $dom
+         * @param $ontology
+         */
+        function createObjectPropertyRangeElement($relation, $class, $dom, $ontology)
+        {
+            $objectPropertyRange = $dom->createElement('ObjectPropertyRange');
+            $objectProperty = $dom->createElement('ObjectProperty');
+            $objectProperty->setAttribute('IRI', $relation);
+            $classElement = $dom->createElement('Class');
+            $classElement->setAttribute('IRI', $class);
+
+            $objectPropertyRange->appendChild($objectProperty);
+            $objectPropertyRange->appendChild($classElement);
+            $ontology->appendChild($objectPropertyRange);
+        }
+
         foreach ($xml->root->object as $object)
         {
             if($object->mxCell['edge'] == null)
@@ -365,7 +406,11 @@ class HomeController extends Controller
                 {
                     createSubClassOfElement($object->mxCell['source'], $object->mxCell['target'], $dom, $ontology, $xml);
                 }
-                else if($object['cardinality'])
+                if($object['domain'])
+                    createObjectPropertyDomainElement($object['label'], $object['domain'], $dom, $ontology);
+                if ($object['range'])
+                    createObjectPropertyRangeElement($object['label'], $object['range'], $dom, $ontology);
+                if($object['cardinality'])
                     createCardinalityElement($object->mxCell['source'], $object->mxCell['target'], $object['label'], $object['cardinality'], $dom,$ontology, $xml);
             }
             foreach ($object->attributes() as $name => $value)
