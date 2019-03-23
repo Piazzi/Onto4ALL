@@ -1,11 +1,23 @@
- <p align="center"> <strong> ONTO4ALL </strong> </p>
+ <h1 align="center"> <strong> ONTO4ALL </strong> </h1>
+ 
+ <h3 align="center">
+ OntoForALL é um editor gráfico com a capacidade de criar, editar e exportar ontologias para XML, OWL, SVG.
+ </h3>
+ 
+ <p align="center">
+          <img src="https://media.giphy.com/media/bqTHbDkxK4hZWmGHeO/giphy.gif"/>
+</p>
 
-# Desenvolvimento de metodologia e framework para elaboracão de modelos conceituais para sistemas de informação baseado em ontologias.
+ 
+<p align="center">
+          <img src="https://media.giphy.com/media/1xOPY52mlgKp1wrsfm/giphy.gif"/>
+</p>
+
 
  
 ## Documentação 
 * Ferramenta 1: Laravel 5.4+ / https://laravel.com/docs/5.7 
-* Ferramente 2: AdminLTE / https://adminlte.io/themes/AdminLTE/pages/UI/general.html
+* Ferramenta 2: AdminLTE / https://adminlte.io/themes/AdminLTE/pages/UI/general.html
 * Ferramenta 3: mxGraph / https://jgraph.github.io/mxgraph/ 
 * Ferramenta 4: Jquery / https://api.jquery.com/
 
