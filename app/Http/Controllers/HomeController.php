@@ -406,23 +406,23 @@ class HomeController extends Controller
                 {
                     createSubClassOfElement($object->mxCell['source'], $object->mxCell['target'], $dom, $ontology, $xml);
                 }
-                if($object['domain'])
+                if($object['domain'] && $object['label'] != 'is_a')
                     createObjectPropertyDomainElement($object['label'], $object['domain'], $dom, $ontology);
-                if ($object['range'])
+                if ($object['range'] && $object['label'] != 'is_a')
                     createObjectPropertyRangeElement($object['label'], $object['range'], $dom, $ontology);
                 if($object['cardinality'])
                     createCardinalityElement($object->mxCell['source'], $object->mxCell['target'], $object['label'], $object['cardinality'], $dom,$ontology, $xml);
             }
             foreach ($object->attributes() as $name => $value)
             {
-                if($name != 'id' && $name != 'label' && $value != null)
+                if($name != 'id' && $name != 'label' && $value != "")
                 {
                     $annotationAssertion = $dom->createElement('AnnotationAssertion');
                     $annotationProperty = $dom->createElement('AnnotationProperty');
-                    if($name == 'inverseOf')
+                    if($name == 'inverseOf' && $object['label'] != 'is_a')
                     {
                         $annotationProperty->setAttribute('IRI','inverse_of');
-                        createInverseObjectPropertiesElement($object['label'],$value,$dom,$ontology);
+                        createInverseObjectPropertiesElement($object['label'] ,$value, $dom, $ontology);
                     }
                     else if($name == 'importedFrom')
                         $annotationProperty->setAttribute('IRI','imported_from');
