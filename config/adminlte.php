@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'Ontology Framework',
+    'title' => 'Onto4ALL',
 
     'title_prefix' => '04All |',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b style="color: #ffffff; font-family: initial;">OntoForALL</b> ',
+    'logo' => '<b style="color: #ffffff; font-family: initial;">Onto4ALL</b> ',
 
     'logo_mini' => '<b>O4A</b>',
 
