@@ -9,10 +9,9 @@
 @section('body_class', 'login-page')
 
 @section('body')
-    <!--<img id="login-image"src="css/images/imageLogin.jpg" alt="" srcset=""> -->
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
+            <img class="img-responsive img" id="login-image"src="css/images/ONTO4ALL.png" alt="" srcset="" style="display: block;margin-left: auto;margin-right: auto;">
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -72,8 +71,8 @@
                 <p>- OR -</p>
                 <a href="redirect/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
                   Facebook</a>
-                <a href="redirect/google" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-                  Google+</a>
+                <a href="redirect/google" style=".btn-google: background-color: #ffffff !important" class="btn btn-block btn-social btn-google btn-flat btn-info"><i class="fa fa-fw fa-google"></i> Sign in using
+                  Google</a>
                 <a href="redirect/github" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-fw fa-github fa-2x"></i> Sign in using
                     GitHub</a>
             </div>

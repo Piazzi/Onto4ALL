@@ -1343,19 +1343,28 @@ var EditDataDialog = function (ui, cell) {
         }
     }
 
-    addProps('importedFrom');
-    addProps('hasOBONamespace');
-    addProps('hasURI');
-    addProps('hasSynonym');
-    addProps('hasExactSynonym');
-    addProps('hasRelatedSynonym');
-    addProps('alternativeTerm');
-    addProps('definition');
-    addProps('elucidaton');
-    addProps('exampleOfUsage');
-    addProps('SubClassOf');
-    addProps('comments');
-    addProps('cardinality');
+    if(cell.isEdge())
+    {
+        addProps('domain');
+        addProps('range');
+        addProps('inverseOf');
+        addProps('cardinality');
+    }
+    else
+    {
+        addProps('importedFrom');
+        addProps('hasOBONamespace');
+        addProps('hasURI');
+        addProps('hasSynonym');
+        addProps('hasExactSynonym');
+        addProps('hasRelatedSynonym');
+        addProps('alternativeTerm');
+        addProps('definition');
+        addProps('elucidaton');
+        addProps('exampleOfUsage');
+        addProps('SubClassOf');
+        addProps('comments');
+    }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

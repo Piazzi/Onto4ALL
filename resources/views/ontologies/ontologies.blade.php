@@ -33,16 +33,16 @@
 @stop
 
 @section('content')
-
+    <!--
     <div class="box">
         <a href="{{route('ontologies.create')}}">
             <button type="button" class="btn btn-block btn-success">Add a new ontology</button>
         </a>
     </div>
-
+    -->
     <div class="box box-warning">
         <div class="box-header with-border">
-            <h3 class="box-title"><i style="color: #ffe70a" class="fa fa-fw fa-star"></i> Suas ontologias marcadas como favoritas!</h3>
+            <h3 class="box-title"><i style="color: #ffe70a" class="fa fa-fw fa-star"></i> Your favourite ontologies: </h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -57,7 +57,7 @@
                     <div class="box">
                         <div class="box-header with-border">
 
-                            <h3 class="box-title">Você pode marcar até 5 ontologias como favoritas. Elas ficaram salvas aqui</h3>
+                            <h3 class="box-title">You can mark up to 5 ontologies as favourite. They will be here</h3>
 
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -165,7 +165,7 @@
 
     <div class="box box-success">
         <div class="box-header with-border">
-            <h3 class="box-title"><i style="color: #00a65a" class="fa fa-fw fa-object-group "></i> Suas Ontologias!</h3>
+            <h3 class="box-title"><i style="color: #00a65a" class="fa fa-fw fa-object-group "></i> Your ontologies: </h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -180,7 +180,7 @@
                     <div class="box">
                         <div class="box-header with-border">
 
-                            <h3 class="box-title">Suas últimas 10 ontologias salvas ficaram guardadas aqui. </h3>
+                            <h3 class="box-title">Your last 10 ontologies will be saved here </h3>
 
                             <div class="box-tools">
 

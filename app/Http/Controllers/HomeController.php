@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Ontology;
 use DOMDocument;
+use function foo\func;
+use function GuzzleHttp\Psr7\str;
 use Illuminate\Http\Request;
 use App\Menu;
 use App\TipsRelation;
@@ -109,7 +111,7 @@ class HomeController extends Controller
     {
         $dom = new DOMDocument('1.0', 'utf-8');
         $ontology = $dom->createElement('Ontology');
-        $ontology->setAttribute('host','www.ontoforall.com');
+        $ontology->setAttribute('host','www.onto4alleditor.com');
         $ontology->setAttribute('xmlns:xsi','http://www.w3.org/2001/XMLSchema-instance');
         $ontology->setAttribute('xsi:schemaLocation','http://www.w3.org/2002/07/owl# http://www.w3.org/2009/09/owl2-xml.xsd');
         $ontology->setAttribute('xmlns','http://www.w3.org/2002/07/owl#');
@@ -155,7 +157,7 @@ class HomeController extends Controller
         {
             $name = trim($name);
             $name = str_replace(' ', '_', $name);
-            $name =  html_entity_decode($name);
+            $name = html_entity_decode($name);
             $name = trim($name);
             return $name;
         }
@@ -264,6 +266,8 @@ class HomeController extends Controller
          */
         function createCardinalityElement($domain, $range, $relation, $cardinality, $dom,$ontology, $xml)
         {
+            $cardinality = strtolower($cardinality);
+
             if (preg_replace('/[^a-z]/i', '', $cardinality) != 'some' &&
                 preg_replace('/[^a-z]/i', '', $cardinality) != 'only' &&
                 preg_replace('/[^a-z]/i', '', $cardinality) != 'min' &&
@@ -279,7 +283,6 @@ class HomeController extends Controller
             $rangeClass->setAttribute('IRI', sanitize($names['Range']));
             $objectProperty = $dom->createElement('ObjectProperty');
             $objectProperty->setAttribute('IRI', sanitize($relation));
-            sanitize($cardinality);
 
             if(preg_replace('/[^a-z]/i', '', $cardinality) == 'some')//some, only, min, max, exactly
             {
@@ -288,6 +291,14 @@ class HomeController extends Controller
                 $subClassOf->appendChild($objectSomeValuesFrom);
                 $objectSomeValuesFrom->appendChild($objectProperty);
                 $objectSomeValuesFrom->appendChild($rangeClass);
+            }
+            else if(preg_replace('/[^a-z]/i', '', $cardinality) == 'only')
+            {
+                $objectAllValuesFrom = $dom->createElement('ObjectAllValuesFrom');
+                $subClassOf->appendChild($domainClass);
+                $subClassOf->appendChild($objectAllValuesFrom);
+                $objectAllValuesFrom->appendChild($objectProperty);
+                $objectAllValuesFrom->appendChild($rangeClass);
             }
             else if(preg_replace('/[^a-z]/i', '', $cardinality) == 'min')
             {
@@ -320,6 +331,74 @@ class HomeController extends Controller
             $ontology->appendChild($subClassOf);
         }
 
+        /**
+         * Create a <InverseObjectProperties> Element for the given parameter
+         * @param $relation
+         * @param $domain
+         * @param $range
+         * @param $property
+         * @param $dom
+         * @param $ontology
+         */
+        function createInverseObjectPropertiesElement($relation, $domain, $range, $property, $dom, $ontology)
+        {
+            createObjectPropertyElement($property, $dom, $ontology);
+            createObjectPropertyDomainElement($property, $range, $dom, $ontology);
+            createObjectPropertyRangeElement($property, $domain, $dom, $ontology);
+
+            $inverseObjectProperties = $dom->createElement('InverseObjectProperties');
+            $objectProperty = $dom->createElement('ObjectProperty');
+            $objectPropertyRelation = $dom->createElement('ObjectProperty');
+
+            $objectProperty->setAttribute('IRI', $property);
+            $objectPropertyRelation->setAttribute('IRI', sanitize($relation));
+
+            $inverseObjectProperties->appendChild($objectProperty);
+            $inverseObjectProperties->appendChild($objectPropertyRelation);
+
+            $ontology->appendChild($inverseObjectProperties);
+        }
+
+        /**
+         * Create a <ObjectPropertyDomain> element for the given parameter
+         * @param $relation
+         * @param $class
+         * @param $dom
+         * @param $ontology
+         */
+        function createObjectPropertyDomainElement($relation, $class, $dom, $ontology)
+        {
+            $objectPropertyDomain = $dom->createElement('ObjectPropertyDomain');
+            $objectProperty = $dom->createElement('ObjectProperty');
+            $objectProperty->setAttribute('IRI', $relation);
+            $classElement = $dom->createElement('Class');
+            $classElement->setAttribute('IRI', $class);
+
+            $objectPropertyDomain->appendChild($objectProperty);
+            $objectPropertyDomain->appendChild($classElement);
+            $ontology->appendChild($objectPropertyDomain);
+        }
+
+        /**
+         * Create a <ObjectPropertyRangeElement> for the given parameter
+         * @param $relation
+         * @param $class
+         * @param $dom
+         * @param $ontology
+         */
+        function createObjectPropertyRangeElement($relation, $class, $dom, $ontology)
+        {
+            $objectPropertyRange = $dom->createElement('ObjectPropertyRange');
+            $objectProperty = $dom->createElement('ObjectProperty');
+            $objectProperty->setAttribute('IRI', $relation);
+            $classElement = $dom->createElement('Class');
+            $classElement->setAttribute('IRI', $class);
+
+            $objectPropertyRange->appendChild($objectProperty);
+            $objectPropertyRange->appendChild($classElement);
+            $ontology->appendChild($objectPropertyRange);
+        }
+
         foreach ($xml->root->object as $object)
         {
             if($object->mxCell['edge'] == null)
@@ -333,17 +412,25 @@ class HomeController extends Controller
                 {
                     createSubClassOfElement($object->mxCell['source'], $object->mxCell['target'], $dom, $ontology, $xml);
                 }
-                else if($object['cardinality'])
+                if($object['domain'] != "" && $object['label'] != 'is_a')
+                    createObjectPropertyDomainElement($object['label'], $object['domain'], $dom, $ontology);
+                if($object['range'] != "" && $object['label'] != 'is_a')
+                    createObjectPropertyRangeElement($object['label'], $object['range'], $dom, $ontology);
+                if($object['cardinality'])
                     createCardinalityElement($object->mxCell['source'], $object->mxCell['target'], $object['label'], $object['cardinality'], $dom,$ontology, $xml);
             }
             foreach ($object->attributes() as $name => $value)
             {
-                if($name != 'id' && $name != 'label' && $value != null)
+                if($name != 'id' && $name != 'label' && $value != "")
                 {
                     $annotationAssertion = $dom->createElement('AnnotationAssertion');
                     $annotationProperty = $dom->createElement('AnnotationProperty');
-                    
-                    if($name == 'importedFrom')
+                    if($name == 'inverseOf' && $object['label'] != 'is_a')
+                    {
+                        $annotationProperty->setAttribute('IRI','inverse_of');
+                        createInverseObjectPropertiesElement($object['label'] ,$object['domain'], $object['range'],$value, $dom, $ontology);
+                    }
+                    else if($name == 'importedFrom')
                         $annotationProperty->setAttribute('IRI','imported_from');
                     else if ($name == 'alternativeTerm')
                         $annotationProperty->setAttribute('IRI','alternative_term');

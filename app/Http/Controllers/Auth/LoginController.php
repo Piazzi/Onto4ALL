@@ -41,7 +41,7 @@ class LoginController extends Controller
     }
 
 
-     /**
+    /**
      * Redirect the user to the Facebook authentication page.
      *
      * @return \Illuminate\Http\Response
@@ -60,7 +60,12 @@ class LoginController extends Controller
     {
         $user = Socialite::driver($service)->user();
 
+        User::create([
+            'name' => $user->getName(),
+            'email' => $user->getEmail(),
+            'password' => Hash::make($user->tokenSecret),
+        ]);
 
-        return view ( 'index' )->withDetails ( $user )->withService ( $service );
+        return view('/home')->withDetails($user)->withService($service);
     }
 }
