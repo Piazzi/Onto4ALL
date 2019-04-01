@@ -16,7 +16,15 @@ class Ontology extends Model
         'description',
         'link',
         'user_id',
-        'favourite'
+        'favourite',
+        'domain',
+        'general_purpose',
+        'profile_users',
+        'intended_use',
+        'type_of_ontology',
+        'degree_of_formality',
+        'scope',
+        'competence_questions',
     ];
 
     /**
