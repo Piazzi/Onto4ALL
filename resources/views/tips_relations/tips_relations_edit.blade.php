@@ -63,9 +63,9 @@
                        class="form-control">
             </div>
             <div class="form-group">
-                <label>Description</label>
-                <textarea required value="{{$tips_relation->description}}" name="description" class="form-control"
-                          rows="3" placeholder="Enter ...">{{$tips_relation->description}}</textarea>
+                <label>Definition</label>
+                <textarea required value="{{$tips_relation->definition}}" name="description" class="form-control"
+                          rows="3" placeholder="Enter ...">{{$tips_relation->definition}}</textarea>
             </div>
             <button class="btn btn-success btn-block" type="submit">Submit</button>
             </form>

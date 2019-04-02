@@ -43,9 +43,9 @@
                 <input required value="{{$tip_class->subclass}}" name="subclass" type="text" class="form-control">
             </div>
             <div class="form-group">
-                <label>Description</label>
-                <textarea required value="{{$tip_class->description}}" name="description" class="form-control" rows="3"
-                          placeholder="Enter ...">{{$tip_class->description}}</textarea>
+                <label>Definition</label>
+                <textarea required value="{{$tip_class->definition}}" name="description" class="form-control" rows="3"
+                          placeholder="Enter ...">{{$tip_class->definition}}</textarea>
             </div>
             <div class="form-group">
                 <label>Synonyms</label>

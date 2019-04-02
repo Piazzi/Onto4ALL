@@ -39,8 +39,8 @@
                 <input disabled value="{{$tip_class->example_of_usage}}" type="text" class="form-control">
             </div>
             <div class="form-group">
-                <label>Description</label>
-                <textarea disabled class="form-control form-textarea"> {{$tip_class->description}}</textarea>
+                <label>Definition</label>
+                <textarea disabled class="form-control form-textarea"> {{$tip_class->definition}}</textarea>
             </div>
             <a href="/tips_class">
                 <button class="btn btn-success btn-block" type="button">Go back</button>

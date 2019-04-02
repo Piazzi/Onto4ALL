@@ -25,12 +25,12 @@ class TipClassStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:3|max:50',
-            'superclass' => 'required|string|min:1|max:50',
-            'subclass' => 'required|string|min:1|max:50',
-            'description' => 'required|min:1|max:500',
-            'synonyms' => 'required|min:1|max:20|string',
+            'superclass' => 'nullable|string|min:1|max:50',
+            'subclass' => 'nullable|string|min:1|max:50',
+            'definition' => 'required|min:1|max:500',
+            'synonyms' => 'nullable|min:1|max:20|string',
             'example_of_usage' => 'required|min:1|max:200|string',
-            'imported_from' => 'required|url|max:255',
+            'imported_from' => 'max:255|nullable',
         ];
     }
 }

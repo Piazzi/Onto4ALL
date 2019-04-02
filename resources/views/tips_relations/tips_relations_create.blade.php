@@ -80,8 +80,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
-                    <textarea value="{{old('description')}}" name="description" class="form-control" rows="3"
+                    <label>Definition</label>
+                    <textarea value="{{old('definition')}}" name="definition" class="form-control" rows="3"
                               placeholder="Enter ..."></textarea>
                 </div>
                 <button class="btn btn-success btn-block" type="submit">Submit</button>

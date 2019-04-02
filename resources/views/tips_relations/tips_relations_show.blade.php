@@ -43,8 +43,8 @@
                 <input disabled value="{{$tips_relation->example_of_usage}}" type="text" class="form-control">
             </div>
             <div class="form-group">
-                <label>Description</label>
-                <textarea disabled class="form-control form-textarea"> {{$tips_relation->description}}</textarea>
+                <label>Definition</label>
+                <textarea disabled class="form-control form-textarea"> {{$tips_relation->definition}}</textarea>
             </div>
             <a href="/tips_relations">
                 <button class="btn btn-success btn-block" type="button">Go back</button>
