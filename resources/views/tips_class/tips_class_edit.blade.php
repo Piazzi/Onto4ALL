@@ -36,24 +36,29 @@
             </div>
             <div class="form-group">
                 <label>Super Class</label>
-                <input required value="{{$tip_class->superclass}}" name="superclass" type="text" class="form-control">
+                <input value="{{$tip_class->superclass}}" name="superclass" type="text" class="form-control">
             </div>
             <div class="form-group">
                 <label>Sub Class</label>
-                <input required value="{{$tip_class->subclass}}" name="subclass" type="text" class="form-control">
+                <input value="{{$tip_class->subclass}}" name="subclass" type="text" class="form-control">
             </div>
             <div class="form-group">
                 <label>Definition</label>
-                <textarea required value="{{$tip_class->definition}}" name="description" class="form-control" rows="3"
+                <textarea required value="{{$tip_class->definition}}" name="definition" class="form-control" rows="3"
                           placeholder="Enter ...">{{$tip_class->definition}}</textarea>
             </div>
             <div class="form-group">
+                <label>Formal Definition</label>
+                <textarea value="{{$tip_class->formal_definition}}" name="formal_definition" class="form-control" rows="3"
+                          placeholder="Enter ...">{{$tip_class->formal_definition}}</textarea>
+            </div>
+            <div class="form-group">
                 <label>Synonyms</label>
-                <input required value="{{$tip_class->synonyms}}" name="synonyms" type="text" class="form-control">
+                <input value="{{$tip_class->synonyms}}" name="synonyms" type="text" class="form-control">
             </div>
             <div class="form-group">
                 <label>Imported From</label>
-                <input required value="{{$tip_class->imported_from}}" name="imported_from" type="text"
+                <input value="{{$tip_class->imported_from}}" name="imported_from" type="text"
                        class="form-control">
             </div>
             <div class="form-group">

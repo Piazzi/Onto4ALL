@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class TipClass extends Model
 {
     protected $fillable = [
-        'name','superclass','subclass','synonyms','example_of_usage','imported_from','definition'
+        'name','superclass','subclass','synonyms','example_of_usage','imported_from','definition','formal_definition'
     ];
 
     protected $dates = [

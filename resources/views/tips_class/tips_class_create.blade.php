@@ -39,14 +39,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Super Class</label>
-                            <input required value="{{old('superclass')}}" name="superclass" type="text"
+                            <input value="{{old('superclass')}}" name="superclass" type="text"
                                    class="form-control" placeholder="">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Sub Class</label>
-                            <input required value="{{old('subclass')}}" name="subclass" type="text"
+                            <input value="{{old('subclass')}}" name="subclass" type="text"
                                    class="form-control">
                         </div>
                     </div>
@@ -55,14 +55,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Synonyms</label>
-                            <input required value="{{old('synonyms')}}" name="synonyms" type="textarea"
+                            <input value="{{old('synonyms')}}" name="synonyms" type="textarea"
                                    class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Imported From </label>
-                            <input required value="{{old('imported_from')}}" name="imported_from" type="text"
+                            <input value="{{old('imported_from')}}" name="imported_from" type="text"
                                    class="form-control">
                         </div>
                     </div>
@@ -79,6 +79,11 @@
                 <div class="form-group">
                     <label>Definition</label>
                     <textarea required name="definition" class="form-control" rows="3" placeholder="Enter ...">
+                </textarea>
+                </div>
+                <div class="form-group">
+                    <label>Formal Definition</label>
+                    <textarea name="formal_definition" class="form-control" rows="3" placeholder="Enter ...">
                 </textarea>
                 </div>
                 <button class="btn btn-success btn-block" type="submit">Submit</button>

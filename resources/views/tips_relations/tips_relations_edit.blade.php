@@ -44,17 +44,17 @@
             </div>
             <div class="form-group">
                 <label>Similar Relation</label>
-                <input required value="{{$tips_relation->similar_relation}}" name="similar_relation" type="text"
+                <input value="{{$tips_relation->similar_relation}}" name="similar_relation" type="text"
                        class="form-control">
             </div>
             <div class="form-group">
                 <label>Cardinality</label>
-                <input required value="{{$tips_relation->cardinality}}" name="cardinality" type="text"
+                <input value="{{$tips_relation->cardinality}}" name="cardinality" type="text"
                        class="form-control">
             </div>
             <div class="form-group">
                 <label>Imported From</label>
-                <input required value="{{$tips_relation->imported_from}}" name="imported_from" type="text"
+                <input value="{{$tips_relation->imported_from}}" name="imported_from" type="text"
                        class="form-control">
             </div>
             <div class="form-group">

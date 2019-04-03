@@ -42,6 +42,10 @@
                 <label>Definition</label>
                 <textarea disabled class="form-control form-textarea"> {{$tip_class->definition}}</textarea>
             </div>
+            <div class="form-group">
+                <label>Formal Definition</label>
+                <textarea disabled class="form-control form-textarea"> {{$tip_class->formal_definition}}</textarea>
+            </div>
             <a href="/tips_class">
                 <button class="btn btn-success btn-block" type="button">Go back</button>
             </a>
