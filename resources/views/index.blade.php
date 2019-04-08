@@ -115,10 +115,13 @@
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class=""><a data-toggle="tab" aria-expanded="false"><i class="fa fa-fw fa-compass"></i>Tips database</a>
+            <li class=""><a class="btn btn-default" data-toggle="tab" aria-expanded="false"><i
+                            class="fa fa-fw fa-compass"></i>Tips</a>
             </li>
-            <li class=""><a data-toggle="modal" data-target="#exampleModal" aria-expanded="false"><i
-                            class="fa fa-fw fa-object-group "></i>Your ontologies</a></li>
+            <li class=""><a class="btn btn-default" data-toggle="modal" data-target="#exampleModal"
+                            aria-expanded="false"><i
+                            class="fa fa-fw fa-object-group "></i>Your ontologies</a>
+            </li>
         </ul>
         <div id="searchBar" class="input-group input-group-sm">
             <input value="" id="search-tip-input" type="text" class="form-control"
@@ -134,7 +137,8 @@
                         @foreach($tips_relations as $tips_relation)
                             <div id="tipSearch" class="box box-primary collapsed-box box-solid">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">{{$tips_relation->name}}</h3>
+                                    <h3 class="box-title">{{$tips_relation->name}} <i
+                                                class="fa fa-fw fa-long-arrow-right"></i></h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                                     class="fa fa-plus"></i></button>
@@ -142,8 +146,10 @@
                                 </div>
                                 <div class="box-body">
                                     <dl>
-                                        <dt>Description</dt>
-                                        <dd>{{$tips_relation->description}}</dd>
+                                        <dt>Definition</dt>
+                                        <dd>{{$tips_relation->definition}}</dd>
+                                        <dt>Formal Definition</dt>
+                                        <dd>{{$tips_relation->formal_definition}}</dd>
                                         <dt>Domain</dt>
                                         <dd>{{$tips_relation->domain}}</dd>
                                         <dt>Range</dt>
@@ -161,7 +167,8 @@
                         @foreach ($tips_class as $tip_class)
                             <div id="tipSearch" class="box box-success collapsed-box box-solid">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">{{$tip_class->name}}</h3>
+                                    <h3 class="box-title">{{$tip_class->name}} <i class="fa fa-fw fa-circle-thin"></i>
+                                    </h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                                     class="fa fa-plus"></i></button>
@@ -169,8 +176,10 @@
                                 </div>
                                 <div class="box-body">
                                     <dl>
-                                        <dt>Description</dt>
-                                        <dd>{{$tip_class->description}}</dd>
+                                        <dt>Definition</dt>
+                                        <dd>{{$tip_class->definition}}</dd>
+                                        <dt>Formal Definition</dt>
+                                        <dd>{{$tip_class->formal_definition}}</dd>
                                         <dt>SuperClass</dt>
                                         <dd>{{$tip_class->superclass}}</dd>
                                         <dt>Synomyms</dt>
@@ -179,7 +188,7 @@
                                         <dd>{{$tip_class->example_of_usage}}</dd>
                                         <dt>Imported From</dt>
                                         <dd>
-                                            <a href="{{$tip_class->imported_from}}">{{$tips_relation->imported_from}}</a>
+                                            <a href="{{$tip_class->imported_from}}">{{$tip_class->imported_from}}</a>
                                         </dd>
                                     </dl>
                                 </div>
