@@ -137,7 +137,7 @@
                         @foreach($tips_relations as $tips_relation)
                             <div id="tipSearch" class="box box-primary collapsed-box box-solid">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">{{$tips_relation->name}} <i
+                                    <h3 class="box-title title">{{$tips_relation->name}} <i
                                                 class="fa fa-fw fa-long-arrow-right"></i></h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -167,7 +167,7 @@
                         @foreach ($tips_class as $tip_class)
                             <div id="tipSearch" class="box box-success collapsed-box box-solid">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">{{$tip_class->name}} <i class="fa fa-fw fa-circle-thin"></i>
+                                    <h3 class="box-title title">{{$tip_class->name}} <i class="fa fa-fw fa-circle-thin"></i>
                                     </h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i

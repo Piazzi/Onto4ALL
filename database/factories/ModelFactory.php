@@ -6,7 +6,7 @@ $faker = new Faker();
 
 $factory->define(\App\TipClass::class, function (Faker $faker) {
     return [
-        "name" => $faker->randomElement(['is a','part of','has part','contains','realizes','realized in','contained in','involved in','located in','member of']),
+        "name" => $faker->randomElement(['Process', 'Object', 'Blood Cell','Plasma', 'Centrifugation']),
         "superclass" => $faker->lastName,
         "subclass" => $faker->firstName,
         "definition" => $faker->word,
@@ -19,7 +19,7 @@ $factory->define(\App\TipClass::class, function (Faker $faker) {
 
 $factory->define(\App\TipsRelation::class, function (Faker $faker) {
     return [
-        "name" => $faker->randomElement(['is a','part of','has part','contains','realizes','realized in','contained in','involved in','located in','member of']),
+        "name" => $faker->randomElement(['is_a','part_of','has_part','contains','realizes','realized_in','contained_in','involved_in','located_in','member_of']),
         "domain" => $faker->domainWord,
         "range" => $faker->domainName,
         "definition" => $faker->word,
