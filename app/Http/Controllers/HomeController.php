@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Ontology;
 use DOMDocument;
-use function foo\func;
-use function GuzzleHttp\Psr7\str;
 use Illuminate\Http\Request;
-use App\Menu;
-use App\TipsRelation;
-use App\TipClass;
+use App\OntologyRelation;
+use App\OntologyClass;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,11 +29,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $menus = Menu::all();
-        $tips_relations = TipsRelation::all();
-        $tips_class = TipClass::all();
+        $relations = OntologyRelation::all();
+        $classes = OntologyClass::all();
         $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->orderBy('created_at','desc')->get();
-        return view('index', compact('menus', 'tips_relations', 'tips_class', 'ontologies')); /* Editor */
+        return view('index', compact('relations', 'classes', 'ontologies'));
     }
 
     /**
@@ -44,9 +40,7 @@ class HomeController extends Controller
      */
     public function aboutUs()
     {
-        $tips_relations = TipsRelation::all();
-        $tips_class = TipClass::all();
-        return view('about_us', compact('tips_relations', 'tips_class'));
+        return view('about_us');
     }
 
     /**

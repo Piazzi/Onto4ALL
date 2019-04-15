@@ -30,14 +30,13 @@ Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback')
 
 
 // Rotas do CRUD's
-Route::resource('/menus', 'MenuController')->middleware('can:eAdmin');
 
-Route::any('/tips_relations/search', 'TipsRelationController@search')->name('tips_relations.search')->middleware('can:eAdmin');
-Route::resource('/tips_relations', 'TipsRelationController')->middleware('can:eAdmin');
+Route::any('/ontology_relation/search', 'OntologyRelationController@search')->name('ontology_relation.search')->middleware('can:eAdmin');
+Route::resource('/ontology_relation', 'OntologyRelationController')->middleware('can:eAdmin');
 
 
-Route::any('/tips_class/search', 'TipClassController@search')->name('tips_class.search')->middleware('can:eAdmin');
-Route::resource('/tips_class', 'TipClassController')->middleware('can:eAdmin');
+Route::any('/ontology_class/search', 'OntologyClassController@search')->name('ontology_class.search')->middleware('can:eAdmin');
+Route::resource('/ontology_class', 'OntologyClassController')->middleware('can:eAdmin');
 
 
 Route::resource('/ontologies', 'OntologyController')->middleware('can:eModelador');

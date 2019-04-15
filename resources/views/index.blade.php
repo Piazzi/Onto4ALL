@@ -134,10 +134,10 @@
             <div class="tab-content">
                 <div id="menu-scroll">
                     <div id="control-sidebar-theme-demo-options-tab table-search" class="tab-pane active table-search">
-                        @foreach($tips_relations as $tips_relation)
+                        @foreach($relations as $ontologyRelation)
                             <div id="tipSearch" class="box box-primary collapsed-box box-solid">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title title">{{$tips_relation->name}} <i
+                                    <h3 class="box-title title">{{$ontologyRelation->name}} <i
                                                 class="fa fa-fw fa-long-arrow-right"></i></h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -147,27 +147,27 @@
                                 <div class="box-body">
                                     <dl>
                                         <dt>Definition</dt>
-                                        <dd>{{$tips_relation->definition}}</dd>
+                                        <dd>{{$ontologyRelation->definition}}</dd>
                                         <dt>Formal Definition</dt>
-                                        <dd>{{$tips_relation->formal_definition}}</dd>
+                                        <dd>{{$ontologyRelation->formal_definition}}</dd>
                                         <dt>Domain</dt>
-                                        <dd>{{$tips_relation->domain}}</dd>
+                                        <dd>{{$ontologyRelation->domain}}</dd>
                                         <dt>Range</dt>
-                                        <dd>{{$tips_relation->range}}</dd>
+                                        <dd>{{$ontologyRelation->range}}</dd>
                                         <dt>Example Of Usage</dt>
-                                        <dd>{{$tips_relation->example_of_usage}}</dd>
+                                        <dd>{{$ontologyRelation->example_of_usage}}</dd>
                                         <dt>Imported From</dt>
                                         <dd>
-                                            <a href="{{$tips_relation->imported_from}}">{{$tips_relation->imported_from}}</a>
+                                            <a href="{{$ontologyRelation->imported_from}}">{{$ontologyRelation->imported_from}}</a>
                                         </dd>
                                     </dl>
                                 </div>
                             </div>
                         @endforeach
-                        @foreach ($tips_class as $tip_class)
+                        @foreach ($classes as $class)
                             <div id="tipSearch" class="box box-success collapsed-box box-solid">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title title">{{$tip_class->name}} <i class="fa fa-fw fa-circle-thin"></i>
+                                    <h3 class="box-title title">{{$class->name}} <i class="fa fa-fw fa-circle-thin"></i>
                                     </h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -177,18 +177,18 @@
                                 <div class="box-body">
                                     <dl>
                                         <dt>Definition</dt>
-                                        <dd>{{$tip_class->definition}}</dd>
+                                        <dd>{{$class->definition}}</dd>
                                         <dt>Formal Definition</dt>
-                                        <dd>{{$tip_class->formal_definition}}</dd>
+                                        <dd>{{$class->formal_definition}}</dd>
                                         <dt>SuperClass</dt>
-                                        <dd>{{$tip_class->superclass}}</dd>
-                                        <dt>Synomyms</dt>
-                                        <dd>{{$tip_class->synonyms}}</dd>
+                                        <dd>{{$class->superclass}}</dd>
+                                        <dt>Synonyms</dt>
+                                        <dd>{{$class->synonyms}}</dd>
                                         <dt>Example Of Usage</dt>
-                                        <dd>{{$tip_class->example_of_usage}}</dd>
+                                        <dd>{{$class->example_of_usage}}</dd>
                                         <dt>Imported From</dt>
                                         <dd>
-                                            <a href="{{$tip_class->imported_from}}">{{$tip_class->imported_from}}</a>
+                                            <a href="{{$class->imported_from}}">{{$class->imported_from}}</a>
                                         </dd>
                                     </dl>
                                 </div>

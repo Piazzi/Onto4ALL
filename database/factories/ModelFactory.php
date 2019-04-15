@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $faker = new Faker();
 
-$factory->define(\App\TipClass::class, function (Faker $faker) {
+$factory->define(\App\OntologyClass::class, function (Faker $faker) {
     return [
         "name" => $faker->randomElement(['Process', 'Object', 'Blood Cell','Plasma', 'Centrifugation']),
         "superclass" => $faker->lastName,
@@ -17,7 +17,7 @@ $factory->define(\App\TipClass::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(\App\TipsRelation::class, function (Faker $faker) {
+$factory->define(\App\OntologyRelation::class, function (Faker $faker) {
     return [
         "name" => $faker->randomElement(['is_a','part_of','has_part','contains','realizes','realized_in','contained_in','involved_in','located_in','member_of']),
         "domain" => $faker->domainWord,

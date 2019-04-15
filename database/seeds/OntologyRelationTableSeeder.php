@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TipsClassTableSeeder extends Seeder
+class OntologyRelationTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class TipsClassTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\TipClass::class, 50)->create()->each(function ($user) {
+        factory(App\OntologyRelation::class, 50)->create()->each(function ($user) {
 
         });
     }

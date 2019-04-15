@@ -154,20 +154,14 @@ return [
             'can' => 'eAdmin',
             'submenu' => [
                 [
-                    'text' => 'Menus',
-                    'url' => '/menus',
+                    'text' => 'Ontology Relations',
+                    'url' => '/ontology_relation',
                     'can' => 'eAdmin',
 
                 ],
                 [
-                    'text' => 'Tips Relations',
-                    'url' => '/tips_relations',
-                    'can' => 'eAdmin',
-
-                ],
-                [
-                    'text' => 'Tips Class',
-                    'url' => '/tips_class',
+                    'text' => 'Ontology Classes',
+                    'url' => '/ontology_class',
                     'can' => 'eAdmin',
 
                 ],

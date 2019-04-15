@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipsRelationsTable extends Migration
+class CreateOntologyRelationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateTipsRelationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tips_relations', function (Blueprint $table) {
+        Schema::create('ontology-relations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('domain');
             $table->string('range');
-            $table->string('similar_relation');
-            $table->integer('cardinality');
-            $table->string('description');
+            $table->string('similar_relation')->nullable();
+            $table->integer('cardinality')->nullable();
+            $table->string('definition');
             $table->string('example_of_usage');
-            $table->string('imported_from');
+            $table->string('imported_from')->nullable();
+            $table->string('formal_definition',191);
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateTipsRelationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tips_relations');
+        Schema::dropIfExists('ontology-relations');
     }
 }

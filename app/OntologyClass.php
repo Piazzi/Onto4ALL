@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TipClass extends Model
+class OntologyClass extends Model
 {
     protected $fillable = [
         'name','superclass','subclass','synonyms','example_of_usage','imported_from','definition','formal_definition'
@@ -15,5 +15,6 @@ class TipClass extends Model
         'updated_at',
     ];
 
-    protected $table = 'tips_class';
+    protected $table = 'ontology-classes';
+
 }
