@@ -116,7 +116,7 @@
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
             <li class=""><a class="btn btn-default" data-toggle="tab" aria-expanded="false"><i
-                            class="fa fa-fw fa-compass"></i>Tips</a>
+                            class="fa fa-fw fa-compass"></i>Rules</a>
             </li>
             <li class=""><a class="btn btn-default" data-toggle="modal" data-target="#exampleModal"
                             aria-expanded="false"><i
@@ -300,7 +300,6 @@
     @endcomponent
 
     <!-- /.TIPS -->
-
     <a id="notification-button" class="btn btn-app">
         <i class="fa fa-bullhorn"></i> Hide Tips
     </a>

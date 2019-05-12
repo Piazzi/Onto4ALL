@@ -69,12 +69,8 @@
             </div>
             <div class="social-auth-links text-center">
                 <p>- OR -</p>
-                <a href="redirect/facebook" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-                  Facebook</a>
                 <a href="redirect/google" style=".btn-google: background-color: #ffffff !important" class="btn btn-block btn-social btn-google btn-flat btn-info"><i class="fa fa-fw fa-google"></i> Sign in using
                   Google</a>
-                <a href="redirect/github" class="btn btn-block btn-social btn-github btn-flat"><i class="fa fa-fw fa-github fa-2x"></i> Sign in using
-                    GitHub</a>
             </div>
             <div class="row">
                 <!-- /.col -->
