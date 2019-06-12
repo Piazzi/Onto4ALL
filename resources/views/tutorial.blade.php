@@ -108,17 +108,33 @@
                         </ul>
                     </div>
                 </div>
-                <dt>Relação</dt>
-                <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                <dt>Malesuada porta</dt>
-                <dd id="">Etiam porta sem malesuada magna mollis euismod.</dd>
             </dl>
         </div>
         <!-- /.box-body -->
+        <!-- /.box-header -->
+        <div class="box-body">
+            <dl>
+                <dt id="relations">Relação</dt>
+                <dd>Em ontologias, relações entre classes especificam como elas estão relacionados com as demais classes da ontologia.
+                Grande parte da praticidade de ontologias vem da sua capacidade de descrever relações. </dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>No Onto4All, existem diversos tipos de relações, que se encontram na paleta de ontologias, à esquerda da tela principal.</li>
+                            <li>Um dos principais tipos de relações são: <i>is_a</i>, <i>part_of</i>, <i>has_part</i>, <i>contains</i> e <i>instance_of</i> </li>
+                            <li>É possível criar uma nova relação entre duas classes e nomeá-la manualmente, clicando em <i>new_relation</i>. </li>
+                            <li>Relações costumam ter um sentido, isto é, apontar de uma classe para outra.</li>
+                            <li>É possível inverter o sentido de uma relação, clicando nela com o botão direito do mouse e selecionando <strong>Reverse</strong></li>
+                            <li>É possível selecionar outras opções da relação clicando nela com o botão direito, como deletá-la, duplicá-la ou copiá-la.</li>
+                        </ul>
+                    </div>
+                </div>
+            </dl>
+        </div>
+        <!-- /.box-body --> 
 
     </div>
-    <div id="relations" class="box box-solid">
+    <div id="" class="box box-solid">
         <div class="box-header with-border">
             <i class="fa fa-text-width"></i>
 
