@@ -15,7 +15,7 @@
                 <a href="#intro">
                     <li>O que é o ONTO FOR ALL?</li>
                 </a>
-                <a href="#basics"><li>Conceitos básicos</li></a>
+                <a href="#class"><li>Conceitos básicos</li></a>
                     <ol>
                         <a href="#class"><li>Classe</li></a>
                         <a href="#relations"><li>Relação</li></a>
@@ -77,19 +77,16 @@
         <!-- /.box-body -->
 
     </div>
-    <div id="basics" class="box box-solid">
+    <div id="class" class="box box-solid">
         <div class="box-header with-border">
             <i class="fa fa-text-width"></i>
 
-            <h3 class="box-title">Conceitos Básicos</h3>
+            <h3 class="box-title">Classe</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <dl>
-                <dt id="class">Classe</dt>
-                <dd>No Onto4All a classe é definida pelo circulo contido dentro da paleta de ontologias.
-
-                </dd>
+                <dd>No Onto4All a classe é definida pelo circulo contido dentro da paleta de ontologias.</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <img alt="class image" src="/css/images/class.png">
@@ -111,12 +108,18 @@
             </dl>
         </div>
         <!-- /.box-body -->
+    </div>
+
+    <div id="relations" class="box box-solid">
+        <div class="box-header with-border">
+            <i class="fa fa-text-width"></i>
+
+            <h3 class="box-title">Relação</h3>
+        </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <dl>
-                <dt id="relations">Relação</dt>
-                <dd>Em ontologias, relações entre classes especificam como elas estão relacionados com as demais classes da ontologia.
-                Grande parte da praticidade de ontologias vem da sua capacidade de descrever relações. </dd>
+            <dd>Em ontologias, relações entre classes especificam como elas estão relacionados com as demais classes da ontologia. </dd>
+            <dd>Grande parte da praticidade de ontologias vem da sua capacidade de descrever relações. </dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
@@ -128,29 +131,10 @@
                             <li>É possível selecionar outras opções da relação clicando nela com o botão direito, como deletá-la, duplicá-la ou copiá-la.</li>
                         </ul>
                     </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/relations.png">
+                    </div>
                 </div>
-            </dl>
-        </div>
-        <!-- /.box-body --> 
-
-    </div>
-    <div id="" class="box box-solid">
-        <div class="box-header with-border">
-            <i class="fa fa-text-width"></i>
-
-            <h3 class="box-title">Description</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-            <dl>
-                <dt>Description lists</dt>
-                <dd>A description list is perfect for defining terms.</dd>
-                <dt>Euismod</dt>
-                <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                <dt>Malesuada porta</dt>
-                <dd id="">Etiam porta sem malesuada magna mollis euismod.</dd>
-            </dl>
         </div>
         <!-- /.box-body -->
 
