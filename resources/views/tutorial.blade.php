@@ -22,7 +22,7 @@
                         <li>Ligação</li>
                         <a href="#properties"><li>Propriedades</li></a>
                         <li>Cardinalidade</li>
-                        <li>Cores</li>
+                        <a href="#colors"><li>Cores</li></a>
                         <li>Salvar</li>
                         <li>Download</li>
                         <li>Exportar</li>
@@ -153,6 +153,28 @@
                     </div>
                     <div class="col-md-6">
                         <img alt="class image" src="/css/images/properties.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="colors" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Cores</h3>
+        </div>
+        <div class="box-body">
+            <dd>A ferramenta Onto4ALL permite que o usuário customize facilmente as cores dos elementos do diagrama.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Para alterar a cor de um elemento selecionado, clique no ícone do balde de tinta para abrir o menu de seleção de cores.</li>
+                            <li>No menu de seleção de cores, selecione uma cor através da interface ou então digitando o código hexadecimal da cor desejada.</li>
+                            <li>Também é possível alterar a cor das linhas de contorno ou dos próprios elementos de <a href="#relations">relações</a>, clicando no ícone do lápis de cor.</li>
+                            <li>Em ontologias muito grandes, cores podem facilitar o agrupamento de elementos de acordo com dadas características, para melhor organizar o diagrama.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/colors.png">
                     </div>
                 </div>
         </div>
