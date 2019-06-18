@@ -20,7 +20,7 @@
                         <a href="#class"><li>Classe</li></a>
                         <a href="#relations"><li>Relação</li></a>
                         <li>Ligação</li>
-                        <li>Propriedades</li>
+                        <a href="#properties"><li>Propriedades</li></a>
                         <li>Cardinalidade</li>
                         <li>Cores</li>
                         <li>Salvar</li>
@@ -112,11 +112,8 @@
 
     <div id="relations" class="box box-solid">
         <div class="box-header with-border">
-            <i class="fa fa-text-width"></i>
-
             <h3 class="box-title">Relação</h3>
         </div>
-        <!-- /.box-header -->
         <div class="box-body">
             <dd>Em ontologias, relações entre classes especificam como elas estão relacionados com as demais classes da ontologia. </dd>
             <dd>Grande parte da praticidade de ontologias vem da sua capacidade de descrever relações. </dd>
@@ -136,28 +133,28 @@
                     </div>
                 </div>
         </div>
-        <!-- /.box-body -->
-
     </div>
-    <div class="box box-solid">
+
+    <div id="properties" class="box box-solid">
         <div class="box-header with-border">
-            <i class="fa fa-text-width"></i>
-
-            <h3 class="box-title">Description</h3>
+            <h3 class="box-title">Propriedades</h3>
         </div>
-        <!-- /.box-header -->
         <div class="box-body">
-            <dl>
-                <dt>Description lists</dt>
-                <dd>A description list is perfect for defining terms.</dd>
-                <dt>Euismod</dt>
-                <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                <dt>Malesuada porta</dt>
-                <dd id="a">Etiam porta sem malesuada magna mollis euismod.</dd>
-            </dl>
+            <dd>No Onto4All, cada elemento da paleta de ontologias possui propriedades, que podem ser visualizadas e editadas.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Para editar as propriedades de um elemento, clique nele com o botão direito do mouse e selecione "Edit Properties".</li>
+                            <li>Também pode-se acessar o menu de edição de propriedades de um elemento selecionado com o atalho <strong>Ctlr+M</strong></li>
+                            <li>É possível adicionar uma nova propriedade a um elemento, descendo a barra de rolagem do menu de propriedades e selecionando "Add Property".</li>
+                            <li>A primeira propriedade do menu de propriedade, o ID, corresponde a um identificador único de cada elemento presente no diagrama.</li>
+                            <li>As propriedades podem ser usadas para detalhar aspectos daquele elemento ou para fazer anotações, como as propriedades <i>exampleOfUsage</i> e <i>comments</i>.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/properties.png">
+                    </div>
+                </div>
         </div>
-        <!-- /.box-body -->
-
     </div>
 @stop
