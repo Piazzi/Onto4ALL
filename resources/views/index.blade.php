@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <div id="preloader"><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>
+    <div  id="preloader"><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>
     <link rel="stylesheet" type="text/css" href="css/mxgraph/grapheditor.css">
 
     <title>Grapheditor</title>
@@ -125,7 +125,7 @@
         </ul>
         <div id="searchBar" class="input-group input-group-sm">
             <input value="" id="search-tip-input" type="text" class="form-control"
-                   placeholder="Search for tips">
+                   placeholder="Search for rules">
             <div class="input-group-btn">
                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
             </div>
@@ -301,11 +301,11 @@
 
     <!-- /.TIPS -->
     <a id="notification-button" class="btn btn-app">
-        <i class="fa fa-bullhorn"></i> Hide Tips
+        <i class="fa fa-bullhorn"></i> <div id="notification-button-text">Hide Tips</div>
     </a>
 
     <a id="sidebar-control" class="btn btn-app">
-        <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i>Hide Sidebar
+        <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i> <div id="sidebar-control-text">Hide Sidebar</div>
     </a>
     </body>
 
