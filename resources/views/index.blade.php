@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <div  id="preloader"><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>
+    <div id="preloader"><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>
     <link rel="stylesheet" type="text/css" href="css/mxgraph/grapheditor.css">
 
     <title>Grapheditor</title>
@@ -56,6 +56,7 @@
     <script type="text/javascript" src="js/Toolbar.js"></script>
     <script type="text/javascript" src="js/Dialogs.js"></script>
     <script type="text/javascript" src="js/HomeFunctions.js"></script>
+    <script type="text/javascript" src="js/Compiler.js"></script>
 
 
 @stop
@@ -115,13 +116,14 @@
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class=""><a class="btn btn-default" data-toggle="tab" aria-expanded="false"><i
-                            class="fa fa-fw fa-compass"></i>Rules</a>
+            <li class=""><a class="btn btn-default" data-toggle="modal" data-target="#modal" aria-expanded="false"><i
+                            class="fa fa-fw fa-compass"></i>External Ontologies Databases</a>
             </li>
+        </ul>
+        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
             <li class=""><a class="btn btn-default" data-toggle="modal" data-target="#exampleModal"
                             aria-expanded="false"><i
                             class="fa fa-fw fa-object-group "></i>Your ontologies</a>
-            </li>
         </ul>
         <div id="searchBar" class="input-group input-group-sm">
             <input value="" id="search-tip-input" type="text" class="form-control"
@@ -269,6 +271,30 @@
         </div>
     </div>
 
+
+    <div class="tab modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>External ontologies databases</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>
+                            <a><i class="fa-external-link"></i>Adicionar links aqui</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- TIPS -->
 
     @component('warning')
@@ -301,11 +327,13 @@
 
     <!-- /.TIPS -->
     <a id="notification-button" class="btn btn-app">
-        <i class="fa fa-bullhorn"></i> <div id="notification-button-text">Hide Tips</div>
+        <i class="fa fa-bullhorn"></i>
+        <div id="notification-button-text">Hide Tips</div>
     </a>
 
     <a id="sidebar-control" class="btn btn-app">
-        <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i> <div id="sidebar-control-text">Hide Sidebar</div>
+        <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i>
+        <div id="sidebar-control-text">Hide Sidebar</div>
     </a>
     </body>
 

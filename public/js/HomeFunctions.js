@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#preloader').delay(1500).fadeOut();
+    $('#preloader').delay(1000).fadeOut();
     $("#sidebar-control").click(function () {
         $('aside').slideToggle();
         if ($('#sidebar-control-text').text() == 'Hide Sidebar')

@@ -999,6 +999,7 @@ Sidebar.prototype.addOntologyPalette = function(expand)
 	 	this.createEdgeTemplateEntry('endArrow=none;dashed=1;html=1;', 50, 50, '', 'Dashed Line', null, lineTags + 'dashed undirected no'),
 	 	this.createEdgeTemplateEntry('endArrow=none;html=1;', 50, 50, '', 'Line', null, lineTags + 'simple undirected plain blank no'),
 	 	this.createEdgeTemplateEntry('endArrow=classic;startArrow=classic;html=1;', 50, 50, '', 'Bidirectional Connector', null, lineTags + 'bidirectional'),
+		this.createVertexTemplateEntry('html=1;', 110, 50, 'Instance', 'Instance', null, null, 'Class Instance'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'new_relation', 'New_Relation', null, 'uml sequence message call invoke dispatch'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'is_a', 'Is_A', null, 'uml sequence message call invoke dispatch'),
         this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'part_of', 'Part_Of', null, 'uml sequence message call invoke dispatch'),
@@ -1024,6 +1025,7 @@ Sidebar.prototype.addOntologyPalette = function(expand)
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'produced_by', 'Produced_By', null, 'uml sequence message call invoke dispatch'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'same_as', 'Same_as', null, 'uml sequence message call invoke dispatch'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'subquantity_of', 'Subquantity_Of', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'has_synonym', 'Has_Synonym', null, 'uml sequence message call invoke dispatch'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, '', '', null, 'uml sequence message call invoke dispatch'),
 
     ];

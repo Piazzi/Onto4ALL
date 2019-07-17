@@ -1295,6 +1295,35 @@ var EditDataDialog = function (ui, cell) {
     newProp.style.whiteSpace = 'nowrap';
     newProp.style.marginTop = '6px';
 
+    if(cell.isEdge())
+    {
+        var label = document.createElement('label');
+        label.style.marginRight ='4px';
+        label.innerHTML = 'Fuctional';
+
+        var checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'radio');
+        checkbox.setAttribute('name', 'checkbox');
+        checkbox.setAttribute('value', 'functional');
+        checkbox.innerHTML = 'Functional';
+        checkbox.innerText = 'Functional';
+
+        var label2 = document.createElement('label');
+        label2.style.marginRight ='4px';
+        label2.innerHTML = 'Inverse Fuctional';
+
+        var checkbox1 = document.createElement('input');
+        checkbox1.setAttribute('type', 'radio');
+        checkbox1.setAttribute('name', 'checkbox');
+        checkbox1.setAttribute('value', 'functional');
+
+        top.appendChild(label);
+        top.appendChild(checkbox1);
+        top.appendChild(label2);
+        top.appendChild(checkbox);
+
+    }
+
     var nameInput = document.createElement('input');
     nameInput.setAttribute('placeholder', mxResources.get('enterPropertyName'));
     nameInput.setAttribute('type', 'text');
@@ -1343,6 +1372,7 @@ var EditDataDialog = function (ui, cell) {
         }
     }
 
+    // relations properties
     if(cell.isEdge())
     {
         addProps('domain');
@@ -1352,6 +1382,7 @@ var EditDataDialog = function (ui, cell) {
     }
     else
     {
+        // class properties
         addProps('importedFrom');
         addProps('hasOBONamespace');
         addProps('hasURI');
