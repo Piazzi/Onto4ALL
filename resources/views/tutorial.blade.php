@@ -15,7 +15,7 @@
                 <a href="#intro">
                     <li>O que é o ONTO FOR ALL?</li>
                 </a>
-                <a href="#class"><li>Conceitos básicos</li></a>
+                <a href="#conceitos-basicos"><li>Conceitos básicos</li></a>
                     <ol>
                         <a href="#class"><li>Classe</li></a>
                         <a href="#relations"><li>Relação</li></a>
@@ -23,15 +23,16 @@
                         <a href="#properties"><li>Propriedades</li></a>
                         <li>Cardinalidade</li>
                         <a href="#colors"><li>Cores</li></a>
-                        <li>Salvar</li>
+                        <a href="#save"><li>Salvar</li></a>
                         <li>Download</li>
                         <li>Exportar</li>
+                        <a href="#import"><li>Importar</li></a>
                     </ol>
                 </li>
 
-                <li>Interface do Editor
+                <a href="#interface-do-editor"><li>Interface do Editor</li></a>
                     <ol>
-                        <li>Diagrama</li>
+                        <a href="#diagram"><li>Diagrama</li></a>
                         <li>Barra de Dicas</li>
                         <li>Histórico de Ontologias</li>
                         <li>Paleta de Ontologia</li>
@@ -58,8 +59,6 @@
 @section('content')
     <div id="intro" class="box box-solid">
         <div class="box-header with-border">
-            <i class="fa fa-text-width"></i>
-
             <h3 class="box-title">O que é o ONTO4ALL?</h3>
         </div>
         <!-- /.box-header -->
@@ -75,8 +74,9 @@
             </dl>
         </div>
         <!-- /.box-body -->
-
     </div>
+
+    <h2 id="conceitos-basicos">Conceitos básicos</h2>
     <div id="class" class="box box-solid">
         <div class="box-header with-border">
             <i class="fa fa-text-width"></i>
@@ -175,6 +175,76 @@
                     </div>
                     <div class="col-md-6">
                         <img alt="class image" src="/css/images/colors.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="save" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Salvar</h3>
+        </div>
+        <div class="box-body">
+            <dd>É possível salvar as ontologias desenvolvidas no Onto4All.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Clicando em <i>Save</i>, no menu <i>File</i>, pode-se salvar a ontologia criada no formato padrão XML.</li>
+                            <li>Desta forma, o download do arquivo será inicializado automaticamente.</li>
+                            <li>Também é possível exportar a ontologia em outros formatos, inclusive no formato OWL (Ontology Web Language)
+                            ou em SVG (para salvar apenas a imagem da ontologia criada), clicando em <i>Export</i>, dentro do mesmo menu.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/saving-ontology.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="import" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Importar</h3>
+        </div>
+        <div class="box-body">
+            <dd>Você também pode importar ontologias que já estão salvas no seu computador para o Onto4All!.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Clicando em <i>Import</i>, no menu <i>File</i>, pode-se carregar uma ontologia de seu computador no formato XML.</li>
+                            <li>Uma vez carregada a ontologia, é possível editá-la e salvá-la ao seu computador novamente.</li>
+                            <li>Após editar uma ontologia importada no formasto XML, é possível exportá-la também nos outros formatos suportados (OWL e SVG).</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/importing-ontology.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <h2 id="interface-do-editor">Interface do Editor</h2>
+    <div id="diagrama" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Diagrama</h3>
+        </div>
+        <div class="box-body">
+            <dd>Ao fazer login em Onto4All, você será redirecionado para a página princial: o diagrama de construção de ontologias.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Esta é a página principal do Onto4All, em que você poderá desenvolver suas próprias ontologias e editar ontologias já existentes no seu computador,
+                            usufruindo de todas as funcionalidades apresentadas na seção anterior.</li>
+                            <li>Para acessar esta página, você pode clicar em <strong>Ontology drawing</strong> ou na logo <strong>Onto4ALL</strong>,
+                            na barra de navegação no topo da página.</li>
+                            <li>Ao clicar no botão <strong>Hide sidebar</strong>, será exibida uma aba de configurações adicionais do
+                            diagrama, como a espessura das linhas do background (grid), cores e orientação da tela (retrato ou paisagem).</li>
+                            <li>Na barra de configurações do diagrama, logo abaixo da barra de navegação, encontram-se diversas ferramentas disponíveis,
+                            como opções de visualização, zoom e inserir imagens.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/diagrama.png">
                     </div>
                 </div>
         </div>
