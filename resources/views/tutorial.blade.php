@@ -33,10 +33,11 @@
                 <a href="#interface-do-editor"><li>Interface do Editor</li></a>
                     <ol>
                         <a href="#diagram"><li>Diagrama</li></a>
-                        <li>Barra de Dicas</li>
-                        <li>Histórico de Ontologias</li>
-                        <li>Paleta de Ontologia</li>
+                        <a href="#rules"><li>Barra de regras</li></a>
+                        <a href="#tips"><li>Dicas</li></a>
+                        <a href="#ontology-palette"><li>Paleta de ontologias</li></a>
                         <li>Outras paletas</li>
+                        <li>Histórico de Ontologias</li>
                     </ol>
                 </li>
                 <li>Gerenciamento de Ontologias
@@ -224,6 +225,7 @@
     </div>
 
     <h2 id="interface-do-editor">Interface do Editor</h2>
+
     <div id="diagrama" class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">Diagrama</h3>
@@ -245,6 +247,72 @@
                     </div>
                     <div class="col-md-6">
                         <img alt="class image" src="/css/images/diagrama.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="rules" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Barra de Regras</h3>
+        </div>
+        <div class="box-body">
+            <dd>Ao lado direito do diagrama, se encontra a barra de regras, que contém anotações que auxiliam o usuário a manipular as ferramentas do Onto4All.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Inicialmente, todas as regras cadastradas são exibidas na barra de regras.</li>
+                            <li>Ao clicar em um elemento na <a href="#palet">paleta de ontologias</a>, apenas as regras relacionadas àquele elemento
+                            serão exibidas na barra de regras.</li>
+                            <li>Através do campo de pesquisa na barra de regras, é possível encontrar regras relacionadas a um elemento específico,
+                            digitando o seu nome.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <img alt="class image" src="/css/images/rule1.png">
+                    </div>
+                    <div class="col-md-3">
+                        <img alt="class image" src="/css/images/rule2.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="tips" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Dicas</h3>
+        </div>
+        <div class="box-body">
+            <dd>Ao chegar na página do diagrama, serão exibidas, no canto inferior esquerdo, algumas dicas de uso do Onto4All.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Ao fechar uma dica, uma outra dica irá ser exibida no lugar da anterior.</li>
+                            <li>Ao clicar no botão <strong>Hide Tips</strong>, no canto superior direito, as dicas serão fechadas.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/tip.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="ontology-palette" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Paleta de ontologias</h3>
+        </div>
+        <div class="box-body">
+            <dd>Ao chegar na página do diagrama, serão exibidas, no canto inferior esquerdo, algumas dicas de uso do Onto4All.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Ao fechar uma dica, uma outra dica irá ser exibida no lugar da anterior.</li>
+                            <li>Ao clicar no botão <strong>Hide Tips</strong>, no canto superior direito, as dicas serão fechadas.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/tip.png">
                     </div>
                 </div>
         </div>
