@@ -36,7 +36,7 @@
                         <a href="#rules"><li>Barra de regras</li></a>
                         <a href="#tips"><li>Dicas</li></a>
                         <a href="#ontology-palette"><li>Paleta de ontologias</li></a>
-                        <li>Outras paletas</li>
+                        <a href="#other-palettes"><li>Outras paletas</li></a>
                         <li>Histórico de Ontologias</li>
                     </ol>
                 </li>
@@ -309,6 +309,26 @@
                         <ul>
                             <li>Na paleta de ontologias, encontram-se, dentre outros elementos, classes e relações, citadas anteriormente neste tutorial.</li>
                             <li>Além de classes e relações, a paleta de ontologias disponibiliza também a opção de inserir textos no diagrama.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/ontology-palette.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="other-palettes" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Outras paletas</h3>
+        </div>
+        <div class="box-body">
+            <dd>Além da <a href="#ontology-palette">paleta de ontologias</a>, existem paletas alternativas de elementos que podem ser usadas no diagrama.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>As paletas alternativas são a de flechas (<i>arrow</i>), a de UML, a de BPMN (<i>Business Process Model and Notation</i>) e a de ícones (clipart).</li>
+                            <li>Assim como os elementos da paleta de ontologias, para inserir um elemento de outra paleta no diagrama, basta clicar em cima dele.</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
