@@ -303,16 +303,16 @@
             <h3 class="box-title">Paleta de ontologias</h3>
         </div>
         <div class="box-body">
-            <dd>Ao chegar na página do diagrama, serão exibidas, no canto inferior esquerdo, algumas dicas de uso do Onto4All.</dd>
+            <dd>No canto esquerdo, se encontra <strong>Paleta de ontologias</strong>, que contém os principais elementos necessários para a construção de uma ontologia.</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Ao fechar uma dica, uma outra dica irá ser exibida no lugar da anterior.</li>
-                            <li>Ao clicar no botão <strong>Hide Tips</strong>, no canto superior direito, as dicas serão fechadas.</li>
+                            <li>Na paleta de ontologias, encontram-se, dentre outros elementos, classes e relações, citadas anteriormente neste tutorial.</li>
+                            <li>Além de classes e relações, a paleta de ontologias disponibiliza também a opção de inserir textos no diagrama.</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/tip.png">
+                        <img alt="class image" src="/css/images/ontology-palette.png">
                     </div>
                 </div>
         </div>
