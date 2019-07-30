@@ -40,9 +40,10 @@
                         <a href="#ontology-history"><li>Histórico de ontologias</li></a>
                     </ol>
                 </li>
-                <li>Gerenciamento de Ontologias
+
+                <a href="#ontology-management"><li>Gerenciamento de Ontologias</a>
                     <ol>
-                        <li>Ontologias</li>
+                        <a href="#ontologies"><li>Minhas ontologias</li></a>
                         <li>Ontologias favoritas</li>
                         <li>Ações</li>
                     </ol>
@@ -354,9 +355,33 @@
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/ontology-history2.png">
+                        <img alt="class image" src="/css/images/ontology-history.png">
                     </div>
                 </div>
         </div>
     </div>
+
+    <h2 id="ontology-management">Gerenciamento de ontologias</h2>
+
+    <div id="ontologies" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Minhas ontologias</h3>
+        </div>
+        <div class="box-body">
+            <dd>A página de ontologias pode ser acessada através da barra de navegação no topo da página, clicando em <strong>My Ontologies</strong>.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Nesta página serão exibidas as suas 10 ontologias mais recentes.</li>
+                            <li>Ao clicar no ícone de detalhes de uma ontologia, você será redirecionado para uma página em que serão exibidas informações
+                            mais detalhadas dessa ontologia, como o escopo da ontologia, seu grau de formalidade, seu proósito, etc.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/your-ontologies.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+    
 @stop
