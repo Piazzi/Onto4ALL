@@ -48,6 +48,7 @@
                         <a href="#actions"><li>Ações</li></a>
                     </ol>
                 </li>
+                <a href="#profile"><li>Perfil</li></a>
                 <li>Exemplos</li>
                 <li>Atalhos</li>
                 <li>Ferramentas Utilizadas</li>
@@ -426,6 +427,29 @@
                     </div>
                     <div class="col-md-6">
                         <img alt="class image" src="/css/images/icons.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <h2 id="#">Perfil</h2>
+
+    <div id="profile" class="box box-solid">
+        <div class="box-body">
+            <dd>Através da barra de navegação, pode-se chegar à página de perfil do usuário.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Nesta página são exibidas as informações pessoais do perfil, como foto de perfil, nome e email.</li>
+                            <li>É possível editar essas informações clicando em <strong>Account settings</strong>.</li>
+                            <li>Ainda em <strong>Account settings</strong>, é possível alterar a senha do perfil e também deletar o perfil.</li>
+                            <li><strong>Atenção!</strong> Ao deletar seu perfil, você perderá todas suas ontologias! Recomendamos fazer download de suas ontologias
+                            antes de excluir seu perfil.</li>
+                            <li>Nesta página também são mostradas as ontologias favoritadas e as ontologias recentemente editadas.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/profile-info.png">
                     </div>
                 </div>
         </div>
