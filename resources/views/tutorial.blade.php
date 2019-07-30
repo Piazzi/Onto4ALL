@@ -45,7 +45,7 @@
                     <ol>
                         <a href="#ontologies"><li>Minhas ontologias</li></a>
                         <a href="#favorite-ontologies"><li>Ontologias favoritas</li></a>
-                        <li>Ações</li>
+                        <a href="#actions"><li>Ações</li></a>
                     </ol>
                 </li>
                 <li>Exemplos</li>
@@ -393,13 +393,39 @@
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Na lista de ontologias, ao clicar no ícone de <strong>favorito</strong> (estrela), você irá favoritar a ontologia..</li>
+                            <li>Na lista de ontologias, ao clicar no ícone de <strong>favorito</strong> (estrela), você irá favoritar a ontologia.</li>
                             <li>Você pode favoritar até 5 ontologias.</li>
                             <li>Ontologias favoritadas ficarão em evidência, sendo mais fáceis de serem encontradas na página de ontologias.</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
                         <img alt="class image" src="/css/images/favorite-ontologies.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="actions" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Ações</h3>
+        </div>
+        <div class="box-body">
+            <dd>Em ambas as seções na página de ontologias (<a href="#ontologies">minhas ontologia</a> e <a href="favorite-ontologies">ontologias favoritas</a>),
+            há varios ícones que representam possíveis ações em relação a ontologia.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Os dois primeiros ícones são para fazer download da ontologia: o primeiro no formato XML e o segundo no formato OWL.</li>
+                            <li>O segundo ícone, já mencionado, redireciona para a página individual da ontologia.</li>
+                            <li>O ícone da estrela, já apresentado, faz com que a ontologia vá para a seção de ontologias favoritas.</li>
+                            <li>O ícone de edição, representado pelo lápis, permite que o usuário edite as informações da ontologia. Atenção! Este ícone
+                            representa a função de edição apenas de informações básicas e detalhes do propósito e uso da ontologia, e não da ontologia em si.
+                            Para editar a estrutura da própria ontologia em questão, utilize o diagrama!</li>
+                            <li>O último ícone, em vermelho, exclui a ontologia.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/icons.png">
                     </div>
                 </div>
         </div>
