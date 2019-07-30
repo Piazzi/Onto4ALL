@@ -41,10 +41,10 @@
                     </ol>
                 </li>
 
-                <a href="#ontology-management"><li>Gerenciamento de Ontologias</a>
+                <a href="#ontology-management"><li>Gerenciamento de Ontologias</li></a>
                     <ol>
                         <a href="#ontologies"><li>Minhas ontologias</li></a>
-                        <li>Ontologias favoritas</li>
+                        <a href="#favorite-ontologies"><li>Ontologias favoritas</li></a>
                         <li>Ações</li>
                     </ol>
                 </li>
@@ -379,6 +379,27 @@
                     </div>
                     <div class="col-md-6">
                         <img alt="class image" src="/css/images/your-ontologies.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="favorite-ontologies" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Ontologias favoritas</h3>
+        </div>
+        <div class="box-body">
+            <dd>Ainda na página de ontologias, há a seção Ontologias Favoritas.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Na lista de ontologias, ao clicar no ícone de <strong>favorito</strong> (estrela), você irá favoritar a ontologia..</li>
+                            <li>Você pode favoritar até 5 ontologias.</li>
+                            <li>Ontologias favoritadas ficarão em evidência, sendo mais fáceis de serem encontradas na página de ontologias.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/favorite-ontologies.png">
                     </div>
                 </div>
         </div>
