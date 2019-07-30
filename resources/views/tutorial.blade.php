@@ -191,6 +191,7 @@
                     <div class="col-md-6">
                         <ul>
                             <li>Clicando em <i>Save</i>, no menu <i>File</i>, pode-se salvar a ontologia criada no formato padrão XML.</li>
+                            <li>Ao salvar uma ontologia, ela poderá ser encontrada na sua página de ontologias.</li>
                             <li>Desta forma, o download do arquivo será inicializado automaticamente.</li>
                             <li>Também é possível exportar a ontologia em outros formatos, inclusive no formato OWL (Ontology Web Language)
                             ou em SVG (para salvar apenas a imagem da ontologia criada), clicando em <i>Export</i>, dentro do mesmo menu.</li>
@@ -332,7 +333,28 @@
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/ontology-palette.png">
+                        <img alt="class image" src="/css/images/alternative-palettes.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="ontology-history" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Histórico de ontologias</h3>
+        </div>
+        <div class="box-body">
+            <dd>Ainda na página do diagrama de construção de ontologias do Onto4All, podemos visualizar o histórico de ontologias salvas pelo usuário.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Na página do diagrama, para exibir as ontologias salvas basta clicar em <strong>Your ontologies</strong>, na parte superior da <a href="#rules">barra de dicas</a>.</li>
+                            <li>As ontologias salvas serão exibidas na forma de uma linha do tempo que mostra a data e hora em que as ontologias foram salvas.</li>
+                            <li>Ainda na linha do tempo do histórico de ontologias, é possível exportá-las nos formatos OWL e XML.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/ontology-history2.png">
                     </div>
                 </div>
         </div>
