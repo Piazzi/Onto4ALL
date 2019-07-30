@@ -454,5 +454,53 @@
                 </div>
         </div>
     </div>
+
+    <h2 class="examples">Exemplos</h2>
+
+    <div id="example1" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Exemplo #1</h3>
+        </div>
+        <div class="box-body">
+            <dd>Neste exemplo, temos uma ontologia de pizza, que relaciona diferentes sabores e coberturas de pizzas.</dd>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>Neste caso, temos uma classe raiz chamada Thing, que dá origem às duas principais: Pizza e Topping.</li>
+                            <li>Pintamos as classes de maneira a organizar os conceitos relacionados.</li>
+                            <li>Utilizamos relações já existentes (<strong>is_a</strong>) e também nomeamos novas relações( <strong>hasTopping</strong>).</li>
+                            <li>Neste exemplo, fizemos uso do recurso de arestas de ligações curvas, com o intuito de deixar o diagrama mais "limpo".</li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/pizza-ontology.svg">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="example2" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Exemplo #2</h3>
+        </div>
+        <div class="box-body">
+            <dd>Neste outro exemplo, temos uma ontologia que representa a família Simpsons.</dd>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>Nesse exemplo não temos uma classe "raiz", mas a classe da família Simpsons é a principal classe da ontologia.</li>
+                            <li>Deixamos a classe Simpsons Family com um tamanho maior do que as outras e no centro, deixando a ontologia mais intuitiva.</li>
+                            <li>Mais uma vez, pintamos as classes de maneira a organizar os conceitos e criamos novas relações que expressam os conceitos formulados.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/simpsonsontology.svg">
+                    </div>
+                </div>
+        </div>
+    </div>
+    
     
 @stop
