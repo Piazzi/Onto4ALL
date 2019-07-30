@@ -49,7 +49,7 @@
                     </ol>
                 </li>
                 <a href="#profile"><li>Perfil</li></a>
-                <li>Exemplos</li>
+                <a href="#examples"><li>Exemplos</li></a>
                 <li>Atalhos</li>
                 <li>Ferramentas Utilizadas</li>
                 <li>Créditos</li>
@@ -455,7 +455,7 @@
         </div>
     </div>
 
-    <h2 class="examples">Exemplos</h2>
+    <h2 id="examples">Exemplos</h2>
 
     <div id="example1" class="box box-solid">
         <div class="box-header with-border">
