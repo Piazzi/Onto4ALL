@@ -37,7 +37,7 @@
                         <a href="#tips"><li>Dicas</li></a>
                         <a href="#ontology-palette"><li>Paleta de ontologias</li></a>
                         <a href="#other-palettes"><li>Outras paletas</li></a>
-                        <li>Histórico de Ontologias</li>
+                        <a href="#ontology-history"><li>Histórico de ontologias</li></a>
                     </ol>
                 </li>
                 <li>Gerenciamento de Ontologias
