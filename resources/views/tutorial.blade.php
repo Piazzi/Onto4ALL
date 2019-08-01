@@ -19,13 +19,9 @@
                     <ol>
                         <a href="#class"><li>Classe</li></a>
                         <a href="#relations"><li>Relação</li></a>
-                        <li>Ligação</li>
                         <a href="#properties"><li>Propriedades</li></a>
-                        <li>Cardinalidade</li>
                         <a href="#colors"><li>Cores</li></a>
                         <a href="#save"><li>Salvar</li></a>
-                        <li>Download</li>
-                        <li>Exportar</li>
                         <a href="#import"><li>Importar</li></a>
                     </ol>
                 </li>
@@ -49,10 +45,10 @@
                     </ol>
                 </li>
                 <a href="#profile"><li>Perfil</li></a>
-                <li>Exemplos</li>
-                <li>Atalhos</li>
-                <li>Ferramentas Utilizadas</li>
-                <li>Créditos</li>
+                <a href="#examples"><li>Exemplos</li></a>
+                <a href="#shortcuts"><li>Atalhos</li></a>
+                <a href="#stack"><li>Ferramentas utilizadas</li></a>
+                <a href="#credits"><li>Créditos</li></a>
             </ol>
         </div>
         <!-- /.box-body -->
@@ -454,5 +450,112 @@
                 </div>
         </div>
     </div>
+
+    <h2 id="examples">Exemplos</h2>
+
+    <div id="example1" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Exemplo #1</h3>
+        </div>
+        <div class="box-body">
+            <dd>Neste exemplo, temos uma ontologia de pizza, que relaciona diferentes sabores e coberturas de pizzas.</dd>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>Neste caso, temos uma classe raiz chamada Thing, que dá origem às duas principais: Pizza e Topping.</li>
+                            <li>Pintamos as classes de maneira a organizar os conceitos relacionados.</li>
+                            <li>Utilizamos relações já existentes (<strong>is_a</strong>) e também nomeamos novas relações( <strong>hasTopping</strong>).</li>
+                            <li>Neste exemplo, fizemos uso do recurso de arestas de ligações curvas, com o intuito de deixar o diagrama mais "limpo".</li>
+                        </ul>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/pizza-ontology.svg">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <div id="example2" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Exemplo #2</h3>
+        </div>
+        <div class="box-body">
+            <dd>Neste outro exemplo, temos uma ontologia que representa a família Simpsons.</dd>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>Nesse exemplo não temos uma classe "raiz", mas a classe da família Simpsons é a principal classe da ontologia.</li>
+                            <li>Deixamos a classe Simpsons Family com um tamanho maior do que as outras e no centro, deixando a ontologia mais intuitiva.</li>
+                            <li>Mais uma vez, pintamos as classes de maneira a organizar os conceitos e criamos novas relações que expressam os conceitos formulados.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/simpsonsontology.svg">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <h2 id="shortcuts">Atalhos</h2>
+
+    <div class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Atalhos do teclado</h3>
+        </div>
+        <div class="box-body">
+            <dd>No Onto4All, existem alguns atalhos do teclado que podem agilizar a execução de algumas tarefas simples.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>Ao carregar a página principal do Onto4All, serão exibidas dicas com alguns atalhos do teclado.</li>
+                            <li>O atalho <strong>CTRL + M</strong> exibe as propriedades do elemento selecionado no diagrama.</li>
+                            <li>O atalho <strong>CTRL + S</strong> salva e realiza o download da ontologia, no formato XML.</li>
+                            <li>O atalho <strong>CTRL + Z</strong> desfaz a última ação do usuário no diagrama.</li>
+                            <li>Combinando a tecla <strong>CTRL</strong> com as teclas <strong>+</strong> e <strong>-</strong>,
+                            pode-se controlar o zoom da tela; Com o atalho <strong>CTRL + H</strong>, pode-se voltar o zoom para o padrão (100%).</li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/shortcut-tip.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <h2 id="stack">Ferramentas utilizadas</h2>
+
+    <div class="box box-solid">
+        <div class="box-body">
+            <dd>No desenvolvimento do Onto4All, foram utilizadas diversas tecnologias e ferramentas.</dd>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul>
+                            <li>O diagrama de construção de ontologias foi feito utilizando a biblioteca de JavaScript <a href="https://github.com/jgraph/mxgraph"> MXGraph </a>,
+                            que, com algumas modificações para adequá-la às outras tecnologias do sistema, proporcionou o ambiente interativo de construção de ontologias.</li>
+                            <li>No front-end, utilizou-se a biblioteca <a href="https://jquery.com"> jQuery</a> e o template <a href="https://adminlte.io"> AdminLTE </a>.</li>
+                            <li>Para o back-end, foi utilizado <a href="https://laravel.com">Laravel</a>, framework MVC de PHP, e banco de dados <a href="https://www.mysql.com">MySQL</a>.</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <img alt="class image" src="/css/images/logos.png">
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <h2 id="credits">Créditos</h2>
+
+    <div class="box box-solid">
+        <div class="box-body">
+            <dd>Onto4All foi desenvolvido por <a href="https://github.com/Piazzi/">Lucas Piazzi</a>, como parte de um projeto de Iniciação Científica
+            vinculado ao Departamento de Ciência da Computação da Universidade Federal de Juiz de Fora (UFJF), composto também por
+            <a href="professorfabriciomendonca.com.br/">Prof. Dr Fabrício Martins Mendonça</a>, orientador do projet, e por
+            <a href="https://github.com/carvalhotiago">Tiago Carvalho</a> e <a href="https://github.com/pedroalves4">Pedro Henrique Alves</a>.</div>
+        </div>
+    </div>
+    
     
 @stop
