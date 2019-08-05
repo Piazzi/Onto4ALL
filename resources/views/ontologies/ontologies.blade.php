@@ -77,6 +77,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Created At</th>
+                                    <th>Updated At</th>
                                     <th>Description</th>
                                     <th>Link</th>
                                     <th>Created By</th>
@@ -94,6 +95,7 @@
 
                                         <td><span class="label label-success">{{$ontology->name}}</span></td>
                                         <td>{{$ontology->created_at}}</td>
+                                        <td>{{$ontology->updated_at}}</td>
                                         <td>
                                             @php
                                                 $Description = str_limit($ontology->description, 20);

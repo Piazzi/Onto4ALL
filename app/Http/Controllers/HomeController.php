@@ -79,6 +79,18 @@ class HomeController extends Controller
         $ontology->favourite = 0;
         $ontology->save();
 
+        /// Updates the ontology if already exists in the ontology manager
+        $ontologies = Ontology::where('user_id', $request->user()->id)->where('favourite', 1)->get();
+        foreach($ontologies as $savedOntology)
+        {
+            if($savedOntology->name == $request->fileName)
+            {
+                $savedOntology->file = $request->xml;
+                $savedOntology->updated_at = $ontology->created_at;
+                $savedOntology->save();
+            }
+        }
+
         return $response;
     }
 
