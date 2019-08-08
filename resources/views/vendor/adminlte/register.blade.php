@@ -9,8 +9,9 @@
 
 @section('body')
     <div class="register-box">
-        <div class="register-logo">
-            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
+        <div class="login-logo">
+            <img class="img-responsive img" id="login-image" src="css/images/ONTO4ALL.png" alt="" srcset=""
+                 style="display: block;margin-left: auto;margin-right: auto;">
         </div>
 
         <div class="register-box-body">
@@ -58,7 +59,7 @@
                         </span>
                     @endif
                 </div>
-                <button type="submit"
+                <button style="background-color: #00A65A;" type="submit"
                         class="btn btn-primary btn-block btn-flat"
                 >{{ trans('adminlte::adminlte.register') }}</button>
             </form>
