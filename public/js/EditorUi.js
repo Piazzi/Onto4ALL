@@ -923,6 +923,7 @@ EditorUi.prototype.init = function () {
 
     graph.getModel().addListener(mxEvent.CHANGE, mxUtils.bind(this, function () {
         this.updateActionStates();
+        movementCompiler(mxUtils.getXml(this.editor.getGraphXml()));
     }));
 
     // Changes action states after change of default parent
@@ -996,6 +997,7 @@ EditorUi.prototype.onKeyPress = function (evt) {
  * Returns true if the given event should start editing. This implementation returns true.
  */
 EditorUi.prototype.isImmediateEditingEvent = function (evt) {
+    propertiesCompiler(mxUtils.getXml(this.editor.getGraphXml()));
     return true;
 };
 
@@ -3635,4 +3637,6 @@ EditorUi.prototype.destroy = function () {
             c[i].parentNode.removeChild(c[i]);
         }
     }
+
 };
+

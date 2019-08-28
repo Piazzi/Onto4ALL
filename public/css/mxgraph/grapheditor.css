@@ -1298,7 +1298,7 @@ center {
 /* Dicas */
 #tip {
     z-index: 15 !important;
-    top: 550px;
+    top: 410px;
     width: 30%;
     height: 15%;
     left: 10px;
@@ -1308,12 +1308,23 @@ center {
 
 #warning {
     z-index: 15 !important;
-    top: 440px;
+    top: 500px;
+    width: 30%;
+    height: 15%;
+    left: 510px;
+    opacity: 0.9;
+    position: fixed;
+}
+
+#equalClassNamesError, #equalRelationNamesError,#equalRelationsError{
+    z-index: 16 !important;
+    top: 550px;
     width: 30%;
     height: 15%;
     left: 10px;
     opacity: 0.9;
     position: fixed;
+    overflow: hidden;
 }
 
 /* /.Dicas */

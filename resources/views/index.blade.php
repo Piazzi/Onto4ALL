@@ -295,13 +295,43 @@
             </div>
         </div>
     </div>
-    <!-- TIPS -->
+    <!-- TIPS / ERRORS / WARNINGS -->
 
     @component('warning')
         @slot('title')
             <strong>Important</strong>
         @endslot
         Press <strong>CTRL + S </strong> to download your ontology!
+    @endcomponent
+
+    @component('danger')
+        @slot('id')
+            equalClassNamesError
+        @endslot
+        @slot('title')
+            <strong>Error</strong>
+        @endslot
+        Your ontology has <strong>2 Classes</strong> with the same name!
+    @endcomponent
+
+    @component('danger')
+        @slot('id')
+            equalRelationNamesError
+        @endslot
+        @slot('title')
+            <strong>Error</strong>
+        @endslot
+        Your ontology has <strong>2 Relations</strong> with the same name!
+    @endcomponent
+
+    @component('danger')
+        @slot('id')
+            equalRelationsError
+        @endslot
+        @slot('title')
+            <strong>Error</strong>
+        @endslot
+        You cant have <strong> 2 equal relations pointing to the same classes </strong>
     @endcomponent
 
     @component('tip')
@@ -334,6 +364,11 @@
     <a id="sidebar-control" class="btn btn-app">
         <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i>
         <div id="sidebar-control-text">Hide Sidebar</div>
+    </a>
+
+    <a id="error-control" class="btn btn-app">
+        <i style="margin-left: 20px;" class="fa fa-fw fa-ban"></i>
+        <div id="sidebar-control-text">Hide Error Messages</div>
     </a>
     </body>
 
