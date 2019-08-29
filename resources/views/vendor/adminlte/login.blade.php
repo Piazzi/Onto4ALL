@@ -231,7 +231,10 @@
                 <div class="modal-body">
                     <ul>
                         <li>
-                            <a><i class="fa-external-link"></i>Adicionar links aqui</a>
+                            <a><i class="fa fa-mail-forward"></i> Lucas Piazzi - Developer - lpiazzi@ice.ufjf.br</a>
+                        </li>
+                        <li>
+                            <a><i class="fa fa-mail-forward"></i> Fabrício Mendonça - Professor - fabricio.mendonca@ice.ufjf.br</a>
                         </li>
                     </ul>
                 </div>

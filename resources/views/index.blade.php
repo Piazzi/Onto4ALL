@@ -285,7 +285,19 @@
                 <div class="modal-body">
                     <ul>
                         <li>
-                            <a><i class="fa-external-link"></i>Adicionar links aqui</a>
+                            <a href="http://www.ontobee.org/" target="_blank"><i class="fa fa-external-link"></i> OntoBee</a>
+                        </li>
+                        <li>
+                            <a href="https://bioportal.bioontology.org/" target="_blank"><i class="fa fa-external-link"></i> BioPortal</a>
+                        </li>
+                        <li>
+                            <a href="https://www.ebi.ac.uk/ols/index" target="_blank"><i class="fa fa-external-link"></i> Ontology Lookup Service (OLS)</a>
+                        </li>
+                        <li>
+                            <a href="http://swoogle.umbc.edu/2006/" target="_blank"><i class="fa fa-external-link"></i> Swoogle</a>
+                        </li>
+                        <li>
+                            <a href="http://resources.si.washington.edu/fma_browser1/" target="_blank"><i class="fa fa-external-link"></i> Foundational Model Anatomy Browser</a>
                         </li>
                     </ul>
                 </div>
@@ -332,6 +344,16 @@
             <strong>Error</strong>
         @endslot
         You cant have <strong> 2 equal relations pointing to the same classes </strong>
+    @endcomponent
+
+    @component('danger')
+        @slot('id')
+            instanceOfBetweenClassesError
+        @endslot
+        @slot('title')
+            <strong>Error</strong>
+        @endslot
+        You cant have a <strong> instance Of </strong> relation between two classes. It must be between one class and one instance
     @endcomponent
 
     @component('tip')

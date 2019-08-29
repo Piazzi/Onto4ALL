@@ -1316,7 +1316,7 @@ center {
     position: fixed;
 }
 
-#equalClassNamesError, #equalRelationNamesError,#equalRelationsError{
+#equalClassNamesError, #equalRelationNamesError,#equalRelationsError, #instanceOfBetweenClassesError{
     z-index: 16 !important;
     top: 550px;
     width: 30%;
