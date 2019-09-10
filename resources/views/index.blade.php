@@ -356,6 +356,16 @@
         You cant have a <strong> instance Of </strong> relation between two classes. It must be between one class and one instance
     @endcomponent
 
+    @component('danger')
+        @slot('id')
+            wrongRelationError
+        @endslot
+        @slot('title')
+            <strong>Error</strong>
+        @endslot
+        You can <strong> only have a instance_of relation </strong> between a class and a instance.
+    @endcomponent
+
     @component('tip')
         @slot('title')
             Tip
