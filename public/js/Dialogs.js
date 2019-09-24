@@ -1395,6 +1395,8 @@ var EditDataDialog = function (ui, cell) {
         addProps('exampleOfUsage');
         addProps('SubClassOf');
         addProps('comments');
+        addProps('DisjointWith');
+        addProps('EquivalentTo');
     }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

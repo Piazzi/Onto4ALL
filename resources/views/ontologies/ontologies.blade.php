@@ -94,8 +94,8 @@
                                     <tr>
 
                                         <td><span class="label label-success">{{$ontology->name}}</span></td>
-                                        <td>{{$ontology->created_at}}</td>
-                                        <td>{{$ontology->updated_at}}</td>
+                                        <td>{{date("d-m-Y | H:i e", strtotime($ontology->created_at))}}</td>
+                                        <td>{{date("d-m-Y | H:i e", strtotime($ontology->updated_at))}}</td>
                                         <td>
                                             @php
                                                 $Description = str_limit($ontology->description, 20);
@@ -195,7 +195,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Created At</th>
-                                    <th>Created By</th>
+                                    <th>Updated At</th>
                                     <th>XML File</th>
                                     <th>OWL File</th>
                                     <th>Details</th>
@@ -208,8 +208,8 @@
                                     <tr>
 
                                         <td><span class="label label-success">{{$ontology->name}}</span></td>
-                                        <td>{{$ontology->created_at}}</td>
-                                        <td>{{$ontology->created_by}}</td>
+                                        <td>{{date("d-m-Y | H:i", strtotime($ontology->created_at))}}</td>
+                                        <td>{{date("d-m-Y | H:i", strtotime($ontology->updated_at))}}</td>
                                         <td>
                                             <a href="{{route('ontologies.download', [ 'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
                                                 <button class="btn btn-success"><i class="fa fa-fw fa-download"></i>
