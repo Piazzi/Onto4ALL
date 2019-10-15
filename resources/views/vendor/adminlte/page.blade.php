@@ -57,27 +57,87 @@
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
-                        <li>
-                            @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
-                                <a href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
-                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                </a>
-                            @else
-                                <a href="#"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                >
-                                    <i class="fa fa-fw fa-user"></i>
-                                    <strong> {{Auth::user()->name}} </strong>
-                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                </a>
-                                <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
-                                    @if(config('adminlte.logout_method'))
-                                        {{ method_field(config('adminlte.logout_method')) }}
-                                    @endif
-                                    {{ csrf_field() }}
-                                </form>
-                            @endif
+
+                        <li id="notifications-menu" class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-bell-o"></i>
+                                <span  id="notification-counter" class="label label-warning"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Your notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
                         </li>
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <!-- The user image in the navbar-->
+                                <i class="fa fa-user"></i>
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">{{Auth::user()->name}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    <img src="css/images/profile.jpeg" class="img-circle" alt="User Image">
+                                    <p>
+                                        {{Auth::user()->name}}
+                                        <small>Member since {{Auth::user()->created_at}}</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center border-right">
+                                            <a  href="{{route('profile.edit', Auth::user()->id)}}">Account Settings</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center border-right">
+                                            <a href="{{route('ontologies.index')}}">Your Ontologies</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a href="{{route('tutorial')}}">Help</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{{route('profile.index')}}" class="btn btn-default btn-flat"><i class="fa fa-user-plus"></i> Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
+                                            <a class="btn btn-default btn-flat" href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
+                                                <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                            </a>
+                                        @else
+                                            <a class="btn btn-default btn-flat" href="#"
+                                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                            >
+                                                <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
+                                                @if(config('adminlte.logout_method'))
+                                                    {{ method_field(config('adminlte.logout_method')) }}
+                                                @endif
+                                                {{ csrf_field() }}
+                                            </form>
+                                        @endif
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        @if(Route::currentRouteName() == 'home')
+                        <li>
+                            <a id="control-sidebar" href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i> Show/Hide SideBar</a>
+                        </li>
+                        @endif
                     </ul>
                 </div>
                 @if(config('adminlte.layout') == 'top-nav')

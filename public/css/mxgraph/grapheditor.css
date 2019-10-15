@@ -18,6 +18,136 @@
 
 }
 
+/* --------------------------------------------ONTO4ALL------------------------------------------------------------*/
+
+html {
+    overflow-y: hidden;
+}
+
+/*
+    ALTERAÇÕES PARA ENCAIXAR O DIAGRAMA
+    NA HOME E ORGANIZAR OS MENUS
+*/
+.geToolbarContainer {
+    position: absolute;
+    cursor: default;
+    margin-top: 19px;
+    z-index: 1000;
+    left: 282px !important;
+}
+
+.geSidebarContainer, .geFormatContainer, .geDiagramContainer {
+    margin-top: 18px;
+}
+
+.geMenubarContainer {
+    position: absolute;
+    padding-top: 50px;
+    z-index: 12;
+    right: 267px !important;
+    cursor: default;
+    background-color: #ffffff !important;
+}
+
+.geMenubar {
+    background: whitesmoke !important;
+    border-bottom: 1px solid #e0e0e0;
+    width: 26%;
+}
+
+.geFooterContainer {
+
+    background: #00A65A !important;
+
+}
+
+/*
+   FIM DAS ALTERAÇÕES
+*/
+
+/*
+    ALTERAÇÕES PARA ORGANIZER AS CAIXAS DE DIALOGO
+    DO SISTEMA
+*/
+.geDialog {
+    width: 55% !important;
+    height: 55%!important;
+}
+
+center {
+    padding-right: 500px;
+}
+
+
+/*
+   FIM DAS ALTERAÇÕES
+*/
+
+/* /.botões */
+
+
+.fa-refresh {
+    margin-bottom: 550px;
+    color: #00A65A !important;
+}
+
+#loading {
+    color: #00A65A !important;
+}
+
+/* MENU DE DICAS */
+#menu-wrapper {
+    position: relative;
+}
+
+#menu-scroll {
+    height: 80vh;
+    overflow: auto;
+    margin-top: 20px;
+}
+
+#menu-wrapper table {
+    width: 100%;
+
+}
+
+#menu-wrapper table {
+    position: absolute;
+    border: 1px solid red;
+}
+
+.control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open + .control-sidebar-bg {
+    position: fixed;
+    width: 22%;
+}
+
+#searchBar {
+    height: 150%;
+}
+
+aside {
+    opacity: 0.9;
+}
+
+.editor-timeline-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Error Console */
+
+#error-console {
+    width: 50%;
+    position: relative;
+    z-index: 4 !important;
+    top: 570px;
+    right: 180px;
+}
+
+
+/* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
+
 .geEditor {
     font-family: Helvetica Neue, Helvetica, Arial Unicode MS, Arial;
     font-size: 10pt;
@@ -1228,170 +1358,5 @@ html td.mxWindowTitle {
     color: rgb(112, 112, 112);
     padding: 4px;
 }
-
-
-/* --------------------------------------------ONTO4ALL------------------------------------------------------------*/
-
-html {
-    overflow-y: hidden;
-}
-
-/*
-    ALTERAÇÕES PARA ENCAIXAR O DIAGRAMA
-    NA HOME E ORGANIZAR OS MENUS
-*/
-.geToolbarContainer {
-    position: absolute;
-    cursor: default;
-    margin-top: 19px;
-    z-index: 1000;
-    left: 282px !important;
-}
-
-.geSidebarContainer, .geFormatContainer, .geDiagramContainer {
-    margin-top: 18px;
-}
-
-.geMenubarContainer {
-    position: absolute;
-    padding-top: 50px;
-    z-index: 12;
-    right: 267px !important;
-    cursor: default;
-    background-color: #ffffff !important;
-}
-
-.geMenubar {
-    background: whitesmoke !important;
-    border-bottom: 1px solid #e0e0e0;
-    width: 26%;
-}
-
-.geFooterContainer {
-
-    background: #00A65A !important;
-
-}
-
-/*
-   FIM DAS ALTERAÇÕES
-*/
-
-/*
-    ALTERAÇÕES PARA ORGANIZER AS CAIXAS DE DIALOGO
-    DO SISTEMA
-*/
-.geDialog {
-    width: 55% !important;
-    height: 55%!important;
-}
-
-center {
-    padding-right: 500px;
-}
-
-
-/*
-   FIM DAS ALTERAÇÕES
-*/
-
-/* Dicas */
-#tip {
-    z-index: 15 !important;
-    top: 410px;
-    width: 30%;
-    height: 15%;
-    left: 10px;
-    opacity: 0.9;
-    position: fixed;
-}
-
-#warning {
-    z-index: 15 !important;
-    top: 500px;
-    width: 30%;
-    height: 15%;
-    left: 510px;
-    opacity: 0.9;
-    position: fixed;
-}
-
-#equalClassNamesError, #equalRelationNamesError,#equalRelationsError, #instanceOfBetweenClassesError, #wrongRelationError{
-    z-index: 16 !important;
-    top: 550px;
-    width: 30%;
-    height: 15%;
-    left: 10px;
-    opacity: 0.9;
-    position: fixed;
-    overflow: hidden;
-}
-
-/* /.Dicas */
-
-/* Botões*/
-#notification-button {
-    z-index: 150;
-    margin-top: 5px;
-    margin-left: 850px;
-}
-
-#sidebar-control {
-    z-index: 150;
-    margin-left: 850px;
-}
-
-/* /.botões */
-
-
-.fa-refresh {
-    margin-bottom: 550px;
-    color: #00A65A !important;
-}
-
-#loading {
-    color: #00A65A !important;
-}
-
-/* MENU DE DICAS */
-#menu-wrapper {
-    position: relative;
-}
-
-#menu-scroll {
-    height: 80vh;
-    overflow: auto;
-    margin-top: 20px;
-}
-
-#menu-wrapper table {
-    width: 100%;
-
-}
-
-#menu-wrapper table {
-    position: absolute;
-    border: 1px solid red;
-}
-
-.control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open + .control-sidebar-bg {
-    position: fixed;
-}
-
-#searchBar {
-    height: 150%;
-}
-
-aside {
-    opacity: 0.9;
-}
-
-.editor-timeline-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
 
 

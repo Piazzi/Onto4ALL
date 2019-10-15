@@ -80,7 +80,6 @@
                                     <th>Updated At</th>
                                     <th>Description</th>
                                     <th>Link</th>
-                                    <th>Created By</th>
                                     <th>XML File</th>
                                     <th>OWL File</th>
                                     <th>Details</th>
@@ -108,7 +107,6 @@
                                             @endphp
                                             <a href="{{$ontology->link}}">{{$Link}}</a>
                                         </td>
-                                        <td>{{$ontology->created_by}}</td>
                                         <td>
                                             <a href="{{route('ontologies.download', [ 'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
                                                 <button class="btn btn-success"><i class="fa fa-fw fa-download"></i>
@@ -199,6 +197,7 @@
                                     <th>XML File</th>
                                     <th>OWL File</th>
                                     <th>Details</th>
+                                    <th>Update</th>
                                     <th>Favourite</th>
                                     <th>Delete</th>
                                 </tr>
@@ -224,6 +223,12 @@
                                         </td>
                                         <td><a href="{{route('ontologies.show', $ontology->id)}}">
                                                 <button class="btn btn-success"><i class="fa fa-fw fa-plus"></i>
+                                                </button>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="{{route('ontologies.edit',$ontology->id)}}">
+                                                <button class="btn btn-success"><i class="fa fa-fw fa-edit"></i>
                                                 </button>
                                             </a>
                                         </td>

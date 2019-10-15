@@ -25,11 +25,13 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param $id
      * @return \Illuminate\Http\Response
      */
-
     public function show($id)
     {
+        if($id != Auth::user()->id)
+            return view('lockscreen');
         return User::FindOrFail($id);
     }
 
@@ -42,7 +44,6 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, $id)
     {
-
         $user = User::findOrFail($id);
         $user->update($request->all());
         $request->user()->fill(['password'=>Hash::make($request->newPassword)])->save();

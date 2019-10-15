@@ -34,6 +34,8 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
+        if($id != Auth::user()->id)
+            return view('lockscreen');
         return view('profiles.settings', compact('user'));
     }
 
@@ -46,6 +48,8 @@ class ProfileController extends Controller
      */
     public function update(UserUpdateRequest $request, $id)
     {
+        if($id != Auth::user()->id)
+            return view('lockscreen');
         $user = User::find($id);
         if ($request->email != Auth::user()->email) {
             $request->validate([
@@ -68,6 +72,8 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
+        if($id != Auth::user()->id)
+            return view('lockscreen');
         $user = User::find($id);
         $ontologies = Ontology::where('user_id','=', $user->id)->delete();
         $user->delete();
@@ -80,6 +86,8 @@ class ProfileController extends Controller
      */
     public function changePassword($id)
     {
+        if($id != Auth::user()->id)
+            return view('lockscreen');
         return view('profiles.change_password');
     }
 
@@ -91,6 +99,8 @@ class ProfileController extends Controller
      */
     public function updatePassword(Request $request, $id)
     {
+        if($id != Auth::user()->id)
+            return view('lockscreen');
         $user = User::find($id);
         $request->validate([
             'password' => 'required|string|min:6|confirmed',

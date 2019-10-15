@@ -134,13 +134,6 @@ return [
             ],
         ],
 
-        'PROFILE',
-        [
-            'text' => 'Profile',
-            'url' => 'profile',
-            'icon' => 'user-plus',
-        ],
-
         'ONTOLOGIES',
         [
             'text' => 'My Ontologies',

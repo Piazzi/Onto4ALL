@@ -57,7 +57,8 @@
     <script type="text/javascript" src="js/Dialogs.js"></script>
     <script type="text/javascript" src="js/HomeFunctions.js"></script>
     <script type="text/javascript" src="js/Compiler.js"></script>
-
+    <!-- Search Script -->
+    <script defer type="text/javascript" src="js/SearchTip.js"></script>
 
 @stop
 
@@ -209,36 +210,122 @@
 
             </div>
             <div id="control-sidebar-theme-demo-options-tab" class="tab-pane">
-                <div>
-                    <div class="box box-solid">
+                    <div class="box box-primary">
                         <div class="box-header with-border">
                             <i class="fa fa-text-width"></i>
 
-                            <h3 class="box-title">Metodology</h3>
+                            <h3 class="box-title">Methodology</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <ol>
-                                <li>Especificação da ontologia</li>
-                                <li>Aquisição e extração de conhecimento</li>
-                                <li>Conceitualização</li>
-                                <li>Fundamentação ontológica </li>
-                                <li>Formalização da ontologia
-                                    <ol>
-                                        <li>Phasellus iaculis neque</li>
-                                        <li>Purus sodales ultricies</li>
-                                        <li>Vestibulum laoreet porttitor sem</li>
-                                        <li>Ac tristique libero volutpat at</li>
-                                    </ol>
+                            <ul class="todo-list ui-sortable">
+                                <li>
+                                    <!-- drag handle -->
+                                    <span class="handle ui-sortable-handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <!-- checkbox -->
+                                    <input type="checkbox" value="">
+                                    <!-- todo text -->
+                                    <span class="text"><a  href="#" data-toggle="modal" data-target="#methodology1" aria-expanded="false">1. Especificação da ontologia</a></span>
+                                    <!-- Emphasis label -->
+                                    <!-- General tools such as edit or delete-->
+                                    <div class="tools">
+                                        <a href="#" data-toggle="modal" data-target="#methodology1" aria-expanded="false"><i class="fa fa-info fa-2x"></i> Info </a>
+                                    </div>
                                 </li>
-                                <li>Avaliação da ontologia</li>
-                                <li>Documentação da ontologia</li>
-                                <li>Disponibilização da ontologia</li>
-                            </ol>
+                                <li>
+                                    <span class="handle ui-sortable-handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <input type="checkbox" value="">
+                                    <span class="text">2. Aquisição e extração de conhecimento</span>
+                                    <div class="tools">
+                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="handle ui-sortable-handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <input type="checkbox" value="">
+                                    <span class="text">3. Conceitualização</span>
+                                    <div class="tools">
+                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="handle ui-sortable-handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <input type="checkbox" value="">
+                                    <span class="text">4. Fundamentação ontológica</span>
+                                    <div class="tools">
+                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <span class="handle ui-sortable-handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <input type="checkbox" value="">
+                                    <span class="text">5. Formalização da ontologia</span>
+                                    <div class="tools">
+                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="handle ui-sortable-handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <input type="checkbox" value="">
+                                    <span class="text">6. Avaliação da ontologia</span>
+                                    <div class="tools">
+                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="handle ui-sortable-handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <input type="checkbox" value="">
+                                    <span class="text">7. Documentação da ontologia</span>
+                                    <div class="tools">
+                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <span class="handle ui-sortable-handle">
+                                        <i class="fa fa-ellipsis-v"></i>
+                                        <i class="fa fa-ellipsis-v"></i>
+                                    </span>
+                                    <input type="checkbox" value="">
+                                    <span class="text">8. Disponibilização da ontologia</span>
+                                    <div  class="tools">
+                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                         <!-- /.box-body -->
+
+                        <div class="box-footer clearfix no-border">
+                            <h4>Your progress: </h4>
+                            <div class="progress progress active">
+                                <div id="progress-bar" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 0">
+                                    <span id="progress-text" class="">0% Complete</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
             </div>
             <!-- /.tab-pane -->
             <!-- Stats tab content -->
@@ -306,8 +393,70 @@
     </aside>
     <!-- /.tips menu -->
 
+    <!-- Error Console -->
+    <div id="error-console"  class="box box-danger direct-chat direct-chat-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">Error Console</h3>
+
+            <div class="box-tools pull-right">
+                Current Errors: <span id="error-count" data-toggle="tooltip" title="" class="badge bg-red" data-original-title="Errors">0</span>
+             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
+                    <i class="fa fa-comments"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body" style="">
+            <!-- Conversations are loaded here -->
+            <div class="direct-chat-messages">
+
+                <!-- Message to the right -->
+                <div class="direct-chat-msg">
+                    <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-right">Welcome</span>
+                        <span class="direct-chat-timestamp pull-left"></span>
+                    </div>
+                    <!-- /.direct-chat-info -->
+                    <img class="direct-chat-img" src="css/images/profile.jpeg" alt="Message User Image"><!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                        Here you can see all the errors you've made
+                    </div>
+                    <!-- /.direct-chat-text -->
+                </div>
+                <!-- /.direct-chat-msg -->
+            </div>
+            <!--/.direct-chat-messages-->
+
+            <!-- Contacts are loaded here -->
+            <div class="direct-chat-contacts">
+                <ul class="contacts-list">
+                    <li>
+                        <a href="#">
+                            <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image">
+
+                            <div class="contacts-list-info">
+                            <span class="contacts-list-name">
+                              Errors in the current ontology
+                            </span>
+                                <span class="contacts-list-msg">How have you been? I was...</span>
+                            </div>
+                            <!-- /.contacts-list-info -->
+                        </a>
+                    </li>
+                    <!-- End Contact Item -->
+                </ul>
+                <!-- /.contatcts-list -->
+            </div>
+            <!-- /.direct-chat-pane -->
+        </div>
+        <!-- /.box-body -->
+    </div>
+    <!--  ./Error Console -->
+
     <div class="tab modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
+               aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -346,107 +495,34 @@
             </div>
         </div>
     </div>
-    <!-- TIPS / ERRORS / WARNINGS -->
 
-    @component('warning')
-        @slot('title')
-            <strong>Important</strong>
-        @endslot
-        Press <strong>CTRL + S </strong> to download your ontology!
-    @endcomponent
-
-    @component('danger')
-        @slot('id')
-            equalClassNamesError
-        @endslot
-        @slot('title')
-            <strong>Error</strong>
-        @endslot
-        Your ontology has <strong>2 Classes</strong> with the same name!
-    @endcomponent
-
-    @component('danger')
-        @slot('id')
-            equalRelationNamesError
-        @endslot
-        @slot('title')
-            <strong>Error</strong>
-        @endslot
-        Your ontology has <strong>2 Relations</strong> with the same name!
-    @endcomponent
-
-    @component('danger')
-        @slot('id')
-            equalRelationsError
-        @endslot
-        @slot('title')
-            <strong>Error</strong>
-        @endslot
-        You cant have <strong> 2 equal relations pointing to the same classes </strong>
-    @endcomponent
-
-    @component('danger')
-        @slot('id')
-            instanceOfBetweenClassesError
-        @endslot
-        @slot('title')
-            <strong>Error</strong>
-        @endslot
-        You cant have a <strong> instance Of </strong> relation between two classes. It must be between one class and
-        one instance
-    @endcomponent
-
-    @component('danger')
-        @slot('id')
-            wrongRelationError
-        @endslot
-        @slot('title')
-            <strong>Error</strong>
-        @endslot
-        You can <strong> only have a instance_of relation </strong> between a class and a instance.
-    @endcomponent
-
-    @component('tip')
-        @slot('title')
-            Tip
-        @endslot
-        Have any question? Access our <a href="http://localhost:8000/tutorial"> <strong> Tutorial </strong></a>
-    @endcomponent
-
-    @component('tip')
-        @slot('title')
-            Tip
-        @endslot
-        Press <strong> CTRL + M </strong> to show the properties froom the selected class/relation
-    @endcomponent
-
-    @component('tip')
-        @slot('title')
-            Welcome to ONTO4ALL
-        @endslot
-        Close me to see more tips or <strong><a>CLICK HERE</a></strong> to hide the tips
-    @endcomponent
-
-    <!-- /.TIPS -->
-    <a id="notification-button" class="btn btn-app">
-        <i class="fa fa-bullhorn"></i>
-        <div id="notification-button-text">Hide Tips</div>
-    </a>
-
-    <a id="sidebar-control" class="btn btn-app">
-        <i style="margin-left: 20px;" class="fa fa-fw fa-arrows-v"></i>
-        <div id="sidebar-control-text">Hide Sidebar</div>
-    </a>
-
-    <a id="error-control" class="btn btn-app">
-        <i style="margin-left: 20px;" class="fa fa-fw fa-ban"></i>
-        <div id="sidebar-control-text">Hide Error Messages</div>
-    </a>
+    <div class="tab modal fade" id="methodology1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Especificação da ontologia</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Após salvar sua ontologia você tera a opção de editar suas informações no área de gerenciamento de ontologias que pode ser encontrada na parte superior da página ou <a href="{{route('ontologies.index')}}">Clicando Aqui</a></p>
+                    <img alt="superior-menu" src="css/images/Methodology/menu-superior.png">
+                    <hr>
+                    <p>Após clicar no botão 'My Ontologies' você será redirecionado para uma página que contém todas suas ontologias feitas e você podera editar cada uma delas. Clique no botão abaixo para ascessar todas às informações daquela ontologia</p>
+                    <img alt="ontology-info" src="css/images/Methodology/edit-ontology.png">
+                    <hr>
+                    <p>Após clicar no botão você será redirecionado para página da ontologia e podera fazer as alterações necessárias </p>
+                    <img style="width: 90%" alt="ontology-info" src="css/images/Methodology/info.png">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
     </body>
-
-    <!-- Search Script -->
-    <script defer type="text/javascript" src="js/SaveMessage.js"></script>
-    <script defer type="text/javascript" src="js/SearchTip.js"></script>
 
 @stop
 

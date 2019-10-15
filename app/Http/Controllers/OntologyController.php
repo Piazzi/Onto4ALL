@@ -55,6 +55,8 @@ class OntologyController extends Controller
     public function show($id)
     {
         $ontology = Ontology::findOrFail($id);
+        if($ontology->user_id != Auth::user()->id)
+            return view('lockscreen');
         return view('ontologies.ontologies_show', compact('ontology'));
     }
 
@@ -67,6 +69,8 @@ class OntologyController extends Controller
     public function edit($id)
     {
         $ontology = Ontology::findOrFail($id);
+        if($ontology->user_id != Auth::user()->id)
+            return view('lockscreen');
         return view('ontologies.ontologies_edit', compact('ontology', 'id'));
     }
 

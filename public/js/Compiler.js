@@ -1,6 +1,7 @@
 //console.log(mxUtils.getPrettyXml(ui.editor.getGraphXml()));
 //console.log(mxUtils.getXml(ui.editor.getGraphXml()));
 
+
 /**
  * Gets the XML from the editor after a Cell is moved or connect to another Cell
  * @param xml
@@ -32,13 +33,9 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != null) {
                 if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") == null &&
                     xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("edge") == null) {
-                    errorAnimation($("#equalClassNamesError"));
                     equalClassNamesError++;
-                } else {
-                    errorAnimation($("#equalRelationNamesError"));
-                    equalRelationNamesError++;
+                    errorMessage("You can't have two classes with the same name");
                 }
-
             }
 
 
@@ -53,8 +50,8 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null) {
-                errorAnimation($("#equalRelationsError"));
                 equalRelationBetweenClassesError++;
+                errorMessage("You cant have  2 equal relations pointing to the same classes");
             }
 
             // Shows a error message if two classes has been connected with the instance_of relation
@@ -78,8 +75,8 @@ function movementCompiler(xml) {
 
                 // shows a error if the mxCells are two classes
                 if (domainClass.getAttribute("style").includes('ellipse') && rangeClass.getAttribute("style").includes('ellipse')) {
-                    errorAnimation($("#instanceOfBetweenClassesError"));
                     instanceOfBetweenClassesError++;
+                    errorMessage("You cant have a  instance Of relation between two classes. It must be between one class and one instance");
                 }
 
             }
@@ -88,17 +85,14 @@ function movementCompiler(xml) {
             // If the mxCell is a Instance, start searching for his relations. If any relation belonging to the instance it's not a instance_of
             // relation, shows a error message
             if (xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("style").includes('Instance')) {
-                for (let k = 0; k < xmlDoc.getElementsByTagName("mxCell").length; k++)
-                {
+                for (let k = 0; k < xmlDoc.getElementsByTagName("mxCell").length; k++) {
                     if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("edge") != null &&
-                        xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("value") != 'instance_of')
-                    {
+                        xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("value") != 'instance_of') {
                         if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("source") == xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("id") ||
-                            xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("target") == xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("id"))
-                            {
-                                wrongRelationError++;
-                                errorAnimation($("#wrongRelationError"));
-                            }
+                            xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("target") == xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("id")) {
+                            wrongRelationError++;
+                            errorMessage("You can only have a instance_of relation between a class and a instance");
+                        }
                     }
                 }
 
@@ -116,6 +110,8 @@ function movementCompiler(xml) {
 
 
     }
+
+    $("#error-count").text(equalRelationBetweenClassesError + equalClassNamesError + instanceOfBetweenClassesError + wrongRelationError);
 
     if (equalClassNamesError === 0)
         $("#equalClassNamesError").hide();
@@ -163,4 +159,30 @@ function errorAnimation(modal) {
     modal.animate({opacity: '0.8'}, "slow");
     modal.animate({opacity: '0.4'}, "slow");
     modal.animate({opacity: '0.8'}, "slow");
+}
+
+/**
+ * Creates a new error message in the error console for the given text
+ * @param text
+ * @param errorType
+ */
+function errorMessage(text, errorType) {
+
+    if (errorType == null)
+        errorType = '';
+    $(".direct-chat-messages").append(' <div class="direct-chat-msg">\n' +
+        '                    <div class="direct-chat-info clearfix">\n' +
+        '                        <span class="direct-chat-name pull-right"><i class="fa fa-warning"></i><strong>'+errorType+'Error</strong></span>\n' +
+        '                        <span class="direct-chat-timestamp pull-left">' + new Date().toLocaleString() + '</span>\n' +
+        '                    </div>\n' +
+        '                    <!-- /.direct-chat-info -->\n' +
+        '                    <img class="direct-chat-img" src="css/images/error.gif" alt="Message User Image"><!-- /.direct-chat-img -->\n' +
+        '                    <div class="direct-chat-text">\n' +
+        '                      ' + text + '\n' +
+        '                    </div>\n' +
+        '                    <!-- /.direct-chat-text -->\n' +
+        '                </div>');
+
+    errorAnimation($(".direct-chat-msg"));
+    errorAnimation($("#error-count"));
 }
