@@ -32,8 +32,8 @@ html {
     position: absolute;
     cursor: default;
     margin-top: 19px;
-    z-index: 1000;
-    left: 282px !important;
+    z-index: 12;
+    left: 182px !important;
 }
 
 .geSidebarContainer, .geFormatContainer, .geDiagramContainer {
@@ -118,7 +118,7 @@ center {
 
 .control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open + .control-sidebar-bg {
     position: fixed;
-    width: 22%;
+    width: 23%;
 }
 
 #searchBar {
@@ -138,11 +138,23 @@ aside {
 /* Error Console */
 
 #error-console {
-    width: 50%;
+    width: 30%;
     position: relative;
-    z-index: 4 !important;
-    top: 570px;
-    right: 180px;
+    z-index: 13;
+    margin-left: 600px;
+    bottom: 30px;
+
+}
+
+#error-console-header {
+    background-color: whitesmoke;
+    color: #333;
+}
+
+
+
+.dropdown-menu {
+    z-index: 14;
 }
 
 

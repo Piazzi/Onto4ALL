@@ -34,7 +34,7 @@ function movementCompiler(xml) {
                 if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") == null &&
                     xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("edge") == null) {
                     equalClassNamesError++;
-                    errorMessage("You can't have two classes with the same name");
+                    errorMessage("You can't have two classes with the same name","Inconsistency");
                 }
             }
 
@@ -51,7 +51,7 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null) {
                 equalRelationBetweenClassesError++;
-                errorMessage("You cant have  2 equal relations pointing to the same classes");
+                errorMessage("You cant have  2 equal relations pointing to the same classes", "Imprecision");
             }
 
             // Shows a error message if two classes has been connected with the instance_of relation

@@ -210,21 +210,17 @@
 
             </div>
             <div id="control-sidebar-theme-demo-options-tab" class="tab-pane">
-                    <div class="box box-primary">
+                <div id="menu-scroll">
+                    <div class="box box-success">
                         <div class="box-header with-border">
                             <i class="fa fa-text-width"></i>
 
-                            <h3 class="box-title">Methodology</h3>
+                            <h3 class="box-title">Methodology</h3>  <i style="float: right;" class="fa fa-question-circle"></i>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <ul class="todo-list ui-sortable">
                                 <li>
-                                    <!-- drag handle -->
-                                    <span class="handle ui-sortable-handle">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </span>
                                     <!-- checkbox -->
                                     <input type="checkbox" value="">
                                     <!-- todo text -->
@@ -232,84 +228,56 @@
                                     <!-- Emphasis label -->
                                     <!-- General tools such as edit or delete-->
                                     <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#methodology1" aria-expanded="false"><i class="fa fa-info fa-2x"></i> Info </a>
+                                        <a href="#" data-toggle="modal" data-target="#methodology1" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
-                                    <span class="handle ui-sortable-handle">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </span>
                                     <input type="checkbox" value="">
                                     <span class="text">2. Aquisição e extração de conhecimento</span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
-                                    <span class="handle ui-sortable-handle">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </span>
                                     <input type="checkbox" value="">
                                     <span class="text">3. Conceitualização</span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
-                                    <span class="handle ui-sortable-handle">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </span>
                                     <input type="checkbox" value="">
                                     <span class="text">4. Fundamentação ontológica</span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li class="">
-                                    <span class="handle ui-sortable-handle">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </span>
                                     <input type="checkbox" value="">
                                     <span class="text">5. Formalização da ontologia</span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
-                                    <span class="handle ui-sortable-handle">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </span>
                                     <input type="checkbox" value="">
                                     <span class="text">6. Avaliação da ontologia</span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
-                                    <span class="handle ui-sortable-handle">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </span>
                                     <input type="checkbox" value="">
                                     <span class="text">7. Documentação da ontologia</span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
-                                    <span class="handle ui-sortable-handle">
-                                        <i class="fa fa-ellipsis-v"></i>
-                                        <i class="fa fa-ellipsis-v"></i>
-                                    </span>
                                     <input type="checkbox" value="">
                                     <span class="text">8. Disponibilização da ontologia</span>
                                     <div  class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i> Info </a>
+                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                             </ul>
@@ -326,6 +294,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
             <!-- /.tab-pane -->
             <!-- Stats tab content -->
@@ -364,12 +333,12 @@
                             <strong><i class="fa fa-files-o margin-r-5"></i>Download as</strong>
 
                                 <a href="/ontologies/download/{{Auth::user()->id}}/{{$ontology->id}}"
-                                   class="btn btn-info btn-file btn-sm ">
-                                    <i class="fa fa-fw fa-file-code-o"></i> Download XML
+                                   class="btn btn-default  btn-sm ">
+                                    <i class="fa fa-fw fa-file-code-o"></i> XML
                                 </a>
-                                <a style="margin-top: 5px;" href="/ontologies/downloadOWL/{{Auth::user()->id}}/{{$ontology->id}}"
-                                   class="btn btn-info btn-file btn-sm ">
-                                    <i class="fa fa-fw fa-file-code-o"></i> Download OWL
+                                <a  href="/ontologies/downloadOWL/{{Auth::user()->id}}/{{$ontology->id}}"
+                                   class="btn btn-default  btn-sm ">
+                                    <i class="fa fa-fw fa-file-code-o"></i> OWL
                                 </a>
 
                             @if($ontology->link != null)
@@ -394,17 +363,14 @@
     <!-- /.tips menu -->
 
     <!-- Error Console -->
-    <div id="error-console"  class="box box-danger direct-chat direct-chat-danger">
-        <div class="box-header with-border">
+    <div id="error-console"  class="box box-default box-solid direct-chat direct-chat-danger collapsed-box">
+        <div id="error-console-header" class="box-header">
             <h3 class="box-title">Error Console</h3>
 
             <div class="box-tools pull-right">
                 Current Errors: <span id="error-count" data-toggle="tooltip" title="" class="badge bg-red" data-original-title="Errors">0</span>
-             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
                 </button>
-                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
-                    <i class="fa fa-comments"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
             </div>
         </div>
         <!-- /.box-header -->
@@ -428,27 +394,6 @@
                 <!-- /.direct-chat-msg -->
             </div>
             <!--/.direct-chat-messages-->
-
-            <!-- Contacts are loaded here -->
-            <div class="direct-chat-contacts">
-                <ul class="contacts-list">
-                    <li>
-                        <a href="#">
-                            <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image">
-
-                            <div class="contacts-list-info">
-                            <span class="contacts-list-name">
-                              Errors in the current ontology
-                            </span>
-                                <span class="contacts-list-msg">How have you been? I was...</span>
-                            </div>
-                            <!-- /.contacts-list-info -->
-                        </a>
-                    </li>
-                    <!-- End Contact Item -->
-                </ul>
-                <!-- /.contatcts-list -->
-            </div>
             <!-- /.direct-chat-pane -->
         </div>
         <!-- /.box-body -->
