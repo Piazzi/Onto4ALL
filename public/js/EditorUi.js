@@ -997,7 +997,6 @@ EditorUi.prototype.onKeyPress = function (evt) {
  * Returns true if the given event should start editing. This implementation returns true.
  */
 EditorUi.prototype.isImmediateEditingEvent = function (evt) {
-    propertiesCompiler(mxUtils.getXml(this.editor.getGraphXml()));
     return true;
 };
 

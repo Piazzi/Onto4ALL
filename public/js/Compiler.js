@@ -1,7 +1,6 @@
 //console.log(mxUtils.getPrettyXml(ui.editor.getGraphXml()));
 //console.log(mxUtils.getXml(ui.editor.getGraphXml()));
 
-
 /**
  * Gets the XML from the editor after a Cell is moved or connect to another Cell
  * @param xml
@@ -9,15 +8,17 @@
 function movementCompiler(xml) {
 
     console.log(xml);
-    let parser, xmlDoc;
+    let parser, xmlDoc, missingClassProperties = "", missingRelationProperties = "";
 
     parser = new DOMParser();
     xmlDoc = parser.parseFromString(xml, "text/xml");
-    let equalClassNamesError = 0;
-    let equalRelationNamesError = 0;
-    let equalRelationBetweenClassesError = 0;
-    let instanceOfBetweenClassesError = 0;
-    let wrongRelationError = 0;
+    let equalClassNamesError = 0,
+        equalRelationBetweenClassesError = 0,
+        instanceOfBetweenClassesError = 0,
+        wrongRelationError = 0,
+        inverseOfNameError = 0,
+        missingClassPropertiesError = 0,
+        missingRelationPropertiesError = 0;
 
     // Starts the XML interpretation send by the editor
     // Each mxCell element is compared to each other to find any measurable error
@@ -32,7 +33,9 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != null) {
                 if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") == null &&
-                    xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("edge") == null) {
+                    xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("edge") == null &&
+                    xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") != 'Name' &&
+                    xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != 'Name') {
                     equalClassNamesError++;
                     errorMessage("You can't have two classes with the same name","Inconsistency");
                 }
@@ -98,32 +101,71 @@ function movementCompiler(xml) {
 
             }
 
+
+
+
         }
-
-
-        console.log("Classes errors: ");
-        console.log(equalClassNamesError);
-        console.log("Relation Errors: ");
-        console.log(equalRelationNamesError);
-        console.log("Wrong Relation error: ");
-        console.log(wrongRelationError);
 
 
     }
 
-    $("#error-count").text(equalRelationBetweenClassesError + equalClassNamesError + instanceOfBetweenClassesError + wrongRelationError);
+    // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Search for 'object' elements in the XML
+    for (let i = 0; i < xmlDoc.getElementsByTagName("object").length; i++){
+        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") != null ){
 
-    if (equalClassNamesError === 0)
-        $("#equalClassNamesError").hide();
-    if (equalRelationNamesError === 0)
-        $("#equalRelationNamesError").hide();
-    if (equalRelationBetweenClassesError === 0)
-        $("#equalRelationsError").hide();
-    if (instanceOfBetweenClassesError === 0)
-        $("#instanceOfBetweenClassesError").hide();
-    if (wrongRelationError === 0)
-        $("#wrongRelationError").hide();
 
+            // Show the inverse of error if the relation and the inverse Of property have the same name
+            if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") == xmlDoc.getElementsByTagName("object")[i].getAttribute("inverseOf")) {
+                inverseOfNameError++;
+                errorMessage("The Inverse Of property can't have the same name of the relation");
+
+            }
+
+        }
+
+        // Search for missing properties in each class element
+        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("definition") === "")
+            missingClassProperties = missingClassProperties + ' definition,';
+
+
+        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf") === "")
+            missingClassProperties = missingClassProperties + ' SubClassOf,';
+
+
+        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("exampleOfUsage") === "")
+            missingClassProperties = missingClassProperties + ' exampleOfUsage';
+
+        if(missingClassProperties !== "")
+        {
+            missingClassPropertiesError++;
+            errorMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Class, you did not fill the following properties: ' + missingClassProperties.bold()+ '');
+            missingClassProperties = "";
+        }
+
+
+        // Search for missing properties in each relation element
+        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("domain") === "")
+            missingRelationProperties = missingRelationProperties  + ' domain,';
+
+
+        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("range") === "")
+            missingRelationProperties = missingRelationProperties  + ' range,';
+
+
+        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("inverseOf") === "")
+            missingRelationProperties = missingRelationProperties  + ' inverseOf';
+
+        if(missingRelationProperties  !== "")
+        {
+            missingRelationPropertiesError++;
+            errorMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Relation, you did not fill the following properties: ' + missingRelationProperties.bold()+ '');
+            missingRelationProperties  = "";
+        }
+
+    }
+
+    $("#error-count").text(equalRelationBetweenClassesError + equalClassNamesError + instanceOfBetweenClassesError + wrongRelationError + inverseOfNameError + missingClassPropertiesError + missingRelationPropertiesError);
 
 }
 
