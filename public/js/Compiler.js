@@ -19,7 +19,8 @@ function movementCompiler(xml) {
         wrongRelationError = 0, // id = 4
         inverseOfNameError = 0, // id = 5
         missingClassPropertiesError = 0, // id = 6
-        missingRelationPropertiesError = 0; // id = 7
+        missingRelationPropertiesError = 0, // id = 7
+        excessOfRelationsError = 0;  // id = 8
 
     // Starts the XML interpretation send by the editor
     // Each mxCell element is compared to each other to find any measurable error
@@ -35,6 +36,8 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != null) {
                 if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") == null &&
                     xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("edge") == null &&
+                    xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('ellipse') &&
+                    xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("style").includes('ellipse') &&
                     xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") != 'Name' &&
                     xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != 'Name') {
                     equalClassNamesError++;
@@ -102,6 +105,23 @@ function movementCompiler(xml) {
 
             }
 
+            // Shows a error message if a class has more than one relation attached to it
+            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") != null &&
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("edge") != null &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") != null &&
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") != null &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null &&
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") != null &&
+                (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") ===
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") ||
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source")))
+            {
+                console.log("a",xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target"));
+                errorMessage("A class can't be the domain or target of more than one relation", "", 8);
+                excessOfRelationsError++;
+            }
+
 
 
 
@@ -166,7 +186,7 @@ function movementCompiler(xml) {
 
     }
 
-    $("#error-count").text(equalRelationBetweenClassesError + equalClassNamesError + instanceOfBetweenClassesError + wrongRelationError + inverseOfNameError + missingClassPropertiesError + missingRelationPropertiesError);
+    $("#error-count").text(equalRelationBetweenClassesError + equalClassNamesError + instanceOfBetweenClassesError + wrongRelationError + inverseOfNameError + missingClassPropertiesError + missingRelationPropertiesError + excessOfRelationsError);
 
     // Checks if any error can be removed from the console error
     if(equalClassNamesError === 0)
@@ -182,7 +202,9 @@ function movementCompiler(xml) {
     if(missingClassPropertiesError === 0)
         removeError(6);
     if(missingRelationPropertiesError === 0)
-        removeError(7)
+        removeError(7);
+    if(excessOfRelationsError === 0)
+        removeError(8);
 }
 
 /**
