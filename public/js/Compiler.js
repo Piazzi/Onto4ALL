@@ -20,7 +20,8 @@ function movementCompiler(xml) {
         inverseOfNameError = 0, // id = 5
         missingClassPropertiesError = 0, // id = 6
         missingRelationPropertiesError = 0, // id = 7
-        excessOfRelationsError = 0;  // id = 8
+        excessOfRelationsError = 0,  // id = 8
+        multipleInheritanceError = 0; // id = 9
 
     // Starts the XML interpretation send by the editor
     // Each mxCell element is compared to each other to find any measurable error
@@ -117,11 +118,20 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source")))
             {
-                console.log("a",xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target"));
-                errorMessage("A class can't be the domain or target of more than one relation", "", 8);
+                errorMessage("Between 2 classes you can only have 1 relation", "", 8);
                 excessOfRelationsError++;
             }
 
+            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") == "is_a" &&
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") == "is_a" &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ==
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !=
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source"))
+            {
+                errorMessage("A class can't have multiple inheritance","",9);
+                multipleInheritanceError++;
+            }
 
 
 
@@ -186,7 +196,7 @@ function movementCompiler(xml) {
 
     }
 
-    $("#error-count").text(equalRelationBetweenClassesError + equalClassNamesError + instanceOfBetweenClassesError + wrongRelationError + inverseOfNameError + missingClassPropertiesError + missingRelationPropertiesError + excessOfRelationsError);
+    $("#error-count").text(equalRelationBetweenClassesError + equalClassNamesError + instanceOfBetweenClassesError + wrongRelationError + inverseOfNameError + missingClassPropertiesError + missingRelationPropertiesError + excessOfRelationsError + multipleInheritanceError);
 
     // Checks if any error can be removed from the console error
     if(equalClassNamesError === 0)
@@ -205,6 +215,8 @@ function movementCompiler(xml) {
         removeError(7);
     if(excessOfRelationsError === 0)
         removeError(8);
+    if(multipleInheritanceError === 0)
+        removeError(9);
 }
 
 /**
