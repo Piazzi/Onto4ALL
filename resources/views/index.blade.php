@@ -215,7 +215,7 @@
                         <div class="box-header with-border">
                             <i class="fa fa-text-width"></i>
 
-                            <h3 class="box-title">Methodology</h3>  <i style="float: right;" class="fa fa-question-circle"></i>
+                            <h3 class="box-title">Methodology</h3>  <a href="#" data-toggle="modal" data-target="#methodologyDefinition" aria-expanded="false"><i style="float: right;" class="fa fa-question-circle"></i></a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -224,60 +224,60 @@
                                     <!-- checkbox -->
                                     <input type="checkbox" value="">
                                     <!-- todo text -->
-                                    <span class="text"><a  href="#" data-toggle="modal" data-target="#methodology1" aria-expanded="false">1. Especificação da ontologia</a></span>
+                                    <span class="text"><a  href="#" data-toggle="modal" data-target="#specification" aria-expanded="false">1. Specification of the ontology</a></span>
                                     <!-- Emphasis label -->
                                     <!-- General tools such as edit or delete-->
                                     <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#methodology1" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#specification" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
                                     <input type="checkbox" value="">
-                                    <span class="text">2. Aquisição e extração de conhecimento</span>
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#acquisitionExtractionKnowledge" aria-expanded="false">2. Acquisition and extraction of knowledge</a></span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#acquisitionExtractionKnowledge" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
                                     <input type="checkbox" value="">
-                                    <span class="text">3. Conceitualização</span>
+                                    <span class="text"><a  href="#" data-toggle="modal" data-target="#conceptualization" aria-expanded="false"> 3. Conceptualization</a></span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#conceptualization" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
                                     <input type="checkbox" value="">
-                                    <span class="text">4. Fundamentação ontológica</span>
+                                    <span class="text"><a  href="#" data-toggle="modal" data-target="#ontologicalGrounding" aria-expanded="false"> 4. Ontological grounding </a></span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
+                                        <a href="#"  data-toggle="modal" data-target="#ontologicalGrounding" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li class="">
                                     <input type="checkbox" value="">
-                                    <span class="text">5. Formalização da ontologia</span>
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#formalization" aria-expanded="false"> 5. Formalization of the ontology </a></span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#formalization" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
                                     <input type="checkbox" value="">
-                                    <span class="text">6. Avaliação da ontologia</span>
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#evaluation" aria-expanded="false"> 6. Evaluation of the ontology </a></span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#evaluation" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
                                     <input type="checkbox" value="">
-                                    <span class="text">7. Documentação da ontologia</span>
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#documentation" aria-expanded="false"> 7. Documentation </a></span>
                                     <div class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#documentation" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                                 <li>
                                     <input type="checkbox" value="">
-                                    <span class="text">8. Disponibilização da ontologia</span>
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#publication" aria-expanded="false"> 8. Publication of the ontology. </a></span>
                                     <div  class="tools">
-                                        <a href="#"><i class="fa fa-info fa-2x"></i></a>
+                                        <a href="#" data-toggle="modal" data-target="#publication" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
                                     </div>
                                 </li>
                             </ul>
@@ -441,25 +441,287 @@
         </div>
     </div>
 
-    <div class="tab modal fade" id="methodology1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <!-- METHODOLOGY MODALS  -->
+    <div class="tab modal fade" id="specification" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong>Especificação da ontologia</strong></h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Specification of the ontology</strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Após salvar sua ontologia você tera a opção de editar suas informações no área de gerenciamento de ontologias que pode ser encontrada na parte superior da página ou <a href="{{route('ontologies.index')}}">Clicando Aqui</a></p>
+                    <p>In this phase, the developer performs the specification of the ontology through a
+                        template, which has to contain at least information about: the domain and scope of the
+                        ontology, its general purpose, its audience, scenarios for its application and the
+                        required degree of formality. In addition, the developer establishes the coverage of the
+                        ontology by describing its starting point, its limits within the domain and competency
+                        questions.
+                    </p>
+                    <p>
+                        Once you have saved your ontology, you will have the option to edit your information in the ontology management area which can be found at the top of the page or by <a href="{{route('ontologies.index')}}">clicking here</a></p>
                     <img alt="superior-menu" src="css/images/Methodology/menu-superior.png">
                     <hr>
-                    <p>Após clicar no botão 'My Ontologies' você será redirecionado para uma página que contém todas suas ontologias feitas e você podera editar cada uma delas. Clique no botão abaixo para ascessar todas às informações daquela ontologia</p>
+                    <p>After clicking on the 'My Ontologies' button you will be redirected to a page containing all your ontologies made and you can edit each one. Click the button below to access all information on that ontology.</p>
                     <img alt="ontology-info" src="css/images/Methodology/edit-ontology.png">
                     <hr>
-                    <p>Após clicar no botão você será redirecionado para página da ontologia e podera fazer as alterações necessárias </p>
+                    <p>After clicking the button you will be redirected to the ontology page and can make the necessary changes. </p>
                     <img style="width: 90%" alt="ontology-info" src="css/images/Methodology/info.png">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab modal fade" id="methodologyDefinition" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Definition</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>OntoForInfoScience is a detailed methodology for construction of
+                        ontologies that details each step of the ontology development cycle. The goal of such
+                        methodology is to enable experts in Knowledge Organization to overcome the technical
+                        jargon difficulties, as well as logical and philosophical issues that involve the ontology
+                        development (Mendonça, 2016).
+                        The methodology OntoForInfoScience consists of nine phases:
+                       </p>
+                    <ul>
+                        <li>
+                            1) Specification of the ontology
+                        </li>
+                        <li>
+                            2) Acquisition and extraction of knowledge
+                        </li>
+                        <li>
+                            3) Conceptualization
+                        </li>
+                        <li>
+                            4) Ontological grounding
+                        </li>
+                        <li>
+                            5) Formalization of the ontology
+                        </li>
+                        <li>
+                            6) Evaluation of the ontology
+                        </li>
+                        <li>
+                            7) Documentation
+                        </li>
+                        <li>
+                            8) Publication of the ontology.
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab modal fade" id="acquisitionExtractionKnowledge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Acquisition and extraction of knowledge</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Phase 2 consists of the knowledge acquisition, which encompasses the selection of
+                        materials to be approached (about the subject of the domain) and the selection of
+                        methods for extracting knowledge. Within OntoForInfoScience, these activities are
+                        conducted in a way that mixes different methods, like: textual analysis of books and
+                        papers, automatic terminological extraction, semi-automatic methods for identification
+                        of concepts, to mention a few.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab modal fade" id="conceptualization" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Conceptualization</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Phase 3 concerns conceptualization, when the developer performs activities of
+                        identification and analysis of the concepts that are candidates to classes in the
+                        ontology. In addition, the developer promotes the knowledge organization so that one
+                        is able to obtain relations, properties and constraints of the ontology. The more
+                        appropriate way to represent the conceptualization of ontology it is through of a
+                        graphical conceptual model, representing conceptual relations between identified
+                        concepts through graphs or similar structures.
+                        In the Onto4AllEditor, the Phase 3 must be performed in the menu “Ontology drawing”.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab modal fade" id="ontologicalGrounding" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Ontological Grounding</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Phase 4 corresponds to the activity of ontological grounding in which the developer
+                        surveys top-levels ontologies to be used as starting points. Developers choose the top-
+                        level ontology more suitable to their aims in considering the underlying philosophical
+                        approach that will justify modeling decisions. From the operational point of view, the
+                        developer imports selected top-level ontology to an ontology editor tool for successful
+                        implementation.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab modal fade" id="formalization" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Formalization of the ontology</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>In this phase, the developer produces a formal description of the domain from the
+                        conceptualization of the prior phase 3. Activities of phase 5 are:
+                        5.1) to construct general taxonomy of the ontology based on previously selected top-
+                        level taxonomy (in the Onto4AllEditor, this activity must be performed in the menu
+                        “Ontology drawing”);
+                        5.2) to define descriptive properties of the classes involving textual attributes as
+                        names, synonyms, definitions and annotations (in the Onto4AllEditor, this activity must
+                        be performed in the menu “Ontology drawing”, clicking under a class or relation with
+                        the left button of the mouse and choosing the function Edit Properties in the submenu);
+                        5.3) to create formal definitions for each class using a logical language, so that the
+                        formal definition is able to be derived from the textual definitions created previously;
+                        5.4) to define properties of classes, involving attributes as data types, cardinality,
+                        existential and universal quantifiers (in the Onto4AllEditor, this activity must be
+                        performed in the menu “Ontology drawing”, clicking under a class or relation with the
+                        left button of the mouse and choosing the function Edit Properties in the submenu);
+
+                        5.5) to create instances for ontological classes (in the Onto4AllEditor, this activity must
+                        be performed in the menu “Ontology drawing”, adding the symbol “Instance” (rectangle)
+                        to the ontology in the drawing area);
+                        5.6) to specify ontological relations, consisting of the application of a defined set of
+                        rules and principles carrying out the transformation of conceptual relations into formal
+                        relations (in the Onto4AllEditor, this activity must be performed in the menu “Ontology
+                        drawing”, clicking under a class or relation with the left button of the mouse and
+                        choosing the function Edit Properties in the submenu).
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab modal fade" id="evaluation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Evaluation of the ontology</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>The evaluation of the ontology correspond to the application of a set of criteria allowing
+                        one to perform both the ontological validation (validation of the correspondence
+                        between ontology and the real world) and the ontological verification (analysis of the
+                        ontology with respect to the correctness of its construction). Examples of validation
+                        criteria are: non-recursivity in definitions, the specification of different types of part_of
+                        relations, the definition of inverse relations, and the creation of the cardinalities.
+                        In the Onto4AllEditor, the Phase 6 is performed automatically by the editor
+                        through of the functionality Error Console, that it presents the current errors in the
+                        drawn ontology.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab modal fade" id="documentation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Documentation</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>In phase 7, documentation of all activities performed along the ontology development
+                        cycle is organized. The production of documentation occurs during all the time the
+                        ontology has been constructed. The content of the documentation encompasses the
+                        document of specification (from phase 1), documents of reference about the domain
+                        (from phase 2), the set of conceptual models (from phase 3), reused ontologies
+                        (phases 4 and 5), ontological and formal content (phase 5), and other useful
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab modal fade" id="publication" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Publication of the ontology</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>In phase 8 the developer makes the ontological artifact available in a way that be
+                        downloaded and properly visualized by a community of users.
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
