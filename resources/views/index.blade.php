@@ -368,9 +368,18 @@
             <h3 class="box-title">Error Console</h3>
 
             <div class="box-tools pull-right">
-                Current Errors: <span id="error-count" data-toggle="tooltip" title="" class="badge bg-red" data-original-title="Errors">0</span>
-             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-                </button>
+
+                <span  data-toggle="tooltip" title="" class="badge bg-red" data-original-title="Errors">
+                    <i class="fa fa-close"></i>
+                    <span id="error-count"> 0</span>
+                </span>
+
+                <span data-toggle="tooltip" title="" class="badge bg-yellow" data-original-title="Warnings">
+                    <i class="fa fa-warning"> </i>
+                    <span id="warning-count">  0</span>
+                </span>
+
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
             </div>
         </div>
         <!-- /.box-header -->

@@ -13,6 +13,7 @@ function movementCompiler(xml) {
     parser = new DOMParser();
     xmlDoc = parser.parseFromString(xml, "text/xml");
     // Each of theses error has a unique Id used for searching for the error in the DOM Elements
+    //  These id's also corresponds to the id's on the catalogue error page
     let equalClassNamesError = 0, // id = 1
         equalRelationBetweenClassesError = 0, // id = 2
         instanceOfBetweenClassesError = 0, // id = 3
@@ -23,11 +24,32 @@ function movementCompiler(xml) {
         excessOfRelationsError = 0,  // id = 8
         multipleInheritanceError = 0; // id = 9
 
+    let notConnectedRelationWarning = 0; // id = 1;
+
     // Starts the XML interpretation send by the editor
     // Each mxCell element is compared to each other to find any measurable error
     // Complexity: O(n^2)
     for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
+
+        // -------- WARNINGS SEARCH -----------------
+
+        // Checks if the mxCell element is a relation by looking at the "edge" attribute
+        if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") !== null && (
+            xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") === null ||
+            xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") === null))
+        {
+            notConnectedRelationWarning++;
+            warningMessage('The relation '+xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") +' it is not fully connected to 2 classes', 1);
+        }
+
+
+        // /.----------- WARNINGS SEARCH --------------
+
+
+        // ------------- ERROR SEARCH ---------------
         for (let j = i + 1; j < xmlDoc.getElementsByTagName("mxCell").length; j++) {
+
+
             // Shows a error message if two classes or two relations has the same name
             if ((xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value")) && (
@@ -206,6 +228,7 @@ function movementCompiler(xml) {
     }
 
     $("#error-count").text(equalRelationBetweenClassesError + equalClassNamesError + instanceOfBetweenClassesError + wrongRelationError + inverseOfNameError + missingClassPropertiesError + missingRelationPropertiesError + excessOfRelationsError + multipleInheritanceError);
+    $("#warning-count").text(notConnectedRelationWarning);
 
     // Checks if any error can be removed from the console error
     if(equalClassNamesError === 0)
@@ -226,6 +249,9 @@ function movementCompiler(xml) {
         removeError(8);
     if(multipleInheritanceError === 0)
         removeError(9);
+
+    if(notConnectedRelationWarning === 0)
+        removeWarning(1);
 }
 
 /**
@@ -235,6 +261,15 @@ function movementCompiler(xml) {
 function removeError(errorId)
 {
     $('.direct-chat-msg:contains(Error Id: '+errorId+')').remove();
+}
+
+/**
+ * Removes the warning message in the error console for the given warning ID
+ * @param warningId
+ */
+function removeWarning(warningId)
+{
+    $('.direct-chat-msg:contains(Warning Id: '+warningId+')').remove();
 }
 
 /**
@@ -281,8 +316,6 @@ function errorAnimation(modal) {
     modal.show();
     modal.animate({opacity: '0.4'}, "slow");
     modal.animate({opacity: '0.8'}, "slow");
-    modal.animate({opacity: '0.4'}, "slow");
-    modal.animate({opacity: '0.8'}, "slow");
 }
 
 /**
@@ -297,11 +330,11 @@ function errorMessage(text, errorType, errorId) {
         errorType = '';
     $(".direct-chat-messages").append(' <div class="direct-chat-msg ">\n' +
         '                    <div class="direct-chat-info clearfix">\n' +
-        '                        <span class="direct-chat-name pull-right"><i class="fa fa-warning"></i><strong>'+errorType+'Error | Error Id: '+errorId+'</strong></span>\n' +
+        '                        <span class="direct-chat-name pull-right"><i class="fa fa-close"></i><strong>'+errorType+'Error | Error Id: '+errorId+'</strong></span>\n' +
         '                        <span class="direct-chat-timestamp pull-left">' + new Date().toLocaleString() + '</span>\n' +
         '                    </div>\n' +
         '                    <!-- /.direct-chat-info -->\n' +
-        '                    <img class="direct-chat-img" src="css/images/error.gif" alt="Message User Image"><!-- /.direct-chat-img -->\n' +
+        '                    <img class="direct-chat-img" src="css/images/error.gif" alt="Message"><!-- /.direct-chat-img -->\n' +
         '                    <div class="direct-chat-text">\n' +
         '                      ' + text + '\n' +
         '                    </div>\n' +
@@ -310,4 +343,26 @@ function errorMessage(text, errorType, errorId) {
 
     errorAnimation($(".direct-chat-msg"));
     errorAnimation($("#error-count"));
+}
+
+/**
+ * Creates a new warning message in the error console for the given text
+ * @param text
+ * @param warningId
+ */
+function warningMessage(text, warningId)
+{
+    $(".direct-chat-messages").append(' <div class="direct-chat-msg ">\n' +
+        '                    <div class="direct-chat-info clearfix">\n' +
+        '                        <span class="direct-chat-name pull-right"><i class="fa fa-close"></i><strong> Warning | Warning Id: '+warningId+'</strong></span>\n' +
+        '                        <span class="direct-chat-timestamp pull-left">' + new Date().toLocaleString() + '</span>\n' +
+        '                    </div>\n' +
+        '                    <!-- /.direct-chat-info -->\n' +
+        '                    <img class="direct-chat-img" src="css/images/warning.png" alt="Message"><!-- /.direct-chat-img -->\n' +
+        '                    <div class="direct-chat-text">\n' +
+        '                      ' + text + '\n' +
+        '                    </div>\n' +
+        '                    <!-- /.direct-chat-text -->\n' +
+        '                </div>');
+    errorAnimation($("#warning-count"));
 }
