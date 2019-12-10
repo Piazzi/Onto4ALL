@@ -42,7 +42,7 @@ function movementCompiler(xml) {
                     xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") != 'Name' &&
                     xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != 'Name') {
                     equalClassNamesError++;
-                    errorMessage("You can not have two classes with the same name","Inconsistency",1);
+                    errorMessage("You can not have two classes with the same name, you have two classes named "+(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value"))+".","Inconsistency",1);
                 }
             }
 
@@ -57,9 +57,11 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null &&
-                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null) {
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") != null) {
                 equalRelationBetweenClassesError++;
-                errorMessage("You cant have  2 equal relations pointing to the same classes", "Imprecision",2);
+                errorMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: "+
+                    getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +
+                    " and "+ getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target")) +".", "Imprecision",2);
             }
 
             // Shows a error message if two classes has been connected with the instance_of relation
@@ -84,7 +86,8 @@ function movementCompiler(xml) {
                 // shows a error if the mxCells are two classes
                 if (domainClass.getAttribute("style").includes('ellipse') && rangeClass.getAttribute("style").includes('ellipse')) {
                     instanceOfBetweenClassesError++;
-                    errorMessage("You cant have a  instance Of relation between two classes. It must be between one class and one instance", "",3);
+                    errorMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. This error occurs in the following classes: "
+                        +domainClass.getAttribute("value")+" and "+ rangeClass.getAttribute("value") +".", "",3);
                 }
 
             }
@@ -114,22 +117,28 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") != null &&
                 (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") ===
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") ||
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source")))
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source")) &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") !==
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value"))
             {
-                errorMessage("Between 2 classes you can only have 1 relation", "", 8);
+                errorMessage("You can only have 1 relation between 2 classes. This error occurs in the following relations: "
+                    +xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value")
+                    +" and "+xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value")
+                    +". Between these two classes: "+getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target")) +" and "+
+                     getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source"))+" .", "", 8);
                 excessOfRelationsError++;
             }
 
-            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") == "is_a" &&
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") == "is_a" &&
-                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ==
+            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") === "is_a" &&
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") === "is_a" &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") &&
-                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !=
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source"))
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !==
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target"))
             {
-                errorMessage("A class can't have multiple inheritance","",9);
+                errorMessage("A class can't have multiple inheritance. Your "+getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +" class can't be the domain of more than one is_a relation","",9);
                 multipleInheritanceError++;
             }
 
@@ -149,7 +158,7 @@ function movementCompiler(xml) {
             // Show the inverse of error if the relation and the inverse Of property have the same name
             if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") == xmlDoc.getElementsByTagName("object")[i].getAttribute("inverseOf")) {
                 inverseOfNameError++;
-                errorMessage("The Inverse Of property can't have the same name of the relation","",5);
+                errorMessage("In the "+xmlDoc.getElementsByTagName("object")[i].getAttribute("label") +" relation, the Inverse Of property can't have the same name of the relation","",5);
 
             }
 
@@ -239,6 +248,20 @@ function getMxCell(xmlDoc, id) {
     for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
         if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") === id)
             return xmlDoc.getElementsByTagName("mxCell")[i];
+    }
+}
+
+/**
+ * Returns the value(name) of a mxCell
+ *
+ * @param xmlDoc
+ * @param id
+ */
+function getMxCellName(xmlDoc, id)
+{
+    for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
+        if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") === id)
+            return xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value");
     }
 }
 
