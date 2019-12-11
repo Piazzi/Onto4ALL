@@ -582,8 +582,9 @@
                         appropriate way to represent the conceptualization of ontology it is through of a
                         graphical conceptual model, representing conceptual relations between identified
                         concepts through graphs or similar structures.
-                        In the Onto4AllEditor, the Phase 3 must be performed in the menu “Ontology drawing”.
+                        In the Onto4AllEditor, the Phase 3 must be performed in <strong>this page using the graphical editor</strong>. You can access this page again by clicking in the “Ontology drawing” on the menu.
                     </p>
+                    <img style="width: 100%;" alt="editor" src="css/images/Methodology/editor.png">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -610,6 +611,14 @@
                         developer imports selected top-level ontology to an ontology editor tool for successful
                         implementation.
                     </p>
+                    <p>
+                        <strong>You can import other ontologies to this editor if they have been created using the Onto4AllEditor and have a .XML extension. All ontologies exported by this editor can be imported in later projects </strong>. Using the menu editor, click on the "file" button and then on the "import" as showed below:
+                    </p>
+                    <img style="width: 100%;" alt="import" src="css/images/Methodology/import.png">
+                    <p>Select a valid file from your computer using the "choose file" button or drag a file direct to the box and then click in "import"</p>
+                    <img style="width: 100%" alt="select-file" src="css/images/Methodology/select-file.png">
+                    <p>After that, your imported ontology will be showing on the editor</p>
+                    <img style="width: 100%" alt="pizza ontology" src="css/images/Methodology/pizza.png">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -631,29 +640,47 @@
                 <div class="modal-body">
                     <p>In this phase, the developer produces a formal description of the domain from the
                         conceptualization of the prior phase 3. Activities of phase 5 are:
-                        5.1) to construct general taxonomy of the ontology based on previously selected top-
-                        level taxonomy (in the Onto4AllEditor, this activity must be performed in the menu
-                        “Ontology drawing”);
-                        5.2) to define descriptive properties of the classes involving textual attributes as
-                        names, synonyms, definitions and annotations (in the Onto4AllEditor, this activity must
-                        be performed in the menu “Ontology drawing”, clicking under a class or relation with
-                        the left button of the mouse and choosing the function Edit Properties in the submenu);
-                        5.3) to create formal definitions for each class using a logical language, so that the
-                        formal definition is able to be derived from the textual definitions created previously;
-                        5.4) to define properties of classes, involving attributes as data types, cardinality,
-                        existential and universal quantifiers (in the Onto4AllEditor, this activity must be
-                        performed in the menu “Ontology drawing”, clicking under a class or relation with the
-                        left button of the mouse and choosing the function Edit Properties in the submenu);
-
-                        5.5) to create instances for ontological classes (in the Onto4AllEditor, this activity must
-                        be performed in the menu “Ontology drawing”, adding the symbol “Instance” (rectangle)
-                        to the ontology in the drawing area);
-                        5.6) to specify ontological relations, consisting of the application of a defined set of
-                        rules and principles carrying out the transformation of conceptual relations into formal
-                        relations (in the Onto4AllEditor, this activity must be performed in the menu “Ontology
-                        drawing”, clicking under a class or relation with the left button of the mouse and
-                        choosing the function Edit Properties in the submenu).
                     </p>
+                        <ul>
+                            <li>
+                                5.1) to construct general taxonomy of the ontology based on previously selected top-
+                                level taxonomy (in the Onto4AllEditor, this activity must be performed in the menu
+                                “Ontology drawing”, the page you are right now)
+                                <img style="width: 100%;" alt="properties" src="css/images/Methodology/editor.png">
+                            </li>
+                            <li>
+                                5.2) to define descriptive properties of the classes involving textual attributes as
+                                names, synonyms, definitions and annotations (in the Onto4AllEditor, this activity must
+                                be performed in the editor, clicking under a class or relation with the
+                                right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class and pressing CTRL + M));
+                                <img alt="properties" src="css/images/Methodology/propriedades.png">
+                            </li>
+                            <li>
+                                5.3) to create formal definitions for each class using a logical language, so that the
+                                formal definition is able to be derived from the textual definitions created previously;
+                            </li>
+                            <li>
+                                5.4) to define properties of classes, involving attributes as data types, cardinality,
+                                existential and universal quantifiers (in the Onto4AllEditor, this activity must be
+                                performed in the menu “Ontology drawing”, clicking under a class or relation with the
+                                right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class and pressing CTRL + M));
+                                <img alt="properties" src="css/images/Methodology/propriedades.png">
+                            </li>
+                            <li>
+                                5.5) to create instances for ontological classes (in the Onto4AllEditor, this activity must
+                                be performed in the menu “Ontology drawing”, adding the symbol “Instance” (rectangle)
+                                to the ontology in the drawing area, this symbol can be find on the ontology palette, in the left of the editor);
+                            </li>
+                            <li>
+                                5.6) to specify ontological relations, consisting of the application of a defined set of
+                                rules and principles carrying out the transformation of conceptual relations into formal
+                                relations (in the Onto4AllEditor, this activity must be performed in the editor
+                                ”, clicking under a class or relation with the right button of the mouse and
+                                choosing the function Edit Properties in the submenu (or selecting the relation and pressing CTRL + M)).
+                                <img style="width: 100%" alt="properties" src="css/images/Methodology/relation.png">
+                            </li>
+                        </ul>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -683,6 +710,7 @@
                         through of the functionality Error Console, that it presents the current errors in the
                         drawn ontology.
                     </p>
+                    <img style="width: 100%" alt="console" src="css/images/Methodology/console.png">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -729,8 +757,10 @@
                 </div>
                 <div class="modal-body">
                     <p>In phase 8 the developer makes the ontological artifact available in a way that be
-                        downloaded and properly visualized by a community of users.
+                        downloaded and properly visualized by a community of users. You can download the ontology you just draw by clicking in the "file" menu and then in the "export" submenu
                     </p>
+                    <img style="width: 100%" alt="export" src="css/images/Methodology/export.png">
+                    <p>You can export your ontology in XML, OWL or SVG (image). When you do that your ontology is also saved in your account, you can look all the ontologies you made by clicking on the "My Ontologies" menu on the top of the page.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
