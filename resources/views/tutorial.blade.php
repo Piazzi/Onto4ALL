@@ -30,7 +30,6 @@
                     <ol>
                         <a href="#diagram"><li>Diagrama</li></a>
                         <a href="#rules"><li>Barra de regras</li></a>
-                        <a href="#tips"><li>Dicas</li></a>
                         <a href="#ontology-palette"><li>Paleta de ontologias</li></a>
                         <a href="#other-palettes"><li>Outras paletas</li></a>
                         <a href="#ontology-history"><li>Histórico de ontologias</li></a>
@@ -272,26 +271,6 @@
                     </div>
                     <div class="col-md-3">
                         <img alt="class image" src="/css/images/rule2.png">
-                    </div>
-                </div>
-        </div>
-    </div>
-
-    <div id="tips" class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">Dicas</h3>
-        </div>
-        <div class="box-body">
-            <dd>Ao chegar na página do diagrama, serão exibidas, no canto inferior esquerdo, algumas dicas de uso do Onto4All.</dd>
-                <div class="row">
-                    <div class="col-md-6">
-                        <ul>
-                            <li>Ao fechar uma dica, uma outra dica irá ser exibida no lugar da anterior.</li>
-                            <li>Ao clicar no botão <strong>Hide Tips</strong>, no canto superior direito, as dicas serão fechadas.</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <img alt="class image" src="/css/images/tip.png">
                     </div>
                 </div>
         </div>

@@ -59,6 +59,7 @@
     <script type="text/javascript" src="js/Compiler.js"></script>
     <!-- Search Script -->
     <script defer type="text/javascript" src="js/SearchTip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
 
 @stop
 
@@ -118,10 +119,10 @@
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
             <li class=""><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab" aria-expanded="false"><i
-                            class="fa fa-fw fa-info-circle"></i></a></li>
+                            class="fa fa-fw fa-info-circle"></i> Methodology</a></li>
             <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab" aria-expanded="true"><i
-                            class="fa fa-search"></i></a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-object-group"></i></a></li>
+                            class="fa fa-search"></i> Tips</a></li>
+            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-object-group"></i> Ontologies</a></li>
         </ul>
 
         <div class="tab-content">
@@ -665,6 +666,7 @@
                                 performed in the menu “Ontology drawing”, clicking under a class or relation with the
                                 right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class and pressing CTRL + M));
                                 <img alt="properties" src="css/images/Methodology/propriedades.png">
+                                <img style="width: 100%" alt="properties" src="css/images/Methodology/class-properties.png">
                             </li>
                             <li>
                                 5.5) to create instances for ontological classes (in the Onto4AllEditor, this activity must
@@ -678,6 +680,7 @@
                                 ”, clicking under a class or relation with the right button of the mouse and
                                 choosing the function Edit Properties in the submenu (or selecting the relation and pressing CTRL + M)).
                                 <img style="width: 100%" alt="properties" src="css/images/Methodology/relation.png">
+                                <img style="width: 100%" alt="properties" src="css/images/Methodology/relation-properties.png">
                             </li>
                         </ul>
 

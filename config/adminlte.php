@@ -124,12 +124,17 @@ return [
                 [
                     'text' => 'Tutorial',
                     'url' => '/tutorial',
-                    'icon' => 'info',
+                    'icon' => 'info-circle'
+                ],
+                [
+                    'text' => 'Error Index',
+                    'url' => '/errorIndex',
+                    'icon' => 'close',
                 ],
                 [
                     'text' => 'About Us',
                     'url' => '/aboutUs',
-                    'icon' => 'book',
+                    'icon' => 'book'
                 ]
             ],
         ],

@@ -52,6 +52,14 @@ class HomeController extends Controller
     }
 
     /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function errorIndex()
+    {
+        return view('error-index');
+    }
+
+    /**
      * Save the editor diagram into a XML file.
      * @param Request $request
      * @return Response

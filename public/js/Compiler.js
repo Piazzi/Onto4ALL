@@ -10,6 +10,54 @@ function movementCompiler(xml) {
     console.log(xml);
     let parser, xmlDoc, missingClassProperties = "", missingRelationProperties = "";
 
+    /*
+    let pdf = new jsPDF();
+
+    pdf.setFont("times");
+    pdf.setFontStyle("normal");
+    pdf.text('Onto4ALL Editor - Error Log', 105, 20, null, null, 'center');
+
+
+    var generateData = function (amount) {
+        var result = [];
+        var data =
+            {
+                id: "1",
+                error_name: "100",
+                description: "GameGroup",
+                error_type: "XPTO2",
+
+            };
+        for (var i = 0; i < amount; i += 1) {
+            data.id = (i + 1).toString();
+            result.push(Object.assign({}, data));
+        }
+        return result;
+    };
+
+    function createHeaders(keys) {
+        var result = [];
+        for (var i = 0; i < keys.length; i += 1) {
+            result.push({
+                'id' : keys[i],
+                'name': keys[i],
+                'prompt': keys[i],
+                'width': 65,
+                'align': 'center',
+                'padding': 0
+            });
+        }
+        return result;
+    }
+
+
+
+    var headers = createHeaders(["id", "error_name", "description", "error_type"]);
+
+    var doc = new jsPDF({ putOnlyUsedFonts: true, orientation: 'landscape' });
+    doc.table(1, 1, generateData(10), headers, { autoSize: true });
+    */
+
     parser = new DOMParser();
     xmlDoc = parser.parseFromString(xml, "text/xml");
     // Each of theses error has a unique Id used for searching for the error in the DOM Elements
