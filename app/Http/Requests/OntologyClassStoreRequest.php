@@ -31,6 +31,12 @@ class OntologyClassStoreRequest extends FormRequest
             'synonyms' => 'nullable|min:1|max:20|string',
             'example_of_usage' => 'required|min:1|max:200|string',
             'imported_from' => 'max:255|nullable',
+            'class_id' => 'max:50|required|string',
+            'label' => 'max:50|required|string',
+            'is_defined_by'  => 'max:50|nullable|string',
+            'comments'  => 'max:255|nullable|string',
+            'disjoint_with' => 'max:50|nullable|string',
+            'elucidation' => 'max:50|nullable|string'
         ];
     }
 }

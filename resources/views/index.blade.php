@@ -129,10 +129,10 @@
 
             <!-- Home tab content -->
             <div class="tab-pane active" id="control-sidebar-home-tab">
-                <a style="margin-bottom: 5px" class="btn btn-default" data-toggle="modal" data-target="#modal" aria-expanded="false"><i class="fa fa-fw fa-compass"></i>External Ontology Databases</a>
+                <a style="margin-bottom: 5px; width: 100%;" class="btn btn-default" data-toggle="modal" data-target="#modal" aria-expanded="false"><i class="fa fa-fw fa-compass"></i>External Ontology Databases</a>
                 <div id="searchBar" class="input-group input-group-sm">
                     <input value="" id="search-tip-input" type="text" class="form-control"
-                           placeholder="Search for rules">
+                           placeholder="Search for tips">
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default"><i class="fa fa-search-plus"></i></button>
                     </div>
@@ -156,18 +156,50 @@
                                             <dl>
                                                 <dt>Definition</dt>
                                                 <dd>{{$ontologyRelation->definition}}</dd>
+                                                @if($ontologyRelation->formal_definition)
                                                 <dt>Formal Definition</dt>
                                                 <dd>{{$ontologyRelation->formal_definition}}</dd>
+                                                @endif
                                                 <dt>Domain</dt>
                                                 <dd>{{$ontologyRelation->domain}}</dd>
                                                 <dt>Range</dt>
                                                 <dd>{{$ontologyRelation->range}}</dd>
                                                 <dt>Example Of Usage</dt>
                                                 <dd>{{$ontologyRelation->example_of_usage}}</dd>
+                                                @if($ontologyRelation->imported_from)
                                                 <dt>Imported From</dt>
                                                 <dd>
-                                                    <a href="{{$ontologyRelation->imported_from}}">{{$ontologyRelation->imported_from}}</a>
+                                                    <a target="_blank" href="{{$ontologyRelation->imported_from}}">{{$ontologyRelation->imported_from}}</a>
                                                 </dd>
+                                                @endif
+                                                <dt>ID</dt>
+                                                <dd>{{$ontologyRelation->relation_id}}</dd>
+                                                <dt>Label</dt>
+                                                <dd>{{$ontologyRelation->label}}</dd>
+                                                @if($ontologyRelation->synonyms)
+                                                    <dt>Synonyms</dt>
+                                                    <dd>{{$ontologyRelation->synonyms}}</dd>
+                                                @endif
+                                                @if($ontologyRelation->is_defined_by)
+                                                    <dt>Is Defined By</dt>
+                                                    <dd>{{$ontologyRelation->is_defined_by}}</dd>
+                                                @endif
+                                                @if($ontologyRelation->comments)
+                                                        <dt>Editor Note (comments)</dt>
+                                                    <dd>{{$ontologyRelation->comments}}</dd>
+                                                @endif
+                                                @if($ontologyRelation->inverse_of)
+                                                    <dt>Inverse Of</dt>
+                                                    <dd>{{$ontologyRelation->inverse_of}}</dd>
+                                                @endif
+                                                @if($ontologyRelation->subproperty_of)
+                                                    <dt>Subproperty Of</dt>
+                                                    <dd>{{$ontologyRelation->subproperty_of}}</dd>
+                                                @endif
+                                                @if($ontologyRelation->superproperty_of)
+                                                    <dt>Superproperty Of</dt>
+                                                    <dd>{{$ontologyRelation->superproperty_of}}</dd>
+                                                @endif
                                             </dl>
                                         </div>
                                     </div>
@@ -187,18 +219,50 @@
                                             <dl>
                                                 <dt>Definition</dt>
                                                 <dd>{{$class->definition}}</dd>
-                                                <dt>Formal Definition</dt>
+                                                <dt>Formal Definition (has_associated_axiom)</dt>
+                                                @if($class->formal_definition)
                                                 <dd>{{$class->formal_definition}}</dd>
+                                                @endif
+                                                @if($class->superclass)
                                                 <dt>SuperClass</dt>
                                                 <dd>{{$class->superclass}}</dd>
-                                                <dt>Synonyms</dt>
+                                                @endif
+                                                @if($class->subclass)
+                                                    <dt>SubClassOf</dt>
+                                                    <dd>{{$class->subclass}}</dd>
+                                                @endif
+                                                @if($class->synonyms)
+                                                <dt>Synonyms (has_synonym)</dt>
                                                 <dd>{{$class->synonyms}}</dd>
+                                                @endif
                                                 <dt>Example Of Usage</dt>
                                                 <dd>{{$class->example_of_usage}}</dd>
+                                                @if($class->imported_from)
                                                 <dt>Imported From</dt>
                                                 <dd>
-                                                    <a href="{{$class->imported_from}}">{{$class->imported_from}}</a>
+                                                    <a target="_blank" href="{{$class->imported_from}}">{{$class->imported_from}}</a>
                                                 </dd>
+                                                @endif
+                                                <dt>ID</dt>
+                                                <dd>{{$class->class_id}}</dd>
+                                                <dt>Label</dt>
+                                                <dd>{{$class->label}}</dd>
+                                                @if($class->elucidation)
+                                                    <dt>Elucidation</dt>
+                                                    <dd>{{$class->elucidation}}</dd>
+                                                @endif
+                                                @if($class->is_defined_by)
+                                                    <dt>Is Defined By</dt>
+                                                    <dd>{{$class->is_defined_by}}</dd>
+                                                @endif
+                                                @if($class->disjoint_with)
+                                                    <dt>Disjoint With</dt>
+                                                    <dd>{{$class->disjoint_with}}</dd>
+                                                @endif
+                                                @if($class->comments)
+                                                    <dt>Editor Note (comments)</dt>
+                                                    <dd>{{$class->comments}}</dd>
+                                                @endif
                                             </dl>
                                         </div>
                                     </div>

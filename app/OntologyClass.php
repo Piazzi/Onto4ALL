@@ -7,7 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class OntologyClass extends Model
 {
     protected $fillable = [
-        'name','superclass','subclass','synonyms','example_of_usage','imported_from','definition','formal_definition'
+        'name',
+        'superclass',
+        'subclass',
+        'synonyms',
+        'example_of_usage',
+        'imported_from',
+        'definition',
+        'formal_definition',
+        'class_id',
+        'label',
+        'elucidation',
+        'comments',
+        'is_defined_by',
+        'disjoint_with'
     ];
 
     protected $dates = [

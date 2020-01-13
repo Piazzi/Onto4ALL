@@ -13,7 +13,13 @@ $factory->define(\App\OntologyClass::class, function (Faker $faker) {
         "synonyms" => $faker->domainWord,
         "example_of_usage" => $faker->name,
         "imported_from" => $faker->url,
-        "formal_definition" => $faker->word
+        "formal_definition" => $faker->word,
+        "class_id" => $faker->safeHexColor,
+        "label" => $faker->firstName,
+        'is_defined_by'  => $faker->lastName,
+        'comments'  => $faker->lastName,
+        'disjoint_with' => $faker->lastName,
+        'elucidation' => $faker->lastName
     ];
 });
 
@@ -27,6 +33,14 @@ $factory->define(\App\OntologyRelation::class, function (Faker $faker) {
         "similar_relation" => $faker->domainWord,
         "example_of_usage" => $faker->name,
         "imported_from" => $faker->url,
-        "formal_definition" => $faker->word
+        "formal_definition" => $faker->word,
+        "relation_id" => $faker->safeHexColor,
+        "label" => $faker->firstName,
+        'synonyms' => $faker->lastName,
+        'is_defined_by'  => $faker->lastName,
+        'comments'  => $faker->lastName,
+        'inverse_of'  => $faker->lastName,
+        'subproperty_of'  => $faker->lastName,
+        'superproperty_of'  => $faker->lastName
     ];
 });

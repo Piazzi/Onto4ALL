@@ -81,14 +81,70 @@
                 </div>
                 <div class="form-group">
                     <label>Definition</label>
-                    <textarea value="{{old('definition')}}" name="definition" class="form-control" rows="3"
-                              placeholder="Enter ..."></textarea>
+                    <textarea name="definition" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                 </div>
                 <div class="form-group">
                     <label>Formal Definition</label>
-                    <textarea name="formal_definition" class="form-control" rows="3" placeholder="Enter ...">
+                    <textarea name="formal_definition" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input required value="{{old('relation_id')}}" name="relation_id" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Label</label>
+                            <input required value="{{old('label')}}" name="label" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Synonyms (has_synonym)</label>
+                            <input value="{{old('synonyms')}}" name="synonyms" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Is Defined By</label>
+                            <input value="{{old('is_defined_by')}}" name="is_defined_by" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Editor note (comments) </label>
+                    <textarea name="comments" class="form-control" rows="3" placeholder="Enter ...">
                 </textarea>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Inverse Of</label>
+                            <input value="{{old('inverse_of')}}" name="inverse_of" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Subproperty Of</label>
+                            <input value="{{old('subproperty_of')}}" name="subproperty_of" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Superproperty Of</label>
+                            <input value="{{old('superproperty_of')}}" name="superproperty_of" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
                 <button class="btn btn-success btn-block" type="submit">Submit</button>
             </form>
         </div>

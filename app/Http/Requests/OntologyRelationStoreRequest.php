@@ -30,8 +30,17 @@ class OntologyRelationStoreRequest extends FormRequest
             'similar_relation' => 'string|min:3|max:50|nullable',
             'cardinality' => 'numeric|nullable',
             'definition' => 'min:1|max:500',
+            'formal_definition' => 'nullable|max:500',
             'example_of_usage' => 'min:1|max:200|string',
             'imported_from' => 'max:255|nullable',
+            'relation_id' => 'max:50|required|string',
+            'label' => 'max:50|required|string',
+            'synonyms' => 'max:50|nullable|string',
+            'is_defined_by'  => 'max:50|nullable|string',
+            'comments'  => 'max:255|nullable|string',
+            'inverse_of'  => 'max:50|nullable|string',
+            'subproperty_of'  => 'max:50|nullable|string',
+            'superproperty_of'  => 'max:50|nullable|string'
         ];
     }
 }
