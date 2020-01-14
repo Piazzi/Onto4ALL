@@ -10,8 +10,7 @@
 @section('body')
     <div class="register-box">
         <div class="login-logo">
-            <img class="img-responsive img" id="login-image" src="css/images/ONTO4ALL.png" alt="" srcset=""
-                 style="display: block;margin-left: auto;margin-right: auto;">
+            <img class="img-responsive img full-width" id="login-image" src="css/images/Onto4ALL.png" alt="" srcset="">
         </div>
 
         <div class="register-box-body">

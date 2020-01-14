@@ -23,36 +23,30 @@
                                 <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                                 <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
                                 <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="3" class=""></li>
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img style="width: 100%;" src="css/images/Slide4.gif"/>
-
-
+                                    <video class="full-width" loop autoplay>
+                                        <source src="css/images/Slide1.mp4" type="video/mp4">
+                                    </video>
                                     <div class="carousel-caption">
                                         Create your own ontologies!
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img style="width: 100%;" src="css/images/Slide3.gif"/>
-
+                                    <video class="full-width" loop autoplay>
+                                        <source src="css/images/Slide2.mp4" type="video/mp4">
+                                    </video>
                                     <div class="carousel-caption">
-                                        Save them in your pc...
+                                        The error console will help you out!
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <img style="width: 100%;" src="css/images/Slide2.gif"/>
-
+                                    <video class="full-width" loop autoplay>
+                                        <source src="css/images/Slide3.mp4" type="video/mp4">
+                                    </video>
                                     <div class="carousel-caption">
-                                        Use our ontology manager to help you out
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <img style="width: 100%;" src="css/images/Slide1.gif"/>
-
-                                    <div class="carousel-caption">
-                                        It's free!
+                                        Use our ontology manager to organize your own ontologies
                                     </div>
                                 </div>
                             </div>
@@ -83,8 +77,8 @@
                                     </div>
                                     <div id="collapseOne" class="panel-collapse collapse in">
                                         <div class="box-body">
-                                            Onto4All is a graphical editor capable of creating, editing and exporting
-                                            ontologies being guided by an ontological building rules tab and an extensive
+                                            Onto4All is a free graphical editor capable of creating, editing and exporting
+                                            ontologies being guided by an error console, a ontological building rules tab and an extensive
                                             palette of ontological classes and relationships.
                                             Export formats are: OWL, XML, SVG.
                                         </div>
@@ -100,8 +94,8 @@
                                     </div>
                                     <div id="collapseTwo" class="panel-collapse collapse">
                                         <div class="box-body">
-                                            Yes, we've been updating for the editor for the past months and developing new
-                                            functionalities.
+                                            Yes, we've been updating the editor for the past months and developing new
+                                            functionalities. Contact us via e-mail if you have any suggestion.
                                         </div>
                                     </div>
                                 </div>
@@ -127,92 +121,107 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <div class="login-box">
-                    <div class="login-logo">
-                        <img class="img-responsive img" id="login-image" src="css/images/ONTO4ALL.png" alt="" srcset=""
-                             style="display: block;margin-left: auto;margin-right: auto;">
-                    </div>
-                    <!-- /.login-logo -->
-                    <div class="login-box-body">
-                        <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
-                        <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
-                            {!! csrf_field() !!}
+                <div class="row">
+                    <div class="login-box">
+                        <div class="login-logo">
+                            <img class="img-responsive img" id="login-image" src="css/images/Onto4ALL.png" alt="" srcset=""
+                                 style="display: block;margin-left: auto;margin-right: auto;">
+                        </div>
+                        <!-- /.login-logo -->
+                        <div class="login-box-body">
+                            <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
+                            <form action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
+                                {!! csrf_field() !!}
 
-                            <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                                <input type="email" name="email" class="form-control" value="{{ old('email') }}"
-                                       placeholder="{{ trans('adminlte::adminlte.email') }}">
-                                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
+                                <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+                                    <input type="email" name="email" class="form-control" value="{{ old('email') }}"
+                                           placeholder="{{ trans('adminlte::adminlte.email') }}">
+                                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                    @if ($errors->has('email'))
+                                        <span class="help-block">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                                    @endif
+                                </div>
+                                <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
+                                    <input type="password" name="password" class="form-control"
+                                           placeholder="{{ trans('adminlte::adminlte.password') }}">
+                                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                                    @endif
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-8">
+                                        <div class="checkbox icheck">
+                                            <label>
+                                                <input type="checkbox"
+                                                       name="remember"> {{ trans('adminlte::adminlte.remember_me') }}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-xs-4">
+                                        <button style="background-color: #00A65A" type="submit"
+                                                class="btn btn-primary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
+                                    </div>
+                                    <!-- /.col -->
+
+                                </div>
+                            </form>
+                            <div class="auth-links">
+                                <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}"
+                                   class="text-center"
+                                >{{ trans('adminlte::adminlte.i_forgot_my_password') }}</a>
+                                <br>
+                                @if (config('adminlte.register_url', 'register'))
+                                    <a href="{{ url(config('adminlte.register_url', 'register')) }}"
+                                       class="text-center"
+                                    >{{ trans('adminlte::adminlte.register_a_new_membership') }}</a>
                                 @endif
                             </div>
-                            <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                                <input type="password" name="password" class="form-control"
-                                       placeholder="{{ trans('adminlte::adminlte.password') }}">
-                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                                @endif
+                            <div class="social-auth-links text-center">
+                                <p>- OR -</p>
+                                <a href="redirect/google" style=".btn-google: background-color: #ffffff !important"
+                                   class="btn btn-block btn-social btn-google btn-flat btn-info"><i
+                                            class="fa fa-fw fa-google"></i> Sign in using
+                                    Google</a>
                             </div>
                             <div class="row">
-                                <div class="col-xs-8">
-                                    <div class="checkbox icheck">
-                                        <label>
-                                            <input type="checkbox"
-                                                   name="remember"> {{ trans('adminlte::adminlte.remember_me') }}
-                                        </label>
-                                    </div>
+                                <!-- /.col -->
+                                <div class="col-md-6">
+                                    <i class="fa fa-fw fa-github fa-2x"></i>
+                                    <a href="https://github.com/Piazzi/ontologyFramework">See us on github </a>
                                 </div>
                                 <!-- /.col -->
-                                <div class="col-xs-4">
-                                    <button style="background-color: #00A65A" type="submit"
-                                            class="btn btn-primary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
+                            </div>
+                            <div class="row">
+                                <!-- /.col -->
+                                <div class="col-md-12">
+                                    <i class="fa fa-fw fa-envelope fa-2x"></i>
+                                    <a data-toggle="modal" data-target="#contact" aria-expanded="false">Contact us</a>
                                 </div>
                                 <!-- /.col -->
-
                             </div>
-                        </form>
-                        <div class="auth-links">
-                            <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}"
-                               class="text-center"
-                            >{{ trans('adminlte::adminlte.i_forgot_my_password') }}</a>
-                            <br>
-                            @if (config('adminlte.register_url', 'register'))
-                                <a href="{{ url(config('adminlte.register_url', 'register')) }}"
-                                   class="text-center"
-                                >{{ trans('adminlte::adminlte.register_a_new_membership') }}</a>
-                            @endif
                         </div>
-                        <div class="social-auth-links text-center">
-                            <p>- OR -</p>
-                            <a href="redirect/google" style=".btn-google: background-color: #ffffff !important"
-                               class="btn btn-block btn-social btn-google btn-flat btn-info"><i
-                                        class="fa fa-fw fa-google"></i> Sign in using
-                                Google</a>
-                        </div>
-                        <div class="row">
-                            <!-- /.col -->
-                            <div class="col-md-6">
-                                <i class="fa fa-fw fa-github fa-2x"></i>
-                                <a href="https://github.com/Piazzi/ontologyFramework">See us on github </a>
+                        <!-- /.login-box-body -->
+                    </div><!-- /.login-box -->
+                    <div class="row">
+                        <div class="login-box">
+                            <div class="login-box-body">
+                                    <h4 class="login-box-msg">Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!</h4>
+                                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                        <input type="hidden" name="cmd" value="_s-xclick" />
+                                        <input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN" />
+                                        <input class="center-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                                        <img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
+                                    </form>
                             </div>
-                            <!-- /.col -->
-                        </div>
-                        <div class="row">
-                            <!-- /.col -->
-                            <div class="col-md-12">
-                                <i class="fa fa-fw fa-envelope fa-2x"></i>
-                                <a data-toggle="modal" data-target="#contact" aria-expanded="false">Contact us</a>
-                            </div>
-                            <!-- /.col -->
                         </div>
                     </div>
-                    <!-- /.login-box-body -->
-                </div><!-- /.login-box -->
+                </div>
             </div>
         </div>
     </div>

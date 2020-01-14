@@ -71,14 +71,15 @@ html {
     DO SISTEMA
 */
 .geDialog {
-    width: 55% !important;
-    height: 55%!important;
+    width: 85% !important;
+    height: 85%!important;
 }
 
+/*
 center {
     padding-right: 500px;
 }
-
+*/
 
 /*
    FIM DAS ALTERAÇÕES
