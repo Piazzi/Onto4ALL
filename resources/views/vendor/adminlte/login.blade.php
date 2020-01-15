@@ -124,8 +124,7 @@
                 <div class="row">
                     <div class="login-box">
                         <div class="login-logo">
-                            <img class="img-responsive img" id="login-image" src="css/images/Onto4ALL.png" alt="" srcset=""
-                                 style="display: block;margin-left: auto;margin-right: auto;">
+                            <img class="img-responsive img" id="login-image" src="css/images/Onto4ALL.png" alt="" srcset="">
                         </div>
                         <!-- /.login-logo -->
                         <div class="login-box-body">
