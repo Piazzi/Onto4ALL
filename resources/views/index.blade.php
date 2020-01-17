@@ -129,7 +129,7 @@
 
             <!-- Home tab content -->
             <div class="tab-pane active" id="control-sidebar-home-tab">
-                <a style="margin-bottom: 5px; width: 100%;" class="btn btn-default" data-toggle="modal" data-target="#modal" aria-expanded="false"><i class="fa fa-fw fa-compass"></i>External Ontology Databases</a>
+                <a style="margin-bottom: 5px" class="btn btn-default img-max-width" data-toggle="modal" data-target="#modal" aria-expanded="false"><i class="fa fa-fw fa-compass"></i>External Ontology Databases</a>
                 <div id="searchBar" class="input-group input-group-sm">
                     <input value="" id="search-tip-input" type="text" class="form-control"
                            placeholder="Search for tips">
@@ -432,14 +432,20 @@
         <div id="error-console-header" class="box-header">
             <h3 class="box-title">Error Console</h3>
 
+            <a  href="#" data-target="#errorConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle"></i></a>
             <div class="box-tools pull-right">
 
-                <span  data-toggle="tooltip" title="" class="badge bg-red" data-original-title="Errors">
+                <a download="ontology-errors.txt" href="#" id="download-errors-txt"><span data-toggle="tooltip" title="" class="badge bg-info">
+                    <i class="fa fa-download"></i>
+                    </span>
+                </a>
+
+                <span data-widget="collapse" data-toggle="tooltip" title="" class="badge bg-red" data-original-title="Errors">
                     <i class="fa fa-close"></i>
                     <span id="error-count"> 0</span>
                 </span>
 
-                <span data-toggle="tooltip" title="" class="badge bg-yellow" data-original-title="Warnings">
+                <span data-widget="collapse" data-toggle="tooltip" title="" class="badge bg-yellow" data-original-title="Warnings">
                     <i class="fa fa-warning"> </i>
                     <span id="warning-count">  0</span>
                 </span>
@@ -649,7 +655,7 @@
                         concepts through graphs or similar structures.
                         In the Onto4AllEditor, the Phase 3 must be performed in <strong>this page using the graphical editor</strong>. You can access this page again by clicking in the “Ontology drawing” on the menu.
                     </p>
-                    <img style="width: 100%;" alt="editor" src="css/images/Methodology/editor.png">
+                    <img class="img-max-width" alt="editor" src="css/images/Methodology/editor.png">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -679,11 +685,11 @@
                     <p>
                         <strong>You can import other ontologies to this editor if they have been created using the Onto4AllEditor and have a .XML extension. All ontologies exported by this editor can be imported in later projects </strong>. Using the menu editor, click on the "file" button and then on the "import" as showed below:
                     </p>
-                    <img style="width: 100%;" alt="import" src="css/images/Methodology/import.png">
+                    <img class="img-max-width" alt="import" src="css/images/Methodology/import.png">
                     <p>Select a valid file from your computer using the "choose file" button or drag a file direct to the box and then click in "import"</p>
-                    <img style="width: 100%" alt="select-file" src="css/images/Methodology/select-file.png">
+                    <img class="img-max-width" alt="select-file" src="css/images/Methodology/select-file.png">
                     <p>After that, your imported ontology will be showing on the editor</p>
-                    <img style="width: 100%" alt="pizza ontology" src="css/images/Methodology/pizza.png">
+                    <img class="img-max-width" alt="pizza ontology" src="css/images/Methodology/pizza.png">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -711,7 +717,7 @@
                                 5.1) to construct general taxonomy of the ontology based on previously selected top-
                                 level taxonomy (in the Onto4AllEditor, this activity must be performed in the menu
                                 “Ontology drawing”, the page you are right now)
-                                <img style="width: 100%;" alt="properties" src="css/images/Methodology/editor.png">
+                                <img class="img-max-width" alt="properties" src="css/images/Methodology/editor.png">
                             </li>
                             <li>
                                 5.2) to define descriptive properties of the classes involving textual attributes as
@@ -730,7 +736,7 @@
                                 performed in the menu “Ontology drawing”, clicking under a class or relation with the
                                 right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class and pressing CTRL + M));
                                 <img alt="properties" src="css/images/Methodology/propriedades.png">
-                                <img style="width: 100%" alt="properties" src="css/images/Methodology/class-properties.png">
+                                <img class="img-max-width" alt="properties" src="css/images/Methodology/class-properties.png">
                             </li>
                             <li>
                                 5.5) to create instances for ontological classes (in the Onto4AllEditor, this activity must
@@ -743,8 +749,8 @@
                                 relations (in the Onto4AllEditor, this activity must be performed in the editor
                                 ”, clicking under a class or relation with the right button of the mouse and
                                 choosing the function Edit Properties in the submenu (or selecting the relation and pressing CTRL + M)).
-                                <img style="width: 100%" alt="properties" src="css/images/Methodology/relation.png">
-                                <img style="width: 100%" alt="properties" src="css/images/Methodology/relation-properties.png">
+                                <img class="img-max-width" alt="properties" src="css/images/Methodology/relation.png">
+                                <img class="img-max-width" alt="properties" src="css/images/Methodology/relation-properties.png">
                             </li>
                         </ul>
 
@@ -777,7 +783,7 @@
                         through of the functionality Error Console, that it presents the current errors in the
                         drawn ontology.
                     </p>
-                    <img style="width: 100%" alt="console" src="css/images/Methodology/console.png">
+                    <img class="img-max-width" alt="console" src="css/images/Methodology/console.png">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -824,10 +830,13 @@
                 </div>
                 <div class="modal-body">
                     <p>In phase 8 the developer makes the ontological artifact available in a way that be
-                        downloaded and properly visualized by a community of users. You can download the ontology you just draw by clicking in the "file" menu and then in the "export" submenu
+                        downloaded and properly visualized by a community of users.
+                        You can download the ontology you just draw by clicking in the "file" menu and then in the "export" submenu
                     </p>
-                    <img style="width: 100%" alt="export" src="css/images/Methodology/export.png">
-                    <p>You can export your ontology in XML, OWL or SVG (image). When you do that your ontology is also saved in your account, you can look all the ontologies you made by clicking on the "My Ontologies" menu on the top of the page.</p>
+                    <img class="img-max-width" alt="export" src="css/images/Methodology/export.png">
+                    <p>You can export your ontology in XML, OWL or SVG (image).
+                        When you do that your ontology is also saved in your account,
+                        you can look all the ontologies you made by clicking on the "My Ontologies" menu on the top of the page.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -835,6 +844,39 @@
             </div>
         </div>
     </div>
+    <!-- ./ METHODOLOGY MODALS  -->
+
+    <!-- Error Console Info modal -->
+    <div class="tab modal fade" id="errorConsole"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Error Console</strong></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>The error console is the way our editor tells you what is wrong with the ontology you're current drawing.
+                        This console will show you errors and warnings that you should solve for your ontology to be correct. <a target="_blank" href="/errorIndex">Click here</a>
+                        to see all the errors and warnings our console track. We will be updating this console with more errors in the future, contact us via e-mail (lpiazzi@ice.ufjf.br) if you
+                        want some rule be implemented here.
+                    </p>
+                    <img class="img-max-width" alt="export" src="css/images/errorConsole.png">
+                    <p>Here you can see that the pizza ontology have several errors that need to be solved.
+                        We can also see a warning showing on the error console,
+                        indicating that one of the ontology relations has not been fully connected to 2 classes.
+                        <strong>Always remember to fully connect all of your relations, otherwise the error console might not work correctly.</strong>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--./Error Console Info modal -->
     </body>
 
 @stop
