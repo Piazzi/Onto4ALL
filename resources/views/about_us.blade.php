@@ -10,3 +10,7 @@
 
 
 @stop
+
+@section('footer')
+!
+@stop

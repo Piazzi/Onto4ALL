@@ -143,7 +143,7 @@
                             <div id="control-sidebar-theme-demo-options-tab table-search"
                                  class="tab-pane active table-search">
                                 @foreach($relations as $ontologyRelation)
-                                    <div id="tipSearch" class="box box-primary collapsed-box box-solid">
+                                    <div id="tipSearch" class="box box-default collapsed-box box-solid">
                                         <div class="box-header with-border">
                                             <h3 class="box-title title">{{$ontologyRelation->name}} <i
                                                         class="fa fa-fw fa-long-arrow-right"></i></h3>
@@ -881,6 +881,8 @@
 
 @stop
 
-
+@section('footer')
+    !
+@stop
 
 

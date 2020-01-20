@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Ontology;
 use DOMDocument;
 use Illuminate\Http\Request;
@@ -9,6 +10,7 @@ use App\OntologyRelation;
 use App\OntologyClass;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -58,6 +60,15 @@ class HomeController extends Controller
     {
         return view('error-index');
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    function help()
+    {
+        return view('help');
+    }
+
 
     /**
      * Save the editor diagram into a XML file.
@@ -505,4 +516,6 @@ class HomeController extends Controller
 
         return $response;
     }
+
+
 }

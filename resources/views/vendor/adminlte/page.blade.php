@@ -101,7 +101,7 @@
                                             <a href="{{route('ontologies.index')}}">Your Ontologies</a>
                                         </div>
                                         <div class="col-xs-4 text-center">
-                                            <a href="{{route('tutorial')}}">Help</a>
+                                            <a href="{{route('help')}}">Help</a>
                                         </div>
                                     </div>
                                     <!-- /.row -->
@@ -187,9 +187,29 @@
             @endif
         </div>
         <!-- /.content-wrapper -->
+        @hasSection('footer')
+            <footer class="main-footer">
+                    <div class="pull-right hidden-xs">
+                        <b>Version</b> 1.0
+                    </div>
+                    <strong>Copyright © 2018-2020 <a href="https://onto4alleditor.com">Onto4ALL</a>.</strong> All rights
+                    reserved.
+                @yield('footer')
+            </footer>
+        @endif
 
+        @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))
+            <aside class="control-sidebar control-sidebar-{{config('adminlte.right_sidebar_theme')}}">
+                @yield('right-sidebar')
+            </aside>
+            <!-- /.control-sidebar -->
+            <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
+            <div class="control-sidebar-bg"></div>
+        @endif
     </div>
     <!-- ./wrapper -->
+
+
 @stop
 
 @section('adminlte_js')
@@ -197,3 +217,4 @@
     @stack('js')
     @yield('js')
 @stop
+

@@ -78,3 +78,7 @@
         <!-- /.box-body -->
     </div>
 @stop
+
+@section('footer')
+    !
+@stop

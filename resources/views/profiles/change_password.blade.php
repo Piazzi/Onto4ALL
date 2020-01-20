@@ -59,3 +59,7 @@
 
 
 @stop
+
+@section('footer')
+    !
+@stop

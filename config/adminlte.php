@@ -122,6 +122,11 @@ return [
             'icon' => 'info-circle',
             'submenu' => [
                 [
+                    'text' => 'Help Menu',
+                    'url' => '/help',
+                    'icon' => 'question'
+                ],
+                [
                     'text' => 'Tutorial',
                     'url' => '/tutorial',
                     'icon' => 'info-circle'

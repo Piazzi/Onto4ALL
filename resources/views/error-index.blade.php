@@ -3,23 +3,17 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-
+    <h1>
+        Error Index
+        <small>Here you can find all errors and warnings tracked by our Editor at the moment.</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Error Index</li>
+    </ol>
 @stop
 
 @section('content')
-
-    <div class="box box-success">
-        <div class="box-header with-border">
-            <i class="fa fa-table"></i>
-
-            <h1 class="box-title">Error Index</h1>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body">
-            <h5>Here you can find all errors and warnings tracked by our Editor at the moment.</h5>
-        </div>
-        <!-- /.box-body -->
-    </div>
 
     <div class="box box-danger">
         <div class="box-header">
@@ -120,4 +114,8 @@
         </div>
         <!-- /.box-body -->
     </div>
+@stop
+
+@section('footer')
+!
 @stop

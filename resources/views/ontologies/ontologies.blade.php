@@ -3,6 +3,14 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
+    <h1>
+        Ontology Manager
+        <small>Manage all your ontologies</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Ontology Manager</li>
+    </ol>
     @if (session()->has('Sucess'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -268,4 +276,8 @@
     <!-- Filter -->
     <script type="text/javascript" src="js/SearchBar.js"></script>
 
+@stop
+
+@section('footer')
+    !
 @stop

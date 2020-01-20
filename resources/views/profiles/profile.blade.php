@@ -3,12 +3,14 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <div class="callout callout-success">
-        <h4>Your Profile</h4>
-        <p>
-            Here you can find information about your profile and account.
-        </p>
-    </div>
+    <h1>
+        Profile
+        <small>Your Onto4ALL profile</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Profile</li>
+    </ol>
 @stop
 
 @section('content')
@@ -109,4 +111,8 @@
         </div>
         <!-- /.col -->
     </div>
+@stop
+
+@section('footer')
+    !
 @stop

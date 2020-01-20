@@ -3,6 +3,18 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
+    <h1>
+        Tutorial
+        <small>Learn how to use the editor</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Tutorial</li>
+    </ol>
+
+@stop
+
+@section('content')
     <div class="box box-solid">
         <div class="box-header with-border">
             <i class="fa fa-text-width"></i>
@@ -16,32 +28,32 @@
                     <li>O que é o ONTO FOR ALL?</li>
                 </a>
                 <a href="#conceitos-basicos"><li>Conceitos básicos</li></a>
-                    <ol>
-                        <a href="#class"><li>Classe</li></a>
-                        <a href="#relations"><li>Relação</li></a>
-                        <a href="#properties"><li>Propriedades</li></a>
-                        <a href="#colors"><li>Cores</li></a>
-                        <a href="#save"><li>Salvar</li></a>
-                        <a href="#import"><li>Importar</li></a>
-                    </ol>
+                <ol>
+                    <a href="#class"><li>Classe</li></a>
+                    <a href="#relations"><li>Relação</li></a>
+                    <a href="#properties"><li>Propriedades</li></a>
+                    <a href="#colors"><li>Cores</li></a>
+                    <a href="#save"><li>Salvar</li></a>
+                    <a href="#import"><li>Importar</li></a>
+                </ol>
                 </li>
 
                 <a href="#interface-do-editor"><li>Interface do Editor</li></a>
-                    <ol>
-                        <a href="#diagram"><li>Diagrama</li></a>
-                        <a href="#rules"><li>Barra de regras</li></a>
-                        <a href="#ontology-palette"><li>Paleta de ontologias</li></a>
-                        <a href="#other-palettes"><li>Outras paletas</li></a>
-                        <a href="#ontology-history"><li>Histórico de ontologias</li></a>
-                    </ol>
+                <ol>
+                    <a href="#diagram"><li>Diagrama</li></a>
+                    <a href="#rules"><li>Barra de regras</li></a>
+                    <a href="#ontology-palette"><li>Paleta de ontologias</li></a>
+                    <a href="#other-palettes"><li>Outras paletas</li></a>
+                    <a href="#ontology-history"><li>Histórico de ontologias</li></a>
+                </ol>
                 </li>
 
                 <a href="#ontology-management"><li>Gerenciamento de Ontologias</li></a>
-                    <ol>
-                        <a href="#ontologies"><li>Minhas ontologias</li></a>
-                        <a href="#favorite-ontologies"><li>Ontologias favoritas</li></a>
-                        <a href="#actions"><li>Ações</li></a>
-                    </ol>
+                <ol>
+                    <a href="#ontologies"><li>Minhas ontologias</li></a>
+                    <a href="#favorite-ontologies"><li>Ontologias favoritas</li></a>
+                    <a href="#actions"><li>Ações</li></a>
+                </ol>
                 </li>
                 <a href="#profile"><li>Perfil</li></a>
                 <a href="#examples"><li>Exemplos</li></a>
@@ -52,9 +64,7 @@
         </div>
         <!-- /.box-body -->
     </div>
-@stop
 
-@section('content')
     <div id="intro" class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">O que é o ONTO4ALL?</h3>
@@ -519,7 +529,7 @@
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/logos.png">
+                        <img style="width: 100%" alt="class image" src="/css/images/logos.png">
                     </div>
                 </div>
         </div>
@@ -537,4 +547,8 @@
     </div>
     
     
+@stop
+
+@section('footer')
+!
 @stop

@@ -8,6 +8,14 @@
 
 @section('body_class', 'login-page')
 
+@if (session()->has('Success'))
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-check"></i> Alert!</h4>
+        <strong>{{ session('Success') }}</strong>
+    </div>
+@endif
+
 @section('body')
     <div class="content">
         <div class="row">
@@ -178,7 +186,7 @@
                                 @if (config('adminlte.register_url', 'register'))
                                     <a href="{{ url(config('adminlte.register_url', 'register')) }}"
                                        class="text-center"
-                                    >{{ trans('adminlte::adminlte.register_a_new_membership') }}</a>
+                                    >{{ trans('adminlte::adminlte.register_a_new_membership') }} (It's free!)</a>
                                 @endif
                             </div>
                             <div class="social-auth-links text-center">
@@ -200,7 +208,7 @@
                                 <!-- /.col -->
                                 <div class="col-md-12">
                                     <i class="fa fa-fw fa-envelope fa-2x"></i>
-                                    <a data-toggle="modal" data-target="#contact" aria-expanded="false">Contact us</a>
+                                    <a href="#" data-toggle="modal" data-target="#contact" aria-expanded="false">Contact us</a>
                                 </div>
                                 <!-- /.col -->
                             </div>
@@ -231,7 +239,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"><strong>Having some issues with the editor? Have any
-                            idea you'd like to be implemented? Contact us via email</strong></h5>
+                            idea you'd like to be implemented? Fill the form below:</strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
