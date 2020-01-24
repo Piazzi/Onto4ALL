@@ -22,7 +22,7 @@ $(document).ready(function () {
 
     /// Send a notification to the notification menu
     $('.geItem').click(function () {
-       $('ul .menu').append(' <li>\n' +
+       $('ul .notification-menu').append(' <li>\n' +
            '                                            <a href="#">\n' +
            '                                                <i class="fa fa-warning text-yellow"></i> Dont forget to save your ontology \n' +
            '                                            </a>\n' +

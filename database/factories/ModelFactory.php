@@ -44,3 +44,13 @@ $factory->define(\App\OntologyRelation::class, function (Faker $faker) {
         'superproperty_of'  => $faker->lastName
     ];
 });
+
+$factory->define(\App\Message::class, function (Faker $faker) {
+    return [
+        "category" => $faker->randomElement(['other','suggestion','question','bug']),
+        "name" => $faker->name,
+        "email" => $faker->email,
+        "message" => $faker->text,
+        "read" => 0
+    ];
+});

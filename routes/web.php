@@ -45,6 +45,8 @@ Route::get('/ontologies/downloadOWL/{userId}/{ontologyId}', 'OntologyController@
 Route::put('/ontologies/favourite/{userId}/{ontologyId}', 'OntologyController@saveAsFavourite')->name('ontologies.favourite')->middleware('can:eModelador');
 Route::put('/ontologies/normal/{userId}/{ontologyId}', 'OntologyController@saveAsNormal')->name('ontologies.normal')->middleware('can:eModelador');
 
+Route::resource('/messages', 'MessageController')->middleware('can:eAdmin');
+Route::any('/messages/search', 'MessageController@search')->name('messages.search')->middleware('can:eAdmin');
 
 // Rotas do Editor
 Route::get('/home', 'HomeController@index')->name('home');

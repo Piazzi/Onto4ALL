@@ -132,11 +132,6 @@ return [
                     'icon' => 'info-circle'
                 ],
                 [
-                    'text' => 'Error Index',
-                    'url' => '/errorIndex',
-                    'icon' => 'close',
-                ],
-                [
                     'text' => 'About Us',
                     'url' => '/aboutUs',
                     'icon' => 'book'
@@ -152,7 +147,7 @@ return [
         ],
 
         [
-            'text' => 'Tips',
+            'text' => 'Admin Panel',
             'icon' => 'th-list',
             'can' => 'eAdmin',
             'submenu' => [
@@ -160,14 +155,23 @@ return [
                     'text' => 'Ontological Relations',
                     'url' => '/ontology_relation',
                     'can' => 'eAdmin',
+                    'icon' => 'arrow-right'
 
                 ],
                 [
                     'text' => 'Ontological Classes',
                     'url' => '/ontology_class',
                     'can' => 'eAdmin',
+                    'icon' => 'circle'
 
                 ],
+                [
+                    'text' => 'Messages',
+                    'url' => '/messages',
+                    'can' => 'eAdmin',
+                    'icon' => 'envelope'
+
+                ]
             ],
         ],
     ],

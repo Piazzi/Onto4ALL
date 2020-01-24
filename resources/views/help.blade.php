@@ -11,6 +11,26 @@
         <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Help Menu</li>
     </ol>
+
+    @if (session()->has('Success'))
+        <div class="alert alert-success alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-check"></i> Alert!</h4>
+            <strong>{{ session('Success') }}</strong>
+        </div>
+    @endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 @stop
 
 @section('content')
@@ -40,7 +60,7 @@
                 <div class="icon">
                     <i class="ion ion-email"></i>
                 </div>
-                <a href="#" class="small-box-footer">
+                <a data-target="#contactUs" data-toggle="modal" aria-expanded="false" href="#" class="small-box-footer">
                     More info <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
@@ -177,9 +197,46 @@
         <!-- /.box-body -->
     </div>
 
+    <div class="tab modal fade" id="contactUs"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Contact Form</strong></h5>
 
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{route('messages.store')}}">
+                    <div class="modal-body">
+                            @csrf
+                            <div class="form-group">
+                                <label>Why are you contacting us for? Select a option.</label>
+                                <select name="category" class="form-control">
+                                    <option value="suggestion">Make a Suggestion</option>
+                                    <option value="bug">Report a Bug</option>
+                                    <option value="question">Ask a Question</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Message</label>
+                                <textarea name="message" class="form-control" rows="3" placeholder="Enter your message here. We will answer as soon as possible"></textarea>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('footer')
-    !
+    .
 @stop

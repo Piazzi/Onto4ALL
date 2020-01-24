@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         $this->call(OntologyClassTableSeeder::class);
         $this->call(OntologyRelationTableSeeder::class);
+        $this->call(MessagesTableSeeder::class);
     }
 }

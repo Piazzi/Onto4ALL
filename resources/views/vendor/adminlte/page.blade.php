@@ -58,6 +58,41 @@
 
                     <ul class="nav navbar-nav">
 
+                        @if(Auth::user()->categoria == 'administrador')
+                            @php
+                                $count = Auth::user()->unreadNotifications->count();
+                            @endphp
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-primary">{{$count > 0 ? $count : ''}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have {{$count}} new messages</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        @foreach(Auth::user()->unreadNotifications as $notification)
+                                        <li><!-- start message -->
+                                            <a href="{{route('messages.index')}}">
+                                                <div class="pull-left">
+                                                    <img src="css/images/profile.jpeg" class="img-circle" alt="User Image">
+                                                </div>
+                                                <h4>
+                                                    Message:
+                                                    <small><i class="fa fa-clock-o"></i>{{date("d-m-Y | H:i", strtotime($notification->created_at))}}</small>
+                                                </h4>
+                                                <p>{{str_limit($notification->data['data'],20)}}</p>
+                                            </a>
+                                        </li>
+                                        <!-- end message -->
+                                        @endforeach
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="{{route('messages.index')}}">See All Messages</a></li>
+                            </ul>
+                        </li>
+                        @endif
                         <li id="notifications-menu" class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <i class="fa fa-bell-o"></i>
@@ -67,7 +102,7 @@
                                 <li class="header">Your notifications</li>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
-                                    <ul class="menu">
+                                    <ul class="notification-menu menu">
 
                                     </ul>
                                 </li>
@@ -193,7 +228,7 @@
                         <b>Version</b> 1.0
                     </div>
                     <strong>Copyright © 2018-2020 <a href="https://onto4alleditor.com">Onto4ALL</a>.</strong> All rights
-                    reserved.
+                    reserved
                 @yield('footer')
             </footer>
         @endif

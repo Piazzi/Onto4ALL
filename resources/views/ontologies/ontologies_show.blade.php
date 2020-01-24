@@ -80,5 +80,5 @@
 @stop
 
 @section('footer')
-    !
+    .
 @stop
