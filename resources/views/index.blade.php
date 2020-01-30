@@ -118,11 +118,11 @@
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class=""><a href="#control-sidebar-theme-demo-options-tab" data-toggle="tab" aria-expanded="false"><i
+            <li class=""><a class="menu-title" href="#control-sidebar-theme-demo-options-tab" data-toggle="tab" aria-expanded="false"><i
                             class="fa fa-fw fa-info-circle"></i> Methodology</a></li>
-            <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab" aria-expanded="true"><i
+            <li class="active"><a class="menu-title" href="#control-sidebar-home-tab" data-toggle="tab" aria-expanded="true"><i
                             class="fa fa-search"></i> Tips</a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-object-group"></i> Ontologies</a></li>
+            <li><a class="menu-title" href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-object-group"></i> Ontologies</a></li>
         </ul>
 
         <div class="tab-content">
@@ -143,7 +143,7 @@
                             <div id="control-sidebar-theme-demo-options-tab table-search"
                                  class="tab-pane active table-search">
                                 @foreach($relations as $ontologyRelation)
-                                    <div id="tipSearch" class="box box-default collapsed-box box-solid">
+                                    <div id="tipSearch" class="box box-default collapsed-box box-solid relation-box">
                                         <div class="box-header with-border">
                                             <h3 class="box-title title">{{$ontologyRelation->name}} <i
                                                         class="fa fa-fw fa-long-arrow-right"></i></h3>
@@ -276,11 +276,11 @@
             </div>
             <div id="control-sidebar-theme-demo-options-tab" class="tab-pane">
                 <div id="menu-scroll">
-                    <div class="box box-success">
+                    <div class="box box-success methodology-box">
                         <div class="box-header with-border">
                             <i class="fa fa-text-width"></i>
 
-                            <h3 class="box-title">Methodology</h3>  <a href="#" data-toggle="modal" data-target="#methodologyDefinition" aria-expanded="false"><i style="float: right;" class="fa fa-question-circle"></i></a>
+                            <h3 class="box-title methodology-title">Methodology</h3>  <a href="#" data-toggle="modal" data-target="#methodologyDefinition" aria-expanded="false"><i style="float: right;" class="fa fa-question-circle"></i></a>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -349,7 +349,7 @@
                         </div>
                         <!-- /.box-body -->
 
-                        <div class="box-footer clearfix no-border">
+                        <div class="box-footer clearfix no-border methodology-footer">
                             <h4>Your progress: </h4>
                             <div class="progress progress active">
                                 <div id="progress-bar" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0"
@@ -450,7 +450,7 @@
                     <span id="warning-count">  0</span>
                 </span>
 
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-chevron-down"></i></button>
             </div>
         </div>
         <!-- /.box-header -->
@@ -880,9 +880,4 @@
     </body>
 
 @stop
-
-@section('footer')
-    !
-@stop
-
 

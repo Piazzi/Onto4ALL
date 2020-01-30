@@ -20,10 +20,10 @@
 
 /* --------------------------------------------ONTO4ALL------------------------------------------------------------*/
 
+
 html {
     overflow-y: hidden;
 }
-
 /*
     ALTERAÇÕES PARA ENCAIXAR O DIAGRAMA
     NA HOME E ORGANIZAR OS MENUS
@@ -33,7 +33,7 @@ html {
     cursor: default;
     margin-top: 19px;
     z-index: 12;
-    left: 182px !important;
+    left: 232px !important;
 }
 
 .geSidebarContainer, .geFormatContainer, .geDiagramContainer {
@@ -47,11 +47,11 @@ html {
     z-index: 12;
     right: 267px !important;
     cursor: default;
-    background-color: #ffffff !important;
+    background-color: #ffffff ;
 }
 
 .geMenubar {
-    background: whitesmoke !important;
+    background: whitesmoke;
     border-bottom: 1px solid #e0e0e0;
     width: 26%;
 }
@@ -119,7 +119,7 @@ center {
 }
 
 .control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open + .control-sidebar-bg {
-    position: fixed;
+    position: absolute;
     width: 23%;
 }
 
@@ -144,7 +144,7 @@ aside {
     position: relative;
     z-index: 13;
     margin-left: 600px;
-    bottom: 30px;
+    bottom: 32px;
 
 }
 
@@ -199,7 +199,7 @@ aside {
 }
 
 .geFormatContainer {
-    background-color: whiteSmoke !important;
+    background-color: whiteSmoke ;
     overflow-x: hidden !important;
     overflow-y: auto !important;
     font-size: 12px;
@@ -625,7 +625,7 @@ div.mxWindow .geButton {
 
 .geFooterContainer {
     background: #e5e5e5;
-    border-top: 1px solid #c0c0c0;
+    /*border-top: 1px solid #c0c0c0; <------------------------------- BORDER-LESS */
 }
 
 .geFooterContainer a {
