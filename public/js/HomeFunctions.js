@@ -45,23 +45,23 @@ $(document).ready(function () {
     });
 
     // Change the text on the sidebar-control button
+    let hideSidebar = false;
+
     $("#control-sidebar").click(function () {
-        if($(this).text().includes('Hide SideBar'))
-        {
-            $(this).text(' Show SideBar');
-        }
-        else
-        {
-            $(this).text(' Hide SideBar');
-        }
+        hideSidebar = !hideSidebar;
     });
 
     // Change the editor to night mode
+
+    let nightMode = false;
+
     $("#night-mode").click(function () {
-        if($(this).text().includes('Night Mode'))
+        if(!nightMode)
         {
             // NIGHT MODE
-            $(this).text(' Normal Mode');
+            nightMode = true;
+            $(this).text(' ');
+            $(this).append('<i class="fa fa-sun-o"></i>');
 
             $("nav").css("background-color", "#444");
             $(".dropdown-menu").css("background-color", "#444");
@@ -156,7 +156,9 @@ $(document).ready(function () {
         else
         {
             // NORMAL MODE
-            $(this).text(' Night Mode');
+            nightMode = false;
+            $(this).text(' ');
+            $(this).append('<i class="fa fa-moon-o"></i>');
 
             $("nav").css("background-color", "");
             $(".dropdown-menu").css("background-color", "");
@@ -255,6 +257,37 @@ $(document).ready(function () {
             $(".modal-content").css("background-color", "");
 
         }
+    });
+
+
+    // Set the tooltips in the homepage
+
+    tippy('#night-mode', {
+        content: "Turn ON/OFF the night mode"
+    });
+
+    tippy('#control-sidebar', {
+        content: "Show/Hide the Sidebar"
+    });
+
+    tippy('.fa-plus', {
+        content: "Opens the error console"
+    });
+
+    tippy('.fa-download', {
+        content: "Downloads a .txt file containing all the current errors in the ontology"
+    });
+
+    tippy('#errors', {
+        content: "The number of errors in your current ontology"
+    });
+
+    tippy('#warnings', {
+        content: "The number of warnings in your current ontology"
+    });
+
+    tippy('.fa-question-circle', {
+        content: "Click to see more information!"
     });
 
 });

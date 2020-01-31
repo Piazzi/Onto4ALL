@@ -39,6 +39,11 @@
         // Default resources are included in grapheditor resources
         mxLoadResources = false;
     </script>
+
+    <!-- Tooltips -->
+    <script src="https://unpkg.com/popper.js@1"></script>
+    <script src="https://unpkg.com/tippy.js@5/dist/tippy-bundle.iife.js"></script>
+    <!-- MxGraph -->
     <script type="text/javascript" src="js/Init.js"></script>
     <script type="text/javascript" src="js/pako.min.js"></script>
     <script type="text/javascript" src="js/base64.js"></script>
@@ -60,6 +65,9 @@
     <!-- Search Script -->
     <script defer type="text/javascript" src="js/SearchTip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+
+
+
 
 @stop
 
@@ -440,12 +448,12 @@
                     </span>
                 </a>
 
-                <span data-widget="collapse" data-toggle="tooltip" title="" class="badge bg-red" data-original-title="Errors">
+                <span id="errors" data-widget="collapse"  class="badge bg-red" data-original-title="Errors">
                     <i class="fa fa-close"></i>
                     <span id="error-count"> 0</span>
                 </span>
 
-                <span data-widget="collapse" data-toggle="tooltip" title="" class="badge bg-yellow" data-original-title="Warnings">
+                <span id="warnings" data-widget="collapse" class="badge bg-yellow" data-original-title="Warnings">
                     <i class="fa fa-warning"> </i>
                     <span id="warning-count">  0</span>
                 </span>

@@ -43,8 +43,8 @@ return [
 
     'facebook' => [
         'client_id' => '1431060400372178',         // Your Facebook Client ID
-        'client_secret' => env('1041ec0dc2892d557764cb208ca31cc3'), // Your Facebook Client Secret
-        'redirect' => env ('FB_REDIRECT')
+        'client_secret' => env('FACEBOOK_APP_SECRET'), // Your Facebook Client Secret
+        'redirect' => env ('FACEBOOK_REDIRECT')
     ],
 
     'google' => [

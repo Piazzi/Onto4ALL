@@ -185,10 +185,10 @@
                                         </li>
                                         @if(Route::currentRouteName() == 'home')
                                             <li>
-                                                <a id="control-sidebar" href="#" data-toggle="control-sidebar"> Hide SideBar</a>
+                                                <a id="control-sidebar" href="#" data-toggle="control-sidebar"> <i class="fa fa-th"></i></a>
                                             </li>
                                             <li>
-                                                <a id="night-mode" href="#"> Night Mode</a>
+                                                <a id="night-mode" href="#"><i class="fa fa-fw fa-moon-o"></i></a>
                                             </li>
                                         @endif
                                     </ul>

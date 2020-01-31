@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserUpdateRequest;
 use App\Ontology;
+use App\Services\SocialFacebookAccountService;
+use App\SocialFacebookAccount;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -75,7 +77,8 @@ class ProfileController extends Controller
         if($id != Auth::user()->id)
             return view('lockscreen');
         $user = User::find($id);
-        $ontologies = Ontology::where('user_id','=', $user->id)->delete();
+        Ontology::where('user_id','=', $user->id)->delete();
+        SocialFacebookAccount::where('user_id', $user->id)->delete();
         $user->delete();
         return redirect()->route('login');
     }
