@@ -189,14 +189,15 @@
                                     >{{ trans('adminlte::adminlte.register_a_new_membership') }} (It's free!)</a>
                                 @endif
                             </div>
-                            <!--
+
                             <div class="social-auth-links text-center">
                                 <p>- OR -</p>
-                                <a href="redirect/google" style=".btn-google: background-color: #ffffff !important"
-                                   class="btn btn-block btn-social btn-google btn-flat btn-info"><i
-                                            class="fa fa-fw fa-google"></i> Sign in using
-                                    Google</a>
-                            </div> -->
+                                <a href="{{url('/redirect')}}"
+                                   class="btn btn-block btn-social btn-facebook btn-flat btn-info"><i
+                                            class="fa fa-fw fa-facebook"></i> Sign in using
+                                    Facebook</a>
+                            </div>
+
                             <div class="row">
                                 <!-- /.col -->
                                 <div class="col-md-6">

@@ -20,13 +20,14 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Auth::routes();
 
 
+// Rotas do perfil do usuário
 Route::resource('/profile', 'ProfileController')->middleware('can:eModelador');
 Route::get('/change_password/{id}', 'ProfileController@changePassword')->middleware('can:eModelador');
 Route::put('/update_password/{id}', 'ProfileController@updatePassword')->name('profile.updatePassword')->middleware('can:eModelador');
 
 // Rotas do Socialite
-Route::get('/redirect/{service}', 'Auth\LoginController@redirectToProvider');
-Route::get('/callback/{service}', 'Auth\LoginController@handleProviderCallback');
+Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 
 // Rotas do CRUD's
@@ -38,13 +39,14 @@ Route::resource('/ontology_relation', 'OntologyRelationController')->middleware(
 Route::any('/ontology_class/search', 'OntologyClassController@search')->name('ontology_class.search')->middleware('can:eAdmin');
 Route::resource('/ontology_class', 'OntologyClassController')->middleware('can:eAdmin');
 
-
+// CRUD de ontologias
 Route::resource('/ontologies', 'OntologyController')->middleware('can:eModelador');
 Route::get('/ontologies/download/{userId}/{ontologyId}', 'OntologyController@download')->name('ontologies.download')->middleware('can:eModelador');
 Route::get('/ontologies/downloadOWL/{userId}/{ontologyId}', 'OntologyController@downloadOWL')->name('ontologies.downloadOWL')->middleware('can:eModelador');
 Route::put('/ontologies/favourite/{userId}/{ontologyId}', 'OntologyController@saveAsFavourite')->name('ontologies.favourite')->middleware('can:eModelador');
 Route::put('/ontologies/normal/{userId}/{ontologyId}', 'OntologyController@saveAsNormal')->name('ontologies.normal')->middleware('can:eModelador');
 
+// CRUD de mensagens
 Route::resource('/messages', 'MessageController')->middleware('can:eAdmin');
 Route::any('/messages/search', 'MessageController@search')->name('messages.search')->middleware('can:eAdmin');
 

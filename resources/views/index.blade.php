@@ -450,7 +450,7 @@
                     <span id="warning-count">  0</span>
                 </span>
 
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-chevron-down"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
             </div>
         </div>
         <!-- /.box-header -->

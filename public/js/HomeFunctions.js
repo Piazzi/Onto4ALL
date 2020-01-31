@@ -74,6 +74,7 @@ $(document).ready(function () {
             $(".user-body ").css("border-color", "#666");
             $(".col-xs-4 a").css("color", "#00a65a !important");
             $("b").css("color", "#00a65a");
+            $(".notification-menu .menu li a").css("color", "#00a65a");
             $(".user-footer a").css("background-color", "#444");
             $(".user-footer a ").css("border-color", "#555");
 
@@ -138,15 +139,18 @@ $(document).ready(function () {
             $(".geTitle").css("background-color", "#888");
             $(".geTitle").css("border-bottom", "1px solid #666");
             $(".geSidebarContainer ").css("border-top", "#666");
+            $(".geSidebarContainer ").css("background-color", "#999");
             $(".geDialog ").css("background", "#9999");
-            $(".mxPopupMenu .geMenubarMenu ").css("background-color", "#666");
+            $(".mxPopupMenu ").css("background", "#666");
             $(".mxPopupMenuItem span ").css("color", "#333");
-            $(".DiagramBackdrop ").css("background-color", "#d5d5d5");
+            $(".geDiagramBackdrop ").css("background-color", "#d5d5d5");
+            $(".geDiagramBackdrop ").css("border", "0px solid #666");
             $(".geFormatContainer ").css("background-color", "#888");
             $(".content-wrapper ").css("background-color", "#888");
             $("#error-console  ").css("border", "1px solid #444");
             $("aside ").css("border", "1px");
 
+            $(".modal-content").css("background-color", "#888");
 
         }
         else
@@ -167,6 +171,7 @@ $(document).ready(function () {
             $(".user-body ").css("border-top", "");
             $(".user-body-link ").css("color", "");
             $("b").css("color", "");
+            $(".notification-menu .menu li a").css("color", "");
 
             $(".user-footer a").css("background-color", "");
             $(".user-footer a ").css("border-color", "");
@@ -236,16 +241,18 @@ $(document).ready(function () {
             $(".geTitle").css("background-color", "");
             $(".geTitle").css("border-bottom", "");
             $(".geSidebarContainer ").css("border-top", "");
+            $(".geSidebarContainer ").css("background-color", "");
             $(".geDialog ").css("background", "");
             $(".mxPopupMenu .geMenubarMenu").css("background-color", "");
             $(".mxPopupMenuItem span ").css("color", "grey");
-            $(".DiagramBackdrop ").css("background-color", "");
+            $(".geDiagramBackdrop ").css("background-color", "");
+            $(".geDiagramBackdrop ").css("border", "");
             $(".geFormatContainer ").css("background-color", "");
             $(".content-wrapper ").css("background-color", "");
             $("#error-console ").css("border", "");
             $("aside ").css("border", "");
 
-
+            $(".modal-content").css("background-color", "");
 
         }
     });
