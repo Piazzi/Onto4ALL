@@ -29,18 +29,12 @@
                 @csrf
                 <input name="_method" type="hidden" value="PATCH">
 
-                <div class="form-group">
-                    <label>Preferred Name</label>
-                    <input required value="{{$ontologyClass->name}}" name="name" type="text" class="form-control"
-                           placeholder="">
-                </div>
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Super Class</label>
-                            <input value="{{$ontologyClass->superclass}}" name="superclass" type="text"
-                                   class="form-control">
+                            <label>Preferred Name</label>
+                            <input required value="{{$ontologyClass->name}}" name="name" type="text" class="form-control"
+                                   placeholder="">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -99,22 +93,25 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Elucidation</label>
-                            <input name="elucidation"  value="{{$ontologyClass->elucidation}}" type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Is Defined By</label>
                             <input name="is_defined_by"  value="{{$ontologyClass->is_defined_by}}" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Disjoint With</label>
                             <input name="disjoint_with"  value="{{$ontologyClass->disjoint_with}}" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Elucidation</label>
+                            <textarea rows="3" placeholder="Edit..." name="elucidation" type="text" class="form-control">{{$ontologyClass->elucidation}}</textarea>
                         </div>
                     </div>
                 </div>

@@ -16,19 +16,13 @@
         <div class="box-body">
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Preferred Name</label>
                         <input disabled value="{{$ontologyClass->name}}" type="text" class="form-control">
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Super Class</label>
-                        <input disabled value="{{$ontologyClass->superclass}}" type="text" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label>Sub Class Of</label>
                         <input disabled value="{{$ontologyClass->subclass}}" type="text" class="form-control">

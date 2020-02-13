@@ -8,7 +8,6 @@ class OntologyClass extends Model
 {
     protected $fillable = [
         'name',
-        'superclass',
         'subclass',
         'synonyms',
         'example_of_usage',

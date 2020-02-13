@@ -27,20 +27,11 @@
             <form method="POST" action="{{route('ontology_class.store')}}" role="form" token="{{ csrf_token() }}">
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Preferred Name</label>
                             <input required value="{{old('name')}}" name="name" type="text" class="form-control"
                                    placeholder="">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Super Class</label>
-                            <input value="{{old('superclass')}}" name="superclass" type="text"
-                                   class="form-control" placeholder="">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -101,22 +92,25 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Elucidation</label>
-                            <input value="{{old('elucidation')}}" name="elucidation" type="text" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Is Defined By</label>
                             <input value="{{old('is_defined_by')}}" name="is_defined_by" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label>Disjoint With</label>
                             <input value="{{old('disjoint_with')}}" name="disjoint_with" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Elucidation</label>
+                            <textarea  name="elucidation" rows="3" placeholder="Enter..." class="form-control"></textarea>
                         </div>
                     </div>
                 </div>

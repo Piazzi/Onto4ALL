@@ -25,7 +25,6 @@ class OntologyClassStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:3|max:50',
-            'superclass' => 'nullable|string|min:1|max:50',
             'subclass' => 'nullable|string|min:1|max:50',
             'definition' => 'required|min:1|max:500',
             'synonyms' => 'nullable|min:1|max:20|string',

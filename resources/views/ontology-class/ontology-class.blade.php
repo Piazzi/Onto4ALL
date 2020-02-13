@@ -57,7 +57,6 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Superclass</th>
                             <th>Subclass</th>
                             <th>Synonyms</th>
                             <th>Example Of Usage</th>
@@ -73,7 +72,6 @@
 
                                 <td>{{$class->id}}</td>
                                 <td>{{$class->name}}</td>
-                                <td>{{$class->superclass}}</td>
                                 <td>{{$class->subclass}}</td>
                                 <td>{{$class->synonyms}}</td>
                                 <td>{{$class->example_of_usage}}</td>

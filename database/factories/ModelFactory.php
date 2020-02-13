@@ -7,7 +7,6 @@ $faker = new Faker();
 $factory->define(\App\OntologyClass::class, function (Faker $faker) {
     return [
         "name" => $faker->randomElement(['Process', 'Object', 'Blood Cell','Plasma', 'Centrifugation']),
-        "superclass" => $faker->lastName,
         "subclass" => $faker->firstName,
         "definition" => $faker->word,
         "synonyms" => $faker->domainWord,

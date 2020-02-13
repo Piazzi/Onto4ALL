@@ -42,7 +42,7 @@
 
     <!-- Tooltips -->
     <script src="https://unpkg.com/popper.js@1"></script>
-    <script src="https://unpkg.com/tippy.js@5/dist/tippy-bundle.iife.js"></script>
+    <script src="https://unpkg.com/tippy.js@5"></script>
     <!-- MxGraph -->
     <script type="text/javascript" src="js/Init.js"></script>
     <script type="text/javascript" src="js/pako.min.js"></script>
@@ -65,8 +65,6 @@
     <!-- Search Script -->
     <script defer type="text/javascript" src="js/SearchTip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
-
-
 
 
 @stop
@@ -231,10 +229,8 @@
                                                 @if($class->formal_definition)
                                                 <dd>{{$class->formal_definition}}</dd>
                                                 @endif
-                                                @if($class->superclass)
-                                                <dt>SuperClass</dt>
-                                                <dd>{{$class->superclass}}</dd>
-                                                @endif
+                                                <dt>ID</dt>
+                                                <dd>{{$class->class_id}}</dd>
                                                 @if($class->subclass)
                                                     <dt>SubClassOf</dt>
                                                     <dd>{{$class->subclass}}</dd>
@@ -251,8 +247,6 @@
                                                     <a target="_blank" href="{{$class->imported_from}}">{{$class->imported_from}}</a>
                                                 </dd>
                                                 @endif
-                                                <dt>ID</dt>
-                                                <dd>{{$class->class_id}}</dd>
                                                 <dt>Label</dt>
                                                 <dd>{{$class->label}}</dd>
                                                 @if($class->elucidation)
