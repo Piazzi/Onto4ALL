@@ -11,8 +11,10 @@
     <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
     <!-- reCAPTCHA GOOGLE -->
+    @if(Route::currentRouteName() == 'login' || Route::currentRouteName() == 'register')
     <meta name="grecaptcha-key" content="{{config('recaptcha.v3.public_key')}}">
     <script src="https://www.google.com/recaptcha/api.js?render={{config('recaptcha.v3.public_key')}}"></script>
+    @endif
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
