@@ -206,14 +206,6 @@
                                 </div>
                                 <!-- /.col -->
                             </div>
-                            <div class="row">
-                                <!-- /.col -->
-                                <div class="col-md-12">
-                                    <i class="fa fa-fw fa-envelope fa-2x"></i>
-                                    <a href="#" data-toggle="modal" data-target="#contact" aria-expanded="false">Contact us</a>
-                                </div>
-                                <!-- /.col -->
-                            </div>
                         </div>
                         <!-- /.login-box-body -->
                     </div><!-- /.login-box -->
