@@ -62,8 +62,8 @@
     <script type="text/javascript" src="js/Dialogs.js"></script>
     <script type="text/javascript" src="js/HomeFunctions.js"></script>
     <script type="text/javascript" src="js/Compiler.js"></script>
-    <!-- Search Script -->
-    <script defer type="text/javascript" src="js/SearchTip.js"></script>
+    <!-- Search Script <script defer type="text/javascript" src="js/SearchTip.js"></script> -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
 
 
@@ -71,7 +71,7 @@
 
 @section('content')
 
-    <body class="geEditor">
+    <body onload="searchTip()" class="geEditor">
     <script type="text/javascript">
         // Extends EditorUi to update I/O action states based on availability of backend
         (function () {
@@ -883,3 +883,27 @@
 
 @stop
 
+<!-- THIS FUNCTION NEEDS TO BE LOADED AFTER THE MXGRAPH COMPONENTS -->
+<script type="text/javascript">
+    function searchTip(){
+    $(".geSidebar .geItem").click(function () {
+        let name =  $(this).attr('class');
+        name = name.replace("geItem", "").trim();
+        if(name != 'Class' && name != 'Callout' && name != 'Textbox' && name != 'Text' && name != 'Instance' && name != 'new_relation')
+        {
+            $('#search-tip-input').attr('value', name);
+            $("#menu-scroll .collapsed-box").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(name) > -1)
+            });
+        }
+    });
+
+    $("#search-tip-input").on("keyup", function () {
+        let value = $(this).val().toLowerCase();
+
+        $("#menu-scroll .collapsed-box").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+
+    });}
+</script>
