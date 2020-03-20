@@ -429,6 +429,8 @@
     </aside>
     <!-- /.tips menu -->
 
+
+
     <!-- Error Console -->
     <div id="error-console"  class="box box-default box-solid direct-chat direct-chat-danger collapsed-box">
         <div id="error-console-header" class="box-header">
@@ -441,6 +443,22 @@
                     <i class="fa fa-download"></i>
                     </span>
                 </a>
+
+                <span id="classes" data-widget="collapse"  class="badge bg-green" >
+                    <i class="fa fa-fw fa-circle-thin"></i>
+                    <span id="classes-count"> 0</span>
+                </span>
+
+                <span id="relations" data-widget="collapse"  class="badge bg-green" >
+                    <i class="fa fa-fw fa-long-arrow-right"></i>
+                    <span id="relations-count"> 0</span>
+                </span>
+
+                <span id="instances" data-widget="collapse"  class="badge bg-green" >
+                    <i class="fa fa-fw fa-square-o"></i>
+                    <span id="instances-count"> 0</span>
+                </span>
+
 
                 <span id="errors" data-widget="collapse"  class="badge bg-red" data-original-title="Errors">
                     <i class="fa fa-close"></i>

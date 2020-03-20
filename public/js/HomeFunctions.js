@@ -290,6 +290,18 @@ $(document).ready(function () {
         content: "Click to see more information!"
     });
 
+    tippy('#classes', {
+        content: "The number of classes in your current ontology"
+    });
+
+    tippy('#relations', {
+        content: "The number of warnings in your current ontology"
+    });
+
+    tippy('#instances', {
+        content: "The number of warnings in your current ontology"
+    });
+
 });
 
 

@@ -188,7 +188,7 @@
                                                 <a id="control-sidebar" href="#" data-toggle="control-sidebar"> <i class="fa fa-th"></i></a>
                                             </li>
                                             <li>
-                                                <a id="night-mode" href="#"><i class="fa fa-fw fa-moon-o"></i></a>
+                                                <a id="night-mode" href="#"><i class="fa fa-fw fa-moon-o"></i><span class="label label-warning">Beta</span></a>
                                             </li>
                                         @endif
                                     </ul>

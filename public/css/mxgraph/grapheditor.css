@@ -62,6 +62,10 @@ html {
 
 }
 
+.geSidebarContainer .geToolbarContainer {
+    left: 1px !important;
+}
+
 /*
    FIM DAS ALTERAÇÕES
 */
@@ -140,13 +144,15 @@ aside {
 /* Error Console */
 
 #error-console {
-    width: 30%;
+    width: 40%;
     position: relative;
     z-index: 13;
     margin-left: 600px;
     bottom: 32px;
 
 }
+
+
 
 #error-console-header {
     background-color: whitesmoke;

@@ -34,7 +34,7 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <video class="full-width" loop autoplay>
+                                    <video class="full-width" playsinline muted loop autoplay>
                                         <source src="css/images/Slide1.mp4" type="video/mp4">
                                     </video>
                                     <div class="carousel-caption">
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <video class="full-width" loop autoplay>
+                                    <video class="full-width" playsinline muted loop autoplay>
                                         <source src="css/images/Slide2.mp4" type="video/mp4">
                                     </video>
                                     <div class="carousel-caption">
@@ -50,7 +50,7 @@
                                     </div>
                                 </div>
                                 <div class="item">
-                                    <video class="full-width" loop autoplay>
+                                    <video class="full-width" playsinline muted loop autoplay>
                                         <source src="css/images/Slide3.mp4" type="video/mp4">
                                     </video>
                                     <div class="carousel-caption">
@@ -227,33 +227,6 @@
         </div>
     </div>
 
-    <div class="tab modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong>Having some issues with the editor? Have any
-                            idea you'd like to be implemented? Fill the form below:</strong></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <ul>
-                        <li>
-                            <a><i class="fa fa-mail-forward"></i> Lucas Piazzi - Developer - lpiazzi@ice.ufjf.br</a>
-                        </li>
-                        <li>
-                            <a><i class="fa fa-mail-forward"></i> Fabrício Mendonça - Professor - fabricio.mendonca@ice.ufjf.br</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @stop
 
 @section('adminlte_js')

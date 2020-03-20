@@ -8,7 +8,7 @@
 function movementCompiler(xml) {
 
     console.log(xml);
-    let parser, xmlDoc, missingClassProperties = "", missingRelationProperties = "";
+    let parser, xmlDoc, missingClassProperties = "", missingRelationProperties = "", classesCount = 0, relationsCount = 0, instancesCount = 0;
 
     parser = new DOMParser();
     xmlDoc = parser.parseFromString(xml, "text/xml");
@@ -39,8 +39,15 @@ function movementCompiler(xml) {
             xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") === null))
         {
             notConnectedRelationWarning++;
-            warningMessage('The relation '+xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") +' it is not fully connected to 2 classes', 1);
+            warningMessage('The relation '+xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value").bold() +' it is not fully connected to 2 classes', 1);
         }
+
+        if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") !== null)
+            relationsCount++;
+        else if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('ellipse'))
+            classesCount++;
+        else if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('Instance'))
+            instancesCount++;
 
 
         // /.----------- WARNINGS SEARCH --------------
@@ -64,7 +71,7 @@ function movementCompiler(xml) {
                     xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") != 'Name' &&
                     xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != 'Name') {
                     equalClassNamesError++;
-                    errorMessage("You can not have two classes with the same name, you have two classes named "+(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value"))+".","Inconsistency",1);
+                    errorMessage("You can not have two classes with the same name, you have two classes named "+(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value")).bold()+".","Inconsistency",1);
                 }
             }
 
@@ -227,8 +234,12 @@ function movementCompiler(xml) {
 
     }
 
+    // Update the counters on front end
     $("#error-count").text(equalRelationBetweenClassesError + equalClassNamesError + instanceOfBetweenClassesError + wrongRelationError + inverseOfNameError + missingClassPropertiesError + missingRelationPropertiesError + excessOfRelationsError + multipleInheritanceError);
     $("#warning-count").text(notConnectedRelationWarning);
+    $("#classes-count").text(classesCount);
+    $("#relations-count").text(relationsCount);
+    $("#instances-count").text(instancesCount);
 
     // Checks if any error can be removed from the console error
     if(equalClassNamesError === 0)
@@ -252,6 +263,8 @@ function movementCompiler(xml) {
 
     if(notConnectedRelationWarning === 0)
         removeWarning(1);
+
+
 }
 
 /**
@@ -354,7 +367,7 @@ function warningMessage(text, warningId)
 {
     $(".direct-chat-messages").append(' <div class="direct-chat-msg ">\n' +
         '                    <div class="direct-chat-info clearfix">\n' +
-        '                        <span class="direct-chat-name pull-right"><i class="fa fa-close"></i><strong> Warning | Warning Id: ' +warningId+'</strong></span>\n' +
+        '                        <span class="direct-chat-name pull-right"><i class="fa fa-warning"></i><strong> Warning | Warning Id: ' +warningId+'</strong></span>\n' +
         '                        <span class="direct-chat-timestamp pull-left">' + new Date().toLocaleString() + '</span>\n' +
         '                    </div>\n' +
         '                    <!-- /.direct-chat-info -->\n' +
