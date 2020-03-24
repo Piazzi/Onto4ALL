@@ -11,10 +11,12 @@
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.0",
         "guzzlehttp/guzzle": "^6.5",
-        "jeroennoten/laravel-adminlte": "^1.23",
-        "laravel/framework": "^6.0",
-        "laravel/socialite": "^3.1",
-        "laravel/tinker": "^1.0"
+        "jeroennoten/laravel-adminlte": "1.*",
+        "laravel/framework": "6.*",
+        "laravel/helpers": "^1.2",
+        "laravel/socialite": "4.*",
+        "laravel/tinker": "^1.0",
+        "nesbot/carbon": "2.*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
