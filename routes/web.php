@@ -65,5 +65,6 @@ Route::get('/help', 'HomeController@help')->name('help');
 
 // AdminController
 Route::get('/users', 'AdminController@index')->name('users')->middleware('can:eAdmin');
-Route::put('/users/{userId}', 'AdminController@update')->name('user.ontology.update')->middleware('can:eAdmin');
+Route::get('/users/{id}', 'AdminController@edit')->name('users.edit')->middleware('can:eAdmin');
+Route::put('/users/{userId}', 'AdminController@update')->name('user.update')->middleware('can:eAdmin');
 Route::any('/users/search', 'AdminController@search')->name('user.search')->middleware('can:eAdmin');

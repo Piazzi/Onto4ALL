@@ -14,8 +14,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::select('id','email','ontology','name')->latest()->paginate(15);
-        return view('admin', compact('users'));
+        $users = User::select('id','email','ontology','name','categoria')->latest()->paginate(15);
+        return view('admin.admin', compact('users'));
     }
 
     /**
@@ -26,7 +26,7 @@ class AdminController extends Controller
     public  function search(Request $request)
     {
         $users = User::where('name','Like',  '%' .$request->search. '%')->paginate(50);
-        return view('admin', compact('users'));
+        return view('admin.admin', compact('users'));
     }
     /**
      * Display the specified resource.
@@ -47,7 +47,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('admin.admin_edit', compact('user'));
     }
 
     /**

@@ -39,7 +39,7 @@ function movementCompiler(xml) {
             xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") === null))
         {
             notConnectedRelationWarning++;
-            warningMessage('The relation '+xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value").bold() +' it is not fully connected to 2 classes', 1);
+            warningMessage('The relation '+xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") +' it is not fully connected to 2 classes', 1);
         }
 
         if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") !== null)

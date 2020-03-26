@@ -71,7 +71,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Ontology</th>
-                            <th></th>
+                            <th>Category</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -83,44 +83,16 @@
                                 <td>{{$user->id}}</td>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
+                                <td>{{$user->ontology}}</td>
+                                <td>{{$user->categoria}}</td>
+                                <td></td>
                                 <td>
-                                    <form method="post" action="{{route('user.ontology.update', $user->id)}}">
-                                        @csrf
-                                        @method('put')
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-xs-1">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input name="ontology" value="bfo" @if(strpos($user->ontology, 'bfo') !== false) checked @endif type="checkbox">
-                                                           BFO
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-1">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input name="ontology" value="iof" @if(strpos($user->ontology, 'iof') !== false) checked @endif type="checkbox">
-                                                            IOF
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-1">
-                                                    <div class="checkbox">
-                                                        <label>
-                                                            <input name="ontology" value="iao" @if(strpos($user->ontology, 'iao') !== false) checked @endif type="checkbox">
-                                                            IAO
-                                                        </label>
-                                                        <input value="" id="ontology" name="ontology" type="hidden">
-                                                    </div>
-                                                </div>
-                                                <div style="float: right" class="col-xs-3">
-                                                    <input id="save_value"  type="submit" class="btn btn-block btn-warning btn-sm">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    <a href="{{route('users.edit',$user->id)}}">
+                                        <button class="btn btn-success"><i class="fa fa-fw fa-edit"></i>
+                                        </button>
+                                    </a>
                                 </td>
+
 
                             </tr>
                         @endforeach
@@ -136,7 +108,6 @@
     <ul class="pagination pagination-sm no-margin ">
         {{ $users->links() }}
     </ul>
-    <script src="js/MultipleCheckbox.js" type="text/javascript"></script>
 @stop
 
 @section('footer')
