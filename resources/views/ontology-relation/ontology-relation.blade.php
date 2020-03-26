@@ -119,4 +119,12 @@
         {{ $relations->links() }}
     </ul>
 
+
+
+@stop
+@section('right-sidebar')
+@stop
+
+@section('footer')
+    .
 @stop

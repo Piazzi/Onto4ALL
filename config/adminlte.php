@@ -73,6 +73,30 @@ return [
 
     'collapse_sidebar' => false,
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Control Sidebar (Right Sidebar)
+    |--------------------------------------------------------------------------
+    |
+    | Here we have the option to enable a right sidebar.
+    | When active, you can use @section('right-sidebar')
+    | The icon you configured will be displayed at the end of the top menu,
+    | and will show/hide de sidebar.
+    | The slide option will slide the sidebar over the content, while false
+    | will push the content, and have no animation.
+    | You can also choose the sidebar theme (dark or light).
+    | The right Sidebar can only be used if layout is not top-nav.
+    |
+    */
+
+    'right_sidebar' => true,
+    'right_sidebar_icon' => 'fas fa-cogs',
+    'right_sidebar_theme' => 'dark',
+    'right_sidebar_slide' => true,
+
+
+
     /*
     |--------------------------------------------------------------------------
     | URLs
@@ -112,29 +136,29 @@ return [
         [
             'text' => 'Ontology drawing',
             'url' => '/home',
-            'icon' => 'object-group',
+            'icon' => 'fa fa-fw fa-object-group',
             'label' => 'Start now',
             'label_color' => 'danger',
         ],
 
         [
             'text' => 'Info',
-            'icon' => 'info-circle',
+            'icon' => 'fa fa-fw fa-info-circle',
             'submenu' => [
                 [
                     'text' => 'Help Menu',
                     'url' => '/help',
-                    'icon' => 'question'
+                    'icon' => 'fa fa-fw fa-question'
                 ],
                 [
                     'text' => 'Tutorial',
                     'url' => '/tutorial',
-                    'icon' => 'info-circle'
+                    'icon' => 'fa fa-fw fa-info-circle'
                 ],
                 [
                     'text' => 'About Us',
                     'url' => '/aboutUs',
-                    'icon' => 'book'
+                    'icon' => 'fa fa-fw fa-book'
                 ]
             ],
         ],
@@ -143,40 +167,40 @@ return [
         [
             'text' => 'My Ontologies',
             'url' => '/ontologies',
-            'icon' => 'folder-open',
+            'icon' => 'fa fa-fw fa-folder-open',
         ],
 
         [
             'text' => 'Admin Panel',
-            'icon' => 'th-list',
+            'icon' => 'fa fa-fw fa-th-list',
             'can' => 'eAdmin',
             'submenu' => [
                 [
                     'text' => 'Ontological Relations',
                     'url' => '/ontology_relation',
                     'can' => 'eAdmin',
-                    'icon' => 'arrow-right'
+                    'icon' => 'fa fa-fw fa-arrow-right'
 
                 ],
                 [
                     'text' => 'Ontological Classes',
                     'url' => '/ontology_class',
                     'can' => 'eAdmin',
-                    'icon' => 'circle'
+                    'icon' => 'fa fa-fw fa-circle'
 
                 ],
                 [
                     'text' => 'Messages',
                     'url' => '/messages',
                     'can' => 'eAdmin',
-                    'icon' => 'envelope'
+                    'icon' => 'fa fa-fw fa-envelope'
 
                 ],
                 [
                     'text' => 'Users',
                     'url' => '/users',
                     'can' => 'eAdmin',
-                    'icon' => 'users'
+                    'icon' => 'fa fa-fw fa-users'
 
                 ]
             ],
@@ -208,15 +232,85 @@ return [
     | Plugins Initialization
     |--------------------------------------------------------------------------
     |
-    | Choose which JavaScript plugins should be included. At this moment,
-    | only DataTables is supported as a plugin. Set the value to true
-    | to include the JavaScript file from a CDN via a script tag.
+    | Configure which JavaScript plugins should be included. At this moment,
+    | DataTables, Select2, Chartjs and SweetAlert are added out-of-the-box,
+    | including the Javascript and CSS files from a CDN via script and link tag.
+    | Plugin Name, active status and files array (even empty) are required.
+    | Files, when added, need to have type (js or css), asset (true or false) and location (string).
+    | When asset is set to true, the location will be output using asset() function.
     |
     */
 
     'plugins' => [
-        'datatables' => false,
-        'select2' => false,
-        'chartjs' => false,
+        [
+            'name' => 'Datatables',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css',
+                ],
+            ],
+        ],
+        [
+            'name' => 'Select2',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
+                ],
+            ],
+        ],
+        [
+            'name' => 'Chartjs',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                ],
+            ],
+        ],
+        [
+            'name' => 'Sweetalert2',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                ],
+            ],
+        ],
+        [
+            'name' => 'Pace',
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-center-radar.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
     ],
 ];

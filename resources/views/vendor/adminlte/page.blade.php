@@ -191,6 +191,14 @@
                                                 <a id="night-mode" href="#"><i class="fa fa-fw fa-moon-o"></i><span class="label label-warning">Beta</span></a>
                                             </li>
                                         @endif
+                                            @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))
+                                            <!-- Control Sidebar Toggle Button -->
+                                                <li>
+                                                    <a href="#" data-toggle="control-sidebar" @if(!config('adminlte.right_sidebar_slide')) data-controlsidebar-slide="false" @endif>
+                                                        <i class="{{config('adminlte.right_sidebar_icon')}}"></i>
+                                                    </a>
+                                                </li>
+                                            @endif
                                     </ul>
                                 </div>
                             @if(config('adminlte.layout') == 'top-nav')
