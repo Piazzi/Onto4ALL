@@ -3,7 +3,14 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-
+    <h1>
+        Ontology Classes Manager
+        <small>Manage all ontology classes</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Ontology Classes Manager</li>
+    </ol>
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -120,9 +127,26 @@
                     <label>Editor note (comments)</label>
                     <textarea placeholder="" name="comments" class="form-control form-textarea"> {{$ontologyClass->comments}}</textarea>
                 </div>
-                <button class="btn btn-success btn-block" type="submit">Submit</button>
+
+                <div class="form-group">
+                    <label>Ontology</label>
+                    <select name="ontology" class="form-control">
+                        <option @if(strpos($ontologyClass->ontology, 'bfo') !== false)selected @endif value="bfo">BFO</option>
+                        <option @if(strpos($ontologyClass->ontology, 'iao') !== false)selected @endif value="iao">IAO</option>
+                        <option @if(strpos($ontologyClass->ontology, 'iof') !== false)selected @endif value="iof">IOF</option>
+                    </select>
+                </div>
+
+                <button  class="btn btn-success btn-block" type="submit">Submit</button>
             </form>
         </div>
         <!-- /.box-body -->
     </div>
+    <script src="../../js/MultipleCheckbox.js" type="text/javascript"></script>
+
 @stop
+
+@section('footer')
+    .
+@stop
+

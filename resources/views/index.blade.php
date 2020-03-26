@@ -206,6 +206,8 @@
                                                     <dt>Superproperty Of</dt>
                                                     <dd>{{$ontologyRelation->superproperty_of}}</dd>
                                                 @endif
+                                                <dt>Ontology</dt>
+                                                <dd>{{strtoupper($ontologyRelation->ontology)}}</dd>
                                             </dl>
                                         </div>
                                     </div>
@@ -265,6 +267,8 @@
                                                     <dt>Editor Note (comments)</dt>
                                                     <dd>{{$class->comments}}</dd>
                                                 @endif
+                                                <dt>Ontology</dt>
+                                                <dd>{{strtoupper($class->ontology)}}</dd>
                                             </dl>
                                         </div>
                                     </div>
@@ -470,7 +474,7 @@
                     <span id="warning-count">  0</span>
                 </span>
 
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                <button id="open-error-console" type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
             </div>
         </div>
         <!-- /.box-header -->

@@ -24,6 +24,8 @@ class OntologyRelation extends Model
         'inverse_of',
         'subproperty_of',
         'superproperty_of',
+        'ontology'
+
     ];
 
     protected $table = 'ontology-relations';

@@ -3,7 +3,14 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-
+    <h1>
+        Ontology Classes Manager
+        <small>Manage all ontology classes</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Ontology Classes Manager</li>
+    </ol>
 @stop
 
 @section('content')
@@ -100,6 +107,15 @@
                 <textarea disabled class="form-control form-textarea"> {{$ontologyClass->comments}}</textarea>
             </div>
 
+            <div class="form-group">
+                <label>Ontology</label>
+                <select disabled name="ontology" class="form-control">
+                    <option @if(strpos($ontologyClass->ontology, 'bfo') !== false)selected @endif >BFO</option>
+                    <option @if(strpos($ontologyClass->ontology, 'iao') !== false)selected @endif >IAO</option>
+                    <option @if(strpos($ontologyClass->ontology, 'iof') !== false)selected @endif >IOF</option>
+                </select>
+            </div>
+
             <a href="/ontology_class">
                 <button class="btn btn-success btn-block" type="button">Go back</button>
             </a>
@@ -107,3 +123,8 @@
         <!-- /.box-body -->
     </div>
 @stop
+
+@section('footer')
+    .
+@stop
+

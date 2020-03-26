@@ -171,6 +171,13 @@ return [
                     'can' => 'eAdmin',
                     'icon' => 'envelope'
 
+                ],
+                [
+                    'text' => 'Users',
+                    'url' => '/users',
+                    'can' => 'eAdmin',
+                    'icon' => 'users'
+
                 ]
             ],
         ],

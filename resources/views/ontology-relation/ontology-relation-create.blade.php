@@ -3,6 +3,14 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
+    <h1>
+        Ontology Relations Manager
+        <small>Manage all ontology relations</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Ontology Classes Relations</li>
+    </ol>
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -144,10 +152,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label>Ontology</label>
+                    <select  name="ontology" class="form-control">
+                        <option value="bfo" >BFO</option>
+                        <option value="iao" >IAO</option>
+                        <option value="iof" >IOF</option>
+                    </select>
+                </div>
 
-                <button class="btn btn-success btn-block" type="submit">Submit</button>
+                <button  class="btn btn-success btn-block" type="submit">Submit</button>
             </form>
         </div>
         <!-- /.box-body -->
     </div>
+    <script src="../../js/MultipleCheckbox.js" type="text/javascript"></script>
+
 @stop
+
+@section('footer')
+    .
+@stop
+
+

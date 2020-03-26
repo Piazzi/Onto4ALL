@@ -3,7 +3,14 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-
+    <h1>
+        Ontology Relations Manager
+        <small>Manage all ontology relations</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Ontology Classes Relations</li>
+    </ol>
 @stop
 
 @section('content')
@@ -130,9 +137,24 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label>Ontology</label>
+                <select disabled name="ontology" class="form-control">
+                    <option @if(strpos($ontologyRelation->ontology, 'bfo') !== false)selected @endif >BFO</option>
+                    <option @if(strpos($ontologyRelation->ontology, 'iao') !== false)selected @endif >IAO</option>
+                    <option @if(strpos($ontologyRelation->ontology, 'iof') !== false)selected @endif >IOF</option>
+                </select>
+            </div>
+
             <a href="/ontology_relation">
                 <button class="btn btn-success btn-block" type="button">Go back</button>
             </a>
         </div>
     </div>
 @stop
+
+@section('footer')
+    .
+@stop
+
+

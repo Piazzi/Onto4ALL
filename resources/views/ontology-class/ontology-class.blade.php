@@ -3,11 +3,19 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    @if (session()->has('Sucess'))
+    <h1>
+        Ontology Classes Manager
+        <small>Manage all ontology classes</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Ontology Classes Manager</li>
+    </ol>
+    @if (session()->has('Success'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4><i class="icon fa fa-check"></i> Alert!</h4>
-            <strong>{{ session('Sucess') }}</strong>
+            <strong>{{ session('Success') }}</strong>
         </div>
     @endif
 
@@ -59,7 +67,7 @@
                             <th>Name</th>
                             <th>Subclass</th>
                             <th>Synonyms</th>
-                            <th>Example Of Usage</th>
+                            <th>Ontology</th>
                             <th>Imported From</th>
                             <th></th>
                             <th></th>
@@ -74,7 +82,7 @@
                                 <td>{{$class->name}}</td>
                                 <td>{{$class->subclass}}</td>
                                 <td>{{$class->synonyms}}</td>
-                                <td>{{$class->example_of_usage}}</td>
+                                <td>{{strtoupper($class->ontology)}}</td>
                                 <td><a href="{{$class->imported_from}}">{{$class->imported_from}}</a></td>
                                 <td><a href="{{route('ontology_class.show', $class->id)}}">
                                         <button type="button" class="btn btn-block btn-info btn-sm">Info</button>
@@ -106,3 +114,8 @@
     </ul>
 
 @stop
+
+@section('footer')
+    .
+@stop
+

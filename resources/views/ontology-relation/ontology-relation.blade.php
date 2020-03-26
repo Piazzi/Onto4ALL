@@ -3,6 +3,14 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
+    <h1>
+        Ontology Relations Manager
+        <small>Manage all ontology relations</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">Ontology Classes Relations</li>
+    </ol>
 
     @if (session()->has('Sucess'))
         <div class="alert alert-success alert-dismissible">
@@ -63,7 +71,7 @@
                             <th>Range</th>
                             <th>Similar Relation</th>
                             <th>Cardinality</th>
-                            <th>Example Of Usage</th>
+                            <th>Ontology</th>
                             <th>Imported From</th>
                             <th></th>
                             <th></th>
@@ -79,7 +87,7 @@
                                 <td>{{$ontologyRelation->range}}</td>
                                 <td>{{$ontologyRelation->similar_relation}}</td>
                                 <td>{{$ontologyRelation->cardinality}}</td>
-                                <td>{{$ontologyRelation->example_of_usage}}</td>
+                                <td>{{strtoupper($ontologyRelation->ontology)}}</td>
                                 <td><a>{{$ontologyRelation->imported_from}}</a></td>
                                 <td><a href="{{route('ontology_relation.show', $ontologyRelation->id)}}">
                                         <button type="button" class="btn btn-block btn-info btn-sm">Info</button>

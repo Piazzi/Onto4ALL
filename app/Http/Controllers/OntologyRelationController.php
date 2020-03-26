@@ -39,7 +39,7 @@ class OntologyRelationController extends Controller
     public function store(OntologyRelationStoreRequest $request)
     {
         OntologyRelation::create($request->all());
-        return redirect()->route('ontology_relation.index')->with('Sucess', 'Your relation has been successfully stored')->withInput();
+        return redirect()->route('ontology_relation.index')->with('Success', 'Your relation has been successfully stored')->withInput();
 
     }
 
@@ -78,7 +78,7 @@ class OntologyRelationController extends Controller
     {
         $ontologyRelation = OntologyRelation::findOrFail($id);
         $ontologyRelation->update($request->all());
-        return redirect()->route('ontology_relation.index')->with('Sucess', 'Your relation has been successfully updated');
+        return redirect()->route('ontology_relation.index')->with('Success', 'Your relation has been successfully updated');
     }
 
     /**
@@ -91,7 +91,7 @@ class OntologyRelationController extends Controller
     {
         $ontologyRelation = OntologyRelation::findOrFail($id);
         $ontologyRelation->delete();
-        return redirect()->back()->with('Sucess', 'Your relation has been deleted with success');
+        return redirect()->back()->with('Success', 'Your relation has been deleted with success');
     }
 
     /**

@@ -270,7 +270,7 @@ $(document).ready(function () {
         content: "Show/Hide the Sidebar"
     });
 
-    tippy('.fa-plus', {
+    tippy('#open-error-console', {
         content: "Opens the error console"
     });
 

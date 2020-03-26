@@ -19,7 +19,8 @@ class OntologyClass extends Model
         'elucidation',
         'comments',
         'is_defined_by',
-        'disjoint_with'
+        'disjoint_with',
+        'ontology'
     ];
 
     protected $dates = [

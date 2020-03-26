@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'ontology' => 'bfo'
         ]);
         $user->categoria = 'modelador';
         $user->save();

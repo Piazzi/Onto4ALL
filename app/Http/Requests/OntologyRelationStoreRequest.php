@@ -40,7 +40,9 @@ class OntologyRelationStoreRequest extends FormRequest
             'comments'  => 'max:255|nullable|string',
             'inverse_of'  => 'max:50|nullable|string',
             'subproperty_of'  => 'max:50|nullable|string',
-            'superproperty_of'  => 'max:50|nullable|string'
+            'superproperty_of'  => 'max:50|nullable|string',
+            'ontology' => 'required'
+
         ];
     }
 }

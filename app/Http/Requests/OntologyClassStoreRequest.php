@@ -35,7 +35,8 @@ class OntologyClassStoreRequest extends FormRequest
             'is_defined_by'  => 'max:50|nullable|string',
             'comments'  => 'max:255|nullable|string',
             'disjoint_with' => 'max:50|nullable|string',
-            'elucidation' => 'max:50|nullable|string'
+            'elucidation' => 'max:50|nullable|string',
+            'ontology' => 'required'
         ];
     }
 }

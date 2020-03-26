@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\ContactMail;
 use App\Ontology;
 use DOMDocument;
+use function foo\func;
 use Illuminate\Http\Request;
 use App\OntologyRelation;
 use App\OntologyClass;
@@ -31,8 +32,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $relations = OntologyRelation::all();
-        $classes = OntologyClass::all();
+        $relations = OntologyRelation::select()->whereIn('ontology', explode(',',Auth::user()->ontology))->get();
+        $classes = OntologyClass::select()->whereIn('ontology', explode(',',Auth::user()->ontology))->get();
         $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->orderBy('created_at','desc')->get();
         return view('index', compact('relations', 'classes', 'ontologies'));
     }

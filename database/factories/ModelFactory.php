@@ -18,7 +18,8 @@ $factory->define(\App\OntologyClass::class, function (Faker $faker) {
         'is_defined_by'  => $faker->lastName,
         'comments'  => $faker->lastName,
         'disjoint_with' => $faker->lastName,
-        'elucidation' => $faker->lastName
+        'elucidation' => $faker->lastName,
+        'ontology' => $faker->randomElement(['bfo','iao','iof'])
     ];
 });
 
@@ -40,7 +41,9 @@ $factory->define(\App\OntologyRelation::class, function (Faker $faker) {
         'comments'  => $faker->lastName,
         'inverse_of'  => $faker->lastName,
         'subproperty_of'  => $faker->lastName,
-        'superproperty_of'  => $faker->lastName
+        'superproperty_of'  => $faker->lastName,
+        'ontology' => $faker->randomElement(['bfo','iao','iof'])
+
     ];
 });
 
