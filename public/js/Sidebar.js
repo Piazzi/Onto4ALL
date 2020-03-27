@@ -999,7 +999,7 @@ Sidebar.prototype.addOntologyPalette = function(expand)
 	 	//this.createEdgeTemplateEntry('endArrow=none;dashed=1;html=1;', 50, 50, '', 'Dashed Line', null, lineTags + 'dashed undirected no'),
 	 	//this.createEdgeTemplateEntry('endArrow=none;html=1;', 50, 50, '', 'Line', null, lineTags + 'simple undirected plain blank no'),
 	 	//this.createEdgeTemplateEntry('endArrow=classic;startArrow=classic;html=1;', 50, 50, '', 'Bidirectional Connector', null, lineTags + 'bidirectional'),
-		this.createVertexTemplateEntry('html=1;Instance;', 110, 50, 'Instance', 'Instance', null, null, 'Class Instance'),
+		this.createVertexTemplateEntry('rhombus;whiteSpace=wrap;html=1;Instance;', 110, 50, 'Instance', 'Instance', null, null, 'Class Instance'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'new_relation', 'new_relation', null, 'uml sequence message call invoke dispatch'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'is_a', 'is_a', null, 'uml sequence message call invoke dispatch'),
         this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'part_of', 'part_of', null, 'uml sequence message call invoke dispatch'),

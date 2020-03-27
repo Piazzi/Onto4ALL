@@ -295,11 +295,11 @@ $(document).ready(function () {
     });
 
     tippy('#relations', {
-        content: "The number of warnings in your current ontology"
+        content: "The number of relations in your current ontology"
     });
 
     tippy('#instances', {
-        content: "The number of warnings in your current ontology"
+        content: "The number of instances in your current ontology"
     });
 
 });

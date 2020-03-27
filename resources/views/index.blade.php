@@ -459,7 +459,7 @@
                 </span>
 
                 <span id="instances" data-widget="collapse"  class="badge bg-green" >
-                    <i class="fa fa-fw fa-square-o"></i>
+                    <i class="fa fa-fw fa-diamond"></i>
                     <span id="instances-count"> 0</span>
                 </span>
 
