@@ -36,13 +36,34 @@ class OntologyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param OntologyStoreRequest $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
      */
-    public function store(OntologyStoreRequest $request)
+    public static function store(Request $request)
     {
-        $ontology = Ontology::create($request->all());
-        return redirect()->route('ontologies.index')->with('Sucess', 'Your ontology has been successfully stored')->withInput();
+        $size = Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->count();
+        if ($size > 9)
+        {
+            Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->orderBy('created_at', 'asc')->first()->delete();
+        }
+        $ontology = new Ontology();
+        $ontology->name = $request->fileName;
+        $ontology->file = $request->xml;
+        $ontology->user_id = $request->user()->id;
+        $ontology->created_by = $request->user()->name;
+        $ontology->favourite = 0;
+        $ontology->save();
+
+        /// Updates the ontology if already exists in the ontology manager
+        $ontologies = Ontology::where('user_id', $request->user()->id)->where('favourite', 1)->get();
+        foreach($ontologies as $savedOntology)
+        {
+            if($savedOntology->name == $request->fileName)
+            {
+                $savedOntology->file = $request->xml;
+                $savedOntology->updated_at = $ontology->created_at;
+                $savedOntology->save();
+            }
+        }
 
     }
 

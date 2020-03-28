@@ -19,7 +19,7 @@
         <!-- Main Header -->
         <header class="main-header">
             @if(config('adminlte.layout') == 'top-nav')
-                <nav class="navbar navbar-static-top">
+                <nav  class="navbar navbar-static-top @if(Route::currentRouteName() == 'thesaurus-editor')thesauru-box @endif">
                     <div class="container">
                         <div class="navbar-header">
                             <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="navbar-brand">
@@ -127,7 +127,7 @@
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <!-- The user image in the menu -->
-                                                <li class="user-header">
+                                                <li  class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
                                                     <img src="css/images/profile.jpeg" class="img-circle"
                                                          alt="User Image">
                                                     <p>

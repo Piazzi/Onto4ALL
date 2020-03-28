@@ -46,6 +46,12 @@ Route::get('/ontologies/downloadOWL/{userId}/{ontologyId}', 'OntologyController@
 Route::put('/ontologies/favourite/{userId}/{ontologyId}', 'OntologyController@saveAsFavourite')->name('ontologies.favourite')->middleware('can:eModelador');
 Route::put('/ontologies/normal/{userId}/{ontologyId}', 'OntologyController@saveAsNormal')->name('ontologies.normal')->middleware('can:eModelador');
 
+// CRUD de tesauros
+Route::resource('/thesaurus', 'ThesauruController')->middleware('can:eModelador');
+Route::get('/thesaurus/download/{userId}/{thesauruId}', 'ThesauruController@download')->name('thesaurus.download')->middleware('can:eModelador');
+Route::get('/thesaurus-editor', 'ThesauruController@editor')->name('thesaurus-editor')->middleware('can:eModelador');
+
+
 // CRUD de mensagens
 Route::resource('/messages', 'MessageController')->middleware('can:eAdmin');
 Route::any('/messages/search', 'MessageController@search')->name('messages.search')->middleware('can:eAdmin');

@@ -140,6 +140,13 @@ return [
             'label' => 'Start now',
             'label_color' => 'danger',
         ],
+        [
+            'text' => 'Thesaurus drawing',
+            'url' => '/thesaurus-editor',
+            'icon' => 'fa fa-fw fa-book',
+            'label' => 'Start now',
+            'label_color' => 'danger',
+        ],
 
         [
             'text' => 'Info',
@@ -165,9 +172,20 @@ return [
 
         'ONTOLOGIES',
         [
-            'text' => 'My Ontologies',
-            'url' => '/ontologies',
-            'icon' => 'fa fa-fw fa-folder-open',
+            'text' => 'File Manager',
+            'icon' => 'fa fa-fw fa-files-o',
+            'submenu' => [
+                [
+                    'text' => 'My Ontologies',
+                    'url' => '/ontologies',
+                    'icon' => 'fa fa-fw fa-folder-open',
+                ],
+                [
+                    'text' => 'My Thesaurus',
+                    'url' => '/thesaurus',
+                    'icon' => 'fa fa-fw fa-folder-open',
+                ]
+            ]
         ],
 
         [

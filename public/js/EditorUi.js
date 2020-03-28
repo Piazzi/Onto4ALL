@@ -923,7 +923,8 @@ EditorUi.prototype.init = function () {
 
     graph.getModel().addListener(mxEvent.CHANGE, mxUtils.bind(this, function () {
         this.updateActionStates();
-        movementCompiler(mxUtils.getXml(this.editor.getGraphXml()));
+        if(window.location.pathname !== '/thesaurus-editor')
+            movementCompiler(mxUtils.getXml(this.editor.getGraphXml()));
     }));
 
     // Changes action states after change of default parent
@@ -2966,8 +2967,6 @@ EditorUi.prototype.saveFile = function (forceDialog) // função chamada pelo CT
  */
 EditorUi.prototype.save = function (name) // FUNÇÃO CHAMADA DEPOIS DA saveFile
 {
-    console.log(name);
-
     if (name != null) {
 
         if (this.editor.graph.isEditing()) {

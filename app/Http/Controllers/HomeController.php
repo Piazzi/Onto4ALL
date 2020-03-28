@@ -79,6 +79,7 @@ class HomeController extends Controller
      */
     public function saveXML(Request $request)
     {
+        // creates the XML file
         $response = Response::create($request->xml, 200);
         $response->header('Content-Type', 'text/xml');
         $response->header('Cache-Control', 'public');
@@ -86,30 +87,13 @@ class HomeController extends Controller
         $response->header('Content-Disposition', 'attachment; filename=' . $request->fileName . '');
         $response->header('Content-Transfer-Encoding', 'binary');
 
-        $size = Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->count();
-        if ($size > 9)
-        {
-            Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->orderBy('created_at', 'asc')->first()->delete();
-        }
-        $ontology = new Ontology();
-        $ontology->name = $request->fileName;
-        $ontology->file = $request->xml;
-        $ontology->user_id = $request->user()->id;
-        $ontology->created_by = $request->user()->name;
-        $ontology->favourite = 0;
-        $ontology->save();
+        // Verifies where the request came from (Ontology editor or Thesauru editor)
+        // and then saves the file in the specific manager
+        if(strpos($request->session()->previousUrl(), '/thesaurus-editor') != false)
+            ThesauruController::store($request);
+        else
+            OntologyController::store($request);
 
-        /// Updates the ontology if already exists in the ontology manager
-        $ontologies = Ontology::where('user_id', $request->user()->id)->where('favourite', 1)->get();
-        foreach($ontologies as $savedOntology)
-        {
-            if($savedOntology->name == $request->fileName)
-            {
-                $savedOntology->file = $request->xml;
-                $savedOntology->updated_at = $ontology->created_at;
-                $savedOntology->save();
-            }
-        }
 
         return $response;
     }

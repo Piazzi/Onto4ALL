@@ -49,6 +49,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Ontology::class);
     }
+
+    /**
+     * Relation One to Many with thesaurus
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function thesaurus()
+    {
+        return $this->hasMany(Thesauru::class);
+    }
 }
 
 

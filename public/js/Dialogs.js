@@ -806,10 +806,14 @@ var ExportDialog = function (editorUi) {
     mxUtils.write(svgOption, mxResources.get('formatSvg'));
     imageFormatSelect.appendChild(svgOption);
 
-    var owlOption = document.createElement('option');
-    owlOption.setAttribute('value', 'owl');
-    mxUtils.write(owlOption, 'OWL');
-    imageFormatSelect.appendChild(owlOption);
+    if(window.location.pathname === '/home')
+    {
+        var owlOption = document.createElement('option');
+        owlOption.setAttribute('value', 'owl');
+        mxUtils.write(owlOption, 'OWL');
+        imageFormatSelect.appendChild(owlOption);
+    }
+
 
     if (ExportDialog.showXmlOption) {
         var xmlOption = document.createElement('option');
@@ -1090,7 +1094,6 @@ ExportDialog.showXmlOption = true;
  */
 ExportDialog.exportFile = function (editorUi, name, format, bg, s, b) // Define para qual função de export o arquivo vai
 {
-    console.log(format);
     var graph = editorUi.editor.graph;
 
     if (format == 'xml' || format == 'owl') {
