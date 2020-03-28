@@ -475,9 +475,19 @@ Menus.prototype.init = function()
 	})));
 	this.put('edit', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
-		this.addMenuItems(menu, ['undo', 'redo', '-', 'cut', 'copy', 'paste', 'delete', '-', 'duplicate', '-',
-		                         'editData', 'editTooltip', 'editStyle', '-', 'edit', '-', 'editLink', 'openLink', '-',
-		                         'selectVertices', 'selectEdges', 'selectAll', 'selectNone', '-', 'lockUnlock']);
+		if(window.location.pathname === '/home')
+		{
+			this.addMenuItems(menu, ['undo', 'redo', '-', 'cut', 'copy', 'paste', 'delete', '-', 'duplicate', '-',
+				'editData', 'editTooltip', 'editStyle', '-', 'edit', '-', 'editLink', 'openLink', '-',
+				'selectVertices', 'selectEdges', 'selectAll', 'selectNone', '-', 'lockUnlock']);
+		}
+		else
+		{
+			this.addMenuItems(menu, ['undo', 'redo', '-', 'cut', 'copy', 'paste', 'delete', '-', 'duplicate', '-',
+				 'editTooltip', 'editStyle', '-', 'edit', '-', 'editLink', 'openLink', '-',
+				'selectVertices', 'selectEdges', 'selectAll', 'selectNone', '-', 'lockUnlock']);
+		}
+
 	})));
 	this.put('extras', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
@@ -1079,7 +1089,10 @@ Menus.prototype.createPopupMenu = function(menu, cell, evt)
 			if (graph.getSelectionCount() == 1)
 			{
 				menu.addSeparator();
-				this.addMenuItems(menu, ['editData', 'editLink'], null, evt);
+				if(window.location.pathname === '/home')
+					this.addMenuItems(menu, ['editData', 'editLink'], null, evt);
+				else
+					this.addMenuItems(menu, ['editLink'], null, evt);
 
 				// Shows edit image action if there is an image in the style
 				if (graph.getModel().isVertex(cell) && mxUtils.getValue(state.style, mxConstants.STYLE_IMAGE, null) != null)
