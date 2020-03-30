@@ -134,18 +134,16 @@ return [
     'menu' => [
         'MAIN NAVIGATION',
         [
-            'text' => 'Ontology drawing',
+            'text' => 'Ontology Editor',
             'url' => '/home',
             'icon' => 'fa fa-fw fa-object-group',
-            'label' => 'Start now',
-            'label_color' => 'danger',
+
         ],
         [
-            'text' => 'Thesaurus drawing',
+            'text' => 'Thesaurus Editor',
             'url' => '/thesaurus-editor',
             'icon' => 'fa fa-fw fa-book',
-            'label' => 'Start now',
-            'label_color' => 'danger',
+
         ],
 
         [
