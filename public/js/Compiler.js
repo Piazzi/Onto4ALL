@@ -7,7 +7,9 @@
  */
 function movementCompiler(xml) {
 
-    console.log(xml);
+    // Removes the previous error messages
+    $(".direct-chat-messages").empty();
+
     let parser, xmlDoc, missingClassProperties = "", missingRelationProperties = "", classesCount = 0, relationsCount = 0, instancesCount = 0;
 
     parser = new DOMParser();
@@ -28,8 +30,16 @@ function movementCompiler(xml) {
 
     // Starts the XML interpretation send by the editor
     // Each mxCell element is compared to each other to find any measurable error
+    // This compiler is made of three parts, the first one is to compare elements with the
+    // MxCell tag in it. The second one to compare elements with MxCell and Object
+    // and the third one to compare elements with the Object tag only
+    // For this i used ternary comparison and the parentNode property.
     // Complexity: O(n^2)
     for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
+
+        //console.log(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") ?
+        //                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") :
+         //               xmlDoc.getElementsByTagName('mxCell')[i].parentNode.getAttribute('label'));
 
         // -------- WARNINGS SEARCH -----------------
 
@@ -39,7 +49,7 @@ function movementCompiler(xml) {
             xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") === null))
         {
             notConnectedRelationWarning++;
-            warningMessage('The relation '+xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") +' it is not fully connected to 2 classes', 1);
+            warningMessage('The relation '+ getValueOrLabel(xmlDoc, i) +' it is not fully connected to 2 classes', 1);
         }
 
         if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") !== null)
@@ -57,34 +67,35 @@ function movementCompiler(xml) {
         for (let j = i + 1; j < xmlDoc.getElementsByTagName("mxCell").length; j++) {
 
 
-            // Shows a error message if two classes or two relations has the same name
-            if ((xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") ===
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value")) && (
-                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") !==
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("id")) &&
-                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") != null &&
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != null) {
-                if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") == null &&
-                    xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("edge") == null &&
-                    xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('ellipse') &&
-                    xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("style").includes('ellipse') &&
-                    xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") != 'Name' &&
-                    xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != 'Name') {
-                    equalClassNamesError++;
-                    errorMessage("You can not have two classes with the same name, you have two classes named "+(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value")).bold()+".","Inconsistency",1);
+            // Shows a error message if two classes has the same name (Comparison made between two MxCell tags)
+            if ((getValueOrLabel(xmlDoc, i) ===
+                 getValueOrLabel(xmlDoc, j)) && (
+                 getElementId(xmlDoc, i) !==
+                 getElementId(xmlDoc, j)) &&
+                getValueOrLabel(xmlDoc, i) != null &&
+                getValueOrLabel(xmlDoc, j) != null)
+                {
+                    if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") == null &&
+                        xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("edge") == null &&
+                        xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('ellipse') &&
+                        xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("style").includes('ellipse') &&
+                        getValueOrLabel(xmlDoc, i) !== 'Name' &&
+                        getValueOrLabel(xmlDoc, j) !== 'Name') {
+                        equalClassNamesError++;
+                        errorMessage("You can not have two classes with the same name, you have two classes named "+(getValueOrLabel(xmlDoc, i)).bold()+".","Inconsistency",1);
                 }
             }
 
 
             // Shows a error message if two classes has the same relation between them more than one time
-            if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") ===
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") &&
+            if (getValueOrLabel(xmlDoc, i) ===
+                getValueOrLabel(xmlDoc, j) &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") &&
-                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") != null &&
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") != null &&
+                getValueOrLabel(xmlDoc, i) != null &&
+                getValueOrLabel(xmlDoc, j) != null &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") != null) {
                 equalRelationBetweenClassesError++;
@@ -94,7 +105,7 @@ function movementCompiler(xml) {
             }
 
             // Shows a error message if two classes has been connected with the instance_of relation
-            if (xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") === 'instance_of' &&
+            if (getValueOrLabel(xmlDoc, j) === 'instance_of' &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") !== null &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") !== null) {
                 // get the ids from the mxCells in the relation
@@ -103,11 +114,11 @@ function movementCompiler(xml) {
                 let domainClass, rangeClass;
 
                 // Look for the two mxCells using the ids
-                for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
-                    if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") === domainId)
-                        domainClass = xmlDoc.getElementsByTagName("mxCell")[i];
-                    if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") === rangeId)
-                        rangeClass = xmlDoc.getElementsByTagName("mxCell")[i];
+                for (let k = 2; k < xmlDoc.getElementsByTagName("mxCell").length; k++) {
+                    if (getElementId(xmlDoc, k) === domainId)
+                        domainClass = xmlDoc.getElementsByTagName("mxCell")[k];
+                    if (getElementId(xmlDoc, k) === rangeId)
+                        rangeClass = xmlDoc.getElementsByTagName("mxCell")[k];
 
 
                 }
@@ -115,8 +126,7 @@ function movementCompiler(xml) {
                 // shows a error if the mxCells are two classes
                 if (domainClass.getAttribute("style").includes('ellipse') && rangeClass.getAttribute("style").includes('ellipse')) {
                     instanceOfBetweenClassesError++;
-                    errorMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. This error occurs in the following classes: "
-                        +domainClass.getAttribute("value")+" and "+ rangeClass.getAttribute("value") +".", "",3);
+                    errorMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. ","",3);
                 }
 
             }
@@ -127,9 +137,9 @@ function movementCompiler(xml) {
             if (xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("style").includes('Instance')) {
                 for (let k = 0; k < xmlDoc.getElementsByTagName("mxCell").length; k++) {
                     if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("edge") != null &&
-                        xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("value") != 'instance_of') {
-                        if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("source") == xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("id") ||
-                            xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("target") == xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("id")) {
+                        getValueOrLabel(xmlDoc, k) != 'instance_of') {
+                        if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("source") == getElementId(xmlDoc, j) ||
+                            xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("target") == getElementId(xmlDoc, j)) {
                             wrongRelationError++;
                             errorMessage("You can only have a instance_of relation between a class and a instance","",4);
                         }
@@ -148,20 +158,16 @@ function movementCompiler(xml) {
                 (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source")) &&
-                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") !==
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value"))
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source")))
             {
-                errorMessage("You can only have 1 relation between 2 classes. This error occurs in the following relations: "
-                    +xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value")
-                    +" and "+xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value")
-                    +". Between these two classes: "+getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target")) +" and "+
+                errorMessage("You can only have 1 relation between 2 classes. This error occurs between these two classes: "+getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target")) +" and "+
                      getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source"))+" .", "", 8);
                 excessOfRelationsError++;
             }
 
-            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") === "is_a" &&
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("value") === "is_a" &&
+            //Shows a error if a class has multiple inheritance
+            if(getValueOrLabel(xmlDoc, j) === "is_a" &&
+                getValueOrLabel(xmlDoc, j)=== "is_a" &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !==
@@ -308,8 +314,8 @@ function getMxCell(xmlDoc, id) {
 function getMxCellName(xmlDoc, id)
 {
     for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
-        if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") === id)
-            return xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value");
+        if (getElementId(xmlDoc,id) === id)
+            return getValueOrLabel(xmlDoc, id);
     }
 }
 
@@ -378,4 +384,27 @@ function warningMessage(text, warningId)
         '                    <!-- /.direct-chat-text -->\n' +
         '                </div>');
     errorAnimation($("#warning-count"));
+}
+
+/**
+ * Returns the value (property) of a mxCell Tag or the label (property) of a object Tag
+ * This function is used during the comparisons
+ * @param xmlDoc
+ * @param i
+ * return a string
+ */
+function getValueOrLabel(xmlDoc, i)
+{
+    return xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") ? xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") : xmlDoc.getElementsByTagName('mxCell')[i].parentNode.getAttribute('label')
+}
+
+/**
+ * Returns the id from a mxCell Tag or a object Tag
+ * @param xmlDoc
+ * @param i
+ * return integer
+ */
+function getElementId(xmlDoc, i)
+{
+    return xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") ? xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") : xmlDoc.getElementsByTagName('mxCell')[i].parentNode.getAttribute('id')
 }
