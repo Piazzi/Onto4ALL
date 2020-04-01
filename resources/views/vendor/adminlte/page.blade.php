@@ -14,7 +14,7 @@
 ][config('adminlte.layout')] : '') . (config('adminlte.collapse_sidebar') ? ' sidebar-collapse ' : ''))
 
 @section('body')
-    <div class="wrapper">
+        <div class="wrapper">
 
         <!-- Main Header -->
         <header class="main-header">
@@ -186,9 +186,6 @@
                                         @if(Route::currentRouteName() == 'home')
                                             <li>
                                                 <a id="control-sidebar" href="#" data-toggle="control-sidebar"> <i class="fa fa-th"></i></a>
-                                            </li>
-                                            <li>
-                                                <a id="night-mode" href="#"><i class="fa fa-fw fa-moon-o"></i><span class="label label-warning">Beta</span></a>
                                             </li>
                                         @endif
                                             @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))

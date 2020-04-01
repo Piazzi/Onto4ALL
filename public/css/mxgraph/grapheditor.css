@@ -11,8 +11,8 @@
     overflow: visible;
     text-align: center;
     text-decoration: double;
-    opacity: 0.9;
-    background: #FFF
+    opacity: 1;
+    background: #f1f2f3
     url('/css/images/loading.gif')
     no-repeat center center;
 
@@ -144,21 +144,28 @@ aside {
 /* Error Console */
 
 #error-console {
-    width: 40%;
+    width: 30%;
     position: relative;
     z-index: 13;
-    margin-left: 600px;
+    margin-left: 650px;
     bottom: 32px;
+    border-radius: 20px;
 
 }
 
+.tracker {
+    margin-top: 5px;
+    margin-right: 4px;
+}
 
 
 #error-console-header {
     background-color: whitesmoke;
     color: #333;
-}
+    height: 3.56%;
+    border-radius: 20px;
 
+}
 
 
 .dropdown-menu {

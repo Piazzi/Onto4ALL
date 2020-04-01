@@ -16,6 +16,11 @@
     <script src="https://www.google.com/recaptcha/api.js?render={{config('recaptcha.v3.public_key')}}"></script>
     @endif
 
+    <!-- Editor CSS  -->
+    @if(Route::currentRouteName() == 'home')
+        <link rel="stylesheet" type="text/css" href="css/mxgraph/grapheditor.css">
+    @endif
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->

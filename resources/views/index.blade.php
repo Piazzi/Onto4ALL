@@ -4,7 +4,6 @@
 
 @section('content_header')
     <div id="preloader"><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>
-    <link rel="stylesheet" type="text/css" href="css/mxgraph/grapheditor.css">
 
     <title>Grapheditor</title>
     <!--[if IE]>
@@ -62,6 +61,7 @@
     <script type="text/javascript" src="js/Dialogs.js"></script>
     <script type="text/javascript" src="js/HomeFunctions.js"></script>
     <script type="text/javascript" src="js/Compiler.js"></script>
+    <script type="text/javascript" src="js/NightMode.js"></script>
     <!-- Search Script <script defer type="text/javascript" src="js/SearchTip.js"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
@@ -447,22 +447,6 @@
                     <i class="fa fa-download"></i>
                     </span>
                 </a>
-
-                <span id="classes" data-widget="collapse"  class="badge bg-green" >
-                    <i class="fa fa-fw fa-circle-thin"></i>
-                    <span id="classes-count"> 0</span>
-                </span>
-
-                <span id="relations" data-widget="collapse"  class="badge bg-green" >
-                    <i class="fa fa-fw fa-long-arrow-right"></i>
-                    <span id="relations-count"> 0</span>
-                </span>
-
-                <span id="instances" data-widget="collapse"  class="badge bg-green" >
-                    <i class="fa fa-fw fa-diamond"></i>
-                    <span id="instances-count"> 0</span>
-                </span>
-
 
                 <span id="errors" data-widget="collapse"  class="badge bg-red" data-original-title="Errors">
                     <i class="fa fa-close"></i>
@@ -901,14 +885,41 @@
         </div>
     </div>
     <!--./Error Console Info modal -->
+
+
+
+    <!-- Tracker spans  -->
+    <span id="classes" data-widget="collapse"  class="badge bg-green tracker" >
+                    <i class="fa fa-fw fa-circle-thin"></i>
+                    <span id="classes-count"> 0</span>
+                </span>
+
+    <span id="relations" data-widget="collapse"  class="badge bg-green tracker" >
+                    <i class="fa fa-fw fa-long-arrow-right"></i>
+                    <span id="relations-count"> 0</span>
+                </span>
+
+    <span id="instances" data-widget="collapse"  class="badge bg-green tracker" >
+                    <i class="fa fa-fw fa-diamond"></i>
+                    <span id="instances-count"> 0</span>
+                </span>
+
+    <span id="night-mode" class="badge bg-black tracker">
+        <a style="color: white;"   href="#"><i class="fa fa-fw fa-moon-o"></i></a>
+    </span>
+
+
     </body>
+    <!-- ./Tracker spans  -->
+
 
 @stop
 
 <!-- THIS FUNCTION NEEDS TO BE LOADED AFTER THE MXGRAPH COMPONENTS -->
 <script type="text/javascript">
+
     function searchTip(){
-    $(".geSidebar .geItem").click(function () {
+        $(".geSidebar .geItem").click(function () {
         let name =  $(this).attr('class');
         name = name.replace("geItem", "").trim();
         if(name != 'Class' && name != 'Callout' && name != 'Textbox' && name != 'Text' && name != 'Instance' && name != 'new_relation')
