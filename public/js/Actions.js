@@ -7,6 +7,8 @@
 function Actions(editorUi)
 {
 	this.editorUi = editorUi;
+	// send the editor to the OpenDiagram.js
+	setEditor(editorUi);
 	this.actions = new Object();
 	this.init();
 };
@@ -49,6 +51,7 @@ Actions.prototype.init = function()
 			try
 			{
 				var doc = mxUtils.parseXml(xml);
+				console.log(doc.documentElement);
 				editor.graph.setSelectionCells(editor.graph.importGraphModel(doc.documentElement));
 			}
 			catch (e)

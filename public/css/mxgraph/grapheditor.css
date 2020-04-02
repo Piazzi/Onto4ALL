@@ -162,7 +162,7 @@ aside {
 #error-console-header {
     background-color: whitesmoke;
     color: #333;
-    height: 3.56%;
+    height: 4%;
     border-radius: 20px;
 
 }
@@ -176,6 +176,10 @@ aside {
     width: 100%;
 }
 
+.openRecentDiagram {
+    z-index: 13;
+    margin-top: 500px;
+}
 
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
 

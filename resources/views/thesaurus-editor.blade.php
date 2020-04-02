@@ -39,6 +39,7 @@
         mxLoadResources = false;
     </script>
 
+    <script type="text/javascript" src="js/OpenDiagram.js"></script>
     <!-- Tooltips -->
     <script src="https://unpkg.com/popper.js@1"></script>
     <script src="https://unpkg.com/tippy.js@5"></script>

@@ -39,6 +39,8 @@
         mxLoadResources = false;
     </script>
 
+    <script type="text/javascript" src="js/OpenDiagram.js"></script>
+
     <!-- Tooltips -->
     <script src="https://unpkg.com/popper.js@1"></script>
     <script src="https://unpkg.com/tippy.js@5"></script>
@@ -419,7 +421,11 @@
                                 <p><a href="{{$ontology->link}}">{{$ontology->link}}</a></p>
                             @endif
                             <hr>
-                            <p><a  class="btn btn-default editor-timeline-item"  href="ontologies/{{$ontology->id}}/edit"><i class="fa fa-fw fa-pencil"></i> Edit Ontology</a></p>
+
+                            <p>
+                                <a id="{{$ontology->id}}"  class="btn btn-default editor-timeline-item openOntology"  href="#"><i class="fa fa-fw fa-object-group"></i> Open in the editor</a>
+                                <a  target="_blank" class="btn btn-default editor-timeline-item"  href="ontologies/{{$ontology->id}}/edit"><i class="fa fa-fw fa-pencil"></i> Edit</a>
+                            </p>
 
                         </div>
                         <!-- /.box-body -->
@@ -907,10 +913,10 @@
     <span id="night-mode" class="badge bg-black tracker">
         <a style="color: white;"   href="#"><i class="fa fa-fw fa-moon-o"></i></a>
     </span>
+    <!-- ./Tracker spans  -->
 
 
     </body>
-    <!-- ./Tracker spans  -->
 
 
 @stop
