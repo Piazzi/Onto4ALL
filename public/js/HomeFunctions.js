@@ -1,14 +1,6 @@
 $(document).ready(function () {
     $('#preloader').delay(1000).fadeOut();
 
-    // Build the menu
-    $(".geToolbar").append('<div class="geSeparator"> </div>');
-    $(".geToolbar").append($('#night-mode'));
-    $(".geToolbar").append($('#classes'));
-    $(".geToolbar").append($('#relations'));
-    $(".geToolbar").append($('#instances'));
-
-
 
     // Progress bar from the Methodology tab
     let percentage = $("#progress-bar").width() / $('#progress-bar').offsetParent().width()*100;

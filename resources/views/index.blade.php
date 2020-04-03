@@ -925,6 +925,13 @@
 <script type="text/javascript">
 
     function searchTip(){
+        // Build the menu
+        $(".geToolbar").append('<div class="geSeparator"> </div>');
+        $(".geToolbar").append($('#night-mode'));
+        $(".geToolbar").append($('#classes'));
+        $(".geToolbar").append($('#relations'));
+        $(".geToolbar").append($('#instances'));
+
         $(".geSidebar .geItem").click(function () {
         let name =  $(this).attr('class');
         name = name.replace("geItem", "").trim();

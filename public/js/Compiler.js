@@ -97,7 +97,9 @@ function movementCompiler(xml) {
                 getValueOrLabel(xmlDoc, i) != null &&
                 getValueOrLabel(xmlDoc, j) != null &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null &&
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") != null) {
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") != null &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") != null &&
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") != null) {
                 equalRelationBetweenClassesError++;
                 errorMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: "+
                     getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +
@@ -166,7 +168,7 @@ function movementCompiler(xml) {
             }
 
             //Shows a error if a class has multiple inheritance
-            if(getValueOrLabel(xmlDoc, j) === "is_a" &&
+            if(getValueOrLabel(xmlDoc, i) === "is_a" &&
                 getValueOrLabel(xmlDoc, j)=== "is_a" &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") &&
@@ -314,7 +316,7 @@ function getMxCell(xmlDoc, id) {
 function getMxCellName(xmlDoc, id)
 {
     for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
-        if (getElementId(xmlDoc,id) === id)
+        if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") === id)
             return getValueOrLabel(xmlDoc, id);
     }
 }
