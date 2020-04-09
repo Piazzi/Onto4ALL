@@ -55,6 +55,48 @@ function movementCompiler(xml) {
         else if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('Instance'))
             instancesCount++;
 
+        // If the mxCell is a Instance, start searching for his relations. If any relation belonging to the instance it's not a instance_of
+        // relation, shows a error message
+        if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('Instance')) {
+            for (let k = 0; k < xmlDoc.getElementsByTagName("mxCell").length; k++) {
+                if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("edge") != null &&
+                    getValueOrLabel(xmlDoc, k) != 'instance_of') {
+                    if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("source") === getElementId(xmlDoc, i) ||
+                        xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("target") === getElementId(xmlDoc, i)) {
+                        wrongRelationWarning++;
+                        warningMessage("You can only have a instance_of relation between a class and a instance","",4);
+                    }
+                }
+            }
+
+        }
+
+        // Shows a error message if two classes has been connected with the instance_of relation
+        if (getValueOrLabel(xmlDoc, i) === 'instance_of' &&
+            xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") !== null &&
+            xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !== null) {
+            // get the ids from the mxCells in the relation
+            let domainId = xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source");
+            let rangeId = xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target");
+            let domainClass, rangeClass;
+
+            // Look for the two mxCells using the ids
+            for (let k = 2; k < xmlDoc.getElementsByTagName("mxCell").length; k++) {
+                if (getElementId(xmlDoc, k) === domainId)
+                    domainClass = xmlDoc.getElementsByTagName("mxCell")[k];
+                if (getElementId(xmlDoc, k) === rangeId)
+                    rangeClass = xmlDoc.getElementsByTagName("mxCell")[k];
+
+
+            }
+
+            // shows a error if the mxCells are two classes
+            if (domainClass.getAttribute("style").includes('ellipse') && rangeClass.getAttribute("style").includes('ellipse')) {
+                instanceOfBetweenClassesWarning++;
+                warningMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. ","",3);
+            }
+
+        }
 
         for (let j = i + 1; j < xmlDoc.getElementsByTagName("mxCell").length; j++) {
 
@@ -98,49 +140,6 @@ function movementCompiler(xml) {
                     " and "+ getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target")) +".", 2);
             }
 
-            // Shows a error message if two classes has been connected with the instance_of relation
-            if (getValueOrLabel(xmlDoc, j) === 'instance_of' &&
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") !== null &&
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") !== null) {
-                // get the ids from the mxCells in the relation
-                let domainId = xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source");
-                let rangeId = xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target");
-                let domainClass, rangeClass;
-
-                // Look for the two mxCells using the ids
-                for (let k = 2; k < xmlDoc.getElementsByTagName("mxCell").length; k++) {
-                    if (getElementId(xmlDoc, k) === domainId)
-                        domainClass = xmlDoc.getElementsByTagName("mxCell")[k];
-                    if (getElementId(xmlDoc, k) === rangeId)
-                        rangeClass = xmlDoc.getElementsByTagName("mxCell")[k];
-
-
-                }
-
-                // shows a error if the mxCells are two classes
-                if (domainClass.getAttribute("style").includes('ellipse') && rangeClass.getAttribute("style").includes('ellipse')) {
-                    instanceOfBetweenClassesWarning++;
-                   warningMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. ","",3);
-                }
-
-            }
-
-
-            // If the mxCell is a Instance, start searching for his relations. If any relation belonging to the instance it's not a instance_of
-            // relation, shows a error message
-            if (xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("style").includes('Instance')) {
-                for (let k = 0; k < xmlDoc.getElementsByTagName("mxCell").length; k++) {
-                    if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("edge") != null &&
-                        getValueOrLabel(xmlDoc, k) != 'instance_of') {
-                        if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("source") == getElementId(xmlDoc, j) ||
-                            xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("target") == getElementId(xmlDoc, j)) {
-                            wrongRelationWarning++;
-                           warningMessage("You can only have a instance_of relation between a class and a instance","",4);
-                        }
-                    }
-                }
-
-            }
 
             /*
             // Shows a error message if a class has more than one relation attached to it
@@ -166,9 +165,13 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !==
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target"))
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !== null &&
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") !== null &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") !== null &&
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") !== null )
             {
-               warningMessage("A class can't have multiple inheritance. Your "+getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +" class can't be the domain of more than one is_a relation","",8);
+               warningMessage("A class can't have multiple inheritance. Your "+getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +" class can't be the domain of more than one is_a relation",8);
                 multipleInheritanceWarning++;
             }
 
@@ -265,6 +268,35 @@ function movementCompiler(xml) {
 
 
 }
+
+/**
+ * Returns if the given mxCell  is a relation or not
+ * @returns {boolean}
+ */
+function isRelation(xmlDoc, id) {
+    return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") !== null && (
+        xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("target") === null ||
+        xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("source") === null);
+}
+
+/**
+ * Returns if the given mxCell  is a class or not
+ * @returns {boolean}
+ */
+function isClass(xmlDoc, id) {
+    return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") === null &&
+        xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("style").includes('ellipse');
+}
+
+/**
+ * Returns if the given mxCell  is a instance or not
+ * @returns {boolean}
+ */
+function isInstance(xmlDoc, id) {
+    return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") === null &&
+        xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("style").includes('Instance');
+}
+
 
 /**
  * Removes the error message in the error console for the given error Id
