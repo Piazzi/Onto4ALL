@@ -698,7 +698,12 @@
                         implementation.
                     </p>
                     <p>
-                        <strong>You can import other ontologies to this editor if they have been created using the Onto4AllEditor and have a .XML extension. All ontologies exported by this editor can be imported in later projects </strong>. Using the menu editor, click on the "file" button and then on the "import" as showed below:
+                        <strong>You can edit your previous saved ontologies using the button "open in the editor" on the right sidebar</strong>
+                    </p>
+                    <img class="img-max-width" alt="import" src="css/images/Methodology/importFromSidebar.png">
+
+                    <p>
+                        <strong>You can import other ontologies to this editor if they have been created using the Onto4AllEditor and have a .XML extension. All ontologies exported by this editor can be imported in later projects. </strong>. Using the menu editor, click on the "file" button and then on the "import" as showed below:
                     </p>
                     <img class="img-max-width" alt="import" src="css/images/Methodology/import.png">
                     <p>Select a valid file from your computer using the "choose file" button or drag a file direct to the box and then click in "import"</p>
@@ -795,7 +800,7 @@
                         criteria are: non-recursivity in definitions, the specification of different types of part_of
                         relations, the definition of inverse relations, and the creation of the cardinalities.
                         In the Onto4AllEditor, the Phase 6 is performed automatically by the editor
-                        through of the functionality Error Console, that it presents the current errors in the
+                        through of the functionality Warnings Console, that suggests good modeling practices for the current
                         drawn ontology.
                     </p>
                     <img class="img-max-width" alt="console" src="css/images/Methodology/console.png">
@@ -918,6 +923,10 @@
     </body>
 
 
+@stop
+
+@section('footer')
+    .
 @stop
 
 <!-- THIS FUNCTION NEEDS TO BE LOADED AFTER THE MXGRAPH COMPONENTS -->

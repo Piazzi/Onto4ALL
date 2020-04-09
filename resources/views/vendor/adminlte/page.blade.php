@@ -185,7 +185,7 @@
                                         </li>
                                         @if(Route::currentRouteName() == 'home')
                                             <li>
-                                                <a id="control-sidebar" href="#" data-toggle="control-sidebar"> <i class="fa fa-th"></i></a>
+                                                <a id="control-sidebar" href="#" data-toggle="control-sidebar"><i class="fa fa-1.5x fa-fw fa-exchange "></i></a>
                                             </li>
                                         @endif
                                             @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))

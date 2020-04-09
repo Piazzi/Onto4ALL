@@ -20,10 +20,10 @@
 
 /* --------------------------------------------ONTO4ALL------------------------------------------------------------*/
 
-
+/*
 html {
     overflow-y: hidden;
-}
+}*/
 /*
     ALTERAÇÕES PARA ENCAIXAR O DIAGRAMA
     NA HOME E ORGANIZAR OS MENUS
@@ -124,7 +124,7 @@ center {
 
 .control-sidebar.control-sidebar-open, .control-sidebar.control-sidebar-open + .control-sidebar-bg {
     position: absolute;
-    width: 23%;
+    width: 21%;
 }
 
 #searchBar {
@@ -148,7 +148,7 @@ aside {
     position: relative;
     z-index: 13;
     margin-left: 650px;
-    bottom: 32px;
+    /*bottom: 32px;*/
     border-radius: 20px;
 
 }

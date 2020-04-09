@@ -11,7 +11,7 @@
     <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
     <!-- reCAPTCHA GOOGLE -->
-    @if(Route::currentRouteName() == 'login' || Route::currentRouteName() == 'register')
+    @if(Route::currentRouteName() == 'login' || Route::currentRouteName() == 'register' || Route::currentRouteName() == '' )
     <meta name="grecaptcha-key" content="{{config('recaptcha.v3.public_key')}}">
     <script src="https://www.google.com/recaptcha/api.js?render={{config('recaptcha.v3.public_key')}}"></script>
     @endif
