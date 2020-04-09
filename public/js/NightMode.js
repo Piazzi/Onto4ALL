@@ -62,11 +62,11 @@ $(document).ready(function() {
             $("footer strong ").css("color", "#00a65a");
             $("footer b ").css("color", "#00a65a");
 
-            $("#error-console").css("background", "#555");
-            $("#error-console .box").css("border", "");
-            $("#error-console-header").css("background-color", "#444");
-            $("#error-console-header").css("color", "#00a65a");
-            $("#error-console-header .fa-plus").css("color", "#00a65a");
+            $("#warnings-console").css("background", "#555");
+            $("#warnings-console .box").css("border", "");
+            $("#warnings-console-header").css("background-color", "#444");
+            $("#warnings-console-header").css("color", "#00a65a");
+            $("#warnings-console-header .fa-plus").css("color", "#00a65a");
             $(".fa-question-circle").css("color", "#00a65a");
 
             $("#control-sidebar-settings-tab .box-header").css("background-color", "#555");
@@ -96,7 +96,7 @@ $(document).ready(function() {
             $(".geDiagramBackdrop ").css("border", "0px solid #666");
             $(".geFormatContainer ").css("background-color", "#888");
             $(".content-wrapper ").css("background-color", "#888");
-            $("#error-console  ").css("border", "1px solid #444");
+            $("#warnings-console  ").css("border", "1px solid #444");
             $("aside ").css("border", "1px");
 
             $(".geDiagramContainer ").css("background-color", "#777");
@@ -172,10 +172,10 @@ $(document).ready(function() {
             $("footer strong a").css("color", "");
             $("footer b ").css("color", "");
 
-            $("#error-console").css("background", "");
-            $("#error-console-header").css("background-color", "");
-            $("#error-console-header").css("color", "");
-            $("#error-console-header .fa-plus").css("color", "");
+            $("#warnings-console").css("background", "");
+            $("#warnings-console-header").css("background-color", "");
+            $("#warnings-console-header").css("color", "");
+            $("#warnings-console-header .fa-plus").css("color", "");
             $(".fa-question-circle").css("color", "");
 
             $("#control-sidebar-settings-tab .box-header").css("background-color", "");
@@ -205,7 +205,7 @@ $(document).ready(function() {
             $(".geDiagramBackdrop ").css("border", "");
             $(".geFormatContainer ").css("background-color", "");
             $(".content-wrapper ").css("background-color", "");
-            $("#error-console ").css("border", "");
+            $("#warnings-console ").css("border", "");
             $("aside ").css("border", "");
 
             $(".modal-content").css("background-color", "");

@@ -441,12 +441,12 @@
 
 
 
-    <!-- Error Console -->
-    <div id="error-console"  class="box box-default box-solid direct-chat direct-chat-danger collapsed-box">
-        <div id="error-console-header" class="box-header">
-            <h3 class="box-title">Error Console</h3>
+    <!-- Warning Console -->
+    <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-danger collapsed-box">
+        <div id="warnings-console-header" class="box-header">
+            <h3 class="box-title">Warnings Console</h3>
 
-            <a  href="#" data-target="#errorConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle"></i></a>
+            <a  href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle"></i></a>
             <div class="box-tools pull-right">
 
                 <a download="ontology-errors.txt" href="#" id="download-errors-txt"><span data-toggle="tooltip" title="" class="badge bg-info">
@@ -454,14 +454,15 @@
                     </span>
                 </a>
 
+                <!--
                 <span id="errors" data-widget="collapse"  class="badge bg-red" data-original-title="Errors">
                     <i class="fa fa-close"></i>
                     <span id="error-count"> 0</span>
-                </span>
+                </span>-->
 
                 <span id="warnings" data-widget="collapse" class="badge bg-yellow" data-original-title="Warnings">
                     <i class="fa fa-warning"> </i>
-                    <span id="warning-count">  0</span>
+                    <span id="warnings-count">  0</span>
                 </span>
 
                 <button id="open-error-console" type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
@@ -481,7 +482,7 @@
                     <!-- /.direct-chat-info -->
                     <img class="direct-chat-img" src="css/images/profile.jpeg" alt="Message User Image"><!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
-                        Here you can see all the errors you've made
+                        Here you can see all the warnings
                     </div>
                     <!-- /.direct-chat-text -->
                 </div>
@@ -861,27 +862,25 @@
     <!-- ./ METHODOLOGY MODALS  -->
 
     <!-- Error Console Info modal -->
-    <div class="tab modal fade" id="errorConsole"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="tab modal fade" id="warningsConsole"  tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong>Error Console</strong></h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Warnings Console</strong></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>The error console is the way our editor tells you what is wrong with the ontology you're current drawing.
-                        This console will show you errors and warnings that you should solve for your ontology to be correct. <a target="_blank" href="/errorIndex">Click here</a>
-                        to see all the errors and warnings our console track. We will be updating this console with more errors in the future, contact us via e-mail (lpiazzi@ice.ufjf.br) if you
+                    <p>The warnings console is the way our editor tells you good modeling practices you should implement when building a ontology.
+                        This console will show you warnings that will help you build a better ontology. <a target="_blank" href="/warningIndex">Click here</a>
+                        to see all the warnings our console track. We will be updating this console with more warnings in the future, <a href="/help">contact us</a> if you
                         want some rule be implemented here.
                     </p>
                     <img class="img-max-width" alt="export" src="css/images/errorConsole.png">
-                    <p>Here you can see that the pizza ontology have several errors that need to be solved.
-                        We can also see a warning showing on the error console,
-                        indicating that one of the ontology relations has not been fully connected to 2 classes.
-                        <strong>Always remember to fully connect all of your relations, otherwise the error console might not work correctly.</strong>
+                    <p>Here you can see that the pizza ontology have several warnings that need to be solved.
+                        <strong>Always remember to fully connect all of your relations, otherwise the warnings console might not work correctly.</strong>
                     </p>
                 </div>
                 <div class="modal-footer">
@@ -910,7 +909,7 @@
                     <span id="instances-count"> 0</span>
                 </span>
 
-    <span id="night-mode" class="badge bg-black tracker">
+    <span id="night-mode" class="badge bg-info tracker">
         <a style="color: white;"   href="#"><i class="fa fa-fw fa-moon-o"></i></a>
     </span>
     <!-- ./Tracker spans  -->

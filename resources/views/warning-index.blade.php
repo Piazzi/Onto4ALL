@@ -4,8 +4,8 @@
 
 @section('content_header')
     <h1>
-        Error Index
-        <small>Here you can find all errors and warnings tracked by our Editor at the moment.</small>
+        Warnings Index
+        <small>Here you can find all warnings tracked by our Editor at the moment.</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
@@ -15,9 +15,9 @@
 
 @section('content')
 
-    <div class="box box-danger">
+    <div class="box box-warning">
         <div class="box-header">
-            <h3 class="box-title">Errors</h3>
+            <h3 class="box-title">Warnings</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body no-padding">
@@ -79,33 +79,13 @@
 
                 <tr>
                     <td>8</td>
-                    <td>Excess of Relations</td>
-                    <td>Occurs when you have more than one relation between two classes</td>
+                    <td>Multiple Inheritance</td>
+                    <td>Occurs when a class have multiple inheritance. A class can't be the domain of more than one is_a relation</td>
                     <td></td>
                 </tr>
 
                 <tr>
                     <td>9</td>
-                    <td>Multiple Inheritance</td>
-                    <td>Occurs when a class have multiple inheritance. A class can't be the domain of more than one is_a relation</td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <!-- /.box-body -->
-    </div>
-
-    <div class="box box-warning">
-        <div class="box-header">
-            <h3 class="box-title">Warnings</h3>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body no-padding">
-            <table class="table table-striped">
-                <tbody>
-                <tr>
-                    <td>1</td>
                     <td>Relation Not Connected</td>
                     <td>Occurs when one of your relations is not fully connected to a class or instance</td>
                 </tr>
@@ -114,6 +94,7 @@
         </div>
         <!-- /.box-body -->
     </div>
+
 @stop
 
 @section('footer')

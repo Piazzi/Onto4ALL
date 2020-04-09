@@ -63,7 +63,7 @@ Route::post('/saveXML', 'HomeController@saveXML');
 Route::post('/exportOWL', 'HomeController@exportOWL');
 Route::get('/aboutUs', 'HomeController@aboutUs')->name('aboutUs');
 Route::get('/tutorial', 'HomeController@tutorial')->name('tutorial');
-Route::get('/errorIndex', 'HomeController@errorIndex')->name('errorIndex');
+Route::get('/warningIndex', 'HomeController@warningIndex')->name('errorIndex');
 Route::get('/open');
 Route::post('/export', 'HomeController@export');
 Route::post('/exportImage', 'HomeController@exportImage');

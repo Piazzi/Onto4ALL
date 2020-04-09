@@ -68,11 +68,7 @@ $(document).ready(function () {
     });
 
     tippy('.fa-download', {
-        content: "Downloads a .txt file containing all the current errors in the ontology"
-    });
-
-    tippy('#errors', {
-        content: "The number of errors in your current ontology"
+        content: "Downloads a .txt file containing all the current warnings in the ontology"
     });
 
     tippy('#warnings', {

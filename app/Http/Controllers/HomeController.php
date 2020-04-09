@@ -57,9 +57,9 @@ class HomeController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function errorIndex()
+    public function warningIndex()
     {
-        return view('error-index');
+        return view('warning-index');
     }
 
     /**

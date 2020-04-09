@@ -2,7 +2,7 @@
 //console.log(mxUtils.getXml(ui.editor.getGraphXml()));
 
 /**
- * Gets the XML from the editor after a Cell is moved or connect to another Cell
+ * Gets the XML from the editor after any change is made.
  * @param xml
  */
 function movementCompiler(xml) {
@@ -15,18 +15,17 @@ function movementCompiler(xml) {
     parser = new DOMParser();
     xmlDoc = parser.parseFromString(xml, "text/xml");
     // Each of theses error has a unique Id used for searching for the error in the DOM Elements
-    //  These id's also corresponds to the id's on the error index page
-    let equalClassNamesError = 0, // id = 1
-        equalRelationBetweenClassesError = 0, // id = 2
-        instanceOfBetweenClassesError = 0, // id = 3
-        wrongRelationError = 0, // id = 4
-        inverseOfNameError = 0, // id = 5
-        missingClassPropertiesError = 0, // id = 6
-        missingRelationPropertiesError = 0, // id = 7
-        excessOfRelationsError = 0,  // id = 8
-        multipleInheritanceError = 0; // id = 9
-
-    let notConnectedRelationWarning = 0; // id = 1;
+    //  These id's also corresponds to the id's on the warning index page
+    let equalClassNamesWarning = 0, // id = 1
+        equalRelationBetweenClassesWarning = 0, // id = 2
+        instanceOfBetweenClassesWarning = 0, // id = 3
+        wrongRelationWarning = 0, // id = 4
+        inverseOfNameWarning = 0, // id = 5
+        missingClassPropertiesWarning = 0, // id = 6
+        missingRelationPropertiesWarning = 0, // id = 7
+        //excessOfRelationsWarning = 0,  //
+        multipleInheritanceWarning = 0, // id = 8
+        notConnectedRelationWarning = 0; // id = 9;
 
     // Starts the XML interpretation send by the editor
     // Each mxCell element is compared to each other to find any measurable error
@@ -37,9 +36,6 @@ function movementCompiler(xml) {
     // Complexity: O(n^2)
     for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
 
-        //console.log(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") ?
-        //                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") :
-         //               xmlDoc.getElementsByTagName('mxCell')[i].parentNode.getAttribute('label'));
 
         // -------- WARNINGS SEARCH -----------------
 
@@ -49,7 +45,7 @@ function movementCompiler(xml) {
             xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") === null))
         {
             notConnectedRelationWarning++;
-            warningMessage('The relation '+ getValueOrLabel(xmlDoc, i) +' it is not fully connected to 2 classes', 1);
+            warningMessage('The relation '+ getValueOrLabel(xmlDoc, i) +' it is not fully connected to 2 classes', 9);
         }
 
         if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") !== null)
@@ -60,10 +56,6 @@ function movementCompiler(xml) {
             instancesCount++;
 
 
-        // /.----------- WARNINGS SEARCH --------------
-
-
-        // ------------- ERROR SEARCH ---------------
         for (let j = i + 1; j < xmlDoc.getElementsByTagName("mxCell").length; j++) {
 
 
@@ -81,8 +73,8 @@ function movementCompiler(xml) {
                         xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("style").includes('ellipse') &&
                         getValueOrLabel(xmlDoc, i) !== 'Name' &&
                         getValueOrLabel(xmlDoc, j) !== 'Name') {
-                        equalClassNamesError++;
-                        errorMessage("You can not have two classes with the same name, you have two classes named "+(getValueOrLabel(xmlDoc, i)).bold()+".","Inconsistency",1);
+                        equalClassNamesWarning++;
+                       warningMessage("You can not have two classes with the same name, you have two classes named "+(getValueOrLabel(xmlDoc, i)).bold()+".",1);
                 }
             }
 
@@ -96,14 +88,14 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") &&
                 getValueOrLabel(xmlDoc, i) != null &&
                 getValueOrLabel(xmlDoc, j) != null &&
-                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null &&
+                (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") != null &&
-                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") != null) {
-                equalRelationBetweenClassesError++;
-                errorMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: "+
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") != null)) {
+                equalRelationBetweenClassesWarning++;
+               warningMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: "+
                     getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +
-                    " and "+ getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target")) +".", "Imprecision",2);
+                    " and "+ getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target")) +".", 2);
             }
 
             // Shows a error message if two classes has been connected with the instance_of relation
@@ -127,8 +119,8 @@ function movementCompiler(xml) {
 
                 // shows a error if the mxCells are two classes
                 if (domainClass.getAttribute("style").includes('ellipse') && rangeClass.getAttribute("style").includes('ellipse')) {
-                    instanceOfBetweenClassesError++;
-                    errorMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. ","",3);
+                    instanceOfBetweenClassesWarning++;
+                   warningMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. ","",3);
                 }
 
             }
@@ -142,14 +134,15 @@ function movementCompiler(xml) {
                         getValueOrLabel(xmlDoc, k) != 'instance_of') {
                         if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("source") == getElementId(xmlDoc, j) ||
                             xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("target") == getElementId(xmlDoc, j)) {
-                            wrongRelationError++;
-                            errorMessage("You can only have a instance_of relation between a class and a instance","",4);
+                            wrongRelationWarning++;
+                           warningMessage("You can only have a instance_of relation between a class and a instance","",4);
                         }
                     }
                 }
 
             }
 
+            /*
             // Shows a error message if a class has more than one relation attached to it
             if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("edge") != null &&
@@ -162,10 +155,10 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source")))
             {
-                errorMessage("You can only have 1 relation between 2 classes. This error occurs between these two classes: "+getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target")) +" and "+
+               warningMessage("You can only have 1 relation between 2 classes. This error occurs between these two classes: "+getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target")) +" and "+
                      getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source"))+" .", "", 8);
-                excessOfRelationsError++;
-            }
+                excessOfRelationsWarning++;
+            }*/
 
             //Shows a error if a class has multiple inheritance
             if(getValueOrLabel(xmlDoc, i) === "is_a" &&
@@ -175,8 +168,8 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !==
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target"))
             {
-                errorMessage("A class can't have multiple inheritance. Your "+getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +" class can't be the domain of more than one is_a relation","",9);
-                multipleInheritanceError++;
+               warningMessage("A class can't have multiple inheritance. Your "+getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +" class can't be the domain of more than one is_a relation","",8);
+                multipleInheritanceWarning++;
             }
 
 
@@ -194,8 +187,8 @@ function movementCompiler(xml) {
 
             // Show the inverse of error if the relation and the inverse Of property have the same name
             if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") == xmlDoc.getElementsByTagName("object")[i].getAttribute("inverseOf")) {
-                inverseOfNameError++;
-                errorMessage("In the "+xmlDoc.getElementsByTagName("object")[i].getAttribute("label") +" relation, the Inverse Of property can't have the same name of the relation","",5);
+                inverseOfNameWarning++;
+               warningMessage("In the "+xmlDoc.getElementsByTagName("object")[i].getAttribute("label") +" relation, the Inverse Of property can't have the same name of the relation","",5);
 
             }
 
@@ -215,8 +208,8 @@ function movementCompiler(xml) {
 
         if(missingClassProperties !== "")
         {
-            missingClassPropertiesError++;
-            errorMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Class, you did not fill the following properties: ' + missingClassProperties.bold()+ '',"",6);
+            missingClassPropertiesWarning++;
+           warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Class, you did not fill the following properties: ' + missingClassProperties.bold()+ '',"",6);
             missingClassProperties = "";
         }
 
@@ -235,42 +228,40 @@ function movementCompiler(xml) {
 
         if(missingRelationProperties  !== "")
         {
-            missingRelationPropertiesError++;
-            errorMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Relation, you did not fill the following properties: ' + missingRelationProperties.bold()+ '',"",7);
+            missingRelationPropertiesWarning++;
+           warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Relation, you did not fill the following properties: ' + missingRelationProperties.bold()+ '',"",7);
             missingRelationProperties  = "";
         }
 
     }
 
+    // /.----------- WARNINGS SEARCH --------------
+
     // Update the counters on front end
-    $("#error-count").text(equalRelationBetweenClassesError + equalClassNamesError + instanceOfBetweenClassesError + wrongRelationError + inverseOfNameError + missingClassPropertiesError + missingRelationPropertiesError + excessOfRelationsError + multipleInheritanceError);
-    $("#warning-count").text(notConnectedRelationWarning);
+    $("#warnings-count").text(equalRelationBetweenClassesWarning + equalClassNamesWarning + instanceOfBetweenClassesWarning + wrongRelationWarning + inverseOfNameWarning + missingClassPropertiesWarning + missingRelationPropertiesWarning + multipleInheritanceWarning + notConnectedRelationWarning);
     $("#classes-count").text(classesCount);
     $("#relations-count").text(relationsCount);
     $("#instances-count").text(instancesCount);
 
     // Checks if any error can be removed from the console error
-    if(equalClassNamesError === 0)
-        removeError(1);
-    if(equalRelationBetweenClassesError === 0)
-        removeError(2);
-    if(instanceOfBetweenClassesError === 0)
-        removeError(3);
-    if(wrongRelationError === 0)
-        removeError(4);
-    if(inverseOfNameError === 0)
-        removeError(5);
-    if(missingClassPropertiesError === 0)
-        removeError(6);
-    if(missingRelationPropertiesError === 0)
-        removeError(7);
-    if(excessOfRelationsError === 0)
-        removeError(8);
-    if(multipleInheritanceError === 0)
-        removeError(9);
-
-    if(notConnectedRelationWarning === 0)
+    if(equalClassNamesWarning === 0)
         removeWarning(1);
+    if(equalRelationBetweenClassesWarning === 0)
+        removeWarning(2);
+    if(instanceOfBetweenClassesWarning === 0)
+        removeWarning(3);
+    if(wrongRelationWarning === 0)
+        removeWarning(4);
+    if(inverseOfNameWarning === 0)
+        removeWarning(5);
+    if(missingClassPropertiesWarning === 0)
+        removeWarning(6);
+    if(missingRelationPropertiesWarning === 0)
+        removeWarning(7);
+    if(multipleInheritanceWarning === 0)
+        removeWarning(8);
+    if(notConnectedRelationWarning === 0)
+        removeWarning(9);
 
 
 }
@@ -333,7 +324,7 @@ function propertiesCompiler(xml) {
  * Initializes the modal animation of the given error
  * @param modal
  */
-function errorAnimation(modal) {
+function warningAnimation(modal) {
     modal.show();
     modal.animate({opacity: '0.4'}, "slow");
     modal.animate({opacity: '0.8'}, "slow");
@@ -362,8 +353,8 @@ function errorMessage(text, errorType, errorId) {
         '                    <!-- /.direct-chat-text -->\n' +
         '                </div>');
 
-    errorAnimation($(".direct-chat-msg"));
-    errorAnimation($("#error-count"));
+    warningAnimation($(".direct-chat-msg"));
+    warningAnimation($("#error-count"));
 }
 
 /**
@@ -379,13 +370,14 @@ function warningMessage(text, warningId)
         '                        <span class="direct-chat-timestamp pull-left">' + new Date().toLocaleString() + '</span>\n' +
         '                    </div>\n' +
         '                    <!-- /.direct-chat-info -->\n' +
-        '                    <img class="direct-chat-img" src="css/images/warning.png" alt="Warning Message"><!-- /.direct-chat-img -->\n' +
+        '                    <img class="direct-chat-img" src="css/images/warningIcon.png" alt="Warning Message"><!-- /.direct-chat-img -->\n' +
         '                    <div class="direct-chat-text">\n' +
         '                      ' + text + '\n' +
         '                    </div>\n' +
         '                    <!-- /.direct-chat-text -->\n' +
         '                </div>');
-    errorAnimation($("#warning-count"));
+    warningAnimation($(".direct-chat-msg"))
+    warningAnimation($("#warning-count"));
 }
 
 /**

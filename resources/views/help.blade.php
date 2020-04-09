@@ -103,9 +103,9 @@
         <div class="col-md-6">
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>Error Index</h3>
+                    <h3>Warnings Index</h3>
 
-                    <p>See all the errors and warnings tracked by our console on the editor </p>
+                    <p>See all the warnings tracked by our console on the editor </p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-gear-a"></i>
