@@ -883,7 +883,7 @@
                         to see all the warnings our console track. We will be updating this console with more warnings in the future, <a href="/help">contact us</a> if you
                         want some rule be implemented here.
                     </p>
-                    <img class="img-max-width" alt="export" src="css/images/errorConsole.png">
+                    <img class="img-max-width" alt="export" src="css/images/warningConsole.png">
                     <p>Here you can see that the pizza ontology have several warnings that need to be solved.
                         <strong>Always remember to fully connect all of your relations, otherwise the warnings console might not work correctly.</strong>
                     </p>
