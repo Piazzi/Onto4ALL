@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('vendor/adminlte/login');
+    return view('landing-page');
 });
 
 Route::get('/logout', 'Auth\LoginController@logout');

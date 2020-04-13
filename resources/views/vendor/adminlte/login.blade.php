@@ -19,120 +19,11 @@
 @section('body')
     <div class="content">
         <div class="row">
-            <div class="col-md-7">
-                <div class="box box-solid">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">See how it works...</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                            </ol>
-                            <div class="carousel-inner">
-                                <div class="item active">
-                                    <video class="full-width" playsinline muted loop autoplay>
-                                        <source src="css/images/Slide1.mp4" type="video/mp4">
-                                    </video>
-                                    <div class="carousel-caption">
-                                        Create your own ontologies!
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <video class="full-width" playsinline muted loop autoplay>
-                                        <source src="css/images/Slide2.mp4" type="video/mp4">
-                                    </video>
-                                    <div class="carousel-caption">
-                                        The error console will help you out!
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <video class="full-width" playsinline muted loop autoplay>
-                                        <source src="css/images/Slide3.mp4" type="video/mp4">
-                                    </video>
-                                    <div class="carousel-caption">
-                                        Use our ontology manager to organize your own ontologies
-                                    </div>
-                                </div>
-                            </div>
-                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                <span class="fa fa-angle-left"></span>
-                            </a>
-                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                <span class="fa fa-angle-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">FAQ</h3>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="box-group" id="accordion">
-                                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                <div class="panel box box-success">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                What is the Onto4ALL Editor?
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseOne" class="panel-collapse collapse in">
-                                        <div class="box-body">
-                                            Onto4All is a free graphical editor capable of creating, editing and exporting
-                                            ontologies being guided by an error console, a ontological building rules tab and an extensive
-                                            palette of ontological classes and relationships.
-                                            Export formats are: OWL, XML, SVG.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel box box-success">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                It's been updated?
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseTwo" class="panel-collapse collapse">
-                                        <div class="box-body">
-                                            Yes, we've been updating the editor for the past months and developing new
-                                            functionalities. Contact us via e-mail if you have any suggestion.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel box box-success">
-                                    <div class="box-header with-border">
-                                        <h4 class="box-title">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                                What is the main public of the editor?
-                                            </a>
-                                        </h4>
-                                    </div>
-                                    <div id="collapseThree" class="panel-collapse collapse">
-                                        <div class="box-body">
-                                            We aim to reach all types of audiences. From students learning what an ontology
-                                            is to professionals in the field.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5">
+            <div class="col-md-12">
                 <div class="row">
                     <div class="login-box">
                         <div class="login-logo">
-                            <img class="img-responsive img" id="login-image" src="css/images/Onto4ALL.png" alt="" srcset="">
+                            <img class="img-responsive img" id="login-image" src="css/images/Onto4ALL.png" alt="onto4all-logo" srcset="">
                         </div>
                         <!-- /.login-logo -->
                         <div class="login-box-body">
@@ -178,17 +69,6 @@
 
                                 </div>
                             </form>
-                            <div class="auth-links">
-                                <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}"
-                                   class="text-center"
-                                >{{ trans('adminlte::adminlte.i_forgot_my_password') }}</a>
-                                <br>
-                                @if (config('adminlte.register_url', 'register'))
-                                    <a href="{{ url(config('adminlte.register_url', 'register')) }}"
-                                       class="text-center"
-                                    >{{ trans('adminlte::adminlte.register_a_new_membership') }} (It's free!)</a>
-                                @endif
-                            </div>
 
                             <div class="social-auth-links text-center">
                                 <p>- OR -</p>
@@ -198,30 +78,32 @@
                                     Facebook</a>
                             </div>
 
+                            <div class="auth-links">
+                                <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}"
+                                   class="text-center"
+                                >{{ trans('adminlte::adminlte.i_forgot_my_password') }}</a>
+                                <br>
+                                @if (config('adminlte.register_url', 'register'))
+                                    <a href="{{ url(config('adminlte.register_url', 'register')) }}"
+                                       class="text-center"
+                                    >Create a new account</a>
+                                @endif
+                            </div>
+
+                            <hr>
+
                             <div class="row">
-                                <!-- /.col -->
-                                <div class="col-md-6">
-                                    <i class="fa fa-fw fa-github fa-2x"></i>
-                                    <a href="https://github.com/Piazzi/ontologyFramework">See us on github </a>
-                                </div>
-                                <!-- /.col -->
+                                <h4 class="login-box-msg">Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!</h4>
+                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                    <input type="hidden" name="cmd" value="_s-xclick" />
+                                    <input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN" />
+                                    <input class="center-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+                                    <img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
+                                </form>
                             </div>
                         </div>
                         <!-- /.login-box-body -->
                     </div><!-- /.login-box -->
-                    <div class="row">
-                        <div class="login-box">
-                            <div class="login-box-body">
-                                    <h4 class="login-box-msg">Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!</h4>
-                                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                        <input type="hidden" name="cmd" value="_s-xclick" />
-                                        <input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN" />
-                                        <input class="center-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                                        <img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
-                                    </form>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
