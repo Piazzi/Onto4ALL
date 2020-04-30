@@ -16,6 +16,7 @@
         "laravel/helpers": "^1.2",
         "laravel/socialite": "4.*",
         "laravel/tinker": "^1.0",
+        "lucascudo/laravel-pt-br-localization": "^1.0",
         "nesbot/carbon": "2.*"
     },
     "require-dev": {
