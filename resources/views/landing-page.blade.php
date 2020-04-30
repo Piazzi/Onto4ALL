@@ -54,7 +54,7 @@
                     <div class="col-lg-8 text-center">
                         <h2 class="text-white mt-0">What is the Onto4ALL Editor?</h2>
                         <hr class="divider light my-4" />
-                        <p class="text-white-50 mb-4"> Is a free graphical editor capable of creating, editing and exporting ontologies being guided by an warnings console, a ontological building rules tab and an extensive palette of ontological classes and relationships.</p>
+                        <p class="text-white-50 mb-4"> Is a free graphical editor capable of creating, editing and exporting ontologies being guided by an warnings console, an ontological building rules tab and an extensive palette of ontological classes and relationships.</p>
                         <a class="btn btn-light btn-xl js-scroll-trigger" href="/login">Get Started!</a>
                     </div>
                 </div>
@@ -207,6 +207,27 @@
                         <div class="mt-5">
                             <img alt="jquery" src="css/images/Landing-Page/jquery.png">
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="page-section" >
+            <div class="container">
+                <h2 class="text-center mt-0">Supported By</h2>
+                <hr class="divider my-4" />
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 text-center">
+                        <div class="mt-5">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 text-center">
+                        <div class="mt-5">
+                            <img alt="jquery" src="css/images/Landing-Page/ufjf.png">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 text-center">
+                        <div class="mt-5">
                         </div>
                     </div>
                 </div>
