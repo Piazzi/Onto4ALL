@@ -270,10 +270,27 @@ function movementCompiler(xml) {
 }
 
 /**
+ * Checks if the properties from a given
+ * mxCell is filled
+ * @param xmlDoc
+ * @param i
+ * return integer
+ */
+function filledProperties(xmlDoc, i) {
+    return xmlDoc.getElementsByTagName('mxCell')[i].parentNode.getAttribute('label');
+}
+
+/**
  * Returns if the given mxCell  is a relation or not
  * @returns {boolean}
  */
 function isRelation(xmlDoc, id) {
+    // check if the properties are filled
+    if(filledProperties(xmlDoc,id))
+    {
+        return xmlDoc.getElementsByTagName('mxCell')[id].getAttribute('edge') !== null;
+    }
+    else
     return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") !== null && (
         xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("target") === null ||
         xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("source") === null);
@@ -284,6 +301,13 @@ function isRelation(xmlDoc, id) {
  * @returns {boolean}
  */
 function isClass(xmlDoc, id) {
+    // check if the properties are filled
+    if(filledProperties(xmlDoc,id))
+    {
+        return xmlDoc.getElementsByTagName('mxCell')[id].childNodes[0].getAttribute('edge') == null &&
+               xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("style").includes('ellipse');
+    }
+    else
     return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") === null &&
         xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("style").includes('ellipse');
 }
@@ -293,6 +317,7 @@ function isClass(xmlDoc, id) {
  * @returns {boolean}
  */
 function isInstance(xmlDoc, id) {
+
     return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") === null &&
         xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("style").includes('Instance');
 }
@@ -408,7 +433,7 @@ function warningMessage(text, warningId)
         '                    </div>\n' +
         '                    <!-- /.direct-chat-text -->\n' +
         '                </div>');
-    warningAnimation($(".direct-chat-msg"))
+    warningAnimation($(".direct-chat-msg"));
     warningAnimation($("#warning-count"));
 }
 

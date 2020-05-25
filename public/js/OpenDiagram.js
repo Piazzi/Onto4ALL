@@ -1,4 +1,4 @@
-let editor = 0;
+var editor = 0;
 
 /**
  * Gets the current Editor from the Actions.js

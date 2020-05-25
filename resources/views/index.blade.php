@@ -64,6 +64,8 @@
     <script type="text/javascript" src="js/HomeFunctions.js"></script>
     <script type="text/javascript" src="js/Compiler.js"></script>
     <script type="text/javascript" src="js/NightMode.js"></script>
+    <script type="text/javascript" src="js/Tooltips.js"></script>
+    <script type="text/javascript" src="js/Report.js"></script>
     <!-- Search Script <script defer type="text/javascript" src="js/SearchTip.js"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
@@ -917,6 +919,13 @@
     <span id="night-mode" class="badge bg-info tracker">
         <a style="color: white;"   href="#"><i class="fa fa-fw fa-moon-o"></i></a>
     </span>
+
+    <a class="tracker"  href="#" id="download-ontology-report">
+        <span data-toggle="tooltip" title="" class="badge bg-green tracker">
+                    <i class="fa fa-fw fa-file-text-o"></i>
+        </span>
+    </a>
+
     <!-- ./Tracker spans  -->
 
 
@@ -939,6 +948,7 @@
         $(".geToolbar").append($('#classes'));
         $(".geToolbar").append($('#relations'));
         $(".geToolbar").append($('#instances'));
+        $(".geToolbar").append($('#download-ontology-report'));
 
         $(".geSidebar .geItem").click(function () {
         let name =  $(this).attr('class');
