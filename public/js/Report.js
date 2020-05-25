@@ -59,6 +59,7 @@ $(document).ready(function () {
             }
         }
         console.log(report);
+        this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(report);
 
     })
 

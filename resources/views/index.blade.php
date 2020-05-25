@@ -920,7 +920,7 @@
         <a style="color: white;"   href="#"><i class="fa fa-fw fa-moon-o"></i></a>
     </span>
 
-    <a class="tracker"  href="#" id="download-ontology-report">
+    <a download="ontology-report.txt" class="tracker"  href="#" id="download-ontology-report">
         <span data-toggle="tooltip" title="" class="badge bg-green tracker">
                     <i class="fa fa-fw fa-file-text-o"></i>
         </span>
