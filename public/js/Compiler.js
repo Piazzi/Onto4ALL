@@ -291,9 +291,7 @@ function isRelation(xmlDoc, id) {
         return xmlDoc.getElementsByTagName('mxCell')[id].getAttribute('edge') !== null;
     }
     else
-    return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") !== null && (
-        xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("target") === null ||
-        xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("source") === null);
+    return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") !== null;
 }
 
 /**
@@ -458,4 +456,19 @@ function getValueOrLabel(xmlDoc, i)
 function getElementId(xmlDoc, i)
 {
     return xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") ? xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") : xmlDoc.getElementsByTagName('mxCell')[i].parentNode.getAttribute('id')
+}
+
+/**
+ * Returns the name/label for the given id
+ * @param xmlDoc
+ * @param id
+ * @returns {*}
+ */
+function getCellName(xmlDoc, id)
+{
+    for(let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
+    {
+        if(getValueOrLabel(xmlDoc, id) === getValueOrLabel(xmlDoc, i))
+            return getValueOrLabel(xmlDoc,i)
+    }
 }
