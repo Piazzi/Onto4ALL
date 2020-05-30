@@ -1,5 +1,10 @@
-//console.log(mxUtils.getPrettyXml(ui.editor.getGraphXml()));
-//console.log(mxUtils.getXml(ui.editor.getGraphXml()));
+
+/**
+ * This file is responsible for the warning console in the editor page
+ * The main function is the movimentCompiler()
+ * The other ones are helper functions to make the code cleaner (DRY)
+ */
+
 
 /**
  * Gets the XML from the editor after any change is made.
@@ -32,7 +37,7 @@ function movementCompiler(xml) {
     // This compiler is made of three parts, the first one is to compare elements with the
     // MxCell tag in it. The second one to compare elements with MxCell and Object
     // and the third one to compare elements with the Object tag only
-    // For this i used ternary comparison and the parentNode property.
+    // For this i used the getValueOrLabel function.
     // Complexity: O(n^2)
     for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
 
@@ -277,11 +282,11 @@ function movementCompiler(xml) {
  * return integer
  */
 function filledProperties(xmlDoc, i) {
-    return xmlDoc.getElementsByTagName('mxCell')[i].parentNode.getAttribute('label');
+    return xmlDoc.getElementsByTagName('mxCell')[i].parentNode.getAttribute('label') !== null;
 }
 
 /**
- * Returns if the given mxCell  is a relation or not
+ * Returns if the given mxCell is a relation or not
  * @returns {boolean}
  */
 function isRelation(xmlDoc, id) {
@@ -295,7 +300,7 @@ function isRelation(xmlDoc, id) {
 }
 
 /**
- * Returns if the given mxCell  is a class or not
+ * Returns if the given mxCell is a class or not
  * @returns {boolean}
  */
 function isClass(xmlDoc, id) {
@@ -322,15 +327,6 @@ function isInstance(xmlDoc, id) {
 
 
 /**
- * Removes the error message in the error console for the given error Id
- * @param errorId
- */
-function removeError(errorId)
-{
-    $('.direct-chat-msg:contains(Error Id: '+errorId+')').remove();
-}
-
-/**
  * Removes the warning message in the error console for the given warning ID
  * @param warningId
  */
@@ -339,19 +335,6 @@ function removeWarning(warningId)
     $('.direct-chat-msg:contains(Warning Id: '+warningId+')').remove();
 }
 
-/**
- * Returns the cell, given the id.
- *
- * @param xmlDoc
- * @param id
- * @returns {*|string}
- */
-function getMxCell(xmlDoc, id) {
-    for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
-        if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") === id)
-            return xmlDoc.getElementsByTagName("mxCell")[i];
-    }
-}
 
 /**
  * Returns the value(name) of a mxCell
@@ -367,13 +350,6 @@ function getMxCellName(xmlDoc, id)
     }
 }
 
-/**
- * Gets the XML from the editor after any property of the cell have been edited
- * @param xml
- */
-function propertiesCompiler(xml) {
-
-}
 
 /**
  * Initializes the modal animation of the given error
@@ -385,32 +361,6 @@ function warningAnimation(modal) {
     modal.animate({opacity: '0.8'}, "slow");
 }
 
-/**
- * Creates a new error message in the error console for the given text
- * @param text
- * @param errorType
- * @param errorId
- */
-function errorMessage(text, errorType, errorId) {
-
-    if (errorType == null)
-        errorType = '';
-    $(".direct-chat-messages").append(' <div class="direct-chat-msg ">\n' +
-        '                    <div class="direct-chat-info clearfix">\n' +
-        '                        <span class="direct-chat-name pull-right"><i class="fa fa-close"></i><strong>'+ errorType+'Error | Error Id: '+errorId+'</strong></span>\n' +
-        '                        <span class="direct-chat-timestamp pull-left">' + new Date().toLocaleString() + '</span>\n' +
-        '                    </div>\n' +
-        '                    <!-- /.direct-chat-info -->\n' +
-        '                    <img class="direct-chat-img" src="css/images/error.gif" alt="Error Message"><!-- /.direct-chat-img -->\n' +
-        '                    <div class="direct-chat-text">\n' +
-        '                      ' + text + '\n' +
-        '                    </div>\n' +
-        '                    <!-- /.direct-chat-text -->\n' +
-        '                </div>');
-
-    warningAnimation($(".direct-chat-msg"));
-    warningAnimation($("#error-count"));
-}
 
 /**
  * Creates a new warning message in the error console for the given text
@@ -459,7 +409,8 @@ function getElementId(xmlDoc, i)
 }
 
 /**
- * Returns the name/label for the given id
+ * Returns the value(name)/label for the given id
+ * This functions works for both object and mxCell Tags
  * @param xmlDoc
  * @param id
  * @returns {*}
@@ -468,7 +419,13 @@ function getCellName(xmlDoc, id)
 {
     for(let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
     {
-        if(getValueOrLabel(xmlDoc, id) === getValueOrLabel(xmlDoc, i))
-            return getValueOrLabel(xmlDoc,i)
+        if(filledProperties(xmlDoc,i))
+        {
+            if(xmlDoc.getElementsByTagName("mxCell")[i].parentNode.getAttribute("id") == id)
+                return getValueOrLabel(xmlDoc,i);
+        }
+        else
+            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") == id)
+                return getValueOrLabel(xmlDoc,i);
     }
 }

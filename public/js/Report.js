@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('#download-ontology-report').click(function () {
         console.log(editor.editor.getGraphXml());
 
-        // get the XML document
+        // get the XML document from the editor
         let xmlDoc = editor.editor.getGraphXml();
         let report = '/************* Ontology Report *************/ \n\nClasses:';
 
@@ -18,6 +18,7 @@ $(document).ready(function () {
                 {
                     report = report + '\n       Properties:';
                     let parentNode = xmlDoc.getElementsByTagName("mxCell")[i].parentNode;
+                    // write the properties
                     for(let i = 0; i < parentNode.attributes.length; i++)
                     {
                         report = report + '\n           - '+parentNode.attributes[i].name+': '+ labelFilter(parentNode.attributes[i].value);
