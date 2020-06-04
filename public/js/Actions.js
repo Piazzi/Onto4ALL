@@ -52,8 +52,9 @@ Actions.prototype.init = function()
 			{
 				var doc = mxUtils.parseXml(xml);
 				// Verifies if the uploaded file is a OWL file
-				if(filename.split('.').pop() === 'owl')
-					editor.graph.setSelectionCells(editor.graph.importGraphModel(owlToXml(doc)));
+                let fileExtension = filename.split('.').pop();
+				if(fileExtension === 'owl' || fileExtension === 'owx')
+					editor.graph.setSelectionCells(editor.graph.importGraphModel(owlToXml(doc.documentElement)));
 				else
 					editor.graph.setSelectionCells(editor.graph.importGraphModel(doc.documentElement));
 
