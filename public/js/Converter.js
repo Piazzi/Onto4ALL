@@ -93,6 +93,7 @@ function owlToXml(owlDoc)
     // Each of this nodes will become a class, relation or instance node on the XML file
     for(let i = 0; i < owlDoc.getElementsByTagName("Declaration").length; i++)
     {
+        // Reads all the Declaration nodes and create the new nodes after that
         if(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].nodeName === 'Class')
            createClassNode(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].getAttribute("IRI"));
         else if(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].nodeName === 'ObjectProperty')
@@ -100,6 +101,7 @@ function owlToXml(owlDoc)
     }
 
     // Reads all SubClassOf nodes to create is_a relation nodes
+    // and Sets the attributes of previous created relations
     for(let i = 0; i < owlDoc.getElementsByTagName("SubClassOf").length; i++)
     {
         if(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].nodeName === 'Class' &&
@@ -108,12 +110,26 @@ function owlToXml(owlDoc)
 
             // Create a is_a relation and set the source and target attributes
             let isA = createRelationNode("is_a");
-            let source = getNode(cleanString(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].getAttribute("IRI")));
-            let target = getNode(cleanString(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].getAttribute("IRI")));
+            let source = getNode(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].getAttribute("IRI"));
+            let target = getNode(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].getAttribute("IRI"));
             isA.setAttribute("source", source.getAttribute("id"));
             isA.setAttribute("target", target.getAttribute("id"));
 
         }
+        else if(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].nodeName === 'Class' && (
+                owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].nodeName === 'ObjectSomeValuesFrom' ||
+                owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].nodeName === 'ObjectAllValuesFrom'))
+        {
+            // finds the relation and set the source and target attributes
+            let relation = getNode(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].childNodes[1].getAttribute("IRI"));
+            let source = getNode(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].getAttribute("IRI"));
+            let target = getNode(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].childNodes[3].getAttribute("IRI"));
+            relation.setAttribute("source", source.getAttribute("id"));
+            relation.setAttribute("target", target.getAttribute("id"));
+
+        }
+
+
     }
 
     console.log(xmlDoc.documentElement);
@@ -240,6 +256,6 @@ function createMxPointNode()
 function getNode(name)
 {
     for(let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
-        if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") === name)
+        if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") === cleanString(name))
             return xmlDoc.getElementsByTagName("mxCell")[i];
 }
