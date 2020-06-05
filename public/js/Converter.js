@@ -14,26 +14,37 @@ let positionCounter = 0;
  * Generate the position of each element that will be inserted
  * into the editor. The elements will be inserted in a circle format
  * @param n (number of elements)
- * @param rx (the radius along X-axis)
- * @param ry (the radius along Y-axis.)
  */
-function generatePositions(n, rx, ry)
+function generatePositions(n)
 {
+    //rx (the radius along X-axis)
+    //ry (the radius along Y-axis.)
+    let rx, ry;
+
+    // sets the radius of the circle based on the number of elements
+    if(n <= 4)
+    {
+        rx = 150;
+        ry = rx;
+    }
+    else
+    {
+        rx = 150+n*20;
+        ry = rx;
+    }
+
     let frags = 360 / n;
     let theta = [];
-    for (let i = 0; i <= n; i++) {
+    for (let i = 0; i <= n; i++)
         theta.push((frags / 180) * i * Math.PI);
-    }
+
 
     for(let j = 0; j < n; j++)
     {
         positions.push({
-            x: 500 + Math.round(rx * (Math.cos(theta[j]))),
+            x: Math.round(rx * (Math.cos(theta[j]))),
             y: Math.round(ry * (Math.sin(theta[j])))
         });
-      // positions[j].x =  Math.round(rx * (Math.cos(theta[j])));
-      // positions[j].y = Math.round(ry * (Math.sin(theta[j])));
-
     }
 
 }
@@ -76,16 +87,34 @@ function owlToXml(owlDoc)
     mxCell2.setAttribute("parent", "0");
     root.appendChild(mxCell2);
 
-    generatePositions(owlDoc.getElementsByTagName("Declaration").length, 500,500);
+    generatePositions(owlDoc.getElementsByTagName("Declaration").length);
 
     // Starts the conversion of the OWL file by reading all declaration nodes
     // Each of this nodes will become a class, relation or instance node on the XML file
     for(let i = 0; i < owlDoc.getElementsByTagName("Declaration").length; i++)
     {
         if(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].nodeName === 'Class')
-           createClassNode(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1]);
+           createClassNode(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].getAttribute("IRI"));
+        else if(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].nodeName === 'ObjectProperty')
+           createRelationNode(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].getAttribute("IRI"));
     }
 
+    // Reads all SubClassOf nodes to create is_a relation nodes
+    for(let i = 0; i < owlDoc.getElementsByTagName("SubClassOf").length; i++)
+    {
+        if(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].nodeName === 'Class' &&
+           owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].nodeName === 'Class')
+        {
+
+            // Create a is_a relation and set the source and target attributes
+            let isA = createRelationNode("is_a");
+            let source = getNode(cleanString(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].getAttribute("IRI")));
+            let target = getNode(cleanString(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].getAttribute("IRI")));
+            isA.setAttribute("source", source.getAttribute("id"));
+            isA.setAttribute("target", target.getAttribute("id"));
+
+        }
+    }
 
     console.log(xmlDoc.documentElement);
     return xmlDoc.documentElement;
@@ -93,9 +122,9 @@ function owlToXml(owlDoc)
 
 /**
  * Creates a Class Node for the XML file
- * @param node
+ * @param name
  */
-function createClassNode (node)
+function createClassNode(name)
 {
     let classNode = xmlDoc.createElement("mxCell");
 
@@ -103,7 +132,7 @@ function createClassNode (node)
     idCounter++;
 
     // Sets each attribute following the default pattern of the editor
-    classNode.setAttribute("value", cleanString(node.getAttribute("IRI")));
+    classNode.setAttribute("value", cleanString(name));
     classNode.setAttribute("style", "ellipse;whiteSpace=wrap;html=1;aspect=fixed;");
     classNode.setAttribute("vertex", "1");
     classNode.setAttribute("parent", "1");
@@ -111,6 +140,35 @@ function createClassNode (node)
 
     // append the class node to the root node
     xmlDoc.getElementsByTagName("root")[0].appendChild(classNode);
+}
+
+/**
+ * Creates a Relation Node for the XML file
+ * @param name
+ * @param name (optional parameter)
+ */
+function createRelationNode(name)
+{
+    let relationNode = xmlDoc.createElement("mxCell");
+
+    relationNode.setAttribute("id", idCounter);
+    idCounter++;
+
+    // Sets the attributes for a relation node
+    if(name === "is_a")
+        relationNode.setAttribute("value", "is_a");
+    else
+        relationNode.setAttribute("value", cleanString(name));
+
+    relationNode.setAttribute("style", "html=1;verticalAlign=bottom;endArrow=block;");
+    relationNode.setAttribute("edge", "1");
+    relationNode.setAttribute("parent", "1");
+    relationNode.appendChild(createMxGeometryNode("relation"));
+
+    // append the relation node to the root node
+    xmlDoc.getElementsByTagName("root")[0].appendChild(relationNode);
+
+    return relationNode;
 }
 
 /**
@@ -135,6 +193,8 @@ function createMxGeometryNode(parentNode)
     let mxGeometry = xmlDoc.createElement("mxGeometry");
     mxGeometry.setAttribute("width", "80");
     mxGeometry.setAttribute("as", "geometry");
+
+    // checks if this node belongs to a relation or class node
     if(parentNode === "class")
     {
         mxGeometry.setAttribute("x", positions[positionCounter].x);
@@ -142,9 +202,44 @@ function createMxGeometryNode(parentNode)
         positionCounter++;
         mxGeometry.setAttribute("height", "80");
     }
-    else
+    else if(parentNode === "relation")
     {
-
+        mxGeometry.setAttribute("relative", "1");
+        let mxPoints = createMxPointNode();
+        mxGeometry.appendChild(mxPoints[0]);
+        mxGeometry.appendChild(mxPoints[1]);
     }
     return mxGeometry;
+}
+
+/**
+ * Creates a MxPoint node
+ * @returns {HTMLElement[]}
+ */
+function createMxPointNode()
+{
+    let sourcePoint = xmlDoc.createElement("mxPoint");
+    let targetPoint = xmlDoc.createElement("mxPoint");
+
+    sourcePoint.setAttribute("x", "20");
+    sourcePoint.setAttribute("y", "20");
+    sourcePoint.setAttribute("as", "sourcePoint");
+
+    targetPoint.setAttribute("x", "100");
+    targetPoint.setAttribute("y", "20");
+    targetPoint.setAttribute("as", "targetPoint");
+
+    return [sourcePoint, targetPoint];
+}
+
+/**
+ * Finds the node with the given name
+ * @param name
+ * @returns {Element}
+ */
+function getNode(name)
+{
+    for(let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
+        if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") === name)
+            return xmlDoc.getElementsByTagName("mxCell")[i];
 }
