@@ -410,9 +410,12 @@ class HomeController extends Controller
             $ontology->appendChild($objectPropertyRange);
         }
 
+        // When a MxCell has his properties filled, it changes the format of the XML
+        // A <object> tag is added to the file
+        // Converts elements with the properties filled to OWL
         foreach ($xml->root->object as $object)
         {
-            if($object->mxCell['edge'] == null)
+            if($object->mxCell['edge'] == null && strpos($object->children()[0]['style'], 'ellipse') !== false)
             {
                 createClassElement($object['label'], $dom, $ontology);
             }
@@ -467,11 +470,12 @@ class HomeController extends Controller
 
         }
 
+        // Converts elements without properties filled to OWL
         foreach($xml->root->mxCell as $element)
         {
             if($element['value'])
             {
-                if($element['edge'] == null)
+                if($element['edge'] == null  && strpos($element['style'], 'ellipse') !== false )
                 {
                     createClassElement($element['value'], $dom, $ontology);
                 }
