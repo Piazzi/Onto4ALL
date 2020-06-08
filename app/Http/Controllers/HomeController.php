@@ -166,6 +166,7 @@ class HomeController extends Controller
         function sanitize($name)
         {
             $name = trim($name);
+            $name = filter_var($name, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW);
             $name = str_replace(' ', '_', $name);
             $name = html_entity_decode($name);
             $name = trim($name);
