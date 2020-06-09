@@ -415,10 +415,11 @@ class HomeController extends Controller
         // Converts elements with the properties filled to OWL
         foreach ($xml->root->object as $object)
         {
+            // checks if the element is a class
             if($object->mxCell['edge'] == null && strpos($object->children()[0]['style'], 'ellipse') !== false)
             {
                 createClassElement($object['label'], $dom, $ontology);
-            }
+            } // checks if the element is a relation
             else if($object->mxCell['source'] && $object->mxCell['target'])
             {
                 createObjectPropertyElement($object['label'], $dom, $ontology);
@@ -475,10 +476,11 @@ class HomeController extends Controller
         {
             if($element['value'])
             {
+                // Checks if the element is a class
                 if($element['edge'] == null  && strpos($element['style'], 'ellipse') !== false )
                 {
                     createClassElement($element['value'], $dom, $ontology);
-                }
+                }// Checks if the element is a relation
                 else if($element['source'] && $element['target'])
                 {
                    createObjectPropertyElement($element['value'], $dom, $ontology);
@@ -493,7 +495,7 @@ class HomeController extends Controller
             }
         }
 
-        // Formating the XML text
+        // Formatting the XML text
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
 
