@@ -68,4 +68,36 @@ class LoginController extends Controller
 
         return view('/home')->withDetails($user)->withService($service);
     }
+
+    /**
+     * Sets the locale parameter
+     * @return string
+     *
+     */
+    public function redirectTo()
+    {
+        return app()->getLocale() . '/home';
+    }
+
+
+
+
+
+    /*** PRECISA TESTAR ISSO      */
+    public function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        if ($response = $this->loggedOut($request)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new Response(”, 204)
+            : redirect($this->redirectTo());
+    }
 }

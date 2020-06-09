@@ -36,4 +36,14 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    /**
+     * Sets the locale parameter
+     * @return string
+     *
+     */
+    public function redirectTo()
+    {
+        return app()->getLocale() . '/home';
+    }
 }

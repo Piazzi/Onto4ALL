@@ -26,8 +26,8 @@
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#features">Features</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">Login</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href=/register>Register</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('login', app()->getLocale())}}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('register', app()->getLocale())}}">Register</a></li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                         <h2 class="text-white mt-0">What is the Onto4ALL Editor?</h2>
                         <hr class="divider light my-4" />
                         <p class="text-white-50 mb-4"> Is a free graphical editor capable of creating, editing and exporting ontologies being guided by an warnings console, an ontological building rules tab and an extensive palette of ontological classes and relationships.</p>
-                        <a class="btn btn-light btn-xl js-scroll-trigger" href="/login">Get Started!</a>
+                        <a class="btn btn-light btn-xl js-scroll-trigger" href="{{route('login', app()->getLocale())}}">Get Started!</a>
                     </div>
                 </div>
             </div>
@@ -162,7 +162,7 @@
         <section style="background-color: #00a65a !important;" class="page-section bg-dark text-white">
             <div class="container text-center">
                 <h2 class="mb-4">Start Drawing Your Ontologies</h2>
-                <a class="btn btn-light btn-xl" href="/register">Register Now!</a>
+                <a class="btn btn-light btn-xl" href="{{route('register', app()->getLocale())}}">Register Now!</a>
             </div>
         </section>
 

@@ -23,12 +23,12 @@
                 <div class="row">
                     <div class="login-box">
                         <div class="login-logo">
-                            <img class="img-responsive img" id="login-image" src="css/images/Onto4ALL.png" alt="onto4all-logo" srcset="">
+                            <img class="img-responsive img" id="login-image" src="{{asset('css/images/Onto4ALL.png')}}" alt="onto4all-logo" srcset="">
                         </div>
                         <!-- /.login-logo -->
                         <div class="login-box-body">
                             <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
-                            <form data-grecaptcha-action="message" action="{{ url(config('adminlte.login_url', 'login')) }}" method="post">
+                            <form data-grecaptcha-action="message" action="{{ route('login', app()->getLocale()) }}" method="post">
                                 {!! csrf_field() !!}
 
                                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
@@ -72,19 +72,19 @@
 
                             <div class="social-auth-links text-center">
                                 <p>- OR -</p>
-                                <a href="{{url('/redirect')}}"
+                                <a href="{{url(app()->getLocale(). '/redirect')}}"
                                    class="btn btn-block btn-social btn-facebook btn-flat btn-info"><i
                                             class="fa fa-fw fa-facebook"></i> Sign in using
                                     Facebook</a>
                             </div>
 
                             <div class="auth-links">
-                                <a href="{{ url(config('adminlte.password_reset_url', 'password/reset')) }}"
+                                <a href="{{ route('password.request', app()->getLocale()) }}"
                                    class="text-center"
                                 >{{ trans('adminlte::adminlte.i_forgot_my_password') }}</a>
                                 <br>
                                 @if (config('adminlte.register_url', 'register'))
-                                    <a href="{{ url(config('adminlte.register_url', 'register')) }}"
+                                    <a href="{{route('register', app()->getLocale())}}"
                                        class="text-center"
                                     >Create a new account</a>
                                 @endif

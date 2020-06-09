@@ -73,4 +73,14 @@ class RegisterController extends Controller
         $user->save();
         return $user;
     }
+
+    /**
+     * Sets the locale parameter
+     * @return string
+     *
+     */
+    public function redirectTo()
+    {
+        return app()->getLocale() . '/home';
+    }
 }

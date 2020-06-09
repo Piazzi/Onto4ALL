@@ -10,7 +10,7 @@
 @section('body')
     <div class="register-box">
         <div class="login-logo">
-            <img class="img-responsive img full-width" id="login-image" src="css/images/Onto4ALL.png" alt="" srcset="">
+            <img class="img-responsive img full-width" id="login-image" src="{{asset('css/images/Onto4ALL.png')}}" alt="" srcset="">
         </div>
 
         <div class="register-box-body">
