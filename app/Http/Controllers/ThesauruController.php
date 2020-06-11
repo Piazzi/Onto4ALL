@@ -10,6 +10,15 @@ use Illuminate\Http\Response;
 
 class ThesauruController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Returns the thesaurus editor view

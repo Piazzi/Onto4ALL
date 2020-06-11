@@ -12,6 +12,16 @@ use App\Http\Requests\OntologyStoreRequest;
 class OntologyController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the user ontologies .
      *
      * @return \Illuminate\Http\Response

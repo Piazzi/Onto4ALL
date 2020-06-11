@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Auth;
 class DiagramController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Search for the diagram with the given id
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
