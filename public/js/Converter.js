@@ -29,7 +29,7 @@ function generatePositions(n)
     }
     else
     {
-        rx = 150+n*20;
+        rx = 150+n*10;
         ry = rx;
     }
 
@@ -128,7 +128,22 @@ function owlToXml(owlDoc)
             relation.setAttribute("target", target.getAttribute("id"));
 
         }
+    }
 
+
+    // Reads all AnnotationAssertion nodes to fill properties on classes and relations
+    for(let i = 0; i < owlDoc.getElementsByTagName("AnnotationAssertion").length;i++)
+    {
+        console.log(owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes);
+        if(owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes[1].getAttribute("IRI"))
+        {
+            let propertyLabel = owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes[1].getAttribute("IRI").split("#").pop();
+            let nodeName = owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes[3].childNodes[0].nodeValue;
+            let propertyValue = owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes[5].childNodes[0].nodeValue;
+            //console.log("LABEL", propertyLabel, "NODE NAME", cleanString(nodeName), "VALUE", propertyValue);
+            insertPropertyOnNode(cleanString(nodeName), propertyLabel, propertyValue);
+
+        }
 
     }
 
@@ -258,4 +273,43 @@ function getNode(name)
     for(let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
         if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") === cleanString(name))
             return xmlDoc.getElementsByTagName("mxCell")[i];
+}
+
+/**
+ * Inserts a property on a given node.
+ * @param nodeName
+ * @param label
+ * @param value
+ */
+function insertPropertyOnNode(nodeName, label, value)
+{
+    let node = getNode(nodeName);
+    //When the properties are not filled yet this function creates a new node
+    // called 'object' and sets the given node as a child
+    if(node.parentNode.nodeName !== 'object')
+    {
+        let object = xmlDoc.createElement("object");
+        // Sets the attributes for the new node following the mxGraph pattern.
+        // The object receives the value and id properties from the node. This attributes
+        // are removed from the original node after that.
+        object.setAttribute("label", node.getAttribute("value"));
+        object.setAttribute("id", node.getAttribute("id"));
+        object.setAttribute(label, value);
+        node.removeAttribute("value");
+        node.removeAttribute("id");
+
+        // sets the remaining properties
+        object.setAttribute(label, value);
+
+        object.appendChild(node);
+        xmlDoc.getElementsByTagName("root")[0].appendChild(object);
+    }
+    else
+    {
+        // finds the object node and set the attributes
+        for(let i = 0; xmlDoc.getElementsByTagName("object").length;i++)
+            if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") === nodeName)
+                xmlDoc.getElementsByTagName("object")[i].setAttribute(label,value);
+    }
+
 }
