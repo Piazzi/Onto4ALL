@@ -923,6 +923,7 @@ EditorUi.prototype.init = function () {
 
     graph.getModel().addListener(mxEvent.CHANGE, mxUtils.bind(this, function () {
         this.updateActionStates();
+        console.log(this.editor.getGraphXml());
         if(window.location.pathname !== '/thesaurus-editor')
             movementCompiler(mxUtils.getXml(this.editor.getGraphXml()));
     }));
