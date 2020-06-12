@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('#preloader').delay(1000).fadeOut();
+   // $('#preloader').delay(1000).fadeOut();
 
 
     // Progress bar from the Methodology tab
@@ -52,6 +52,13 @@ $(document).ready(function () {
         hideSidebar = !hideSidebar;
     });
 
+    // Build the menu
+    $(".geToolbar").append('<div class="geSeparator"> </div>');
+    $(".geToolbar").append($('#night-mode'));
+    $(".geToolbar").append($('#classes'));
+    $(".geToolbar").append($('#relations'));
+    $(".geToolbar").append($('#instances'));
+    $(".geToolbar").append($('#download-ontology-report'));
 
 
 });

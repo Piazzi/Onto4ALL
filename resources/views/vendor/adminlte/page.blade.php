@@ -76,9 +76,9 @@
                                                         <ul class="menu">
                                                             @foreach(Auth::user()->unreadNotifications as $notification)
                                                                 <li><!-- start message -->
-                                                                    <a href="{{route('messages.index')}}">
+                                                                    <a href="{{route('messages.index', app()->getLocale())}}">
                                                                         <div class="pull-left">
-                                                                            <img src="css/images/profile.jpeg"
+                                                                            <img src="{{asset('css/images/profile.jpeg')}}"
                                                                                  class="img-circle" alt="User Image">
                                                                         </div>
                                                                         <h4>
@@ -94,7 +94,7 @@
                                                             @endforeach
                                                         </ul>
                                                     </li>
-                                                    <li class="footer"><a href="{{route('messages.index')}}">See All
+                                                    <li class="footer"><a href="{{route('messages.index', app()->getLocale())}}">See All
                                                             Messages</a></li>
                                                 </ul>
                                             </li>
@@ -128,7 +128,7 @@
                                             <ul class="dropdown-menu">
                                                 <!-- The user image in the menu -->
                                                 <li  class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
-                                                    <img src="css/images/profile.jpeg" class="img-circle"
+                                                    <img src="{{asset('css/images/profile.jpeg')}}" class="img-circle"
                                                          alt="User Image">
                                                     <p>
                                                         {{Auth::user()->name}}
@@ -139,14 +139,14 @@
                                                 <li class="user-body">
                                                     <div class="row">
                                                         <div class="col-xs-4 text-center border-right">
-                                                            <a class="user-body-link" href="{{route('profile.edit', Auth::user()->id)}}">Account
+                                                            <a class="user-body-link" href="{{route('profile.edit', ['profile' => Auth::user()->id, 'locale' => app()->getLocale()])}}">Account
                                                                 Settings</a>
                                                         </div>
                                                         <div class="col-xs-4 text-center border-right">
-                                                            <a class="user-body-link" href="{{route('ontologies.index')}}">Your Ontologies</a>
+                                                            <a class="user-body-link" href="{{route('ontologies.index', app()->getLocale())}}">Your Ontologies</a>
                                                         </div>
                                                         <div class="col-xs-4 text-center">
-                                                            <a class="user-body-link" href="{{route('help')}}">Help Menu</a>
+                                                            <a class="user-body-link" href="{{route('help', app()->getLocale())}}">Help Menu</a>
                                                         </div>
                                                     </div>
                                                     <!-- /.row -->
@@ -154,7 +154,7 @@
                                                 <!-- Menu Footer-->
                                                 <li class="user-footer">
                                                     <div class="pull-left">
-                                                        <a href="{{route('profile.index')}}"
+                                                        <a href="{{route('profile.index', app()->getLocale())}}"
                                                            class="btn btn-default btn-flat"><i
                                                                     class="fa fa-user-plus"></i> Profile</a>
                                                     </div>

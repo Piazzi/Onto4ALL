@@ -297,7 +297,7 @@ var mxClient =
 			var link = doc.createElement('link');
 
 			link.setAttribute('rel', rel);
-			link.setAttribute('href', 'css/mxgraph/common.css');
+			link.setAttribute('href', '/css/mxgraph/common.css');
 			link.setAttribute('charset', 'UTF-8');
 			link.setAttribute('type', 'text/css');
 

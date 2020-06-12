@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Onto4ALL - Ontology Graphical Editor</title>
-    <link rel="shortcut icon" href="css/images/favicon.ico" />
+    <link rel="shortcut icon" href="{{asset('css/images/favicon.ico')}}" />
     <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -18,7 +18,7 @@
 
     <!-- Editor CSS  -->
     @if(Route::currentRouteName() == 'home')
-        <link rel="stylesheet" type="text/css" href="css/mxgraph/grapheditor.css">
+        <link rel="stylesheet" type="text/css" href="{{asset('css/mxgraph/grapheditor.css')}}">
     @endif
 
     <!-- Tell the browser to be responsive to screen width -->

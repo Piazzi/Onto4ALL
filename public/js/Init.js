@@ -10,13 +10,13 @@ window.EXPORT_URL = window.EXPORT_URL || '/export';
 window.SAVE_URL = window.SAVE_URL || '/save';
 window.SAVEXML_URL = window.SAVEXML_URL || '/saveXML';
 window.OPEN_URL = window.OPEN_URL || '/open';
-window.RESOURCES_PATH = window.RESOURCES_PATH || 'resources';
+window.RESOURCES_PATH = window.RESOURCES_PATH || '/resources';
 window.RESOURCE_BASE = window.RESOURCE_BASE || window.RESOURCES_PATH + '/grapheditor';
-window.STENCIL_PATH = window.STENCIL_PATH || 'stencils';
-window.IMAGE_PATH = window.IMAGE_PATH || 'images';
-window.STYLE_PATH = window.STYLE_PATH || 'styles';
-window.CSS_PATH = window.CSS_PATH || 'styles';
-window.OPEN_FORM = window.OPEN_FORM || 'open.html';
+window.STENCIL_PATH = window.STENCIL_PATH || '/stencils';
+window.IMAGE_PATH = window.IMAGE_PATH || '/images';
+window.STYLE_PATH = window.STYLE_PATH || '/styles';
+window.CSS_PATH = window.CSS_PATH || '/styles';
+window.OPEN_FORM = window.OPEN_FORM || '/open.html';
 window.HOME_URL = window.HOME_URL || '/home'; // URL PARA PÁGINA PRINCIPAL DO DIAGRAMA
 
 // Sets the base path, the UI language via URL param and configures the
@@ -28,4 +28,4 @@ window.HOME_URL = window.HOME_URL || '/home'; // URL PARA PÁGINA PRINCIPAL DO D
 // each properties file since only one file is loaded.
 window.mxBasePath = window.mxBasePath || '../../../src';
 window.mxLanguage = window.mxLanguage || urlParams['lang'];
-window.mxLanguages = window.mxLanguages || ['de'];
+window.mxLanguages = window.mxLanguages || ['pt'];

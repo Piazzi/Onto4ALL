@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <div id="preloader"><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>
+    <!--<div id="preloader"><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>-->
 
     <title>Grapheditor</title>
     <!--[if IE]>
@@ -39,34 +39,34 @@
         mxLoadResources = false;
     </script>
 
-    <script type="text/javascript" src="js/OpenDiagram.js"></script>
+    <script type="text/javascript" src="{{asset('js/OpenDiagram.js')}}"></script>
 
     <!-- Tooltips -->
     <script src="https://unpkg.com/popper.js@1"></script>
     <script src="https://unpkg.com/tippy.js@5"></script>
     <!-- MxGraph -->
-    <script type="text/javascript" src="js/Init.js"></script>
-    <script type="text/javascript" src="js/pako.min.js"></script>
-    <script type="text/javascript" src="js/base64.js"></script>
-    <script type="text/javascript" src="js/jscolor.js"></script>
-    <script type="text/javascript" src="js/sanitizer.min.js"></script>
-    <script type="text/javascript" src="js/mxClient.js"></script>
-    <script type="text/javascript" src="js/EditorUi.js"></script>
-    <script type="text/javascript" src="js/Editor.js"></script>
-    <script type="text/javascript" src="js/Sidebar.js"></script>
-    <script type="text/javascript" src="js/Graph.js"></script>
-    <script type="text/javascript" src="js/Format.js"></script>
-    <script type="text/javascript" src="js/Shapes.js"></script>
-    <script type="text/javascript" src="js/Actions.js"></script>
-    <script type="text/javascript" src="js/Menus.js"></script>
-    <script type="text/javascript" src="js/Toolbar.js"></script>
-    <script type="text/javascript" src="js/Dialogs.js"></script>
-    <script type="text/javascript" src="js/HomeFunctions.js"></script>
-    <script type="text/javascript" src="js/Compiler.js"></script>
-    <script type="text/javascript" src="js/NightMode.js"></script>
-    <script type="text/javascript" src="js/Tooltips.js"></script>
-    <script type="text/javascript" src="js/Report.js"></script>
-    <script type="text/javascript" src="js/Converter.js"></script>
+    <script type="text/javascript" src="{{asset('js/Init.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/pako.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/base64.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/jscolor.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/sanitizer.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/mxClient.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/EditorUi.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Editor.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Sidebar.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Graph.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Format.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Shapes.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Actions.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Menus.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Toolbar.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Dialogs.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/HomeFunctions.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/NightMode.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Tooltips.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Report.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
 
     <!-- Search Script <script defer type="text/javascript" src="js/SearchTip.js"></script> -->
 
@@ -409,11 +409,11 @@
 
                             <strong><i class="fa fa-files-o margin-r-5"></i>Download as</strong>
 
-                                <a href="/ontologies/download/{{Auth::user()->id}}/{{$ontology->id}}"
+                                <a href="{{route('ontologies.download',['locale'=>app()->getLocale(), 'userId' => Auth::user()->id, 'ontologyId' => $ontology->id])}}"
                                    class="btn btn-default  btn-sm ">
                                     <i class="fa fa-fw fa-file-code-o"></i> XML
                                 </a>
-                                <a  href="/ontologies/downloadOWL/{{Auth::user()->id}}/{{$ontology->id}}"
+                                <a  href="{{route('ontologies.downloadOWL', ['locale'=>app()->getLocale(), 'userId' => Auth::user()->id, 'ontologyId' => $ontology->id])}}"
                                    class="btn btn-default  btn-sm ">
                                     <i class="fa fa-fw fa-file-code-o"></i> OWL
                                 </a>
@@ -484,7 +484,7 @@
                         <span class="direct-chat-timestamp pull-left"></span>
                     </div>
                     <!-- /.direct-chat-info -->
-                    <img class="direct-chat-img" src="css/images/profile.jpeg" alt="Message User Image"><!-- /.direct-chat-img -->
+                    <img class="direct-chat-img" src="{{asset('css/images/profile.jpeg')}}" alt="Message User Image"><!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                         Here you can see all the warnings
                     </div>
@@ -560,14 +560,14 @@
                         questions.
                     </p>
                     <p>
-                        Once you have saved your ontology, you will have the option to edit your information in the ontology management area which can be found at the top of the page or by <a href="{{route('ontologies.index')}}">clicking here</a></p>
-                    <img alt="superior-menu" src="css/images/Methodology/menu-superior.png">
+                        Once you have saved your ontology, you will have the option to edit your information in the ontology management area which can be found at the top of the page or by <a href="{{route('ontologies.index', app()->getLocale())}}">clicking here</a></p>
+                    <img alt="superior-menu" src="{{asset('css/images/Methodology/menu-superior.png')}}">
                     <hr>
                     <p>After clicking on the 'My Ontologies' button you will be redirected to a page containing all your ontologies made and you can edit each one. Click the button below to access all information on that ontology.</p>
-                    <img alt="ontology-info" src="css/images/Methodology/edit-ontology.png">
+                    <img alt="ontology-info" src="{{asset('css/images/Methodology/edit-ontology.png')}}">
                     <hr>
                     <p>After clicking the button you will be redirected to the ontology page and can make the necessary changes. </p>
-                    <img style="width: 90%" alt="ontology-info" src="css/images/Methodology/info.png">
+                    <img style="width: 90%" alt="ontology-info" src="{{asset('css/images/Methodology/info.png')}}">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -674,7 +674,7 @@
                         concepts through graphs or similar structures.
                         In the Onto4AllEditor, the Phase 3 must be performed in <strong>this page using the graphical editor</strong>. You can access this page again by clicking in the “Ontology drawing” on the menu.
                     </p>
-                    <img class="img-max-width" alt="editor" src="css/images/Methodology/editor.png">
+                    <img class="img-max-width" alt="editor" src="{{asset('css/images/Methodology/editor.png')}}">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -704,16 +704,16 @@
                     <p>
                         <strong>You can edit your previous saved ontologies using the button "open in the editor" on the right sidebar</strong>
                     </p>
-                    <img class="img-max-width" alt="import" src="css/images/Methodology/importFromSidebar.png">
+                    <img class="img-max-width" alt="import" src="{{asset('css/images/Methodology/importFromSidebar.png')}}">
 
                     <p>
                         <strong>You can import other ontologies to this editor if they have been created using the Onto4AllEditor and have a .XML extension. All ontologies exported by this editor can be imported in later projects. </strong>. Using the menu editor, click on the "file" button and then on the "import" as showed below:
                     </p>
-                    <img class="img-max-width" alt="import" src="css/images/Methodology/import.png">
+                    <img class="img-max-width" alt="import" src="{{asset('css/images/Methodology/import.png')}}">
                     <p>Select a valid file from your computer using the "choose file" button or drag a file direct to the box and then click in "import"</p>
-                    <img class="img-max-width" alt="select-file" src="css/images/Methodology/select-file.png">
+                    <img class="img-max-width" alt="select-file" src="{{asset('css/images/Methodology/select-file.png')}}">
                     <p>After that, your imported ontology will be showing on the editor</p>
-                    <img class="img-max-width" alt="pizza ontology" src="css/images/Methodology/pizza.png">
+                    <img class="img-max-width" alt="pizza ontology" src="{{asset('css/images/Methodology/pizza.png')}}">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -741,14 +741,14 @@
                                 5.1) to construct general taxonomy of the ontology based on previously selected top-
                                 level taxonomy (in the Onto4AllEditor, this activity must be performed in the menu
                                 “Ontology drawing”, the page you are right now)
-                                <img class="img-max-width" alt="properties" src="css/images/Methodology/editor.png">
+                                <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/editor.png')}}">
                             </li>
                             <li>
                                 5.2) to define descriptive properties of the classes involving textual attributes as
                                 names, synonyms, definitions and annotations (in the Onto4AllEditor, this activity must
                                 be performed in the editor, clicking under a class or relation with the
                                 right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class and pressing CTRL + M));
-                                <img alt="properties" src="css/images/Methodology/propriedades.png">
+                                <img alt="properties" src="{{asset('css/images/Methodology/propriedades.png')}}">
                             </li>
                             <li>
                                 5.3) to create formal definitions for each class using a logical language, so that the
@@ -759,8 +759,8 @@
                                 existential and universal quantifiers (in the Onto4AllEditor, this activity must be
                                 performed in the menu “Ontology drawing”, clicking under a class or relation with the
                                 right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class and pressing CTRL + M));
-                                <img alt="properties" src="css/images/Methodology/propriedades.png">
-                                <img class="img-max-width" alt="properties" src="css/images/Methodology/class-properties.png">
+                                <img alt="properties" src="{{asset('css/images/Methodology/propriedades.png')}}">
+                                <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/class-properties.png')}}">
                             </li>
                             <li>
                                 5.5) to create instances for ontological classes (in the Onto4AllEditor, this activity must
@@ -773,8 +773,8 @@
                                 relations (in the Onto4AllEditor, this activity must be performed in the editor
                                 ”, clicking under a class or relation with the right button of the mouse and
                                 choosing the function Edit Properties in the submenu (or selecting the relation and pressing CTRL + M)).
-                                <img class="img-max-width" alt="properties" src="css/images/Methodology/relation.png">
-                                <img class="img-max-width" alt="properties" src="css/images/Methodology/relation-properties.png">
+                                <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/relation.png')}}">
+                                <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/relation-properties.png')}}">
                             </li>
                         </ul>
 
@@ -807,7 +807,7 @@
                         through of the functionality Warnings Console, that suggests good modeling practices for the current
                         drawn ontology.
                     </p>
-                    <img class="img-max-width" alt="console" src="css/images/Methodology/console.png">
+                    <img class="img-max-width" alt="console" src="{{asset('css/images/Methodology/console.png')}}">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -857,7 +857,7 @@
                         downloaded and properly visualized by a community of users.
                         You can download the ontology you just draw by clicking in the "file" menu and then in the "export" submenu
                     </p>
-                    <img class="img-max-width" alt="export" src="css/images/Methodology/export.png">
+                    <img class="img-max-width" alt="export" src="{{asset('css/images/Methodology/export.png')}}">
                     <p>You can export your ontology in XML, OWL or SVG (image).
                         When you do that your ontology is also saved in your account,
                         you can look all the ontologies you made by clicking on the "My Ontologies" menu on the top of the page.</p>
@@ -883,11 +883,11 @@
                 </div>
                 <div class="modal-body">
                     <p>The warnings console is the way our editor tells you good modeling practices you should implement when building a ontology.
-                        This console will show you warnings that will help you build a better ontology. <a target="_blank" href="/warningIndex">Click here</a>
-                        to see all the warnings our console track. We will be updating this console with more warnings in the future, <a href="/help">contact us</a> if you
+                        This console will show you warnings that will help you build a better ontology. <a target="_blank" href="{{route('warningIndex', app()->getLocale())}}">Click here</a>
+                        to see all the warnings our console track. We will be updating this console with more warnings in the future, <a href="{{route('help', app()->getLocale())}}">contact us</a> if you
                         want some rule be implemented here.
                     </p>
-                    <img class="img-max-width" alt="export" src="css/images/warningConsole.png">
+                    <img class="img-max-width" alt="export" src="{{asset('css/images/warningConsole.png')}}">
                     <p>Here you can see that the pizza ontology have several warnings that need to be solved.
                         <strong>Always remember to fully connect all of your relations, otherwise the warnings console might not work correctly.</strong>
                     </p>
@@ -903,27 +903,27 @@
 
 
     <!-- Tracker spans  -->
-    <span id="classes" data-widget="collapse"  class="badge bg-green tracker" >
+    <span id="classes" data-widget="collapse"  class="badge bg-green-gradient tracker" >
                     <i class="fa fa-fw fa-circle-thin"></i>
                     <span id="classes-count"> 0</span>
                 </span>
 
-    <span id="relations" data-widget="collapse"  class="badge bg-green tracker" >
+    <span id="relations" data-widget="collapse"  class="badge bg-green-gradient tracker" >
                     <i class="fa fa-fw fa-long-arrow-right"></i>
                     <span id="relations-count"> 0</span>
                 </span>
 
-    <span id="instances" data-widget="collapse"  class="badge bg-green tracker" >
+    <span id="instances" data-widget="collapse"  class="badge bg-green-gradient tracker" >
                     <i class="fa fa-fw fa-diamond"></i>
                     <span id="instances-count"> 0</span>
                 </span>
 
-    <span id="night-mode" class="badge bg-info tracker">
+    <span id="night-mode" class="badge bg-green-gradient tracker">
         <a style="color: white;"   href="#"><i class="fa fa-fw fa-moon-o"></i></a>
     </span>
 
     <a download="ontology-report.txt" class="tracker"  href="#" id="download-ontology-report">
-        <span data-toggle="tooltip" title="" class="badge bg-green tracker">
+        <span data-toggle="tooltip" title="" class="badge bg-green-gradient tracker">
                     <i class="fa fa-fw fa-file-text-o"></i>
         </span>
     </a>
@@ -942,15 +942,12 @@
 
 <!-- THIS FUNCTION NEEDS TO BE LOADED AFTER THE MXGRAPH COMPONENTS -->
 <script type="text/javascript">
-
+    /**
+     * When a user clicks on the ontology palette the name of
+     * the class or relation is searched in the tips menu
+     */
     function searchTip(){
-        // Build the menu
-        $(".geToolbar").append('<div class="geSeparator"> </div>');
-        $(".geToolbar").append($('#night-mode'));
-        $(".geToolbar").append($('#classes'));
-        $(".geToolbar").append($('#relations'));
-        $(".geToolbar").append($('#instances'));
-        $(".geToolbar").append($('#download-ontology-report'));
+
 
         $(".geSidebar .geItem").click(function () {
         let name =  $(this).attr('class');

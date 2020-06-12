@@ -82,7 +82,7 @@ return [
 
     'available_locales' => [
         'en',
-        'pt_br'
+        'pt'
     ],
 
     /*
