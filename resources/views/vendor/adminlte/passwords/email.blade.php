@@ -9,7 +9,7 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
+            <img class="img-responsive img" id="login-image" src="{{asset('css/images/Onto4ALL.png')}}" alt="onto4all-logo" srcset="">
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -32,7 +32,7 @@
                         </span>
                     @endif
                 </div>
-                <button type="submit" class="btn btn-primary btn-block btn-flat">
+                <button type="submit" class="btn btn-success btn-block btn-flat">
                     {{ __('adminlte::adminlte.send_password_reset_link') }}
                 </button>
             </form>

@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <!--<div id="preloader"><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>-->
+    <div id="loading"><strong>WAIT UNTIL ONTO4ALL IS READY! </strong></div>
 
     <title>Grapheditor</title>
     <!--[if IE]>

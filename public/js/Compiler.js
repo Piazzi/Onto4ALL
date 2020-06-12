@@ -1,7 +1,7 @@
 
 /**
  * This file is responsible for the warning console in the editor page
- * The main function is the movimentCompiler()
+ * The main function is the movementCompiler()
  * The other ones are helper functions to make the code cleaner (DRY)
  */
 
@@ -375,7 +375,7 @@ function warningMessage(text, warningId)
         '                        <span class="direct-chat-timestamp pull-left">' + new Date().toLocaleString() + '</span>\n' +
         '                    </div>\n' +
         '                    <!-- /.direct-chat-info -->\n' +
-        '                    <img class="direct-chat-img" src="css/images/warningIcon.png" alt="Warning Message"><!-- /.direct-chat-img -->\n' +
+        '                    <img class="direct-chat-img" src="/css/images/warningIcon.png" alt="Warning Message"><!-- /.direct-chat-img -->\n' +
         '                    <div class="direct-chat-text">\n' +
         '                      ' + text + '\n' +
         '                    </div>\n' +
