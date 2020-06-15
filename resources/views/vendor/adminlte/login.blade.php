@@ -27,13 +27,13 @@
                         </div>
                         <!-- /.login-logo -->
                         <div class="login-box-body">
-                            <p class="login-box-msg">{{ trans('adminlte::adminlte.login_message') }}</p>
+                            <p class="login-box-msg">{{ __('Sign in to start your session') }}</p>
                             <form data-grecaptcha-action="message" action="{{ route('login', app()->getLocale()) }}" method="post">
                                 {!! csrf_field() !!}
 
                                 <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
                                     <input type="email" name="email" class="form-control" value="{{ old('email') }}"
-                                           placeholder="{{ trans('adminlte::adminlte.email') }}">
+                                           placeholder="{{ __('E-Mail Address') }}">
                                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                     @if ($errors->has('email'))
                                         <span class="help-block">
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
                                     <input type="password" name="password" class="form-control"
-                                           placeholder="{{ trans('adminlte::adminlte.password') }}">
+                                           placeholder="{{ __('Password') }}">
                                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                                     @if ($errors->has('password'))
                                         <span class="help-block">
@@ -56,14 +56,14 @@
                                         <div class="checkbox icheck">
                                             <label>
                                                 <input type="checkbox"
-                                                       name="remember"> {{ trans('adminlte::adminlte.remember_me') }}
+                                                       name="remember"> {{ __('Remember Me')}}
                                             </label>
                                         </div>
                                     </div>
                                     <!-- /.col -->
                                     <div class="col-xs-4">
                                         <button style="background-color: #00A65A" type="submit"
-                                                class="btn btn-primary btn-block btn-flat">{{ trans('adminlte::adminlte.sign_in') }}</button>
+                                                class="btn btn-primary btn-block btn-flat">{{ __('Sign In') }}</button>
                                     </div>
                                     <!-- /.col -->
 
@@ -74,26 +74,25 @@
                                 <p>- OR -</p>
                                 <a href="{{url(app()->getLocale(). '/redirect')}}"
                                    class="btn btn-block btn-social btn-facebook btn-flat btn-info"><i
-                                            class="fa fa-fw fa-facebook"></i> Sign in using
-                                    Facebook</a>
+                                            class="fa fa-fw fa-facebook"></i>{{__('Sign in using Facebook')}} </a>
                             </div>
 
                             <div class="auth-links">
                                 <a href="{{ route('password.request', app()->getLocale()) }}"
                                    class="text-center"
-                                >{{ trans('adminlte::adminlte.i_forgot_my_password') }}</a>
+                                >{{ __('Forgot Your Password?')}}</a>
                                 <br>
                                 @if (config('adminlte.register_url', 'register'))
                                     <a href="{{route('register', app()->getLocale())}}"
                                        class="text-center"
-                                    >Create a new account</a>
+                                    >{{__('Register')}}</a>
                                 @endif
                             </div>
 
                             <hr>
 
                             <div class="row">
-                                <h4 class="login-box-msg">Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!</h4>
+                                <h4 class="login-box-msg">{{__('Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!')}}</h4>
                                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                                     <input type="hidden" name="cmd" value="_s-xclick" />
                                     <input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN" />

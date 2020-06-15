@@ -13,7 +13,7 @@
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
-            <p class="login-box-msg">{{ __('adminlte::adminlte.password_reset_message') }}</p>
+            <p class="login-box-msg">{{ __('Reset Password') }}</p>
             @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
@@ -33,7 +33,7 @@
                     @endif
                 </div>
                 <button type="submit" class="btn btn-success btn-block btn-flat">
-                    {{ __('adminlte::adminlte.send_password_reset_link') }}
+                    {{ __('Send Password Reset Link') }}
                 </button>
             </form>
         </div>
