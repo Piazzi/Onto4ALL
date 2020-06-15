@@ -475,7 +475,7 @@ Menus.prototype.init = function()
 	})));
 	this.put('edit', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
-		if(window.location.pathname === '/home')
+		if(window.location.pathname.split('/')[2] === 'home')
 		{
 			this.addMenuItems(menu, ['undo', 'redo', '-', 'cut', 'copy', 'paste', 'delete', '-', 'duplicate', '-',
 				'editData', 'editTooltip', 'editStyle', '-', 'edit', '-', 'editLink', 'openLink', '-',
@@ -1089,7 +1089,7 @@ Menus.prototype.createPopupMenu = function(menu, cell, evt)
 			if (graph.getSelectionCount() == 1)
 			{
 				menu.addSeparator();
-				if(window.location.pathname === '/home')
+				if(window.location.pathname.split('/')[2] === 'home')
 					this.addMenuItems(menu, ['editData', 'editLink'], null, evt);
 				else
 					this.addMenuItems(menu, ['editLink'], null, evt);

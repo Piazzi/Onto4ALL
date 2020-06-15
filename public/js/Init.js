@@ -11,13 +11,22 @@ window.SAVE_URL = window.SAVE_URL || '/save';
 window.SAVEXML_URL = window.SAVEXML_URL || '/saveXML';
 window.OPEN_URL = window.OPEN_URL || '/open';
 window.RESOURCES_PATH = window.RESOURCES_PATH || '/resources';
-window.RESOURCE_BASE = window.RESOURCE_BASE || window.RESOURCES_PATH + '/grapheditor';
+// Check the path language
+if(window.location.pathname.split('/')[1] === "pt")
+{
+    window.RESOURCE_BASE = window.RESOURCE_BASE || window.RESOURCES_PATH + '/grapheditor_pt';
+    window.HOME_URL = window.HOME_URL || '/pt/home';
+}
+else
+{
+    window.RESOURCE_BASE = window.RESOURCE_BASE || window.RESOURCES_PATH + '/grapheditor';
+    window.HOME_URL = window.HOME_URL || '/en/home';
+}
 window.STENCIL_PATH = window.STENCIL_PATH || '/stencils';
 window.IMAGE_PATH = window.IMAGE_PATH || '/images';
 window.STYLE_PATH = window.STYLE_PATH || '/styles';
 window.CSS_PATH = window.CSS_PATH || '/styles';
 window.OPEN_FORM = window.OPEN_FORM || '/open.html';
-window.HOME_URL = window.HOME_URL || '/home'; // URL PARA PÁGINA PRINCIPAL DO DIAGRAMA
 
 // Sets the base path, the UI language via URL param and configures the
 // supported languages to avoid 404s. The loading of all core language
