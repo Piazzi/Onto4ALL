@@ -23,11 +23,11 @@
                 <a class="navbar-brand js-scroll-trigger" href="#page-top">Onto4ALL</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#features">Features</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">{{__('About')}}</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#features">{{__('Features')}}</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">{{__('Contact')}}</a></li>
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('login', app()->getLocale())}}">Login</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('register', app()->getLocale())}}">Register</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('register', app()->getLocale())}}">{{__('Register')}}</a></li>
                         @foreach (config('app.available_locales') as $locale)
                             <li class="nav-item">
                                 <a class="nav-link"
