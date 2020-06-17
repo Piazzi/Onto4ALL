@@ -50,7 +50,10 @@ function movementCompiler(xml) {
             xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") === null))
         {
             notConnectedRelationWarning++;
-            warningMessage('The relation '+ getValueOrLabel(xmlDoc, i) +' it is not fully connected to 2 classes', 9);
+            if(getLanguage() === 'pt')
+                warningMessage('A relação '+ getValueOrLabel(xmlDoc, i) +' não está conectada a duas classes', 9);
+            else
+                warningMessage('The relation '+ getValueOrLabel(xmlDoc, i) +' it is not fully connected to 2 classes', 9);
         }
 
         if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") !== null)
@@ -69,7 +72,10 @@ function movementCompiler(xml) {
                     if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("source") === getElementId(xmlDoc, i) ||
                         xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("target") === getElementId(xmlDoc, i)) {
                         wrongRelationWarning++;
-                        warningMessage("You can only have a instance_of relation between a class and a instance","",4);
+                        if(getLanguage() === 'pt')
+                            warningMessage("Você só poder ter uma relação instance_of entre uma classe e uma instância","",4);
+                        else
+                            warningMessage("You can only have a instance_of relation between a class and a instance","",4);
                     }
                 }
             }
@@ -98,7 +104,10 @@ function movementCompiler(xml) {
             // shows a error if the mxCells are two classes
             if (domainClass.getAttribute("style").includes('ellipse') && rangeClass.getAttribute("style").includes('ellipse')) {
                 instanceOfBetweenClassesWarning++;
-                warningMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. ","",3);
+                if(getLanguage() === 'pt')
+                    warningMessage("Você não pode ter uma relação instance_of entre duas classes. A relação precisa estar entre uma classe e uma instância. ","",3);
+                else
+                    warningMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. ","",3);
             }
 
         }
@@ -121,7 +130,10 @@ function movementCompiler(xml) {
                         getValueOrLabel(xmlDoc, i) !== 'Name' &&
                         getValueOrLabel(xmlDoc, j) !== 'Name') {
                         equalClassNamesWarning++;
-                       warningMessage("You can not have two classes with the same name, you have two classes named "+(getValueOrLabel(xmlDoc, i)).bold()+".",1);
+                        if(getLanguage() === 'pt')
+                            warningMessage("Você não pode ter duas classes com o mesmo nome, você tem duas classes chamadas "+(getValueOrLabel(xmlDoc, i)).bold()+".",1);
+                        else
+                            warningMessage("You can not have two classes with the same name, you have two classes named "+(getValueOrLabel(xmlDoc, i)).bold()+".",1);
                 }
             }
 
@@ -140,7 +152,12 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") != null &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") != null)) {
                 equalRelationBetweenClassesWarning++;
-               warningMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: "+
+                if(getLanguage() === 'pt')
+                    warningMessage("Você não pode ter duas relações iguais apontando para as mesmas classes. Esse erro ocorre nas seguintes classes: "+
+                        getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +
+                        " e "+ getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target")) +".", 2);
+                else
+                    warningMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: "+
                     getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +
                     " and "+ getMxCellName(xmlDoc, xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target")) +".", 2);
             }
@@ -176,7 +193,10 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") !== null &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") !== null )
             {
-               warningMessage("A class can't have multiple inheritance. Your "+getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +" class can't be the domain of more than one is_a relation",8);
+                if(getLanguage() === 'pt')
+                    warningMessage("Classes não podem ter herança múltipla. Sua classe "+getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +" não pode ser o domínio de mais de uma relação is_a",8);
+                else
+                    warningMessage("A class can't have multiple inheritance. Your "+getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +" class can't be the domain of more than one is_a relation",8);
                 multipleInheritanceWarning++;
             }
 
@@ -196,7 +216,10 @@ function movementCompiler(xml) {
             // Show the inverse of error if the relation and the inverse Of property have the same name
             if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") == xmlDoc.getElementsByTagName("object")[i].getAttribute("inverseOf")) {
                 inverseOfNameWarning++;
-               warningMessage("In the "+xmlDoc.getElementsByTagName("object")[i].getAttribute("label") +" relation, the Inverse Of property can't have the same name of the relation","",5);
+                if(getLanguage() === 'pt')
+                    warningMessage("Na relação "+xmlDoc.getElementsByTagName("object")[i].getAttribute("label") +", a propriedade inverse_of não pode ter o mesmo nome que a relação","",5);
+                else
+                    warningMessage("In the "+xmlDoc.getElementsByTagName("object")[i].getAttribute("label") +" relation, the Inverse Of property can't have the same name of the relation","",5);
 
             }
 
@@ -217,7 +240,10 @@ function movementCompiler(xml) {
         if(missingClassProperties !== "")
         {
             missingClassPropertiesWarning++;
-           warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Class, you did not fill the following properties: ' + missingClassProperties.bold()+ '',"",6);
+            if(getLanguage() === 'pt')
+                warningMessage('Na classe '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold()+ '',"",6);
+            else
+                warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Class, you did not fill the following properties: ' + missingClassProperties.bold()+ '',"",6);
             missingClassProperties = "";
         }
 
@@ -237,7 +263,10 @@ function movementCompiler(xml) {
         if(missingRelationProperties  !== "")
         {
             missingRelationPropertiesWarning++;
-           warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Relation, you did not fill the following properties: ' + missingRelationProperties.bold()+ '',"",7);
+            if(getLanguage() === 'pt')
+                warningMessage('Na relação '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+', você não preencheu as seguintes propriedades: ' + missingRelationProperties.bold()+ '',"",7);
+            else
+                warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Relation, you did not fill the following properties: ' + missingRelationProperties.bold()+ '',"",7);
             missingRelationProperties  = "";
         }
 
@@ -428,4 +457,13 @@ function getCellName(xmlDoc, id)
             if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") == id)
                 return getValueOrLabel(xmlDoc,i);
     }
+}
+
+/**
+ * Get the language by looking at the pathname
+ * @returns {string}
+ */
+function getLanguage()
+{
+    return window.location.pathname.split('/')[1]
 }
