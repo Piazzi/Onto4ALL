@@ -342,7 +342,22 @@
     "Favourite": "Favoritar",
     "Delete": "Excluir",
     "Your ontologies:": "Suas Ontologias",
-    "Your last 10 ontologies will be saved here": "Suas últimas 10 ontologias serão salvas aqui"
+    "Your last 10 ontologies will be saved here": "Suas últimas 10 ontologias serão salvas aqui",
+
+    "Search": "Procurar",
+
+
+
+    "Edit Ontology":"Editar Ontologia",
+    "Dont forget to include the extension \".xml\" on the end of the name": "Não se esqueça de incluir a extensão \".xml\" no final do nome",
+    "Created By": "Criado Por",
+
+    "Thesaurus Manager": "Gerenciador de Tesauros",
+    "Manage all your thesaurus": "Gerencia todos os seus tesauros",
+    "Your thesaurus:": "Seus tesauros",
+    "Your last 10 thesaurus will be saved here": "Seus últimos 10 tesauros vão ficar salvos aqui",
+    "Edit Thesauru": "Editar Tesauro"
+
 
 
 }

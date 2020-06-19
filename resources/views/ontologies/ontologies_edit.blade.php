@@ -21,7 +21,7 @@
 
     <div class="box box-success">
         <div class="box-header with-border">
-            <h3 class="box-title">Edit Ontology</h3>
+            <h3 class="box-title">{{__('Edit Ontology')}}</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -31,16 +31,16 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>{{__('Name')}}</label>
                             <input required value="{{$ontology->name}}" name="name" type="text" class="form-control"
                                    placeholder="">
-                            <span class="badge bg-red">Dont forget to include the extension ".xml" on the end of the name</span>
-                            <span class="badge bg-red">Example: <strong>Ontology.xml</strong></span>
+                            <span class="badge bg-red">{{__('Dont forget to include the extension ".xml" on the end of the name')}}</span>
+                            <span class="badge bg-red">{{__('Example')}}: <strong>Ontology.xml</strong></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Created By</label>
+                            <label>{{__('Created By')}}</label>
                             <input disabled value="{{$ontology->created_by}}" name="created_by" type="text"
                                    class="form-control">
                         </div>

@@ -21,26 +21,26 @@
 
     <div  style="border-top-color: #8c3030" class="box box-success">
         <div  class="box-header with-border">
-            <h3 class="box-title">Edit Thesauru</h3>
+            <h3 class="box-title">{{__('Edit Thesauru')}}</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <form method="post" action="{{route('thesaurus.update', $thesauru->id)}}" role="form">
+            <form method="post" action="{{route('thesaurus.update', ['locale' => app()->getLocale(), 'thesaurus' => $thesauru->id])}}" role="form">
                 @csrf
                 <input name="_method" type="hidden" value="PATCH">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>{{__('Name')}}</label>
                             <input required value="{{$thesauru->name}}" name="name" type="text" class="form-control"
                                    placeholder="">
-                            <span class="badge bg-red">Dont forget to include the extension ".xml" on the end of the name</span>
-                            <span class="badge bg-red">Example: <strong>Thesauru.xml</strong></span>
+                            <span class="badge bg-red">{{__('Dont forget to include the extension ".xml" on the end of the name')}}</span>
+                            <span class="badge bg-red">{{__('Example')}}: <strong>Thesauru.xml</strong></span>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Created By</label>
+                            <label>{{__('Created By')}}</label>
                             <input disabled value="{{$thesauru->created_by}}" name="created_by" type="text"
                                    class="form-control">
                         </div>

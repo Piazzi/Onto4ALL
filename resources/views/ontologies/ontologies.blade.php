@@ -41,13 +41,7 @@
 @stop
 
 @section('content')
-    <!--
-    <div class="box">
-        <a href="{{route('ontologies.create', app()->getLocale())}}">
-            <button type="button" class="btn btn-block btn-success">Add a new ontology</button>
-        </a>
-    </div>
-    -->
+
     <div class="box box-warning">
         <div class="box-header with-border">
             <h3 class="box-title"><i style="color: #ffe70a" class="fa fa-fw fa-star"></i> {{__('Your favourite ontologies:')}} </h3>
@@ -70,7 +64,7 @@
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input id="table-search-input" type="text" name="table_search"
-                                           class="form-control pull-right" placeholder="Search">
+                                           class="form-control pull-right" placeholder="{{__('Search')}}">
                                     <div class="input-group-btn">
                                         <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
                                         </button>

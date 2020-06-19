@@ -107,7 +107,7 @@ class ThesauruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($locale, $id)
     {
         $thesauru = Thesauru::findOrFail($id);
         if($thesauru->user_id != Auth::user()->id)
@@ -121,7 +121,7 @@ class ThesauruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($locale, $id)
     {
         $thesauru = Thesauru::findOrFail($id);
         if($thesauru->user_id != Auth::user()->id)
@@ -136,7 +136,7 @@ class ThesauruController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $locale, $id)
     {
         $thesauru = Thesauru::where('id','=', $id)->where('user_id','=', $request->user()->id)->first();
         $thesauru->update($request->all());
@@ -149,7 +149,7 @@ class ThesauruController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($locale, $id)
     {
         $thesauru = Thesauru::where('id','=', $id)->where('user_id','=', Auth::user()->id)->first();
         $thesauru->delete();

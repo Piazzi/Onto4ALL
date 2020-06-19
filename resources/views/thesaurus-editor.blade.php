@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <link rel="stylesheet" type="text/css" href="css/mxgraph/grapheditor.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/mxgraph/grapheditor.css')}}">
 
     <title>Grapheditor</title>
     <!--[if IE]>
@@ -38,29 +38,25 @@
         // Default resources are included in grapheditor resources
         mxLoadResources = false;
     </script>
+    <script type="text/javascript" src="{{asset('js/OpenDiagram.js')}}"></script>
 
-    <script type="text/javascript" src="js/OpenDiagram.js"></script>
-    <!-- Tooltips -->
-    <script src="https://unpkg.com/popper.js@1"></script>
-    <script src="https://unpkg.com/tippy.js@5"></script>
     <!-- MxGraph -->
-    <script type="text/javascript" src="js/Init.js"></script>
-    <script type="text/javascript" src="js/pako.min.js"></script>
-    <script type="text/javascript" src="js/base64.js"></script>
-    <script type="text/javascript" src="js/jscolor.js"></script>
-    <script type="text/javascript" src="js/sanitizer.min.js"></script>
-    <script type="text/javascript" src="js/mxClient.js"></script>
-    <script type="text/javascript" src="js/EditorUi.js"></script>
-    <script type="text/javascript" src="js/Editor.js"></script>
-    <script type="text/javascript" src="js/Sidebar.js"></script>
-    <script type="text/javascript" src="js/Graph.js"></script>
-    <script type="text/javascript" src="js/Format.js"></script>
-    <script type="text/javascript" src="js/Shapes.js"></script>
-    <script type="text/javascript" src="js/Actions.js"></script>
-    <script type="text/javascript" src="js/Menus.js"></script>
-    <script type="text/javascript" src="js/Toolbar.js"></script>
-    <script type="text/javascript" src="js/Dialogs.js"></script>
-    <script type="text/javascript" src="js/HomeFunctions.js"></script>
+    <script type="text/javascript" src="{{asset('js/Init.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/pako.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/base64.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/jscolor.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/sanitizer.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/mxClient.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/EditorUi.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Editor.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Sidebar.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Graph.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Format.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Shapes.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Actions.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Menus.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Toolbar.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/Dialogs.js')}}"></script>
     <!-- Search Script <script defer type="text/javascript" src="js/SearchTip.js"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>

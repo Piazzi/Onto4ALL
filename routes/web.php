@@ -54,7 +54,6 @@ Route::group([
 
     // Thesaurus CRUD
     Route::resource('/thesaurus', 'ThesauruController')->middleware('can:eModelador');
-    Route::get('/thesaurus/download/{userId}/{thesauruId}', 'ThesauruController@download')->name('thesaurus.download')->middleware('can:eModelador');
     Route::get('/thesaurus-editor', 'ThesauruController@editor')->name('thesaurus-editor')->middleware('can:eModelador');
 
 
@@ -89,6 +88,8 @@ Route::post('/save', 'HomeController@save');
 Route::post('/saveXML', 'HomeController@saveXML');
 Route::post('/exportOWL', 'HomeController@exportOWL');
 Route::get('/open');
+
+Route::get('/thesaurus/download/{userId}/{thesauruId}', 'ThesauruController@download')->name('thesaurus.download')->middleware('can:eModelador');
 
 // Socialite routes
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');

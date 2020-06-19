@@ -4,12 +4,12 @@
 
 @section('content_header')
     <h1>
-       Thesaurus Manager
-        <small>Manage all your thesaurus</small>
+       {{__('Thesaurus Manager')}}
+        <small>{{__('Manage all your thesaurus')}}</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
-        <li class="active">Thesaurus Manager</li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">       {{__('Thesaurus Manager')}}        </li>
     </ol>
     @if (session()->has('Success'))
         <div class="alert alert-success alert-dismissible">
@@ -45,7 +45,7 @@
 
     <div  style="border-top-color: #8c3030 !important;" class="box box-success">
         <div class="box-header with-border ">
-            <h3 class="box-title"><i style="color: #8c3030" class="fa fa-fw fa-book "></i> Your thesaurus: </h3>
+            <h3 class="box-title"><i style="color: #8c3030" class="fa fa-fw fa-book "></i> {{__('Your thesaurus:')}} </h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -60,7 +60,7 @@
                     <div class="box">
                         <div class="box-header with-border">
 
-                            <h3 class="box-title">Your last 10 thesaurus will be saved here </h3>
+                            <h3 class="box-title">{{__('Your last 10 thesaurus will be saved here')}} </h3>
 
                             <div class="box-tools">
 
@@ -71,13 +71,13 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
-                                    <th>XML File</th>
-                                    <th>Details</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
+                                    <th>{{__('Name')}}</th>
+                                    <th>{{__('Created At')}}</th>
+                                    <th>{{__('Updated At')}}</th>
+                                    <th>{{__('XML File')}}</th>
+                                    <th>{{__('Details')}}</th>
+                                    <th>{{__('Update')}}</th>
+                                    <th>{{__('Delete')}}</th>
                                 </tr>
                                 </thead>
                                 <tbody id="table-search">
@@ -93,20 +93,20 @@
                                                 </button>
                                             </a>
                                         </td>
-                                        <td><a href="{{route('thesaurus.show', $thesauru->id)}}">
+                                        <td><a href="{{route('thesaurus.show', ['locale' => app()->getLocale(), 'thesaurus' => $thesauru->id])}}">
                                                 <button style="color: white" class="btn thesauru-box"><i class="fa fa-fw fa-plus"></i>
                                                 </button>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{{route('thesaurus.edit',$thesauru->id)}}">
+                                            <a href="{{route('thesaurus.edit',['locale' => app()->getLocale(), 'thesaurus' => $thesauru->id])}}">
                                                 <button style="color: white" class="btn thesauru-box"><i class="fa fa-fw fa-edit"></i>
                                                 </button>
                                             </a>
                                         </td>
                                         <td>
                                             <form method="post"
-                                                  action="{{route('thesaurus.destroy', $thesauru->id)}}">
+                                                  action="{{route('thesaurus.destroy', ['locale' => app()->getLocale(), 'thesaurus' => $thesauru->id])}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger" type="submit"><i

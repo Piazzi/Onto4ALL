@@ -2,18 +2,15 @@
 
 return [
 
-    'main_navigation'               => 'MAIN NAVIGATION',
-    'blog'                          => 'Blog',
-    'pages'                         => 'Pages',
-    'account_settings'              => 'ACCOUNT SETTINGS',
-    'profile'                       => 'Profile',
-    'change_password'               => 'Change Password',
-    'multilevel'                    => 'Multi Level',
-    'level_one'                     => 'Level 1',
-    'level_two'                     => 'Level 2',
-    'level_three'                   => 'Level 3',
-    'labels'                        => 'LABELS',
-    'important'                     => 'Important',
-    'warning'                       => 'Warning',
-    'information'                   => 'Information',
+    'Ontology Editor'               => 'ONTOLOGY',
+    'Thesaurus Editor'              => 'Editor de Tesauros',
+    'Help Menu'                     => 'Menu de Ajuda',
+    'About Us'                      => 'Sobre Nós',
+    'File Manager'                  => 'Gerenciador de Arquivos',
+    'My Ontologies'                 => 'Minhas Ontologias',
+    'My Thesaurus'                  => 'Meus Tesauros',
+    'Ontological Relations'         => 'Relações Ontológicas',
+    'Ontological Classes'           => 'Classes Ontológicas',
+    'Messages'                      => 'Mensagens',
+    'Users'                         => 'Usuários'
 ];
