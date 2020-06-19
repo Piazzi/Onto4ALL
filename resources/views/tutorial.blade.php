@@ -5,10 +5,10 @@
 @section('content_header')
     <h1>
         Tutorial
-        <small>Learn how to use the editor</small>
+        <small>{{__('Learn how to use the editor')}}</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Tutorial</li>
     </ol>
 
@@ -19,47 +19,49 @@
         <div class="box-header with-border">
             <i class="fa fa-text-width"></i>
 
-            <h3 class="box-title">Sumário</h3>
+            <h3 class="box-title">{{__('Summary')}}</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <ol>
                 <a href="#intro">
-                    <li>O que é o ONTO FOR ALL?</li>
+                    <li>{{__('What is the Onto4ALL Editor?')}}</li>
                 </a>
-                <a href="#conceitos-basicos"><li>Conceitos básicos</li></a>
+                <a href="#conceitos-basicos"><li>{{__('Basic Concepts')}}</li></a>
                 <ol>
-                    <a href="#class"><li>Classe</li></a>
-                    <a href="#relations"><li>Relação</li></a>
-                    <a href="#properties"><li>Propriedades</li></a>
-                    <a href="#colors"><li>Cores</li></a>
-                    <a href="#save"><li>Salvar</li></a>
-                    <a href="#import"><li>Importar</li></a>
+                    <a href="#class"><li>{{__('Class')}}</li></a>
+                    <a href="#relations"><li>{{__('Relation')}}</li></a>
+                    <a href="#properties"><li>{{__('Propriedades')}}</li></a>
+                    <a href="#colors"><li>{{__('Colors')}}</li></a>
+                    <a href="#save"><li>{{__('Save')}}</li></a>
+                    <a href="#import"><li>{{__('Import')}}</li></a>
                 </ol>
                 </li>
 
-                <a href="#interface-do-editor"><li>Interface do Editor</li></a>
+                <a href="#interface-do-editor"><li>{{__('Editor Interface')}}</li></a>
                 <ol>
-                    <a href="#diagram"><li>Diagrama</li></a>
-                    <a href="#rules"><li>Barra de regras</li></a>
-                    <a href="#ontology-palette"><li>Paleta de ontologias</li></a>
-                    <a href="#other-palettes"><li>Outras paletas</li></a>
-                    <a href="#ontology-history"><li>Histórico de ontologias</li></a>
+                    <a href="#diagram"><li>{{__('Diagram')}}</li></a>
+                    <a href="#rules"><li>{{__('Tips Tab')}}</li></a>
+                    <a href="#ontology-palette"><li>{{__('Ontologies Palette')}}</li></a>
+                    <a href="#other-palettes"><li>{{__('Other Palettes')}}</li></a>
+                    <a href="#ontology-history"><li>{{__('Ontology History')}}</li></a>
+                    <a href="#warnings-console"><li>{{__('Warnings Console')}}</li></a>
+                    <a href="#methodology"><li>{{__('Methodology Tab')}}</li></a>
                 </ol>
                 </li>
 
-                <a href="#ontology-management"><li>Gerenciamento de Ontologias</li></a>
+                <a href="#ontology-management"><li>{{__('Ontology Manager')}}</li></a>
                 <ol>
-                    <a href="#ontologies"><li>Minhas ontologias</li></a>
-                    <a href="#favorite-ontologies"><li>Ontologias favoritas</li></a>
-                    <a href="#actions"><li>Ações</li></a>
+                    <a href="#ontologies"><li>{{__('My Ontologies')}}</li></a>
+                    <a href="#favorite-ontologies"><li>{{__('Favourite Ontologies')}}</li></a>
+                    <a href="#actions"><li>{{__('Actions')}}</li></a>
                 </ol>
                 </li>
-                <a href="#profile"><li>Perfil</li></a>
-                <a href="#examples"><li>Exemplos</li></a>
-                <a href="#shortcuts"><li>Atalhos</li></a>
-                <a href="#stack"><li>Ferramentas utilizadas</li></a>
-                <a href="#credits"><li>Créditos</li></a>
+                <!--<a href="#profile"><li></li></a>-->
+                <a href="#examples"><li>{{__('Examples')}}</li></a>
+                <a href="#shortcuts"><li>{{__('Keyboard shortcuts')}} </li></a>
+                <a href="#stack"><li>{{__('Tools used')}}</li></a>
+                <a href="#credits"><li>{{__('Credits')}}</li></a>
             </ol>
         </div>
         <!-- /.box-body -->
@@ -67,49 +69,53 @@
 
     <div id="intro" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">O que é o ONTO4ALL?</h3>
+            <h3 class="box-title">{{__('What is the Onto4ALL Editor?')}}</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <dl>
-                <dd>Onto4All é um editor gráfico capaz de criar, editar e exportar ontologias sendo orientado por uma
-                    aba de regras de construção ontológica e por uma paleta extensa de classes e relações ontológicas.
-
+                <dd>
+                    {{__('Is a free graphical editor capable of creating, editing and exporting ontologies being guided by an warnings console, an ontological building rules tab and an extensive palette of ontological classes and relationships.')}}
                 </dd>
                 <dd>
-                    Os formatos de exportação são: OWL,XML, SVG.
+                    {{__('Export your ontology to OWL, XML or SVG')}}
                 </dd>
             </dl>
         </div>
         <!-- /.box-body -->
     </div>
 
-    <h2 id="conceitos-basicos">Conceitos básicos</h2>
+    <h2 id="conceitos-basicos">{{__('Basic Concepts')}}</h2>
     <div id="class" class="box box-solid">
         <div class="box-header with-border">
             <i class="fa fa-text-width"></i>
 
-            <h3 class="box-title">Classe</h3>
+            <h3 class="box-title">{{__('Class')}}</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
             <dl>
-                <dd>No Onto4All a classe é definida pelo circulo contido dentro da paleta de ontologias.</dd>
+                <dd>{{__('In Onto4All, the class is defined by the circle contained within the ontology palette.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/class.png">
+                        <img alt="class image" src="{{asset('css/images/class.png')}}">
                     </div>
                     <div class="col-md-6">
                         <ul>
-                            <li>Ela representa a própria classe de uma ontologia.</li>
-                            <li>É possível nomea-la ao se clicar duas vezes em seu interior <span class="label-danger">Atenção: Você não deve colocar espaços no seu nome, apenas use Letras maiúsculas e minúsculas e número de 0 a 9</span></li>
-                            <p> Exemplos: <span class="label-success">PizzaDeCalabresa, CarroAutomatico, usuario</span> </p>
-                            <li>É possível expandir seu tamanho passando o mouse por cima do círculo e puxando sua borda. </li>
-                            <li>É possível trocar as cores (do interior e da borda). </li>
-                            <li>É possível liga-la a outras classes usando as <a href="#relations">relações</a>.</li>
-                            <li>É possível acessar suas propriedades selecionando a classe e pressionando <strong>CTRL+M</strong> ou clicando nela com o botão direito do mouse e selecionando a opção <strong>Edit Properties</strong></li>
-                            <li>É possível joga-la para dentro do diagrama apenas clicando no seu simbolo na paleta de ontologias</li>
-                            <li>Clicando com o botão direito do mouse em cima de uma classe irá fazer aparecer um menu com diversas opções</li>
+                            <li>{{__('It represents the class of an ontology itself.')}}</li>
+                            <li>{{__('It is possible to name it by double clicking inside it')}}
+                                <br>
+                                <span class="label-danger">{{__('Attention: If you want to export your ontology to OWL and import it in another editor we recommend you not to put spaces in the names of classes and relations, just use upper and lower case letters, underlines, and numbers from 0 to 9 to avoid any import errors. If you are only using our editor for building your ontology you can ignore this warning')}}</span></li>
+                            <p>
+                                {{__('Examples')}}:
+                                <span class="label-success">{{__('PepperoniPizza, AutomaticCar, Pepperoni_Pizza, Automatic_Car')}}</span>
+                            </p>
+                            <li>{{__('You can expand its size by hovering your mouse over the circle and pulling its edge.')}} </li>
+                            <li>{{__('It is possible to change the colors (the interior and the border).')}} </li>
+                            <li>{{__('It is possible to link it to other classes using the')}} <a href="#relations">{{__('Relations')}}</a>.</li>
+                            <li>{{__('You can access its properties by selecting the class and pressing')}}<strong>CTRL+M</strong>{{__('or by clicking on it with the right mouse button and selecting the option')}}<strong>{{__('Edit Properties')}}</strong>{{__('If you hover your mouse over the class it will also show their properties.')}}</li>
+                            <li>{{__('It is possible to throw it into the diagram just by clicking on its symbol in the ontology palette')}}</li>
+                            <li>{{__('Clicking with the right mouse button over a class will bring up a menu with several options')}}</li>
                         </ul>
                     </div>
                 </div>
@@ -120,24 +126,24 @@
 
     <div id="relations" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Relação</h3>
+            <h3 class="box-title">{{__('Relation')}}</h3>
         </div>
         <div class="box-body">
-            <dd>Em ontologias, relações entre classes especificam como elas estão relacionados com as demais classes da ontologia. </dd>
-            <dd>Grande parte da praticidade de ontologias vem da sua capacidade de descrever relações. </dd>
+            <dd>{{__('In ontologies, relationships between classes specify how they are related to other classes of ontology.')}} </dd>
+            <dd>{{__('Much of the practicality of ontologies comes from its ability to describe relationships.')}} </dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>No Onto4All, existem diversos tipos de relações, que se encontram na paleta de ontologias, à esquerda da tela principal.</li>
-                            <li>Um dos principais tipos de relações são: <i>is_a</i>, <i>part_of</i>, <i>has_part</i>, <i>contains</i> e <i>instance_of</i> </li>
-                            <li>É possível criar uma nova relação entre duas classes e nomeá-la manualmente, clicando em <i>new_relation</i>. </li>
-                            <li>Relações costumam ter um sentido, isto é, apontar de uma classe para outra.</li>
-                            <li>É possível inverter o sentido de uma relação, clicando nela com o botão direito do mouse e selecionando <strong>Reverse</strong></li>
-                            <li>É possível selecionar outras opções da relação clicando nela com o botão direito, como deletá-la, duplicá-la ou copiá-la.</li>
+                            <li>{{__('In Onto4All, there are several types of relationships, which are found in the ontology palette, to the left of the main screen.')}}</li>
+                            <li>{{__('One of the main types of relationships are:')}} <i>is_a</i>, <i>part_of</i>, <i>has_part</i>, <i>contains</i>, <i>instance_of</i> </li>
+                            <li>{{__('It is possible to create a new relationship between two classes and name it manually by double clicking on any relationship and writing the new name, we recommend using the relationship')}}<i>new_relation</i> {{__('for this.')}} </li>
+                            <li>{{__('For a relationship to work in the editor you need to connect it in two classes. If you do not connect correctly, the')}} <a href="#warnings-console">{{__('Warnings Console')}}</a> {{__('')}}</li>
+                            <li>{{__('It is possible to invert the direction of a relationship by clicking on it with the right mouse button and selecting')}} <strong>{{__('Reverse')}}</strong></li>
+                            <li>{{__('You can select other options from the list by right clicking on it, such as editing properties, deleting, duplicating or copying it.')}}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/relations.png">
+                        <img alt="class image" src="{{asset('css/images/relations.png')}}">
                     </div>
                 </div>
         </div>
@@ -145,22 +151,21 @@
 
     <div id="properties" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Propriedades</h3>
+            <h3 class="box-title">{{__('Properties')}}</h3>
         </div>
         <div class="box-body">
-            <dd>No Onto4All, cada elemento da paleta de ontologias possui propriedades, que podem ser visualizadas e editadas.</dd>
+            <dd>{{__('In Onto4All, each element of the ontology palette has properties, which can be viewed and edited.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Para editar as propriedades de um elemento, clique nele com o botão direito do mouse e selecione "Edit Properties".</li>
-                            <li>Também pode-se acessar o menu de edição de propriedades de um elemento selecionado com o atalho <strong>Ctlr+M</strong></li>
-                            <li>É possível adicionar uma nova propriedade a um elemento, descendo a barra de rolagem do menu de propriedades e selecionando "Add Property".</li>
-                            <li>A primeira propriedade do menu de propriedade, o ID, corresponde a um identificador único de cada elemento presente no diagrama.</li>
-                            <li>As propriedades podem ser usadas para detalhar aspectos daquele elemento ou para fazer anotações, como as propriedades <i>exampleOfUsage</i> e <i>comments</i>.</li>
+                            <li>{{__('To edit the properties of an element, right-click on it and select Edit Properties. You can also access the edit menu for properties of a selected element with the shortcut')}} <strong>Ctlr+M</strong></li>
+                            <li>{{__('You can add a new property to an element by scrolling down the properties menu and selecting Add Property.')}}</li>
+                            <li>{{__('The first property in the property menu, the ID, corresponds to a unique identifier for each element present in the diagram.')}}</li>
+                            <li>{{__('Properties can be used to detail aspects of that element or to annotate, such as properties')}} <i>exampleOfUsage</i>, <i>comments</i>.</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/properties.png">
+                        <img alt="class image" src="{{asset('css/images/properties.png')}}">
                     </div>
                 </div>
         </div>
@@ -168,21 +173,22 @@
 
     <div id="colors" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Cores</h3>
+            <h3 class="box-title">{{__('Colors')}}</h3>
         </div>
         <div class="box-body">
-            <dd>A ferramenta Onto4ALL permite que o usuário customize facilmente as cores dos elementos do diagrama.</dd>
+            <dd>{{__('The Onto4ALL tool allows the user to easily customize the colors of the diagram elements.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Para alterar a cor de um elemento selecionado, clique no ícone do balde de tinta para abrir o menu de seleção de cores.</li>
-                            <li>No menu de seleção de cores, selecione uma cor através da interface ou então digitando o código hexadecimal da cor desejada.</li>
-                            <li>Também é possível alterar a cor das linhas de contorno ou dos próprios elementos de <a href="#relations">relações</a>, clicando no ícone do lápis de cor.</li>
-                            <li>Em ontologias muito grandes, cores podem facilitar o agrupamento de elementos de acordo com dadas características, para melhor organizar o diagrama.</li>
+                            <li>{{__('To change the color of a selected element, click on the paint bucket icon to open the color selection menu.')}}</li>
+                            <li>{{__('In the color selection menu, select a color through the interface or by entering the hexadecimal code of the desired color.')}}</li>
+                            <li>{{__('It is also possible to change the color of the contour lines or the elements themselves')}} <a href="#relations">{{__('Relations')}}</a>, {{__('')}}</li>
+                            <li>{{__('In very large ontologies, colors can facilitate the grouping of elements according to given characteristics, to better organize the diagram.')}}</li>
+                            <li>{{__('You can customize an element and make it the default for the next elements to be inserted in the diagram. For example, suppose that we want all classes in our ontology to be red with a yellow outline and shadow. To make this class the default, right-click on it and select Set as default style. Or select the class and press CTRL+SHIFT+D')}}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/colors.png">
+                        <img alt="class image" src="{{asset('css/images/colors.png')}}">
                     </div>
                 </div>
         </div>
@@ -190,22 +196,23 @@
 
     <div id="save" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Salvar</h3>
+            <h3 class="box-title">{{__('Save')}}</h3>
         </div>
         <div class="box-body">
-            <dd>É possível salvar as ontologias desenvolvidas no Onto4All.</dd>
+            <dd>{{__('It is possible to save the ontologies developed in Onto4All and access them later.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Clicando em <i>Save</i>, no menu <i>File</i>, pode-se salvar a ontologia criada no formato padrão XML.</li>
-                            <li>Ao salvar uma ontologia, ela poderá ser encontrada na sua página de ontologias.</li>
-                            <li>Desta forma, o download do arquivo será inicializado automaticamente.</li>
-                            <li>Também é possível exportar a ontologia em outros formatos, inclusive no formato OWL (Ontology Web Language)
-                            ou em SVG (para salvar apenas a imagem da ontologia criada), clicando em <i>Export</i>, dentro do mesmo menu.</li>
+                            <li>{{__('Clicking')}} <i>{{__('Save')}}</i>{{__(', in the menu')}} <i>{{__('File')}}</i>{{__(', or pressing')}} <strong>CTRL+S</strong>{{__('')}}</li>
+                            <li>{{__('When saving an ontology, it can be found in the')}} <a href="{{route('ontologies.index', app()->getLocale())}}"> {{__('Ontology Manager')}}</a> {{__('and on the Ontologies menu on the right sidebar.')}}</li>
+                            <li>{{__('You can access ontologies made by you previously by clicking the Open in the Editor button in the ontologies menu on the right sidebar. Or')}}  <a href="#import">{{__('')}} </a></li>
+                            <li><span class="label-warning">{{__('Attention: Only your last 10 ontologies were saved in our editor, if you exceed this limit, your oldest ontology will be deleted. If you want to avoid this, mark your ontology as a favorite, so that it will not be deleted. You can select up to 5 ontologies as favorites.')}}</span></li>
+                            <li><span class="label-danger">{{__('If you save ontologies with the same name they will be replaced. For example, if you save an ontology with the name Ontology1 and that ontology already exists in your ontology manager, it will be replaced with the newer ontology')}}</span></li>
+                            <li>{{__('It is also possible to export the ontology in other formats, including OWL (Ontology Web Language) or SVG (to save only the image of the created ontology), by clicking')}} <i>{{__('Export')}}</i>{{__(', within the same menu.')}}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/saving-ontology.png">
+                        <img alt="class image" src="{{asset('css/images/saving-ontology.png')}}">
                     </div>
                 </div>
         </div>
@@ -213,74 +220,74 @@
 
     <div id="import" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Importar</h3>
+            <h3 class="box-title">{{__('Import')}}</h3>
         </div>
         <div class="box-body">
-            <dd>Você também pode importar ontologias que já estão salvas no seu computador para o Onto4All!.</dd>
+            <dd>{{__('You can also import ontologies that are already saved on your computer to Onto4All !.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Clicando em <i>Import</i>, no menu <i>File</i>, pode-se carregar uma ontologia de seu computador no formato XML.</li>
-                            <li>Uma vez carregada a ontologia, é possível editá-la e salvá-la ao seu computador novamente.</li>
-                            <li>Após editar uma ontologia importada no formasto XML, é possível exportá-la também nos outros formatos suportados (OWL e SVG).</li>
+                            <li>{{__('Clicking')}} <i>{{__('Import')}}</i>{{__(', no menu')}} <i>{{__('File')}}</i>{{__('')}}</li>
+                            <li><span class="label-danger">{{__('When you import a OWL file made by other editors (such as protege), make sure the syntax is correct, otherwise it will cause bugs in the Onto4ALL')}}</span></li>
+                            <li><span class="label-info">{{__('Note: .OWL and .OWX files will be automatically converted to .XML and the ontology will be displayed in the editor')}}</span></li>
+                            <li><span class="label-warning">{{__('Warning: For .XML files, you can only import .XML files exported by this editor.')}}</span></li>
+                            <li>{{__('Once the ontology is loaded, it is possible to edit and save it to your computer again and in the ontology manager.')}}</li>
+                            <li>{{__('After editing an imported ontology, it is possible to export it also in the other supported formats (OWL and SVG).')}}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/importing-ontology.png">
+                        <img alt="class image" src="{{asset('css/images/importing-ontology.png')}}">
                     </div>
                 </div>
         </div>
     </div>
 
-    <h2 id="interface-do-editor">Interface do Editor</h2>
+    <h2 id="interface-do-editor">{{__('Editor Interface')}}</h2>
 
     <div id="diagrama" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Diagrama</h3>
+            <h3 class="box-title">{{__('Diagram')}}</h3>
         </div>
         <div class="box-body">
-            <dd>Ao fazer login em Onto4All, você será redirecionado para a página princial: o diagrama de construção de ontologias.</dd>
+            <dd>{{__('When you log in to Onto4All, you will be redirected to the main page: the ontology construction diagram.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Esta é a página principal do Onto4All, em que você poderá desenvolver suas próprias ontologias e editar ontologias já existentes no seu computador,
-                            usufruindo de todas as funcionalidades apresentadas na seção anterior.</li>
-                            <li>Para acessar esta página, você pode clicar em <strong>Ontology drawing</strong> ou na logo <strong>Onto4ALL</strong>,
-                            na barra de navegação no topo da página.</li>
-                            <li>Ao clicar no botão <strong>Hide sidebar</strong>, será exibida uma aba de configurações adicionais do
-                            diagrama, como a espessura das linhas do background (grid), cores e orientação da tela (retrato ou paisagem).</li>
-                            <li>Na barra de configurações do diagrama, logo abaixo da barra de navegação, encontram-se diversas ferramentas disponíveis,
-                            como opções de visualização, zoom e inserir imagens.</li>
+                            <li>{{__('By clicking the button')}} <strong>{{__('Show/Hide sidebar')}}</strong>{{__(', a tab for additional diagram configurations will be displayed, such as the thickness of the background lines (grid), colors and screen orientation (portrait or landscape).')}}</li>
+                            <img class="img-responsive img-max-width" src="{{asset('css/images/diagram-options.png')}}">
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/diagrama.png">
+                        <li>{{__('This tab will also show you several options if you select any element on the diagram')}}</li>
+                        <img class="img-responsive img-max-width" src="{{asset('css/images/diagram-options-element.png')}}">
                     </div>
+                    <br>
+                    <div class="col-md-12">
+                        <li>{{__('In the diagram settings bar, just below the navigation bar, there are several tools available, such as viewing options, zoom and insert images.')}}</li>
+                        <li><span class="label-info">{{__('If you hover your mouse over each icon it will show you its functionality')}}</span></li>
+                        <img class="img-responsive img-max-width" src="{{asset('css/images/interface.PNG')}}">
+                    </div>
+
                 </div>
         </div>
     </div>
 
     <div id="rules" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Barra de Regras</h3>
+            <h3 class="box-title">{{__('Tips Tab')}}</h3>
         </div>
         <div class="box-body">
-            <dd>Ao lado direito do diagrama, se encontra a barra de regras, que contém anotações que auxiliam o usuário a manipular as ferramentas do Onto4All.</dd>
+            <dd>{{__('On the right side of the diagram, there is a toolbar, which contains notes that help the user to manipulate the tools of Onto4All.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Inicialmente, todas as regras cadastradas são exibidas na barra de regras.</li>
-                            <li>Ao clicar em um elemento na <a href="#palet">paleta de ontologias</a>, apenas as regras relacionadas àquele elemento
-                            serão exibidas na barra de regras.</li>
-                            <li>Através do campo de pesquisa na barra de regras, é possível encontrar regras relacionadas a um elemento específico,
-                            digitando o seu nome.</li>
+                            <li>{{__('Initially, the user has access to classes and relations BFO, IAO, IOF')}} </li>
+                            <li>{{__('When you click on an element in the')}} <a href="#palet">{{__('Ontologies Palette')}}</a>{{__(', only the rules related to that element will be displayed in the toolbar.')}}</li>
+                            <li>{{__('Through the search field in the tip bar, it is possible to find rules related to a specific element, by typing its name.')}}</li>
                         </ul>
                     </div>
-                    <div class="col-md-3">
-                        <img alt="class image" src="/css/images/rule1.png">
-                    </div>
-                    <div class="col-md-3">
-                        <img alt="class image" src="/css/images/rule2.png">
+                    <div class="col-md-6">
+                        <img alt="class image" src="{{asset('css/images/rule1.png')}}">
                     </div>
                 </div>
         </div>
@@ -288,19 +295,19 @@
 
     <div id="ontology-palette" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Paleta de ontologias</h3>
+            <h3 class="box-title">{{__('Ontologies Palette')}}</h3>
         </div>
         <div class="box-body">
-            <dd>No canto esquerdo, se encontra <strong>Paleta de ontologias</strong>, que contém os principais elementos necessários para a construção de uma ontologia.</dd>
+            <dd>{{__('In the left corner, you will find')}} <strong>{{__('Ontologies Palette')}}</strong>{{__(', which contains the main elements necessary for the construction of an ontology.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Na paleta de ontologias, encontram-se, dentre outros elementos, classes e relações, citadas anteriormente neste tutorial.</li>
-                            <li>Além de classes e relações, a paleta de ontologias disponibiliza também a opção de inserir textos no diagrama.</li>
+                            <li>{{__('In the palette of ontologies, you will find, among other elements, classes and relations, mentioned earlier in this tutorial.')}}</li>
+                            <li>{{__('In addition to classes and relations, the palette of ontologies also offers the option of inserting texts in the diagram.')}}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/ontology-palette.png">
+                        <img alt="class image" src="{{asset('css/images/ontology-palette.png')}}">
                     </div>
                 </div>
         </div>
@@ -308,19 +315,19 @@
 
     <div id="other-palettes" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Outras paletas</h3>
+            <h3 class="box-title">{{__('Other Palettes')}}</h3>
         </div>
         <div class="box-body">
-            <dd>Além da <a href="#ontology-palette">paleta de ontologias</a>, existem paletas alternativas de elementos que podem ser usadas no diagrama.</dd>
+            <dd>{{__('There are alternative palettes of elements that can be used in the diagram.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>As paletas alternativas são a de flechas (<i>arrow</i>), a de UML, a de BPMN (<i>Business Process Model and Notation</i>) e a de ícones (clipart).</li>
-                            <li>Assim como os elementos da paleta de ontologias, para inserir um elemento de outra paleta no diagrama, basta clicar em cima dele.</li>
+                            <li>{{__('The alternative palettes are arrows, UML, BPMN and clipart icons.')}}</li>
+                            <li>{{__('Just like the elements of the ontology palette, to insert an element from another palette in the diagram, just click on it or drag it.')}}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/alternative-palettes.png">
+                        <img alt="class image" src="{{asset('css/images/alternative-palettes.png')}}">
                     </div>
                 </div>
         </div>
@@ -328,43 +335,116 @@
 
     <div id="ontology-history" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Histórico de ontologias</h3>
+            <h3 class="box-title">{{__('Ontology History')}}</h3>
         </div>
         <div class="box-body">
-            <dd>Ainda na página do diagrama de construção de ontologias do Onto4All, podemos visualizar o histórico de ontologias salvas pelo usuário.</dd>
+            <dd>{{__('Also on the Onto4All ontology construction diagram page, we can view the history of ontologies saved by the user.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Na página do diagrama, para exibir as ontologias salvas basta clicar em <strong>Your ontologies</strong>, na parte superior da <a href="#rules">barra de dicas</a>.</li>
-                            <li>As ontologias salvas serão exibidas na forma de uma linha do tempo que mostra a data e hora em que as ontologias foram salvas.</li>
-                            <li>Ainda na linha do tempo do histórico de ontologias, é possível exportá-las nos formatos OWL e XML.</li>
+                            <li>{{__('On the diagram page, to display the saved ontologies just click on')}} <strong>{{__('Ontologies')}}</strong>{{__(', at the top of')}} <a href="#rules">{{__('Tips Tab')}}</a>.</li>
+                            <li>{{__('The saved ontologies will be displayed in the form of a timeline showing the date and time when the ontologies were saved.')}}</li>
+                            <li>{{__('Still on the timeline of the ontology history, it is possible to export them in OWL and XML formats. It is also possible to open them in the editor')}}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/ontology-history.png">
+                        <img alt="class image" src="{{asset('css/images/ontology-history.png')}}">
                     </div>
                 </div>
         </div>
     </div>
 
-    <h2 id="ontology-management">Gerenciamento de ontologias</h2>
+    <div id="warnings-console" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{__('Warnings Console')}}</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-12">
+                        <p>{{__('The warnings console is the way our editor tells you good modeling practices you should implement when building a ontology.This console will show you warnings that will help you build a better ontology.')}}
+                            <a target="_blank" href="{{route('warningIndex', app()->getLocale())}}">{{__('Click here')}}</a>
+                            {{__('to see all the warnings our console track. We will be updating this console with more warnings in the future,')}}
+                            <a href="{{route('help', app()->getLocale())}}">{{__('contact us')}}</a>
+                            {{__('if you had any problem with this feature.')}}
+                        </p>
+                    <img class="img-max-width"  src="{{asset('css/images/warningConsole.png')}}">
+                    <p>
+                        {{__('Here you can see that the pizza ontology have several warnings that need to be solved.')}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="methodology" class="box box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">{{__('Methodology')}}</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>
+                        {{__('OntoForInfoScience is a detailed methodology for construction of ontologies that details each step of the ontology development cycle. The goal of such methodology is to enable experts in Knowledge Organization to overcome the technical jargon difficulties, as well as logical and philosophical issues that involve the ontology development (Mendonça, 2016).The methodology OntoForInfoScience consists of nine phases:')}}
+                    </p>
+                    <p>
+                        <strong>
+                            {{__('We strongly recommend that you use this methodology when building your ontologies.')}}
+                        </strong>
+                    </p>
+                    <p>
+                        {{__('You can check the progress of your ontology by clicking on the boxes for each completed step.')}}
+                    </p>
+                    <ul>
+                        <li>
+                            1) {{__('Specification of the ontology')}}
+                        </li>
+                        <li>
+                            2) {{__('Acquisition and extraction of knowledge')}}
+                        </li>
+                        <li>
+                            3) {{__('Conceptualization')}}
+                        </li>
+                        <li>
+                            4) {{__('Ontological grounding')}}
+                        </li>
+                        <li>
+                            5) {{__('Formalization of the ontology')}}
+                        </li>
+                        <li>
+                            6) {{__('Evaluation of the ontology')}}
+                        </li>
+                        <li>
+                            7) {{__('Documentation')}}
+                        </li>
+                        <li>
+                            8) {{__('Publication of the ontology')}}
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <img class="img-max-width"  src="{{asset('css/images/methodology-tab.PNG')}}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 id="ontology-management">{{__('Ontology Manager')}}</h2>
 
     <div id="ontologies" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Minhas ontologias</h3>
+            <h3 class="box-title">{{__('My Ontologies')}}</h3>
         </div>
         <div class="box-body">
-            <dd>A página de ontologias pode ser acessada através da barra de navegação no topo da página, clicando em <strong>My Ontologies</strong>.</dd>
+            <dd>{{__('The ontology page can be accessed through the navigation bar at the top of the page, by clicking on')}} <strong>{{__('My Ontologies')}}</strong>.</dd>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <ul>
-                            <li>Nesta página serão exibidas as suas 10 ontologias mais recentes.</li>
-                            <li>Ao clicar no ícone de detalhes de uma ontologia, você será redirecionado para uma página em que serão exibidas informações
-                            mais detalhadas dessa ontologia, como o escopo da ontologia, seu grau de formalidade, seu proósito, etc.</li>
+                            <li>{{__('This page will display your 10 most recent ontologies')}}.</li>
+                            <li>{{__('When you click on the details icon of an ontology, you will be redirected to a page where more detailed information of that ontology will be displayed, such as the scope of the ontology, its degree of formality, its purpose, etc.')}}</li>
                         </ul>
                     </div>
-                    <div class="col-md-6">
-                        <img alt="class image" src="/css/images/your-ontologies.png">
+                    <div class="col-md-12">
+                        <img alt="class image" src="{{__('css/images/your-ontologies.png')}}">
                     </div>
                 </div>
         </div>
@@ -372,20 +452,19 @@
 
     <div id="favorite-ontologies" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Ontologias favoritas</h3>
+            <h3 class="box-title">{{__('Favourite Ontologies')}}</h3>
         </div>
         <div class="box-body">
-            <dd>Ainda na página de ontologias, há a seção Ontologias Favoritas.</dd>
+            <dd>{{__('Also on the ontologies page, there is the Favorite Ontologies section.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Na lista de ontologias, ao clicar no ícone de <strong>favorito</strong> (estrela), você irá favoritar a ontologia.</li>
-                            <li>Você pode favoritar até 5 ontologias.</li>
-                            <li>Ontologias favoritadas ficarão em evidência, sendo mais fáceis de serem encontradas na página de ontologias.</li>
+                            <li>{{__('In the list of ontologies, when clicking on the')}} <strong>{{__('favourite')}}</strong> {{__('(star), you will bookmark your ontology. You can bookmark up to 5 ontologies.')}}</li>
+                            <li>{{__('Favorite ontologies will be in evidence, being easier to find on the ontologies page. And they will not be deleted if you exceed the limit of 10 ontologies')}}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/favorite-ontologies.png">
+                        <img alt="class image" src="{{asset('css/images/favorite-ontologies.png')}}">
                     </div>
                 </div>
         </div>
@@ -393,30 +472,29 @@
 
     <div id="actions" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Ações</h3>
+            <h3 class="box-title">{{__('Actions')}}</h3>
         </div>
         <div class="box-body">
-            <dd>Em ambas as seções na página de ontologias (<a href="#ontologies">minhas ontologia</a> e <a href="favorite-ontologies">ontologias favoritas</a>),
-            há varios ícones que representam possíveis ações em relação a ontologia.</dd>
+            <dd>{{__('In both sections on the ontology page')}} (<a href="#ontologies">{{__('My Ontologies')}}</a> , <a href="favorite-ontologies">{{__('Favourite Ontologies')}}</a>),
+            {{__('there are several icons that represent possible actions in relation to ontology.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Os dois primeiros ícones são para fazer download da ontologia: o primeiro no formato XML e o segundo no formato OWL.</li>
-                            <li>O segundo ícone, já mencionado, redireciona para a página individual da ontologia.</li>
-                            <li>O ícone da estrela, já apresentado, faz com que a ontologia vá para a seção de ontologias favoritas.</li>
-                            <li>O ícone de edição, representado pelo lápis, permite que o usuário edite as informações da ontologia. Atenção! Este ícone
-                            representa a função de edição apenas de informações básicas e detalhes do propósito e uso da ontologia, e não da ontologia em si.
-                            Para editar a estrutura da própria ontologia em questão, utilize o diagrama!</li>
-                            <li>O último ícone, em vermelho, exclui a ontologia.</li>
+                            <li>{{__('The first two icons are for downloading the ontology: the first in XML format and the second in OWL format.')}}</li>
+                            <li>{{__('The second icon, already mentioned, redirects to the individual page of the ontology')}}.</li>
+                            <li>{{__('The star icon, already shown, makes the ontology go to the favorite ontology section')}}.</li>
+                            <li>{{__('The edit icon, represented by the pencil, allows the user to edit the ontology information. Attention! This icon represents the function of editing only basic information and details of the purpose and use of the ontology, and not of the ontology itself. To edit the structure of the ontology in question, use the diagram!')}}</li>
+                            <li>{{__('The last icon, in red, excludes the ontology.')}}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/icons.png">
+                        <img alt="class image" src="{{asset('css/images/icons.png')}}">
                     </div>
                 </div>
         </div>
     </div>
 
+    <!--
     <h2 id="#">Perfil</h2>
 
     <div id="profile" class="box box-solid">
@@ -439,28 +517,28 @@
                 </div>
         </div>
     </div>
-
-    <h2 id="examples">Exemplos</h2>
+    -->
+    <h2 id="examples">{{__('Examples')}}</h2>
 
     <div id="example1" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Exemplo #1</h3>
+            <h3 class="box-title">{{__('Example')}} #1</h3>
         </div>
         <div class="box-body">
-            <dd>Neste exemplo, temos uma ontologia de pizza, que relaciona diferentes sabores e coberturas de pizzas.</dd>
+            <dd>{{__('In this example, we have a pizza ontology, which lists different flavors and pizza toppings.')}}</dd>
                 <div class="row">
                     <div class="col-md-12">
                         <ul>
-                            <li>Neste caso, temos uma classe raiz chamada Thing, que dá origem às duas principais: Pizza e Topping.</li>
-                            <li>Pintamos as classes de maneira a organizar os conceitos relacionados.</li>
-                            <li>Utilizamos relações já existentes (<strong>is_a</strong>) e também nomeamos novas relações( <strong>hasTopping</strong>).</li>
-                            <li>Neste exemplo, fizemos uso do recurso de arestas de ligações curvas, com o intuito de deixar o diagrama mais "limpo".</li>
+                            <li>{{__('In this case, we have a root class called Thing, which gives rise to the two main ones: Pizza and Topping.')}}</li>
+                            <li>{{__('We paint the classes in order to organize the related concepts')}}.</li>
+                            <li>{{__('We use existing relationships (is_a) and we also name new relationships (hasTopping).')}}</li>
+                            <li>{{__('In this example, we used the curved edges feature to make the diagram cleaner')}}.</li>
                         </ul>
                     </div>
 
 
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/pizza-ontology.svg">
+                        <img alt="class image" src="{{asset('css/images/pizza-ontology.svg')}}">
                     </div>
                 </div>
         </div>
@@ -468,81 +546,94 @@
 
     <div id="example2" class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Exemplo #2</h3>
+            <h3 class="box-title">{{__('Example')}} #2</h3>
         </div>
         <div class="box-body">
-            <dd>Neste outro exemplo, temos uma ontologia que representa a família Simpsons.</dd>
+            <dd>{{__('In this other example, we have an ontology that represents the Simpsons family.')}}</dd>
                 <div class="row">
                     <div class="col-md-12">
                         <ul>
-                            <li>Nesse exemplo não temos uma classe "raiz", mas a classe da família Simpsons é a principal classe da ontologia.</li>
-                            <li>Deixamos a classe Simpsons Family com um tamanho maior do que as outras e no centro, deixando a ontologia mais intuitiva.</li>
-                            <li>Mais uma vez, pintamos as classes de maneira a organizar os conceitos e criamos novas relações que expressam os conceitos formulados.</li>
+                            <li>{{__('In this example, we dont have a root class, but the Simpsons family class is the main class of ontology.')}}</li>
+                            <li>{{__('We left the Simpsons Family class larger than the others and in the center, making the ontology more intuitive.')}}</li>
+                            <li>{{__('Once again, we painted the classes in order to organize the concepts and created new relationships that express the formulated concepts.')}}</li>
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/simpsonsontology.svg">
+                        <img alt="class image" src="{{asset('css/images/simpsonsontology.svg')}}">
                     </div>
                 </div>
         </div>
     </div>
 
-    <h2 id="shortcuts">Atalhos</h2>
+    <h2 id="shortcuts">{{__('Keyboard shortcuts')}}</h2>
 
     <div class="box box-solid">
         <div class="box-header with-border">
-            <h3 class="box-title">Atalhos do teclado</h3>
+            <h3 class="box-title">{{__('Keyboard shortcuts')}}</h3>
         </div>
         <div class="box-body">
-            <dd>No Onto4All, existem alguns atalhos do teclado que podem agilizar a execução de algumas tarefas simples.</dd>
+            <dd>{{__('In Onto4All, there are some keyboard shortcuts that can speed up the execution of some simple tasks.')}}</dd>
                 <div class="row">
                     <div class="col-md-6">
                         <ul>
-                            <li>Ao carregar a página principal do Onto4All, serão exibidas dicas com alguns atalhos do teclado.</li>
-                            <li>O atalho <strong>CTRL + M</strong> exibe as propriedades do elemento selecionado no diagrama.</li>
-                            <li>O atalho <strong>CTRL + S</strong> salva e realiza o download da ontologia, no formato XML.</li>
-                            <li>O atalho <strong>CTRL + Z</strong> desfaz a última ação do usuário no diagrama.</li>
-                            <li>Combinando a tecla <strong>CTRL</strong> com as teclas <strong>+</strong> e <strong>-</strong>,
-                            pode-se controlar o zoom da tela; Com o atalho <strong>CTRL + H</strong>, pode-se voltar o zoom para o padrão (100%).</li>
+                            <li> <strong>CTRL + M</strong> {{__('displays the properties of the selected element in the diagram.')}}</li>
+                            <li> <strong>CTRL + S</strong> {{__('saves and downloads the ontology, in XML format.')}}</li>
+                            <li> <strong>CTRL + Z</strong> {{__('undoes the users last action on the diagram.')}}</li>
+                            <li> <strong>CTRL + Y</strong> {{__('redoes the users last action on the diagram.')}}</li>
+                            <li> <strong>CTRL +, CTRL - </strong>{{__(', control the zoom level on the screen.')}} <strong>CTRL + H</strong> {{__('you can zoom back to the default (100%).')}}</li>
+                            <li>{{__('To know all the editors shortcuts, look at the right side of the menus, there will be the indication of each shortcut. Hovering over icons will also show your shortcut.')}}</li>
 
                         </ul>
                     </div>
                     <div class="col-md-6">
-                        <img alt="class image" src="/css/images/shortcut-tip.png">
+                        <img alt="class image" src="{{asset('css/images/shortcuts.png')}}">
                     </div>
                 </div>
         </div>
     </div>
 
-    <h2 id="stack">Ferramentas utilizadas</h2>
+    <h2 id="stack">{{__('Tools used')}}</h2>
 
     <div class="box box-solid">
         <div class="box-body">
-            <dd>No desenvolvimento do Onto4All, foram utilizadas diversas tecnologias e ferramentas.</dd>
-                <div class="row">
-                    <div class="col-md-6">
-                        <ul>
-                            <li>O diagrama de construção de ontologias foi feito utilizando a biblioteca de JavaScript <a href="https://github.com/jgraph/mxgraph"> MXGraph </a>,
-                            que, com algumas modificações para adequá-la às outras tecnologias do sistema, proporcionou o ambiente interativo de construção de ontologias.</li>
-                            <li>No front-end, utilizou-se a biblioteca <a href="https://jquery.com"> jQuery</a> e o template <a href="https://adminlte.io"> AdminLTE </a>.</li>
-                            <li>Para o back-end, foi utilizado <a href="https://laravel.com">Laravel</a>, framework MVC de PHP, e banco de dados <a href="https://www.mysql.com">MySQL</a>.</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <img style="width: 100%" alt="class image" src="/css/images/logos.png">
+            <dd>{{__('In the development of Onto4All, several technologies and tools were used.')}}</dd>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="mt-5">
+                        <img alt="laravel" src="{{asset('css/images/Landing-Page/laravel.png')}}">
+
                     </div>
                 </div>
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="mt-5">
+                        <img alt="mxgraph" src="{{asset('css/images/Landing-Page/mxgraph.png')}}">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 text-center">
+                    <div class="mt-5">
+                        <img alt="jquery" src="{{asset('css/images/Landing-Page/jquery.png')}}">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <h2 id="credits">Créditos</h2>
+    <h2 id="credits">{{__('Credits')}}</h2>
 
     <div class="box box-solid">
         <div class="box-body">
-            <dd>Onto4All foi desenvolvido por <a href="https://github.com/Piazzi/">Lucas Piazzi</a>, como parte de um projeto de Iniciação Científica
-            vinculado ao Departamento de Ciência da Computação da Universidade Federal de Juiz de Fora (UFJF), composto também por
-            <a href="professorfabriciomendonca.com.br/">Prof. Dr Fabrício Martins Mendonça</a>, orientador do projet, e por
-            <a href="https://github.com/carvalhotiago">Tiago Carvalho</a> e <a href="https://github.com/pedroalves4">Pedro Henrique Alves</a>.</div>
+            <div class="row">
+                <div class="col-md-6">
+                    <dd>{{__('Onto4All was developed by')}} <a href="https://github.com/Piazzi/">Lucas Piazzi</a>{{__(', as part of a Scientific Initiation project linked to the Computer Science Department of the Federal University of Juiz de Fora (UFJF), also composed of')}}
+                        <a href="professorfabriciomendonca.com.br/">Dr Fabrício Martins Mendonça</a>{{__('(Project Advisor)')}},
+                        <a href="https://github.com/carvalhotiago">Tiago Carvalho</a>,<a href="https://github.com/pedroalves4">Pedro Henrique Alves</a>.
+                </div>
+                <div class="col-md-6">
+                    <img alt="ufjf" src="{{asset('css/images/Landing-Page/ufjf.png')}}">
+
+                </div>
+            </div>
+
         </div>
     </div>
     

@@ -4,12 +4,12 @@
 
 @section('content_header')
     <h1>
-        Help Menu
-        <small>Find all the information you need</small>
+        {{__('Help Menu')}}
+        <small>{{__('Find all the information you need')}}</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
-        <li class="active">Help Menu</li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">{{__('Help Menu')}}</li>
     </ol>
 
     @if (session()->has('Success'))
@@ -40,28 +40,28 @@
             <div class="small-box bg-green">
                 <div class="inner">
                     <h3>Tutorial</h3>
-                    <p>Learn how to use our editor</p>
+                    <p>{{__('Learn how to use our editor')}}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-document-text"></i>
                 </div>
-                <a href="/tutorial" class="small-box-footer">
-                    More info <i class="fa fa-arrow-circle-right"></i>
+                <a href="{{route('tutorial', app()->getLocale())}}" class="small-box-footer">
+                    {{__('More Info')}} <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
         <div class="col-md-6">
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>Contact Us</h3>
+                    <h3>{{__('Contact Us')}}</h3>
 
-                    <p>Report a bug, make a suggestion or ask a question.</p>
+                    <p>{{__('Report a bug, make a suggestion or ask a question.')}}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-email"></i>
                 </div>
                 <a data-target="#contactUs" data-toggle="modal" aria-expanded="false" href="#" class="small-box-footer">
-                    More info <i class="fa fa-arrow-circle-right"></i>
+                    {{__('More Info')}} <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -70,30 +70,30 @@
         <div class="col-md-6">
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>Account Settings</h3>
+                    <h3>{{__('Account Settings')}}</h3>
 
-                    <p>Manage your account.</p>
+                    <p>{{__('Manage your account.')}}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-settings"></i>
                 </div>
                 <a href="/profile/{{Auth::user()->id}}/edit" class="small-box-footer">
-                    More info <i class="fa fa-arrow-circle-right"></i>
+                    {{__('More info')}} <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
         <div class="col-md-6">
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>About Us</h3>
+                    <h3>{{__('About Us')}}</h3>
 
-                    <p>Who's behind the project</p>
+                    <p>{{__('Who is behind the project')}}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person"></i>
                 </div>
-                <a href="{{route('aboutUs')}}" class="small-box-footer">
-                    More info <i class="fa fa-arrow-circle-right"></i>
+                <a href="{{route('aboutUs', app()->getLocale())}}" class="small-box-footer">
+                    {{__('More info')}} <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
@@ -103,24 +103,24 @@
         <div class="col-md-6">
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>Warnings Index</h3>
+                    <h3>{{__('Warnings Index')}}</h3>
 
-                    <p>See all the warnings tracked by our console on the editor </p>
+                    <p>{{__('See all the warnings tracked by our console on the editor')}} </p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-gear-a"></i>
                 </div>
-                <a href="{{route('errorIndex')}}" class="small-box-footer">
-                    More info <i class="fa fa-arrow-circle-right"></i>
+                <a href="{{route('warningIndex', app()->getLocale())}}" class="small-box-footer">
+                    {{__('More info')}} <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>
         </div>
         <div class="col-md-6">
             <div class="small-box bg-green">
                 <div class="inner">
-                    <h3>Donate</h3>
+                    <h3>{{__('Donate')}}</h3>
 
-                    <p>Help this project by donating a small amount via paypal  </p>
+                    <p>{{__('Help this project by donating a small amount via paypal')}}  </p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-cash"></i>
@@ -149,16 +149,13 @@
                     <div class="box-header with-border">
                         <h4 class="box-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                What is the Onto4ALL Editor?
+                                {{__('What is the Onto4ALL Editor?')}}
                             </a>
                         </h4>
                     </div>
                     <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="box-body">
-                            Onto4All is a free graphical editor capable of creating, editing and exporting
-                            ontologies being guided by an error console, a ontological building rules tab and an extensive
-                            palette of ontological classes and relationships.
-                            Export formats are: OWL, XML, SVG.
+                           {{__('Is a free graphical editor capable of creating, editing and exporting ontologies being guided by an warnings console, an ontological building rules tab and an extensive palette of ontological classes and relationships.')}}
                         </div>
                     </div>
                 </div>
@@ -166,14 +163,13 @@
                     <div class="box-header with-border">
                         <h4 class="box-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                It's been updated?
+                                {{__('Is it being updated?')}}
                             </a>
                         </h4>
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse">
                         <div class="box-body">
-                            Yes, we've been updating the editor for the past months and developing new
-                            functionalities. Contact us via e-mail if you have any suggestion.
+                            {{__('Yes, we are updating the editor frequently and developing new features. Please contact us by email if you have any suggestions.')}}
                         </div>
                     </div>
                 </div>
@@ -181,14 +177,13 @@
                     <div class="box-header with-border">
                         <h4 class="box-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                What is the main public of the editor?
+                                {{__('What is the main public of the editor?')}}
                             </a>
                         </h4>
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse">
                         <div class="box-body">
-                            We aim to reach all types of audiences. From students learning what an ontology
-                            is to professionals in the field.
+                            {{__('We aim to reach all types of audiences. From students learning what an ontology is to professionals in the field.')}}
                         </div>
                     </div>
                 </div>
@@ -202,33 +197,33 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"><strong>Contact Form</strong></h5>
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>{{__('Contact Form')}}</strong></h5>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="{{route('messages.store')}}">
+                <form method="post" action="{{route('messages.store', app()->getLocale())}}">
                     <div class="modal-body">
                             @csrf
                             <div class="form-group">
-                                <label>Why are you contacting us for? Select a option.</label>
+                                <label>{{__('Why are you contacting us for? Select a option.')}}</label>
                                 <select name="category" class="form-control">
-                                    <option value="suggestion">Make a Suggestion</option>
-                                    <option value="bug">Report a Bug</option>
-                                    <option value="question">Ask a Question</option>
-                                    <option value="other">Other</option>
+                                    <option value="suggestion">{{__('Make a Suggestion')}}</option>
+                                    <option value="bug">{{__('Report a Bug')}}</option>
+                                    <option value="question">{{__('Ask a Question')}}</option>
+                                    <option value="other">{{__('Other')}}</option>
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Message</label>
-                                <textarea name="message" class="form-control" rows="3" placeholder="Enter your message here. We will answer as soon as possible"></textarea>
+                                <label>{{__('Message')}}</label>
+                                <textarea name="message" class="form-control" rows="3" placeholder="{{__('Enter your message here. We will answer as soon as possible')}}"></textarea>
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Send</button>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('Close')}}</button>
+                        <button type="submit" class="btn btn-primary">{{__('Send')}}</button>
                     </div>
                 </form>
 

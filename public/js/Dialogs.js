@@ -806,7 +806,7 @@ var ExportDialog = function (editorUi) {
     mxUtils.write(svgOption, mxResources.get('formatSvg'));
     imageFormatSelect.appendChild(svgOption);
 
-    if(window.location.pathname === '/home')
+    if(window.location.pathname === '/en/home' || window.location.pathname === '/pt/home')
     {
         var owlOption = document.createElement('option');
         owlOption.setAttribute('value', 'owl');

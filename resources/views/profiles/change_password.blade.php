@@ -28,21 +28,21 @@
 
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Change password</h3>
+            <h3 class="box-title">{{__('Change password')}}</h3>
         </div>
         <form role="form" action="{{route('profile.updatePassword', Auth::user()->id)}}" method="post">
             @csrf
             @method('PUT')
             <div class="box-body">
                 <div class="form-group">
-                    <label for="inputName" class="col-sm-1-4 col-form-label">New Password</label>
+                    <label for="inputName" class="col-sm-1-4 col-form-label">{{__('New Password')}}</label>
                     <div class="col-sm-1-4">
                         <input type="password" class="form-control" name="password"
                                placeholder="Insert your new password here">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputName" class="col-sm-1-4 col-form-label">Confirm your new Password</label>
+                    <label for="inputName" class="col-sm-1-4 col-form-label">{{__('Confirm your new Password')}}</label>
                     <div class="col-sm-1-4">
                         <input type="password" class="form-control" name="password_confirmation"
                                placeholder="Confirm your new password here">
@@ -51,7 +51,7 @@
             </div>
             <div class="box-footer">
                 <div class="offset-sm-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary">{{__('Update')}}</button>
                 </div>
             </div>
         </form>

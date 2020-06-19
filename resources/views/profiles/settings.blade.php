@@ -28,14 +28,14 @@
 
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">Account Settings</h3>
+            <h3 class="box-title">{{__('Account Settings')}}</h3>
         </div>
         <form role="form" action="{{route('profile.update', Auth::user()->id)}}" method="post">
             @csrf
             @method('PATCH')
             <div class="box-body">
                 <div class="form-group">
-                    <label for="inputName" class="col-sm-1-4 col-form-label">Username</label>
+                    <label for="inputName" class="col-sm-1-4 col-form-label">{{__('Username')}}</label>
                     <div class="col-sm-1-4">
                         <input value="{{Auth::user()->name}}" type="text" class="form-control" name="name"
                                id="inputUsername" placeholder="Insert your name here">
@@ -51,7 +51,7 @@
             </div>
             <div class="box-footer">
                 <div class="offset-sm-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary">{{__('Update')}}</button>
                 </div>
             </div>
         </form>
@@ -60,7 +60,7 @@
         <div class="col-md-6">
             <div class="box box-primary collapsed-box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">More Settings</h3>
+                    <h3 class="box-title">{{__('More Settings')}}</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -71,7 +71,7 @@
                 <!-- /.box-header -->
                 <div class="box-body" style="display: none;">
                     <a href="/change_password/{{Auth::user()->id}}">
-                        <button type="button" class="btn btn-block btn-danger btn-sm">Change password</button>
+                        <button type="button" class="btn btn-block btn-danger btn-sm">{{__('Change password')}}</button>
                     </a>
                 </div>
                 <!-- /.box-body -->
@@ -82,7 +82,7 @@
         <div class="col-md-6">
             <div class="box box-danger collapsed-box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Delete Account</h3>
+                    <h3 class="box-title">{{__('Delete Account')}}</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -92,7 +92,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body" style="display: none;">
-                    <strong>If you do this you will lost all your saved ontologies</strong>
+                    <strong>{{__('If you do this you will lost all your saved ontologies')}}</strong>
                 </div>
                 <!-- /.box-body -->
 
@@ -100,7 +100,7 @@
                     <form role="form" method="post" action="{{route('profile.destroy', Auth::user()->id)}}">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-block btn-danger btn-sm">Delete Account</button>
+                        <button type="submit" class="btn btn-block btn-danger btn-sm">{{__('Delete Account')}}</button>
                     </form>
                 </div>
             </div>

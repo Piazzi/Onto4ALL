@@ -83,7 +83,7 @@ class OntologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($locale, $id)
     {
         $ontology = Ontology::findOrFail($id);
         if($ontology->user_id != Auth::user()->id)
@@ -97,7 +97,7 @@ class OntologyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($locale, $id)
     {
         $ontology = Ontology::findOrFail($id);
         if($ontology->user_id != Auth::user()->id)
@@ -112,11 +112,11 @@ class OntologyController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(OntologyStoreRequest $request, $id)
+    public function update(OntologyStoreRequest $request, $locale, $id)
     {
         $ontology = Ontology::where('id','=', $id)->where('user_id','=', $request->user()->id)->first();
         $ontology->update($request->all());
-        return redirect()->route('ontologies.index')->with('Sucess', 'Your ontology has been updated with success');
+        return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been updated with success');
     }
 
     /**
@@ -126,11 +126,14 @@ class OntologyController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $locale, $id)
     {
-        $ontology = Ontology::where('id','=', $id)->where('user_id','=', $request->user()->id)->first();
-        $ontology->delete();
-        return redirect()->route('ontologies.index')->with('Sucess', 'Your ontology has been deleted with success');
+        $ontology = Ontology::find($id);
+        if($ontology->user_id == Auth::user()->id)
+            $ontology->delete();
+        else
+            abort(403);
+        return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been deleted with success');
     }
 
     /**
@@ -167,7 +170,7 @@ class OntologyController extends Controller
         $ontology = Ontology::where('id','=', $request->ontologyId)->where('user_id','=', $request->userId)->first();
         $ontology->favourite = 1;
         $ontology->save();
-        return redirect()->route('ontologies.index')->with('Sucess', 'Your ontology has been added to favorites');
+        return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been added to favorites');
     }
 
     /**
@@ -185,7 +188,7 @@ class OntologyController extends Controller
         $ontology = Ontology::where('id','=', $request->ontologyId)->where('user_id','=', $request->userId)->first();
         $ontology->favourite = 0;
         $ontology->save();
-        return redirect()->route('ontologies.index')->with('Sucess', 'Your ontology has been unmarked as favorite');
+        return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been unmarked as favorite');
     }
 
     /**
