@@ -30,7 +30,20 @@ Route::group([
     });
 
 
-    Auth::routes();
+    //Auth::routes();
+
+    // Authentication Routes...
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Auth\LoginController@login');
+    Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
+    // Registration Routes...
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post('register', 'Auth\RegisterController@register');
+
+    // Password Reset Route
+    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+
 
 
     // Profile routes
@@ -79,6 +92,7 @@ Route::group([
 
 });
 
+
 // Diagram routes
 Route::post('/openDiagram', 'DiagramController@openDiagram');
 Route::post('/openRecentDiagram', 'DiagramController@openRecentDiagram');
@@ -94,3 +108,9 @@ Route::get('/thesaurus/download/{userId}/{thesauruId}', 'ThesauruController@down
 // Socialite routes
 Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
+
+
+// Password Reset Routes...
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.reset');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
