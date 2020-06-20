@@ -55,6 +55,7 @@
 
 .modal-content {
     background-color: #00a65a;
+    border-radius: 15px;
 }
 
 .auth-links {

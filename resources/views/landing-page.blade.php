@@ -19,6 +19,10 @@
     <link href="css/styles.css" rel="stylesheet"/>
     <link href="css/landing-page.css" rel="stylesheet"/>
 
+    <!--  reCAPTCHA  -->
+    <meta name="grecaptcha-key" content="{{config('recaptcha.v3.public_key')}}">
+    <script src="https://www.google.com/recaptcha/api.js?render={{config('recaptcha.v3.public_key')}}"></script>
+
 
 </head>
 <body id="page-top">
