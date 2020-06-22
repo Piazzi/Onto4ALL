@@ -10,12 +10,6 @@
     <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
-    <!-- reCAPTCHA GOOGLE -->
-    @if(Route::currentRouteName() == 'login' || Route::currentRouteName() == 'register' || Route::currentRouteName() == '' )
-    <meta name="grecaptcha-key" content="{{config('recaptcha.v3.public_key')}}">
-    <script src="https://www.google.com/recaptcha/api.js?render={{config('recaptcha.v3.public_key')}}"></script>
-    @endif
-
     <!-- Editor CSS  -->
     @if(Route::currentRouteName() == 'home')
         <link rel="stylesheet" type="text/css" href="{{asset('css/mxgraph/grapheditor.css')}}">
