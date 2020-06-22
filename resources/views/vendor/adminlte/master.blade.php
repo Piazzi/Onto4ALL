@@ -12,7 +12,7 @@
 
     <!-- Editor CSS  -->
     @if(Route::currentRouteName() == 'home')
-        <link rel="stylesheet" type="text/css" href="{{asset('css/mxgraph/grapheditor.css')}}">
+        <link rel="stylesheet" type="text/css" href="{{asset('grapheditor/styles/grapheditor.css')}}">
     @endif
 
     <!-- Tell the browser to be responsive to screen width -->

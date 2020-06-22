@@ -20,8 +20,8 @@
     "vue": "^2.5.7"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.13.0",
+    "@fortawesome/fontawesome-free": "^5.13.1",
     "mxgraph": "file:mxgraph",
-    "save-svg-as-png": "^1.4.7"
+    "save-svg-as-png": "^1.4.17"
   }
 }
