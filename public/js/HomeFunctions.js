@@ -76,6 +76,9 @@ $(document).ready(function () {
     $(".geToolbar").append($('#relations'));
     $(".geToolbar").append($('#instances'));
     $(".geToolbar").append($('#download-ontology-report'));
+    $(".geToolbar").append($('#control-sidebar'));
+
+
 
 
 });

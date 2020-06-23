@@ -356,7 +356,19 @@
     "Manage all your thesaurus": "Gerencia todos os seus tesauros",
     "Your thesaurus:": "Seus tesauros",
     "Your last 10 thesaurus will be saved here": "Seus últimos 10 tesauros vão ficar salvos aqui",
-    "Edit Thesauru": "Editar Tesauro"
+    "Edit Thesauru": "Editar Tesauro",
+
+
+    "You dont have any warnings.": "Você não tem nenhum aviso.",
+    "Show/Hide Right Sidebar": " Barra lateral direita",
+    "Show/Hide Left Sidebar": "Barra lateral esquerda",
+    "Options": "Opções",
+    "Users": "Usuários",
+    "Ontology Editor": "Editor de Ontologias",
+    "Thesaurus Editor": "Editor de Tesauros",
+    "Messages": "Mensagens",
+    "Ontological Classes": "Classes Ontológicas",
+    "Ontological Relations": "Relações Ontológicas"
 
 
 

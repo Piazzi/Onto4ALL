@@ -743,6 +743,7 @@ var ExportDialog = function(editorUi)
 	var imageFormatSelect = document.createElement('select');
 	imageFormatSelect.style.width = '180px';
 
+	/*
 	var pngOption = document.createElement('option');
 	pngOption.setAttribute('value', 'png');
 	mxUtils.write(pngOption, mxResources.get('formatPng'));
@@ -766,7 +767,7 @@ var ExportDialog = function(editorUi)
 	pdfOption.setAttribute('value', 'pdf');
 	mxUtils.write(pdfOption, mxResources.get('formatPdf'));
 	imageFormatSelect.appendChild(pdfOption);
-	
+	*/
 	var svgOption = document.createElement('option');
 	svgOption.setAttribute('value', 'svg');
 	mxUtils.write(svgOption, mxResources.get('formatSvg'));

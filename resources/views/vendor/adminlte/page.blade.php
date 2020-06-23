@@ -14,12 +14,120 @@
 ][config('adminlte.layout')] : '') . (config('adminlte.collapse_sidebar') ? ' sidebar-collapse ' : ''))
 
 @section('body')
-        <div class="wrapper">
+    <div class="wrapper">
 
         <!-- Main Header -->
         <header class="main-header">
-            @if(config('adminlte.layout') == 'top-nav')
-                <nav  class="navbar navbar-static-top @if(Route::currentRouteName() == 'thesaurus-editor')thesauru-box @endif">
+            <!-- Logo -->
+            <a href="{{route('home', app()->getLocale())}}" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini">
+                    <img style="padding: 0px; border-right: 1px solid #d2d6de; border-bottom: 1px solid #d2d6de;"src="{{asset('css/images/LogoMini.png')}}">
+                </span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg">
+                    <img alt="logo" src="{{asset('css/images/Onto4ALL.png')}}">
+                </span>
+            </a>
+        @if(Route::currentRouteName() !== 'home')
+
+            <!-- User Right Menu -->
+                <div class="navbar-custom-menu">
+
+                    <ul class="nav navbar-nav">
+
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-primary"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 0 new messages</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="https://onto4alleditor.com/messages">See All
+                                        Messages</a></li>
+                            </ul>
+                        </li>
+                        <li id="notifications-menu" class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-bell-o"></i>
+                                <span id="notification-counter" class="label label-warning"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Your notifications</li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="notification-menu menu">
+
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <!-- The user image in the navbar-->
+                                <i class="fa fa-user"></i>
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">Admin</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header ">
+                                    <img src="css/images/profile.jpeg" class="img-circle" alt="User Image">
+                                    <p>
+                                        Admin
+                                        <small>Member since 2020-01-31 13:54:37</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center border-right">
+                                            <a class="user-body-link" href="https://onto4alleditor.com/profile/43/edit">Account
+                                                Settings</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center border-right">
+                                            <a class="user-body-link" href="https://onto4alleditor.com/ontologies">Your
+                                                Ontologies</a>
+                                        </div>
+                                        <div class="col-xs-4 text-center">
+                                            <a class="user-body-link" href="https://onto4alleditor.com/help">Help
+                                                Menu</a>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="https://onto4alleditor.com/profile" class="btn btn-default btn-flat"><i
+                                                    class="fa fa-user-plus"></i> Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a class="btn btn-default btn-flat" href="#"
+                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-fw fa-power-off"></i> Log Out
+                                        </a>
+                                        <form id="logout-form" action="https://onto4alleditor.com/logout" method="POST"
+                                              style="display: none;">
+                                            <input type="hidden" name="_method" value="get">
+                                            <input type="hidden" name="_token"
+                                                   value="DfzASltqoqdg77AIs8KMONgoD5nTKyl4t0XcGOxC">
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <nav class="navbar navbar-static-top @if(Route::currentRouteName() == 'thesaurus-editor')thesauru-box @endif">
                     <div class="container">
                         <div class="navbar-header">
                             <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="navbar-brand">
@@ -38,184 +146,285 @@
                             </ul>
                         </div>
                         <!-- /.navbar-collapse -->
-                    @else
-                        <!-- Logo -->
-                            <a href="{{ url(config('adminlte.dashboard_url', 'home')) }}" class="logo">
-                                <!-- mini logo for sidebar mini 50x50 pixels -->
-                                <span class="logo-mini">{!! config('adminlte.logo_mini', '<b>A</b>LT') !!}</span>
-                                <!-- logo for regular state and mobile devices -->
-                                <span class="logo-lg">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</span>
+                        <!-- Header Navbar -->
+                        <nav class="navbar navbar-static-top" role="navigation">
+                            <!-- Sidebar toggle button-->
+                            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                                <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
                             </a>
-
-                            <!-- Header Navbar -->
-                            <nav class="navbar navbar-static-top" role="navigation">
-                                <!-- Sidebar toggle button-->
-                                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                                    <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
-                                </a>
-                            @endif
                             <!-- Navbar Right Menu -->
-                                <div class="navbar-custom-menu">
+                            <div class="navbar-custom-menu">
 
-                                    <ul class="nav navbar-nav">
+                                <ul class="nav navbar-nav">
 
-                                        @if(Auth::user()->categoria == 'administrador')
-                                            @php
-                                                $count = Auth::user()->unreadNotifications->count();
-                                            @endphp
-                                            <li class="dropdown messages-menu">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                                   aria-expanded="true">
-                                                    <i class="fa fa-envelope-o"></i>
-                                                    <span class="label label-primary">{{$count > 0 ? $count : ''}}</span>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                    <li class="header">You have {{$count}} new messages</li>
-                                                    <li>
-                                                        <!-- inner menu: contains the actual data -->
-                                                        <ul class="menu">
-                                                            @foreach(Auth::user()->unreadNotifications as $notification)
-                                                                <li><!-- start message -->
-                                                                    <a href="{{route('messages.index', app()->getLocale())}}">
-                                                                        <div class="pull-left">
-                                                                            <img src="{{asset('css/images/profile.jpeg')}}"
-                                                                                 class="img-circle" alt="User Image">
-                                                                        </div>
-                                                                        <h4>
-                                                                            Message:
-                                                                            <small>
-                                                                                <i class="fa fa-clock-o"></i>{{date("d-m-Y | H:i", strtotime($notification->created_at))}}
-                                                                            </small>
-                                                                        </h4>
-                                                                        <p>{{str_limit($notification->data['data'],20)}}</p>
-                                                                    </a>
-                                                                </li>
-                                                                <!-- end message -->
-                                                            @endforeach
-                                                        </ul>
-                                                    </li>
-                                                    <li class="footer"><a href="{{route('messages.index', app()->getLocale())}}">See All
-                                                            Messages</a></li>
-                                                </ul>
-                                            </li>
-                                        @endif
-                                        <li id="notifications-menu" class="dropdown notifications-menu">
+                                    @if(Auth::user()->categoria == 'administrador')
+                                        @php
+                                            $count = Auth::user()->unreadNotifications->count();
+                                        @endphp
+                                        <li class="dropdown messages-menu">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                                aria-expanded="true">
-                                                <i class="fa fa-bell-o"></i>
-                                                <span id="notification-counter" class="label label-warning"></span>
+                                                <i class="fa fa-envelope-o"></i>
+                                                <span class="label label-primary">{{$count > 0 ? $count : ''}}</span>
                                             </a>
                                             <ul class="dropdown-menu">
-                                                <li class="header">Your notifications</li>
+                                                <li class="header">You have {{$count}} new messages</li>
                                                 <li>
                                                     <!-- inner menu: contains the actual data -->
-                                                    <ul class="notification-menu menu">
-
+                                                    <ul class="menu">
+                                                        @foreach(Auth::user()->unreadNotifications as $notification)
+                                                            <li><!-- start message -->
+                                                                <a href="{{route('messages.index', app()->getLocale())}}">
+                                                                    <div class="pull-left">
+                                                                        <img src="{{asset('css/images/profile.jpeg')}}"
+                                                                             class="img-circle" alt="User Image">
+                                                                    </div>
+                                                                    <h4>
+                                                                        Message:
+                                                                        <small>
+                                                                            <i class="fa fa-clock-o"></i>{{date("d-m-Y | H:i", strtotime($notification->created_at))}}
+                                                                        </small>
+                                                                    </h4>
+                                                                    <p>{{str_limit($notification->data['data'],20)}}</p>
+                                                                </a>
+                                                            </li>
+                                                            <!-- end message -->
+                                                        @endforeach
                                                     </ul>
                                                 </li>
-                                                <li class="footer"><a href="#">View all</a></li>
+                                                <li class="footer"><a
+                                                            href="{{route('messages.index', app()->getLocale())}}">See
+                                                        All
+                                                        Messages</a></li>
                                             </ul>
                                         </li>
-                                        <li class="dropdown user user-menu">
-                                            <!-- Menu Toggle Button -->
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                                               aria-expanded="true">
-                                                <!-- The user image in the navbar-->
-                                                <i class="fa fa-user"></i>
-                                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                                <span class="hidden-xs">{{Auth::user()->name}}</span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <!-- The user image in the menu -->
-                                                <li  class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
-                                                    <img src="{{asset('css/images/profile.jpeg')}}" class="img-circle"
-                                                         alt="User Image">
-                                                    <p>
-                                                        {{Auth::user()->name}}
-                                                        <small>Member since {{Auth::user()->created_at}}</small>
-                                                    </p>
-                                                </li>
-                                                <!-- Menu Body -->
-                                                <li class="user-body">
-                                                    <div class="row">
-                                                        <div class="col-xs-4 text-center border-right">
-                                                            <a class="user-body-link" href="{{route('profile.edit', ['profile' => Auth::user()->id, 'locale' => app()->getLocale()])}}">Account
-                                                                Settings</a>
-                                                        </div>
-                                                        <div class="col-xs-4 text-center border-right">
-                                                            <a class="user-body-link" href="{{route('ontologies.index', app()->getLocale())}}">Your Ontologies</a>
-                                                        </div>
-                                                        <div class="col-xs-4 text-center">
-                                                            <a class="user-body-link" href="{{route('help', app()->getLocale())}}">Help Menu</a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.row -->
-                                                </li>
-                                                <!-- Menu Footer-->
-                                                <li class="user-footer">
-                                                    <div class="pull-left">
-                                                        <a href="{{route('profile.index', app()->getLocale())}}"
-                                                           class="btn btn-default btn-flat"><i
-                                                                    class="fa fa-user-plus"></i> Profile</a>
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
-                                                            <a class="btn btn-default btn-flat"
-                                                               href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
-                                                                <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                                            </a>
-                                                        @else
-                                                            <a class="btn btn-default btn-flat" href="#"
-                                                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                                            >
-                                                                <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                                            </a>
-                                                            <form id="logout-form"
-                                                                  action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}"
-                                                                  method="POST" style="display: none;">
-                                                                @if(config('adminlte.logout_method'))
-                                                                    {{ method_field(config('adminlte.logout_method')) }}
-                                                                @endif
-                                                                {{ csrf_field() }}
-                                                            </form>
-                                                        @endif
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        @if(Route::currentRouteName() == 'home')
+                                    @endif
+                                    <li id="notifications-menu" class="dropdown notifications-menu">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                           aria-expanded="true">
+                                            <i class="fa fa-bell-o"></i>
+                                            <span id="notification-counter" class="label label-warning"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li class="header">Your notifications</li>
                                             <li>
-                                                <a id="control-sidebar" href="#" data-toggle="control-sidebar"><i class="fa fa-1.5x fa-fw fa-exchange "></i></a>
+                                                <!-- inner menu: contains the actual data -->
+                                                <ul class="notification-menu menu">
+
+                                                </ul>
                                             </li>
-                                        @endif
-                                            @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))
-                                            <!-- Control Sidebar Toggle Button -->
-                                                <li>
-                                                    <a href="#" data-toggle="control-sidebar" @if(!config('adminlte.right_sidebar_slide')) data-controlsidebar-slide="false" @endif>
-                                                        <i class="{{config('adminlte.right_sidebar_icon')}}"></i>
-                                                    </a>
-                                                </li>
-                                            @endif
-                                    </ul>
-                                </div>
-                            @if(config('adminlte.layout') == 'top-nav')
+                                            <li class="footer"><a href="#">View all</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown user user-menu">
+                                        <!-- Menu Toggle Button -->
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                                           aria-expanded="true">
+                                            <!-- The user image in the navbar-->
+                                            <i class="fa fa-user"></i>
+                                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                            <span class="hidden-xs">{{Auth::user()->name}}</span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <!-- The user image in the menu -->
+                                            <li class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
+                                                <img src="{{asset('css/images/profile.jpeg')}}" class="img-circle"
+                                                     alt="User Image">
+                                                <p>
+                                                    {{Auth::user()->name}}
+                                                    <small>Member since {{Auth::user()->created_at}}</small>
+                                                </p>
+                                            </li>
+                                            <!-- Menu Body -->
+                                            <li class="user-body">
+                                                <div class="row">
+                                                    <div class="col-xs-4 text-center border-right">
+                                                        <a class="user-body-link"
+                                                           href="{{route('profile.edit', ['profile' => Auth::user()->id, 'locale' => app()->getLocale()])}}">Account
+                                                            Settings</a>
+                                                    </div>
+                                                    <div class="col-xs-4 text-center border-right">
+                                                        <a class="user-body-link"
+                                                           href="{{route('ontologies.index', app()->getLocale())}}">Your
+                                                            Ontologies</a>
+                                                    </div>
+                                                    <div class="col-xs-4 text-center">
+                                                        <a class="user-body-link"
+                                                           href="{{route('help', app()->getLocale())}}">Help Menu</a>
+                                                    </div>
+                                                </div>
+                                                <!-- /.row -->
+                                            </li>
+                                            <!-- Menu Footer-->
+                                            <li class="user-footer">
+                                                <div class="pull-left">
+                                                    <a href="{{route('profile.index', app()->getLocale())}}"
+                                                       class="btn btn-default btn-flat"><i
+                                                                class="fa fa-user-plus"></i> Profile</a>
+                                                </div>
+                                                <div class="pull-right">
+                                                    @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
+                                                        <a class="btn btn-default btn-flat"
+                                                           href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
+                                                            <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                                        </a>
+                                                    @else
+                                                        <a class="btn btn-default btn-flat" href="#"
+                                                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                                        >
+                                                            <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                                        </a>
+                                                        <form id="logout-form"
+                                                              action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}"
+                                                              method="POST" style="display: none;">
+                                                            @if(config('adminlte.logout_method'))
+                                                                {{ method_field(config('adminlte.logout_method')) }}
+                                                            @endif
+                                                            {{ csrf_field() }}
+                                                        </form>
+                                                    @endif
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    @if(Route::currentRouteName() == 'home')
+                                        <li>
+                                            <a id="control-sidebar" href="#" data-toggle="control-sidebar"><i
+                                                        class="fa fa-1.5x fa-fw fa-exchange "></i></a>
+                                        </li>
+                                    @endif
+                                    @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))
+                                    <!-- Control Sidebar Toggle Button -->
+                                        <li>
+                                            <a href="#" data-toggle="control-sidebar"
+                                               @if(!config('adminlte.right_sidebar_slide')) data-controlsidebar-slide="false" @endif>
+                                                <i class="{{config('adminlte.right_sidebar_icon')}}"></i>
+                                            </a>
+                                        </li>
+                                    @endif
+                                </ul>
+                            </div>
+                        @if(config('adminlte.layout') == 'top-nav')
                     </div>
                     @endif
                 </nav>
+            @endif
         </header>
 
     @if(config('adminlte.layout') != 'top-nav')
         <!-- Left side column. contains the logo and sidebar -->
             <aside class="main-sidebar">
-
                 <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
+                <section class="sidebar" style="height: auto">
+                    <!-- sidebar menu: : style can be found in sidebar.less -->
+                    <ul class="sidebar-menu tree" data-widget="tree">
+                        <li class="header">{{__('MAIN NAVIGATION')}}</li>
+                        <li>
+                            <a href="{{route('home', app()->getLocale())}}">
+                                <i class="fa fa-fw fa-object-group "></i>
+                                <span>{{__('Ontology Editor')}}</span></a>
+                        </li>
+                        <li>
+                            <a href="{{route('ontologies.index', app()->getLocale())}}">
+                                <i class="fa fa-fw fa-folder-open "></i>
+                                <span>{{__('My Ontologies')}}</span></a>
+                        </li>
+                        <li>
+                            <a href="{{route('thesaurus-editor', app()->getLocale())}}">
+                                <i class="fa fa-fw fa-book "></i>
+                                <span>{{__('Thesaurus Editor')}}</span></a>
+                        </li>
+                        <li>
+                            <a href="{{route('thesaurus.index', app()->getLocale())}}">
+                                <i class="fa fa-fw fa-folder-open "></i>
+                                <span>{{__('My Thesaurus')}}</span></a>
+                        </li>
+                        <li class="header">INFO</li>
+                        <li>
+                            <a href="{{route('help', app()->getLocale())}}">
+                                <i class="fa fa-fw fa-question "></i>
+                                <span>{{__('Help Menu')}}</span></a>
+                        </li>
+                        <li>
+                            <a href="{{route('tutorial', app()->getLocale())}}">
+                                <i class="fa fa-fw fa-info-circle "></i>
+                                <span>{{__('Tutorial')}}</span></a>
+                        </li>
+                        <li>
+                            <a href="{{route('aboutUs', app()->getLocale())}}">
+                                <i class="fa fa-fw fa-institution"></i>
+                                <span>{{__('About Us')}}</span></a>
+                        </li>
+                        @can('eAdmin')
+                            <li class="header">ADMIN PANEL</li>
+                            <li>
+                                <a href="{{route('ontology_relation.index', app()->getLocale())}}">
+                                    <i class="fa fa-fw fa-arrow-right "></i>
+                                    <span>{{__('Ontological Relations')}}</span></a>
+                            </li>
+                            <li>
+                                <a href="{{route('ontology_class.index', app()->getLocale())}}">
+                                    <i class="fa fa-fw fa-circle "></i>
+                                    <span>{{__('Ontological Classes')}}</span></a>
+                            </li>
+                            <li>
+                                <a href="{{route('messages.index', app()->getLocale())}}">
+                                    <i class="fa fa-fw fa-envelope "></i>
+                                    <span>{{__('Messages')}}</span></a>
+                            </li>
+                            <li>
+                                <a href="{{route('users', app()->getLocale())}}">
+                                    <i class="fa fa-fw fa-users "></i>
+                                    <span>{{__('Users')}}</span></a>
+                            </li>
+                        @endcan
+                        <li class="header">{{__('OPTIONS')}}</li>
+                        <li class="treeview">
+                            <a style="margin-left: 3px" href="#">
+                                <i class="fa fa-gear"></i> <span>Options</span>
+                                <span class="pull-right-container">
+                                  <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-gears"></i>
+                                        <span>{{__('Account Settings')}}</span>
+                                        <span class="pull-right-container"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <!-- Sidebar toggle button-->
+                                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                                        <i class="fa fa-fw fa-bars"></i>
+                                        <span>{{__('Show/Hide Left Sidebar')}}</span>
+                                        <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" data-toggle="control-sidebar">
+                                        <i class="fa fa-1.5x fa-fw fa-exchange "></i>
+                                        <span>{{__('Show/Hide Right Sidebar')}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="btn btn-default btn-flat" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >
+                                        <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                    </a>
+                                    <form action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}"  method="POST" style="display: none;">
+                                        @if(config('adminlte.logout_method'))
+                                            {{ method_field(config('adminlte.logout_method')) }}
+                                        @endif
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
 
-                    <!-- Sidebar Menu -->
-                    <ul class="sidebar-menu" data-widget="tree">
-                        @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
+
+                            </ul>
+                        </li>
+
                     </ul>
-                    <!-- /.sidebar-menu -->
                 </section>
                 <!-- /.sidebar -->
             </aside>

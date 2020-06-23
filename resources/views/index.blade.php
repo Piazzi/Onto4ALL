@@ -135,6 +135,59 @@
 
     <!--tips menu-->
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
+        <!-- Warning Console -->
+        <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning ">
+            <div id="warnings-console-header" class="box-header">
+                <h3 class="box-title">{{__('Warnings Console')}}</h3>
+
+                <a  href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle"></i></a>
+                <div class="box-tools pull-right">
+
+                    <a download="ontology-errors.txt" href="#" id="download-errors-txt"><span data-toggle="tooltip" title="" class="badge bg-info">
+                    <i class="fa fa-download"></i>
+                    </span>
+                    </a>
+
+                    <!--
+                    <span id="errors" data-widget="collapse"  class="badge bg-red" data-original-title="Errors">
+                        <i class="fa fa-close"></i>
+                        <span id="error-count"> 0</span>
+                    </span>-->
+
+                    <span id="warnings" data-widget="collapse" class="badge bg-yellow" data-original-title="Warnings">
+                    <i class="fa fa-warning"> </i>
+                    <span id="warnings-count">  0</span>
+                </span>
+
+                    <button id="open-error-console" type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body" style="">
+                <!-- Conversations are loaded here -->
+                <div class="direct-chat-messages">
+
+                    <!-- Message to the right -->
+                    <div class="direct-chat-msg">
+                        <div class="direct-chat-info clearfix">
+                            <span class="direct-chat-name pull-right">{{__('Welcome')}}</span>
+                            <span class="direct-chat-timestamp pull-left"></span>
+                        </div>
+                        <!-- /.direct-chat-info -->
+                        <img id="no-warning-img" class="direct-chat-img" src="{{asset('css/images/LogoMini.png')}}" alt="Message User Image"><!-- /.direct-chat-img -->
+                        <div id="no-warning-text" class="direct-chat-text">
+                            {{__('You dont have any warnings.')}}
+                        </div>
+                        <!-- /.direct-chat-text -->
+                    </div>
+                    <!-- /.direct-chat-msg -->
+                </div>
+                <!--/.direct-chat-messages-->
+                <!-- /.direct-chat-pane -->
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!--  ./Warning Console -->
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
             <li class=""><a class="menu-title" href="#control-sidebar-theme-demo-options-tab" data-toggle="tab" aria-expanded="false"><i
@@ -386,7 +439,7 @@
             <!-- /.tab-pane -->
             <!-- Settings tab content -->
             <div class="tab-pane" id="control-sidebar-settings-tab">
-                <h4 class="control-sidebar-heading">{{__('Your recent ontologies')}}</h4>
+                <h4 style="padding-top: 0px" class="control-sidebar-heading">{{__('Your recent ontologies')}}</h4>
                 <div id="menu-scroll">
                     @foreach($ontologies as $ontology)
                     <div class="box box-success">
@@ -449,62 +502,6 @@
         </div>
     </aside>
     <!-- /.tips menu -->
-
-
-
-    <!-- Warning Console -->
-    <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-danger collapsed-box">
-        <div id="warnings-console-header" class="box-header">
-            <h3 class="box-title">{{__('Warnings Console')}}</h3>
-
-            <a  href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle"></i></a>
-            <div class="box-tools pull-right">
-
-                <a download="ontology-errors.txt" href="#" id="download-errors-txt"><span data-toggle="tooltip" title="" class="badge bg-info">
-                    <i class="fa fa-download"></i>
-                    </span>
-                </a>
-
-                <!--
-                <span id="errors" data-widget="collapse"  class="badge bg-red" data-original-title="Errors">
-                    <i class="fa fa-close"></i>
-                    <span id="error-count"> 0</span>
-                </span>-->
-
-                <span id="warnings" data-widget="collapse" class="badge bg-yellow" data-original-title="Warnings">
-                    <i class="fa fa-warning"> </i>
-                    <span id="warnings-count">  0</span>
-                </span>
-
-                <button id="open-error-console" type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-            </div>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-body" style="">
-            <!-- Conversations are loaded here -->
-            <div class="direct-chat-messages">
-
-                <!-- Message to the right -->
-                <div class="direct-chat-msg">
-                    <div class="direct-chat-info clearfix">
-                        <span class="direct-chat-name pull-right">{{__('Welcome')}}</span>
-                        <span class="direct-chat-timestamp pull-left"></span>
-                    </div>
-                    <!-- /.direct-chat-info -->
-                    <img class="direct-chat-img" src="{{asset('css/images/profile.jpeg')}}" alt="Message User Image"><!-- /.direct-chat-img -->
-                    <div class="direct-chat-text">
-                        {{__('Here you can see all the warnings')}}
-                    </div>
-                    <!-- /.direct-chat-text -->
-                </div>
-                <!-- /.direct-chat-msg -->
-            </div>
-            <!--/.direct-chat-messages-->
-            <!-- /.direct-chat-pane -->
-        </div>
-        <!-- /.box-body -->
-    </div>
-    <!--  ./Error Console -->
 
     <div class="tab modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                aria-hidden="true">
@@ -878,7 +875,7 @@
             </div>
         </div>
     </div>
-    <!--./Error Console Info modal -->
+    <!--./Warning Console Info modal -->
 
 
 
@@ -897,16 +894,19 @@
                     <i class="fa fa-fw fa-diamond"></i>
                     <span id="instances-count"> 0</span>
                 </span>
-
+    <!--
     <span id="night-mode" class="badge bg-green-gradient tracker">
         <a style="color: white;"   href="#"><i class="fa fa-fw fa-moon-o"></i></a>
-    </span>
+    </span>-->
 
     <a download="ontology-report.txt" class="tracker"  href="#" id="download-ontology-report">
         <span data-toggle="tooltip" title="" class="badge bg-green-gradient tracker">
                     <i class="fa fa-fw fa-file-text-o"></i>
         </span>
     </a>
+
+    <a class="tracker" id="control-sidebar" href="#" data-toggle="control-sidebar"><i class="fa fa-1.5x fa-fw fa-exchange "></i></a>
+
 
     <!-- ./Tracker spans  -->
 

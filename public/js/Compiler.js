@@ -275,12 +275,34 @@ function movementCompiler(xml) {
     // /.----------- WARNINGS SEARCH --------------
 
     // Update the counters on front end
-    $("#warnings-count").text(equalRelationBetweenClassesWarning + equalClassNamesWarning + instanceOfBetweenClassesWarning + wrongRelationWarning + inverseOfNameWarning + missingClassPropertiesWarning + missingRelationPropertiesWarning + multipleInheritanceWarning + notConnectedRelationWarning);
+    let totalWarnings = equalRelationBetweenClassesWarning + equalClassNamesWarning + instanceOfBetweenClassesWarning + wrongRelationWarning + inverseOfNameWarning + missingClassPropertiesWarning + missingRelationPropertiesWarning + multipleInheritanceWarning + notConnectedRelationWarning;
+    $("#warnings-count").text(totalWarnings);
     $("#classes-count").text(classesCount);
     $("#relations-count").text(relationsCount);
     $("#instances-count").text(instancesCount);
 
-    // Checks if any error can be removed from the console error
+    // Checks if have any warnings
+    if(totalWarnings === 0)
+    {
+        if(getLanguage() === 'pt')
+        {
+            $(".direct-chat-messages").append('<img id="no-warning-img" class="direct-chat-img" src="/css/images/LogoMini.png" alt="Message User Image"><!-- /.direct-chat-img -->\n' +
+                '                        <div id="no-warning-text" class="direct-chat-text">\n' +
+                '                           Voce não tem nenhum aviso.\n' +
+                '                        </div>');
+        }
+        else
+        {
+            $(".direct-chat-messages").append('<img id="no-warning-img" class="direct-chat-img" src="/css/images/LogoMini.png" alt="Message User Image"><!-- /.direct-chat-img -->\n' +
+                '                        <div id="no-warning-text" class="direct-chat-text">\n' +
+                '                           You dont have any warnings.\n' +
+                '                        </div>');
+        }
+    }
+
+
+
+    // Checks if any warning can be removed from the warnings console
     if(equalClassNamesWarning === 0)
         removeWarning(1);
     if(equalRelationBetweenClassesWarning === 0)

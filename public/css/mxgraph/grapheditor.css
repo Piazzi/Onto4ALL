@@ -67,10 +67,6 @@ html {
 }
 
 /*
-   FIM DAS ALTERAÇÕES
-*/
-
-/*
     ALTERAÇÕES PARA ORGANIZER AS CAIXAS DE DIALOGO
     DO SISTEMA
 */
@@ -79,15 +75,6 @@ html {
     height: 85%!important;
 }
 
-/*
-center {
-    padding-right: 500px;
-}
-*/
-
-/*
-   FIM DAS ALTERAÇÕES
-*/
 
 /* /.botões */
 
@@ -141,7 +128,7 @@ aside {
     justify-content: center;
 }
 
-/* Error Console */
+/* WarningsConsole */
 
 #warnings-console {
     width: 30%;

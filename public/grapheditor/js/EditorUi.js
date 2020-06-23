@@ -1027,7 +1027,7 @@ EditorUi.prototype.sidebarFooterHeight = 34;
  * Specifies the position of the horizontal split bar. Default is 240 or 118 for
  * screen widths <= 640px.
  */
-EditorUi.prototype.hsplitPosition = (screen.width <= 640) ? 118 : ((urlParams['sidebar-entries'] != 'large') ? 212 : 240);
+EditorUi.prototype.hsplitPosition = (screen.width <= 640) ? 118 : ((urlParams['sidebar-entries'] != 'large') ? 260 : 240);
 
 /**
  * Specifies if animations are allowed in <executeLayout>. Default is true.
@@ -2640,10 +2640,22 @@ EditorUi.prototype.open = function()
 			{
 				try
 				{
-					var doc = mxUtils.parseXml(xml); 
-					this.editor.setGraphXml(doc.documentElement);
-					this.editor.setModified(false);
-					this.editor.undoManager.clear();
+					// Verifies if the uploaded file is a OWL file
+					let fileExtension = filename.split('.').pop();
+					if(fileExtension === 'owl' || fileExtension === 'owx')
+					{
+						let parser = new DOMParser();
+						let owlDoc = parser.parseFromString(xml,"text/xml");
+						this.editor.setGraphXml(owlToXml(owlDoc));
+					}
+					else
+					{
+						var doc = mxUtils.parseXml(xml);
+						this.editor.setGraphXml(doc.documentElement);
+						this.editor.setModified(false);
+						this.editor.undoManager.clear();
+					}
+
 					
 					if (filename != null)
 					{
@@ -3439,7 +3451,7 @@ EditorUi.prototype.createDivs = function()
 {
 	this.menubarContainer = this.createDiv('geMenubarContainer');
 	this.toolbarContainer = this.createDiv('geToolbarContainer');
-	this.sidebarContainer = this.createDiv('geSidebarContainer');
+	this.sidebarContainer = this.createDiv('geSidebarContainer gePaletteContainer');
 	this.formatContainer = this.createDiv('geSidebarContainer geFormatContainer');
 	this.diagramContainer = this.createDiv('geDiagramContainer');
 	this.footerContainer = this.createDiv('geFooterContainer');
@@ -4049,6 +4061,9 @@ EditorUi.prototype.save = function(name)
 			{
 				if (xml.length < MAX_REQUEST_SIZE)
 				{
+					// ONTO4ALL METHOD
+					EditorUi.prototype.saveXML('/saveXML', {fileName: name, xml: xml});
+					/* MXGRAPH METHOD */
 					new mxXmlRequest(SAVE_URL, 'filename=' + encodeURIComponent(name) +
 						'&xml=' + encodeURIComponent(xml)).simulate(document, '_blank');
 				}

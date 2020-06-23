@@ -10,11 +10,6 @@
     <script src="{{ asset('vendor/adminlte/vendor/jquery/dist/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 
-    <!-- Editor CSS  -->
-    @if(Route::currentRouteName() == 'home')
-        <link rel="stylesheet" type="text/css" href="{{asset('grapheditor/styles/grapheditor.css')}}">
-    @endif
-
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -35,6 +30,11 @@
     @if(config('adminlte.plugins.datatables'))
         <!-- DataTables with bootstrap 3 style -->
         <link rel="stylesheet" href="//cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css">
+    @endif
+
+    <!-- Editor CSS  -->
+    @if(Route::currentRouteName() == 'home')
+        <link rel="stylesheet" type="text/css" href="{{asset('grapheditor/styles/grapheditor.css')}}">
     @endif
 
     @yield('adminlte_css')
