@@ -40,8 +40,13 @@ function movementCompiler(xml) {
     // For this i used the getValueOrLabel function.
     // Complexity: O(n^2)
     for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
-
-
+        console.log(i);
+        console.log(xmlDoc.getElementsByTagName("mxCell")[i]);
+        // Checks if the mxCell element is valid, if is not, goes to the next iteration
+        if(!xmlDoc.getElementsByTagName("mxCell")[i].hasAttribute('style')&&
+            !xmlDoc.getElementsByTagName("mxCell")[i].hasAttribute('edge')&&
+            !xmlDoc.getElementsByTagName("mxCell")[i].hasAttribute('value'))
+            continue;
         // -------- WARNINGS SEARCH -----------------
 
         // Checks if the mxCell element is a relation by looking at the "edge" attribute

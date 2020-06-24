@@ -125,7 +125,7 @@ aside {
 	margin-top: 500px;
 }
 
-.geSidebarContainer .geTitle:active {
+.geSidebarContainer .geTitle:active, .geMenubarContainer a:active, .geToolbarContainer a:active {
 	background-color: #00a65a !important;
 }
 
