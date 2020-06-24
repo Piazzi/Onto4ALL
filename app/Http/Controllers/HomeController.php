@@ -79,6 +79,9 @@ class HomeController extends Controller
      */
     public function saveXML(Request $request)
     {
+        if(pathinfo($request->fileName, PATHINFO_EXTENSION) != '.xml')
+            $request->fileName = $request->fileName . '.xml';
+
         // creates the XML file
         $response = Response::create($request->xml, 200);
         $response->header('Content-Type', 'text/xml');
@@ -105,6 +108,9 @@ class HomeController extends Controller
      */
     public function exportImage(Request $request)
     {
+        if(pathinfo($request->fileName, PATHINFO_EXTENSION) != '.svg')
+            $request->fileName = $request->fileName . '.svg';
+
         $response = Response::create($request->data, 200);
         $response->header('Content-Description', 'File Transfer');
         $response->header('Content-Disposition', 'attachment; filename=' . $request->fileName . '');
@@ -498,6 +504,9 @@ class HomeController extends Controller
         // Formatting the XML text
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
+
+        if(pathinfo($request->fileName, PATHINFO_EXTENSION) != '.owl')
+            $request->fileName = $request->fileName . '.owl';
 
         $response = Response::create($dom->saveXML(), 200);
         $response->header('Content-Description', 'File Transfer');
