@@ -136,7 +136,7 @@
     <!--tips menu-->
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
         <!-- Warning Console -->
-        <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning ">
+        <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings ">
             <div id="warnings-console-header" class="box-header">
                 <h3 class="box-title">{{__('Warnings Console')}}</h3>
 
@@ -154,7 +154,7 @@
                         <span id="error-count"> 0</span>
                     </span>-->
 
-                    <span id="warnings" data-widget="collapse" class="badge bg-yellow" data-original-title="Warnings">
+                    <span id="warnings" data-widget="collapse" class="badge bg-green" data-original-title="Warnings">
                     <i class="fa fa-warning"> </i>
                     <span id="warnings-count">  0</span>
                 </span>

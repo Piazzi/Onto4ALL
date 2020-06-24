@@ -284,6 +284,8 @@ function movementCompiler(xml) {
     // Checks if have any warnings
     if(totalWarnings === 0)
     {
+        $('#warnings-console')[0].style.setProperty('border-color','#00a65a','important');
+        $('#warnings')[0].style.setProperty('background-color','#00a65a','important');
         if(getLanguage() === 'pt')
         {
             $(".direct-chat-messages").append('<img id="no-warning-img" class="direct-chat-img" src="/css/images/LogoMini.png" alt="Message User Image"><!-- /.direct-chat-img -->\n' +
@@ -298,6 +300,11 @@ function movementCompiler(xml) {
                 '                           You dont have any warnings.\n' +
                 '                        </div>');
         }
+    }
+    else
+    {
+        $('#warnings-console')[0].style.setProperty('border-color','#f39c12','important');
+        $('#warnings')[0].style.setProperty('background-color','#f39c12','important');
     }
 
 
