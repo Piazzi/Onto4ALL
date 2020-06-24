@@ -53,7 +53,7 @@ class MessageController extends Controller
 
         $this->sendNotification($message);
 
-        return redirect('/help')->with('Success', 'Your message was send');
+        return redirect()->route('help', app()->getLocale())->with('Success', 'Your message was send');
     }
 
     /**
@@ -62,7 +62,7 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($locale, $id)
     {
         $message = Message::findOrFail($id);
         $message->read = true;
@@ -76,10 +76,10 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($locale, $id)
     {
         Message::findOrFail($id)->delete();
-        return redirect(route('messages.index'))->with('Success', 'The message has been deleted with success');
+        return redirect(route('messages.index', $locale))->with('Success', 'The message has been deleted with success');
     }
 
     /**
@@ -87,7 +87,7 @@ class MessageController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search(Request $request)
+    public function search(Request $request, $locale)
     {
         $messages = Message::where('message','Like',  '%' .$request->search. '%')->paginate(50);
         return view('messages.messages', compact('messages'));

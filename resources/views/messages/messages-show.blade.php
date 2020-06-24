@@ -8,7 +8,7 @@
         <small>See the message you received</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Messages</li>
     </ol>
 
@@ -56,13 +56,13 @@
         <!-- /.box-body -->
         <div class="box-footer">
             <div class="pull-right">
-                <form action="{{route('messages.destroy', $message->id)}}" method="post">
+                <form action="{{route('messages.destroy', ['locale' => app()->getLocale(), 'message' => $message->id])}}" method="post">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
                 </form>
             </div>
-            <a href="{{route('messages.index')}}"><button  type="button" class="btn btn-default"><i class="fa fa-reply"></i> Go back</button></a>
+            <a href="{{route('messages.index', app()->getLocale())}}"><button  type="button" class="btn btn-default"><i class="fa fa-reply"></i> Go back</button></a>
         </div>
         <!-- /.box-footer -->
     </div>

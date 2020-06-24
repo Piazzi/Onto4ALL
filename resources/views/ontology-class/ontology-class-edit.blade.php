@@ -8,7 +8,7 @@
         <small>Manage all ontology classes</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Ontology Classes Manager</li>
     </ol>
     @if ($errors->any())
@@ -32,7 +32,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <form method="post" action="{{route('ontology_class.update', $ontologyClass->id)}}" role="form">
+            <form method="post" action="{{route('ontology_class.update', ['locale' => app()->getLocale(), 'ontology_class' => $ontologyClass->id])}}" role="form">
                 @csrf
                 <input name="_method" type="hidden" value="PATCH">
 
@@ -142,7 +142,7 @@
         </div>
         <!-- /.box-body -->
     </div>
-    <script src="../../js/MultipleCheckbox.js" type="text/javascript"></script>
+    <script src="{{asset('js/MultipleCheckbox.js')}}" type="text/javascript"></script>
 
 @stop
 

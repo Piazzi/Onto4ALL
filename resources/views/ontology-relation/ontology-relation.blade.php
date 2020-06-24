@@ -8,15 +8,15 @@
         <small>Manage all ontology relations</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Ontology Classes Relations</li>
     </ol>
 
-    @if (session()->has('Sucess'))
+    @if (session()->has('Success'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
             <h4><i class="icon fa fa-check"></i> Alert!</h4>
-            <strong>{{ session('Sucess') }}</strong>
+            <strong>{{ session('Success') }}</strong>
         </div>
     @endif
 
@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
-                <a href="{{route('ontology_relation.create')}}">
+                <a href="{{route('ontology_relation.create', app()->getLocale())}}">
                     <button type="button" class="btn btn-block btn-success">Add</button>
                 </a>
 
@@ -46,7 +46,7 @@
 
                     <h3 class="box-title">Ontology Relations Database </h3>
 
-                    <form style="float: right;" method="post" action="{{route('ontology_relation.search', ['search' => 'search'])}}">
+                    <form style="float: right;" method="post" action="{{route('ontology_relation.search', ['search' => 'search', 'locale' => app()->getLocale()])}}">
                         @csrf
                         @method('POST')
                         <div class="box-tools">
@@ -89,15 +89,15 @@
                                 <td>{{$ontologyRelation->cardinality}}</td>
                                 <td>{{strtoupper($ontologyRelation->ontology)}}</td>
                                 <td><a>{{$ontologyRelation->imported_from}}</a></td>
-                                <td><a href="{{route('ontology_relation.show', $ontologyRelation->id)}}">
+                                <td><a href="{{route('ontology_relation.show', ['ontology_relation' => $ontologyRelation->id, 'locale'=>app()->getLocale()])}}">
                                         <button type="button" class="btn btn-block btn-info btn-sm">Info</button>
                                     </a></td>
-                                <td><a href="{{route('ontology_relation.edit', $ontologyRelation->id)}}">
+                                <td><a href="{{route('ontology_relation.edit', ['ontology_relation' => $ontologyRelation->id, 'locale'=>app()->getLocale()])}}">
                                         <button type="button" class="btn btn-block btn-warning btn-sm">Edit</button>
                                     </a></td>
                                 <td>
                                     <form method="post"
-                                          action="{{route('ontology_relation.destroy', $ontologyRelation->id)}}">
+                                          action="{{route('ontology_relation.destroy', ['ontology_relation' => $ontologyRelation->id, 'locale'=>app()->getLocale()])}}">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">
                                         <button type="submit" class="btn btn-block btn-danger btn-sm">Delete</button>

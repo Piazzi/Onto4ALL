@@ -8,7 +8,7 @@
         <small>Manage all ontology classes</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Ontology Classes Manager</li>
     </ol>
     @if ($errors->any())
@@ -32,7 +32,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <form method="POST" action="{{route('ontology_class.store')}}" role="form" token="{{ csrf_token() }}">
+            <form method="POST" action="{{route('ontology_class.store', app()->getLocale())}}" role="form" token="{{ csrf_token() }}">
                 {{ csrf_field() }}
                 <div class="row">
                     <div class="col-md-6">

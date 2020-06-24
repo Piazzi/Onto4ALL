@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
 use App\User;
 
 class LoginController extends Controller
@@ -28,6 +28,10 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/home';
+    protected function redirectTo()
+    {
+        return  app()->getLocale().'/home';
+    }
 
     /**
      * Create a new controller instance.
@@ -44,7 +48,8 @@ class LoginController extends Controller
     /**
      * Redirect the user to the Facebook authentication page.
      *
-     * @return \Illuminate\Http\Response
+     * @param $service
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function redirectToProvider($service)
     {
@@ -66,17 +71,7 @@ class LoginController extends Controller
             'password' => Hash::make($user->tokenSecret),
         ]);
 
-        return view('/home')->withDetails($user)->withService($service);
-    }
-
-    /**
-     * Sets the locale parameter
-     * @return string
-     *
-     */
-    public function redirectTo()
-    {
-        return app()->getLocale() . '/home';
+        return redirect()->route('home', 'en')->withDetails($user)->withService($service);
     }
 
 }

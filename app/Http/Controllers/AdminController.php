@@ -33,7 +33,7 @@ class AdminController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public  function search(Request $request)
+    public function search(Request $request)
     {
         $users = User::where('name','Like',  '%' .$request->search. '%')->paginate(50);
         return view('admin.admin', compact('users'));

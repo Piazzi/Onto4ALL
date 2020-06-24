@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <link rel="stylesheet" type="text/css" href="{{asset('css/mxgraph/grapheditor.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('grapheditor/styles/grapheditor.css')}}">
 
     <title>Grapheditor</title>
     <!--[if IE]>
@@ -41,22 +41,24 @@
     <script type="text/javascript" src="{{asset('js/OpenDiagram.js')}}"></script>
 
     <!-- MxGraph -->
-    <script type="text/javascript" src="{{asset('js/Init.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/pako.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/base64.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/jscolor.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/sanitizer.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/mxClient.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/EditorUi.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Editor.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Sidebar.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Graph.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Format.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Shapes.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Actions.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Menus.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Toolbar.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Dialogs.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/Init.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/deflate/pako.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/deflate/base64.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('grapheditor/jscolor/jscolor.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/sanitizer/sanitizer.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/mxClient.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/EditorUi.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/Editor.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/SidebarO4A.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/Graph.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/Format.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/Shapes.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/Actions.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/Menus.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/Toolbar.js')}}"></script>
+    <script type="text/javascript" src="{{asset('grapheditor/js/Dialogs.js')}}"></script>
+
     <!-- Search Script <script defer type="text/javascript" src="js/SearchTip.js"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>

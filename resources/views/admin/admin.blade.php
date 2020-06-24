@@ -8,7 +8,7 @@
         <small>Manage all users</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Users Manager</li>
     </ol>
     @if (session()->has('Success'))
@@ -47,8 +47,8 @@
 
                 <div class="box-header with-border">
 
-                    <h3 class="box-title">UsersDatabase </h3>
-                    <form style="float: right;" method="post" action="{{route('user.search', ['search' => 'search'])}}">
+                    <h3 class="box-title">Users Database </h3>
+                    <form style="float: right;" method="post" action="{{route('user.search', ['search' => 'search', 'locale' => app()->getLocale()])}}">
                         @csrf
                         @method('POST')
                         <div class="box-tools">

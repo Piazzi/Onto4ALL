@@ -444,7 +444,7 @@
                         </ul>
                     </div>
                     <div class="col-md-12">
-                        <img alt="class image" src="{{__('css/images/your-ontologies.png')}}">
+                        <img alt="class image" src="{{asset('css/images/your-ontologies.png')}}">
                     </div>
                 </div>
         </div>

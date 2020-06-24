@@ -8,7 +8,7 @@
         <small>See all the messages you received from users</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Messages</li>
     </ol>
 
@@ -30,7 +30,7 @@
 
             <div class="box-tools pull-right">
                 <div class="has-feedback">
-                    <form style="float: right;" method="post" action="{{route('messages.search', ['search' => 'search'])}}">
+                    <form style="float: right;" method="post" action="{{route('messages.search', ['search' => 'search', 'locale' => app()->getLocale()])}}">
                         @csrf
                         @method('POST')
                         <div class="box-tools">
@@ -50,7 +50,7 @@
         <div class="box-body no-padding">
             <div class="mailbox-controls">
 
-                <a href="{{route('messages.index')}}" ><button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button></a>
+                <a href="{{route('messages.index', app()->getLocale())}}" ><button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button></a>
                 <div class="pull-right">
                     <div class="btn-group">
 
@@ -81,7 +81,7 @@
                             <i class="fa fa-eye"></i>
                             @endif
                         </td>
-                        <td class="mailbox-name"><a href="{{route('messages.show', $message->id)}}">{{$message->name}}</a></td>
+                        <td class="mailbox-name"><a href="{{route('messages.show', ['message' => $message->id, 'locale' => app()->getLocale()])}}">{{$message->name}}</a></td>
                         <td class="mailbox-subject">
                             @if($message->category == 'bug')
                             <b>Onto4ALL Bug Report
@@ -101,7 +101,7 @@
                                 </b> - " {{str_limit($message->message, 30)}} "
                             @endif
                         </td>
-                        <td class="mailbox-attachment"><a href="{{route('messages.show', $message->id)}}"><i class="fa fa-envelope-o"></i></a></td>
+                        <td class="mailbox-attachment"><a href="{{route('messages.show', ['message' => $message->id, 'locale' => app()->getLocale()])}}"><i class="fa fa-envelope-o"></i></a></td>
                         <td class="mailbox-date">{{date("d-m-Y | H:i e", strtotime($message->created_at))}}</td>
                     </tr>
                     @endforeach
@@ -115,7 +115,7 @@
         <div class="box-footer no-padding">
             <div class="mailbox-controls">
 
-                <a href="{{route('messages.index')}}" ><button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button></a>
+                <a href="{{route('messages.index', app()->getLocale())}}" ><button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button></a>
                 <div class="pull-right">
 
                     <div class="btn-group">
@@ -131,7 +131,7 @@
     </div>
 
     <!-- Filter -->
-    <script type="text/javascript" src="js/SearchBar.js"></script>
+    <script type="text/javascript" src="{{asset('js/SearchBar.js')}}"></script>
 
 @stop
 

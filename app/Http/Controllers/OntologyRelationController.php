@@ -46,10 +46,10 @@ class OntologyRelationController extends Controller
      * @param OntologyRelationStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OntologyRelationStoreRequest $request)
+    public function store(OntologyRelationStoreRequest $request, $locale)
     {
         OntologyRelation::create($request->all());
-        return redirect()->route('ontology_relation.index')->with('Success', 'Your relation has been successfully stored')->withInput();
+        return redirect()->route('ontology_relation.index', $locale)->with('Success', 'Your relation has been successfully stored')->withInput();
 
     }
 
@@ -59,7 +59,7 @@ class OntologyRelationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($locale, $id)
     {
         $ontologyRelation = OntologyRelation::findOrFail($id);
         return view('ontology-relation.ontology-relation-show', compact('ontologyRelation'));
@@ -71,7 +71,7 @@ class OntologyRelationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($locale, $id)
     {
         $ontologyRelation = OntologyRelation::findOrFail($id);
         return view('ontology-relation.ontology-relation-edit', compact('ontologyRelation', 'id'));
@@ -84,11 +84,11 @@ class OntologyRelationController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(OntologyRelationStoreRequest $request, $id)
+    public function update(OntologyRelationStoreRequest $request,$locale, $id)
     {
         $ontologyRelation = OntologyRelation::findOrFail($id);
         $ontologyRelation->update($request->all());
-        return redirect()->route('ontology_relation.index')->with('Success', 'Your relation has been successfully updated');
+        return redirect()->route('ontology_relation.index', $locale)->with('Success', 'Your relation has been successfully updated');
     }
 
     /**
@@ -97,7 +97,7 @@ class OntologyRelationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($locale,$id)
     {
         $ontologyRelation = OntologyRelation::findOrFail($id);
         $ontologyRelation->delete();
@@ -109,7 +109,7 @@ class OntologyRelationController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search(Request $request)
+    public function search($locale, Request $request)
     {
         $relations = OntologyRelation::where('name','Like',  '%' .$request->search. '%')->paginate(10);
         return view('ontology-relation.ontology-relation', compact('relations'));

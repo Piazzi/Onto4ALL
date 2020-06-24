@@ -8,7 +8,7 @@
         <small>Manage all ontology classes</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Ontology Classes Manager</li>
     </ol>
 @stop
@@ -116,7 +116,7 @@
                 </select>
             </div>
 
-            <a href="/ontology_class">
+            <a href="{{route('ontology_class.index', app()->getLocale())}}">
                 <button class="btn btn-success btn-block" type="button">Go back</button>
             </a>
         </div>

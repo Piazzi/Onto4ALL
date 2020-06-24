@@ -71,7 +71,7 @@
                 <label>Created By</label>
                 <label class="form-control"> {{$ontology->created_by}}</label>
             </div>
-            <a href="/ontologies">
+            <a href="{{route('ontologies.index', app()->getLocale())}}">
                 <button class="btn btn-success btn-block" type="button">Go back</button>
             </a>
         </div>

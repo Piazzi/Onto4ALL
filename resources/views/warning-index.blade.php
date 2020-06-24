@@ -8,7 +8,7 @@
         <small>Here you can find all warnings tracked by our Editor at the moment.</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Error Index</li>
     </ol>
 @stop

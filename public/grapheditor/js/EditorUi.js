@@ -1163,7 +1163,7 @@ EditorUi.prototype.init = function()
 		{
 			this.updateActionStates();
 			console.log(this.editor.getGraphXml());
-			if(window.location.pathname !== '/thesaurus-editor')
+			if(window.location.pathname.split('/')[2] !== 'thesaurus-editor')
 				movementCompiler(mxUtils.getXml(this.editor.getGraphXml()));
 		}));
 		

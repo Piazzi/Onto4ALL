@@ -135,7 +135,7 @@
 
 
 
-    "Learn how to use the editor": "Aprenda a usar o editor",
+    "Learn how to use our editor": "Aprenda a usar o editor",
     "Summary": "Sumário",
     "Basic Concepts": "Conceitos básicos",
     "Class": "Classe",
@@ -366,9 +366,13 @@
     "Users": "Usuários",
     "Ontology Editor": "Editor de Ontologias",
     "Thesaurus Editor": "Editor de Tesauros",
+    "My Thesaurus": "Meus Tesauros",
     "Messages": "Mensagens",
     "Ontological Classes": "Classes Ontológicas",
-    "Ontological Relations": "Relações Ontológicas"
+    "Ontological Relations": "Relações Ontológicas",
+    "Go back": "Voltar",
+
+    "Your notifications": "Suas notificações"
 
 
 

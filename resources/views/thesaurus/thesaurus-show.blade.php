@@ -82,7 +82,7 @@
                 </div>
 
 
-                <a href="/thesaurus"><button class="btn btn-success btn-block thesauru-box" type="button">Go back</button></a>
+                <a href="{{route('thesaurus.index', app()->getLocale())}}"><button class="btn btn-success btn-block thesauru-box" type="button">Go back</button></a>
 
         </div>
         <!-- /.box-body -->

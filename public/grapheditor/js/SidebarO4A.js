@@ -86,7 +86,7 @@ Sidebar.prototype.init = function()
 	var dir = STENCIL_PATH;
 
 	this.addSearchPalette(true);
-	if(window.location.pathname === '/thesaurus-editor')
+	if(window.location.pathname.split('/')[2] === 'thesaurus-editor')
 		this.addThesauruPalette(true);
 	else {
 		this.addOntologyPalette(true); // Paleta de ontologia

@@ -140,7 +140,7 @@ class ThesauruController extends Controller
     {
         $thesauru = Thesauru::where('id','=', $id)->where('user_id','=', $request->user()->id)->first();
         $thesauru->update($request->all());
-        return redirect()->route('thesaurus.index')->with('Success', 'Your thesauru has been updated with success');
+        return redirect()->route('thesaurus.index', $locale)->with('Success', 'Your thesauru has been updated with success');
     }
 
     /**
@@ -153,6 +153,6 @@ class ThesauruController extends Controller
     {
         $thesauru = Thesauru::where('id','=', $id)->where('user_id','=', Auth::user()->id)->first();
         $thesauru->delete();
-        return redirect()->route('thesaurus.index')->with('Success', 'Your thesauru has been deleted with success');
+        return redirect()->route('thesaurus.index', $locale)->with('Success', 'Your thesauru has been deleted with success');
     }
 }

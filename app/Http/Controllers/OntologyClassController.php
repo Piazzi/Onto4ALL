@@ -45,10 +45,10 @@ class OntologyClassController extends Controller
      * @param OntologyClassStoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OntologyClassStoreRequest $request)
+    public function store(OntologyClassStoreRequest $request, $locale)
     {
         OntologyClass::create($request->all());
-        return redirect()->route('ontology_class.index')->with('Success', 'Your ontology class has been successfully stored')->withInput();
+        return redirect()->route('ontology_class.index', $locale)->with('Success', 'Your ontology class has been successfully stored')->withInput();
     }
 
     /**
@@ -57,7 +57,7 @@ class OntologyClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($locale, $id )
     {
         $ontologyClass = OntologyClass::findOrFail($id);
         return view('ontology-class.ontology-class-show', compact('ontologyClass'));
@@ -69,7 +69,7 @@ class OntologyClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($locale, $id)
     {
         $ontologyClass = OntologyClass::findOrFail($id);
         return view('ontology-class.ontology-class-edit', compact('ontologyClass', 'id'));
@@ -82,11 +82,11 @@ class OntologyClassController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(OntologyClassStoreRequest $request, $id)
+    public function update(OntologyClassStoreRequest $request, $locale, $id)
     {
         $ontologyClass = OntologyClass::findOrFail($id);
         $ontologyClass->update($request->all());
-        return redirect()->route('ontology_class.index')->with('Success', 'Your ontology class has been successfully updated');
+        return redirect()->route('ontology_class.index', $locale)->with('Success', 'Your ontology class has been successfully updated');
     }
 
     /**
@@ -95,7 +95,7 @@ class OntologyClassController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($locale, $id)
     {
         $ontologyClass = OntologyClass::findOrFail($id);
         $ontologyClass->delete();
@@ -108,7 +108,7 @@ class OntologyClassController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function search(Request $request)
+    public function search(Request $request, $locale)
     {
         $classes = OntologyClass::where('name','Like',  '%' .$request->search. '%')->paginate(10);
         return view('ontology-class.ontology-class', compact('classes'));
