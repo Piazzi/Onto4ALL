@@ -77,7 +77,7 @@
                 <div class="icon">
                     <i class="ion ion-settings"></i>
                 </div>
-                <a href="/profile/{{Auth::user()->id}}/edit" class="small-box-footer">
+                <a href="{{route('user.edit', ['locale'=> app()->getLocale(), 'user'=> auth()->user()->id])}}" class="small-box-footer">
                     {{__('More info')}} <i class="fa fa-arrow-circle-right"></i>
                 </a>
             </div>

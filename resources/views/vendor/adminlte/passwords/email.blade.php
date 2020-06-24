@@ -9,7 +9,7 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-            <img class="img-responsive img" id="login-image" src="{{asset('css/images/Onto4ALL.png')}}" alt="onto4all-logo" srcset="">
+            <img class="img-responsive img" id="login-image" src="{{asset('css/images/LogoGreen.png')}}" alt="onto4all-logo" srcset="">
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">

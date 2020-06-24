@@ -26,7 +26,7 @@
                 </span>
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg">
-                    <img alt="logo" src="{{asset('css/images/Onto4ALL.png')}}">
+                    <b>Onto4ALL</b>
                 </span>
             </a>
             @if(Route::currentRouteName() !== 'home' && Route::currentRouteName() !== 'thesaurus-editor')
@@ -260,13 +260,16 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                @foreach (config('app.available_locales') as $locale)
                                     <li>
                                         <a class="nav-link"
-                                           href="{{route('home', $locale)}}"
-                                           @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                                           href="{{route('home', 'en')}}"
+                                           @if (app()->getLocale() == 'en') style="font-weight: bold; text-decoration: underline" @endif>English</a>
                                     </li>
-                                @endforeach
+                                <li>
+                                    <a class="nav-link"
+                                       href="{{route('home', 'pt')}}"
+                                       @if (app()->getLocale() == 'pt') style="font-weight: bold; text-decoration: underline" @endif>Português</a>
+                                </li>
                             </ul>
                         </li>
 

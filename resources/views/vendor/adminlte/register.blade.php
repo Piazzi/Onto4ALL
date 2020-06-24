@@ -10,7 +10,7 @@
 @section('body')
     <div class="register-box">
         <div class="login-logo">
-            <img class="img-responsive img full-width" id="login-image" src="{{asset('css/images/Onto4ALL.png')}}" alt="" srcset="">
+            <img class="img-responsive img full-width" id="login-image" src="{{asset('css/images/LogoGreen.png')}}" alt="" srcset="">
         </div>
 
         <div class="register-box-body">
@@ -63,7 +63,7 @@
                 >{{ __('Register') }}</button>
             </form>
             <div class="auth-links">
-                <a href="{{ url(config('adminlte.login_url', 'login')) }}"
+                <a href="{{route('login', app()->getLocale())}}"
                    class="text-center">{{ __('I already have a account') }}</a>
             </div>
         </div>

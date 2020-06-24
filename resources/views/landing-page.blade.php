@@ -19,10 +19,6 @@
     <link href="css/styles.css" rel="stylesheet"/>
     <link href="css/landing-page.css" rel="stylesheet"/>
 
-    <!--  reCAPTCHA  -->
-    <meta name="grecaptcha-key" content="{{config('recaptcha.v3.public_key')}}">
-    <script src="https://www.google.com/recaptcha/api.js?render={{config('recaptcha.v3.public_key')}}"></script>
-
 
 </head>
 <body id="page-top">
@@ -38,10 +34,8 @@
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">{{__('About')}}</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#features">{{__('Features')}}</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">{{__('Contact')}}</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" data-toggle="modal"
-                                        data-target="#loginModal">Login</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" data-toggle="modal"
-                                        data-target="#registerModal">{{__('Register')}}</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('login', app()->getLocale())}}">Login</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{route('register', app()->getLocale())}}">{{__('Register')}}</a></li>
                 @foreach (config('app.available_locales') as $locale)
                     <li class="nav-item">
                         <a class="nav-link"
@@ -78,7 +72,7 @@
                 <hr class="divider light my-4"/>
                 <p class="text-white-50 mb-4">{{__('Is a free graphical editor capable of creating, editing and exporting ontologies being guided by an warnings console, an ontological building rules tab and an extensive palette of ontological classes and relationships.')}}</p>
                 <a class="btn btn-light btn-xl js-scroll-trigger"
-                   data-toggle="modal"  data-target="#loginModal">{{__('Get Started!')}}</a>
+                   data-toggle="modal" data-target="#loginModal">{{__('Get Started!')}}</a>
             </div>
         </div>
     </div>
@@ -191,7 +185,8 @@
 <section style="background-color: #00a65a !important;" class="page-section bg-dark text-white">
     <div class="container text-center">
         <h2 class="mb-4">{{__('Start Drawing Your Ontologies')}}</h2>
-        <a style="color: black" class="btn btn-light btn-xl" data-target="#registerModal" data-toggle="modal">{{__('Register Now!')}}</a>
+        <a style="color: black" class="btn btn-light btn-xl" data-target="#registerModal"
+           data-toggle="modal">{{__('Register Now!')}}</a>
     </div>
 </section>
 
@@ -263,184 +258,20 @@
     </div>
 </section>
 
-<!--  LOGIN MODAL  -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
 
-            <div class="modal-header border-bottom-0">
-                <div class="row">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <img style="width: 100%" class="img-responsive" id="login-image"
-                     src="{{asset('css/images/Onto4ALL.png')}}" alt="onto4all-logo" srcset="">
-            </div>
-            <div class="modal-body">
-                <div class="login-box">
-                    <!-- /.login-logo -->
-                    <div class="login-box-body">
-                        <p class="login-box-msg">{{ __('Sign in to start your session') }}</p>
-                        <form data-grecaptcha-action="message" action="{{ route('login', app()->getLocale()) }}"
-                              method="post">
-                            {!! csrf_field() !!}
-
-                            <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                                <input type="email" name="email" class="form-control" value="{{ old('email') }}"
-                                       placeholder="{{ __('E-Mail Address') }}">
-                                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                                <input type="password" name="password" class="form-control"
-                                       placeholder="{{ __('Password') }}">
-                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                     </span>
-                                @endif
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-8">
-                                    <div class="checkbox icheck">
-                                        <label>
-                                            <input type="checkbox"
-                                                   name="remember"> {{ __('Remember Me')}}
-                                        </label>
-                                    </div>
-                                </div>
-                                <!-- /.col -->
-                                <div style="margin-left: 60px" class="col-xs-4">
-                                    <button style="background-color: #00A65A; " type="submit"
-                                            class="btn btn-primary btn-block btn-flat">{{ __('Sign In') }}</button>
-                                </div>
-                                <!-- /.col -->
-                            </div>
-                        </form>
-
-                        <div class="social-auth-links text-center">
-                            <p>- OR -</p>
-                            <a href="/redirect"
-                               class="btn btn-block btn-social btn-facebook btn-flat btn-info">
-                                <i class="fab fa-facebook-f"></i>
-                                {{__('Sign in using Facebook')}}
-                            </a>
-                        </div>
-
-                        <div class="auth-links">
-                            <a href="{{ route('password.request', app()->getLocale()) }}"
-                               class="text-center"
-                            >{{ __('Forgot Your Password?')}}</a>
-                            <br>
-                        </div>
-                    </div>
-                    <!-- /.login-box-body -->
-                </div><!-- /.login-box -->
-            </div>
-        </div>
+<!-- Footer-->
+<footer class="bg-light py-5">
+    <div class="container">
+        <div class="small text-center text-muted">Copyright © 2020 - Onto4ALL Editor</div>
     </div>
-</div>
-    <!--  /.LOGIN MODAL  -->
-
-    <!-- REGISTER MODAL -->
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-
-                <div class="modal-header border-bottom-0">
-                    <div class="row">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <img style="width: 100%" class="img-responsive" id="login-image"
-                         src="{{asset('css/images/Onto4ALL.png')}}" alt="onto4all-logo" srcset="">
-                </div>
-                <div class="modal-body">
-                    <div class="register-box">
-                        <div class="register-box-body">
-                            <p class="login-box-msg">{{ __('Register') }}</p>
-                            <form data-grecaptcha-action="message"
-                                  action="{{route('register', app()->getLocale())}}" method="post">
-                                {!! csrf_field() !!}
-
-                                <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
-                                    <input type="text" name="name" class="form-control" value="{{ old('name') }}"
-                                           placeholder="{{ __('Name') }}">
-                                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                                    @if ($errors->has('name'))
-                                        <span class="help-block">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-                                    @endif
-                                </div>
-                                <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                                    <input type="email" name="email" class="form-control" value="{{ old('email') }}"
-                                           placeholder="{{ trans('adminlte::adminlte.email') }}">
-                                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                                    @endif
-                                </div>
-                                <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                                    <input type="password" name="password" class="form-control"
-                                           placeholder="{{ __('Senha') }}">
-                                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                                    @endif
-                                </div>
-                                <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
-                                    <input type="password" name="password_confirmation" class="form-control"
-                                           placeholder="{{ __('Confirm Password') }}">
-                                    <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-                                    @if ($errors->has('password_confirmation'))
-                                        <span class="help-block">
-                            <strong>{{ $errors->first('password_confirmation') }}</strong>
-                        </span>
-                                    @endif
-                                </div>
-                                <button style="background-color: #00A65A;" type="submit"
-                                        class="btn btn-primary btn-block btn-flat"
-                                >{{ __('Register') }}</button>
-                            </form>
-                        </div>
-                        <!-- /.form-box -->
-                    </div><!-- /.register-box -->
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-        <!-- /.REGISTER MODAL -->
-
-
-        <!-- Footer-->
-        <footer class="bg-light py-5">
-            <div class="container">
-                <div class="small text-center text-muted">Copyright © 2020 - Onto4ALL Editor</div>
-            </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <!-- Third party plugin JS-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+</footer>
+<!-- Bootstrap core JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<!-- Third party plugin JS-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>
 </body>
 </html>
