@@ -48,7 +48,7 @@
                 <div class="box-header with-border">
 
                     <h3 class="box-title">Users Database </h3>
-                    <form style="float: right;" method="post" action="{{route('user.search', ['search' => 'search', 'locale' => app()->getLocale()])}}">
+                    <form style="float: right;" method="post" action="{{route('admin.search', ['search' => 'search', 'locale' => app()->getLocale()])}}">
                         @csrf
                         @method('POST')
                         <div class="box-tools">
@@ -87,7 +87,7 @@
                                 <td>{{$user->categoria}}</td>
                                 <td></td>
                                 <td>
-                                    <a href="{{route('users.edit', ['id' => $user->id, 'locale' => app()->getLocale()])}}">
+                                    <a href="{{route('admin.edit', ['id' => $user->id, 'locale' => app()->getLocale()])}}">
                                         <button class="btn btn-success"><i class="fa fa-fw fa-edit"></i>
                                         </button>
                                     </a>

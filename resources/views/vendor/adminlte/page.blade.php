@@ -246,7 +246,7 @@
                                     <span>{{__('Messages')}}</span></a>
                             </li>
                             <li>
-                                <a href="{{route('admins', app()->getLocale())}}">
+                                <a href="{{route('admin.index', app()->getLocale())}}">
                                     <i class="fa fa-fw fa-users "></i>
                                     <span>{{__('Users')}}</span></a>
                             </li>

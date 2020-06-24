@@ -21,11 +21,11 @@
 
     <div class="box box-success">
         <div class="box-header with-border">
-            <h3 class="box-title">Edit User</h3>
+            <h3 class="box-title">Edit User {{$user->name}}</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <form method="post" action="{{route('user.update', ['userId'=> $user->id, 'locale' => app()->getLocale()])}}" role="form">
+            <form method="post" action="{{route('admin.update', ['userId'=> $user->id, 'locale' => app()->getLocale()])}}" role="form">
                 @csrf
                 @method('PUT')
                 <div class="form-group">

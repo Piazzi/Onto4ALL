@@ -80,7 +80,7 @@ Route::group([
     Route::get('/help', 'HomeController@help')->name('help');
 
     // AdminController
-    Route::get('/admin', 'AdminController@index')->name('admins')->middleware('can:eAdmin');
+    Route::get('/admin', 'AdminController@index')->name('admin.index')->middleware('can:eAdmin');
     Route::get('/admin/{id}', 'AdminController@edit')->name('admin.edit')->middleware('can:eAdmin');
     Route::put('/admin/{userId}', 'AdminController@update')->name('admin.update')->middleware('can:eAdmin');
     Route::any('/admin/search', 'AdminController@search')->name('admin.search')->middleware('can:eAdmin');

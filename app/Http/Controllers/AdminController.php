@@ -74,7 +74,7 @@ class AdminController extends Controller
         $user->ontology = $request->ontology;
         $user->categoria = $request->categoria;
         $user->save();
-        return redirect(route('users', app()->getLocale()))->with('Success', 'The user ontology has been updated with success');
+        return redirect(route('admin.index', app()->getLocale()))->with('Success', 'The user ontology has been updated with success');
     }
 
     /**
