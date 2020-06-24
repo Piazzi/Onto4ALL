@@ -18,10 +18,10 @@
         {{auth()->user()->name}}, you don't have the rights to access this content
     </div>
     <div class="text-center">
-        <a href="{{route('home')}}">Let's go back</a>
+        <a href="{{route('home', app()->getLocale())}}">Let's go back</a>
     </div>
     <div class="lockscreen-footer text-center">
-        Copyright © 2018-2019 <b><a href="" class="text-black">Onto4ALL</a></b><br>
+        Copyright © 2018-2020 <b><a href="" class="text-black">Onto4ALL</a></b><br>
         All rights reserved
     </div>
 </div>

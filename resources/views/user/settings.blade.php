@@ -30,7 +30,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Account Settings')}}</h3>
         </div>
-        <form role="form" action="{{route('profile.update', Auth::user()->id)}}" method="post">
+        <form role="form" action="{{route('user.update', ['locale'=> app()->getLocale(), 'user' => Auth::user()->id])}}" method="post">
             @csrf
             @method('PATCH')
             <div class="box-body">
@@ -70,7 +70,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body" style="display: none;">
-                    <a href="/change_password/{{Auth::user()->id}}">
+                    <a href="{{route('user.editPassword', ['locale'=> app()->getLocale(), 'id'=> Auth::user()->id])}}">
                         <button type="button" class="btn btn-block btn-danger btn-sm">{{__('Change password')}}</button>
                     </a>
                 </div>
@@ -97,7 +97,7 @@
                 <!-- /.box-body -->
 
                 <div class="box box-footer">
-                    <form role="form" method="post" action="{{route('profile.destroy', Auth::user()->id)}}">
+                    <form role="form" method="post" action="{{route('user.destroy', ['locale'=> app()->getLocale(), 'user'=> Auth::user()->id])}}">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-block btn-danger btn-sm">{{__('Delete Account')}}</button>

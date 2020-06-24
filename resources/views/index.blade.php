@@ -905,7 +905,9 @@
         </span>
     </a>
 
-    <a class="tracker" id="control-sidebar" href="#" data-toggle="control-sidebar"><i class="fa fa-1.5x fa-fw fa-exchange "></i></a>
+    <a class="tracker" id="control-sidebar" href="#" data-toggle="control-sidebar">
+        <i class="fa fa-1.5x fa-fw fa-exchange "></i>
+    </a>
 
 
     <!-- ./Tracker spans  -->

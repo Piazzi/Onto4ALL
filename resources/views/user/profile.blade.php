@@ -8,7 +8,7 @@
         <small>Your Onto4ALL profile</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="{{route('home')}}"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
         <li class="active">Profile</li>
     </ol>
 @stop
@@ -21,7 +21,7 @@
             <!-- Profile Image -->
             <div class="box box-success">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="css/images/profile.jpeg"
+                    <img class="profile-user-img img-responsive img-circle" src="{{asset('css/images/LogoMini.png')}}"
                          alt="User profile picture">
 
                     <h3 class="profile-username text-center">{{$user->name}}</h3>
@@ -40,7 +40,7 @@
                         </li>
                     </ul>
 
-                    <a href="{{route('profile.edit', $user->id)}}" class="btn btn-success btn-block"><b>Account Settings</b></a>
+                    <a href="{{route('user.edit', ['locale'=> app()->getLocale(), 'user'=> auth()->user()->id])}}" class="btn btn-success btn-block"><b>Account Settings</b></a>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -59,7 +59,7 @@
                         <p>{{$ontology->created_at}}</p>
                     @endforeach
                 </div>
-                <a href="/ontologies" class="btn btn-success btn-block"><b>All my Ontologies</b></a>
+                <a href="{{route('ontologies.index', app()->getLocale())}}" class="btn btn-success btn-block"><b>All my Ontologies</b></a>
 
                 <!-- /.box-body -->
             </div>
@@ -93,7 +93,6 @@
                             {{$ontology->description}}
                         </div>
                         <div class="timeline-footer">
-                            <a href="{{$ontology->link}}" class="btn btn-primary btn-sm">{{$ontology->link}}</a>
                             <a  class="btn btn-success btn-sm">{{$ontology->created_by}}</a>
                             <a href="/ontologies/download/{{$user->id}}/{{$ontology->id}}" class="btn btn-info btn-file btn-sm ">
                                 <i class="fa fa-fw fa-file-code-o"></i> Download

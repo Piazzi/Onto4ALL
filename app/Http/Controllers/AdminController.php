@@ -55,7 +55,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($locale, $id)
     {
         $user = User::findOrFail($id);
         return view('admin.admin_edit', compact('user'));
@@ -68,12 +68,13 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $locale, $id)
     {
         $user = User::findOrFail($id);
         $user->ontology = $request->ontology;
+        $user->categoria = $request->categoria;
         $user->save();
-        return redirect(route('users'))->with('Success', 'The user ontology has been updated with success');
+        return redirect(route('users', app()->getLocale()))->with('Success', 'The user ontology has been updated with success');
     }
 
     /**

@@ -30,7 +30,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Change password')}}</h3>
         </div>
-        <form role="form" action="{{route('profile.updatePassword', Auth::user()->id)}}" method="post">
+        <form role="form" action="{{route('user.updatePassword', ['locale'=> app()->getLocale(), 'id'=>Auth::user()->id])}}" method="post">
             @csrf
             @method('PUT')
             <div class="box-body">

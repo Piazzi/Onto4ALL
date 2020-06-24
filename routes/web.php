@@ -29,7 +29,6 @@ Route::group([
         return view('landing-page');
     });
 
-
     //Auth::routes();
 
     // Authentication Routes...
@@ -44,16 +43,13 @@ Route::group([
     // Password Reset Route
     Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 
-
-
-    // Profile routes
-    Route::resource('/profile', 'ProfileController')->middleware('can:eModelador');
-    Route::get('/change_password/{id}', 'ProfileController@changePassword')->middleware('can:eModelador');
-    Route::put('/update_password/{id}', 'ProfileController@updatePassword')->name('profile.updatePassword')->middleware('can:eModelador');
+    // User routes
+    Route::resource('/user', 'UserController')->middleware('can:eModelador');
+    Route::get('/change_password/{id}', 'UserController@changePassword')->name('user.editPassword')->middleware('can:eModelador');
+    Route::put('/update_password/{id}', 'UserController@updatePassword')->name('user.updatePassword')->middleware('can:eModelador');
 
     Route::any('/ontology_relation/search', 'OntologyRelationController@search')->name('ontology_relation.search')->middleware('can:eAdmin');
     Route::resource('/ontology_relation', 'OntologyRelationController')->middleware('can:eAdmin');
-
 
     Route::any('/ontology_class/search', 'OntologyClassController@search')->name('ontology_class.search')->middleware('can:eAdmin');
     Route::resource('/ontology_class', 'OntologyClassController')->middleware('can:eAdmin');
@@ -84,10 +80,10 @@ Route::group([
     Route::get('/help', 'HomeController@help')->name('help');
 
     // AdminController
-    Route::get('/users', 'AdminController@index')->name('users')->middleware('can:eAdmin');
-    Route::get('/users/{id}', 'AdminController@edit')->name('users.edit')->middleware('can:eAdmin');
-    Route::put('/users/{userId}', 'AdminController@update')->name('user.update')->middleware('can:eAdmin');
-    Route::any('/users/search', 'AdminController@search')->name('user.search')->middleware('can:eAdmin');
+    Route::get('/admin', 'AdminController@index')->name('admins')->middleware('can:eAdmin');
+    Route::get('/admin/{id}', 'AdminController@edit')->name('admin.edit')->middleware('can:eAdmin');
+    Route::put('/admin/{userId}', 'AdminController@update')->name('admin.update')->middleware('can:eAdmin');
+    Route::any('/admin/search', 'AdminController@search')->name('admin.search')->middleware('can:eAdmin');
 
 
 });

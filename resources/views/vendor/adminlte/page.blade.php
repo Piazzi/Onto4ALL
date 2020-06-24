@@ -120,7 +120,7 @@
                                     <li class="user-body">
                                         <div class="row">
                                             <div class="col-xs-4 text-center border-right">
-                                                <a class="user-body-link" href="{{route('profile.edit', ['profile' => Auth::user()->id, 'locale' => app()->getLocale()])}}">{{__('Account Settings')}}</a>
+                                                <a class="user-body-link" href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">{{__('Account Settings')}}</a>
                                             </div>
                                             <div class="col-xs-4 text-center border-right">
                                                 <a class="user-body-link" href="{{route('ontologies.index', app()->getLocale())}}">{{__('My Ontologies')}}</a>
@@ -133,12 +133,13 @@
                                     </li>
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
-                                        <!--
+
                                         <div class="pull-left">
-                                            <a href="{{route('profile.index', app()->getLocale())}}"
+                                            <a href="{{route('user.index', app()->getLocale())}}"
                                                class="btn btn-default btn-flat"><i
                                                         class="fa fa-user-plus"></i> Profile</a>
-                                        </div>-->
+                                        </div>
+                                        <div class="pull-right">
                                             @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
                                                 <a class="btn btn-default btn-flat"
                                                    href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
@@ -159,6 +160,7 @@
                                                     {{ csrf_field() }}
                                                 </form>
                                             @endif
+                                        </div>
 
                                     </li>
                                 </ul>
@@ -244,12 +246,30 @@
                                     <span>{{__('Messages')}}</span></a>
                             </li>
                             <li>
-                                <a href="{{route('users', app()->getLocale())}}">
+                                <a href="{{route('admins', app()->getLocale())}}">
                                     <i class="fa fa-fw fa-users "></i>
                                     <span>{{__('Users')}}</span></a>
                             </li>
                         @endcan
                         <li class="header">{{__('OPTIONS')}}</li>
+                        <li class="treeview">
+                            <a style="margin-left: 3px" href="#">
+                                <i class="fa fa-language"></i> <span>{{__('Language')}}</span>
+                                <span class="pull-right-container">
+                                  <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                @foreach (config('app.available_locales') as $locale)
+                                    <li>
+                                        <a class="nav-link"
+                                           href="{{route('home', $locale)}}"
+                                           @if (app()->getLocale() == $locale) style="font-weight: bold; text-decoration: underline" @endif>{{ strtoupper($locale) }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+
                         <li class="treeview">
                             <a style="margin-left: 3px" href="#">
                                 <i class="fa fa-gear"></i> <span>Options</span>
@@ -259,7 +279,14 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="{{route('profile.edit', ['profile' => Auth::user()->id, 'locale' => app()->getLocale()])}}">
+                                    <a href="{{route('user.index', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">
+                                        <i class="fa fa-user-plus"></i>
+                                        <span>{{__('Profile')}}</span>
+                                        <span class="pull-right-container"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">
                                         <i class="fa fa-gears"></i>
                                         <span>{{__('Account Settings')}}</span>
                                         <span class="pull-right-container"></span>
@@ -330,7 +357,7 @@
         @hasSection('footer')
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> 1.4
+                    <b>Version</b> 2.0
                 </div>
                 <strong>Copyright © 2018-2020 <a href="https://onto4alleditor.com">Onto4ALL</a>.</strong> All rights
                 reserved

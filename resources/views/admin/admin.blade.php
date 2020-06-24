@@ -87,7 +87,7 @@
                                 <td>{{$user->categoria}}</td>
                                 <td></td>
                                 <td>
-                                    <a href="{{route('users.edit',$user->id)}}">
+                                    <a href="{{route('users.edit', ['id' => $user->id, 'locale' => app()->getLocale()])}}">
                                         <button class="btn btn-success"><i class="fa fa-fw fa-edit"></i>
                                         </button>
                                     </a>

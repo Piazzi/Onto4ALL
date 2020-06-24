@@ -25,7 +25,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <form method="post" action="{{route('user.update', $user->id)}}" role="form">
+            <form method="post" action="{{route('user.update', ['userId'=> $user->id, 'locale' => app()->getLocale()])}}" role="form">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -72,7 +72,7 @@
         </div>
         <!-- /.box-body -->
     </div>
-    <script type="text/javascript" src="../../js/MultipleCheckbox.js"></script>
+    <script type="text/javascript" src="{{asset('js/MultipleCheckbox.js')}}"></script>
 @stop
 
 @section('footer')
