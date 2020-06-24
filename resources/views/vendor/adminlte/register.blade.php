@@ -15,7 +15,7 @@
 
         <div class="register-box-body">
             <p class="login-box-msg">{{ __('Register') }}</p>
-            <form data-grecaptcha-action="message"  action="{{ url(config('adminlte.register_url', 'register')) }}" method="post">
+            <form data-grecaptcha-action="message"  action="{{route('register', app()->getLocale()) }}" method="post">
                 {!! csrf_field() !!}
 
                 <div class="form-group has-feedback {{ $errors->has('name') ? 'has-error' : '' }}">
