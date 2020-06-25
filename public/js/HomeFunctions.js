@@ -69,14 +69,7 @@ $(document).ready(function () {
         hideSidebar = !hideSidebar;
     });
 
-    // Build the menu
-    $(".geToolbar").append('<div class="geSeparator"> </div>');
-    $(".geToolbar").append($('#night-mode'));
-    $(".geToolbar").append($('#classes'));
-    $(".geToolbar").append($('#relations'));
-    $(".geToolbar").append($('#instances'));
-    $(".geToolbar").append($('#download-ontology-report'));
-    $(".geToolbar").append($('#control-sidebar'));
+
 
 
 

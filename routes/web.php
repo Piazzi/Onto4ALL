@@ -102,8 +102,8 @@ Route::get('/open');
 Route::get('/thesaurus/download/{userId}/{thesauruId}', 'ThesauruController@download')->name('thesaurus.download')->middleware('can:eModelador');
 
 // Socialite routes
-Route::get('/redirect', 'SocialAuthFacebookController@redirect');
-Route::get('/callback', 'SocialAuthFacebookController@callback');
+//Route::get('/redirect', 'SocialAuthFacebookController@redirect');
+//Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 
 // Password Reset Routes...

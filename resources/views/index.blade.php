@@ -920,6 +920,16 @@
 
 <!-- THIS FUNCTION NEEDS TO BE LOADED AFTER THE MXGRAPH COMPONENTS -->
 <script type="text/javascript">
+
+    // Build the menu
+    $(".geToolbar").append('<div class="geSeparator"> </div>');
+    $(".geToolbar").append($('#night-mode'));
+    $(".geToolbar").append($('#classes'));
+    $(".geToolbar").append($('#relations'));
+    $(".geToolbar").append($('#instances'));
+    $(".geToolbar").append($('#download-ontology-report'));
+    $(".geToolbar").append($('#control-sidebar'));
+
     /**
      * When a user clicks on the ontology palette the name of
      * the class or relation is searched in the tips menu

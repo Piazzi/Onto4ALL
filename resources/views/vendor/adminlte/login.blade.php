@@ -70,13 +70,6 @@
                                 </div>
                             </form>
 
-                            <div class="social-auth-links text-center">
-                                <p>- OR -</p>
-                                <a href="{{url(app()->getLocale(). '/redirect')}}"
-                                   class="btn btn-block btn-social btn-facebook btn-flat btn-info"><i
-                                            class="fa fa-fw fa-facebook"></i>{{__('Sign in using Facebook')}} </a>
-                            </div>
-
                             <div class="auth-links">
                                 <a href="{{ route('password.request', app()->getLocale()) }}"
                                    class="text-center"

@@ -40,13 +40,13 @@ function movementCompiler(xml) {
     // For this i used the getValueOrLabel function.
     // Complexity: O(n^2)
     for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
-        console.log(i);
-        console.log(xmlDoc.getElementsByTagName("mxCell")[i]);
+
         // Checks if the mxCell element is valid, if is not, goes to the next iteration
         if(!xmlDoc.getElementsByTagName("mxCell")[i].hasAttribute('style')&&
             !xmlDoc.getElementsByTagName("mxCell")[i].hasAttribute('edge')&&
             !xmlDoc.getElementsByTagName("mxCell")[i].hasAttribute('value'))
             continue;
+
         // -------- WARNINGS SEARCH -----------------
 
         // Checks if the mxCell element is a relation by looking at the "edge" attribute
@@ -56,9 +56,9 @@ function movementCompiler(xml) {
         {
             notConnectedRelationWarning++;
             if(getLanguage() === 'pt')
-                warningMessage('A relação '+ getValueOrLabel(xmlDoc, i) +' não está conectada a duas classes', 9);
+                warningMessage('A relação <strong>'+ getValueOrLabel(xmlDoc, i) + ' (ID: '+xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id")+') </strong> não está conectada a duas classes', 9);
             else
-                warningMessage('The relation '+ getValueOrLabel(xmlDoc, i) +' it is not fully connected to 2 classes', 9);
+                warningMessage('The relation <strong>'+ getValueOrLabel(xmlDoc, i) +' (ID: '+xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id")+') </strong> it is not fully connected to 2 classes', 9);
         }
 
         if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") !== null)
@@ -67,6 +67,8 @@ function movementCompiler(xml) {
             classesCount++;
         else if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('Instance'))
             instancesCount++;
+        else
+            continue;
 
         // If the mxCell is a Instance, start searching for his relations. If any relation belonging to the instance it's not a instance_of
         // relation, shows a error message
@@ -246,9 +248,9 @@ function movementCompiler(xml) {
         {
             missingClassPropertiesWarning++;
             if(getLanguage() === 'pt')
-                warningMessage('Na classe '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold()+ '',"",6);
+                warningMessage('Na classe '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+ ', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold()+ '',"",6);
             else
-                warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Class, you did not fill the following properties: ' + missingClassProperties.bold()+ '',"",6);
+                warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold() +' Class, you did not fill the following properties: ' + missingClassProperties.bold()+ '',"",6);
             missingClassProperties = "";
         }
 
@@ -261,17 +263,17 @@ function movementCompiler(xml) {
         if(xmlDoc.getElementsByTagName("object")[i].getAttribute("range") === "")
             missingRelationProperties = missingRelationProperties  + ' range,';
 
-
+        /*
         if(xmlDoc.getElementsByTagName("object")[i].getAttribute("inverseOf") === "")
-            missingRelationProperties = missingRelationProperties  + ' inverseOf';
+            missingRelationProperties = missingRelationProperties  + ' inverseOf';*/
 
         if(missingRelationProperties  !== "")
         {
             missingRelationPropertiesWarning++;
             if(getLanguage() === 'pt')
-                warningMessage('Na relação '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+', você não preencheu as seguintes propriedades: ' + missingRelationProperties.bold()+ '',"",7);
+                warningMessage('Na relação '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+ '(ID: '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("id").bold() +')' +', você não preencheu as seguintes propriedades: ' + missingRelationProperties.bold()+ '',"",7);
             else
-                warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+' Relation, you did not fill the following properties: ' + missingRelationProperties.bold()+ '',"",7);
+                warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold() + '(ID: '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("id").bold() +')' +' Relation, you did not fill the following properties: ' + missingRelationProperties.bold()+ '',"",7);
             missingRelationProperties  = "";
         }
 
