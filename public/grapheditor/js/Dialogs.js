@@ -1732,6 +1732,10 @@ var EditDataDialog = function(ui, cell)
 	}
 
 	div.appendChild(buttons);
+	// fix dialog size
+	div.style.setProperty("width", "480px", "important");
+	div.style.setProperty("height", "420px", "important");
+
 	this.container = div;
 };
 
