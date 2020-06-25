@@ -4064,8 +4064,9 @@ EditorUi.prototype.save = function(name)
 					// ONTO4ALL METHOD
 					EditorUi.prototype.saveXML('/saveXML', {fileName: name, xml: xml});
 					/* MXGRAPH METHOD */
+					/*
 					new mxXmlRequest(SAVE_URL, 'filename=' + encodeURIComponent(name) +
-						'&xml=' + encodeURIComponent(xml)).simulate(document, '_blank');
+						'&xml=' + encodeURIComponent(xml)).simulate(document, '_blank');*/
 				}
 				else
 				{

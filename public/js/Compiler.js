@@ -54,11 +54,12 @@ function movementCompiler(xml) {
             xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") === null ||
             xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") === null))
         {
+            console.log(xmlDoc.getElementsByTagName("mxCell")[i]);
             notConnectedRelationWarning++;
             if(getLanguage() === 'pt')
-                warningMessage('A relação <strong>'+ getValueOrLabel(xmlDoc, i) + ' (ID: '+xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id")+') </strong> não está conectada a duas classes', 9);
+                warningMessage('A relação '+ getValueOrLabel(xmlDoc, i) + ' (ID: '+ getElementId(xmlDoc,i)+') não está conectada a duas classes', 9);
             else
-                warningMessage('The relation <strong>'+ getValueOrLabel(xmlDoc, i) +' (ID: '+xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id")+') </strong> it is not fully connected to 2 classes', 9);
+                warningMessage('The relation '+ getValueOrLabel(xmlDoc, i) +' (ID: '+getElementId(xmlDoc,i)+')  it is not fully connected to 2 classes', 9);
         }
 
         if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") !== null)

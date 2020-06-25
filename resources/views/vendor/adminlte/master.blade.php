@@ -41,6 +41,10 @@
     <!-- Editor CSS  -->
     @if(Route::currentRouteName() == 'home')
         <link rel="stylesheet" type="text/css" href="{{asset('grapheditor/styles/grapheditor.css')}}">
+        <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=5,IE=9"><![endif]-->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     @endif
 
     @yield('adminlte_css')
@@ -53,7 +57,7 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition @yield('body_class')">
+<body class="hold-transition @yield('body_class')    @if(Route::currentRouteName() == 'home') geEditor @endif">
 
 @yield('body')
 
