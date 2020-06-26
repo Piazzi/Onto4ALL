@@ -25,13 +25,28 @@ class DiagramController extends Controller
      */
     public function openDiagram(Request $request)
     {
-        $ontology = Ontology::select('file','user_id')->where('id', $request->id)->get();
-        if(Auth::user()->id == $ontology[0]['user_id'])
+        $ontology = Ontology::where('id', $request->id)->first();
+        if(Auth::user()->id == $ontology['user_id'])
         {
             $response = array(
                 'status' => 'success',
-                'file' => $ontology[0]['file']
-
+                'id' => $ontology['id'],
+                'file' => $ontology['file'],
+                'name' => $ontology['name'],
+                'publication_date' => $ontology['publication_date'],
+                'last_uploaded'=> $ontology['last_uploaded'],
+                'description'=> $ontology['description'],
+                'link'=> $ontology['link'],
+                'user_id'=> $ontology['user_id'],
+                'favourite'=> $ontology['favourite'],
+                'domain'=> $ontology['domain'],
+                'general_purpose'=> $ontology['general_purpose'],
+                'profile_users'=> $ontology['profile_users'],
+                'intended_use'=> $ontology['intended_use'],
+                'type_of_ontology'=> $ontology['type_of_ontology'],
+                'degree_of_formality'=> $ontology['degree_of_formality'],
+                'scope'=> $ontology['scope'],
+                'competence_questions'=> $ontology['competence_questions']
             );
 
             return response()->json($response);

@@ -70,14 +70,7 @@ class HomeController extends Controller
         return view('help');
     }
 
-
-    /**
-     * Save the editor diagram into a XML file.
-     * @param Request $request
-     * @return Response
-     *
-     */
-    public function saveXML(Request $request)
+    public function exportXML(Request $request)
     {
         if(pathinfo($request->fileName, PATHINFO_EXTENSION) != 'xml')
             $request->fileName = $request->fileName . '.xml';
@@ -94,9 +87,6 @@ class HomeController extends Controller
         // and then saves the file in the specific manager
         if(strpos($request->session()->previousUrl(), '/thesaurus-editor') != false)
             ThesauruController::store($request);
-        else
-            OntologyController::store($request);
-
 
         return $response;
     }
@@ -505,6 +495,8 @@ class HomeController extends Controller
         $dom->preserveWhiteSpace = false;
         $dom->formatOutput = true;
 
+        return response()->json($dom->saveXML());
+        /*
         if(pathinfo($request->fileName, PATHINFO_EXTENSION) != 'owl')
             $request->fileName = $request->fileName . '.owl';
 
@@ -514,8 +506,8 @@ class HomeController extends Controller
         $response->header('Content-Type', 'text/xml');
         $response->header('Content-Transfer-Encoding', 'binary');
         $response->header('Cache-Control', 'public');
+*/
 
-        return $response;
     }
 
 

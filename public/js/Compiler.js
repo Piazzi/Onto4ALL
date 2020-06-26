@@ -12,6 +12,10 @@
  */
 function movementCompiler(xml) {
 
+    // Updates the save file button
+    $("#save-ontology").removeClass("saved").addClass("unsaved");
+    $("#save-ontology").html('<i class="fa fa-fw fa-save"></i> Unsaved changes. Click here to save');
+
     // Removes the previous error messages
     $(".direct-chat-messages").empty();
 

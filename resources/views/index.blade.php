@@ -783,9 +783,127 @@
     <a class="tracker" id="control-sidebar" href="#" data-toggle="control-sidebar">
         <i class="fa fa-1.5x fa-fw fa-exchange "></i>
     </a>
-
-
     <!-- ./Tracker spans  -->
+
+
+    <a id="edit-ontology"  class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#edit-ontology-modal" ><i class="fa fa-fw fa-pencil"></i> Edit Ontology Info</a>
+    <a id="save-ontology"  class="geItem geStatus btn btn-default editor-timeline-item unsaved" ><i class="fa fa-fw fa-save"></i> Unsaved changes. Click here to save</a>
+    <a id="ontology-name"  class="geItem geStatus btn btn-default editor-timeline-item " data-toggle="modal" data-target="#edit-ontology-modal"><i class="fa fa-fw fa-object-group"></i>Current Ontology: None</a>
+
+    <!-- Edit Ontology -->
+    <div class="modal fade" id="edit-ontology-modal" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Edit Current Ontology</h4>
+                </div>
+                <div class="modal-body">
+                        <input id="id" name="id" type="hidden">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>{{__('Name')}}</label>
+                                    <input id="name" required value="{{__('New_Ontology')}}" name="name" type="text" class="form-control"
+                                           placeholder="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>{{__('Created By')}}</label>
+                                    <input disabled value="{{auth()->user()->name}}" name="created_by" type="text"
+                                           class="form-control">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div  class="form-group">
+                                    <label>Publication Date</label>
+                                    <input id="publication-date" value="" name="publication_date" type="date"
+                                           class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Last Uploaded</label>
+                                    <input id="last-uploaded" value="" name="last_uploaded" type="date" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea id="description" name="description" class="form-control" rows="3"
+                                      placeholder="Enter ..."></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Link</label>
+                                    <input id="link" value="" name="link" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Domain</label>
+                                    <input id="domain" value="" name="domain" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>General Purpose</label>
+                            <input id="general-purpose" value="" name="general_purpose" type="text" class="form-control">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Profile Users</label>
+                                    <input id="profile-users"  value="" name="profile_users" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Intended User</label>
+                                    <input id="intended-use"  value="" name="intended_use" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Type of Ontology</label>
+                                    <input id="type-of-ontology"  value="" name="type_of_ontology" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Degree of Formality</label>
+                                    <input id="degree-of-formality"  value="" name="degree_of_formality" type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Scope</label>
+                                    <input id="scope"  value="" name="scope" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Competence Questions</label>
+                            <input id="competence-questions"  value="" name="competence_questions" type="text" class="form-control">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
 
     <!-- LOADS MXGRAPH GRAPHEDITOR AND ITS FUNCTIONS -->
 
@@ -819,6 +937,7 @@
     </script>
 
     <script type="text/javascript" src="{{asset('js/OpenDiagram.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/SaveOntology.js')}}"></script>
 
     <!-- Tooltips -->
     <script src="https://unpkg.com/popper.js@1"></script>

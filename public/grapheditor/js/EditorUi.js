@@ -1050,62 +1050,59 @@ EditorUi.prototype.lightboxVerticalDivider = 4;
 EditorUi.prototype.hsplitClickEnabled = false;
 
 /**
- * sends a request to the specified url from a form. this will change the window location
- * and the download the file (HomeController@saveXML).
- * @param {string} path the path to send the post request to
- * @param {object} params the parameters to add to the url
- * @param {string} [method=post] the method to use on the form
+ * Create and downloads a xml or owl file
+ * @param fileName
+ * @param data
+ * @param format
  */
+EditorUi.prototype.exportFile = function(fileName, data, format) {
 
-EditorUi.prototype.saveXML = function(path, params, method) {
-	method = method || "post"; // Set method to post by default if not specified.
+	if(fileName.split('.')[1] !== format)
+		fileName = fileName + format;
 
-	let form = document.createElement("form");
-	form.setAttribute("method", method);
-	form.setAttribute("action", path);
-	form.target = "_blank";
+	if(format === 'owl')
+	{
+		return $.ajax({
+			/* the route pointing to the post function */
+			url: '/exportOWL',
+			type: 'POST',
+			/* send the csrf-token and the input to the controller */
+			data: {
+				_token: $('meta[name="csrf-token"]').attr('content'),
+				fileName: fileName,
+				xml:data
+			},
+			dataType: 'JSON',
+			success: function (owlString) {
+				return createDownloadLink(owlString);
+			},
+		})
 
-	for(let key in params) {
-		if(params.hasOwnProperty(key)) {
-			let hiddenField = document.createElement("input");
-			hiddenField.setAttribute("type", "hidden");
-			hiddenField.setAttribute("name", key);
-			hiddenField.setAttribute("value", params[key]);
-
-			form.appendChild(hiddenField);
-		}
 	}
 
-	document.body.appendChild(form);
-	return form.submit();
-};
-
-/**
- * Get the user post request, create a form, and then send to the HomeController@exportImage
- * @param path
- * @param params
- * @returns {*|void}
- */
-EditorUi.prototype.exportImage = function(params) {
-
-	let form = document.createElement("form");
-	form.setAttribute("method","post");
-	form.setAttribute("action", '/exportImage');
-	form.target = "_blank";
-
-	for (let key in params) {
-		if (params.hasOwnProperty(key)) {
-			let hiddenField = document.createElement("input");
-			hiddenField.setAttribute("type", "hidden");
-			hiddenField.setAttribute("name", key);
-			hiddenField.setAttribute("value", params[key]);
-
-			form.appendChild(hiddenField);
+	function createDownloadLink(owlString)
+	{
+		var xmltext = data;
+		if(owlString)
+		{
+			xmltext = owlString;
 		}
-	}
 
-	document.body.appendChild(form);
-	return form.submit();
+		var pom = document.createElement('a');
+
+		var filename = fileName;
+		var bb = new Blob([xmltext], {type: 'text/plain'});
+
+		pom.setAttribute('href', window.URL.createObjectURL(bb));
+		pom.setAttribute('download', filename);
+
+		pom.dataset.downloadurl = ['text/plain', pom.download, pom.href].join(':');
+		pom.draggable = true;
+		pom.classList.add('dragout');
+		pom.click();
+		pom.remove();
+	}
+	return createDownloadLink();
 };
 
 /**
@@ -4005,6 +4002,8 @@ EditorUi.prototype.isCompatibleString = function(data)
  */
 EditorUi.prototype.saveFile = function(forceDialog)
 {
+	$("#save-ontology").click();
+	/*
 	if (!forceDialog && this.editor.filename != null)
 	{
 		this.save(this.editor.getOrCreateFilename());
@@ -4020,14 +4019,15 @@ EditorUi.prototype.saveFile = function(forceDialog)
 			{
 				return true;
 			}
-			
+
 			mxUtils.confirm(mxResources.get('invalidName'));
-			
+
 			return false;
 		}));
 		this.showDialog(dlg.container, 300, 100, true, true);
 		dlg.init();
 	}
+	*/
 };
 
 /**
@@ -4062,7 +4062,7 @@ EditorUi.prototype.save = function(name)
 				if (xml.length < MAX_REQUEST_SIZE)
 				{
 					// ONTO4ALL METHOD
-					EditorUi.prototype.saveXML('/saveXML', {fileName: name, xml: xml});
+					EditorUi.prototype.exportFile('/exportFile', {fileName: name, xml: xml});
 					/* MXGRAPH METHOD */
 					/*
 					new mxXmlRequest(SAVE_URL, 'filename=' + encodeURIComponent(name) +

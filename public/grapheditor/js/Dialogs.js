@@ -1270,16 +1270,18 @@ ExportDialog.saveLocalFile = function(editorUi, data, filename, format)
 
 		// ONTO4ALL METHOD
 		if (format == 'svg')
-			return EditorUi.prototype.exportImage({fileName: filename, imageFormat: format, data: data});
+			return EditorUi.prototype.exportFile(filename, data, 'svg');
 		else if (format == 'xml')
-			return EditorUi.prototype.saveXML('/saveXML', {fileName: filename, xml: data});
+			return EditorUi.prototype.exportFile( filename, data, 'xml');
 		else if(format == 'owl')
-			return EditorUi.prototype.saveXML('/exportOWL', {fileName: filename, xml: data});
+			return EditorUi.prototype.exportFile( filename, data, 'owl');
 
 		//  MXGRAPH 4.2.0 METHOD
+		/*
 		var req = new mxXmlRequest(SAVE_URL, 'xml=' + encodeURIComponent(data) + '&filename=' +
 			encodeURIComponent(filename) + '&format=' + format);
 		req.simulate(document, '_blank');
+		*/
 	}
 	else
 	{

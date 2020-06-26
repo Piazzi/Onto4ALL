@@ -56,7 +56,7 @@ class OntologyController extends Controller
             Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->orderBy('created_at', 'asc')->first()->delete();
         }
         $ontology = new Ontology();
-        $ontology->name = $request->fileName;
+        $ontology->name = $request->fileName ? $request->fileName : $request->name ;
         $ontology->file = $request->xml;
         $ontology->user_id = $request->user()->id;
         $ontology->created_by = $request->user()->name;
@@ -205,4 +205,56 @@ class OntologyController extends Controller
         $fileRequest->request->add(['fileName' => str_replace('.xml','',$file->name . '.owl')]);
         return app('App\Http\Controllers\HomeController')->exportOWL($fileRequest);
     }
+
+    /**
+     * Update a existing ontology or create a new one
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateOrCreate(Request $request)
+    {
+        $ontology = Ontology::updateOrCreate(
+            ["id" => $request->id, "user_id" => Auth::user()->id],
+            ["name" => $request->name,
+             "file" => $request->file,
+             "publication_date" => $request->publication_date,
+             "last_uploaded" => $request->last_uploaded ,
+             "description" => $request->description ,
+             "link" => $request->link ,
+             "user_id" => Auth::user()->id,
+             "favourite" => 0,
+             "domain" => $request->domain,
+             "general_purpose" => $request->general_purpose ,
+             "profile_users" => $request->profile_users ,
+             "intended_use" => $request->intended_use ,
+             "type_of_ontology" => $request->type_of_ontology ,
+             "degree_of_formality" => $request->degree_of_formality ,
+             "scope" => $request->scope ,
+             "competence_questions" => $request->competence_questions,
+            ]
+        );
+        if (app()->getLocale() == 'pt')
+            return response()->json([
+                "message" => 'Todas as alterações foram salvas',
+                "id" => $ontology->id,
+                ]);
+        else
+            return response()->json([
+                "message" => 'All changes saved',
+                "id" => $ontology->id,
+                "request" => $request->all()
+            ]);
+
+    }
+
+    /*
+    public function verifyOntologyLimit()
+    {
+        $size = Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->count();
+        if ($size > 9)
+        {
+            Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->orderBy('created_at', 'asc')->first()->delete();
+        }
+    }
+    */
 }

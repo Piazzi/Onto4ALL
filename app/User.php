@@ -24,6 +24,10 @@ class User extends Authenticatable
         'ontology'
     ];
 
+    protected $guarded = [
+        'categoria'
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

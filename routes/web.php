@@ -95,9 +95,11 @@ Route::post('/openRecentDiagram', 'DiagramController@openRecentDiagram');
 Route::post('/export', 'HomeController@export');
 Route::post('/exportImage', 'HomeController@exportImage');
 Route::post('/save', 'HomeController@save');
-Route::post('/saveXML', 'HomeController@saveXML');
+Route::post('/exportFile', 'HomeController@exportFile');
 Route::post('/exportOWL', 'HomeController@exportOWL');
+Route::post('/exportXML', 'HomeController@exportXML');
 Route::get('/open');
+Route::post('/updateOrCreate', 'OntologyController@updateOrCreate');
 
 Route::get('/thesaurus/download/{userId}/{thesauruId}', 'ThesauruController@download')->name('thesaurus.download')->middleware('can:eModelador');
 
