@@ -328,13 +328,6 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
-                            <strong><i class="fa fa-book margin-r-5"></i>{{__('Description')}}</strong>
-
-                            <p class="text-muted">
-                                {{$ontology->description}}
-                            </p>
-
-                            <hr>
 
                             <strong><i class="fa fa-clock-o margin-r-5"></i>{{__('Created at')}}</strong>
 
@@ -342,28 +335,9 @@
                             <strong><i class="fa fa-clock-o margin-r-5"></i>{{__('Updated at')}}</strong>
                             <p>{{date("d-m-Y | H:i e", strtotime($ontology->updated_at))}}</p>
 
-                            <strong><i class="fa fa-files-o margin-r-5"></i>{{__('Download as')}}</strong>
-
-                                <a href="{{route('ontologies.download',['locale'=>app()->getLocale(), 'userId' => Auth::user()->id, 'ontologyId' => $ontology->id])}}"
-                                   class="btn btn-default  btn-sm ">
-                                    <i class="fa fa-fw fa-file-code-o"></i> XML
-                                </a>
-                                <a  href="{{route('ontologies.downloadOWL', ['locale'=>app()->getLocale(), 'userId' => Auth::user()->id, 'ontologyId' => $ontology->id])}}"
-                                   class="btn btn-default  btn-sm ">
-                                    <i class="fa fa-fw fa-file-code-o"></i> OWL
-                                </a>
-
-                            @if($ontology->link != null)
-                                <hr>
-                                <strong><i  class="fa fa-external-link margin-r-5 "></i>Link</strong>
-
-                                <p><a href="{{$ontology->link}}">{{$ontology->link}}</a></p>
-                            @endif
                             <hr>
-
                             <p>
                                 <a id="{{$ontology->id}}"  class="btn btn-default editor-timeline-item openOntology"  href="#"><i class="fa fa-fw fa-object-group"></i> {{__('Open in the editor')}}</a>
-                                <a  target="_blank" class="btn btn-default editor-timeline-item"  href="ontologies/{{$ontology->id}}/edit"><i class="fa fa-fw fa-pencil"></i> {{__('Edit')}}</a>
                             </p>
 
                         </div>

@@ -4,7 +4,11 @@ $(document).ready(function () {
     // Fires the Ajax request when the button is clicked
 
     $("#save-ontology").click(function () {
-        $("#save-ontology").html('<div class="overlay"><i class="fa fa-refresh fa-spin"></i></div>');
+
+        $("#save-ontology").html('<div  class="overlay"><i style="color: white !important;" class="fa fa-refresh fa-spin"></i></div>');
+        $("#save-ontology").css('background-color','#00a65a');
+        $("#save-ontology").css('border-color','#00a65a');
+
         $.ajax({
             /* the route pointing to the post function */
             url: '/updateOrCreate',
@@ -32,8 +36,7 @@ $(document).ready(function () {
             dataType: 'JSON',
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
-                $("#save-ontology").removeClass('unsaved');
-                $("#save-ontology").addClass('saved');
+                $("#save-ontology").removeClass('unsaved').addClass('saved');
                 $("#save-ontology").html('<i class="fa fa-fw fa-save"></i>' + data['message']);
                 $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+$("#name").val());
                 $("#id").val(data['id']);

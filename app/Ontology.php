@@ -55,6 +55,28 @@ class Ontology extends Model
 
     protected $table = 'ontologies';
 
+    /**
+     * Removes the oldest user ontology
+     * @param $user
+     * @return
+     */
+    public static function removeOldestOntology($user)
+    {
+        return Ontology::where('user_id', '=', $user->id)->where('favourite', '=', 0)->orderBy('created_at', 'asc')->first()->delete();
+    }
+
+    /**
+     * Verify if the user has more than 10 ontologies in the manager
+     * @param $user
+     */
+    public static function verifyOntologyLimit($user)
+    {
+        $size = Ontology::where('user_id', '=', $user->id)->where('favourite', '=', 0)->count();
+        if ($size > 10)
+            Ontology::removeOldestOntology($user);
+    }
+
+
     /*************************** Relations **********************************/
 
     /**

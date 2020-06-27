@@ -207,7 +207,6 @@
                             <li>{{__('When saving an ontology, it can be found in the')}} <a href="{{route('ontologies.index', app()->getLocale())}}"> {{__('Ontology Manager')}}</a> {{__('and on the Ontologies menu on the right sidebar.')}}</li>
                             <li>{{__('You can access ontologies made by you previously by clicking the Open in the Editor button in the ontologies menu on the right sidebar. Or')}}  <a href="#import">{{__('')}} </a></li>
                             <li><span class="label-warning">{{__('Attention: Only your last 10 ontologies were saved in our editor, if you exceed this limit, your oldest ontology will be deleted. If you want to avoid this, mark your ontology as a favorite, so that it will not be deleted. You can select up to 5 ontologies as favorites.')}}</span></li>
-                            <li><span class="label-danger">{{__('If you save ontologies with the same name they will be replaced. For example, if you save an ontology with the name Ontology1 and that ontology already exists in your ontology manager, it will be replaced with the newer ontology')}}</span></li>
                             <li>{{__('It is also possible to export the ontology in other formats, including OWL (Ontology Web Language) or SVG (to save only the image of the created ontology), by clicking')}} <i>{{__('Export')}}</i>{{__(', within the same menu.')}}</li>
                         </ul>
                     </div>

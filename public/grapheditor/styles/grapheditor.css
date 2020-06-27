@@ -139,8 +139,8 @@ aside {
 }
 
 .unsaved {
-	border-color: #d73925;
-	background-color: #dd4b39;
+	border-color: #d73925 !important;
+	background-color: #dd4b39 !important;
 	color:white !important;
 }
 

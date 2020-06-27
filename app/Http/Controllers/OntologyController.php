@@ -141,7 +141,7 @@ class OntologyController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function download(Request $request)
+    public function downloadXML(Request $request)
     {
         $file = Ontology::where('user_id','=', $request->userId)->where('id','=', $request->ontologyId)->first();
 
@@ -149,7 +149,7 @@ class OntologyController extends Controller
         $response->header('Content-Type', 'text/xml');
         $response->header('Cache-Control', 'public');
         $response->header('Content-Description', 'File Transfer');
-        $response->header('Content-Disposition', 'attachment; filename=' . $file->name . '');
+        $response->header('Content-Disposition', 'attachment; filename=' . $this->setFileExtension($file->name, '.xml') . '');
         $response->header('Content-Transfer-Encoding', 'binary');
 
         return $response;
@@ -202,7 +202,7 @@ class OntologyController extends Controller
         $fileRequest = new Request();
         $fileRequest->setMethod('POST');
         $fileRequest->request->add(['xml' => $file->file]);
-        $fileRequest->request->add(['fileName' => str_replace('.xml','',$file->name . '.owl')]);
+        $fileRequest->request->add(['fileName' => $this->setFileExtension($file->name, '.owl')]);
         return app('App\Http\Controllers\HomeController')->exportOWL($fileRequest);
     }
 
@@ -233,6 +233,9 @@ class OntologyController extends Controller
              "competence_questions" => $request->competence_questions,
             ]
         );
+
+        Ontology::verifyOntologyLimit($request->user());
+
         if (app()->getLocale() == 'pt')
             return response()->json([
                 "message" => 'Todas as alterações foram salvas',
@@ -247,14 +250,18 @@ class OntologyController extends Controller
 
     }
 
-    /*
-    public function verifyOntologyLimit()
+    /**
+     * Sets the file extension if not set before
+     * @param $fileName
+     * @param $extension
+     * @return string
+     */
+    public function setFileExtension($fileName, $extension)
     {
-        $size = Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->count();
-        if ($size > 9)
-        {
-            Ontology::where('user_id', '=', $request->user()->id)->where('favourite', '=', 0)->orderBy('created_at', 'asc')->first()->delete();
-        }
+        if(pathinfo($fileName, PATHINFO_EXTENSION) != $extension)
+            $fileName = $fileName . $extension;
+        return $fileName;
     }
-    */
+
+
 }
