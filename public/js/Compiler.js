@@ -39,7 +39,8 @@ function movementCompiler(xml) {
         missingRelationPropertiesWarning = 0, // id = 7
         //excessOfRelationsWarning = 0,  //
         multipleInheritanceWarning = 0, // id = 8
-        notConnectedRelationWarning = 0; // id = 9;
+        notConnectedRelationWarning = 0, // id = 9;
+        domainEqualToRangeWarning = 0; // id = 10
 
     // Starts the XML interpretation send by the editor
     // Each mxCell element is compared to each other to find any measurable error
@@ -287,12 +288,24 @@ function movementCompiler(xml) {
             missingRelationProperties  = "";
         }
 
+        // Throws a error if the domain and range properties are equal
+        if(isRelation(xmlDoc, xmlDoc.getElementsByTagName("object")[i].getAttribute("id") ) &&
+            xmlDoc.getElementsByTagName("object")[i].getAttribute("domain") ===
+            xmlDoc.getElementsByTagName("object")[i].getAttribute("range"))
+        {
+            domainEqualToRangeWarning++;
+            if (getLanguage() === 'pt')
+                warningMessage('As propriedades domain e range da relaçao '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold() + ' não podem ser iguais.', "",10);
+            else
+                warningMessage('The properties domain and range from the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold() + ' relation cannot be equal.', "",10);
+        }
+
     }
 
     // /.----------- WARNINGS SEARCH --------------
 
     // Update the counters on front end
-    let totalWarnings = equalRelationBetweenClassesWarning + equalClassNamesWarning + instanceOfBetweenClassesWarning + wrongRelationWarning + inverseOfNameWarning + missingClassPropertiesWarning + missingRelationPropertiesWarning + multipleInheritanceWarning + notConnectedRelationWarning;
+    let totalWarnings = domainEqualToRangeWarning + equalRelationBetweenClassesWarning + equalClassNamesWarning + instanceOfBetweenClassesWarning + wrongRelationWarning + inverseOfNameWarning + missingClassPropertiesWarning + missingRelationPropertiesWarning + multipleInheritanceWarning + notConnectedRelationWarning;
     $("#warnings-count").text(totalWarnings);
     $("#classes-count").text(classesCount);
     $("#relations-count").text(relationsCount);
@@ -345,6 +358,8 @@ function movementCompiler(xml) {
         removeWarning(8);
     if(notConnectedRelationWarning === 0)
         removeWarning(9);
+    if(domainEqualToRangeWarning === 0)
+        removeWarning(10);
 
 
 }
@@ -446,7 +461,7 @@ function warningMessage(text, warningId)
 {
     $(".direct-chat-messages").append(' <div class="direct-chat-msg ">\n' +
         '                    <div class="direct-chat-info clearfix">\n' +
-        '                        <span class="direct-chat-name pull-right"><i class="fa fa-warning"></i><strong> Warning | Warning Id: ' +warningId+'</strong></span>\n' +
+        '                        <span class="direct-chat-name pull-right"><i class="fa fa-warning"></i><strong> Warning | Warning Id: ' + warningId +'</strong></span>\n' +
         '                        <span class="direct-chat-timestamp pull-left">' + new Date().toLocaleString() + '</span>\n' +
         '                    </div>\n' +
         '                    <!-- /.direct-chat-info -->\n' +
