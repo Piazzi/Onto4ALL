@@ -95,7 +95,7 @@ mxConstants.SHADOW_OPACITY = 0.25;
 mxConstants.SHADOWCOLOR = '#000000';
 mxConstants.VML_SHADOWCOLOR = '#d0d0d0';
 mxGraph.prototype.pageBreakColor = '#c0c0c0';
-mxGraph.prototype.pageScale = 1;
+mxGraph.prototype.pageScale = 2; // default is 1
 
 // Letter page format is default in US, Canada and Mexico
 (function()

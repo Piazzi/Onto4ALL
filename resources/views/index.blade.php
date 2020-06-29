@@ -69,7 +69,7 @@
                             class="fa fa-fw fa-info-circle"></i> {{__('Methodology')}}</a></li>
             <li class="active"><a class="menu-title" href="#control-sidebar-home-tab" data-toggle="tab" aria-expanded="true"><i
                             class="fa fa-search"></i> {{__('Tips')}}</a></li>
-            <li><a class="menu-title" href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-object-group"></i> {{__('Ontologies')}}</a></li>
+            <li><a class="menu-title" data-toggle="modal" data-target="#ontology-manager" ><i class="fa fa-object-group"></i> {{__('Ontologies')}}</a></li>
         </ul>
 
         <div class="tab-content">
@@ -307,45 +307,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- /.tab-pane -->
-            <!-- Stats tab content -->
-            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-            <!-- /.tab-pane -->
-            <!-- Settings tab content -->
-            <div class="tab-pane" id="control-sidebar-settings-tab">
-                <h4 style="padding-top: 0px" class="control-sidebar-heading">{{__('Your recent ontologies')}}</h4>
-                <div id="menu-scroll">
-                    @foreach($ontologies as $ontology)
-                    <div class="box box-success">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">{{str_replace(".xml", " ", $ontology->name)}}</h3>
-                            @if($ontology->favourite == 1)
-                                <i style="color: #ffe70a" class="fa fa-fw fa-star"></i>
-                            @else
-                                <i class="fa fa-fw fa-object-group  "></i>
-                            @endif
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-
-                            <strong><i class="fa fa-clock-o margin-r-5"></i>{{__('Created at')}}</strong>
-
-                            <p>{{date("d-m-Y | H:i e", strtotime($ontology->created_at))}}</p>
-                            <strong><i class="fa fa-clock-o margin-r-5"></i>{{__('Updated at')}}</strong>
-                            <p>{{date("d-m-Y | H:i e", strtotime($ontology->updated_at))}}</p>
-
-                            <hr>
-                            <p>
-                                <a id="{{$ontology->id}}"  class="btn btn-default editor-timeline-item openOntology"  href="#"><i class="fa fa-fw fa-object-group"></i> {{__('Open in the editor')}}</a>
-                            </p>
-
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    @endforeach
-                </div>
-
             </div>
             <!-- /.tab-pane -->
         </div>
@@ -729,17 +690,17 @@
 
 
     <!-- Tracker spans  -->
-    <span id="classes" data-widget="collapse"  class="badge bg-green-gradient tracker" >
+    <span id="classes" data-widget="collapse"  class="badge bg-green tracker" >
                     <i class="fa fa-fw fa-circle-thin"></i>
                     <span id="classes-count"> 0</span>
                 </span>
 
-    <span id="relations" data-widget="collapse"  class="badge bg-green-gradient tracker" >
+    <span id="relations" data-widget="collapse"  class="badge bg-green tracker" >
                     <i class="fa fa-fw fa-long-arrow-right"></i>
                     <span id="relations-count"> 0</span>
                 </span>
 
-    <span id="instances" data-widget="collapse"  class="badge bg-green-gradient tracker" >
+    <span id="instances" data-widget="collapse"  class="badge bg-green tracker" >
                     <i class="fa fa-fw fa-diamond"></i>
                     <span id="instances-count"> 0</span>
                 </span>
@@ -749,7 +710,7 @@
     </span>-->
 
     <a download="ontology-report.txt" class="tracker"  href="#" id="download-ontology-report">
-        <span data-toggle="tooltip" title="" class="badge bg-green-gradient tracker">
+        <span data-toggle="tooltip" title="" class="badge bg-green tracker">
                     <i class="fa fa-fw fa-file-text-o"></i>
         </span>
     </a>
@@ -759,8 +720,8 @@
     </a>
     <!-- ./Tracker spans  -->
 
-
-    <a id="edit-ontology"  class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#edit-ontology-modal" ><i class="fa fa-fw fa-pencil"></i> Edit Ontology Info</a>
+    <a id="open-ontology"  class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#ontology-manager" ><i class="fa fa-fw fa-folder-open"></i> Open Ontology Manager</a>
+    <a id="edit-ontology"  class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#edit-ontology-modal" ><i class="fa fa-fw fa-edit"></i> Edit Ontology Info</a>
     <a id="save-ontology"  class="geItem geStatus btn btn-default editor-timeline-item unsaved" ><i class="fa fa-fw fa-save"></i> Unsaved changes. Click here to save</a>
     <a id="ontology-name"  class="geItem geStatus btn btn-default editor-timeline-item " data-toggle="modal" data-target="#edit-ontology-modal"><i class="fa fa-fw fa-object-group"></i>Current Ontology: None</a>
 
@@ -871,12 +832,71 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button onclick="$('#save-ontology').click()" type="button" class="btn btn-success pull-right" data-dismiss="modal">Save Changes</button>
                 </div>
             </div>
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
     </div>
+
+
+    <!-- Ontology Manager -->
+    <div class="modal fade" id="ontology-manager" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">Ontology Manager</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="timeline">
+                        @foreach($ontologies as $ontology)
+                        <li>
+                            <i class="fa fa-object-group bg-green"></i>
+
+                            <div class="timeline-item">
+                                <span class="time"><i class="fa fa-clock-o"></i> {{__('Created at')}}: {{date("d-m-Y | H:i e", strtotime($ontology->created_at))}}</span>
+                                <span class="time"><i class="fa fa-clock-o"></i> {{__('Last update')}}: {{date("d-m-Y | H:i e", strtotime($ontology->updated_at))}}</span>
+                                @if($ontology->favourite == 1)
+                                    <span class="time"><i style="color: #ffe70a" class="fa fa-fw fa-star"></i></span>
+                                @endif
+
+                                <h3 class="timeline-header">
+                                    <a href="{{route('ontologies.show', ['locale' => app()->getLocale(), 'ontology' => $ontology->id])}}">{{$ontology->name}}</a>
+                                    @if($ontology->created_at !== $ontology->updated_at)
+                                        {{__('was updated')}}
+                                    @else
+                                        {{__('was created')}}
+                                    @endif
+                                </h3>
+
+                                <div class="timeline-body">
+                                    @if($ontology->description)
+                                    <strong><i class="fa fa-book margin-r-5"></i>{{__('Description')}}</strong>
+                                    <p class="text-muted">
+                                        {{$ontology->description}}
+                                    </p>
+                                    @endif
+                                </div>
+                                <div class="timeline-footer">
+                                    <a data-dismiss="modal" id="{{$ontology->id}}"  class="btn btn-default editor-timeline-item openOntology"  href="#"><i class="fa fa-fw fa-object-group"></i> {{__('Open in the editor')}}</a>
+                                </div>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
 
 
     <!-- LOADS MXGRAPH GRAPHEDITOR AND ITS FUNCTIONS -->

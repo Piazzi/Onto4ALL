@@ -165,7 +165,7 @@ class OntologyController extends Controller
         $countOntologies = Ontology::where('user_id','=', $request->userId)->where('favourite','=', 1)->count();
         if($countOntologies >= 5)
         {
-            return redirect()->route('ontologies.index')->with('Error', 'You already have 5 ontologies marked as favourite.');
+            return redirect()->route('ontologies.index', app()->getLocale())->with('Error', 'You already have 5 ontologies marked as favourite.');
         }
         $ontology = Ontology::where('id','=', $request->ontologyId)->where('user_id','=', $request->userId)->first();
         $ontology->favourite = 1;

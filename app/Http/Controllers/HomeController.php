@@ -34,7 +34,7 @@ class HomeController extends Controller
     {
         $relations = OntologyRelation::select()->whereIn('ontology', explode(',',Auth::user()->ontology))->get();
         $classes = OntologyClass::select()->whereIn('ontology', explode(',',Auth::user()->ontology))->get();
-        $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->orderBy('created_at','desc')->get();
+        $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->orderBy('updated_at','desc')->get();
         return view('index', compact('relations', 'classes', 'ontologies'));
     }
 

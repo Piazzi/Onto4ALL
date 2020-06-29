@@ -129,13 +129,15 @@ aside {
 	background-color: #00a65a !important;
 }
 
-#edit-ontology, #save-ontology, #ontology-name {
+#edit-ontology, #save-ontology, #ontology-name, #open-ontology {
 	width: auto !important;
 	padding: 2px !important;
 	margin-top: 2px;
 	margin-right: 5px;
 	padding-right: 8px !important;
 	border-radius: 10px;
+	border: none;
+	background-color: white;
 }
 
 .unsaved {
