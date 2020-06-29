@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\Reminders\RemindableInterface;
@@ -11,6 +12,12 @@ use Illuminate\Contracts\Auth\CanResetPassword;
 class User extends Authenticatable
 {
     use Notifiable;
+
+    public function sendPasswordResetNotification($token)
+    {
+        // Your your own implementation.
+        $this->notify(new ResetPassword($token));
+    }
 
     /**
      * The attributes that are mass assignable.

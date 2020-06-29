@@ -10,7 +10,7 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-            <a href="{{route('home', 'en')}}">{!! config('adminlte.logo', '<b>Admin</b>LTE') !!}</a>
+            <img alt="logo" href="{{route('home', 'en')}}" src="{{asset('css/images/LogoGreen.png')}}">
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -51,7 +51,7 @@
                     @endif
                 </div>
                 <button type="submit"
-                        class="btn btn-primary btn-block btn-flat"
+                        class="btn btn-success btn-block btn-flat"
                 >{{ trans('adminlte::adminlte.reset_password') }}</button>
             </form>
         </div>
