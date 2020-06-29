@@ -89,7 +89,8 @@ Sidebar.prototype.init = function()
 	if(window.location.pathname.split('/')[2] === 'thesaurus-editor')
 		this.addThesauruPalette(true);
 	else {
-		this.addOntologyPalette(true); // Paleta de ontologia
+		this.addBasicOntologyPalette(true); // Paleta de ontologia básica
+		this.addAdvancedOntologyPalette(true); // Paleta de ontologia avançada
 		//	this.addGeneralPalette(true); Retirando a paleta geral
 		//	this.addMiscPalette(false); Retirando a paleta misc
 		//	this.addAdvancedPalette(false); Retirando a paleta advanced
@@ -1031,9 +1032,9 @@ Sidebar.prototype.addThesauruPalette = function(expand)
 		this.addPaletteFunctions('Thesauru', 'Thesauru', (expand != null) ? expand : true, fns);
 };
 
-/* Adds the ontology palette to the sidebar
+/* Adds the basic ontology palette to the sidebar
 */
-Sidebar.prototype.addOntologyPalette = function(expand)
+Sidebar.prototype.addBasicOntologyPalette = function(expand)
 {
 	var lineTags = 'line lines connector connectors connection connections arrow arrows ';
 
@@ -1065,29 +1066,9 @@ Sidebar.prototype.addOntologyPalette = function(expand)
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'new_relation', 'new_relation', null, 'uml sequence message call invoke dispatch'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'is_a', 'is_a', null, 'uml sequence message call invoke dispatch'),
         this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'part_of', 'part_of', null, 'uml sequence message call invoke dispatch'),
-        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'has_part', 'has_part', null, 'uml sequence message call invoke dispatch'),
-        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'contains', 'contains', null, 'uml sequence message call invoke dispatch'),
-        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'realizes', 'realizes', null, 'uml sequence message call invoke dispatch'),
-        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'realized_in', 'realized_in', null, 'uml sequence message call invoke dispatch'),
-        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'contained_in', 'contained_in', null, 'uml sequence message call invoke dispatch'),
-        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'involved_in', 'involved_in', null, 'uml sequence message call invoke dispatch'),
-        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'located_in', 'located_in', null, 'uml sequence message call invoke dispatch'),
-        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'member_of', 'member_of', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'adjacent_to', 'adjacent_to', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'agent_in', 'agent_in', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'collected_into', 'collected_into', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'derives_from', 'derives_from', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'has_boundary', 'has_boundary', null, 'uml sequence message call invoke dispatch'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'instance_of', 'instance_of', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'participates_in', 'participates_in', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'part_of_at_all_times', 'part_of_at_all_times', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'part_of_at_some_times', 'part_of_at_some_times', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'preceded_by', 'preceded_by', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'produces', 'produces', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'produced_by', 'produced_By', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'same_as', 'same_as', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'subquantity_of', 'subquantity_of', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'has_synonym', 'has_synonym', null, 'uml sequence message call invoke dispatch'),
+
+
 		//this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, '', '', null, 'uml sequence message call invoke dispatch'),
 
     ];
@@ -1114,7 +1095,65 @@ Sidebar.prototype.addOntologyPalette = function(expand)
 			return sb.createVertexTemplateFromCells([cell, edge1, edge2], 10, 80, 'Synchronous Invocation');
 		}),
 // end
-	this.addPaletteFunctions('Ontology', 'Ontology', (expand != null) ? expand : true, fns);
+	this.addPaletteFunctions('Basic Ontology', 'Basic Ontology', (expand != null) ? expand : true, fns);
+};
+
+/* Adds the advanced ontology palette to the sidebar
+*/
+Sidebar.prototype.addAdvancedOntologyPalette = function(expand)
+{
+	var lineTags = 'line lines connector connectors connection connections arrow arrows ';
+
+	var fns = [
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'adjacent_to', 'adjacent_to', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'agent_in', 'agent_in', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'collected_into', 'collected_into', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'contained_in', 'contained_in', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'contains', 'contains', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'derives_from', 'derives_from', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'has_boundary', 'has_boundary', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'has_part', 'has_part', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'has_synonym', 'has_synonym', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'involved_in', 'involved_in', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'located_in', 'located_in', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'member_of', 'member_of', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'participates_in', 'participates_in', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'part_of_at_all_times', 'part_of_at_all_times', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'part_of_at_some_times', 'part_of_at_some_times', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'preceded_by', 'preceded_by', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'produced_by', 'produced_By', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'produces', 'produces', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'realized_in', 'realized_in', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'realizes', 'realizes', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'same_as', 'same_as', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'subquantity_of', 'subquantity_of', null, 'uml sequence message call invoke dispatch'),
+
+	];
+	// DISPATCH POINTER
+	this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
+	{
+		var cell = new mxCell('', new mxGeometry(0, 0, 10, 80), 'html=1;points=[];perimeter=orthogonalPerimeter;');
+		cell.vertex = true;
+
+		var edge1 = new mxCell('dispatch', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;');
+		edge1.geometry.setTerminalPoint(new mxPoint(-70, 0), true);
+		edge1.geometry.relative = true;
+		edge1.edge = true;
+
+		cell.insertEdge(edge1, false);
+
+		var edge2 = new mxCell('return', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;');
+		edge2.geometry.setTerminalPoint(new mxPoint(-70, 76), false);
+		edge2.geometry.relative = true;
+		edge2.edge = true;
+
+		cell.insertEdge(edge2, true);
+
+		return sb.createVertexTemplateFromCells([cell, edge1, edge2], 10, 80, 'Synchronous Invocation');
+	}),
+// end
+
+		this.addPaletteFunctions('Advanced Ontology', 'Advanced Ontology', (expand != null) ? expand : true, fns);
 };
 
 /**

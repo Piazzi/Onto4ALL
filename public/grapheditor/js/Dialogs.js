@@ -1506,6 +1506,9 @@ var EditDataDialog = function(ui, cell)
 		addProps('range');
 		addProps('inverseOf');
 		addProps('cardinality');
+		addProps('equivalentTo');
+		addProps('disjointWith');
+		addProps('transitive');
 	}
 	else
 	{
