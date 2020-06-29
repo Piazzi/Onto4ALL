@@ -34,6 +34,6 @@ window.OPEN_FORM = window.OPEN_FORM || '/grapheditor/open.html';
 // files (the special bundle and the default bundle) is disabled to
 // save a GET request. This requires that all resources be present in
 // each properties file since only one file is loaded.
-window.mxBasePath = window.mxBasePath || '/grapheditor//src';
+window.mxBasePath = window.mxBasePath || '/grapheditor/src';
 window.mxLanguage = window.mxLanguage || urlParams['lang'];
 window.mxLanguages = window.mxLanguages || ['de', 'se','pt'];

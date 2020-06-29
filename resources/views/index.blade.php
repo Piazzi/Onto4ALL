@@ -720,10 +720,10 @@
     </a>
     <!-- ./Tracker spans  -->
 
-    <a id="open-ontology"  class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#ontology-manager" ><i class="fa fa-fw fa-folder-open"></i> Open Ontology Manager</a>
-    <a id="edit-ontology"  class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#edit-ontology-modal" ><i class="fa fa-fw fa-edit"></i> Edit Ontology Info</a>
-    <a id="save-ontology"  class="geItem geStatus btn btn-default editor-timeline-item unsaved" ><i class="fa fa-fw fa-save"></i> Unsaved changes. Click here to save</a>
-    <a id="ontology-name"  class="geItem geStatus btn btn-default editor-timeline-item " data-toggle="modal" data-target="#edit-ontology-modal"><i class="fa fa-fw fa-object-group"></i>Current Ontology: None</a>
+    <a id="open-ontology"  class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#ontology-manager" ><i class="fa fa-fw fa-folder-open"></i> {{__('Open Ontology Manager')}}</a>
+    <a id="edit-ontology"  class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#edit-ontology-modal" ><i class="fa fa-fw fa-edit"></i> {{__('Edit Ontology Info')}}</a>
+    <a id="save-ontology"  class="geItem geStatus btn btn-default editor-timeline-item unsaved" ><i class="fa fa-fw fa-save"></i> {{__('Unsaved changes. Click here to save')}}</a>
+    <a id="ontology-name"  class="geItem geStatus btn btn-default editor-timeline-item " data-toggle="modal" data-target="#edit-ontology-modal"><i class="fa fa-fw fa-object-group"></i>{{__('Current Ontology: None')}}</a>
 
     <!-- Edit Ontology -->
     <div class="modal fade" id="edit-ontology-modal" style="display: none;">
@@ -732,7 +732,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Edit Current Ontology</h4>
+                    <h4 class="modal-title">{{__('Edit Current Ontology')}}</h4>
                 </div>
                 <div class="modal-body">
                         <input id="id" name="id" type="hidden">
@@ -831,8 +831,8 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                    <button onclick="$('#save-ontology').click()" type="button" class="btn btn-success pull-right" data-dismiss="modal">Save Changes</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('Close')}}</button>
+                    <button onclick="$('#save-ontology').click()" type="button" class="btn btn-success pull-right" data-dismiss="modal">{{__('Save Changes')}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -848,48 +848,53 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">Ontology Manager</h4>
+                    <h4 class="modal-title">{{__('Ontology Manager')}}</h4>
+
                 </div>
                 <div class="modal-body">
+                    @if($ontologies->count() == 0)
+                        <p>{{__('You dont have any ontologies saved in our ontology manager yet')}}</p>
+                    @else
                     <ul class="timeline">
-                        @foreach($ontologies as $ontology)
-                        <li>
-                            <i class="fa fa-object-group bg-green"></i>
+                            @foreach($ontologies as $ontology)
+                            <li>
+                                <i class="fa fa-object-group bg-green"></i>
 
-                            <div class="timeline-item">
-                                <span class="time"><i class="fa fa-clock-o"></i> {{__('Created at')}}: {{date("d-m-Y | H:i e", strtotime($ontology->created_at))}}</span>
-                                <span class="time"><i class="fa fa-clock-o"></i> {{__('Last update')}}: {{date("d-m-Y | H:i e", strtotime($ontology->updated_at))}}</span>
-                                @if($ontology->favourite == 1)
-                                    <span class="time"><i style="color: #ffe70a" class="fa fa-fw fa-star"></i></span>
-                                @endif
-
-                                <h3 class="timeline-header">
-                                    <a href="{{route('ontologies.show', ['locale' => app()->getLocale(), 'ontology' => $ontology->id])}}">{{$ontology->name}}</a>
-                                    @if($ontology->created_at !== $ontology->updated_at)
-                                        {{__('was updated')}}
-                                    @else
-                                        {{__('was created')}}
+                                <div class="timeline-item">
+                                    <span class="time"><i class="fa fa-clock-o"></i> {{__('Created at')}}: {{date("d-m-Y | H:i e", strtotime($ontology->created_at))}}</span>
+                                    <span class="time"><i class="fa fa-clock-o"></i> {{__('Last update')}}: {{date("d-m-Y | H:i e", strtotime($ontology->updated_at))}}</span>
+                                    @if($ontology->favourite == 1)
+                                        <span class="time"><i style="color: #ffe70a" class="fa fa-fw fa-star"></i></span>
                                     @endif
-                                </h3>
 
-                                <div class="timeline-body">
-                                    @if($ontology->description)
-                                    <strong><i class="fa fa-book margin-r-5"></i>{{__('Description')}}</strong>
-                                    <p class="text-muted">
-                                        {{$ontology->description}}
-                                    </p>
-                                    @endif
+                                    <h3 class="timeline-header">
+                                        <a href="{{route('ontologies.show', ['locale' => app()->getLocale(), 'ontology' => $ontology->id])}}">{{$ontology->name}}</a>
+                                        @if($ontology->created_at !== $ontology->updated_at)
+                                            {{__('was updated')}}
+                                        @else
+                                            {{__('was created')}}
+                                        @endif
+                                    </h3>
+
+                                    <div class="timeline-body">
+                                        @if($ontology->description)
+                                        <strong><i class="fa fa-book margin-r-5"></i>{{__('Description')}}</strong>
+                                        <p class="text-muted">
+                                            {{$ontology->description}}
+                                        </p>
+                                        @endif
+                                    </div>
+                                    <div class="timeline-footer">
+                                        <a data-dismiss="modal" id="{{$ontology->id}}"  class="btn btn-default editor-timeline-item openOntology"  href="#"><i class="fa fa-fw fa-object-group"></i> {{__('Open in the editor')}}</a>
+                                    </div>
                                 </div>
-                                <div class="timeline-footer">
-                                    <a data-dismiss="modal" id="{{$ontology->id}}"  class="btn btn-default editor-timeline-item openOntology"  href="#"><i class="fa fa-fw fa-object-group"></i> {{__('Open in the editor')}}</a>
-                                </div>
-                            </div>
-                        </li>
-                        @endforeach
+                            </li>
+                            @endforeach
+                         @endif
                     </ul>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('Close')}}</button>
                 </div>
             </div>
             <!-- /.modal-content -->

@@ -236,18 +236,11 @@ class OntologyController extends Controller
 
         Ontology::verifyOntologyLimit($request->user());
 
-        if (app()->getLocale() == 'pt')
-            return response()->json([
-                "message" => 'Todas as alterações foram salvas',
+        return response()->json([
+                "message-pt" => 'Todas as alterações foram salvas',
+                "message-en" => 'All changes saved',
                 "id" => $ontology->id,
                 ]);
-        else
-            return response()->json([
-                "message" => 'All changes saved',
-                "id" => $ontology->id,
-                "request" => $request->all()
-            ]);
-
     }
 
     /**

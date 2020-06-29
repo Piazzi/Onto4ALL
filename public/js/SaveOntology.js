@@ -37,7 +37,11 @@ $(document).ready(function () {
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
                 $("#save-ontology").removeClass('unsaved').addClass('saved');
-                $("#save-ontology").html('<i class="fa fa-fw fa-save"></i>' + data['message']);
+                if(window.location.pathname.split('/')[1] === 'pt')
+                    $("#save-ontology").html('<i class="fa fa-fw fa-save"></i>' + data['message-pt']);
+                else
+                    $("#save-ontology").html('<i class="fa fa-fw fa-save"></i>' + data['message-en']);
+
                 $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+$("#name").val());
                 $("#id").val(data['id']);
                 console.log(data);

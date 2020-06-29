@@ -14,7 +14,11 @@ function movementCompiler(xml) {
 
     // Updates the save file button
     $("#save-ontology").removeClass("saved").addClass("unsaved");
-    $("#save-ontology").html('<i class="fa fa-fw fa-save"></i> Unsaved changes. Click here to save');
+
+    if(getLanguage() === 'pt')
+        $("#save-ontology").html('<i class="fa fa-fw fa-save"></i> Alterações não salvas. Clique aqui para salvar');
+    else
+        $("#save-ontology").html('<i class="fa fa-fw fa-save"></i> Unsaved changes. Click here to save');
 
     // Removes the previous error messages
     $(".direct-chat-messages").empty();
@@ -24,7 +28,8 @@ function movementCompiler(xml) {
     parser = new DOMParser();
     xmlDoc = parser.parseFromString(xml, "text/xml");
     // Each of theses error has a unique Id used for searching for the error in the DOM Elements
-    //  These id's also corresponds to the id's on the warning index page
+    //  These id's also corresponds to the id's o
+    //  n the warning index page
     let equalClassNamesWarning = 0, // id = 1
         equalRelationBetweenClassesWarning = 0, // id = 2
         instanceOfBetweenClassesWarning = 0, // id = 3

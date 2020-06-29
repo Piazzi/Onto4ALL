@@ -18,7 +18,7 @@
 				{
 					window.parent.open(window.parent.location.href);
 				}
-				
+
 				var reader = new FileReader();
 				reader.onload = function(e)
 				{
@@ -37,13 +37,13 @@
 	function handleSubmit()
 	{
 		var form = window.openForm || document.getElementById('openForm');
-		
+
 		// Checks for support of the File API for local file access
 		// except for files where the parse is on the server
 		if (window.parent.Graph.fileSupport && form.upfile.files.length > 0)
 		{
 			handleFiles(form.upfile.files);
-			
+
 			return false;
 		}
 		else
@@ -56,7 +56,7 @@
 				{
 					window.parent.open(window.parent.location.href);
 				}
-				
+
 				// NOTE: File is loaded via JS injection into the iframe, which in turn sets the
 				// file contents in the parent window. The new window asks its opener if any file
 				// contents are available or waits for the contents to become available.
@@ -65,23 +65,23 @@
 			else
 			{
 				window.parent.mxUtils.alert(window.parent.mxResources.get('invalidOrMissingFile'));
-				
+
 				return false;
 			}
 		}
 	};
-	
+
 	// Hides this dialog
 	function hideWindow(cancel)
 	{
 		window.parent.openFile.cancel(cancel);
 	}
-	
+
 	function fileChanged()
 	{
 		var form = window.openForm || document.getElementById('openForm');
 		var openButton = document.getElementById('openButton');
-		
+
 		if (form.upfile.value.length > 0)
 		{
 			openButton.removeAttribute('disabled');
@@ -89,7 +89,7 @@
 		else
 		{
 			openButton.setAttribute('disabled', 'disabled');
-		}		
+		}
 	}
 
 	function main()
@@ -99,7 +99,7 @@
 			document.body.innerHTML = '';
 			var div = document.createElement('div');
 			div.style.fontFamily = 'Arial';
-			
+
 			if (localStorage.length == 0)
 			{
 				window.parent.mxUtils.write(div, window.parent.mxResources.get('noFiles'));
@@ -107,18 +107,18 @@
 			else
 			{
 				var keys = [];
-				
+
 				for (var i = 0; i < localStorage.length; i++)
 				{
 					keys.push(localStorage.key(i));
 				}
-				
+
 				// Sorts the array by filename (key)
 				keys.sort(function (a, b)
 				{
 				    return a.toLowerCase().localeCompare(b.toLowerCase());
 				});
-				
+
 				for (var i = 0; i < keys.length; i++)
 				{
 					var link = document.createElement('a');
@@ -128,16 +128,16 @@
 					window.parent.mxUtils.write(link, key);
 					link.style.cursor = 'pointer';
 					div.appendChild(link);
-					
+
 					var img = document.createElement('span');
 					img.className = 'geSprite geSprite-delete';
 					img.style.position = 'relative';
 					img.style.cursor = 'pointer';
 					img.style.display = 'inline-block';
 					div.appendChild(img);
-					
+
 					window.parent.mxUtils.br(div);
-					
+
 					window.parent.mxEvent.addListener(img, 'click', (function(k)
 					{
 						return function()
@@ -170,14 +170,14 @@
 
 			window.parent.mxUtils.br(div);
 			window.parent.mxUtils.br(div);
-			
+
 			var cancelBtn = window.parent.mxUtils.button(window.parent.mxResources.get('cancel'), function()
 			{
 				hideWindow(true);
 			});
 			cancelBtn.className = 'geBtn';
 			div.appendChild(cancelBtn);
-			
+
 			document.body.appendChild(div);
 		}
 		else
