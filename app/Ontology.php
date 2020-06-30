@@ -76,6 +76,16 @@ class Ontology extends Model
             Ontology::removeOldestOntology($user);
     }
 
+    /**
+     * Gets the last updated ontology
+     * @param $user
+     * @return mixed
+     */
+    public static function getLatestOntology($user)
+    {
+        return Ontology::where('user_id', $user->id)->latest('updated_at')->first();
+    }
+
 
     /*************************** Relations **********************************/
 

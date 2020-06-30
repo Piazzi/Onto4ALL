@@ -800,7 +800,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Intended User</label>
+                                    <label>Intended Use</label>
                                     <input id="intended-use"  value="" name="intended_use" type="text" class="form-control">
                                 </div>
                             </div>

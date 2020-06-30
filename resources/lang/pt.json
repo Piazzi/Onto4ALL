@@ -381,7 +381,8 @@
     "Open Ontology Manager": "Abrir Gerenciador de Ontologias",
     "Edit Ontology Info": "Editar informações da ontologia",
     "Unsaved changes. Click here to save": "Alterações não salvas. Clique aqui para salvar",
-    "Current Ontology: None": "Ontologia Atual: Nenhuma"
+    "Current Ontology: None": "Ontologia Atual: Nenhuma",
+    "You dont have any ontologies saved in our ontology manager yet": "Você não tem nenhuma ontologia salva em nosso gerenciador ainda."
 
 
 }
