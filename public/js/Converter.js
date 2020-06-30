@@ -49,15 +49,12 @@ function generatePositions(n)
 
 }
 
-
 /**
- * Converts a OWL file to a XML File
- * @param owlDoc
+ * set the default attributes for the mxGraphModel node.
+ * mxGraphModel is the underlying object that stores the data structure of our graph.
  */
-function owlToXml(owlDoc)
-{
-    // set the default attributes for the mxGraphModel node.
-    // mxGraphModel is the underlying object that stores the data structure of our graph.
+function setMxGraphModelAttributes() {
+
     let mxGraphModel = xmlDoc.getElementsByTagName("mxGraphModel")[0];
     mxGraphModel.setAttribute("dx", '1409');
     mxGraphModel.setAttribute("dy", '820');
@@ -73,7 +70,14 @@ function owlToXml(owlDoc)
     mxGraphModel.setAttribute("pageWidth", '827');
     mxGraphModel.setAttribute("pageHeight", '1169');
     mxGraphModel.setAttribute("background", '#ffffff');
+}
 
+/**
+ * create the root node that will hold all elements (classes, relations, ect...) of the graph
+ * and set the first two nodes of the graph. This two nodes are the default in every graph
+ */
+function createRootAndMxCellNodes()
+{
     // create the root node that will hold all elements (classes, relations, ect...) of the graph
     let root = xmlDoc.createElement("root");
     xmlDoc.getElementsByTagName("mxGraphModel")[0].appendChild(root);
@@ -86,7 +90,18 @@ function owlToXml(owlDoc)
     mxCell2.setAttribute("id", "1");
     mxCell2.setAttribute("parent", "0");
     root.appendChild(mxCell2);
+}
 
+
+/**
+ * Converts a OWL file to a XML File
+ * @param owlDoc
+ */
+function owlToXml(owlDoc)
+{
+    setMxGraphModelAttributes();
+    if(xmlDoc.getElementsByTagName("mxGraphModel")[0].childNodes.length === 0)
+        createRootAndMxCellNodes();
     generatePositions(owlDoc.getElementsByTagName("Declaration").length);
 
     // Starts the conversion of the OWL file by reading all declaration nodes
