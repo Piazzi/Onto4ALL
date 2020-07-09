@@ -1377,18 +1377,34 @@ var EditDataDialog = function(ui, cell)
 		wrapper.appendChild(removeAttr);
 		parent.appendChild(wrapper);
 	};
-	
+
+	/**
+	 * Creates a section for the Annotations properties
+	 */
+	function createAnnotationsSection()
+	{
+		let annotationsTitle = document.createElement('h3');
+		let annotationsText = document.createTextNode('------ Annotations ------');
+		annotationsTitle.appendChild(annotationsText);
+		form.addField('', annotationsTitle);
+	}
+
+
 	var addTextArea = function(index, name, value)
 	{
 		names[index] = name;
 		texts[index] = form.addTextarea(names[count] + ':', value, 2);
 		texts[index].style.width = '100%';
-		
+
+		// Detects where the Annotations start
+		if(name === 'EquivalentTo' || name === 'transitive')
+			createAnnotationsSection();
+
 		if (value.indexOf('\n') > 0)
 		{
 			texts[index].setAttribute('rows', '2');
 		}
-		
+
 		addRemoveButton(texts[index], name);
 	};
 	
@@ -1404,6 +1420,7 @@ var EditDataDialog = function(ui, cell)
 	}
 	
 	// Sorts by name
+	/*
 	temp.sort(function(a, b)
 	{
 	    if (a.name < b.name)
@@ -1419,7 +1436,7 @@ var EditDataDialog = function(ui, cell)
 	    	return 0;
 	    }
 	});
-
+	*/
 	if (id != null)
 	{	
 		var text = document.createElement('div');
@@ -1430,13 +1447,17 @@ var EditDataDialog = function(ui, cell)
 		
 		form.addField(mxResources.get('id') + ':', text);
 	}
-	
+
+
+
 	for (var i = 0; i < temp.length; i++)
 	{
+		console.log(temp[i].name);
 		addTextArea(count, temp[i].name, temp[i].value);
 		count++;
 	}
-	
+
+
 	var top = document.createElement('div');
 	top.style.cssText = 'position:absolute;left:30px;right:30px;overflow-y:auto;top:30px;bottom:80px;';
 	top.appendChild(form.table);
@@ -1498,7 +1519,7 @@ var EditDataDialog = function(ui, cell)
 		}
 	}
 
-	console.log(cell);
+	//console.log(cell);
 	// relations properties
 	if(cell.isEdge())
 	{
@@ -1519,15 +1540,27 @@ var EditDataDialog = function(ui, cell)
 		addProps('hasSynonym');
 		addProps('hasExactSynonym');
 		addProps('hasRelatedSynonym');
-		addProps('alternativeTerm');
-		addProps('definition');
 		addProps('elucidaton');
-		addProps('exampleOfUsage');
 		addProps('SubClassOf');
 		addProps('comments');
 		addProps('DisjointWith');
 		addProps('EquivalentTo');
 	}
+
+	createAnnotationsSection();
+
+	// Annotations
+	addProps('preferredName');
+	addProps('definition');
+	addProps('definitionEditor');
+	addProps('definitionSource');
+	addProps('specificationOfCurationStatus');
+	addProps('exampleOfUsage');
+	addProps('alternativeTerm');
+	addProps('editorNote');
+	addProps('curatorNote');
+	addProps('specifyingObsolescenceRatio');
+	addProps('exclusiveLabel');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1737,9 +1770,9 @@ var EditDataDialog = function(ui, cell)
 	}
 
 	div.appendChild(buttons);
-	// fix dialog size
-	div.style.setProperty("width", "480px", "important");
-	div.style.setProperty("height", "420px", "important");
+	// fix dialog size. Default is Width 480, height 420
+	div.style.setProperty("width", "580px", "important");
+	div.style.setProperty("height", "520px", "important");
 
 	this.container = div;
 };
