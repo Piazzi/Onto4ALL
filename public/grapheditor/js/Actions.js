@@ -54,14 +54,20 @@ Actions.prototype.init = function()
 				// Verifies if the uploaded file is a OWL file
 				let fileExtension = filename.split('.').pop();
 				if(fileExtension === 'owl' || fileExtension === 'owx')
-					editor.graph.setSelectionCells(editor.graph.importGraphModel(owlToXml(doc.documentElement)));
+				{
+					if(doc.documentElement.nodeName === 'rdf:RDF')
+						editor.graph.setSelectionCells(editor.graph.importGraphModel(rdfToXml(doc.documentElement)));
+					else
+						editor.graph.setSelectionCells(editor.graph.importGraphModel(owlToXml(doc.documentElement)));
+				}
 				else
 					editor.graph.setSelectionCells(editor.graph.importGraphModel(doc.documentElement));
 
 			}
 			catch (e)
 			{
-				mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message);
+				mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message + '. Contact us if you are a having issues with this feature');
+				console.log(e);
 			}
 		}));
 

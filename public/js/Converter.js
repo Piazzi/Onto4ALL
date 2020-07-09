@@ -17,6 +17,9 @@ let positionCounter = 0;
  */
 function generatePositions(n)
 {
+    // resets the counter and the array
+    positionCounter = 0;
+    positions = [];
     //rx (the radius along X-axis)
     //ry (the radius along Y-axis.)
     let rx, ry;
@@ -78,6 +81,9 @@ function setMxGraphModelAttributes() {
  */
 function createRootAndMxCellNodes()
 {
+    if(xmlDoc.getElementsByTagName("mxGraphModel")[0].childNodes.length !== 0)
+        return;
+
     // create the root node that will hold all elements (classes, relations, ect...) of the graph
     let root = xmlDoc.createElement("root");
     xmlDoc.getElementsByTagName("mxGraphModel")[0].appendChild(root);
@@ -94,14 +100,14 @@ function createRootAndMxCellNodes()
 
 
 /**
- * Converts a OWL file to a XML File
+ * Converts a OWL file to a mxgraph XML File
  * @param owlDoc
  */
 function owlToXml(owlDoc)
 {
+    clearXmlDocument();
     setMxGraphModelAttributes();
-    if(xmlDoc.getElementsByTagName("mxGraphModel")[0].childNodes.length === 0)
-        createRootAndMxCellNodes();
+    createRootAndMxCellNodes();
     generatePositions(owlDoc.getElementsByTagName("Declaration").length);
 
     // Starts the conversion of the OWL file by reading all declaration nodes
@@ -149,7 +155,6 @@ function owlToXml(owlDoc)
     // Reads all AnnotationAssertion nodes to fill properties on classes and relations
     for(let i = 0; i < owlDoc.getElementsByTagName("AnnotationAssertion").length;i++)
     {
-        console.log(owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes);
         if(owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes[1].getAttribute("IRI"))
         {
             let propertyLabel = owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes[1].getAttribute("IRI").split("#").pop();
@@ -160,6 +165,57 @@ function owlToXml(owlDoc)
 
         }
 
+    }
+
+    console.log(xmlDoc.documentElement);
+    return xmlDoc.documentElement;
+}
+
+/**
+ * Converts a RDF/XML file to mxgraph XML
+ * @param owlDoc
+ */
+function rdfToXml(owlDoc)
+{
+    clearXmlDocument();
+    setMxGraphModelAttributes();
+    createRootAndMxCellNodes();
+    let numberOfElements = 0;
+
+    // Gets the total number of elements
+    for(let i = 0; i < owlDoc.getElementsByTagName("owl:Class").length; i++)
+        if(owlDoc.getElementsByTagName("owl:Class")[i].parentNode.nodeName === 'rdf:RDF')
+            numberOfElements++;
+
+    for(let i = 0; i < owlDoc.getElementsByTagName("owl:ObjectProperty").length; i++)
+        if(owlDoc.getElementsByTagName("owl:ObjectProperty")[i].parentNode.nodeName === 'rdf:RDF')
+            numberOfElements++;
+
+    generatePositions(numberOfElements);
+    console.log(numberOfElements);
+
+    // Creates the Class and relations nodes
+    try 
+    {
+        for(let i = 0; i < owlDoc.getElementsByTagName("owl:Class").length; i++)
+        {
+            if(owlDoc.getElementsByTagName("owl:Class")[i].parentNode.nodeName === 'rdf:RDF' && owlDoc.getElementsByTagName("owl:Class")[i].childNodes.length !== 0)
+            {
+                console.log(owlDoc.getElementsByTagName("owl:Class")[i].childNodes[1].textContent);
+                createClassNode(owlDoc.getElementsByTagName("owl:Class")[i].childNodes[1].textContent);
+            }
+        }
+
+        for(let i = 0; i < owlDoc.getElementsByTagName("owl:ObjectProperty").length;i++)
+        {
+            if(owlDoc.getElementsByTagName("owl:ObjectProperty")[i].parentNode.nodeName === 'rdf:RDF' && owlDoc.getElementsByTagName("owl:ObjectProperty")[i].childNodes.length !== 0)
+            {
+                console.log(owlDoc.getElementsByTagName("owl:ObjectProperty")[i].childNodes[1].textContent);
+                createRelationNode(owlDoc.getElementsByTagName("owl:ObjectProperty")[i].childNodes[1].textContent);
+            }
+        }
+    } catch (e) {
+        console.log(e);
     }
 
     console.log(xmlDoc.documentElement);
@@ -326,5 +382,14 @@ function insertPropertyOnNode(nodeName, label, value)
             if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") === nodeName)
                 xmlDoc.getElementsByTagName("object")[i].setAttribute(label,value);
     }
+
+}
+
+/**
+ * Clears the xml Doc root node for a new importation
+ */
+function clearXmlDocument() {
+    if(xmlDoc.firstChild.firstChild !== null)
+        xmlDoc.documentElement.removeChild(xmlDoc.getElementsByTagName("root")[0]);
 
 }
