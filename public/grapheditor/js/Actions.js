@@ -54,10 +54,11 @@ Actions.prototype.init = function()
 				// Verifies if the uploaded file is a OWL file
 				let fileExtension = filename.split('.').pop();
 				if(fileExtension === 'owl' || fileExtension === 'owx')
-				{
+				{/*
 					if(doc.documentElement.nodeName === 'rdf:RDF')
 						editor.graph.setSelectionCells(editor.graph.importGraphModel(rdfToXml(doc.documentElement)));
 					else
+					*/
 						editor.graph.setSelectionCells(editor.graph.importGraphModel(owlToXml(doc.documentElement)));
 				}
 				else
@@ -66,7 +67,10 @@ Actions.prototype.init = function()
 			}
 			catch (e)
 			{
-				mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message + '. Contact us if you are a having issues with this feature');
+				if(getLanguage() == 'pt')
+					mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message + '. Prezado usuário, o formato da ontologia a ser importada não é compatível com o Onto4AllEditor. Essa versão do editor aceita importações nos seguintes formatos: OWL/XML, .XML');
+				else
+					mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message + '. Dear user, the format of the ontology to be imported is not compatible with Onto4AllEditor. This version of the editor accepts imports in the following formats: OWL / XML, .XML');
 				console.log(e);
 			}
 		}));
