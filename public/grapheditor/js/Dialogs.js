@@ -1394,6 +1394,8 @@ var EditDataDialog = function(ui, cell)
 	{
 		names[index] = name;
 		texts[index] = form.addTextarea(names[count] + ':', value, 2);
+		if(name === 'SubClassOf')
+			texts[index].id = 'ClassExpressionEditorInput';
 		texts[index].style.width = '100%';
 
 		// Detects where the Annotations start
@@ -1452,7 +1454,6 @@ var EditDataDialog = function(ui, cell)
 
 	for (var i = 0; i < temp.length; i++)
 	{
-		console.log(temp[i].name);
 		addTextArea(count, temp[i].name, temp[i].value);
 		count++;
 	}
@@ -1502,7 +1503,14 @@ var EditDataDialog = function(ui, cell)
 					}
 
 					names.push(name);
-					var text = form.addTextarea(name + ':', '', 2);
+					var text = form.addTextarea(name + ':', '',  2);
+					if(name === 'SubClassOf')
+					{
+						text.id = 'ClassExpressionEditorInput';
+						text.oninput = 'validateInput();';
+						console.log(text);
+						console.log(text.oninput);
+					}
 					text.style.width = '100%';
 					texts.push(text);
 					addRemoveButton(text, name);
@@ -1534,6 +1542,7 @@ var EditDataDialog = function(ui, cell)
 	else
 	{
 		// class properties
+		addProps('SubClassOf');
 		addProps('importedFrom');
 		addProps('hasOBONamespace');
 		addProps('hasURI');
@@ -1541,7 +1550,6 @@ var EditDataDialog = function(ui, cell)
 		addProps('hasExactSynonym');
 		addProps('hasRelatedSynonym');
 		addProps('elucidaton');
-		addProps('SubClassOf');
 		addProps('comments');
 		addProps('DisjointWith');
 		addProps('EquivalentTo');

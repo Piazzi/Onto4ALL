@@ -24,9 +24,9 @@ function movementCompiler(xml) {
     $(".direct-chat-messages").empty();
 
     let parser, xmlDoc, missingClassProperties = "", missingRelationProperties = "", classesCount = 0, relationsCount = 0, instancesCount = 0;
-
     parser = new DOMParser();
     xmlDoc = parser.parseFromString(xml, "text/xml");
+
     // Each of theses error has a unique Id used for searching for the error in the DOM Elements
     //  These id's also corresponds to the id's o
     //  n the warning index page
@@ -37,7 +37,6 @@ function movementCompiler(xml) {
         inverseOfNameWarning = 0, // id = 5
         missingClassPropertiesWarning = 0, // id = 6
         missingRelationPropertiesWarning = 0, // id = 7
-        //excessOfRelationsWarning = 0,  //
         multipleInheritanceWarning = 0, // id = 8
         notConnectedRelationWarning = 0, // id = 9;
         domainEqualToRangeWarning = 0; // id = 10
@@ -49,13 +48,28 @@ function movementCompiler(xml) {
     // and the third one to compare elements with the Object tag only
     // For this i used the getValueOrLabel function.
     // Complexity: O(n^2)
-    for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
+    console.log(xmlDoc.getElementsByTagName("mxCell"));
+    for (let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
 
-        // Checks if the mxCell element is valid, if is not, goes to the next iteration
-        if(!xmlDoc.getElementsByTagName("mxCell")[i].hasAttribute('style')&&
-            !xmlDoc.getElementsByTagName("mxCell")[i].hasAttribute('edge')&&
-            !xmlDoc.getElementsByTagName("mxCell")[i].hasAttribute('value'))
+        try {
+            // Checks if the mxCell element is valid, if is not, goes to the next iteration
+            if(!mxCellIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
+                continue;
+
+            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") !== null)
+                relationsCount++;
+            else if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('ellipse'))
+                classesCount++;
+            else if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('Instance'))
+                instancesCount++;
+            else
+                continue;
+
+        } catch (e) {
+            console.log(e);
             continue;
+        }
+
 
         // -------- WARNINGS SEARCH -----------------
 
@@ -72,14 +86,6 @@ function movementCompiler(xml) {
                 warningMessage('The relation '+ getValueOrLabel(xmlDoc, i) +' (ID: '+getElementId(xmlDoc,i)+')  it is not fully connected to 2 classes', 9);
         }
 
-        if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") !== null)
-            relationsCount++;
-        else if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('ellipse'))
-            classesCount++;
-        else if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('Instance'))
-            instancesCount++;
-        else
-            continue;
 
         // If the mxCell is a Instance, start searching for his relations. If any relation belonging to the instance it's not a instance_of
         // relation, shows a error message
@@ -131,9 +137,7 @@ function movementCompiler(xml) {
         }
 
         for (let j = i + 1; j < xmlDoc.getElementsByTagName("mxCell").length; j++) {
-
-
-            // Shows a error message if two classes has the same name (Comparison made between two MxCell tags)
+            // Shows a error message if two classes has the same name
             if ((getValueOrLabel(xmlDoc, i) ===
                  getValueOrLabel(xmlDoc, j)) && (
                  getElementId(xmlDoc, i) !==
@@ -212,9 +216,9 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") !== null )
             {
                 if(getLanguage() === 'pt')
-                    warningMessage("Classes não podem ter herança múltipla. Sua classe "+getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +" não pode ser o domínio de mais de uma relação is_a",8);
+                    warningMessage("Classes não podem ter herança múltipla. Sua classe "+getCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) + "(ID: "+ xmlDoc.getElementsByTagName("mxCell")[i].getAttribute('id') +") não pode ser o domínio de mais de uma relação is_a",8);
                 else
-                    warningMessage("A class can't have multiple inheritance. Your "+getMxCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +" class can't be the domain of more than one is_a relation",8);
+                    warningMessage("A class can't have multiple inheritance. Your "+getCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +"(ID: "+ xmlDoc.getElementsByTagName("mxCell")[i].getAttribute('id') +") class can't be the domain of more than one is_a relation",8);
                 multipleInheritanceWarning++;
             }
 
@@ -228,11 +232,10 @@ function movementCompiler(xml) {
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Search for 'object' elements in the XML
     for (let i = 0; i < xmlDoc.getElementsByTagName("object").length; i++){
+
         if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") != null ){
-
-
             // Show the inverse of error if the relation and the inverse Of property have the same name
-            if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") == xmlDoc.getElementsByTagName("object")[i].getAttribute("inverseOf")) {
+            if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") === xmlDoc.getElementsByTagName("object")[i].getAttribute("inverseOf")) {
                 inverseOfNameWarning++;
                 if(getLanguage() === 'pt')
                     warningMessage("Na relação "+xmlDoc.getElementsByTagName("object")[i].getAttribute("label") +", a propriedade inverse_of não pode ter o mesmo nome que a relação","",5);
@@ -243,28 +246,30 @@ function movementCompiler(xml) {
 
         }
 
-        // Search for missing properties in each class element
-        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("definition") === "")
-            missingClassProperties = missingClassProperties + ' definition,';
-
-
-        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf") === "")
-            missingClassProperties = missingClassProperties + ' SubClassOf,';
-
-
-        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("exampleOfUsage") === "")
-            missingClassProperties = missingClassProperties + ' exampleOfUsage';
-
-        if(missingClassProperties !== "")
+        if(isClass(xmlDoc.getElementsByTagName("object")[i]))
         {
-            missingClassPropertiesWarning++;
-            if(getLanguage() === 'pt')
-                warningMessage('Na classe '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+ ', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold()+ '',"",6);
-            else
-                warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold() +' Class, you did not fill the following properties: ' + missingClassProperties.bold()+ '',"",6);
-            missingClassProperties = "";
-        }
+            // Search for missing properties in each class element
+            if(xmlDoc.getElementsByTagName("object")[i].getAttribute("definition") === "")
+                missingClassProperties = missingClassProperties + ' definition,';
 
+
+            if(xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf") === "")
+                missingClassProperties = missingClassProperties + ' SubClassOf,';
+
+
+            if(xmlDoc.getElementsByTagName("object")[i].getAttribute("exampleOfUsage") === "")
+                missingClassProperties = missingClassProperties + ' exampleOfUsage';
+
+            if(missingClassProperties !== "")
+            {
+                missingClassPropertiesWarning++;
+                if(getLanguage() === 'pt')
+                    warningMessage('Na classe '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold()+ ', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold()+ '',"",6);
+                else
+                    warningMessage('In the '+ xmlDoc.getElementsByTagName("object")[i].getAttribute("label").bold() +' Class, you did not fill the following properties: ' + missingClassProperties.bold()+ '',"",6);
+                missingClassProperties = "";
+            }
+        }
 
         // Search for missing properties in each relation element
         if(xmlDoc.getElementsByTagName("object")[i].getAttribute("domain") === "")
@@ -289,7 +294,7 @@ function movementCompiler(xml) {
         }
 
         // Throws a error if the domain and range properties are equal
-        if(isRelation(xmlDoc, xmlDoc.getElementsByTagName("object")[i].getAttribute("id") ) &&
+        if(isRelation(xmlDoc.getElementsByTagName("object")[i]) &&
             xmlDoc.getElementsByTagName("object")[i].getAttribute("domain") ===
             xmlDoc.getElementsByTagName("object")[i].getAttribute("range"))
         {
@@ -366,53 +371,49 @@ function movementCompiler(xml) {
 
 /**
  * Checks if the properties from a given
- * mxCell is filled
- * @param xmlDoc
- * @param i
+ * element is filled
+ * @param element
  * return integer
  */
-function filledProperties(xmlDoc, i) {
-    return xmlDoc.getElementsByTagName('mxCell')[i].parentNode.getAttribute('label') !== null;
+function filledProperties(element) {
+    return element.parentNode.getAttribute('label') !== null && element.parentNode.nodeName === 'object' || element.nodeName === 'object';
 }
 
 /**
- * Returns if the given mxCell is a relation or not
+ * Returns if the given element is a relation or not
  * @returns {boolean}
  */
-function isRelation(xmlDoc, id) {
-    // check if the properties are filled
-    if(filledProperties(xmlDoc,id))
+function isRelation(element) {
+    if(filledProperties(element))
+       return element.childNodes[0].getAttribute('edge') !== null;
+    else
+        return element.getAttribute("edge") !== null;
+}
+
+/**
+ * Returns if the given element is a class or not
+ * @returns {boolean}
+ */
+function isClass(element) {
+    if(filledProperties(element))
     {
-        return xmlDoc.getElementsByTagName('mxCell')[id].getAttribute('edge') !== null;
+        console.log(element);
+        return element.childNodes[0].getAttribute('edge') === null &&
+               element.childNodes[0].getAttribute("style").includes('ellipse');
     }
     else
-    return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") !== null;
+    return element.getAttribute("edge") === null &&
+        element.getAttribute("style").includes('ellipse');
 }
 
 /**
- * Returns if the given mxCell is a class or not
+ * Returns if the given element is a instance or not
  * @returns {boolean}
  */
-function isClass(xmlDoc, id) {
-    // check if the properties are filled
-    if(filledProperties(xmlDoc,id))
-    {
-        return xmlDoc.getElementsByTagName('mxCell')[id].childNodes[0].getAttribute('edge') == null &&
-               xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("style").includes('ellipse');
-    }
-    else
-    return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") === null &&
-        xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("style").includes('ellipse');
-}
+function isInstance(element) {
 
-/**
- * Returns if the given mxCell  is a instance or not
- * @returns {boolean}
- */
-function isInstance(xmlDoc, id) {
-
-    return xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("edge") === null &&
-        xmlDoc.getElementsByTagName("mxCell")[id].getAttribute("style").includes('Instance');
+    return element.getAttribute("edge") === null &&
+        element.getAttribute("style").includes('Instance');
 }
 
 
@@ -509,13 +510,13 @@ function getCellName(xmlDoc, id)
 {
     for(let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
     {
-        if(filledProperties(xmlDoc,i))
+        if(filledProperties(xmlDoc.getElementsByTagName("mxCell")[i]))
         {
-            if(xmlDoc.getElementsByTagName("mxCell")[i].parentNode.getAttribute("id") == id)
+            if(xmlDoc.getElementsByTagName("mxCell")[i].parentNode.getAttribute("id") === id)
                 return getValueOrLabel(xmlDoc,i);
         }
         else
-            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") == id)
+            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("id") === id)
                 return getValueOrLabel(xmlDoc,i);
     }
 }
@@ -527,4 +528,14 @@ function getCellName(xmlDoc, id)
 function getLanguage()
 {
     return window.location.pathname.split('/')[1]
+}
+
+/**
+ * Check if the mxCell is valid (have the necessary attributes for the compiler to read)
+ * @param mxCell
+ * @returns {boolean}
+ */
+function mxCellIsValid(mxCell)
+{
+    return mxCell.hasAttribute('style') && mxCell.hasAttribute('parent');
 }
