@@ -1,23 +1,18 @@
 
-// Detects when the user starts writing somethind
-$(document).on('input', '#ClassExpressionEditorInput', function(){
 
-    getClassesNames();
+// Detects when the user starts writing something
+$(document).on('input', '#ClassExpressionEditorInput', function(){
+/*
+    let classesNames = getClassesNames();
+    let relationsNames = getRelationsNames();
+    console.log($('#ClassExpressionEditorInput').val());
+
+    if (classesNames.some(v => $('#ClassExpressionEditorInput').val().includes(v)))
+    {
+        // There's at least one
+        console.log('Entrou');
+        $('#ClassExpressionEditorInput').style.setProperty('border-color', 'red', 'important');
+    }
+*/
 });
 
-
-function getClassesNames()
-{
-    let classes = [];
-    let xmlDoc = editor.editor.getGraphXml();/*
-    for(let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
-    {
-        if(!mxCellIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
-            continue;
-
-        console.log(xmlDoc.getElementsByTagName("mxCell")[i]);
-        if(isClass(xmlDoc.getElementsByTagName("mxCell")[i]))
-            classes.push(getValueOrLabel(xmlDoc, i));
-    }
-    console.log(classes);*/
-}
