@@ -235,7 +235,7 @@ function createClassNode(name)
 
     // Sets each attribute following the default pattern of the editor
     classNode.setAttribute("value", cleanString(name));
-    classNode.setAttribute("style", "ellipse;whiteSpace=wrap;html=1;aspect=fixed;");
+    classNode.setAttribute("style", "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;");
     classNode.setAttribute("vertex", "1");
     classNode.setAttribute("parent", "1");
     classNode.appendChild(createMxGeometryNode("class"));
@@ -262,7 +262,7 @@ function createRelationNode(name)
     else
         relationNode.setAttribute("value", cleanString(name));
 
-    relationNode.setAttribute("style", "html=1;verticalAlign=bottom;endArrow=block;");
+    relationNode.setAttribute("style", "html=1;verticalAlign=bottom;endArrow=block;Relation;");
     relationNode.setAttribute("edge", "1");
     relationNode.setAttribute("parent", "1");
     relationNode.appendChild(createMxGeometryNode("relation"));

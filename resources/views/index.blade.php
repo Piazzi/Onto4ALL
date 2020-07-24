@@ -374,13 +374,10 @@
                         {{__('In this phase, the developer performs the specification of the ontology through a template, which has to contain at least information about: the domain and scope of the ontology, its general purpose, its audience, scenarios for its application and the required degree of formality. In addition, the developer establishes the coverage of the  ontology by describing its starting point, its limits within the domain and competency questions.')}}
                     </p>
                     <p>
-                        {{__('Once you have saved your ontology, you will have the option to edit your information in the ontology management area which can be found at the top of the page or by')}} <a href="{{route('ontologies.index', app()->getLocale())}}">{{__('clicking here')}}</a></p>
+                        {{__('You can edit the information of a ontology by clicking on the Edit Ontology Info button or by accessing the ontology manager and selecting the ontology you want and then clicking in the Update button')}}</p>
                     <img alt="superior-menu" src="{{asset('css/images/Methodology/menu-superior.png')}}">
                     <hr>
-                    <p>{{__('After clicking on the My Ontologies button you will be redirected to a page containing all your ontologies made and you can edit each one. Click the button below to access all information on that ontology.')}}</p>
-                    <img alt="ontology-info" src="{{asset('css/images/Methodology/edit-ontology.png')}}">
-                    <hr>
-                    <p>{{__('After clicking the button you will be redirected to the ontology page and can make the necessary changes.')}}</p>
+                    <p>{{__('After clicking the button a modal will show up with all the information the ontology has.')}}</p>
                     <img style="width: 90%" alt="ontology-info" src="{{asset('css/images/Methodology/info.png')}}">
                 </div>
                 <div class="modal-footer">

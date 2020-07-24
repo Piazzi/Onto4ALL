@@ -45,7 +45,7 @@ function movementCompiler(xml) {
             if(!mxCellIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
                 continue;
 
-            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('Relation'))
+            if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") != null)
             {
                 relationsCount++;
                 relations.push(xmlDoc.getElementsByTagName("mxCell")[i]);
@@ -360,9 +360,10 @@ function filledProperties(element) {
  */
 function isRelation(element) {
     if(filledProperties(element))
-       return element.childNodes[0].getAttribute('style').includes('Relation');
+       return element.childNodes[0].getAttribute('edge') != null;
     else
-        return element.getAttribute('style').includes('Relation');
+        return element.getAttribute('edge') != null
+       // ||// element.childNodes[0].getAttribute("style").includes('Relation');
 }
 
 /**
@@ -374,7 +375,8 @@ function isClass(element) {
     {
         console.log(element);
         return element.childNodes[0].getAttribute('edge') === null &&
-               element.childNodes[0].getAttribute("style").includes('Class');
+              // element.childNodes[0].getAttribute("style").includes('Class') ||
+               element.childNodes[0].getAttribute("style").includes('ellipse');
     }
     else
     return element.getAttribute("edge") === null &&
@@ -471,12 +473,12 @@ function getLanguage()
  */
 function mxCellIsValid(mxCell)
 {
-    if( mxCell.hasAttribute('style') && mxCell.hasAttribute('parent'))
-        return mxCell.getAttribute('style').includes('Relation') ||
-            mxCell.getAttribute('style').includes('Instance') ||
-            mxCell.getAttribute('style').includes('Class');
-    else
-        return false;
+    return mxCell.hasAttribute('style') && mxCell.hasAttribute('parent');
+        // mxCell.getAttribute('style').includes('Relation') ||
+        //    mxCell.getAttribute('style').includes('Instance') ||
+          //  mxCell.getAttribute('style').includes('Class');
+    //else
+     //   return false;
 }
 
 /**
