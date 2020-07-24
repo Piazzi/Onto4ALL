@@ -380,7 +380,7 @@ function isClass(element) {
     }
     else
     return element.getAttribute("edge") === null &&
-        element.getAttribute("style").includes('Class');
+        element.getAttribute("style").includes('ellipse');
 }
 
 /**

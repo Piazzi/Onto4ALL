@@ -8,13 +8,15 @@ $(document).ready(function () {
         let report = '/************* Ontology Report *************/ \n\nClasses:';
 
         // Starts the XML interpretation
-        for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
+        for (let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
         {
-            if(isClass(xmlDoc,i))
+            if(!mxCellIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
+                continue;
+            if(isClass(xmlDoc.getElementsByTagName("mxCell")[i]))
             {
-                report = report + '\n       '+labelFilter(getValueOrLabel(xmlDoc,i));
+                report = report + '\n       '+labelFilter(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]));
                 // check if the properties are filled
-                if(filledProperties(xmlDoc,i))
+                if(filledProperties(xmlDoc.getElementsByTagName("mxCell")[i]))
                 {
                     report = report + '\n       Properties:';
                     let parentNode = xmlDoc.getElementsByTagName("mxCell")[i].parentNode;
@@ -34,20 +36,22 @@ $(document).ready(function () {
 
         for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
         {
-            if(isRelation(xmlDoc,i))
+            if(!mxCellIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
+                continue;
+            if(isRelation(xmlDoc.getElementsByTagName("mxCell")[i]))
             {
                 if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") != null &&
                     xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null)
                 {
                     let domainId = xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source");
                     let rangeId =  xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target");
-                    report = report + '\n       '+labelFilter(getCellName(xmlDoc,domainId))+' '+labelFilter(getValueOrLabel(xmlDoc,i)+' '+labelFilter(getCellName(xmlDoc, rangeId)));
+                    report = report + '\n       '+labelFilter(getCellName(xmlDoc,domainId))+' '+labelFilter(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i])+' '+labelFilter(getCellName(xmlDoc, rangeId)));
                 }
                 else
-                    report = report + '\n       '+labelFilter(getValueOrLabel(xmlDoc,i));
+                    report = report + '\n       '+labelFilter(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]));
 
                 // check if the properties are filled
-                if(filledProperties(xmlDoc,i))
+                if(filledProperties(xmlDoc.getElementsByTagName("mxCell")[i]))
                 {
                     report = report + '\n       Properties:';
                     let parentNode = xmlDoc.getElementsByTagName("mxCell")[i].parentNode;
@@ -64,7 +68,7 @@ $(document).ready(function () {
         }
         report = report + '\n\n/************ Made with Onto4ALL ************/';
         console.log(report);
-        this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(report);
+        $('#download-ontology-report').attr("href", "data:text/plain;charset=UTF-8," + encodeURIComponent(report));
 
     })
 
