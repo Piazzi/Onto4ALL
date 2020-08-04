@@ -900,6 +900,25 @@
     </div>
 
 
+    @if(app()->getLocale() == 'pt')
+    <div style="z-index: 100; width: 20%;position: fixed;
+    bottom: 0;" class="box box-success">
+        <div class="box-header with-border">
+            <h3 class="box-title">Avaliação do Editor</h3> <i class="fa fa-fw fa-question-circle-o"></i>
+
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+            <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            Nos ajude a melhorar o Onto4ALL respondendo a essa rápida pesquisa. Demora menos de 5 minutos!
+            <a href="https://forms.gle/F1rKDFgyFoikCxHY8"> Clique aqui para responder.</a>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    @endif
 
     <!-- LOADS MXGRAPH GRAPHEDITOR AND ITS FUNCTIONS -->
 
