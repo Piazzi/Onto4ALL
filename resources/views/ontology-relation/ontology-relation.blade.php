@@ -81,7 +81,7 @@
                         <tbody id="table-search">
                         @foreach ($relations as $ontologyRelation)
                             <tr>
-                                <td>{{$ontologyRelation->id}}</td>
+                                <td>{{$ontologyRelation->relation_id}}</td>
                                 <td>{{$ontologyRelation->name}}</td>
                                 <td>{{$ontologyRelation->domain}}</td>
                                 <td>{{$ontologyRelation->range}}</td>
