@@ -78,7 +78,7 @@
                         @foreach ($classes as $class)
                             <tr>
 
-                                <td>{{$class->id}}</td>
+                                <td>{{$class->class_id}}</td>
                                 <td>{{$class->name}}</td>
                                 <td>{{$class->subclass}}</td>
                                 <td>{{$class->synonyms}}</td>
