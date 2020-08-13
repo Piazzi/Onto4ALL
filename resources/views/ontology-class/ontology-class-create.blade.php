@@ -45,7 +45,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Sub Class Of</label>
-                            <input value="{{old('subclass')}}" name="subclass" type="text"
+                            <input required value="{{old('subclass')}}" name="subclass" type="text"
                                    class="form-control">
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>ID</label>
-                            <input value="{{old('class_id')}}" name="class_id" type="text" class="form-control">
+                            <input required value="{{old('class_id')}}" name="class_id" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4">

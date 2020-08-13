@@ -31,7 +31,7 @@ class OntologyRelationStoreRequest extends FormRequest
             'cardinality' => 'numeric|nullable',
             'definition' => 'required|min:1|max:500',
             'formal_definition' => 'nullable|max:500',
-            'example_of_usage' => 'min:1|max:200|string',
+            'example_of_usage' => 'nullable|min:1|max:200|string',
             'imported_from' => 'max:255|nullable',
             'relation_id' => 'min:7|max:7|required|string',
             'label' => 'max:50|required|string',

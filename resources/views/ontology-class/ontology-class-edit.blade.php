@@ -47,7 +47,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Sub Class</label>
-                            <input value="{{$ontologyClass->subclass}}" name="subclass" type="text"
+                            <input required value="{{$ontologyClass->subclass}}" name="subclass" type="text"
                                    class="form-control">
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>ID</label>
-                            <input  name="class_id"  value="{{$ontologyClass->class_id}}" type="text" class="form-control">
+                            <input required name="class_id"  value="{{$ontologyClass->class_id}}" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4">
