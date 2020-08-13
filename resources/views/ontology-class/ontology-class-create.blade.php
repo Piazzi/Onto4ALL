@@ -104,7 +104,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Label PT</label>
-                            <input required value="{{old('label_pt')}}" name="label_pt" type="text" class="form-control">
+                            <input value="{{old('label_pt')}}" name="label_pt" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
