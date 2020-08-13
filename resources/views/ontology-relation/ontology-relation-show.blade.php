@@ -76,21 +76,31 @@
                 <textarea disabled class="form-control form-textarea"> {{$ontologyRelation->definition}}</textarea>
             </div>
             <div class="form-group">
+                <label>Semi Formal Definition</label>
+                <textarea disabled class="form-control form-textarea"> {{$ontologyRelation->semi_formal_definition}}</textarea>
+            </div>
+            <div class="form-group">
                 <label>Formal Definition</label>
                 <textarea disabled class="form-control form-textarea"> {{$ontologyRelation->formal_definition}}</textarea>
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>ID</label>
                         <input disabled value="{{$ontologyRelation->relation_id}}" type="text" class="form-control">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Label</label>
                         <input disabled value="{{$ontologyRelation->label}}" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Label PT</label>
+                        <input disabled value="{{$ontologyRelation->label_pt}}" type="text" class="form-control">
                     </div>
                 </div>
             </div>

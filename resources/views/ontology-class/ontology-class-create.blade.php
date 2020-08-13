@@ -80,21 +80,31 @@
                     <textarea required name="definition" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                 </div>
                 <div class="form-group">
+                    <label> Semi Formal Definition </label>
+                    <textarea name="semi_formal_definition" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+                <div class="form-group">
                     <label>Formal Definition (has_associated_axiom)</label>
                     <textarea name="formal_definition" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>ID</label>
-                            <input required value="{{old('class_id')}}" name="class_id" type="text" class="form-control">
+                            <input value="{{old('class_id')}}" name="class_id" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Label</label>
                             <input required value="{{old('label')}}" name="label" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Label PT</label>
+                            <input required value="{{old('label_pt')}}" name="label_pt" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -127,6 +137,8 @@
                     <label>Editor note (comments) </label>
                     <textarea name="comments" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                 </div>
+
+
 
                 <div class="form-group">
                     <label>Ontology</label>

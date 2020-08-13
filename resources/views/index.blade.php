@@ -103,6 +103,10 @@
                                             <dl>
                                                 <dt>Definition</dt>
                                                 <dd>{{$ontologyRelation->definition}}</dd>
+                                                @if($ontologyRelation->semi_formal_definition)
+                                                    <dt>Semi Formal Definition</dt>
+                                                    <dd>{{$ontologyRelation->semi_formal_definition}}</dd>
+                                                @endif
                                                 @if($ontologyRelation->formal_definition)
                                                 <dt>Formal Definition</dt>
                                                 <dd>{{$ontologyRelation->formal_definition}}</dd>
@@ -121,8 +125,13 @@
                                                 @endif
                                                 <dt>ID</dt>
                                                 <dd>{{$ontologyRelation->relation_id}}</dd>
+                                                @if(app()->getLocale() !='pt')
                                                 <dt>Label</dt>
                                                 <dd>{{$ontologyRelation->label}}</dd>
+                                                @else
+                                                <dt>Label PT</dt>
+                                                <dd>{{$ontologyRelation->label_pt}}</dd>
+                                                @endif
                                                 @if($ontologyRelation->synonyms)
                                                     <dt>Synonyms</dt>
                                                     <dd>{{$ontologyRelation->synonyms}}</dd>
@@ -168,8 +177,12 @@
                                             <dl>
                                                 <dt>Definition</dt>
                                                 <dd>{{$class->definition}}</dd>
-                                                <dt>Formal Definition (has_associated_axiom)</dt>
+                                                @if($class->semi_formal_definition)
+                                                <dt>Semi Formal Definition</dt>
+                                                    <dd>{{$class->semi_formal_definition}}</dd>
+                                                @endif
                                                 @if($class->formal_definition)
+                                                <dt>Formal Definition (has_associated_axiom)</dt>
                                                 <dd>{{$class->formal_definition}}</dd>
                                                 @endif
                                                 <dt>ID</dt>
@@ -190,8 +203,13 @@
                                                     <a target="_blank" href="{{$class->imported_from}}">{{$class->imported_from}}</a>
                                                 </dd>
                                                 @endif
-                                                <dt>Label</dt>
-                                                <dd>{{$class->label}}</dd>
+                                                @if(app()->getLocale() !='pt')
+                                                    <dt>Label</dt>
+                                                    <dd>{{$ontologyRelation->label}}</dd>
+                                                @else
+                                                    <dt>Label PT</dt>
+                                                    <dd>{{$ontologyRelation->label_pt}}</dd>
+                                                @endif
                                                 @if($class->elucidation)
                                                     <dt>Elucidation</dt>
                                                     <dd>{{$class->elucidation}}</dd>

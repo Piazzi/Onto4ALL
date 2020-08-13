@@ -47,14 +47,14 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Domain</label>
-                            <input required value="{{$ontologyRelation->domain}}" name="domain" type="text"
+                            <input  value="{{$ontologyRelation->domain}}" name="domain" type="text"
                                    class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Range</label>
-                            <input required value="{{$ontologyRelation->range}}" name="range" type="text"
+                            <input value="{{$ontologyRelation->range}}" name="range" type="text"
                                    class="form-control">
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Example Of Usage</label>
-                            <input required value="{{$ontologyRelation->example_of_usage}}" name="example_of_usage"
+                            <input value="{{$ontologyRelation->example_of_usage}}" name="example_of_usage"
                                    type="text"
                                    class="form-control">
                         </div>
@@ -97,27 +97,39 @@
 
                 <div class="form-group">
                     <label>Definition</label>
-                    <textarea required value="{{$ontologyRelation->definition}}" name="description" class="form-control"
+                    <textarea required  name="definition" class="form-control"
                               rows="3" placeholder="Enter ...">{{$ontologyRelation->definition}}</textarea>
                 </div>
                 <div class="form-group">
+                    <label>Semi Formal Definition</label>
+                    <textarea  name="semi_formal_definition"
+                              class="form-control"
+                              rows="3" placeholder="Enter ...">{{$ontologyRelation->semi_formal_definition}}</textarea>
+                </div>
+                <div class="form-group">
                     <label>Formal Definition</label>
-                    <textarea required value="{{$ontologyRelation->formal_definition}}" name="description"
+                    <textarea value="{{$ontologyRelation->formal_definition}}" name="formal_definition"
                               class="form-control"
                               rows="3" placeholder="Enter ...">{{$ontologyRelation->formal_definition}}</textarea>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>ID</label>
                             <input required name="relation_id"  value="{{$ontologyRelation->relation_id}}" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Label</label>
                             <input required name="label"  value="{{$ontologyRelation->label}}" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Label PT</label>
+                            <input  name="label_pt"  value="{{$ontologyRelation->label_pt}}" type="text" class="form-control">
                         </div>
                     </div>
                 </div>

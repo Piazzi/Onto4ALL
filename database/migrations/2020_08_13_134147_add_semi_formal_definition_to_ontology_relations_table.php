@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddOntologyColumnToOntologyClassesTable extends Migration
+class AddSemiFormalDefinitionToOntologyRelationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddOntologyColumnToOntologyClassesTable extends Migration
      */
     public function up()
     {
-        Schema::table('ontology_classes', function (Blueprint $table) {
-            $table->enum('ontology', ['bfo', 'iof', 'iao'])->default('bfo');
+        Schema::table('ontology_relations', function (Blueprint $table) {
+            $table->string('semi_formal_definition', 500)->nullable();
         });
     }
 
@@ -25,7 +25,7 @@ class AddOntologyColumnToOntologyClassesTable extends Migration
      */
     public function down()
     {
-        Schema::table('ontology-classes', function (Blueprint $table) {
+        Schema::table('ontology_relations', function (Blueprint $table) {
             //
         });
     }

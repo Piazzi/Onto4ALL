@@ -13,7 +13,7 @@ class CreateOntologyClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('ontology-classes', function (Blueprint $table) {
+        Schema::create('ontology_classes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('superclass')->nullable();

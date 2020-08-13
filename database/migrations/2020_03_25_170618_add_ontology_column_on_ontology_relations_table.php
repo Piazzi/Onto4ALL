@@ -13,7 +13,7 @@ class AddOntologyColumnOnOntologyRelationsTable extends Migration
      */
     public function up()
     {
-        Schema::table('ontology-relations', function (Blueprint $table) {
+        Schema::table('ontology_relations', function (Blueprint $table) {
             $table->enum('ontology', ['bfo', 'iof', 'iao'])->default('bfo');
         });
     }

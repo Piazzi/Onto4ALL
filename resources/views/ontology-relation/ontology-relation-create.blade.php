@@ -45,14 +45,14 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Domain</label>
-                            <input required value="{{old('domain')}}" name="domain" type="text" class="form-control"
+                            <input value="{{old('domain')}}" name="domain" type="text" class="form-control"
                                    placeholder="">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Range</label>
-                            <input required value="{{old('range')}}" name="range" type="text" class="form-control">
+                            <input  value="{{old('range')}}" name="range" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -89,7 +89,11 @@
                 </div>
                 <div class="form-group">
                     <label>Definition</label>
-                    <textarea name="definition" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                    <textarea required name="definition" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Semi Formal Definition</label>
+                    <textarea name="semi_formal_definition" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                 </div>
                 <div class="form-group">
                     <label>Formal Definition</label>
@@ -97,16 +101,22 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>ID</label>
                             <input required value="{{old('relation_id')}}" name="relation_id" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Label</label>
                             <input required value="{{old('label')}}" name="label" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Label PT</label>
+                            <input value="{{old('label_pt')}}" name="label_pt" type="text" class="form-control">
                         </div>
                     </div>
                 </div>

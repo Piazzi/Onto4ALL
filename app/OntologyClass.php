@@ -20,7 +20,9 @@ class OntologyClass extends Model
         'comments',
         'is_defined_by',
         'disjoint_with',
-        'ontology'
+        'ontology',
+        'semi_formal_definition',
+        'label_pt'
     ];
 
     protected $dates = [
@@ -28,6 +30,6 @@ class OntologyClass extends Model
         'updated_at',
     ];
 
-    protected $table = 'ontology-classes';
+    protected $table = 'ontology_classes';
 
 }

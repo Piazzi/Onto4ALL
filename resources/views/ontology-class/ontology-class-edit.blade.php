@@ -80,21 +80,31 @@
                     <textarea required name="definition" class="form-control" rows="3" placeholder="Enter ...">{{$ontologyClass->definition}}</textarea>
                 </div>
                 <div class="form-group">
+                    <label>Semi Formal Definition</label>
+                    <textarea placeholder="" name="semi_formal_definition" class="form-control form-textarea"> {{$ontologyClass->semi_formal_definition}}</textarea>
+                </div>
+                <div class="form-group">
                     <label>Formal Definition (has_associated_axiom)</label>
                     <textarea name="formal_definition" class="form-control" rows="3" placeholder="Enter ...">{{$ontologyClass->formal_definition}}</textarea>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>ID</label>
-                            <input required name="class_id"  value="{{$ontologyClass->class_id}}" type="text" class="form-control">
+                            <input  name="class_id"  value="{{$ontologyClass->class_id}}" type="text" class="form-control">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Label</label>
                             <input required name="label"  value="{{$ontologyClass->label}}" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Label PT</label>
+                            <input name="label_pt"  value="{{$ontologyClass->label_pt}}" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -127,6 +137,8 @@
                     <label>Editor note (comments)</label>
                     <textarea placeholder="" name="comments" class="form-control form-textarea"> {{$ontologyClass->comments}}</textarea>
                 </div>
+
+
 
                 <div class="form-group">
                     <label>Ontology</label>

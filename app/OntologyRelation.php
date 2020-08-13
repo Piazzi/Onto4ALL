@@ -24,9 +24,11 @@ class OntologyRelation extends Model
         'inverse_of',
         'subproperty_of',
         'superproperty_of',
-        'ontology'
+        'ontology',
+        'semi_formal_definition',
+        'label_pt'
 
     ];
 
-    protected $table = 'ontology-relations';
+    protected $table = 'ontology_relations';
 }

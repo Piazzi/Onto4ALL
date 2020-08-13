@@ -25,15 +25,15 @@ class OntologyRelationStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:3|max:50',
-            'domain' => 'required|string|min:3|max:50',
-            'range' => 'required|string|min:3|max:50',
+            'domain' => 'nullable|string|min:3|max:50',
+            'range' => 'nullable|string|min:3|max:50',
             'similar_relation' => 'string|min:3|max:50|nullable',
             'cardinality' => 'numeric|nullable',
-            'definition' => 'min:1|max:500',
-            'formal_definition' => 'required|max:500',
+            'definition' => 'required|min:1|max:500',
+            'formal_definition' => 'nullable|max:500',
             'example_of_usage' => 'min:1|max:200|string',
             'imported_from' => 'max:255|nullable',
-            'relation_id' => 'max:50|required|string',
+            'relation_id' => 'min:7|max:7|required|string',
             'label' => 'max:50|required|string',
             'synonyms' => 'max:50|nullable|string',
             'is_defined_by'  => 'max:50|nullable|string',
@@ -41,7 +41,9 @@ class OntologyRelationStoreRequest extends FormRequest
             'inverse_of'  => 'max:50|nullable|string',
             'subproperty_of'  => 'max:50|nullable|string',
             'superproperty_of'  => 'max:50|nullable|string',
-            'ontology' => 'required'
+            'ontology' => 'required',
+            'semi_formal_definition' => 'max:500|nullable|string',
+            'label_pt' => 'max:50|nullable|string'
 
         ];
     }

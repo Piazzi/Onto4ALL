@@ -61,23 +61,32 @@
                 <label>Definition</label>
                 <textarea disabled class="form-control form-textarea"> {{$ontologyClass->definition}}</textarea>
             </div>
-
+            <div class="form-group">
+                <label>Semi Formal Definition</label>
+                <textarea disabled class="form-control form-textarea"> {{$ontologyClass->semi_formal_definition}}</textarea>
+            </div>
             <div class="form-group">
                 <label>Formal Definition (has_associated_axiom)</label>
                 <textarea disabled class="form-control form-textarea"> {{$ontologyClass->formal_definition}}</textarea>
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>ID</label>
                         <input disabled value="{{$ontologyClass->class_id}}" type="text" class="form-control">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Label</label>
                         <input disabled value="{{$ontologyClass->label}}" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Label PT</label>
+                        <input disabled value="{{$ontologyClass->label_pt}}" type="text" class="form-control">
                     </div>
                 </div>
             </div>
@@ -106,6 +115,8 @@
                 <label>Editor note (comments)</label>
                 <textarea disabled class="form-control form-textarea"> {{$ontologyClass->comments}}</textarea>
             </div>
+
+
 
             <div class="form-group">
                 <label>Ontology</label>

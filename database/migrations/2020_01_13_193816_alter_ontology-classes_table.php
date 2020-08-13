@@ -13,10 +13,10 @@ class AlterOntologyClassesTable extends Migration
      */
     public function up()
     {
-        Schema::table('ontology-classes', function (Blueprint $table) {
-            $table->string('class_id',50);
+        Schema::table('ontology_classes', function (Blueprint $table) {
+            $table->string('class_id',7);
             $table->string('label',50);
-            $table->string('elucidation', 50)->nullable();
+            $table->string('elucidation', 500)->nullable();
             $table->string('comments', 255)->nullable();
             $table->string('is_defined_by', 50)->nullable();
             $table->string('disjoint_with', 50)->nullable();

@@ -13,7 +13,7 @@ class DeleteSuperclassColumnOnOntologyClassesTable extends Migration
      */
     public function up()
     {
-        Schema::table('ontology-classes', function (Blueprint $table) {
+        Schema::table('ontology_classes', function (Blueprint $table) {
             $table->dropColumn('superclass');
         });
     }

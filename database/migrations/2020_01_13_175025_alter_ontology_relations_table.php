@@ -13,8 +13,8 @@ class AlterOntologyRelationsTable extends Migration
      */
     public function up()
     {
-        Schema::table('ontology-relations', function (Blueprint $table) {
-            $table->string('relation_id', 50);
+        Schema::table('ontology_relations', function (Blueprint $table) {
+            $table->string('relation_id', 7);
             $table->string('label', 50);
             $table->string('synonyms', 50)->nullable();
             $table->string('is_defined_by', 50)->nullable();
