@@ -125,12 +125,12 @@
                                                 @endif
                                                 <dt>ID</dt>
                                                 <dd>{{$ontologyRelation->relation_id}}</dd>
-                                                @if(app()->getLocale() !='pt')
-                                                <dt>Label</dt>
-                                                <dd>{{$ontologyRelation->label}}</dd>
+                                                @if(app()->getLocale() =='pt' && $ontologyRelation->label_pt)
+                                                    <dt>Label PT</dt>
+                                                    <dd>{{$ontologyRelation->label_pt}}</dd>
                                                 @else
-                                                <dt>Label PT</dt>
-                                                <dd>{{$ontologyRelation->label_pt}}</dd>
+                                                    <dt>Label</dt>
+                                                    <dd>{{$ontologyRelation->label}}</dd>
                                                 @endif
                                                 @if($ontologyRelation->synonyms)
                                                     <dt>Synonyms</dt>
@@ -203,12 +203,12 @@
                                                     <a target="_blank" href="{{$class->imported_from}}">{{$class->imported_from}}</a>
                                                 </dd>
                                                 @endif
-                                                @if(app()->getLocale() !='pt')
-                                                    <dt>Label</dt>
-                                                    <dd>{{$ontologyRelation->label}}</dd>
-                                                @else
+                                                @if(app()->getLocale() =='pt' && $ontologyRelation->label_pt)
                                                     <dt>Label PT</dt>
                                                     <dd>{{$ontologyRelation->label_pt}}</dd>
+                                                @else
+                                                    <dt>Label</dt>
+                                                    <dd>{{$ontologyRelation->label}}</dd>
                                                 @endif
                                                 @if($class->elucidation)
                                                     <dt>Elucidation</dt>
