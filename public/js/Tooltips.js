@@ -21,6 +21,10 @@ $(document).ready(function () {
         content: "The number of warnings in your current ontology"
     });
 
+    tippy('#errors', {
+        content: "The number of errors in your current ontology"
+    });
+
     tippy('.fa-question-circle', {
         content: "Click to see more information!"
     });

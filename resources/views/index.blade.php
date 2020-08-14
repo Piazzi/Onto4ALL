@@ -18,21 +18,21 @@
                 <a  href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle"></i></a>
                 <div class="box-tools pull-right">
 
-                    <a download="ontology-errors.txt" href="#" id="download-errors-txt"><span data-toggle="tooltip" title="" class="badge bg-info">
-                    <i class="fa fa-download"></i>
-                    </span>
+                    <a download="ontology-errors.txt" href="#" id="download-errors-txt">
+                        <span data-toggle="tooltip" title="" class="badge bg-info">
+                            <i class="fa fa-download"></i>
+                        </span>
                     </a>
 
-                    <!--
-                    <span id="errors" data-widget="collapse"  class="badge bg-red" data-original-title="Errors">
+                    <span id="errors" data-widget="collapse"  class="badge bg-green" data-original-title="Errors">
                         <i class="fa fa-close"></i>
                         <span id="error-count"> 0</span>
-                    </span>-->
+                    </span>
 
                     <span id="warnings" data-widget="collapse" class="badge bg-green" data-original-title="Warnings">
-                    <i class="fa fa-warning"> </i>
-                    <span id="warnings-count">  0</span>
-                </span>
+                        <i class="fa fa-warning"> </i>
+                        <span id="warnings-count"> 0</span>
+                    </span>
 
                     <button id="open-error-console" type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 </div>
