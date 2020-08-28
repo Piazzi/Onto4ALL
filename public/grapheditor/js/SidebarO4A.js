@@ -89,8 +89,9 @@ Sidebar.prototype.init = function()
 	if(window.location.pathname.split('/')[2] === 'thesaurus-editor')
 		this.addThesauruPalette(true);
 	else {
-		this.addBasicOntologyPalette(true); // Paleta de ontologia básica
-		this.addAdvancedOntologyPalette(true); // Paleta de ontologia avançada
+		this.addTaxonomyPalette(true);
+		this.addBasicOntologyPalette(true);
+		this.addBFOOntologyPalette(true);
 		//	this.addGeneralPalette(true); Retirando a paleta geral
 		//	this.addMiscPalette(false); Retirando a paleta misc
 		//	this.addAdvancedPalette(false); Retirando a paleta advanced
@@ -1032,128 +1033,180 @@ Sidebar.prototype.addThesauruPalette = function(expand)
 		this.addPaletteFunctions('Thesauru', 'Thesauru', (expand != null) ? expand : true, fns);
 };
 
+/**
+ * Adds the taxonomy palette to the sidebar
+ * @param expand
+ */
+Sidebar.prototype.addTaxonomyPalette = function(expand)
+{
+	let fns = [];
+	if(getLanguage() === 'en')
+	{
+		 fns = [
+		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Label', 'Class', null, null, 'circle'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'is_a', 'Relation', null, 'uml sequence message call invoke dispatch'),
+		];
+		this.addPaletteFunctions('Taxonomy', 'Taxonomy', (expand != null) ? expand : true, fns);
+	}
+	else
+	{
+		 fns = [
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Label', 'Classe', null, null, 'circle'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'é_um', 'Relação', null, 'uml sequence message call invoke dispatch'),
+		];
+		this.addPaletteFunctions('Taxonomia', 'Taxonomia', (expand != null) ? expand : true, fns);
+	}
+};
+
 /* Adds the basic ontology palette to the sidebar
 */
 Sidebar.prototype.addBasicOntologyPalette = function(expand)
 {
-	var lineTags = 'line lines connector connectors connection connections arrow arrows ';
-
-	var fns = [
-	 	// Explicit strokecolor/fillcolor=none is a workaround to maintain transparent background regardless of current style
-	 	this.createVertexTemplateEntry('text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;',
- 			40, 20, 'Text', 'Text', null, null, 'text textbox textarea label'),
-	 	this.createVertexTemplateEntry('text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;', 190, 120,
-			'<h1>Heading</h1><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>',
-			'Textbox', null, null, 'text textbox textarea'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Name', 'Class', null, null, 'circle'),
-	    //this.createVertexTemplateEntry('shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;', 120, 80, '', 'Callout', null, null, 'bubble chat thought speech message'),
-	 	/*this.addEntry('curve', mxUtils.bind(this, function()
-	 	{
-			var cell = new mxCell('', new mxGeometry(0, 0, 50, 50), 'curved=1;endArrow=classic;html=1;');
-			cell.geometry.setTerminalPoint(new mxPoint(0, 50), true);
-			cell.geometry.setTerminalPoint(new mxPoint(50, 0), false);
-			cell.geometry.points = [new mxPoint(50, 50), new mxPoint(0, 0)];
-			cell.geometry.relative = true;
-			cell.edge = true;
-
-		    return this.createEdgeTemplateFromCells([cell], cell.geometry.width, cell.geometry.height, 'Curve');
-         })),
-*/
-	 	//this.createEdgeTemplateEntry('endArrow=none;dashed=1;html=1;', 50, 50, '', 'Dashed Line', null, lineTags + 'dashed undirected no'),
-	 	//this.createEdgeTemplateEntry('endArrow=none;html=1;', 50, 50, '', 'Line', null, lineTags + 'simple undirected plain blank no'),
-	 	//this.createEdgeTemplateEntry('endArrow=classic;startArrow=classic;html=1;', 50, 50, '', 'Bidirectional Connector', null, lineTags + 'bidirectional'),
+	let fns = [];
+	if (getLanguage() === 'en')
+	{
+		fns = [
+		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Label', 'Class', null, null, 'circle'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'is_a', 'Relation', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'new_relation', 'New Relation', null, 'uml sequence message call invoke dispatch'),
 		this.createVertexTemplateEntry('rhombus;whiteSpace=wrap;html=1;Instance;', 110, 50, 'Instance', 'Instance', null, null, 'Class Instance'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'new_relation', 'new_relation', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'is_a', 'is_a', null, 'uml sequence message call invoke dispatch'),
-        this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'part_of', 'part_of', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'instance_of', 'instance_of', null, 'uml sequence message call invoke dispatch'),
-
-
-		//this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, '', '', null, 'uml sequence message call invoke dispatch'),
-
-    ];
-// DISPATCH POINTER
-    this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
-		{
-	    	var cell = new mxCell('', new mxGeometry(0, 0, 10, 80), 'html=1;points=[];perimeter=orthogonalPerimeter;');
-	    	cell.vertex = true;
-
-			var edge1 = new mxCell('dispatch', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;');
-			edge1.geometry.setTerminalPoint(new mxPoint(-70, 0), true);
-			edge1.geometry.relative = true;
-			edge1.edge = true;
-
-			cell.insertEdge(edge1, false);
-
-			var edge2 = new mxCell('return', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;');
-			edge2.geometry.setTerminalPoint(new mxPoint(-70, 76), false);
-			edge2.geometry.relative = true;
-			edge2.edge = true;
-
-			cell.insertEdge(edge2, true);
-
-			return sb.createVertexTemplateFromCells([cell, edge1, edge2], 10, 80, 'Synchronous Invocation');
-		}),
-// end
-	this.addPaletteFunctions('Basic Ontology', 'Basic Ontology', (expand != null) ? expand : true, fns);
+		];
+		this.addPaletteFunctions('Basic Ontology', 'Basic Ontology', (expand != null) ? expand : true, fns);
+	}
+	else
+	{
+		fns = [
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Label', 'Classe', null, null, 'circle'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'nova_relação', 'Nova Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'é_um', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createVertexTemplateEntry('rhombus;whiteSpace=wrap;html=1;Instance;', 110, 50, 'Instância', 'Instância', null, null, 'Class Instance'),
+		];
+		this.addPaletteFunctions('Ontologia Básica', 'Ontologia Básica', (expand != null) ? expand : true, fns);
+	}
 };
 
-/* Adds the advanced ontology palette to the sidebar
-*/
-Sidebar.prototype.addAdvancedOntologyPalette = function(expand)
+Sidebar.prototype.addBFOOntologyPalette = function(expand)
 {
-	var lineTags = 'line lines connector connectors connection connections arrow arrows ';
-
-	var fns = [
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'adjacent_to', 'adjacent_to', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'agent_in', 'agent_in', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'collected_into', 'collected_into', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'contained_in', 'contained_in', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'contains', 'contains', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'derives_from', 'derives_from', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'has_boundary', 'has_boundary', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'has_part', 'has_part', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'has_synonym', 'has_synonym', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'involved_in', 'involved_in', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'located_in', 'located_in', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'member_of', 'member_of', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'participates_in', 'participates_in', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'part_of_at_all_times', 'part_of_at_all_times', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'part_of_at_some_times', 'part_of_at_some_times', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'preceded_by', 'preceded_by', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'produced_by', 'produced_By', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'produces', 'produces', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'realized_in', 'realized_in', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'realizes', 'realizes', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'same_as', 'same_as', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'subquantity_of', 'subquantity_of', null, 'uml sequence message call invoke dispatch'),
-
-	];
-	// DISPATCH POINTER
-	this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
+	let fns = [];
+	if (getLanguage() === 'en')
 	{
-		var cell = new mxCell('', new mxGeometry(0, 0, 10, 80), 'html=1;points=[];perimeter=orthogonalPerimeter;');
-		cell.vertex = true;
+		fns = [
+			// CLASSES
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'continuant', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'independent continuant', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'generically dependent continuant', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'specifically dependent continuant', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'material entity', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'immaterial entity', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'quality', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'realizable entity', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'object', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'fiat object part', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'object aggregate', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'site', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'continuant fiat boundary', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'spatial region', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'relational quality', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'role', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'disposition', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'zero-dimensional continuant fiat boundary', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'one-dimensional continuant fiat boundary', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'two-dimensional continuant fiat boundary', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'zero-dimensional spatial region', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'one-dimensional spatial region', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'two-dimensional spatial region', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'three-dimensional spatial region', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'occurrent', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'process', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'process boundary', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'temporal region', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'spatiotemporal region', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'process profile', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'zero-dimensional temporal region', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'one-dimensional temporal region', 'Class', null, null, 'circle'),
+			// RELATIONS
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'instance_of', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'inheres_in', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'bearer_of', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'specifically_depend', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'generically_depend', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'quality_of', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'participates_in', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'exists_at', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'part_of', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'concretizes', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'projects_onto', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'occupies', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'located_in', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'occurs_in', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'realizes', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'projects_into', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'role_of', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'disposition_of', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'function_of', 'Relation', null, 'uml sequence message call invoke dispatch'),
+		];
+		this.addPaletteFunctions('BFO Ontology', 'BFO Ontology', (expand != null) ? expand : true, fns);
+	}
+	else
+	{
+		fns = [
+			// CLASSES
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Continuante', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Continuante independente', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Continuante genericamente dependente', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Continuante especificamente dependente', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Entidade material', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Entidade imaterial', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Qualidade', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Entidade realizável', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Objeto', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Parte fiat de objeto', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Objeto agregado', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Local', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Limite fiat continuante', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região espacial', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Qualidade relacional', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Papel', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Disposição', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Limite fiat de continuante 0-D', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Limite fiat de continuante 1-D', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Limite fiat de continuante 2-D', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região espacial 0-D', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região espacial 1-D', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região espacial 2-D', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região espacial 3-D', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Ocorrente', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Processo', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Limite de processo', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região temporal', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região espaço-temporal', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Perfil de processo', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região temporal 0-D', 'Classe', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região temporal 1-D', 'Classe', null, null, 'circle'),
+			// RELATIONS
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Instancia_um', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Inerente_a', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Portador_de', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'e_depende_de', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'g_depende_de', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Qualidade_de', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Participa_de', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Existe_em', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Parte_de', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Concretiza_em', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Projeta_sobre', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Ocupa', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Localizado_em', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Ocorre_em', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Realiza', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'q_projeta_em', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'é_papel_de', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'é_disposição_de', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'é_função_de', 'Relação', null, 'uml sequence message call invoke dispatch'),
 
-		var edge1 = new mxCell('dispatch', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;');
-		edge1.geometry.setTerminalPoint(new mxPoint(-70, 0), true);
-		edge1.geometry.relative = true;
-		edge1.edge = true;
-
-		cell.insertEdge(edge1, false);
-
-		var edge2 = new mxCell('return', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;');
-		edge2.geometry.setTerminalPoint(new mxPoint(-70, 76), false);
-		edge2.geometry.relative = true;
-		edge2.edge = true;
-
-		cell.insertEdge(edge2, true);
-
-		return sb.createVertexTemplateFromCells([cell, edge1, edge2], 10, 80, 'Synchronous Invocation');
-	}),
-// end
-
-		this.addPaletteFunctions('Advanced Ontology', 'Advanced Ontology', (expand != null) ? expand : true, fns);
+		];
+		this.addPaletteFunctions('Ontologia BFO', 'Ontologia BFO', (expand != null) ? expand : true, fns);
+	}
 };
 
 /**

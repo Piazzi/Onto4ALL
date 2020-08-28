@@ -12,7 +12,8 @@ var classes = [], relations = [], instances = [];
  * And finds any measurable error.
  * @param xml
  */
-function movementCompiler(xml) {
+function movementCompiler(xml)
+{
 
     // Updates the save file button
     $("#save-ontology").removeClass("saved").addClass("unsaved");
@@ -89,14 +90,14 @@ function movementCompiler(xml) {
             for (let k = 0; k < xmlDoc.getElementsByTagName("mxCell").length; k++)
             {
                 if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("edge") != null &&
-                    getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[k]) !== 'instance_of')
+                    getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[k]) !== 'instance_of' && getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[k]) !== 'instancia_um')
                 {
                     if (xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("source") === getElementId(xmlDoc.getElementsByTagName("mxCell")[i]) ||
                         xmlDoc.getElementsByTagName("mxCell")[k].getAttribute("target") === getElementId(xmlDoc.getElementsByTagName("mxCell")[i]))
                     {
                         conceptualErrorsCount++;
                         if(getLanguage() === 'pt')
-                            warningMessage("Você só poder ter uma relação instance_of entre uma classe e uma instância","", ' Erro Conceitual');
+                            warningMessage("Você só poder ter uma relação instancia_um entre uma classe e uma instância","", ' Erro Conceitual');
                         else
                             warningMessage("You can only have a instance_of relation between a class and a instance","",' Conceptual Error');
                     }
@@ -106,7 +107,7 @@ function movementCompiler(xml) {
         }
 
         // Shows a error message if two classes has been connected with the instance_of relation
-        if (getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]) === 'instance_of' &&
+        if (getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]) === 'instance_of' || getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]) === 'instancia_um' &&
             xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") !== null &&
             xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !== null)
         {
@@ -132,7 +133,7 @@ function movementCompiler(xml) {
             {
                 conceptualErrorsCount++;
                 if(getLanguage() === 'pt')
-                    warningMessage("Você não pode ter uma relação instance_of entre duas classes. A relação precisa estar entre uma classe e uma instância. ","", " Erro Conceitual");
+                    warningMessage("Você não pode ter uma relação instancia_um entre duas classes. A relação precisa estar entre uma classe e uma instância. ","", " Erro Conceitual");
                 else
                     warningMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. ","", " Conceptual Error");
             }
@@ -185,9 +186,7 @@ function movementCompiler(xml) {
                     if (xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("edge") == null &&
                         xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("edge") == null &&
                         xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style").includes('ellipse') &&
-                        xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("style").includes('ellipse') &&
-                        getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]) !== 'Name' &&
-                        getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[j]) !== 'Name')
+                        xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("style").includes('ellipse'))
                     {
                         conceptualErrorsCount++;
                         if(getLanguage() === 'pt')
@@ -243,7 +242,7 @@ function movementCompiler(xml) {
             }*/
 
             //Shows a error if a class has multiple inheritance
-            if(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]) === "is_a" &&
+            if(getLanguage() === 'en' && getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]) === "is_a" &&
                 getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[j])=== "is_a" &&
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") &&
@@ -254,14 +253,23 @@ function movementCompiler(xml) {
                 xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") !== null &&
                 xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") !== null )
             {
-                if(getLanguage() === 'pt')
-                    warningMessage("Classes não podem ter herança múltipla. Sua classe "+getCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) + "(ID: "+ xmlDoc.getElementsByTagName("mxCell")[i].getAttribute('id') +") não pode ser o domínio de mais de uma relação is_a",8, 'Má Prática');
-                else
-                    warningMessage("A class can't have multiple inheritance. Your "+getCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +"(ID: "+ xmlDoc.getElementsByTagName("mxCell")[i].getAttribute('id') +") class can't be the domain of more than one is_a relation",8, 'Bad Practice');
+                warningMessage("A class can't have multiple inheritance. Your "+getCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) +"(ID: "+ xmlDoc.getElementsByTagName("mxCell")[i].getAttribute('id') +") class can't be the domain of more than one is_a relation",8, 'Bad Practice');
                 warningsCount++;
             }
-
-
+            else if (getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]) === "é_um" &&
+                getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[j])=== "é_um" &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") ===
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !==
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") !== null &&
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("target") !== null &&
+                xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") !== null &&
+                xmlDoc.getElementsByTagName("mxCell")[j].getAttribute("source") !== null )
+            {
+                warningMessage("Classes não podem ter herança múltipla. Sua classe "+getCellName(xmlDoc,xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source")) + "(ID: "+ xmlDoc.getElementsByTagName("mxCell")[i].getAttribute('id') +") não pode ser o domínio de mais de uma relação is_a",8, 'Má Prática');
+                warningsCount++;
+            }
 
         }
 
