@@ -39,7 +39,7 @@
     @endif
 
     <!-- Editor CSS  -->
-    @if(Route::currentRouteName() == 'home')
+    @if(Route::currentRouteName() == 'home' || Route::currentRouteName() == 'thesaurus-editor')
         <link rel="stylesheet" type="text/css" href="{{asset('grapheditor/styles/grapheditor.css')}}">
         <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=5,IE=9"><![endif]-->
@@ -57,7 +57,7 @@
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition @yield('body_class')    @if(Route::currentRouteName() == 'home') geEditor @endif">
+<body class="hold-transition @yield('body_class')    @if(Route::currentRouteName() == 'home' || Route::currentRouteName() == 'thesaurus-editor') geEditor @endif">
 
 @yield('body')
 

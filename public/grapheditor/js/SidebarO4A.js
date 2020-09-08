@@ -980,57 +980,34 @@ Sidebar.prototype.addGeneralPalette = function(expand)
 */
 Sidebar.prototype.addThesauruPalette = function(expand)
 {
-	var lineTags = 'line lines connector connectors connection connections arrow arrows ';
-
-	var fns = [
-		// Explicit strokecolor/fillcolor=none is a workaround to maintain transparent background regardless of current style
-		this.createVertexTemplateEntry('text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;',
-			40, 20, 'Text', 'Text', null, null, 'text textbox textarea label'),
-		this.createVertexTemplateEntry('text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;', 190, 120,
-			'<h1>Heading</h1><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>',
-			'Textbox', null, null, 'text textbox textarea'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;', 80, 80, 'Termo Específico', 'Termo Específico (TE)', null, null, 'circle termo'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;', 80, 80, 'Termo Genérico', 'Termo Genérico (TG)', null, null, 'circle termo'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;', 80, 80, 'Termo Gênero', 'Termo Gênero', null, null, 'circle termo'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;', 80, 80, 'Termo Espécie', 'Termo Espécie', null, null, 'circle termo'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;', 80, 80, 'Termo Relacionado', 'Termo Relacionado (TR)', null, null, 'circle termo'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;', 80, 80, 'Usado Para', 'Usado Para (UP)', null, null, 'circle termo'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;', 80, 80, 'Use', 'Use (USE)', null, null, 'circle termo'),
-		this.createVertexTemplateEntry('shape=callout;whiteSpace=wrap;html=1;perimeter=calloutPerimeter;', 120, 80, '', 'Callout', null, null, 'bubble chat thought speech message'),
-		this.createVertexTemplateEntry('rhombus;whiteSpace=wrap;html=1;Instance;', 110, 50, 'Instance', 'Instance', null, null, 'Instance'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'Relação hierárquica', 'Relação hierárquica', null, 'uml sequence message call invoke dispatch relação'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'Relação hierárquica genérica', 'Relação hierárquica genérica', null, 'uml sequence message call invoke dispatch relação'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'Relação hierárquica partitiva', 'Relação hierárquica partitiva', null, 'uml sequence message call invoke dispatch relação'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'Relação hierárquica de instância', 'Relação hierárquica de instância', null, 'uml sequence message call invoke dispatch relação' ),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'Relação Associativa', 'Relação Associativa', null, 'uml sequence message call invoke dispatch relação'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;', 80, 0, 'Relação de Equivalência', 'Relação de Equivalência', null, 'uml sequence message call invoke dispatch relação'),
-
-
-	];
-// DISPATCH POINTER
-	this.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
+	let fns = [];
+	if(window.location.pathname.split('/')[1] === 'en')
 	{
-		var cell = new mxCell('', new mxGeometry(0, 0, 10, 80), 'html=1;points=[];perimeter=orthogonalPerimeter;');
-		cell.vertex = true;
+		 fns = [
+		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Collection', 'Class', null, null, 'circle'),
+		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Concept', 'Class', null, null, 'circle'),
+		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'ConceptScheme', 'Class', null, null, 'circle'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'broader', 'Relation', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'narrower', 'Relation', null, 'uml sequence message call invoke dispatch'),
+		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'prefLabel', 'Class', null, null, 'circle'),
+		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'scopeNote', 'Class', null, null, 'circle'),
 
-		var edge1 = new mxCell('dispatch', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;entryX=0;entryY=0;');
-		edge1.geometry.setTerminalPoint(new mxPoint(-70, 0), true);
-		edge1.geometry.relative = true;
-		edge1.edge = true;
-
-		cell.insertEdge(edge1, false);
-
-		var edge2 = new mxCell('return', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;exitX=0;exitY=0.95;');
-		edge2.geometry.setTerminalPoint(new mxPoint(-70, 76), false);
-		edge2.geometry.relative = true;
-		edge2.edge = true;
-
-		cell.insertEdge(edge2, true);
-
-		return sb.createVertexTemplateFromCells([cell, edge1, edge2], 10, 80, 'Synchronous Invocation');
-	}),
-// end
-		this.addPaletteFunctions('Thesauru', 'Thesauru', (expand != null) ? expand : true, fns);
+		];
+		this.addPaletteFunctions('Basic Tab', 'Basic Tab', (expand != null) ? expand : true, fns);
+	}
+	else
+	{
+		 fns = [
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Collection', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Concept', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'ConceptScheme', 'Class', null, null, 'circle'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'broader', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'narrower', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'prefLabel', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'scopeNote', 'Class', null, null, 'circle'),
+		];
+		this.addPaletteFunctions('Basic Tab', 'Basic Tab', (expand != null) ? expand : true, fns);
+	}
 };
 
 /**
