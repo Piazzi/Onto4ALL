@@ -139,8 +139,10 @@ function movementCompiler(xml)
             }
         }
 
-        // Check if the Name is in Plural or singular
+
         let name = removeSpaces(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]));
+        // Check if the Name is in Plural or singular
+        /*
         if(isClass(xmlDoc.getElementsByTagName("mxCell")[i]) && name.charAt(name.length-1) === 's' || name.charAt(name.length-1) === 'S')
         {
             warningsCount++;
@@ -148,7 +150,7 @@ function movementCompiler(xml)
                 warningMessage("É recomendável que os nomes estejam no singular e não no plural.",'','Má Prática');
             else
                 warningMessage("It is recommended that the names be in the singular and not in the plural",'','Bad Practice')
-        }
+        }*/
 
         // Check if the name contains a Acronym
         // /([a-z]{1}\.)/gi
@@ -422,16 +424,11 @@ function isRelation(element) {
  * @returns {boolean}
  */
 function isClass(element) {
+    console.log(element);
     if(filledProperties(element))
-    {
-        console.log(element);
-        return element.childNodes[0].getAttribute('edge') === null &&
-              // element.childNodes[0].getAttribute("style").includes('Class') ||
-               element.childNodes[0].getAttribute("style").includes('ellipse');
-    }
+        return element.childNodes[0].getAttribute("style").includes('ellipse');  // element.childNodes[0].getAttribute("style").includes('Class')
     else
-    return element.getAttribute("edge") === null &&
-        element.getAttribute("style").includes('ellipse');
+        return element.getAttribute("style").includes('ellipse');
 }
 
 /**
