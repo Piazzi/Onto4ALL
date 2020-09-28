@@ -1029,7 +1029,7 @@ Sidebar.prototype.addTaxonomyPalette = function(expand)
 	{
 		 fns = [
 			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Label', 'Classe', null, null, 'circle'),
-			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'é_um', 'Relação', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'é_um', 'is_a', null, 'uml sequence message call invoke dispatch'),
 		];
 		this.addPaletteFunctions('Taxonomia', 'Taxonomia', (expand != null) ? expand : true, fns);
 	}
