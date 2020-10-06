@@ -87,7 +87,10 @@ Sidebar.prototype.init = function()
 
 	this.addSearchPalette(true);
 	if(window.location.pathname.split('/')[2] === 'thesaurus-editor')
-		this.addThesauruPalette(true);
+	{
+		this.addThesauruBasicPalette(true);
+		this.addThesauruAdvancedPalette(true);
+	}
 	else {
 		this.addTaxonomyPalette(true);
 		this.addBasicOntologyPalette(true);
@@ -978,7 +981,7 @@ Sidebar.prototype.addGeneralPalette = function(expand)
 
 /* Adds the thesaurus palette to the sidebar
 */
-Sidebar.prototype.addThesauruPalette = function(expand)
+Sidebar.prototype.addThesauruBasicPalette = function(expand)
 {
 	let fns = [];
 	if(window.location.pathname.split('/')[1] === 'en')
@@ -987,10 +990,8 @@ Sidebar.prototype.addThesauruPalette = function(expand)
 		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Collection', 'Class', null, null, 'circle'),
 		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Concept', 'Class', null, null, 'circle'),
 		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'ConceptScheme', 'Class', null, null, 'circle'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'broader', 'Relation', null, 'uml sequence message call invoke dispatch'),
-		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'narrower', 'Relation', null, 'uml sequence message call invoke dispatch'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'prefLabel', 'Class', null, null, 'circle'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'scopeNote', 'Class', null, null, 'circle'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'isSubjectOf', 'Relation', null, 'uml sequence message call invoke dispatch'),
+		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'semanticRelation', 'Relation', null, 'uml sequence message call invoke dispatch'),
 
 		];
 		this.addPaletteFunctions('Basic Tab', 'Basic Tab', (expand != null) ? expand : true, fns);
@@ -1001,12 +1002,40 @@ Sidebar.prototype.addThesauruPalette = function(expand)
 			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Collection', 'Class', null, null, 'circle'),
 			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Concept', 'Class', null, null, 'circle'),
 			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'ConceptScheme', 'Class', null, null, 'circle'),
-			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'broader', 'Relation', null, 'uml sequence message call invoke dispatch'),
-			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'narrower', 'Relation', null, 'uml sequence message call invoke dispatch'),
-			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'prefLabel', 'Class', null, null, 'circle'),
-			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'scopeNote', 'Class', null, null, 'circle'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'isSubjectOf', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'semanticRelation', 'Relation', null, 'uml sequence message call invoke dispatch'),
 		];
 		this.addPaletteFunctions('Basic Tab', 'Basic Tab', (expand != null) ? expand : true, fns);
+	}
+};
+
+/* Adds the thesaurus palette to the sidebar
+*/
+Sidebar.prototype.addThesauruAdvancedPalette = function(expand)
+{
+	let fns = [];
+	if(window.location.pathname.split('/')[1] === 'en')
+	{
+		 fns = [
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'hasTopConcept', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'inScheme', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'member', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'memberList', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'OrderedCollection ', 'Class', null, null, 'circle'),
+
+		];
+		this.addPaletteFunctions('Advanced Tab', 'Advanced Tab', (expand != null) ? expand : true, fns);
+	}
+	else
+	{
+		 fns = [
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'hasTopConcept', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'inScheme', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'member', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'memberList', 'Relation', null, 'uml sequence message call invoke dispatch'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'OrderedCollection ', 'Class', null, null, 'circle'),
+		];
+		this.addPaletteFunctions('Advanced Tab', 'Advanced Tab', (expand != null) ? expand : true, fns);
 	}
 };
 

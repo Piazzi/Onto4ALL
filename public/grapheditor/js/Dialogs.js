@@ -1529,46 +1529,69 @@ var EditDataDialog = function(ui, cell)
 
 	//console.log(cell);
 	// relations properties
-	if(cell.isEdge())
+	if(window.location.pathname.split('/')[2] === 'home')
 	{
-		addProps('domain');
-		addProps('range');
-		addProps('inverseOf');
-		addProps('cardinality');
-		addProps('equivalentTo');
-		addProps('disjointWith');
-		addProps('transitive');
+		if(cell.isEdge())
+		{
+			addProps('domain');
+			addProps('range');
+			addProps('inverseOf');
+			addProps('cardinality');
+			addProps('equivalentTo');
+			addProps('disjointWith');
+			addProps('transitive');
+		}
+		else
+		{
+			// class properties
+			addProps('SubClassOf');
+			addProps('importedFrom');
+			addProps('hasOBONamespace');
+			addProps('hasURI');
+			addProps('hasSynonym');
+			addProps('hasExactSynonym');
+			addProps('hasRelatedSynonym');
+			addProps('elucidaton');
+			addProps('comments');
+			addProps('DisjointWith');
+			addProps('EquivalentTo');
+		}
+	
+		createAnnotationsSection();
+	
+		// Annotations
+		addProps('preferredName');
+		addProps('definition');
+		addProps('definitionEditor');
+		addProps('definitionSource');
+		addProps('specificationOfCurationStatus');
+		addProps('exampleOfUsage');
+		addProps('alternativeTerm');
+		addProps('editorNote');
+		addProps('curatorNote');
+		addProps('specifyingObsolescenceRatio');
+		addProps('exclusiveLabel');
+	
 	}
 	else
 	{
-		// class properties
-		addProps('SubClassOf');
-		addProps('importedFrom');
-		addProps('hasOBONamespace');
-		addProps('hasURI');
-		addProps('hasSynonym');
-		addProps('hasExactSynonym');
-		addProps('hasRelatedSynonym');
-		addProps('elucidaton');
-		addProps('comments');
-		addProps('DisjointWith');
-		addProps('EquivalentTo');
+		addProps('altLabel');
+		addProps('broader');
+		addProps('narrower');
+		addProps('prefLabel');
+		addProps('related');
+		addProps('subject');
+		addProps('scopeNote');
+		addProps('broadMatch');
+		addProps('changeNote');
+		addProps('definition');
+		addProps('editorialNote');
+		addProps('hiddenLabel');
+		addProps('historyNote');
+		addProps('note');
+		addProps('topConceptOf');
+
 	}
-
-	createAnnotationsSection();
-
-	// Annotations
-	addProps('preferredName');
-	addProps('definition');
-	addProps('definitionEditor');
-	addProps('definitionSource');
-	addProps('specificationOfCurationStatus');
-	addProps('exampleOfUsage');
-	addProps('alternativeTerm');
-	addProps('editorNote');
-	addProps('curatorNote');
-	addProps('specifyingObsolescenceRatio');
-	addProps('exclusiveLabel');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
