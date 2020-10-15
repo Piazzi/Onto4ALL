@@ -443,16 +443,23 @@ Menus.prototype.init = function()
 	}))).isEnabled = isGraphEnabled;
 	this.put('insert', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
-		this.addMenuItems(menu, ['insertLink', 'insertImage'], parent);
+		//		this.addMenuItems(menu, ['insertLink', 'insertImage'], parent);
+		this.addMenuItems(menu, ['insertLink'], parent);
 	})));
 	this.put('view', new Menu(mxUtils.bind(this, function(menu, parent)
-	{
+	{  /*
 		this.addMenuItems(menu, ((this.editorUi.format != null) ? ['formatPanel'] : []).
 			concat(['outline', 'layers', '-', 'pageView', 'pageScale', '-', 'scrollbars', 'tooltips', '-',
 			        'grid', 'guides', '-', 'connectionArrows', 'connectionPoints', '-',
-			        'resetView', 'zoomIn', 'zoomOut'], parent));
+					'resetView', 'zoomIn', 'zoomOut'], parent));
+					*/
+					this.addMenuItems(menu, ((this.editorUi.format != null) ? [] : []).
+			concat([ 'pageView', 'pageScale', '-', 'scrollbars', 'tooltips', '-',
+			        'grid', 'guides', '-', 'connectionArrows', 'connectionPoints', '-',
+					'resetView', 'zoomIn', 'zoomOut'], parent));
 	})));
 	// Two special dropdowns that are only used in the toolbar
+	/*
 	this.put('viewPanels', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
 		if (this.editorUi.format != null)
@@ -462,6 +469,7 @@ Menus.prototype.init = function()
 		
 		this.addMenuItems(menu, ['outline', 'layers'], parent);
 	})));
+	*/
 	this.put('viewZoom', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
 		this.addMenuItems(menu, ['resetView', '-'], parent);
@@ -482,12 +490,18 @@ Menus.prototype.init = function()
 	})));
 	this.put('file', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
-		this.addMenuItems(menu, ['new', 'open', '-', 'save', 'saveAs', '-', 'import', 'export', '-', 'pageSetup', 'print'], parent);
+		//this.addMenuItems(menu, ['new', 'open', '-', 'save', 'saveAs', '-', 'import', 'export', '-', 'pageSetup', 'print'], parent);
+		this.addMenuItems(menu, ['new', 'open', '-', 'save', '-', 'import', 'export', '-', 'pageSetup', 'print'], parent);
 	})));
 	this.put('edit', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
-		this.addMenuItems(menu, ['undo', 'redo', '-', 'cut', 'copy', 'paste', 'delete', '-', 'duplicate', '-',
+		/**
+		 * this.addMenuItems(menu, ['undo', 'redo', '-', 'cut', 'copy', 'paste', 'delete', '-', 'duplicate', '-',
 		                         'editData', 'editTooltip', 'editStyle', '-', 'edit', '-', 'editLink', 'openLink', '-',
+		                         'selectVertices', 'selectEdges', 'selectAll', 'selectNone', '-', 'lockUnlock']);
+		 */
+		this.addMenuItems(menu, ['undo', 'redo', '-', 'cut', 'copy', 'paste', 'delete', '-', 'duplicate', '-',
+		                          'editTooltip', '-', 'edit', '-', 'editLink', 'openLink', '-',
 		                         'selectVertices', 'selectEdges', 'selectAll', 'selectNone', '-', 'lockUnlock']);
 	})));
 	this.put('extras', new Menu(mxUtils.bind(this, function(menu, parent)
@@ -1221,7 +1235,8 @@ Menus.prototype.addPopupMenuCellItems = function(menu, cell, evt)
 	
 		if (graph.getSelectionCount() == 1)
 		{
-			this.addMenuItems(menu, ['-', 'editStyle', 'editData', 'editLink'], null, evt);
+			// this.addMenuItems(menu, ['-', 'editStyle', 'editData', 'editLink'], null, evt);
+			this.addMenuItems(menu, ['-', 'editData', 'editLink'], null, evt);
 	
 			// Shows edit image action if there is an image in the style
 			if (graph.getModel().isVertex(cell) && mxUtils.getValue(state.style, mxConstants.STYLE_IMAGE, null) != null)

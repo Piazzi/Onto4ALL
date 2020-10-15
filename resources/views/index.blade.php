@@ -730,8 +730,8 @@
         </span>
     </a>
 
-    <a class="tracker" id="control-sidebar" href="#" data-toggle="control-sidebar">
-        <i class="fa fa-1.5x fa-fw fa-exchange "></i>
+    <a  class="tracker" id="control-sidebar" href="#" data-toggle="control-sidebar">
+        <i style="padding-top: 5px" class="fa fa-1.5x fa-fw fa-exchange "></i>
     </a>
     <!-- ./Tracker spans  -->
 
@@ -993,6 +993,7 @@
     <script type="text/javascript" src="{{asset('grapheditor/js/Menus.js')}}"></script>
     <script type="text/javascript" src="{{asset('grapheditor/js/Toolbar.js')}}"></script>
     <script type="text/javascript" src="{{asset('grapheditor/js/Dialogs.js')}}"></script>
+    <!-- Onto4ALL -->
     <script type="text/javascript" src="{{asset('js/HomeFunctions.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/NightMode.js')}}"></script>
@@ -1000,8 +1001,9 @@
     <script type="text/javascript" src="{{asset('js/Report.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
     <script defer type="text/javascript" src="{{asset('js/SearchTip.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/BuildMenu.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/BuildMenu.js')}}"></script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
 

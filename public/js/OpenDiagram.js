@@ -12,43 +12,7 @@ function setEditor(editorParam)
 $(document).ready(function () {
 
     let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    /*
-    // Open the latest diagram
-    $.ajax({
-        url: '/openRecentDiagram',
-        type: 'POST',
-        data: {_token: CSRF_TOKEN},
-        dataType: 'JSON',
-        success: function (data) {
-            if(!data['file'])
-                return;
-
-            let doc = mxUtils.parseXml(data['file']);
-            editor.editor.setGraphXml(doc.documentElement);
-            $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+data['name']);
-            $("#id").val(data['id']);
-            $("#name").val(data['name']);
-            $("#publication-date").val(data['publication_date']);
-            $("#last-uploaded").val(data['last_uploaded']);
-            $("#description").val(data['description']);
-            $("#link").val(data['link']);
-            $("#domain").val(data['domain']);
-            $("#general-purpose").val(data['general_purpose']);
-            $("#profile-users").val(data['profile_users']);
-            $("#intended-use").val(data['intended_use']);
-            $("#type-of-ontology").val(data['type_of_ontology']);
-            $("#degree-of-formality").val(data['degree_of_formality']);
-            $("#scope").val(data['scope']);
-            $("#competence-questions").val(data['competence_questions']);
-        },
-
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(JSON.stringify(jqXHR));
-            console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-        }
-
-    });
-    */
+   
     // Fires the Ajax request when the button is clicked
     // Open the selected diagram
     $(".openOntology").click(function () {
@@ -63,7 +27,7 @@ $(document).ready(function () {
             success: function (data) {
                 let doc = mxUtils.parseXml(data['file']);
                 editor.editor.setGraphXml(doc.documentElement);
-                console.log(data);
+                //console.log(data);
                 $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+data['name']);
                 $("#id").val(data['id']);
                 $("#name").val(data['name']);

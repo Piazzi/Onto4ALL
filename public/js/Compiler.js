@@ -404,7 +404,14 @@ function movementCompiler(xml)
  * return integer
  */
 function filledProperties(element) {
-    return element.parentNode.getAttribute('label') !== null && element.parentNode.nodeName === 'object' || element.nodeName === 'object';
+
+    try
+    {
+        return element.parentNode.getAttribute('label') !== null && element.parentNode.nodeName === 'object' || element.nodeName === 'object';
+    } catch(e)
+    {
+        console.log(e);
+    }
 }
 
 /**
@@ -412,11 +419,19 @@ function filledProperties(element) {
  * @returns {boolean}
  */
 function isRelation(element) {
-    if(filledProperties(element))
-       return element.childNodes[0].getAttribute('edge') != null;
-    else
-        return element.getAttribute('edge') != null
-       // ||// element.childNodes[0].getAttribute("style").includes('Relation');
+    try
+    {
+     if(filledProperties(element))
+        return element.childNodes[0].getAttribute('edge') != null;
+     else
+         return element.getAttribute('edge') != null
+        // ||// element.childNodes[0].getAttribute("style").includes('Relation');
+    } catch(e)
+    {
+        console.log(e);
+        console.log(element);
+    }
+    
 }
 
 /**
@@ -424,11 +439,18 @@ function isRelation(element) {
  * @returns {boolean}
  */
 function isClass(element) {
-    console.log(element);
+    try
+    {
     if(filledProperties(element))
         return element.childNodes[0].getAttribute("style").includes('ellipse');  // element.childNodes[0].getAttribute("style").includes('Class')
     else
         return element.getAttribute("style").includes('ellipse');
+    } catch(e)
+    {
+        console.log(e);
+        console.log(element);
+    }
+    
 }
 
 /**
