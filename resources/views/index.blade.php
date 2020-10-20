@@ -883,7 +883,7 @@
                                     @endif
 
                                     <h3 class="timeline-header">
-                                        <a href="{{route('ontologies.show', ['locale' => app()->getLocale(), 'ontology' => $ontology->id])}}">{{$ontology->name}}</a>
+                                        <a class="openOntology" data-dismiss="modal" id="{{$ontology->id}}" href="">{{$ontology->name}}</a>
                                         @if($ontology->created_at !== $ontology->updated_at)
                                             {{__('was updated')}}
                                         @else

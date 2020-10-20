@@ -117,7 +117,7 @@
                                         </td>
                                         <td>
                                             <a href="{{route('ontologies.downloadOWL', ['locale' => app()->getLocale() , 'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
-                                                <button class="btn btn-success">OWL
+                                                <button class="btn btn-success"><i class="fa fa-fw fa-download"></i>
                                                 </button>
                                             </a>
                                         </td>
@@ -219,7 +219,7 @@
                                         </td>
                                         <td>
                                             <a href="{{route('ontologies.downloadOWL', [ 'locale' => app()->getLocale() ,'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
-                                                <button class="btn btn-success">OWL
+                                                <button class="btn btn-success"><i class="fa fa-fw fa-download"></i>
                                                 </button>
                                             </a>
                                         </td>

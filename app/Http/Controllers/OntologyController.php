@@ -203,7 +203,18 @@ class OntologyController extends Controller
         $fileRequest->setMethod('POST');
         $fileRequest->request->add(['xml' => $file->file]);
         $fileRequest->request->add(['fileName' => $this->setFileExtension($file->name, '.owl')]);
-        return app('App\Http\Controllers\HomeController')->exportOWL($fileRequest);
+
+        // converts the file to OWL
+        $convertedFile = app('App\Http\Controllers\HomeController')->exportOWL($fileRequest)->getOriginalContent();
+
+        $response = Response::create($convertedFile, 200);
+        $response->header('Content-Type', 'text/xml');
+        $response->header('Cache-Control', 'public');
+        $response->header('Content-Description', 'File Transfer');
+        $response->header('Content-Disposition', 'attachment; filename=' . $this->setFileExtension($file->name, '.owl') . '');
+        $response->header('Content-Transfer-Encoding', 'binary');
+
+        return $response;
     }
 
     /**
