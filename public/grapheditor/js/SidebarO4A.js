@@ -987,9 +987,9 @@ Sidebar.prototype.addThesauruBasicPalette = function(expand)
 	if(window.location.pathname.split('/')[1] === 'en')
 	{
 		 fns = [
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Collection', 'Class', null, null, 'circle'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Concept', 'Class', null, null, 'circle'),
-		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'ConceptScheme', 'Class', null, null, 'circle'),
+		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#7EA6E0;', 100, 100, 'SKOS:Collection', 'Class', null, null, 'circle'),
+		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 90, 90, 'SKOS:Concept', 'Class', null, null, 'circle'),
+		this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#FF6666;', 130, 130, 'SKOS:ConceptScheme', 'Class', null, null, 'circle'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'isSubjectOf', 'Relation', null, 'uml sequence message call invoke dispatch'),
 		this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'semanticRelation', 'Relation', null, 'uml sequence message call invoke dispatch'),
 
@@ -999,9 +999,9 @@ Sidebar.prototype.addThesauruBasicPalette = function(expand)
 	else
 	{
 		 fns = [
-			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Collection', 'Class', null, null, 'circle'),
-			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Concept', 'Class', null, null, 'circle'),
-			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'ConceptScheme', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#7EA6E0;', 100, 100, 'SKOS:Collection', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 90, 90, 'SKOS:Concept', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#FF6666;', 130, 130, 'SKOS:ConceptScheme', 'Class', null, null, 'circle'),
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'isSubjectOf', 'Relation', null, 'uml sequence message call invoke dispatch'),
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'semanticRelation', 'Relation', null, 'uml sequence message call invoke dispatch'),
 		];
@@ -1021,7 +1021,7 @@ Sidebar.prototype.addThesauruAdvancedPalette = function(expand)
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'inScheme', 'Relation', null, 'uml sequence message call invoke dispatch'),
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'member', 'Relation', null, 'uml sequence message call invoke dispatch'),
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'memberList', 'Relation', null, 'uml sequence message call invoke dispatch'),
-			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'OrderedCollection ', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#67AB9F;', 140, 140, 'SKOS:OrderedCollection ', 'Class', null, null, 'circle'),
 
 		];
 		this.addPaletteFunctions('Advanced Tab', 'Advanced Tab', (expand != null) ? expand : true, fns);
@@ -1033,7 +1033,7 @@ Sidebar.prototype.addThesauruAdvancedPalette = function(expand)
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'inScheme', 'Relation', null, 'uml sequence message call invoke dispatch'),
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'member', 'Relation', null, 'uml sequence message call invoke dispatch'),
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'memberList', 'Relation', null, 'uml sequence message call invoke dispatch'),
-			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'OrderedCollection ', 'Class', null, null, 'circle'),
+			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#67AB9F;', 140, 140, 'SKOS:OrderedCollection ', 'Class', null, null, 'circle'),
 		];
 		this.addPaletteFunctions('Advanced Tab', 'Advanced Tab', (expand != null) ? expand : true, fns);
 	}
