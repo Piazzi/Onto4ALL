@@ -382,7 +382,8 @@
     "Edit Ontology Info": "Editar informações da ontologia",
     "Unsaved changes. Click here to save": "Alterações não salvas. Clique aqui para salvar",
     "Current Ontology: None": "Ontologia Atual: Nenhuma",
-    "You dont have any ontologies saved in our ontology manager yet": "Você não tem nenhuma ontologia salva em nosso gerenciador ainda."
+    "You dont have any ontologies saved in our ontology manager yet": "Você não tem nenhuma ontologia salva em nosso gerenciador ainda.",
 
-
+    "Alert": "Aviso",
+    "This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.": "Este editor está em teste beta, podem ocorrer bugs. Estamos trabalhando para implementar novos recursos e corrigir bugs, se você tiver algum problema entre em contato conosco através do menu de ajuda."
 }

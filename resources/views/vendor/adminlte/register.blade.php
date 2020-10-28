@@ -10,10 +10,15 @@
 @section('body')
     <div class="register-box">
         <div class="login-logo">
-            <img class="img-responsive img full-width" id="login-image" src="{{asset('css/images/LogoGreen.png')}}" alt="" srcset="">
+            <img class="img-responsive img full-width" id="login-image" src="{{asset('css/images/Beta.png')}}" alt="" srcset="">
         </div>
 
         <div class="register-box-body">
+            <div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-info"></i> {{__('Alert')}}!</h4>
+                                {{__('This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.')}}
+            </div>
             <p class="login-box-msg">{{ __('Register') }}</p>
             <form data-grecaptcha-action="message"  action="{{route('register', app()->getLocale()) }}" method="post">
                 {!! csrf_field() !!}

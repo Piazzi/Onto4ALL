@@ -23,10 +23,15 @@
                 <div class="row">
                     <div class="login-box">
                         <div class="login-logo">
-                            <img class="img-responsive img" id="login-image" src="{{asset('css/images/LogoGreen.png')}}" alt="onto4all-logo" srcset="">
+                            <img class="img-responsive img" id="login-image" src="{{asset('css/images/Beta.png')}}" alt="onto4all-logo" srcset="">
                         </div>
                         <!-- /.login-logo -->
                         <div class="login-box-body">
+                            <div class="alert alert-warning alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-info"></i> {{__('Alert')}}!</h4>
+                                {{__('This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.')}}
+                            </div>
                             <p class="login-box-msg">{{ __('Sign in to start your session') }}</p>
                             <form data-grecaptcha-action="message" action="{{ route('login', app()->getLocale()) }}" method="post">
                                 {!! csrf_field() !!}
@@ -96,6 +101,7 @@
                         </div>
                         <!-- /.login-box-body -->
                     </div><!-- /.login-box -->
+                   
                 </div>
             </div>
         </div>
