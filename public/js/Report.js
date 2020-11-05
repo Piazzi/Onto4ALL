@@ -10,7 +10,7 @@ $(document).ready(function () {
         // Starts the XML interpretation
         for (let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
         {
-            if(!mxCellIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
+            if(!elementIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
                 continue;
             if(isClass(xmlDoc.getElementsByTagName("mxCell")[i]))
             {
@@ -34,9 +34,9 @@ $(document).ready(function () {
         }
         report = report + '\nRelations: ';
 
-        for (let i = 2; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
+        for (let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
         {
-            if(!mxCellIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
+            if(!elementIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
                 continue;
             if(isRelation(xmlDoc.getElementsByTagName("mxCell")[i]))
             {
@@ -45,7 +45,7 @@ $(document).ready(function () {
                 {
                     let domainId = xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source");
                     let rangeId =  xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target");
-                    report = report + '\n       '+labelFilter(getCellName(xmlDoc,domainId))+' '+labelFilter(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i])+' '+labelFilter(getCellName(xmlDoc, rangeId)));
+                    report = report + '\n       '+labelFilter(findNameById(xmlDoc.getElementsByTagName("mxCell"),domainId))+' '+labelFilter(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i])+' '+labelFilter(findNameById(xmlDoc.getElementsByTagName("mxCell"), rangeId)));
                 }
                 else
                     report = report + '\n       '+labelFilter(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]));
@@ -79,6 +79,10 @@ $(document).ready(function () {
  * @param text
  */
 function labelFilter(text) {
-    return text.replace(/<[^>]*>/g, '');
-
+    try {
+        return text.replace(/<[^>]*>/g, '');
+    }
+    catch (e) {
+        console.log(e);
+    }
 }

@@ -16,8 +16,8 @@ let connectives = [
 // Detects when the user starts writing something
 $(document).on('input', '#ClassExpressionEditorInput', function(){
 
-    let classesNames = getClassesNames();
-    let relationsNames = getRelationsNames();
+    let classesNames = getElementsNames();
+    let relationsNames = getElementsNames('Relation');
     console.log($(this).val());
 
     if (connectives.some(v => $(this).val().includes(v)))
