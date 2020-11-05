@@ -268,7 +268,7 @@
         {{ $ontologies->links() }}
     </ul>
     <!-- Filter -->
-    <script type="text/javascript" src="js/SearchBar.js"></script>
+    <script type="text/javascript" src="{{asset('js/SearchBar.js')}}"></script>
 
 @stop
 
