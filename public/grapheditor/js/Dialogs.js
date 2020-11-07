@@ -1323,6 +1323,10 @@ var EditDataDialog = function(ui, cell)
 	
 	var addRemoveButton = function(text, name)
 	{
+		// does not add the remove button if the name is equal to one of the strings below
+		if(name === 'SubClassOf' || name === 'domain' || name === 'range')
+			return;
+
 		var wrapper = document.createElement('div');
 		wrapper.style.position = 'relative';
 		wrapper.style.paddingRight = '20px';
@@ -1384,7 +1388,7 @@ var EditDataDialog = function(ui, cell)
 	function createAnnotationsSection()
 	{
 		let annotationsTitle = document.createElement('h3');
-		let annotationsText = document.createTextNode('------ Annotations ------');
+		let annotationsText = document.createTextNode('---------------- Annotations ----------------');
 		annotationsTitle.appendChild(annotationsText);
 		form.addField('', annotationsTitle);
 	}
@@ -1393,14 +1397,19 @@ var EditDataDialog = function(ui, cell)
 	var addTextArea = function(index, name, value)
 	{
 		names[index] = name;
-		texts[index] = form.addTextarea(names[count] + ':', value, 2);
-		if(name === 'SubClassOf')
+
+
+		//texts[index] = form.addTextarea(names[count] + ':', value, 2);
+		texts[index] = form.addTextarea(names[count], value, 2);
+
+
+		if(name === 'Constraint')
 			texts[index].id = 'ClassExpressionEditorInput';
 		texts[index].style.width = '100%';
-
 		// Detects where the Annotations start
 		if(name === 'EquivalentTo' || name === 'transitive')
 			createAnnotationsSection();
+
 
 		if (value.indexOf('\n') > 0)
 		{
@@ -1504,13 +1513,16 @@ var EditDataDialog = function(ui, cell)
 
 					names.push(name);
 					var text = form.addTextarea(name + ':', '',  2);
-					if(name === 'SubClassOf')
+
+					if(name === 'Constraint')
 					{
 						text.id = 'ClassExpressionEditorInput';
-						text.oninput = 'validateInput();';
-						console.log(text);
-						console.log(text.oninput);
+						text.oninput = 'validateInput();'
 					}
+					// Disable the inputs
+					if(name === 'SubClassOf' || name === 'domain' || name === 'range')
+						text.disabled = true;
+
 					text.style.width = '100%';
 					texts.push(text);
 					addRemoveButton(text, name);
@@ -1545,6 +1557,7 @@ var EditDataDialog = function(ui, cell)
 		{
 			// class properties
 			addProps('SubClassOf');
+			addProps('Constraint');
 			addProps('importedFrom');
 			addProps('hasOBONamespace');
 			addProps('hasURI');
