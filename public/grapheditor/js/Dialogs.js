@@ -1332,7 +1332,7 @@ var EditDataDialog = function(ui, cell)
 		wrapper.style.paddingRight = '20px';
 		wrapper.style.boxSizing = 'border-box';
 		wrapper.style.width = '100%';
-		
+
 		var removeAttr = document.createElement('a');
 		var img = mxUtils.createImage(Dialog.prototype.closeImage);
 		img.style.height = '9px';
@@ -1393,11 +1393,10 @@ var EditDataDialog = function(ui, cell)
 		form.addField('', annotationsTitle);
 	}
 
-
+	// THIS FUNCTION IS CALLED WHEN ANY PROPERTY IS FILLED
 	var addTextArea = function(index, name, value)
 	{
 		names[index] = name;
-
 
 		//texts[index] = form.addTextarea(names[count] + ':', value, 2);
 		texts[index] = form.addTextarea(names[count], value, 2);
@@ -1406,9 +1405,18 @@ var EditDataDialog = function(ui, cell)
 		if(name === 'Constraint')
 			texts[index].id = 'ClassExpressionEditorInput';
 		texts[index].style.width = '100%';
+
+		if(name === 'SubClassOf' || name === 'domain' || name === 'range')
+		{
+			texts[index].disabled = true;
+			texts[index].style.width = '95%';
+			autoCompleteInputs(cell, name, texts[index]);
+		}
+
 		// Detects where the Annotations start
 		if(name === 'EquivalentTo' || name === 'transitive')
 			createAnnotationsSection();
+
 
 
 		if (value.indexOf('\n') > 0)
@@ -1519,11 +1527,18 @@ var EditDataDialog = function(ui, cell)
 						text.id = 'ClassExpressionEditorInput';
 						text.oninput = 'validateInput();'
 					}
-					// Disable the inputs
-					if(name === 'SubClassOf' || name === 'domain' || name === 'range')
-						text.disabled = true;
 
 					text.style.width = '100%';
+
+					// Disable the inputs
+					if(name === 'SubClassOf' || name === 'domain' || name === 'range')
+					{
+						text.disabled = true;
+						text.style.width = '95%';
+						autoCompleteInputs(cell, name, text);
+						console.log(cell);
+					}
+
 					texts.push(text);
 					addRemoveButton(text, name);
 

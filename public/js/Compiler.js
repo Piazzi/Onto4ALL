@@ -74,10 +74,9 @@ function movementCompiler(xml) {
         //console.log(xmlDoc.documentElement);
 
 
-
         if (isRelation(elements[i])) {
             // Checks if the relation is connected to 2 classes
-            if (elements[i].getAttribute("target") === null || elements[i].getAttribute("source") === null) {
+            if (getValueOrLabel(elements[i]) !== null && elements[i].getAttribute("target") === null || elements[i].getAttribute("source") === null) {
                 basicErrorsCount++;
                 addIdToErrorArray(getElementId(elements[i]));
                 if (getLanguage() === 'pt')
@@ -206,11 +205,11 @@ function movementCompiler(xml) {
                     if (getLanguage() === 'pt')
                         sendWarningMessage("Você não pode ter duas relações iguais apontando para as mesmas classes. Esse erro ocorre nas seguintes classes: " +
                             findNameById(elements, elements[i].getAttribute("source")) +
-                            " e " + findNameById(elements, elements[i].getAttribute("target")) + ".",'','Erro Básico');
+                            " e " + findNameById(elements, elements[i].getAttribute("target")) + ".", '', 'Erro Básico');
                     else
                         sendWarningMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: " +
                             findNameById(elements, elements[i].getAttribute("source")) +
-                            " and " + findNameById(elements, elements[i].getAttribute("target")) + ".",'','Basic Error');
+                            " and " + findNameById(elements, elements[i].getAttribute("target")) + ".", '', 'Basic Error');
                 }
 
                 //Shows a error if a class has multiple inheritance
@@ -314,16 +313,16 @@ function movementCompiler(xml) {
         }
 
         // Search for missing properties in each relation element
-        if (objects[i].getAttribute("domain") === "")
-            missingRelationProperties = missingRelationProperties + ' domain,';
+        /* if (objects[i].getAttribute("domain") === "")
+             missingRelationProperties = missingRelationProperties + ' domain,';
 
 
-        if (objects[i].getAttribute("range") === "")
-            missingRelationProperties = missingRelationProperties + ' range,';
+         if (objects[i].getAttribute("range") === "")
+             missingRelationProperties = missingRelationProperties + ' range,';*/
 
-        /*
+
         if(objects[i].getAttribute("inverseOf") === "")
-            missingRelationProperties = missingRelationProperties  + ' inverseOf';*/
+            missingRelationProperties = missingRelationProperties  + ' inverseOf';
 
         if (missingRelationProperties !== "") {
             basicErrorsCount++;
@@ -384,7 +383,6 @@ function movementCompiler(xml) {
     console.log(previousElements);
     console.log(elementsIdWithError);
     elementsIdWithError = [];
-
 
 
 }
@@ -567,4 +565,25 @@ function removeSpaces(string) {
 function addIdToErrorArray(elementId) {
     if (elementsIdWithError.indexOf(elementId) === -1)
         elementsIdWithError.push(elementId);
+}
+
+/**
+ * Autocomplete the SubClassOf, Domain and Range properties.
+ * @param element
+ * @param propertyName
+ * @param inputField
+ */
+function autoCompleteInputs(element, propertyName, inputField) {
+    // check if the element is a relation
+    if (element.edge == true) {
+        if (element.source && element.source.id != null && propertyName === 'domain')
+            inputField.value = findNameById(previousElements, element.source.id);
+        if (element.target && element.target.id != null && propertyName === 'range')
+            inputField.value = findNameById(previousElements, element.target.id);
+    } else {
+        if (propertyName === 'SubClassOf')
+            for (let i = 0; i < previousElements.length; i++)
+                if (isRelation(previousElements[i]) && (getValueOrLabel(previousElements[i]) === 'is_a' || getValueOrLabel(previousElements[i]) === 'é_um') && previousElements[i].getAttribute("source") == element.id)
+                    inputField.value = findNameById(previousElements, previousElements[i].getAttribute("target"));
+    }
 }

@@ -12919,12 +12919,6 @@ mxForm.prototype.addTextarea = function(name, value, rows)
 	input.setAttribute('rows', rows || 2);
 	input.value = value;
 
-	// Disable the input if the name is equal to one of the string below
-	if(name === 'SubClassOf' || name === 'domain' || name === 'range')
-    {
-        input.disabled = true;
-    }
-
 	return this.addField(name, input);
 };
 
