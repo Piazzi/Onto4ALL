@@ -4,7 +4,7 @@
  * The other ones are helper functions to make the code cleaner (DRY)
  */
 
-var classes = [], relations = [], instances = [], previousElements = [];
+var classes = [], relations = [], instances = [], previousElements = [], elementsIdWithError = [];
 
 /**
  * Gets the XML from the editor after any change is made.
@@ -13,7 +13,9 @@ var classes = [], relations = [], instances = [], previousElements = [];
  */
 function movementCompiler(xml) {
 
-    classes = []; relations = []; instances = [];
+    classes = [];
+    relations = [];
+    instances = [];
     // Updates the save file button
     $("#save-ontology").removeClass("saved").addClass("unsaved").html('<i class="fa fa-fw fa-save"></i>  Unsaved changes. Click here to save');
 
@@ -41,8 +43,7 @@ function movementCompiler(xml) {
     // and the third one to compare elements with the Object tag only
     // For this i used the getValueOrLabel function.
     // Complexity: O(n^2)
-    for (let i = 0; i < elements.length; i++) {
-
+    for (let i = 1; i < elements.length; i++) {
         try {
             if (!elementIsValid(elements[i]))
                 continue;
@@ -62,16 +63,53 @@ function movementCompiler(xml) {
             console.log('Parent: ', elements[i].parentNode);
             continue;
         }
-        console.log("Elemento mudou: ", elementHasChanged(elements, i));
-        previousElements = elements;
 
-        // Checks if the relation is connected to 2 classes
-        if (isRelation(elements[i]) && (elements[i].getAttribute("target") === null || elements[i].getAttribute("source") === null)) {
-            basicErrorsCount++;
-            if (getLanguage() === 'pt')
-                warningMessage('A relação ' + getValueOrLabel(elements[i]) + ' não está conectada a duas classes', 9, 'Erro Basico');
-            else
-                warningMessage('The relation ' + getValueOrLabel(elements[i]) + ' it is not fully connected to 2 classes', 9, 'Basic Error');
+        /*
+        console.log(getElementId(elements[i]));
+        if (elements[i].isEqualNode(previousElements[i]) && elementsIdWithError.indexOf(getElementId(elements[i])) === -1) {
+            continue;
+        }*/
+
+        //editor.editor.setGraphXml();
+        //console.log(xmlDoc.documentElement);
+
+
+
+        if (isRelation(elements[i])) {
+            // Checks if the relation is connected to 2 classes
+            if (elements[i].getAttribute("target") === null || elements[i].getAttribute("source") === null) {
+                basicErrorsCount++;
+                addIdToErrorArray(getElementId(elements[i]));
+                if (getLanguage() === 'pt')
+                    sendWarningMessage('A relação ' + getValueOrLabel(elements[i]).bold() + ' não está conectada a duas classes', 9, 'Erro Basico');
+                else
+                    sendWarningMessage('The relation ' + getValueOrLabel(elements[i]).bold() + ' it is not fully connected to 2 classes', 9, 'Basic Error');
+            }
+
+            // Shows a error message if two classes has been connected with the instance_of relation
+            if ((getValueOrLabel(elements[i]) === 'instance_of' || getValueOrLabel(elements[i]) === 'instancia_um') && (elements[i].hasAttribute("source") && elements[i].hasAttribute("target"))) {
+                let domainClass, rangeClass;
+                // Look for the two mxCells using the ids
+                for (let k = 0; k < elements.length; k++) {
+                    if (!elementIsValid(elements[k]))
+                        continue;
+                    if (getElementId(elements[k]) === elements[i].getAttribute("source"))
+                        domainClass = elements[k];
+                    if (getElementId(elements[k]) === elements[i].getAttribute("target"))
+                        rangeClass = elements[k];
+
+                }
+
+                // shows a error if the mxCells are two classes
+                if (isClass(domainClass) && isClass(rangeClass)) {
+                    conceptualErrorsCount++;
+                    addIdToErrorArray(getElementId(elements[i]));
+                    if (getLanguage() === 'pt')
+                        sendWarningMessage("Você não pode ter uma relação instancia_um entre duas classes (" + getValueOrLabel(domainClass).bold() + ', ' + getValueOrLabel(rangeClass).bold() + "). A relação precisa estar entre uma classe e uma instância. ", "", " Erro Conceitual");
+                    else
+                        sendWarningMessage("You cant have a instance_of relation between two classes (" + getValueOrLabel(domainClass).bold() + ', ' + getValueOrLabel(rangeClass).bold() + "). It must be between one class and one instance. ", "", " Conceptual Error");
+                }
+            }
         }
 
         // If the mxCell is a Instance, start searching for his relations. If any relation belonging to the instance it's not a instance_of
@@ -82,49 +120,22 @@ function movementCompiler(xml) {
                     getValueOrLabel(elements[k]) !== 'instance_of' &&
                     getValueOrLabel(elements[k]) !== 'instancia_um' &&
                     elements[k].getAttribute("source") === getElementId(elements[i]) ||
-                    elements[k].getAttribute("target") === getElementId(elements[i])) {
+                    elements[k].getAttribute("target") === getElementId(elements[i]) &&
+                    elements[k].getAttribute("source") !== null &&
+                    elements[k].getAttribute("target") !== null) {
 
                     conceptualErrorsCount++;
+                    addIdToErrorArray(getElementId(elements[i]));
+                    addIdToErrorArray(getElementId(elements[k]));
                     if (getLanguage() === 'pt')
-                        warningMessage("Você só poder ter uma relação instancia_um entre uma classe e uma instância", "", ' Erro Conceitual');
+                        sendWarningMessage("Você só poder ter uma relação instancia_um entre uma classe e uma instância. (" + findNameById(elements, elements[k].getAttribute("source")).bold() + ")", "", ' Erro Conceitual');
                     else
-                        warningMessage("You can only have a instance_of relation between a class and a instance", "", ' Conceptual Error');
+                        sendWarningMessage("You can only have a instance_of relation between a class and a instance. (" + findNameById(elements, elements[k].getAttribute("source")).bold() + ")", "", ' Conceptual Error');
                 }
             }
             // skip to the next iteration because this is the only error for instances implemented yet
             continue;
         }
-
-        // Shows a error message if two classes has been connected with the instance_of relation
-        if (isRelation(elements[i]) && getValueOrLabel(elements[i]) === 'instance_of' || getValueOrLabel(elements[i]) === 'instancia_um' &&
-            elements[i].getAttribute("source") !== null &&
-            elements[i].getAttribute("target") !== null) {
-            // get the ids from the mxCells in the relation
-            let domainId = elements[i].getAttribute("source");
-            let rangeId = elements[i].getAttribute("target");
-            let domainClass, rangeClass;
-
-            // Look for the two mxCells using the ids
-            for (let k = 0; k < elements.length; k++) {
-                if (!elementIsValid(elements[k]))
-                    continue;
-                if (getElementId(elements[k]) === domainId)
-                    domainClass = elements[k];
-                if (getElementId(elements[k]) === rangeId)
-                    rangeClass = elements[k];
-
-            }
-
-            // shows a error if the mxCells are two classes
-            if (isClass(domainClass) && isClass(rangeClass)) {
-                conceptualErrorsCount++;
-                if (getLanguage() === 'pt')
-                    warningMessage("Você não pode ter uma relação instancia_um entre duas classes. A relação precisa estar entre uma classe e uma instância. ", "", " Erro Conceitual");
-                else
-                    warningMessage("You cant have a instance_of relation between two classes. It must be between one class and one instance. ", "", " Conceptual Error");
-            }
-        }
-
 
         let name = removeSpaces(getValueOrLabel(elements[i]));
         // Check if the Name is in Plural or singular
@@ -133,9 +144,9 @@ function movementCompiler(xml) {
         {
             warningsCount++;
             if(getLanguage() === 'pt')
-                warningMessage("É recomendável que os nomes estejam no singular e não no plural.",'','Má Prática');
+                sendWarningMessage("É recomendável que os nomes estejam no singular e não no plural.",'','Má Prática');
             else
-                warningMessage("It is recommended that the names be in the singular and not in the plural",'','Bad Practice')
+                sendWarningMessage("It is recommended that the names be in the singular and not in the plural",'','Bad Practice')
         }*/
 
         // Check if the name contains a Acronym
@@ -144,66 +155,97 @@ function movementCompiler(xml) {
         // /^([a-z]\.)+$/i
         if (/^([a-z]\.)+/i.test(name)) {
             warningsCount++;
+            addIdToErrorArray(getElementId(elements[i]));
             if (getLanguage() === 'pt')
-                warningMessage("É recomendável que os nomes não tenham acrônimos.", '', 'Má Prática');
+                sendWarningMessage("É recomendável que os nomes não tenham acrônimos. (" + name.bold() + ")", '', 'Má Prática');
             else
-                warningMessage("It is recommended that the names do not have acronyms", '', 'Bad Practice');
+                sendWarningMessage("It is recommended that the names do not have acronyms. (" + name.bold() + ")", '', 'Bad Practice');
         }
 
         // Check if the name is all on uppercase
         if (/^[^a-z]*$/.test(removeSpaces(name))) {
             warningsCount++;
+            addIdToErrorArray(getElementId(elements[i]));
             if (getLanguage() === 'pt')
-                warningMessage("É recomendável que os nomes sejam escritos em letras minúsculas.", '', 'Má Prática');
+                sendWarningMessage("É recomendável que os nomes sejam escritos em letras minúsculas. (" + name.bold() + ")", '', 'Má Prática');
             else
-                warningMessage("It is recommended that names are written in lowercase letters", '', 'Bad Practice');
+                sendWarningMessage("It is recommended that names are written in lowercase letters. (" + name.bold() + ")", '', 'Bad Practice');
         }
 
         for (let j = i + 1; j < elements.length; j++) {
             // Shows a error message if two classes has the same name
-            if ((getValueOrLabel(elements[i]) ===
-                getValueOrLabel(elements[j])) && (
-                getElementId(elements[i]) !==
-                getElementId(elements[j])) &&
-                getValueOrLabel(elements[i]) != null &&
-                getValueOrLabel(elements[j]) != null) {
-                if (elements[i].getAttribute("edge") == null &&
-                    elements[j].getAttribute("edge") == null &&
-                    elements[i].getAttribute("style").includes('ellipse') &&
-                    elements[j].getAttribute("style").includes('ellipse')) {
-                    conceptualErrorsCount++;
+            if (isClass(elements[i]) && isClass(elements[j]) && (getValueOrLabel(elements[i]) === getValueOrLabel(elements[j])) && (getElementId(elements[i]) !== getElementId(elements[j])) && getValueOrLabel(elements[i]) != null && getValueOrLabel(elements[j]) != null) {
+                conceptualErrorsCount++;
+                addIdToErrorArray(getElementId(elements[i]));
+                addIdToErrorArray(getElementId(elements[j]));
+                if (getLanguage() === 'pt')
+                    sendWarningMessage("Você não pode ter duas classes com o mesmo nome, você tem duas classes chamadas " + (getValueOrLabel(elements[i])).bold() + ".", 1, 'Erro Conceitual');
+                else
+                    sendWarningMessage("You can not have two classes with the same name, you have two classes named " + (getValueOrLabel(elements[i])).bold() + ".", 1, 'Conceptual Error');
+
+            }
+
+            if (isRelation(elements[i]) && isRelation(elements[j])) {
+                // Shows a error message if two classes has the same relation between them more than one time
+                if (getValueOrLabel(elements[i]) ===
+                    getValueOrLabel(elements[j]) &&
+                    elements[i].getAttribute("target") ===
+                    elements[j].getAttribute("target") &&
+                    elements[i].getAttribute("source") ===
+                    elements[j].getAttribute("source") &&
+                    getValueOrLabel(elements[i]) != null &&
+                    getValueOrLabel(elements[j]) != null &&
+                    (elements[i].getAttribute("target") != null &&
+                        elements[j].getAttribute("target") != null &&
+                        elements[i].getAttribute("source") != null &&
+                        elements[j].getAttribute("source") != null)) {
+                    basicErrorsCount++;
+                    addIdToErrorArray(getElementId(elements[i]));
+                    addIdToErrorArray(getElementId(elements[j]));
+
                     if (getLanguage() === 'pt')
-                        warningMessage("Você não pode ter duas classes com o mesmo nome, você tem duas classes chamadas " + (getValueOrLabel(elements[i])).bold() + ".", 1, 'Erro Conceitual');
+                        sendWarningMessage("Você não pode ter duas relações iguais apontando para as mesmas classes. Esse erro ocorre nas seguintes classes: " +
+                            findNameById(elements, elements[i].getAttribute("source")) +
+                            " e " + findNameById(elements, elements[i].getAttribute("target")) + ".",'','Erro Básico');
                     else
-                        warningMessage("You can not have two classes with the same name, you have two classes named " + (getValueOrLabel(elements[i])).bold() + ".", 1, 'Conceptual Error');
+                        sendWarningMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: " +
+                            findNameById(elements, elements[i].getAttribute("source")) +
+                            " and " + findNameById(elements, elements[i].getAttribute("target")) + ".",'','Basic Error');
+                }
+
+                //Shows a error if a class has multiple inheritance
+                if (getLanguage() === 'en' && getValueOrLabel(elements[i]) === "is_a" &&
+                    getValueOrLabel(elements[j]) === "is_a" &&
+                    elements[i].getAttribute("source") ===
+                    elements[j].getAttribute("source") &&
+                    elements[i].getAttribute("target") !==
+                    elements[j].getAttribute("target") &&
+                    elements[i].getAttribute("target") !== null &&
+                    elements[j].getAttribute("target") !== null &&
+                    elements[i].getAttribute("source") !== null &&
+                    elements[j].getAttribute("source") !== null) {
+                    sendWarningMessage("A class can't have multiple inheritance. Your " + findNameById(elements, elements[i].getAttribute("source")) + "(ID: " + elements[i].getAttribute('id') + ") class can't be the domain of more than one is_a relation", 8, 'Bad Practice');
+                    warningsCount++;
+                    addIdToErrorArray(getElementId(elements[i]));
+                    addIdToErrorArray(getElementId(elements[j]));
+
+                } else if (getValueOrLabel(elements[i]) === "é_um" &&
+                    getValueOrLabel(elements[j]) === "é_um" &&
+                    elements[i].getAttribute("source") ===
+                    elements[j].getAttribute("source") &&
+                    elements[i].getAttribute("target") !==
+                    elements[j].getAttribute("target") &&
+                    elements[i].getAttribute("target") !== null &&
+                    elements[j].getAttribute("target") !== null &&
+                    elements[i].getAttribute("source") !== null &&
+                    elements[j].getAttribute("source") !== null) {
+                    sendWarningMessage("Classes não podem ter herança múltipla. Sua classe " + findNameById(elements, elements[i].getAttribute("source")) + "(ID: " + elements[i].getAttribute('id') + ") não pode ser o domínio de mais de uma relação is_a", 8, 'Má Prática');
+                    warningsCount++;
+                    addIdToErrorArray(getElementId(elements[i]));
+                    addIdToErrorArray(getElementId(elements[j]));
+
                 }
             }
-
-
-            // Shows a error message if two classes has the same relation between them more than one time
-            if (getValueOrLabel(elements[i]) ===
-                getValueOrLabel(elements[j]) &&
-                elements[i].getAttribute("target") ===
-                elements[j].getAttribute("target") &&
-                elements[i].getAttribute("source") ===
-                elements[j].getAttribute("source") &&
-                getValueOrLabel(elements[i]) != null &&
-                getValueOrLabel(elements[j]) != null &&
-                (elements[i].getAttribute("target") != null &&
-                    elements[j].getAttribute("target") != null &&
-                    elements[i].getAttribute("source") != null &&
-                    elements[j].getAttribute("source") != null)) {
-                basicErrorsCount++;
-                if (getLanguage() === 'pt')
-                    warningMessage("Você não pode ter duas relações iguais apontando para as mesmas classes. Esse erro ocorre nas seguintes classes: " +
-                        findNameById(elements, elements[i].getAttribute("source")) +
-                        " e " + findNameById(elements, elements[i].getAttribute("target")) + ".", 'Erro Básico');
-                else
-                    warningMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: " +
-                        findNameById(elements, elements[i].getAttribute("source")) +
-                        " and " + findNameById(elements, elements[i].getAttribute("target")) + ".", 'Basic Error');
-            }
-
 
             /*
             // Shows a error message if a class has more than one relation attached to it
@@ -218,37 +260,10 @@ function movementCompiler(xml) {
                 elements[i].getAttribute("source") ===
                 elements[j].getAttribute("source")))
             {
-               warningMessage("You can only have 1 relation between 2 classes. This error occurs between these two classes: "+getMxCellName(xmlDoc, elements[j].getAttribute("target")) +" and "+
+               sendWarningMessage("You can only have 1 relation between 2 classes. This error occurs between these two classes: "+getMxCellName(xmlDoc, elements[j].getAttribute("target")) +" and "+
                      getMxCellName(xmlDoc, elements[j].getAttribute("source"))+" .", "", 8);
                 excessOfRelationsWarning++;
             }*/
-
-            //Shows a error if a class has multiple inheritance
-            if (getLanguage() === 'en' && getValueOrLabel(elements[i]) === "is_a" &&
-                getValueOrLabel(elements[j]) === "is_a" &&
-                elements[i].getAttribute("source") ===
-                elements[j].getAttribute("source") &&
-                elements[i].getAttribute("target") !==
-                elements[j].getAttribute("target") &&
-                elements[i].getAttribute("target") !== null &&
-                elements[j].getAttribute("target") !== null &&
-                elements[i].getAttribute("source") !== null &&
-                elements[j].getAttribute("source") !== null) {
-                warningMessage("A class can't have multiple inheritance. Your " + findNameById(elements, elements[i].getAttribute("source")) + "(ID: " + elements[i].getAttribute('id') + ") class can't be the domain of more than one is_a relation", 8, 'Bad Practice');
-                warningsCount++;
-            } else if (getValueOrLabel(elements[i]) === "é_um" &&
-                getValueOrLabel(elements[j]) === "é_um" &&
-                elements[i].getAttribute("source") ===
-                elements[j].getAttribute("source") &&
-                elements[i].getAttribute("target") !==
-                elements[j].getAttribute("target") &&
-                elements[i].getAttribute("target") !== null &&
-                elements[j].getAttribute("target") !== null &&
-                elements[i].getAttribute("source") !== null &&
-                elements[j].getAttribute("source") !== null) {
-                warningMessage("Classes não podem ter herança múltipla. Sua classe " + findNameById(elements, elements[i].getAttribute("source")) + "(ID: " + elements[i].getAttribute('id') + ") não pode ser o domínio de mais de uma relação is_a", 8, 'Má Prática');
-                warningsCount++;
-            }
 
         }
 
@@ -264,10 +279,11 @@ function movementCompiler(xml) {
             // Show the inverse of error if the relation and the inverse Of property have the same name
             if (objects[i].getAttribute("label") === objects[i].getAttribute("inverseOf")) {
                 conceptualErrorsCount++;
+                addIdToErrorArray(objects[i].getAttribute("id"));
                 if (getLanguage() === 'pt')
-                    warningMessage("Na relação " + objects[i].getAttribute("label") + ", a propriedade inverse_of não pode ter o mesmo nome que a relação", "", 'Erro Conceitual');
+                    sendWarningMessage("Na relação " + objects[i].getAttribute("label") + ", a propriedade inverse_of não pode ter o mesmo nome que a relação", "", 'Erro Conceitual');
                 else
-                    warningMessage("In the " + objects[i].getAttribute("label") + " relation, the Inverse Of property can't have the same name of the relation", "", 'Conceptual Error');
+                    sendWarningMessage("In the " + objects[i].getAttribute("label") + " relation, the Inverse Of property can't have the same name of the relation", "", 'Conceptual Error');
 
             }
 
@@ -288,10 +304,11 @@ function movementCompiler(xml) {
 
             if (missingClassProperties !== "") {
                 basicErrorsCount++;
+                addIdToErrorArray(objects[i].getAttribute("id"));
                 if (getLanguage() === 'pt')
-                    warningMessage('Na classe ' + objects[i].getAttribute("label").bold() + ', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold() + '', "", 'Erro Básico');
+                    sendWarningMessage('Na classe ' + objects[i].getAttribute("label").bold() + ', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold() + '', "", 'Erro Básico');
                 else
-                    warningMessage('In the ' + objects[i].getAttribute("label").bold() + ' Class, you did not fill the following properties: ' + missingClassProperties.bold() + '', "", 'Basic Error');
+                    sendWarningMessage('In the ' + objects[i].getAttribute("label").bold() + ' Class, you did not fill the following properties: ' + missingClassProperties.bold() + '', "", 'Basic Error');
                 missingClassProperties = "";
             }
         }
@@ -310,10 +327,11 @@ function movementCompiler(xml) {
 
         if (missingRelationProperties !== "") {
             basicErrorsCount++;
+            addIdToErrorArray(objects[i].getAttribute("id"));
             if (getLanguage() === 'pt')
-                warningMessage('Na relação ' + objects[i].getAttribute("label").bold() + '(ID: ' + objects[i].getAttribute("id").bold() + ')' + ', você não preencheu as seguintes propriedades: ' + missingRelationProperties.bold() + '', "", 'Erro Básico');
+                sendWarningMessage('Na relação ' + objects[i].getAttribute("label").bold() + '(ID: ' + objects[i].getAttribute("id").bold() + ')' + ', você não preencheu as seguintes propriedades: ' + missingRelationProperties.bold() + '', "", 'Erro Básico');
             else
-                warningMessage('In the ' + objects[i].getAttribute("label").bold() + '(ID: ' + objects[i].getAttribute("id").bold() + ')' + ' Relation, you did not fill the following properties: ' + missingRelationProperties.bold() + '', "", 'Basic Error');
+                sendWarningMessage('In the ' + objects[i].getAttribute("label").bold() + '(ID: ' + objects[i].getAttribute("id").bold() + ')' + ' Relation, you did not fill the following properties: ' + missingRelationProperties.bold() + '', "", 'Basic Error');
             missingRelationProperties = "";
         }
 
@@ -322,10 +340,11 @@ function movementCompiler(xml) {
             objects[i].getAttribute("domain") ===
             objects[i].getAttribute("range")) {
             basicErrorsCount++;
+            addIdToErrorArray(objects[i].getAttribute("id"));
             if (getLanguage() === 'pt')
-                warningMessage('As propriedades domain e range da relaçao ' + objects[i].getAttribute("label").bold() + ' não podem ser iguais.', "", 'Erro Básico');
+                sendWarningMessage('As propriedades domain e range da relaçao ' + objects[i].getAttribute("label").bold() + ' não podem ser iguais.', "", 'Erro Básico');
             else
-                warningMessage('The properties domain and range from the ' + objects[i].getAttribute("label").bold() + ' relation cannot be equal.', "", 'Basic Error');
+                sendWarningMessage('The properties domain and range from the ' + objects[i].getAttribute("label").bold() + ' relation cannot be equal.', "", 'Basic Error');
         }
 
     }
@@ -361,6 +380,12 @@ function movementCompiler(xml) {
 
     //console.log(getElementsNames());
     //console.log(getElementsNames('Relation'));
+    previousElements = elements;
+    console.log(previousElements);
+    console.log(elementsIdWithError);
+    elementsIdWithError = [];
+
+
 
 }
 
@@ -417,8 +442,7 @@ function isInstance(element) {
  * @param warningId
  * @param type
  */
-function warningMessage(text, warningId, type) {
-
+function sendWarningMessage(text, warningId, type) {
     let warning = {
         icon: 'fa-warning',
         backgroundColor: '#f39c12',
@@ -443,9 +467,7 @@ function warningMessage(text, warningId, type) {
         '</div>' +
         '<img class="direct-chat-img" src="' + warning.imgSrc + '" alt="Warning Message">' +
         '<div style="background-color: ' + warning.backgroundColor + '; color: white; border-color: ' + warning.borderColor + '" class="direct-chat-text"> ' + text + '</div>' +
-        '</div>').animate({opacity: '0.4'}, "slow").animate({opacity: '0.8'}, "slow");
-
-    $("#warning-count").animate({opacity: '0.4'}, "slow").animate({opacity: '0.8'}, "slow");
+        '</div>');
 }
 
 /**
@@ -464,7 +486,8 @@ function getValueOrLabel(element) {
  * return integer
  */
 function getElementId(element) {
-    return element.getAttribute("id") ? element.getAttribute("id") : element.parentNode.getAttribute('id')
+    if (element)
+        return element.getAttribute("id") ? element.getAttribute("id") : element.parentNode.getAttribute('id')
 }
 
 /**
@@ -537,9 +560,11 @@ function removeSpaces(string) {
     return string.replace(/\s/g, '');
 }
 
-function elementHasChanged(elements, i)
-{
-    console.log("Elemento antigo", previousElements[i]);
-    console.log("Elemento atual", elements[i]);
-    return previousElements[i] !== elements[i];
+/**
+ * Add the element id to the array if he aren't there
+ * @param elementId
+ */
+function addIdToErrorArray(elementId) {
+    if (elementsIdWithError.indexOf(elementId) === -1)
+        elementsIdWithError.push(elementId);
 }

@@ -1190,7 +1190,7 @@ Sidebar.prototype.addBFOOntologyPalette = function(expand)
 			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região temporal 0-D', 'zero-dimensional temporal region', null, null, 'circle'),
 			this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, 'Região temporal 1-D', 'one-dimensional temporal region', null, null, 'circle'),
 			// RELATIONS
-			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Instancia_um', 'instance_of', null, 'uml sequence message call invoke dispatch'),
+			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'instancia_um', 'instance_of', null, 'uml sequence message call invoke dispatch'),
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Inerente_a', 'inheres_in', null, 'uml sequence message call invoke dispatch'),
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'Portador_de', 'bearer_of', null, 'uml sequence message call invoke dispatch'),
 			this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, 'e_depende_de', 'specifically_depend', null, 'uml sequence message call invoke dispatch'),
