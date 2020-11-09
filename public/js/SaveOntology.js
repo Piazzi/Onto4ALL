@@ -17,7 +17,7 @@ $(document).ready(function () {
             data: {
                 _token: CSRF_TOKEN,
                 id: $("#id").val(),
-                file: new XMLSerializer().serializeToString(editor.editor.getGraphXml()),
+                xml_string: new XMLSerializer().serializeToString(editor.editor.getGraphXml()),
                 name: $("#name").val(),
                 publication_date: $("#publication-date").val(),
                 last_uploaded: $("#last-uploaded").val(),
@@ -44,8 +44,7 @@ $(document).ready(function () {
 
                 $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+$("#name").val());
                 $("#id").val(data['id']);
-                console.log(data);
-
+                $("title").text($("#name").val() + ' | Onto4ALL - Ontology Graphical Editor');
             },
 
             error: function(jqXHR, textStatus, errorThrown) {

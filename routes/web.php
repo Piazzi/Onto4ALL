@@ -12,8 +12,6 @@
 */
 
 Route::get('/logout', 'Auth\LoginController@logout');
-
-
 Route::get('/', function (){
    return redirect(app()->getLocale());
 });
@@ -30,7 +28,6 @@ Route::group([
     });
 
     //Auth::routes();
-
     // Authentication Routes...
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
@@ -47,10 +44,8 @@ Route::group([
     Route::resource('/user', 'UserController')->middleware('can:eModelador');
     Route::get('/change_password/{id}', 'UserController@changePassword')->name('user.editPassword')->middleware('can:eModelador');
     Route::put('/update_password/{id}', 'UserController@updatePassword')->name('user.updatePassword')->middleware('can:eModelador');
-
     Route::any('/ontology_relation/search', 'OntologyRelationController@search')->name('ontology_relation.search')->middleware('can:eAdmin');
     Route::resource('/ontology_relation', 'OntologyRelationController')->middleware('can:eAdmin');
-
     Route::any('/ontology_class/search', 'OntologyClassController@search')->name('ontology_class.search')->middleware('can:eAdmin');
     Route::resource('/ontology_class', 'OntologyClassController')->middleware('can:eAdmin');
 
@@ -65,7 +60,6 @@ Route::group([
     Route::resource('/thesaurus', 'ThesauruController')->middleware('can:eModelador');
     Route::get('/thesaurus-editor', 'ThesauruController@editor')->name('thesaurus-editor')->middleware('can:eModelador');
 
-
     // Messages CRUD
     Route::resource('/messages', 'MessageController')->middleware('can:eAdmin');
     Route::any('/messages/search', 'MessageController@search')->name('messages.search')->middleware('can:eAdmin');
@@ -75,8 +69,6 @@ Route::group([
     Route::get('/aboutUs', 'HomeController@aboutUs')->name('aboutUs');
     Route::get('/tutorial', 'HomeController@tutorial')->name('tutorial');
     Route::get('/warningIndex', 'HomeController@warningIndex')->name('warningIndex');
-
-
     Route::get('/help', 'HomeController@help')->name('help');
 
     // AdminController
@@ -84,29 +76,25 @@ Route::group([
     Route::get('/admin/{id}', 'AdminController@edit')->name('admin.edit')->middleware('can:eAdmin');
     Route::put('/admin/{userId}', 'AdminController@update')->name('admin.update')->middleware('can:eAdmin');
     Route::any('/admin/search', 'AdminController@search')->name('admin.search')->middleware('can:eAdmin');
-
-
 });
 
 
-// Diagram routes
-Route::post('/openDiagram', 'DiagramController@openDiagram');
-Route::post('/openRecentDiagram', 'DiagramController@openRecentDiagram');
+// Editor Routes that doesnt require localization
+Route::post('/openOntology', 'OntologyController@openOntologyInTheEditor');
+Route::post('/openRecentOntology', 'OntologyController@openRecentOntologyInTheEditor');
 Route::post('/export', 'HomeController@export');
 Route::post('/exportImage', 'HomeController@exportImage');
-Route::post('/save', 'HomeController@save');
-Route::post('/exportFile', 'HomeController@exportFile');
 Route::post('/exportOWL', 'HomeController@exportOWL');
 Route::post('/exportXML', 'HomeController@exportXML');
-Route::get('/open');
 Route::post('/updateOrCreate', 'OntologyController@updateOrCreate');
-
 Route::get('/thesaurus/download/{userId}/{thesauruId}', 'ThesauruController@download')->name('thesaurus.download')->middleware('can:eModelador');
+// mxGraph Routes (don't remove)
+Route::get('/open');
+Route::post('/save');
 
 // Socialite routes
 //Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 //Route::get('/callback', 'SocialAuthFacebookController@callback');
-
 
 // Password Reset Routes...
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.reset');

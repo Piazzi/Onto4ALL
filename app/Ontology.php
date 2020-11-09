@@ -25,7 +25,7 @@ class Ontology extends Model
         'degree_of_formality',
         'scope',
         'competence_questions',
-        'file'
+        'xml_string'
     ];
 
     /**

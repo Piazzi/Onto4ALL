@@ -18,7 +18,7 @@ $(document).ready(function () {
     $(".openOntology").click(function () {
         $.ajax({
             /* the route pointing to the post function */
-            url: '/openDiagram',
+            url: '/openOntology',
             type: 'POST',
             /* send the csrf-token and the input to the controller */
             data: {_token: CSRF_TOKEN, id: $(this).attr('id')},
@@ -43,6 +43,8 @@ $(document).ready(function () {
                 $("#degree-of-formality").val(data['degree_of_formality']);
                 $("#scope").val(data['scope']);
                 $("#competence-questions").val(data['competence_questions']);
+                $("title").text($("#name").val() + ' | Onto4ALL - Ontology Graphical Editor');
+
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(JSON.stringify(jqXHR));
