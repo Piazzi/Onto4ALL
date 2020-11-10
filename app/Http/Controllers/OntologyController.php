@@ -233,6 +233,50 @@ class OntologyController extends Controller
      */
     public function updateOrCreate(Request $request)
     {
+        $ontology = Ontology::where('id',$request->id)->exists();
+        if($ontology)
+        {
+            $ontology = Ontology::find($request->id);
+            $ontology->update([
+                "name" => $request->name,
+                "xml_string" => $request->xml_string,
+                "publication_date" => $request->publication_date,
+                "last_uploaded" => $request->last_uploaded,
+                "description" => $request->description,
+                "link" => $request->link,
+                "favourite" => 0,
+                "domain" => $request->domain,
+                "general_purpose" => $request->general_purpose,
+                "profile_users" => $request->profile_users,
+                "intended_use" => $request->intended_use,
+                "type_of_ontology" => $request->type_of_ontology,
+                "degree_of_formality" => $request->degree_of_formality,
+                "scope" => $request->scope,
+                "competence_questions" => $request->competence_questions,
+            ]);
+        }
+        else
+        {
+           $ontology = Ontology::create([
+                "name" => $request->name,
+                "xml_string" => $request->xml_string,
+                "publication_date" => $request->publication_date,
+                "last_uploaded" => $request->last_uploaded,
+                "description" => $request->description,
+                "link" => $request->link,
+                "user_id" => Auth::user()->id,
+                "favourite" => 0,
+                "domain" => $request->domain,
+                "general_purpose" => $request->general_purpose,
+                "profile_users" => $request->profile_users,
+                "intended_use" => $request->intended_use,
+                "type_of_ontology" => $request->type_of_ontology,
+                "degree_of_formality" => $request->degree_of_formality,
+                "scope" => $request->scope,
+                "competence_questions" => $request->competence_questions,
+            ]);
+        }
+        /*
         $ontology = Ontology::updateOrCreate(
             ["id" => $request->id],
             ["name" => $request->name,
@@ -252,7 +296,7 @@ class OntologyController extends Controller
                 "scope" => $request->scope,
                 "competence_questions" => $request->competence_questions,
             ]
-        );
+        );*/
 
         $ontology->users()->sync($request->collaborators);
         Ontology::verifyOntologyLimit($request->user());
