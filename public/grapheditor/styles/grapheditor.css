@@ -101,8 +101,8 @@ aside {
 }
 
 .tracker {
-	/*margin-top: 5px;*/
-	margin-right: 4px;
+	margin-right: 3px;
+	padding: 5px;
 }
 
 
@@ -134,10 +134,11 @@ aside {
 	padding: 2px !important;
 	margin-top: 2px;
 	margin-right: 5px;
-	padding-right: 8px !important;
-	border-radius: 10px;
-	border: none;
+	padding-right: 5px !important;
+	padding-left: 5px !important;
+	border-radius: 8px;
 	background-color: white;
+	cursor: pointer !important;
 }
 
 .unsaved {
@@ -163,6 +164,8 @@ aside {
 *,*:focus,*:hover{
 	outline:none;
 }
+
+
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
 
 

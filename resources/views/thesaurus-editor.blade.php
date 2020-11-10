@@ -8,7 +8,7 @@
 
 @section('content')
 
-    <script type="text/javascript" src="{{asset('js/OpenDiagram.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/OpenOntology.js')}}"></script>
 
     <!-- MxGraph -->
     <script type="text/javascript" src="{{asset('grapheditor/js/Init.js')}}"></script>

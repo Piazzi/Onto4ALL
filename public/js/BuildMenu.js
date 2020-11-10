@@ -7,6 +7,7 @@ window.onload = function () {
     $(".geToolbar").append($('#relations'));
     $(".geToolbar").append($('#instances'));
     $(".geToolbar").append($('#download-ontology-report'));
+    $(".geToolbar").append($('#open-last-updated-ontology'));
 
     $(".geMenubar").append($('#open-ontology'));
     $(".geMenubar").append($('#ontology-name'));

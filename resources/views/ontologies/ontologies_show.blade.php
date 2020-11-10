@@ -19,6 +19,10 @@
                 <label class="form-control">{{$ontology->name}}</label>
             </div>
             <div class="form-group">
+                <label>Created By</label>
+                <label class="form-control">{{$ontology->user->name}}</label>
+            </div>
+            <div class="form-group">
                 <label>Publication Date</label>
                 <label class="form-control"> {{$ontology->publication_date}}</label>
             </div>
@@ -68,8 +72,10 @@
                 <label class="form-control"> {{$ontology->competence_questions}}</label>
             </div>
             <div class="form-group">
-                <label>Created By</label>
-                <label class="form-control"> {{$ontology->created_by}}</label>
+                <label>{{__('Collaborators')}}</label>
+                @foreach($ontology->users as $user)
+                    <label class="form-control"> {{$user->name}}</label>
+                @endforeach
             </div>
             <a href="{{route('ontologies.index', app()->getLocale())}}">
                 <button class="btn btn-success btn-block" type="button">Go back</button>

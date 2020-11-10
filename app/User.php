@@ -55,10 +55,19 @@ class User extends Authenticatable
     /**
      * Relation One To Many with ontologies.
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+
     public function ontologies()
     {
         return $this->hasMany(Ontology::class);
+    } */
+
+    /**
+     * Many to many relation with Ontology Model.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function ontologies()
+    {
+        return $this->belongsToMany('App\Ontology');
     }
 
     /**

@@ -77,13 +77,19 @@ class Ontology extends Model
     }
 
     /**
-     * Gets the last updated ontology
+     * Gets the Last Updated Ontology that the user has access
+     *
      * @param $user
      * @return mixed
      */
-    public static function getLatestOntology($user)
+    public static function getLastUpdatedOntology($user)
     {
-        return Ontology::where('user_id', $user->id)->latest('updated_at')->first();
+        $ownedOntology = Ontology::where('user_id', $user->id)->latest('updated_at')->first();
+        $sharedOntology = $user->ontologies->sortByDesc('updated_at')->first();
+        if ($sharedOntology->updated_at > $ownedOntology->updated_at)
+            return $sharedOntology;
+        else
+            return $ownedOntology;
     }
 
 
@@ -91,10 +97,20 @@ class Ontology extends Model
 
     /**
      * One to many relation with user Model.
+     * Returns the Owner of the ontology
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Many to many relation with User Model.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
     }
 }

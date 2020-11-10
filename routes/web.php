@@ -81,7 +81,7 @@ Route::group([
 
 // Editor Routes that doesnt require localization
 Route::post('/openOntology', 'OntologyController@openOntologyInTheEditor');
-Route::post('/openRecentOntology', 'OntologyController@openRecentOntologyInTheEditor');
+Route::post('/openLastUpdatedOntology', 'OntologyController@openLastUpdatedOntology');
 Route::post('/export', 'HomeController@export');
 Route::post('/exportImage', 'HomeController@exportImage');
 Route::post('/exportOWL', 'HomeController@exportOWL');

@@ -260,7 +260,7 @@ return [
     'plugins' => [
         [
             'name' => 'Datatables',
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
@@ -280,19 +280,19 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
                 ],
             ],
         ],
         [
             'name' => 'Chartjs',
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
@@ -303,7 +303,7 @@ return [
         ],
         [
             'name' => 'Sweetalert2',
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'js',
@@ -314,7 +314,7 @@ return [
         ],
         [
             'name' => 'Pace',
-            'active' => true,
+            'active' => false,
             'files' => [
                 [
                     'type' => 'css',

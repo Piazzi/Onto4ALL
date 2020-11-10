@@ -25,9 +25,10 @@
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
 
-    @if(config('adminlte.plugins.select2'))
-        <!-- Select2 -->
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
+    <!-- Select2 -->
+    @if(Route::currentRouteName() == 'home' || Route::currentRouteName() == 'ontologies.edit' )}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     @endif
 
     <!-- Theme style -->
@@ -60,14 +61,6 @@
 <body class="hold-transition @yield('body_class')    @if(Route::currentRouteName() == 'home' || Route::currentRouteName() == 'thesaurus-editor') geEditor @endif">
 
 @yield('body')
-
-
-
-
-@if(config('adminlte.plugins.select2'))
-    <!-- Select2 -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-@endif
 
 @if(config('adminlte.plugins.datatables'))
     <!-- DataTables with bootstrap 3 renderer -->

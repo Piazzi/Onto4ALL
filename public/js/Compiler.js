@@ -17,10 +17,10 @@ function movementCompiler(xml) {
     relations = [];
     instances = [];
     // Updates the save file button
-    $("#save-ontology").removeClass("saved").addClass("unsaved").html('<i class="fa fa-fw fa-save"></i>  Unsaved changes. Click here to save');
+    $("#save-ontology").removeClass("saved").addClass("unsaved").html('<i class="fa fa-fw fa-cloud-upload"></i>  Unsaved changes. Click here to save');
 
     if (getLanguage() === 'pt')
-        $("#save-ontology").html('<i class="fa fa-fw fa-save"></i> Alterações não salvas. Clique aqui para salvar');
+        $("#save-ontology").html('<i class="fa fa-fw fa-cloud-upload"></i> Alterações não salvas. Clique aqui para salvar');
 
 
     // Removes the previous error messages

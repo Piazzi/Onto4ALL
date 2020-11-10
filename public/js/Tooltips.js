@@ -45,4 +45,8 @@ $(document).ready(function () {
         content: "Download a report with all the information of your current ontology"
     });
 
+    tippy('#open-last-updated-ontology', {
+       content: "Open the last updated ontology in your ontology manager (useful when multiple collaborators are editing the ontology at the same time)"
+    });
+
 });

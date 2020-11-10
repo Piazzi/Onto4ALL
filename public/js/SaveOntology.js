@@ -8,7 +8,6 @@ $(document).ready(function () {
         $("#save-ontology").html('<div  class="overlay"><i style="color: white !important;" class="fa fa-refresh fa-spin"></i></div>');
         $("#save-ontology").css('background-color','#00a65a');
         $("#save-ontology").css('border-color','#00a65a');
-
         $.ajax({
             /* the route pointing to the post function */
             url: '/updateOrCreate',
@@ -31,6 +30,7 @@ $(document).ready(function () {
                 degree_of_formality: $("#degree-of-formality").val(),
                 scope: $("#scope").val(),
                 competence_questions: $("#competence-questions").val(),
+                collaborators: $("#collaborators-select").val()
             },
 
             dataType: 'JSON',
@@ -38,9 +38,9 @@ $(document).ready(function () {
             success: function (data) {
                 $("#save-ontology").removeClass('unsaved').addClass('saved');
                 if(window.location.pathname.split('/')[1] === 'pt')
-                    $("#save-ontology").html('<i class="fa fa-fw fa-save"></i>' + data['message-pt']);
+                    $("#save-ontology").html('<i class="fa fa-fw fa-cloud-upload"></i> ' + data['message-pt']);
                 else
-                    $("#save-ontology").html('<i class="fa fa-fw fa-save"></i>' + data['message-en']);
+                    $("#save-ontology").html('<i class="fa fa-fw fa-cloud-upload"></i> ' + data['message-en']);
 
                 $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+$("#name").val());
                 $("#id").val(data['id']);

@@ -78,7 +78,7 @@
                                 <thead>
                                 <tr>
                                     <th>{{__('Name')}}</th>
-                                    <th>{{__('Created At')}}</th>
+                                    <th>{{__('Created By')}}</th>
                                     <th>{{__('Updated At')}}</th>
                                     <th>{{__('Description')}}</th>
                                     <th>Link</th>
@@ -95,7 +95,7 @@
                                     <tr>
 
                                         <td><span class="label label-success">{{$ontology->name}}</span></td>
-                                        <td>{{date("d-m-Y | H:i e", strtotime($ontology->created_at))}}</td>
+                                        <td>{{$ontology->user->name}}</td>
                                         <td>{{date("d-m-Y | H:i e", strtotime($ontology->updated_at))}}</td>
                                         <td>
                                             @php
@@ -194,7 +194,7 @@
                                 <thead>
                                 <tr>
                                     <th>{{__('Name')}}</th>
-                                    <th>{{__('Created at')}}</th>
+                                    <th>{{__('Created By')}}</th>
                                     <th>{{__('Updated at')}}</th>
                                     <th>{{__('XML File')}}</th>
                                     <th>{{__('OWL File')}}</th>
@@ -209,7 +209,7 @@
                                     <tr>
 
                                         <td><span class="label label-success">{{$ontology->name}}</span></td>
-                                        <td>{{date("d-m-Y | H:i", strtotime($ontology->created_at))}}</td>
+                                        <td>{{$ontology->user->name}}</td>
                                         <td>{{date("d-m-Y | H:i", strtotime($ontology->updated_at))}}</td>
                                         <td>
                                             <a href="{{route('ontologies.download', ['locale' => app()->getLocale(), 'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
@@ -235,6 +235,8 @@
                                             </a>
                                         </td>
                                         <td>
+                                            <!-- Small fix so the only the owner of the ontology can favourite -->
+                                            @if($ontology->user_id == auth()->user()->id)
                                             <form method="POST"
                                                   action="{{route('ontologies.favourite', ['locale' => app()->getLocale(), 'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
                                                 @csrf
@@ -242,6 +244,7 @@
                                                 <button type="submit" class="btn btn-success"><i
                                                             class="fa fa-fw fa-star-o"></i></button>
                                             </form>
+                                            @endif
                                         </td>
                                         <td>
                                             <form method="post"
@@ -264,9 +267,10 @@
             </div>
         </div>
     </div>
+    <!--
     <ul class="pagination pagination-sm no-margin ">
-        {{ $ontologies->links() }}
-    </ul>
+         //$ontologies->links()
+    </ul>-->
     <!-- Filter -->
     <script type="text/javascript" src="{{asset('js/SearchBar.js')}}"></script>
 

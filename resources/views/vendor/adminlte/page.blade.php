@@ -22,7 +22,7 @@
             <a href="{{route('home', app()->getLocale())}}" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">
-                    <img style="padding: 0px; border-right: 1px solid #d2d6de; border-bottom: 1px solid #d2d6de;"src="{{asset('css/images/LogoMini.png')}}">
+                    <img  style="padding: 0px; border-right: 1px solid #00a65a; border-bottom: 1px solid #d2d6de;"src="{{asset('css/images/LogoMini.png')}}">
                 </span>
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg">
@@ -186,7 +186,7 @@
 
     @if(config('adminlte.layout') != 'top-nav')
         <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar">
+            <aside class="main-sidebar" style="border-right: 1px solid #00a65a !important;">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar" style="height: auto">
                     <!-- sidebar menu: : style can be found in sidebar.less -->

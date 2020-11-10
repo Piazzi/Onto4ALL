@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
 use App\Ontology;
+use App\User;
 use DOMDocument;
 use function foo\func;
 use Illuminate\Http\Request;
 use App\OntologyRelation;
 use App\OntologyClass;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -35,7 +37,10 @@ class HomeController extends Controller
         $relations = OntologyRelation::select()->whereIn('ontology', explode(',',Auth::user()->ontology))->get();
         $classes = OntologyClass::select()->whereIn('ontology', explode(',',Auth::user()->ontology))->get();
         $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->orderBy('updated_at','desc')->get();
-        return view('index', compact('relations', 'classes', 'ontologies'));
+        // Get all ontologies shared or created by the user
+        $ontologies = $ontologies->concat(Auth::user()->ontologies)->unique()->sortByDesc('updated_at');
+        $users = User::all();
+        return view('index', compact('relations', 'classes', 'ontologies', 'users'));
     }
 
     /**
@@ -43,7 +48,7 @@ class HomeController extends Controller
      */
     public function aboutUs()
     {
-        return view('about_us');
+        return view('about_us', compact('users'));
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Ontology;
 use Illuminate\Http\Response;
@@ -30,6 +31,7 @@ class OntologyController extends Controller
     {
         $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->where('favourite', '=', 0)->latest()->paginate(10);
         $favouriteOntologies = Ontology::where('user_id', '=', Auth::user()->id)->where('favourite', '=', 1)->get();
+        $ontologies = $ontologies->concat(Auth::user()->ontologies)->unique()->sortByDesc('updated_at');
         return view('ontologies.ontologies', compact('ontologies', 'favouriteOntologies'));
     }
 
@@ -80,12 +82,13 @@ class OntologyController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($locale, $id)
     {
         $ontology = Ontology::findOrFail($id);
-        if ($ontology->user_id != Auth::user()->id)
+        if ($ontology->user_id == Auth::user()->id || $ontology->users->contains(Auth::user()->id))
+            return view('ontologies.ontologies_show', compact('ontology'));
+        else
             return view('lockscreen');
-        return view('ontologies.ontologies_show', compact('ontology'));
     }
 
     /**
@@ -94,12 +97,14 @@ class OntologyController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($locale, $id)
     {
         $ontology = Ontology::findOrFail($id);
-        if ($ontology->user_id != Auth::user()->id)
+        $users = User::all();
+        if ($ontology->user_id == Auth::user()->id || $ontology->users->contains(Auth::user()->id))
+            return view('ontologies.ontologies_edit', compact('ontology', 'id', 'users'));
+        else
             return view('lockscreen');
-        return view('ontologies.ontologies_edit', compact('ontology', 'id'));
     }
 
     /**
@@ -109,11 +114,17 @@ class OntologyController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(OntologyStoreRequest $request, $id)
+    public function update(OntologyStoreRequest $request, $locale, $id)
     {
-        $ontology = Ontology::where('id', '=', $id)->where('user_id', '=', $request->user()->id)->first();
-        $ontology->update($request->all());
-        return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been updated with success');
+        $ontology = Ontology::where('id', $id)->first();
+        if ($ontology->user_id == Auth::user()->id || $ontology->users->contains(Auth::user()->id))
+        {
+            $ontology->update($request->all());
+            $ontology->users()->sync($request->collaborators);
+            return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been updated with success');
+        }
+        else
+            return view('lockscreen');
     }
 
     /**
@@ -122,10 +133,10 @@ class OntologyController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($locale, $id)
     {
         $ontology = Ontology::find($id);
-        if ($ontology->user_id == Auth::user()->id)
+        if ($ontology->user_id == Auth::user()->id || $ontology->users->contains(Auth::user()->id))
             $ontology->delete();
         else
             abort(403);
@@ -139,7 +150,9 @@ class OntologyController extends Controller
      */
     public function downloadXML(Request $request)
     {
-        $file = Ontology::where('user_id', '=', $request->userId)->where('id', '=', $request->ontologyId)->first();
+        // Implementar Autenticação mais tarde
+        //$file = Ontology::where('user_id', '=', $request->userId)->where('id', '=', $request->ontologyId)->first();
+        $file = Ontology::findOrFail($request->ontologyId);
 
         $response = Response::create($file->xml_string, 200);
         $response->header('Content-Type', 'text/xml');
@@ -192,7 +205,9 @@ class OntologyController extends Controller
      */
     public function downloadOWL(Request $request)
     {
-        $file = Ontology::where('user_id', '=', $request->userId)->where('id', '=', $request->ontologyId)->first();
+        // Implementar Autentocação mais tarde
+        //$file = Ontology::where('user_id', '=', $request->userId)->where('id', '=', $request->ontologyId)->first();
+        $file = Ontology::findOrFail($request->ontologyId);
         $fileRequest = new Request();
         $fileRequest->setMethod('POST');
         $fileRequest->request->add(['xml' => $file->xml_string]);
@@ -219,7 +234,7 @@ class OntologyController extends Controller
     public function updateOrCreate(Request $request)
     {
         $ontology = Ontology::updateOrCreate(
-            ["id" => $request->id, "user_id" => Auth::user()->id],
+            ["id" => $request->id],
             ["name" => $request->name,
                 "xml_string" => $request->xml_string,
                 "publication_date" => $request->publication_date,
@@ -239,6 +254,7 @@ class OntologyController extends Controller
             ]
         );
 
+        $ontology->users()->sync($request->collaborators);
         Ontology::verifyOntologyLimit($request->user());
 
         return response()->json([
@@ -269,7 +285,8 @@ class OntologyController extends Controller
     public function openOntologyInTheEditor(Request $request)
     {
         $ontology = Ontology::where('id', $request->id)->first();
-        if (Auth::user()->id == $ontology['user_id']) {
+        $ownerName = $ontology->user->name;
+        if (Auth::user()->id == $ontology['user_id'] || $ontology->users->contains($request->user()->id)) {
             $response = array(
                 'status' => 'success',
                 'id' => $ontology['id'],
@@ -288,9 +305,10 @@ class OntologyController extends Controller
                 'type_of_ontology' => $ontology['type_of_ontology'],
                 'degree_of_formality' => $ontology['degree_of_formality'],
                 'scope' => $ontology['scope'],
-                'competence_questions' => $ontology['competence_questions']
+                'competence_questions' => $ontology['competence_questions'],
+                'collaborators' => $ontology->users->modelKeys(),
+                'owner_name' => $ownerName
             );
-
             return response()->json($response);
             //return $ontology;
         } else {
@@ -304,19 +322,20 @@ class OntologyController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|string
      */
-    public function openRecentDiagram(Request $request)
+    public function openLastUpdatedOntology(Request $request)
     {
-        $ontology = Ontology::getLatestOntology($request->user());
+        $ontology = Ontology::getLastUpdatedOntology($request->user());
+        $ownerName = $ontology->user->name;
         if ($ontology == null) {
             $response = array([
                 "text" => "Ontology Not Found"
             ]);
             return response()->json($response);
-        } else if ($request->user()->id == $ontology->user_id) {
+        } else  {
             $response = array(
                 'status' => 'success',
                 'id' => $ontology['id'],
-                'file' => $ontology['file'],
+                'file' => $ontology['xml_string'],
                 'name' => $ontology['name'],
                 'publication_date' => $ontology['publication_date'],
                 'last_uploaded' => $ontology['last_uploaded'],
@@ -331,11 +350,11 @@ class OntologyController extends Controller
                 'type_of_ontology' => $ontology['type_of_ontology'],
                 'degree_of_formality' => $ontology['degree_of_formality'],
                 'scope' => $ontology['scope'],
-                'competence_questions' => $ontology['competence_questions']
+                'competence_questions' => $ontology['competence_questions'],
+                'collaborators' => $ontology->users->modelKeys(),
+                'owner_name' => $ownerName
             );
             return response()->json($response);
-        } else {
-            return 'Denied Access';
         }
     }
 
