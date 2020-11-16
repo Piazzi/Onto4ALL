@@ -707,7 +707,9 @@
     <!--./Warning Console Info modal -->
 
 
-
+    <a class="tracker" id="control-sidebar" href="#" data-toggle="control-sidebar">
+        <i style="padding-top: 5px" class="fa fa-1.5x fa-fw fa-exchange "></i>
+    </a>
     <!-- Tracker spans  -->
     <span id="classes" data-widget="collapse" class="badge bg-green tracker">
                     <i class="fa fa-fw fa-circle-thin"></i>
@@ -727,24 +729,17 @@
     <span id="night-mode" class="badge bg-green-gradient tracker">
         <a style="color: white;"   href="#"><i class="fa fa-fw fa-moon-o"></i></a>
     </span>-->
-    <a class="tracker" id="control-sidebar" href="#" data-toggle="control-sidebar">
-        <i style="padding-top: 5px" class="fa fa-1.5x fa-fw fa-exchange "></i>
-    </a>
-
-
+    <!-- ./Tracker spans  -->
     <a download="ontology-report.txt"  href="#" id="download-ontology-report">
         <span data-toggle="tooltip" title="" class="badge bg-green tracker">
                     <i class="fa fa-fw fa-file-text-o"></i> {{__('Report')}}
         </span>
     </a>
-
     <a id="open-last-updated-ontology"  class="r" href="#">
         <span class="badge bg-green tracker ">
              <i class="fa fa-fw fa-cloud-download"></i> {{__('Last Updated Ontology')}}
         </span>
     </a>
-
-    <!-- ./Tracker spans  -->
 
     <a id="open-ontology" class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#ontology-manager">
         <i class="fa fa-fw fa-folder-open"></i> {{__('Open Ontology Manager')}}
@@ -752,11 +747,11 @@
     <a id="edit-ontology" class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#edit-ontology-modal">
         <i class="fa fa-fw fa-edit"></i> {{__('Edit Ontology Info')}}
     </a>
-    <a id="save-ontology" class="geItem geStatus btn btn-default editor-timeline-item unsaved">
-        <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
-    </a>
     <a id="ontology-name" class="geItem geStatus btn btn-default editor-timeline-item " data-toggle="modal" data-target="#edit-ontology-modal">
         <i class="fa fa-fw fa-object-group"></i>{{__('Current Ontology: None')}}
+    </a>
+    <a id="save-ontology" class="geItem geStatus btn btn-default editor-timeline-item unsaved">
+        <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
     </a>
 
     <!-- Edit Ontology -->
@@ -1029,6 +1024,7 @@
     <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
     <script defer type="text/javascript" src="{{asset('js/SearchTip.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/BuildMenu.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
             crossorigin="anonymous"></script>
 
@@ -1076,6 +1072,5 @@
             });
         })();
     </script>
-    <script type="text/javascript" src="{{asset('js/BuildMenu.js')}}"></script>
 @stop
 
