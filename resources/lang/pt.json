@@ -392,5 +392,6 @@
     "Insert usernames here": "Insira os nomes de usário aqui",
     "Collaborators will be able to edit this ontology": "Os colaboradores poderão editar esta ontologia",
     "Report": "Relatório",
-    "Last Updated Ontology": "Última Ontologia Atualziada"
+    "Last Updated Ontology": "Última Ontologia Atualziada",
+    "We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.": "É altamente recomendável usar o google chrome para executar o editor, pois ainda não somos capazes de executar testes suficientes em outros navegadores"
 }

@@ -19,90 +19,109 @@
 @section('body')
     <div class="content">
         <div class="row">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="login-box">
-                        <div class="login-logo">
-                            <img class="img-responsive img" id="login-image" src="{{asset('css/images/Beta.png')}}" alt="onto4all-logo" srcset="">
+            <div class="col-md-4">
+                <div style=" border-radius: 15px; margin-top: 200px " class="box box-default">
+                    <div class="box-header with-border">
+                        <i class="fa fa-warning"></i>
+                        <h3 class="box-title">Alerts</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-info"></i>{{__('Beta')}}!</h4>
+                            {{__('This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.')}}
                         </div>
-                        <!-- /.login-logo -->
-                        <div class="login-box-body">
-                            <div class="alert alert-warning alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <h4><i class="icon fa fa-info"></i> {{__('Alert')}}!</h4>
-                                {{__('This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.')}}
-                            </div>
-                            <p class="login-box-msg">{{ __('Sign in to start your session') }}</p>
-                            <form data-grecaptcha-action="message" action="{{ route('login', app()->getLocale()) }}" method="post">
-                                {!! csrf_field() !!}
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-chrome"></i>Use {{__('Google Chrome')}}!</h4>
+                            {{__('We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.')}}
+                        </div>
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <h4><i class="icon fa fa-money"></i> {{__('Donate')}}</h4>
+                            <h4>{{__('Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!')}}</h4>
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                <input type="hidden" name="cmd" value="_s-xclick"/>
+                                <input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN"/>
+                                <input class="center-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
+                                       title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button"/>
+                                <img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1"/>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
 
-                                <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
-                                    <input type="email" name="email" class="form-control" value="{{ old('email') }}"
-                                           placeholder="{{ __('E-Mail Address') }}">
-                                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
+            </div>
+            <div class="col-md-4">
+                <div style="margin-top: 0px" class="login-box">
+                    <div class="login-logo">
+                        <img class="img-responsive img" id="login-image" src="{{asset('css/images/Beta.png')}}" alt="onto4all-logo" srcset="">
+                    </div>
+                    <!-- /.login-logo -->
+                    <div class="login-box-body">
+
+                        <p class="login-box-msg">{{ __('Sign in to start your session') }}</p>
+                        <form data-grecaptcha-action="message" action="{{ route('login', app()->getLocale()) }}" method="post">
+                            {!! csrf_field() !!}
+
+                            <div class="form-group has-feedback {{ $errors->has('email') ? 'has-error' : '' }}">
+                                <input type="email" name="email" class="form-control" value="{{ old('email') }}"
+                                       placeholder="{{ __('E-Mail Address') }}">
+                                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
                                 <strong>{{ $errors->first('email') }}</strong>
                             </span>
-                                    @endif
-                                </div>
-                                <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
-                                    <input type="password" name="password" class="form-control"
-                                           placeholder="{{ __('Password') }}">
-                                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                                    @endif
-                                </div>
-                                <div class="row">
-                                    <div class="col-xs-8">
-                                        <div class="checkbox icheck">
-                                            <label>
-                                                <input type="checkbox"
-                                                       name="remember"> {{ __('Remember Me')}}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <!-- /.col -->
-                                    <div class="col-xs-4">
-                                        <button style="background-color: #00A65A" type="submit"
-                                                class="btn btn-primary btn-block btn-flat">{{ __('Sign In') }}</button>
-                                    </div>
-                                    <!-- /.col -->
-
-                                </div>
-                            </form>
-
-                            <div class="auth-links">
-                                <a href="{{ route('password.request', app()->getLocale()) }}"
-                                   class="text-center"
-                                >{{ __('Forgot Your Password?')}}</a>
-                                <br>
-                                @if (config('adminlte.register_url', 'register'))
-                                    <a href="{{route('register', app()->getLocale())}}"
-                                       class="text-center"
-                                    >{{__('Register')}}</a>
                                 @endif
                             </div>
-
-                            <hr>
-
-                            <div class="row">
-                                <h4 class="login-box-msg">{{__('Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!')}}</h4>
-                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                    <input type="hidden" name="cmd" value="_s-xclick" />
-                                    <input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN" />
-                                    <input class="center-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-                                    <img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
-                                </form>
+                            <div class="form-group has-feedback {{ $errors->has('password') ? 'has-error' : '' }}">
+                                <input type="password" name="password" class="form-control"
+                                       placeholder="{{ __('Password') }}">
+                                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                                @endif
                             </div>
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <div class="checkbox icheck">
+                                        <label>
+                                            <input type="checkbox"
+                                                   name="remember"> {{ __('Remember Me')}}
+                                        </label>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-xs-4">
+                                    <button style="background-color: #00A65A" type="submit"
+                                            class="btn btn-primary btn-block btn-flat">{{ __('Sign In') }}</button>
+                                </div>
+                                <!-- /.col -->
+
+                            </div>
+                        </form>
+
+                        <div class="auth-links">
+                            <a href="{{ route('password.request', app()->getLocale()) }}"
+                               class="text-center"
+                            >{{ __('Forgot Your Password?')}}</a>
+                            <br>
+                            @if (config('adminlte.register_url', 'register'))
+                                <a href="{{route('register', app()->getLocale())}}"
+                                   class="text-center"
+                                >{{__('Register')}}</a>
+                            @endif
                         </div>
-                        <!-- /.login-box-body -->
-                    </div><!-- /.login-box -->
-                   
-                </div>
+                        <div class="row">
+
+                        </div>
+                    </div>
+                    <!-- /.login-box-body -->
+                </div><!-- /.login-box -->
             </div>
         </div>
     </div>
