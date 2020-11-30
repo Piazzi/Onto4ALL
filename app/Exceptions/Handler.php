@@ -46,6 +46,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Redirect to '/' if the session expired
+        if ($exception instanceof AuthenticationException) {
+            return redirect('/');
+        }
         return parent::render($request, $exception);
     }
 }
