@@ -31,7 +31,6 @@ class OntologyController extends Controller
     {
         $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->where('favourite', '=', 0)->latest()->paginate(10);
         $favouriteOntologies = Ontology::where('user_id', '=', Auth::user()->id)->where('favourite', '=', 1)->get();
-        $ontologies = $ontologies->concat(Auth::user()->ontologies)->unique()->sortByDesc('updated_at');
         return view('ontologies.ontologies', compact('ontologies', 'favouriteOntologies'));
     }
 

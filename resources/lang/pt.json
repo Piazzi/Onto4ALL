@@ -393,5 +393,7 @@
     "Collaborators will be able to edit this ontology": "Os colaboradores poderão editar esta ontologia",
     "Report": "Relatório",
     "Last Updated Ontology": "Última Ontologia Atualziada",
-    "We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.": "É altamente recomendável usar o google chrome para executar o editor, pois ainda não somos capazes de executar testes suficientes em outros navegadores"
+    "We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.": "É altamente recomendável usar o google chrome para executar o editor, pois ainda não somos capazes de executar testes suficientes em outros navegadores",
+    "Ontologies shared with you:": "Ontologias compartilhadas com você:",
+    "You can not delete or mark up as favourite ontologies created by other users": "Você não pode deletar ou marcar como favorita ontologias criadas por outros usuários"
 }
