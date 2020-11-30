@@ -80,9 +80,9 @@ function movementCompiler(xml) {
                 basicErrorsCount++;
                 addIdToErrorArray(getElementId(elements[i]));
                 if (getLanguage() === 'pt')
-                    sendWarningMessage('A relação ' + getValueOrLabel(elements[i]).bold() + ' não está conectada a duas classes', 9, 'Erro Basico');
+                    sendWarningMessage('A relação ' + getValueOrLabel(elements[i]).bold() + ' (ID: '+ getElementId(elements[i]) +') não está conectada a duas classes', 9, 'Erro Basico');
                 else
-                    sendWarningMessage('The relation ' + getValueOrLabel(elements[i]).bold() + ' it is not fully connected to 2 classes', 9, 'Basic Error');
+                    sendWarningMessage('The relation ' + getValueOrLabel(elements[i]).bold() + ' (ID: '+ getElementId(elements[i]) +') it is not fully connected to 2 classes', 9, 'Basic Error');
             }
 
             // Shows a error message if two classes has been connected with the instance_of relation
