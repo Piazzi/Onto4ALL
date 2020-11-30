@@ -247,6 +247,7 @@
                                             @endif
                                         </td>
                                         <td>
+                                            @if($ontology->user_id == auth()->user()->id)
                                             <form method="post"
                                                   action="{{route('ontologies.destroy', [ 'ontology' => $ontology->id, 'locale' => app()->getLocale()])}}">
                                                 @csrf
@@ -254,6 +255,7 @@
                                                 <button class="btn btn-danger" type="submit"><i
                                                             class="fa fa-fw fa-trash-o"></i></button>
                                             </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
