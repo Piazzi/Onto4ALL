@@ -18,7 +18,7 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet"/>
     <link href="css/landing-page.css" rel="stylesheet"/>
-
+    <link rel="shortcut icon" href="css/images/favicon.ico" />
 
 </head>
 <body id="page-top">
