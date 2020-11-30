@@ -7,6 +7,7 @@ use App\Ontology;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UpdateUserRequest;
@@ -87,8 +88,11 @@ class UserController extends Controller
         if($id != Auth::user()->id)
             return view('lockscreen');
         $user = User::find($id);
+
+        // Lembrar de adicionar onDelete Cascade no BD
         Ontology::where('user_id','=', $user->id)->delete();
-        SocialFacebookAccount::where('user_id', $user->id)->delete();
+        DB::table('ontology_user')->where('user_id','=', $user->id)->delete();
+        //
         $user->delete();
         return redirect()->route('login', app()->getLocale());
     }
