@@ -8,6 +8,7 @@ use App\Ontology;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\OntologyStoreRequest;
+use Illuminate\Support\Facades\DB;
 
 
 class OntologyController extends Controller
@@ -135,8 +136,12 @@ class OntologyController extends Controller
     public function destroy($locale, $id)
     {
         $ontology = Ontology::find($id);
-        if ($ontology->user_id == Auth::user()->id || $ontology->users->contains(Auth::user()->id))
+        if ($ontology->user_id == Auth::user()->id)
+        {
+            // Implementar onCascade no BD mais tarde
+            DB::table('ontology_user')->where('ontology_id', $id)->delete();
             $ontology->delete();
+        }
         else
             abort(403);
         return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been deleted with success');
