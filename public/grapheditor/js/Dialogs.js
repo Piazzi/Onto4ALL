@@ -1388,7 +1388,7 @@ var EditDataDialog = function(ui, cell)
 	function createAnnotationsSection()
 	{
 		let annotationsTitle = document.createElement('h3');
-		let annotationsText = document.createTextNode('---------------- Annotations ----------------');
+		let annotationsText = document.createTextNode('--------------- Annotations ---------------');
 		annotationsTitle.appendChild(annotationsText);
 		form.addField('', annotationsTitle);
 	}
@@ -1414,7 +1414,7 @@ var EditDataDialog = function(ui, cell)
 		}
 
 		// Detects where the Annotations start
-		if(name === 'EquivalentTo' || name === 'transitive')
+		if(name === 'EquivalentTo' || name === 'SymmetricProperty')
 			createAnnotationsSection();
 
 
@@ -1560,49 +1560,53 @@ var EditDataDialog = function(ui, cell)
 	{
 		if(cell.isEdge())
 		{
+			// range properties
 			addProps('domain');
 			addProps('range');
 			addProps('inverseOf');
-			addProps('cardinality');
-			addProps('equivalentTo');
-			addProps('disjointWith');
-			addProps('transitive');
+			addProps('subPropertyOf');
+			addProps('equivalentProperty');
+			addProps('FunctionalProperty');
+			addProps('InverseFunctionalProperty');
+			addProps('TransitiveProperty');
+			addProps('SymmetricProperty');
 		}
 		else
 		{
 			// class properties
 			addProps('SubClassOf');
-			addProps('Constraint');
-			addProps('importedFrom');
-			addProps('hasOBONamespace');
-			addProps('hasURI');
-			addProps('hasSynonym');
-			addProps('hasExactSynonym');
-			addProps('hasRelatedSynonym');
-			addProps('elucidaton');
-			addProps('comments');
+            addProps('Constraint');
+            addProps('SubClassOfAnonymousAncestor');
 			addProps('DisjointWith');
+			addProps('DisjointUnionOf');
 			addProps('EquivalentTo');
 		}
+
+
 	
 		createAnnotationsSection();
 	
 		// Annotations
-		addProps('preferredName');
 		addProps('definition');
-		addProps('definitionEditor');
 		addProps('definitionSource');
-		addProps('specificationOfCurationStatus');
-		addProps('exampleOfUsage');
 		addProps('alternativeTerm');
 		addProps('editorNote');
 		addProps('curatorNote');
-		addProps('specifyingObsolescenceRatio');
-		addProps('exclusiveLabel');
-	
+		addProps('seeAlso');
+		addProps('isDefinedBy');
+		addProps('comment');
+		addProps('versionInfo');
+		addProps('priorVersion');
+		addProps('member');
+		addProps('licence');
+		addProps('contributor');
+		addProps('elucidation');
+		addProps('termEditor');
+
 	}
 	else
 	{
+		// thesaurus properties
 		addProps('altLabel');
 		addProps('broader');
 		addProps('narrower');
