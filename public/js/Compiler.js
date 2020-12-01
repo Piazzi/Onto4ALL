@@ -536,11 +536,9 @@ function getElementsNames(category = 'Class') {
     if (category === 'Relation') {
         for (let i = 0; i < relations.length; i++)
             names.push(removeSpaces(getValueOrLabel(relations[i])));
-        relations = [];
     } else {
         for (let i = 0; i < classes.length; i++)
             names.push(removeSpaces(getValueOrLabel(classes[i])));
-        classes = [];
     }
     return names;
 }

@@ -1534,11 +1534,30 @@ var EditDataDialog = function(ui, cell)
 					if(name === 'Constraint')
 					{
 						text.id = 'ClassExpressionEditorInput';
-						text.oninput = 'validateInput();';
 						text.placeholder = 'Separate your axioms with semicolon; e.g: \n' +
 										    'Man subClassOf People; \n' +
 											'Woman subClassOf People; ';
 						text.style.height = '50px';
+
+						// Call the Class Expression Edior / Axiom Editor 2 seconds
+						// after the user stops typing
+						text.addEventListener('keyup', debounce( () => {
+							// code you would like to run 2000ms after the keyup event has stopped firing
+							// further keyup events reset the timer, as expected
+							let classesNames = getElementsNames();
+							let axioms = $('#ClassExpressionEditorInput').val().split(';');
+							let ontologyId = $("#id").val();
+							validateAxiom(ontologyId, classesNames, axioms);
+							console.log(classesNames);
+						}, 2000));
+						function debounce(callback, wait) {
+							let timeout;
+							return (...args) => {
+								clearTimeout(timeout);
+								timeout = setTimeout(function () { callback.apply(this, args) }, wait);
+							};
+						}
+
 					}
 
 					text.style.width = '100%';

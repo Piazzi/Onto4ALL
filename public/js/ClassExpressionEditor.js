@@ -1,42 +1,48 @@
-
-let connectives = [
-    'and',
-    'or',
-    'not',
-    'some',
-    'only',
-    'min',
-    'max',
-    'exactly',
-    'value',
-    'cardinality',
-    'self',
-
-];
-// Detects when the user starts writing something
-$(document).on('input', '#ClassExpressionEditorInput', function(){
-
-    let classesNames = getElementsNames();
-    let relationsNames = getElementsNames('Relation');
-    console.log($(this).val());
-
-    if (connectives.some(v => $(this).val().includes(v)))
+/**
+ * Validates the axiom in the OWL API and returns if
+ * the axioms is valid
+ * @param id
+ * @param classes
+ * @param axioms
+ */
+function validateAxiom(id, classes, axioms)
+{
+    let userInput = document.getElementById('ClassExpressionEditorInput');
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "https://whispering-gorge-06411.herokuapp.com/webapi/ontologia/valida", true);
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.onreadystatechange = function()
     {
-        // There's at least one
-        console.log($(this));
-        $(this)[0].style.setProperty('border-color', 'red','important');
-        $(this).css('color', 'red');
-
-    }
-    else
+        if (this.readyState == 4 && this.status == 202)
+        {
+            let response = this.responseText;
+            console.log(response);
+            // the axioms is valid
+            if(response)
+            {
+                userInput.style.setProperty('border-color', 'green','important');
+                userInput.style.setProperty('color', 'green');
+            } else
+            {
+                userInput.style.setProperty('border-color', 'red','important');
+                userInput.style.setProperty('color', 'red');
+            }
+        }
+        else
+        {
+            userInput.style.setProperty('border-color', '#f39c12','important');
+            userInput.style.setProperty('color', '#f39c12');
+            return alert('The server is not available at moment, try again later')
+        }
+    };
+    let data =
     {
-        $(this)[0].style.setProperty('border-color', 'green','important');
-        $(this).css('color', 'green');
-    }
-
-
-
-
-
-});
+        "id": "https://onto4alleditor.com/en/ontologies/"+id,
+        "formato": "JSON",
+        "classes": classes,
+        "axiomas": axioms,
+        "propriedades": ""
+    };
+    xhttp.send(JSON.stringify(data));
+}
 
