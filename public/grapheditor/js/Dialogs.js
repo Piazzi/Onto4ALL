@@ -1401,11 +1401,19 @@ var EditDataDialog = function(ui, cell)
 		//texts[index] = form.addTextarea(names[count] + ':', value, 2);
 		texts[index] = form.addTextarea(names[count], value, 2);
 
-
+		// Axiom Editor / ClassExpressionEditor
 		if(name === 'Constraint')
+		{
 			texts[index].id = 'ClassExpressionEditorInput';
+			texts[index].placeholder = 'Separate your axioms with semicolon; e.g: \n' +
+										'Man subClassOf People; \n' +
+										'Woman subClassOf People; ';
+			texts[index].style.height = '50px';
+		}
+
 		texts[index].style.width = '100%';
 
+		// Auto complete of the properties 'SubClassOf', 'domain' and 'range'
 		if(name === 'SubClassOf' || name === 'domain' || name === 'range')
 		{
 			texts[index].disabled = true;
@@ -1522,10 +1530,15 @@ var EditDataDialog = function(ui, cell)
 					names.push(name);
 					var text = form.addTextarea(name + ':', '',  2);
 
+					// Axiom Editor / ClassExpressionEditor
 					if(name === 'Constraint')
 					{
 						text.id = 'ClassExpressionEditorInput';
-						text.oninput = 'validateInput();'
+						text.oninput = 'validateInput();';
+						text.placeholder = 'Separate your axioms with semicolon; e.g: \n' +
+										    'Man subClassOf People; \n' +
+											'Woman subClassOf People; ';
+						text.style.height = '50px';
 					}
 
 					text.style.width = '100%';
