@@ -380,8 +380,8 @@ function movementCompiler(xml) {
     //console.log(getElementsNames());
     //console.log(getElementsNames('Relation'));
     previousElements = elements;
-    console.log(previousElements);
-    console.log(elementsIdWithError);
+    //console.log(previousElements);
+   // console.log(elementsIdWithError);
     elementsIdWithError = [];
 
 

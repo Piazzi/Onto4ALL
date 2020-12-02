@@ -1409,6 +1409,22 @@ var EditDataDialog = function(ui, cell)
 										'Man subClassOf People; \n' +
 										'Woman subClassOf People; ';
 			texts[index].style.height = '50px';
+			texts[index].addEventListener('keyup', debounce( () => {
+				// code you would like to run 1000ms after the keyup event has stopped firing
+				// further keyup events reset the timer, as expected
+				let classesNames = getElementsNames();
+				let axioms = $('#ClassExpressionEditorInput').val().split(';');
+				let ontologyId = $("#id").val();
+				validateAxiom(ontologyId, classesNames, axioms);
+				console.log(classesNames);
+			}, 1000));
+			function debounce(callback, wait) {
+				let timeout;
+				return (...args) => {
+					clearTimeout(timeout);
+					timeout = setTimeout(function () { callback.apply(this, args) }, wait);
+				};
+			}
 		}
 
 		texts[index].style.width = '100%';
@@ -1542,14 +1558,14 @@ var EditDataDialog = function(ui, cell)
 						// Call the Class Expression Edior / Axiom Editor 2 seconds
 						// after the user stops typing
 						text.addEventListener('keyup', debounce( () => {
-							// code you would like to run 2000ms after the keyup event has stopped firing
+							// code you would like to run 1000ms after the keyup event has stopped firing
 							// further keyup events reset the timer, as expected
 							let classesNames = getElementsNames();
 							let axioms = $('#ClassExpressionEditorInput').val().split(';');
 							let ontologyId = $("#id").val();
 							validateAxiom(ontologyId, classesNames, axioms);
 							console.log(classesNames);
-						}, 2000));
+						}, 1000));
 						function debounce(callback, wait) {
 							let timeout;
 							return (...args) => {
