@@ -1401,31 +1401,7 @@ var EditDataDialog = function(ui, cell)
 		//texts[index] = form.addTextarea(names[count] + ':', value, 2);
 		texts[index] = form.addTextarea(names[count], value, 2);
 
-		// Axiom Editor / ClassExpressionEditor
-		if(name === 'Constraint')
-		{
-			texts[index].id = 'ClassExpressionEditorInput';
-			texts[index].placeholder = 'Separate your axioms with semicolon; e.g: \n' +
-										'Man subClassOf People; \n' +
-										'Woman subClassOf People; ';
-			texts[index].style.height = '50px';
-			texts[index].addEventListener('keyup', debounce( () => {
-				// code you would like to run 1000ms after the keyup event has stopped firing
-				// further keyup events reset the timer, as expected
-				let classesNames = getElementsNames();
-				let axioms = $('#ClassExpressionEditorInput').val().split(';');
-				let ontologyId = $("#id").val();
-				validateAxiom(ontologyId, classesNames, axioms);
-				console.log(classesNames);
-			}, 1000));
-			function debounce(callback, wait) {
-				let timeout;
-				return (...args) => {
-					clearTimeout(timeout);
-					timeout = setTimeout(function () { callback.apply(this, args) }, wait);
-				};
-			}
-		}
+
 
 		texts[index].style.width = '100%';
 
@@ -1449,6 +1425,14 @@ var EditDataDialog = function(ui, cell)
 		}
 
 		addRemoveButton(texts[index], name);
+
+		// Axiom Editor / ClassExpressionEditor
+		if(name === 'Constraint')
+		{
+			addHTMLAttributes(texts[index]);
+			addKeyupEvents(texts[index]);
+			addHelpText(texts[index])
+		}
 	};
 	
 	var temp = [];
@@ -1525,6 +1509,10 @@ var EditDataDialog = function(ui, cell)
 
 	///////////////////////// ADD NEW PROPERTIES TO THE CELL ///////////////////////////////////////////////////
 
+	/**
+	 * Add a property to the cell
+	 * @param name
+	 */
 	function addProps(name) {
 		// Avoid ':' in attribute names which seems to be valid in Chrome
 		if (name.length > 0 && name != 'label' && name != 'placeholders' && name.indexOf(':') < 0) {
@@ -1546,36 +1534,6 @@ var EditDataDialog = function(ui, cell)
 					names.push(name);
 					var text = form.addTextarea(name + ':', '',  2);
 
-					// Axiom Editor / ClassExpressionEditor
-					if(name === 'Constraint')
-					{
-						text.id = 'ClassExpressionEditorInput';
-						text.placeholder = 'Separate your axioms with semicolon; e.g: \n' +
-										    'Man subClassOf People; \n' +
-											'Woman subClassOf People; ';
-						text.style.height = '50px';
-
-						// Call the Class Expression Edior / Axiom Editor 2 seconds
-						// after the user stops typing
-						text.addEventListener('keyup', debounce( () => {
-							// code you would like to run 1000ms after the keyup event has stopped firing
-							// further keyup events reset the timer, as expected
-							let classesNames = getElementsNames();
-							let axioms = $('#ClassExpressionEditorInput').val().split(';');
-							let ontologyId = $("#id").val();
-							validateAxiom(ontologyId, classesNames, axioms);
-							console.log(classesNames);
-						}, 1000));
-						function debounce(callback, wait) {
-							let timeout;
-							return (...args) => {
-								clearTimeout(timeout);
-								timeout = setTimeout(function () { callback.apply(this, args) }, wait);
-							};
-						}
-
-					}
-
 					text.style.width = '100%';
 
 					// Disable the inputs
@@ -1591,6 +1549,14 @@ var EditDataDialog = function(ui, cell)
 					addRemoveButton(text, name);
 
 					text.focus();
+
+					// Axiom Editor / ClassExpressionEditor
+					if(name === 'Constraint')
+					{
+						addHTMLAttributes(text);
+						addKeyupEvents(text);
+						addHelpText(text);
+					}
 				}
 
 				nameInput.value = '';
@@ -1630,8 +1596,6 @@ var EditDataDialog = function(ui, cell)
 			addProps('EquivalentTo');
 		}
 
-
-	
 		createAnnotationsSection();
 	
 		// Annotations
@@ -1650,7 +1614,6 @@ var EditDataDialog = function(ui, cell)
 		addProps('contributor');
 		addProps('elucidation');
 		addProps('termEditor');
-
 	}
 	else
 	{
@@ -1670,7 +1633,59 @@ var EditDataDialog = function(ui, cell)
 		addProps('historyNote');
 		addProps('note');
 		addProps('topConceptOf');
+	}
 
+	/**
+	 * Adds a help text below the textarea input
+	 * @param textArea
+	 */
+	function addHelpText(textArea) {
+		if(getLanguage() === 'en')
+			textArea.insertAdjacentHTML('afterend','<p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> None axiom to check! </p>');
+		else
+			textArea.insertAdjacentHTML('afterend','<p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> Nenhum axioma para checar </p>');
+
+	}
+
+	/**
+	 * Add HTML Attributes to the given textArea from the
+	 * 'Constraint' property
+	 * @param textArea
+	 */
+	function addHTMLAttributes(textArea) {
+		textArea.id = 'ClassExpressionEditorInput';
+		textArea.placeholder = 'Separate your axioms with semicolon; e.g: \n' +
+			'Man subClassOf People; \n' +
+			'Woman subClassOf People; ';
+		textArea.style.height = '50px';
+	}
+
+	/**
+	 * Add keyup events for the given textArea
+	 * @param textArea
+	 */
+	function addKeyupEvents(textArea) {
+		textArea.addEventListener('keyup', function () {
+			document.getElementById('help-text-icon').className = "fa fa-fw fa-clock-o";
+			if(getLanguage() === 'en')
+				document.getElementById('help-text').childNodes[1].nodeValue = 'Checking the axioms, please wait...';
+			else
+				document.getElementById('help-text').childNodes[1].nodeValue = 'Checando os axiomas, aguarde um momento...';
+		});
+		// Call the Class Expression Edior / Axiom Editor 2 seconds
+		// after the user stops typing
+		textArea.addEventListener('keyup', debounce( () => {
+			// code you would like to run 2000ms after the keyup event has stopped firing
+			// further keyup events reset the timer, as expected
+			validateAxiom();
+		}, 2000));
+		function debounce(callback, wait) {
+			let timeout;
+			return (...args) => {
+				clearTimeout(timeout);
+				timeout = setTimeout(function () { callback.apply(this, args) }, wait);
+			};
+		}
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
