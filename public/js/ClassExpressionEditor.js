@@ -13,7 +13,7 @@ function validateAxiom() {
     }
 
     let xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://cors-anywhere.herokuapp.com/https://whispering-gorge-06411.herokuapp.com/webapi/ontologia/valid", true);
+    xhttp.open("POST", "https://cors-anywhere.herokuapp.com/https://whispering-gorge-06411.herokuapp.com/webapi/ontology/valid", true);
     xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhttp.setRequestHeader('Access-Control-Allow-Methods', 'POST');
     xhttp.setRequestHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
@@ -36,11 +36,11 @@ function validateAxiom() {
     let data =
         {
             "id": "https://onto4alleditor.com/en/ontologies/" + document.getElementById('id').value,
-            "formato": "JSON",
-            "classes": getElementsNames(),
+            "outformat": "OWL",
+            "ontoclass": getElementsNames(),
             // split the axioms after each ';' and then remove empty/whitespace strings from the array
-            "axiomas": userInput.value.split(';').filter(e => String(e).trim()),
-            "propriedades": ""
+            "ontoaxioms": userInput.value.split(';').filter(e => String(e).trim()),
+            "ontoproperties": ""
         };
     xhttp.send(JSON.stringify(data));
 }
