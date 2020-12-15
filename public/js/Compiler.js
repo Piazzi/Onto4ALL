@@ -16,18 +16,13 @@ function movementCompiler(xml) {
     classes = [];
     relations = [];
     instances = [];
-    // Updates the save file button
-    $("#save-ontology").removeClass("saved").addClass("unsaved").html('<i class="fa fa-fw fa-cloud-upload"></i>  Unsaved changes. Click here to save');
 
-    if (getLanguage() === 'pt')
-        $("#save-ontology").html('<i class="fa fa-fw fa-cloud-upload"></i> Alterações não salvas. Clique aqui para salvar');
-
-
+    updateSaveButtonInFrontEnd();
     // Removes the previous error messages
     $(".direct-chat-messages").empty();
 
     let xmlDoc, missingClassProperties = "", missingRelationProperties = "", warningsCount = 0, basicErrorsCount = 0,
-        conceptualErrorsCount = 0;
+        conceptualErrorsCount = 0, thingClassCount = 0;
     xmlDoc = new DOMParser().parseFromString(xml, "text/xml");
 
     //console.log("Elementos Antigos", previousElements);
@@ -35,13 +30,8 @@ function movementCompiler(xml) {
     let elements = xmlDoc.getElementsByTagName("mxCell");
     //console.log("Elementos Atuais", elements);
 
-
     // Starts the XML interpretation send by the editor
     // Each mxCell element is compared to each other to find any measurable error
-    // This compiler is made of three parts, the first one is to compare elements with the
-    // MxCell tag in it. The second one to compare elements with MxCell and Object
-    // and the third one to compare elements with the Object tag only
-    // For this i used the getValueOrLabel function.
     // Complexity: O(n^2)
     for (let i = 1; i < elements.length; i++) {
         try {
@@ -348,43 +338,10 @@ function movementCompiler(xml) {
 
     }
 
-    // Update the counters on front end
-    $("#warnings-count").text(warningsCount);
-    $("#error-count").text(basicErrorsCount + conceptualErrorsCount);
-    $("#classes-count").text(classes.length);
-    $("#relations-count").text(relations.length);
-    $("#instances-count").text(instances.length);
-
-    // Checks if have any warnings, errors or bad practices and then updates the front end
-    let borderColor = '#00a65a';
-    if (warningsCount !== 0) {
-        borderColor = '#f39c12';
-        $('#warnings')[0].style.setProperty('background-color', '#f39c12', 'important');
-    }
-    if (basicErrorsCount + conceptualErrorsCount !== 0) {
-        borderColor = 'indianred';
-        $('#errors')[0].style.setProperty('background-color', 'indianred', 'important');
-    }
-    $('#warnings-console')[0].style.setProperty('border-color', borderColor, 'important');
-
-    if (basicErrorsCount + conceptualErrorsCount + warningsCount === 0) {
-        $('#warnings')[0].style.setProperty('background-color', '#00a65a', 'important');
-        $('#errors')[0].style.setProperty('background-color', '#00a65a', 'important');
-        $('#warnings-console')[0].style.setProperty('border-color', '#00a65a', 'important');
-        let message = 'You dont have any warnings.';
-        if (getLanguage() === 'pt')
-            message = 'Voce não tem nenhum aviso';
-        $(".direct-chat-messages").append('<img id="no-warning-img" class="direct-chat-img" src="/css/images/LogoMini.png" alt="Message User Image"><div id="no-warning-text" class="direct-chat-text">' + message + '</div>');
-    }
-
-    //console.log(getElementsNames());
-    //console.log(getElementsNames('Relation'));
+    updateCountersInFrontEnd(warningsCount, basicErrorsCount, conceptualErrorsCount);
+    updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCount);
     previousElements = elements;
-    //console.log(previousElements);
-   // console.log(elementsIdWithError);
     elementsIdWithError = [];
-
-
 }
 
 /**
@@ -583,5 +540,59 @@ function autoCompleteInputs(element, propertyName, inputField) {
             for (let i = 0; i < previousElements.length; i++)
                 if (isRelation(previousElements[i]) && (getValueOrLabel(previousElements[i]) === 'is_a' || getValueOrLabel(previousElements[i]) === 'é_um') && previousElements[i].getAttribute("source") == element.id)
                     inputField.value = findNameById(previousElements, previousElements[i].getAttribute("target"));
+    }
+}
+
+/**
+ * Update the save button in the front end
+ */
+function updateSaveButtonInFrontEnd() {
+    // Updates the save file button
+    $("#save-ontology").removeClass("saved").addClass("unsaved").html('<i class="fa fa-fw fa-cloud-upload"></i>  Unsaved changes. Click here to save');
+
+    if (getLanguage() === 'pt')
+        $("#save-ontology").html('<i class="fa fa-fw fa-cloud-upload"></i> Alterações não salvas. Clique aqui para salvar');
+}
+
+/**
+ * Updates the counters in the front end
+ * @param warningsCount
+ * @param basicErrorsCount
+ * @param conceptualErrorsCount
+ */
+function updateCountersInFrontEnd(warningsCount, basicErrorsCount, conceptualErrorsCount) {
+    $("#warnings-count").text(warningsCount);
+    $("#error-count").text(basicErrorsCount + conceptualErrorsCount);
+    $("#classes-count").text(classes.length);
+    $("#relations-count").text(relations.length);
+    $("#instances-count").text(instances.length);
+}
+
+/**
+ * Change the console colors based on the number of errors on the current ontology
+ * @param warningsCount
+ * @param basicErrorsCount
+ * @param conceptualErrorsCount
+ */
+function updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCount) {
+    let borderColor = '#00a65a';
+    if (warningsCount !== 0) {
+        borderColor = '#f39c12';
+        $('#warnings')[0].style.setProperty('background-color', '#f39c12', 'important');
+    }
+    if (basicErrorsCount + conceptualErrorsCount !== 0) {
+        borderColor = 'indianred';
+        $('#errors')[0].style.setProperty('background-color', 'indianred', 'important');
+    }
+    $('#warnings-console')[0].style.setProperty('border-color', borderColor, 'important');
+
+    if (basicErrorsCount + conceptualErrorsCount + warningsCount === 0) {
+        $('#warnings')[0].style.setProperty('background-color', '#00a65a', 'important');
+        $('#errors')[0].style.setProperty('background-color', '#00a65a', 'important');
+        $('#warnings-console')[0].style.setProperty('border-color', '#00a65a', 'important');
+        let message = 'You dont have any warnings.';
+        if (getLanguage() === 'pt')
+            message = 'Voce não tem nenhum aviso';
+        $(".direct-chat-messages").append('<img id="no-warning-img" class="direct-chat-img" src="/css/images/LogoMini.png" alt="Message User Image"><div id="no-warning-text" class="direct-chat-text">' + message + '</div>');
     }
 }
