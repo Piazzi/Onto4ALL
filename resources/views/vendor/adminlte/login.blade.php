@@ -20,7 +20,7 @@
     <div class="content">
         <div class="row">
             <div class="col-md-4">
-                <div style=" border-radius: 15px; margin-top: 200px " class="box box-default">
+                <div style=" border-radius: 15px; margin-top: 150px " class="box box-default">
                     <div class="box-header with-border">
                         <i class="fa fa-warning"></i>
                         <h3 class="box-title">Alerts</h3>
@@ -55,9 +55,9 @@
 
             </div>
             <div class="col-md-4">
-                <div style="margin-top: 0px" class="login-box">
+                <div class="login-box">
                     <div class="login-logo">
-                        <img class="img-responsive img" id="login-image" src="{{asset('css/images/Beta.png')}}" alt="onto4all-logo" srcset="">
+                        <img class="img-responsive img" id="login-image" src="{{asset('css/images/LogoGreen.png')}}" alt="onto4all-logo" srcset="">
                     </div>
                     <!-- /.login-logo -->
                     <div class="login-box-body">
@@ -116,8 +116,9 @@
                                 >{{__('Register')}}</a>
                             @endif
                         </div>
+                        <br>
                         <div class="row">
-
+                            <h4 style="text-align: center"><strong>Version</strong> 2.2.0</h4>
                         </div>
                     </div>
                     <!-- /.login-box-body -->

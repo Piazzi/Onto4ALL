@@ -45,9 +45,9 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div style="margin-top: 0px" class="register-box">
+                <div class="register-box">
                     <div class="login-logo">
-                        <img class="img-responsive img full-width" id="login-image" src="{{asset('css/images/Beta.png')}}" alt="" srcset="">
+                        <img class="img-responsive img full-width" id="login-image" src="{{asset('css/images/LogoGreen.png')}}" alt="" srcset="">
                     </div>
 
                     <div class="register-box-body">
