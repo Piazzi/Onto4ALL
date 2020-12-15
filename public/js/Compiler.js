@@ -22,7 +22,7 @@ function movementCompiler(xml) {
     $(".direct-chat-messages").empty();
 
     let xmlDoc, missingClassProperties = "", missingRelationProperties = "", warningsCount = 0, basicErrorsCount = 0,
-        conceptualErrorsCount = 0, thingClassCount = 0;
+        conceptualErrorsCount = 0;
     xmlDoc = new DOMParser().parseFromString(xml, "text/xml");
 
     //console.log("Elementos Antigos", previousElements);
@@ -63,16 +63,15 @@ function movementCompiler(xml) {
         //editor.editor.setGraphXml();
         //console.log(xmlDoc.documentElement);
 
-
         if (isRelation(elements[i])) {
             // Checks if the relation is connected to 2 classes
             if (getValueOrLabel(elements[i]) !== null && elements[i].getAttribute("target") === null || elements[i].getAttribute("source") === null) {
                 basicErrorsCount++;
                 addIdToErrorArray(getElementId(elements[i]));
                 if (getLanguage() === 'pt')
-                    sendWarningMessage('A relação ' + getValueOrLabel(elements[i]).bold() + ' (ID: '+ getElementId(elements[i]) +') não está conectada a duas classes', 9, 'Erro Basico');
+                    sendWarningMessage('A relação ' + getValueOrLabel(elements[i]).bold() + ' (ID: ' + getElementId(elements[i]) + ') não está conectada a duas classes', 9, 'Erro Basico');
                 else
-                    sendWarningMessage('The relation ' + getValueOrLabel(elements[i]).bold() + ' (ID: '+ getElementId(elements[i]) +') it is not fully connected to 2 classes', 9, 'Basic Error');
+                    sendWarningMessage('The relation ' + getValueOrLabel(elements[i]).bold() + ' (ID: ' + getElementId(elements[i]) + ') it is not fully connected to 2 classes', 9, 'Basic Error');
             }
 
             // Shows a error message if two classes has been connected with the instance_of relation
@@ -311,8 +310,8 @@ function movementCompiler(xml) {
              missingRelationProperties = missingRelationProperties + ' range,';*/
 
 
-        if(objects[i].getAttribute("inverseOf") === "")
-            missingRelationProperties = missingRelationProperties  + ' inverseOf';
+        if (objects[i].getAttribute("inverseOf") === "")
+            missingRelationProperties = missingRelationProperties + ' inverseOf';
 
         if (missingRelationProperties !== "") {
             basicErrorsCount++;
@@ -337,6 +336,16 @@ function movementCompiler(xml) {
         }
 
     }
+
+    // Throws a error if the things class doesnt exists in the current ontology
+    if (!thingClassExists()) {
+        basicErrorsCount++;
+        if (getLanguage() === 'pt')
+            sendWarningMessage('É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia', "", "Erro Conceitual");
+        else
+            sendWarningMessage('It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology', "", "Conceptual Error");
+    }
+
 
     updateCountersInFrontEnd(warningsCount, basicErrorsCount, conceptualErrorsCount);
     updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCount);
@@ -595,4 +604,15 @@ function updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCo
             message = 'Voce não tem nenhum aviso';
         $(".direct-chat-messages").append('<img id="no-warning-img" class="direct-chat-img" src="/css/images/LogoMini.png" alt="Message User Image"><div id="no-warning-text" class="direct-chat-text">' + message + '</div>');
     }
+}
+
+/**
+ * Check if the Thing Class exists in the current ontology
+ */
+function thingClassExists() {
+    let classes = getElementsNames();
+    for (let i = 0; i < classes.length; i++)
+        if (classes[i] === 'Thing' || classes[i] === 'Coisa')
+            return true;
+    return false;
 }
