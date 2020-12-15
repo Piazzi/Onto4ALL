@@ -341,9 +341,9 @@ function movementCompiler(xml) {
     if (!thingClassExists()) {
         basicErrorsCount++;
         if (getLanguage() === 'pt')
-            sendWarningMessage('É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia', "", "Erro Conceitual");
+            sendWarningMessage('É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia.', "", "Erro Conceitual");
         else
-            sendWarningMessage('It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology', "", "Conceptual Error");
+            sendWarningMessage('It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology.', "", "Conceptual Error");
     }
 
 
@@ -538,6 +538,7 @@ function addIdToErrorArray(elementId) {
  * @param inputField
  */
 function autoCompleteInputs(element, propertyName, inputField) {
+    console.log(element.value);
     // check if the element is a relation
     if (element.edge == true) {
         if (element.source && element.source.id != null && propertyName === 'domain')
@@ -545,7 +546,7 @@ function autoCompleteInputs(element, propertyName, inputField) {
         if (element.target && element.target.id != null && propertyName === 'range')
             inputField.value = findNameById(previousElements, element.target.id);
     } else {
-        if (propertyName === 'SubClassOf')
+        if (propertyName === 'SubClassOf' && (element.value !== 'Thing' && element.value !== 'Coisa'))
             for (let i = 0; i < previousElements.length; i++)
                 if (isRelation(previousElements[i]) && (getValueOrLabel(previousElements[i]) === 'is_a' || getValueOrLabel(previousElements[i]) === 'é_um') && previousElements[i].getAttribute("source") == element.id)
                     inputField.value = findNameById(previousElements, previousElements[i].getAttribute("target"));
