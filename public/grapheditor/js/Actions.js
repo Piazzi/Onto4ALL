@@ -8,7 +8,12 @@ function Actions(editorUi)
 {
 	this.editorUi = editorUi;
 	// send the editor to the OpenDiagram.js
-	setEditor(editorUi);
+	setEditorUI(this.editorUi);
+	// Add the Thing Class in every ontology
+	setTimeout(function() {
+		addThingClassToCurrentOntology(editorUi.editor);
+	}, 2000);
+
 	this.actions = new Object();
 	this.init();
 };

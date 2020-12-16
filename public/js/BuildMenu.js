@@ -9,4 +9,4 @@ function buildMenu() {
     }
 }
 
-setInterval(buildMenu, 3000);
+setInterval(buildMenu, 2000);

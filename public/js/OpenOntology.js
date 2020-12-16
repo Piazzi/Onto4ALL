@@ -4,10 +4,11 @@ var editor = 0;
  * Gets the current Editor from the Actions.js
  * @param editorParam
  */
-function setEditor(editorParam)
+function setEditorUI(editorParam)
 {
     editor = editorParam;
 }
+
 
 $(document).ready(function () {
 
