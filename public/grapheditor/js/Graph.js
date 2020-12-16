@@ -3459,6 +3459,7 @@ Graph.prototype.zoomOut = function()
  */
 Graph.prototype.getTooltipForCell = function(cell)
 {
+	console.log(cell);
 	var tip = '';
 	
 	if (mxUtils.isNode(cell.value))
@@ -3493,7 +3494,13 @@ Graph.prototype.getTooltipForCell = function(cell)
 					temp.push({name: attrs[i].nodeName, value: attrs[i].nodeValue});
 				}
 			}
-			
+
+			// ------------ Onto4ALL ------------
+			// Adds the id in the tooltips
+			temp.push({name: 'id', value: cell.id});
+			// ------------ Onto4ALL ------------
+
+
 			// Sorts by name
 			temp.sort(function(a, b)
 			{
