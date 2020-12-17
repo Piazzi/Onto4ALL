@@ -620,9 +620,8 @@ function thingClassExists() {
 /**
  * Adds a Thing Class to the current ontology
  * This function is called by Actions.js
- * @param editor
  */
-function addThingClassToCurrentOntology(editor) {
+function addThingClassToCurrentOntology() {
     let xmlDoc = document.implementation.createDocument(null, "", null);
     let xml = editor.getGraphXml();
     let rootNode = xml.childNodes[0];

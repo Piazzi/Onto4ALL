@@ -992,12 +992,10 @@
         mxLoadResources = false;
     </script>
 
-    <script type="text/javascript" src="{{asset('js/OpenOntology.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/SaveOntology.js')}}"></script>
-
     <!-- Tooltips -->
     <script src="https://unpkg.com/popper.js@1"></script>
     <script src="https://unpkg.com/tippy.js@5"></script>
+
     <!-- MxGraph -->
     <script type="text/javascript" src="{{asset('grapheditor/js/Init.js')}}"></script>
     <script type="text/javascript" src="{{asset('grapheditor/deflate/pako.min.js')}}"></script>
@@ -1015,6 +1013,7 @@
     <script type="text/javascript" src="{{asset('grapheditor/js/Menus.js')}}"></script>
     <script type="text/javascript" src="{{asset('grapheditor/js/Toolbar.js')}}"></script>
     <script type="text/javascript" src="{{asset('grapheditor/js/Dialogs.js')}}"></script>
+
     <!-- Onto4ALL -->
     <script type="text/javascript" src="{{asset('js/HomeFunctions.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
@@ -1025,6 +1024,8 @@
     <script defer type="text/javascript" src="{{asset('js/SearchTip.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/BuildMenu.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/OpenOntology.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/SaveOntology.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
             crossorigin="anonymous"></script>
 

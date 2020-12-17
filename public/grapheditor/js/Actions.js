@@ -1,3 +1,7 @@
+// Variable that will be set below and have setGraphXML
+// getGraphXML, and other functions of the current graph
+var editor = {};
+
 /**
  * Copyright (c) 2006-2020, JGraph Ltd
  * Copyright (c) 2006-2020, draw.io AG
@@ -7,12 +11,13 @@
 function Actions(editorUi)
 {
 	this.editorUi = editorUi;
-	// send the editor to the OpenDiagram.js
-	setEditorUI(this.editorUi);
+
 	// Add the Thing Class in every ontology
 	setTimeout(function() {
 		addThingClassToCurrentOntology(editorUi.editor);
 	}, 2000);
+	// set the editor for other files to use it
+    editor = this.editorUi.editor;
 
 	this.actions = new Object();
 	this.init();

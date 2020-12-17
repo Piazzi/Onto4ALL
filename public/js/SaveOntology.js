@@ -16,7 +16,7 @@ $(document).ready(function () {
             data: {
                 _token: CSRF_TOKEN,
                 id: $("#id").val(),
-                xml_string: new XMLSerializer().serializeToString(editor.editor.getGraphXml()),
+                xml_string: new XMLSerializer().serializeToString(editor.getGraphXml()),
                 name: $("#name").val(),
                 publication_date: $("#publication-date").val(),
                 last_uploaded: $("#last-uploaded").val(),

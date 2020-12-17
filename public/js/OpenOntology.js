@@ -1,15 +1,3 @@
-var editor = 0;
-
-/**
- * Gets the current Editor from the Actions.js
- * @param editorParam
- */
-function setEditorUI(editorParam)
-{
-    editor = editorParam;
-}
-
-
 $(document).ready(function () {
 
     let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -27,7 +15,7 @@ $(document).ready(function () {
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
                 let doc = mxUtils.parseXml(data['file']);
-                editor.editor.setGraphXml(doc.documentElement);
+                editor.setGraphXml(doc.documentElement);
                 //console.log(data);
                 $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+data['name']);
                 $("#id").val(data['id']);
@@ -69,7 +57,7 @@ $(document).ready(function () {
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
                 let doc = mxUtils.parseXml(data['file']);
-                editor.editor.setGraphXml(doc.documentElement);
+                editor.setGraphXml(doc.documentElement);
                 //console.log(data);
                 $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+data['name']);
                 $("#id").val(data['id']);
