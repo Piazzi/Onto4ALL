@@ -41,7 +41,7 @@
     "Get Started!": "Comece agora!",
     "Main Features": "Principais Funcionalidades",
     "Full Graphical editor": "Editor gráfico completo",
-    "Draw any ontology you want, the way you want.": "Desenha qualquer ontologia que você quiser, da maneira que você quiser",
+    "Draw any ontology you want, the way you want": "Desenha qualquer ontologia que você quiser, da maneira que você quiser",
     "Ontology Manager": "Gerenciador de ontologias",
     "Save, view, edit your ontologies in our ontology manager and access them later with just one click": "Salve, visualize, edite suas ontologias em nosso gerenciador de ontologias e acesse-as mais tarde com apenas um clique",
     "Export": "Exporte",
@@ -395,5 +395,16 @@
     "Last Updated Ontology": "Última Ontologia Atualziada",
     "We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.": "É altamente recomendável usar o google chrome para executar o editor, pois ainda não somos capazes de executar testes suficientes em outros navegadores",
     "Ontologies shared with you:": "Ontologias compartilhadas com você:",
-    "You can not delete or mark up as favourite ontologies created by other users": "Você não pode deletar ou marcar como favorita ontologias criadas por outros usuários"
+    "You can not delete or mark up as favourite ontologies created by other users": "Você não pode deletar ou marcar como favorita ontologias criadas por outros usuários",
+    "Write correct axioms for classes with the help of this feature":"Escreva axiomas corretos para as classes com a ajuda deste recurso",
+    "We aim to make the Onto4ALL a platform for everyone to learn ontology, from begginers to researchers in the area": "Nosso objetivo é fazer do Onto4ALL uma plataforma para que todos possam aprender ontologia, desde iniciantes até pesquisadores da área.",
+    "Onto4ALL have a simple thesaurus editor as well": "Onto4ALL também tem um simples editor de tesauros",
+    "Get the information you need about BFO, IAO and IOF ontologies": "Obtenha as informações de que você precisa sobre as ontologias BFO, IAO e IOF",
+    "Class Expression Editor": "Editor de Axiomas",
+    "User Friendly": "Usabilidade Amigável",
+    "Tips Menu": "Menu de Dicas",
+    "See More": "Veja Mais",
+    "Start Now": "Comece agora"
+    
 }
+
