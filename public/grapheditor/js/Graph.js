@@ -3459,7 +3459,6 @@ Graph.prototype.zoomOut = function()
  */
 Graph.prototype.getTooltipForCell = function(cell)
 {
-	console.log(cell);
 	var tip = '';
 	
 	if (mxUtils.isNode(cell.value))
@@ -3497,11 +3496,10 @@ Graph.prototype.getTooltipForCell = function(cell)
 
 			// ------------ Onto4ALL ------------
 			// Adds the id in the tooltips
-			temp.push({name: 'id', value: cell.id});
-			// ------------ Onto4ALL ------------
-
-
+			temp.unshift({name: 'id', value: cell.id});
+			
 			// Sorts by name
+			/*
 			temp.sort(function(a, b)
 			{
 				if (a.name < b.name)
@@ -3516,17 +3514,21 @@ Graph.prototype.getTooltipForCell = function(cell)
 				{
 					return 0;
 				}
-			});
+			});*/
 
 			for (var i = 0; i < temp.length; i++)
 			{
 				if (temp[i].name != 'link' || !this.isCustomLink(temp[i].value))
 				{
-					tip += ((temp[i].name != 'link') ? '<b>' + temp[i].name + ':</b> ' : '') +
-						mxUtils.htmlEntities(temp[i].value) + '\n';
+					// colors the attributes label and id
+					if(temp[i].name == 'label' || temp[i].name == 'id')
+						tip += ((temp[i].name != 'link') ? '<b style="color:green">' + temp[i].name + ':</b> ' : '') +	mxUtils.htmlEntities(temp[i].value) + '\n';
+					else
+						tip += ((temp[i].name != 'link') ? '<b>' + temp[i].name + ':</b> ' : '') +	mxUtils.htmlEntities(temp[i].value) + '\n';
 				}
 			}
-			
+		
+
 			if (tip.length > 0)
 			{
 				tip = tip.substring(0, tip.length - 1);
