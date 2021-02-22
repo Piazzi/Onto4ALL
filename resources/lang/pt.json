@@ -404,7 +404,10 @@
     "User Friendly": "Usabilidade Amigável",
     "Tips Menu": "Menu de Dicas",
     "See More": "Veja Mais",
-    "Start Now": "Comece agora"
+    "Start Now": "Comece agora",
+
+    "Error": "Erro",
+    "You can only access this software using the following browsers: Google Chrome, Firefox": "Você só pode acessar este software usando os seguintes navegadores: Google Chrome, Firefox"
     
 }
 

@@ -961,6 +961,17 @@
         </div>
     @endif
 
+    <div id="overlay" style="background-color: #FFFFFF; z-index: 999999;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		display: none;">
+		<img style="margin-left: auto;  margin-right: auto; display:block" src="{{asset('css/images/LogoWhite.png')}}" alt="">
+		<h3 style="text-align: center;"><strong style="color: red;">{{__('Error')}}:</strong> {{__('You can only access this software using the following browsers: Google Chrome, Firefox')}}.</h3>
+	</div>
+
     <!-- LOADS MXGRAPH GRAPHEDITOR AND ITS FUNCTIONS -->
 
     <script type="text/javascript">
@@ -1015,6 +1026,7 @@
     <script type="text/javascript" src="{{asset('grapheditor/js/Dialogs.js')}}"></script>
 
     <!-- Onto4ALL -->
+    <script src="{{asset('js/Browser.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/HomeFunctions.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/NightMode.js')}}"></script>
