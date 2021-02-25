@@ -36,12 +36,7 @@ $(document).ready(function () {
             dataType: 'JSON',
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
-                $("#save-ontology").removeClass('unsaved').addClass('saved');
-                if(window.location.pathname.split('/')[1] === 'pt')
-                    $("#save-ontology").html('<i class="fa fa-fw fa-cloud-upload"></i> ' + data['message-pt']);
-                else
-                    $("#save-ontology").html('<i class="fa fa-fw fa-cloud-upload"></i> ' + data['message-en']);
-
+                updateSaveButtonInFrontEnd(true);
                 $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+$("#name").val());
                 $("#id").val(data['id']);
                 $("title").text($("#name").val() + ' | Onto4ALL - Ontology Graphical Editor');

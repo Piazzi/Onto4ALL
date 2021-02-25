@@ -16,7 +16,6 @@ function movementCompiler(xml) {
     relations = [];
     instances = [];
 
-    updateSaveButtonInFrontEnd();
     // Removes the previous error messages
     $(".direct-chat-messages").empty();
 
@@ -348,6 +347,8 @@ function movementCompiler(xml) {
 
     updateCountersInFrontEnd(warningsCount, basicErrorsCount, conceptualErrorsCount);
     updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCount);
+    updateSaveButtonInFrontEnd(false);
+
     previousElements = elements;
     elementsIdWithError = [];
 }
@@ -555,12 +556,30 @@ function autoCompleteInputs(element, propertyName, inputField) {
 /**
  * Update the save button in the front end
  */
-function updateSaveButtonInFrontEnd() {
+function updateSaveButtonInFrontEnd(saved) {
+    let message = '';
     // Updates the save file button
-    $("#save-ontology").removeClass("saved").addClass("unsaved").html('<i class="fa fa-fw fa-cloud-upload"></i>  Unsaved changes. Click here to save');
+    if(saved)
+    {
+        console.log(document.getElementById('save-ontology'));
+        if(getLanguage() == 'pt')
+            message = 'Todas as alterações foram salvas';
+        else
+            message = 'All changes saved';
+        $("#save-ontology").removeClass("unsaved").addClass("saved").html('<i class="fa fa-fw fa-cloud-upload"></i> '+message+'');
+    }
+    else
+    {
+        if(getLanguage() == 'pt')
+        message = 'Alterações não salvas. Clique aqui para salvar';
+        else
+        message = 'Unsaved changes. Click here to save';
+        $("#save-ontology").removeClass("saved").addClass("unsaved").html('<i class="fa fa-fw fa-cloud-upload"></i> '+message+'');
+    }
 
-    if (getLanguage() === 'pt')
-        $("#save-ontology").html('<i class="fa fa-fw fa-cloud-upload"></i> Alterações não salvas. Clique aqui para salvar');
+    // shows the button only if the user has made chances in the empty diagram
+    if(classes.length + relations.length + instances.length > 1)
+     $("#save-ontology").css("visibility", "visible")
 }
 
 /**

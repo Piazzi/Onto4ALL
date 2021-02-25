@@ -141,6 +141,10 @@ aside {
 	cursor: pointer !important;
 }
 
+#save-ontology {
+	visibility: hidden;
+}
+
 .unsaved {
 	border-color: #d73925 !important;
 	background-color: indianred !important;
@@ -152,8 +156,8 @@ aside {
 }
 
 .saved {
-	border-color: #008d4c;
-	background-color: #00a65a;
+	border-color: #008d4c !important;
+	background-color: #00a65a !important;
 	color:white !important;
 }
 

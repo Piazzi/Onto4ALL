@@ -37,6 +37,8 @@ $(document).ready(function () {
 
                 // Select the collaborators on the <select> tag
                 $('#collaborators-select').val(data['collaborators']).trigger('change');
+
+                updateSaveButtonInFrontEnd(true);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(JSON.stringify(jqXHR));
