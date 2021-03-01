@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
 
 class Ontology extends Model
 {
@@ -90,6 +92,18 @@ class Ontology extends Model
             return $sharedOntology;
         else
             return $ownedOntology;
+    }
+
+    /**
+     * Checks if the user can edit this ontology
+     * @return boolean
+     */
+    public function userCanEdit()
+    {
+        if($this->user_id == Auth::user()->id || $this->users->contains(Auth::user()->id))
+            return true;
+        else 
+            return false;
     }
 
 

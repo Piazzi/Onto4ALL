@@ -43,7 +43,7 @@ $(document).ready(function () {
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(JSON.stringify(jqXHR));
                 console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-                alert(textStatus+ ' ' + errorThrown);
+                alert('The following error has occurred: ' + JSON.stringify(jqXHR));
             }
         })
     });
@@ -85,7 +85,7 @@ $(document).ready(function () {
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(JSON.stringify(jqXHR));
                 console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-                alert(textStatus+ ' ' + errorThrown);
+                alert('The following error has occurred: ' + JSON.stringify(jqXHR));
             }
         })
     });

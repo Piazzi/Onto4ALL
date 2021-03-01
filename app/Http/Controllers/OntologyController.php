@@ -73,7 +73,6 @@ class OntologyController extends Controller
                 $savedOntology->save();
             }
         }
-
     }
 
     /**
@@ -85,7 +84,7 @@ class OntologyController extends Controller
     public function show($locale, $id)
     {
         $ontology = Ontology::findOrFail($id);
-        if ($ontology->user_id == Auth::user()->id || $ontology->users->contains(Auth::user()->id))
+        if ($ontology->userCanEdit())
             return view('ontologies.ontologies_show', compact('ontology'));
         else
             return view('lockscreen');
@@ -101,7 +100,7 @@ class OntologyController extends Controller
     {
         $ontology = Ontology::findOrFail($id);
         $users = User::all();
-        if ($ontology->user_id == Auth::user()->id || $ontology->users->contains(Auth::user()->id))
+        if ($ontology->userCanEdit())
             return view('ontologies.ontologies_edit', compact('ontology', 'id', 'users'));
         else
             return view('lockscreen');
@@ -117,13 +116,11 @@ class OntologyController extends Controller
     public function update(OntologyStoreRequest $request, $locale, $id)
     {
         $ontology = Ontology::where('id', $id)->first();
-        if ($ontology->user_id == Auth::user()->id || $ontology->users->contains(Auth::user()->id))
-        {
+        if ($ontology->userCanEdit()) {
             $ontology->update($request->all());
             $ontology->users()->sync($request->collaborators);
             return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been updated with success');
-        }
-        else
+        } else
             return view('lockscreen');
     }
 
@@ -136,13 +133,11 @@ class OntologyController extends Controller
     public function destroy($locale, $id)
     {
         $ontology = Ontology::find($id);
-        if ($ontology->user_id == Auth::user()->id)
-        {
+        if ($ontology->user_id == Auth::user()->id) {
             // Implementar onCascade no BD mais tarde
             DB::table('ontology_user')->where('ontology_id', $id)->delete();
             $ontology->delete();
-        }
-        else
+        } else
             abort(403);
         return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been deleted with success');
     }
@@ -237,31 +232,30 @@ class OntologyController extends Controller
      */
     public function updateOrCreate(Request $request)
     {
-        $ontology = Ontology::where('id',$request->id)->exists();
-        if($ontology)
-        {
+        $ontology = Ontology::where('id', $request->id)->exists();
+        if ($ontology) { 
             $ontology = Ontology::find($request->id);
-            $ontology->update([
-                "name" => $request->name,
-                "xml_string" => $request->xml_string,
-                "publication_date" => $request->publication_date,
-                "last_uploaded" => $request->last_uploaded,
-                "description" => $request->description,
-                "link" => $request->link,
-                "favourite" => 0,
-                "domain" => $request->domain,
-                "general_purpose" => $request->general_purpose,
-                "profile_users" => $request->profile_users,
-                "intended_use" => $request->intended_use,
-                "type_of_ontology" => $request->type_of_ontology,
-                "degree_of_formality" => $request->degree_of_formality,
-                "scope" => $request->scope,
-                "competence_questions" => $request->competence_questions,
-            ]);
-        }
-        else
-        {
-           $ontology = Ontology::create([
+            if ($ontology->userCanEdit()) {
+                $ontology->update([
+                    "name" => $request->name,
+                    "xml_string" => $request->xml_string,
+                    "publication_date" => $request->publication_date,
+                    "last_uploaded" => $request->last_uploaded,
+                    "description" => $request->description,
+                    "link" => $request->link,
+                    "favourite" => 0,
+                    "domain" => $request->domain,
+                    "general_purpose" => $request->general_purpose,
+                    "profile_users" => $request->profile_users,
+                    "intended_use" => $request->intended_use,
+                    "type_of_ontology" => $request->type_of_ontology,
+                    "degree_of_formality" => $request->degree_of_formality,
+                    "scope" => $request->scope,
+                    "competence_questions" => $request->competence_questions,
+                ]);
+            }
+        } else {
+            $ontology = Ontology::create([
                 "name" => $request->name,
                 "xml_string" => $request->xml_string,
                 "publication_date" => $request->publication_date,
@@ -362,7 +356,6 @@ class OntologyController extends Controller
         } else {
             return 'Denied Access';
         }
-
     }
 
     /**
@@ -379,7 +372,7 @@ class OntologyController extends Controller
                 "text" => "Ontology Not Found"
             ]);
             return response()->json($response);
-        } else  {
+        } else {
             $response = array(
                 'status' => 'success',
                 'id' => $ontology['id'],
@@ -405,5 +398,4 @@ class OntologyController extends Controller
             return response()->json($response);
         }
     }
-
 }
