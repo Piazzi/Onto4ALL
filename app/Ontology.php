@@ -88,7 +88,8 @@ class Ontology extends Model
     {
         $ownedOntology = Ontology::where('user_id', $user->id)->latest('updated_at')->first();
         $sharedOntology = $user->ontologies->sortByDesc('updated_at')->first();
-        if ($sharedOntology->updated_at > $ownedOntology->updated_at)
+
+        if ($sharedOntology && $sharedOntology->updated_at > $ownedOntology->updated_at)
             return $sharedOntology;
         else
             return $ownedOntology;
