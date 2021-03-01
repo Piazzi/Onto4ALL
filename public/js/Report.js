@@ -1,10 +1,9 @@
 $(document).ready(function () {
     // Reads the current ontology XML and then writes the report on a string for download
     $('#download-ontology-report').click(function () {
-        console.log(editor.editor.getGraphXml());
 
         // get the XML document from the editor
-        let xmlDoc = editor.editor.getGraphXml();
+        let xmlDoc = editor.getGraphXml();
         let report = '/************* Ontology Report *************/ \n\nClasses:';
 
         // Starts the XML interpretation
