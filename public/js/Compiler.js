@@ -631,7 +631,7 @@ function updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCo
 function thingClassExists() {
     let classes = getElementsNames();
     for (let i = 0; i < classes.length; i++)
-        if (classes[i] === 'Thing' || classes[i] === 'Coisa')
+        if (classes[i].toUpperCase() === 'THING' || classes[i].toUpperCase() === 'COISA')
             return true;
     return false;
 }
