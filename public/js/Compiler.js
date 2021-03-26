@@ -3,7 +3,7 @@
  * The main function is the movementCompiler()
  */
 
-var classes = [], relations = [], instances = [], previousElements = [], elementsIdWithError = [];
+var classes = [], relations = [], instances = [], previousElements = [], elementsIdWithError = [], compilerCounter = 0;
 
 /**
  * Gets the XML from the editor after any change is made.
@@ -11,10 +11,11 @@ var classes = [], relations = [], instances = [], previousElements = [], element
  * @param xml
  */
 function movementCompiler(xml) {
-
     classes = [];
     relations = [];
     instances = [];
+    compilerCounter++;
+    console.log(compilerCounter);
 
     // Removes the previous error messages
     $(".direct-chat-messages").empty();
@@ -578,7 +579,7 @@ function updateSaveButtonInFrontEnd(saved) {
     }
 
     // shows the button only if the user has made chances in the empty diagram
-    if(classes.length + relations.length + instances.length > 1)
+    if(compilerCounter > 1)
      $("#save-ontology").css("visibility", "visible")
 }
 
