@@ -4,14 +4,14 @@
 function isBrowserValid()
 {
     /* Checks Browser */
-		
+
 		// Opera 8.0+
 		var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 
 		// Firefox 1.0+
 		var isFirefox = typeof InstallTrigger !== 'undefined';
 
-		// Safari 3.0+ "[object HTMLElementConstructor]" 
+		// Safari 3.0+ "[object HTMLElementConstructor]"
 		var isSafari = /constructor/i.test(window.HTMLElement) || (function(p) {
 			return p.toString() === "[object SafariRemoteNotification]";
 		})(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification));
@@ -23,7 +23,7 @@ function isBrowserValid()
 		var isEdge = !isIE && !!window.StyleMedia;
 
 		// Chrome 1 - 79
-		var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+		//var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
 
 		// Edge (based on chromium) detection
 		var isEdgeChromium = isChrome && (navigator.userAgent.indexOf("Edg") != -1);
@@ -31,8 +31,8 @@ function isBrowserValid()
 		// Blink engine detection
 		var isBlink = (isChrome || isOpera) && !!window.CSS;
 
-		if (!isChrome && !isFirefox || isEdgeChromium) 
-            return false		
+		if (!isChrome && !isFirefox || isEdgeChromium)
+            return false
         else
             return true;
 }

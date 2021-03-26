@@ -19,7 +19,7 @@
         <!-- Main Header -->
         <header class="main-header">
             <!-- Logo -->
-            <a href="{{route('home', app()->getLocale())}}" class="logo">
+            <a class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">
                     <img  style="padding: 0px; border-right: 1px solid #00a65a; border-bottom: 1px solid #d2d6de;"src="{{asset('css/images/LogoMini.png')}}">
