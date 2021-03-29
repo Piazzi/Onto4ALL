@@ -15,7 +15,6 @@ function movementCompiler(xml) {
     relations = [];
     instances = [];
     compilerCounter++;
-    console.log(compilerCounter);
 
     // Removes the previous error messages
     $(".direct-chat-messages").empty();

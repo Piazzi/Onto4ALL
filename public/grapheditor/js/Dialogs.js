@@ -1416,10 +1416,17 @@ var EditDataDialog = function(ui, cell)
 		}
 
 		// Detects where the Annotations start
-		if(name === 'EquivalentTo' || name === 'SymmetricProperty')
-			createAnnotationsSection();
+		//if(name === 'EquivalentTo' || name === 'SymmetricProperty')
+		//	createAnnotationsSection();
 
-
+        if(name === "DisjointWith" || name === "hasSynonym" || name === "hasExactSynomym" || name === "hasRelatedSynonym" || name === "EquivalentTo")
+        {
+            if(getLanguage() == 'en')
+                texts[index].placeholder = "Separate the classes with a space";
+            else
+                texts[index].placeholder = "Separe as classes com um espaço";
+            texts[index].id = "AutoCompleteClasses";
+        }
 
 		if (value.indexOf('\n') > 0)
 		{
@@ -1478,9 +1485,10 @@ var EditDataDialog = function(ui, cell)
 	}
 
 
-
+    console.log(temp);
 	for (var i = 0; i < temp.length; i++)
 	{
+
 		addTextArea(count, temp[i].name, temp[i].value);
 		count++;
 	}
@@ -1534,9 +1542,20 @@ var EditDataDialog = function(ui, cell)
 					}
 
 					names.push(name);
-					var text = form.addTextarea(name + ':', '',  2);
 
+					var text = form.addTextarea(name + ':', '',  2);
+                    console.log(text);
 					text.style.width = '100%';
+
+                    if(name === "DisjointWith" || name === "hasSynonym" || name === "hasExactSynomym" || name === "hasRelatedSynonym" || name === "EquivalentTo")
+                    {
+                        if(getLanguage() == 'en')
+                            text.placeholder = "Separate the classes with a space";
+                        else
+                            text.placeholder = "Separe as classes com um espaço";
+                        text.id = "AutoCompleteClasses";
+                    }
+
 
 					// Disable the inputs
 					if(name === 'SubClassOf' || name === 'domain' || name === 'range')
