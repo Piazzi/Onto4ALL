@@ -1356,7 +1356,7 @@ var EditDataDialog = function(ui, cell)
 		{
 			return function()
 			{
-				var count = 0;
+				var count = 1;
 
 				for (var j = 0; j < names.length; j++)
 				{
