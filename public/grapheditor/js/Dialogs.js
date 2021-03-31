@@ -1326,7 +1326,7 @@ var EditDataDialog = function(ui, cell)
 	var addRemoveButton = function(text, name)
 	{
 		// does not add the remove button if the name is equal to one of the strings below
-		if(name === 'SubClassOf' || name === 'domain' || name === 'range')
+		if(name === 'SubClassOf' || name === 'domain' || name === 'range' || name === 'label')
 			return;
 
 		var wrapper = document.createElement('div');
@@ -1475,17 +1475,24 @@ var EditDataDialog = function(ui, cell)
 	*/
 	if (id != null)
 	{
+        console.log(cell);
 		var text = document.createElement('div');
 		text.style.width = '100%';
-		text.style.fontSize = '11px';
+		text.style.fontSize = '14px';
 		text.style.textAlign = 'center';
 		mxUtils.write(text, id);
-
 		form.addField(mxResources.get('id') + ':', text);
+
+        // Adds label value in the properties dialog
+        var label = document.createElement('div');
+        label.style.width = '100%';
+		label.style.fontSize = '14px';
+		label.style.textAlign = 'center';
+        console.log(cell.value);
+        mxUtils.write(label, typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value);
+        form.addField('label' + ':', label);
 	}
 
-
-    console.log(temp);
 	for (var i = 0; i < temp.length; i++)
 	{
 
@@ -1544,7 +1551,7 @@ var EditDataDialog = function(ui, cell)
 					names.push(name);
 
 					var text = form.addTextarea(name + ':', '',  2);
-                    console.log(text);
+                    //console.log(text);
 					text.style.width = '100%';
 
                     if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
