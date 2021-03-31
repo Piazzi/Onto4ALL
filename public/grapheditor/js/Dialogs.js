@@ -1326,7 +1326,7 @@ var EditDataDialog = function(ui, cell)
 	var addRemoveButton = function(text, name)
 	{
 		// does not add the remove button if the name is equal to one of the strings below
-		if(name === 'SubClassOf' || name === 'domain' || name === 'range' || name === 'label')
+		if(name === 'SubClassOf' || name === 'domain' || name === 'range' )
 			return;
 
 		var wrapper = document.createElement('div');
@@ -1377,6 +1377,7 @@ var EditDataDialog = function(ui, cell)
 		})(name);
 
 		mxEvent.addListener(removeAttr, 'click', removeAttrFn);
+
 
 		var parent = text.parentNode;
 		wrapper.appendChild(text);
@@ -1475,7 +1476,6 @@ var EditDataDialog = function(ui, cell)
 	*/
 	if (id != null)
 	{
-        console.log(cell);
 		var text = document.createElement('div');
 		text.style.width = '100%';
 		text.style.fontSize = '14px';
@@ -1488,7 +1488,6 @@ var EditDataDialog = function(ui, cell)
         label.style.width = '100%';
 		label.style.fontSize = '14px';
 		label.style.textAlign = 'center';
-        console.log(cell.value);
         mxUtils.write(label, typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value);
         form.addField('label' + ':', label);
 	}
@@ -1550,18 +1549,41 @@ var EditDataDialog = function(ui, cell)
 
 					names.push(name);
 
-					var text = form.addTextarea(name + ':', '',  2);
-                    //console.log(text);
-					text.style.width = '100%';
-
+                    var text;
                     if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
                     {
+                        text = document.createElement("select");
                         if(getLanguage() == 'en')
                             text.placeholder = "Separate the classes with a space";
                         else
                             text.placeholder = "Separe as classes com um espaço";
-                        text.id = "AutoCompleteClasses";
+                        text.classList.add("AutoCompleteClasses", "form-control", "js-example-basic-multiple");
+                        text.setAttribute("multiple","multiple");
+                        text.setAttribute("data-placeholder","Select Classes");
+                        text.setAttribute("name", "classes[]")
+
+                        getElementsNames().forEach(element => {
+                            let option = document.createElement("option");
+                            option.setAttribute("value", element);
+                            option.innerHTML = element;
+                            text.appendChild(option);
+                        });
+
+                        $(document).ready(function () {
+                            $('.js-example-basic-multiple').select2(
+                                {theme: 'classic'}
+                            );
+                        });
+
+                        // mxForm method that adds a <tr> <td> tags as parents of the element
+                        form.addField(name, text);
                     }
+                    else
+					    text = form.addTextarea(name + ':', '',  2);
+                    //console.log(text);
+					text.style.width = '100%';
+
+
 
 
 					// Disable the inputs
