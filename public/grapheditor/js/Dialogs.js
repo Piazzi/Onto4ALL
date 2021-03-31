@@ -1419,7 +1419,7 @@ var EditDataDialog = function(ui, cell)
 		//if(name === 'EquivalentTo' || name === 'SymmetricProperty')
 		//	createAnnotationsSection();
 
-        if(name === "DisjointWith" || name === "hasSynonym" || name === "hasExactSynomym" || name === "hasRelatedSynonym" || name === "EquivalentTo")
+        if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
         {
             if(getLanguage() == 'en')
                 texts[index].placeholder = "Separate the classes with a space";
@@ -1523,7 +1523,7 @@ var EditDataDialog = function(ui, cell)
 	 * Add a property to the cell
 	 * @param name
 	 */
-	function addProps(name) {
+	function addProperty(name) {
 		// Avoid ':' in attribute names which seems to be valid in Chrome
 		if (name.length > 0 && name != 'label' && name != 'placeholders' && name.indexOf(':') < 0) {
 			try {
@@ -1547,7 +1547,7 @@ var EditDataDialog = function(ui, cell)
                     console.log(text);
 					text.style.width = '100%';
 
-                    if(name === "DisjointWith" || name === "hasSynonym" || name === "hasExactSynomym" || name === "hasRelatedSynonym" || name === "EquivalentTo")
+                    if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
                     {
                         if(getLanguage() == 'en')
                             text.placeholder = "Separate the classes with a space";
@@ -1596,64 +1596,65 @@ var EditDataDialog = function(ui, cell)
 		if(cell.isEdge())
 		{
 			// range properties
-			addProps('domain');
-			addProps('range');
-			addProps('inverseOf');
-			addProps('subPropertyOf');
-			addProps('equivalentProperty');
-			addProps('FunctionalProperty');
-			addProps('InverseFunctionalProperty');
-			addProps('TransitiveProperty');
-			addProps('SymmetricProperty');
+			addProperty('domain');
+			addProperty('range');
+			addProperty('inverseOf');
+			addProperty('subPropertyOf');
+			addProperty('equivalentProperty');
+			addProperty('FunctionalProperty');
+			addProperty('InverseFunctionalProperty');
+			addProperty('TransitiveProperty');
+			addProperty('SymmetricProperty');
 		}
 		else
 		{
 			// class properties
-			addProps('SubClassOf');
-            addProps('Constraint');
-            addProps('SubClassOfAnonymousAncestor');
-			addProps('DisjointWith');
-			addProps('DisjointUnionOf');
-			addProps('EquivalentTo');
+			addProperty('SubClassOf');
+            addProperty('Constraint');
+            addProperty('SubClassOfAnonymousAncestor');
+			addProperty('DisjointWith');
+			addProperty('DisjointUnionOf');
+			addProperty('EquivalentTo');
+			addProperty('hasSynonym');
 		}
 
 		//createAnnotationsSection();
 
 		// Annotations
-		addProps('definition');
-		addProps('definitionSource');
-		addProps('alternativeTerm');
-		addProps('editorNote');
-		addProps('curatorNote');
-		addProps('seeAlso');
-		addProps('isDefinedBy');
-		addProps('comment');
-		addProps('versionInfo');
-		addProps('priorVersion');
-		addProps('member');
-		addProps('licence');
-		addProps('contributor');
-		addProps('elucidation');
-		addProps('termEditor');
+		addProperty('definition');
+		addProperty('definitionSource');
+		addProperty('alternativeTerm');
+		addProperty('editorNote');
+		addProperty('curatorNote');
+		addProperty('seeAlso');
+		addProperty('isDefinedBy');
+		addProperty('comment');
+		addProperty('versionInfo');
+		addProperty('priorVersion');
+		addProperty('member');
+		addProperty('licence');
+		addProperty('contributor');
+		addProperty('elucidation');
+		addProperty('termEditor');
 	}
 	else
 	{
 		// thesaurus properties
-		addProps('altLabel');
-		addProps('broader');
-		addProps('narrower');
-		addProps('prefLabel');
-		addProps('related');
-		addProps('subject');
-		addProps('scopeNote');
-		addProps('broadMatch');
-		addProps('changeNote');
-		addProps('definition');
-		addProps('editorialNote');
-		addProps('hiddenLabel');
-		addProps('historyNote');
-		addProps('note');
-		addProps('topConceptOf');
+		addProperty('altLabel');
+		addProperty('broader');
+		addProperty('narrower');
+		addProperty('prefLabel');
+		addProperty('related');
+		addProperty('subject');
+		addProperty('scopeNote');
+		addProperty('broadMatch');
+		addProperty('changeNote');
+		addProperty('definition');
+		addProperty('editorialNote');
+		addProperty('hiddenLabel');
+		addProperty('historyNote');
+		addProperty('note');
+		addProperty('topConceptOf');
 	}
 
 	/**
