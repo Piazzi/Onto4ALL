@@ -1290,6 +1290,12 @@ ExportDialog.saveLocalFile = function(editorUi, data, filename, format)
 	}
 };
 
+var properties = {
+    DisjointWith: null,
+    EquivalentTo: null,
+    hasSynonym: null,
+}
+
 /**
  * Constructs a new metadata dialog.
  */
@@ -1396,24 +1402,45 @@ var EditDataDialog = function(ui, cell)
 		//form.addField('', annotationsTitle);
 	}
 
+
+
 	// THIS FUNCTION IS CALLED WHEN ANY PROPERTY IS FILLED
 	var addTextArea = function(index, name, value)
 	{
 		names[index] = name;
 
+        switch (name) {
+            case "DisjointWith":
+                texts[index] = createMultipleSelect(name, properties.DisjointWith);
+                form.addField(name, texts[index]);
+                break;
+
+            case "hasSynonym":
+                texts[index] = createMultipleSelect(name, properties.hasSynonym);
+                form.addField(name, texts[index]);
+                break;
+
+            case "EquivalentTo":
+                texts[index] = createMultipleSelect(name, properties.EquivalentTo);
+                form.addField(name, texts[index]);
+                break;
+            default:
+                texts[index] = form.addTextarea(names[count], value, 2);
+                break;
+        }
+
 		//texts[index] = form.addTextarea(names[count] + ':', value, 2);
+        /*
         if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
         {
-            texts[index] = createMultipleSelect(name, value);
+            texts[index] = createMultipleSelect(name, properties.DisjointWith);
             form.addField(name, texts[index]);
-            console.log(name, value);
-            /*$(document).ready(function () {
-                $('.AutoCompleteClasses').val(value).trigger('change');
-            });*/
-
+            console.log("Carregadas: ", properties);
+            //if(name ==="DisjointWith")
+             //   $('#DisjointWith').val(properties.DisjointWith).trigger('change');
         }
         else
-		    texts[index] = form.addTextarea(names[count], value, 2);
+		    texts[index] = form.addTextarea(names[count], value, 2);*/
 
 
 
@@ -1459,7 +1486,6 @@ var EditDataDialog = function(ui, cell)
 			temp.push({name: attrs[i].nodeName, value: attrs[i].nodeValue});
 		}
 	}
-    console.log($(".AutoCompleteClasses").val());
 
 	// Sorts by name
 	/*
@@ -1737,7 +1763,7 @@ var EditDataDialog = function(ui, cell)
         select.id = name;
         select.setAttribute("multiple","multiple");
         select.setAttribute("name", "classes[]");
-        select.style.width = "110% !important";
+
 
         getElementsNames().forEach(element => {
             let option = document.createElement("option");
@@ -1767,9 +1793,35 @@ var EditDataDialog = function(ui, cell)
             });
 
         }
-        console.log(value);
+
+
+        select.onchange =  function (e) {
+
+            console.log($('#'+name).val());
+            console.log(properties);
+
+                switch (name) {
+                    case "DisjointWith":
+                        properties.DisjointWith = $('#'+name).val();
+                        break;
+
+                    case "hasSynonym":
+                        properties.hasSynonym = $('#'+name).val();
+                        break;
+
+                    case "EquivalentTo":
+                        properties.EquivalentTo = $('#'+name).val();
+                        break;
+                    default:
+
+                        break;
+                }
+        }
+
         return select;
     }
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1871,12 +1923,14 @@ var EditDataDialog = function(ui, cell)
 				}
 				else
 				{
-
 					value.setAttribute(names[i], texts[i].value);
+
 					removeLabel = removeLabel || (names[i] == 'placeholder' &&
 						value.getAttribute('placeholders') == '1');
 				}
 			}
+            value.setAttribute("DisjointWith", properties.DisjointWith);
+            console.log(value);
 
 			// Removes label if placeholder is assigned
 			if (removeLabel)
