@@ -1557,10 +1557,10 @@ var EditDataDialog = function(ui, cell)
                             text.placeholder = "Separate the classes with a space";
                         else
                             text.placeholder = "Separe as classes com um espaço";
-                        text.classList.add("AutoCompleteClasses", "form-control", "js-example-basic-multiple");
+                        text.classList.add("AutoCompleteClasses", "form-control");
                         text.setAttribute("multiple","multiple");
-                        text.setAttribute("data-placeholder","Select Classes");
-                        text.setAttribute("name", "classes[]")
+                        text.setAttribute("name", "classes[]");
+                        text.style.width = "110% !important";
 
                         getElementsNames().forEach(element => {
                             let option = document.createElement("option");
@@ -1570,8 +1570,10 @@ var EditDataDialog = function(ui, cell)
                         });
 
                         $(document).ready(function () {
-                            $('.js-example-basic-multiple').select2(
-                                {theme: 'classic'}
+                            $('.AutoCompleteClasses').select2(
+                                {theme: 'classic',
+                                width: 'resolve',
+                                placeholder: 'Select classes'}
                             );
                         });
 
