@@ -501,10 +501,10 @@ function getElementsNames(category = 'Class') {
     let names = [];
     if (category === 'Relation') {
         for (let i = 0; i < relations.length; i++)
-            names.push(removeSpaces(getValueOrLabel(relations[i])));
+            names.push(getValueOrLabel(relations[i]));
     } else {
         for (let i = 0; i < classes.length; i++)
-            names.push(removeSpaces(getValueOrLabel(classes[i])));
+            names.push(getValueOrLabel(classes[i]));
     }
     return names;
 }

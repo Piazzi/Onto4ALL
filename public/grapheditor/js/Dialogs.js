@@ -1402,7 +1402,18 @@ var EditDataDialog = function(ui, cell)
 		names[index] = name;
 
 		//texts[index] = form.addTextarea(names[count] + ':', value, 2);
-		texts[index] = form.addTextarea(names[count], value, 2);
+        if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
+        {
+            texts[index] = createMultipleSelect(name, value);
+            form.addField(name, texts[index]);
+            console.log(name, value);
+            /*$(document).ready(function () {
+                $('.AutoCompleteClasses').val(value).trigger('change');
+            });*/
+
+        }
+        else
+		    texts[index] = form.addTextarea(names[count], value, 2);
 
 
 
@@ -1420,14 +1431,7 @@ var EditDataDialog = function(ui, cell)
 		//if(name === 'EquivalentTo' || name === 'SymmetricProperty')
 		//	createAnnotationsSection();
 
-        if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
-        {
-            if(getLanguage() == 'en')
-                texts[index].placeholder = "Separate the classes with a space";
-            else
-                texts[index].placeholder = "Separe as classes com um espaço";
-            texts[index].id = "AutoCompleteClasses";
-        }
+
 
 		if (value.indexOf('\n') > 0)
 		{
@@ -1455,6 +1459,7 @@ var EditDataDialog = function(ui, cell)
 			temp.push({name: attrs[i].nodeName, value: attrs[i].nodeValue});
 		}
 	}
+    console.log($(".AutoCompleteClasses").val());
 
 	// Sorts by name
 	/*
@@ -1552,30 +1557,7 @@ var EditDataDialog = function(ui, cell)
                     var text;
                     if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
                     {
-                        text = document.createElement("select");
-                        if(getLanguage() == 'en')
-                            text.placeholder = "Separate the classes with a space";
-                        else
-                            text.placeholder = "Separe as classes com um espaço";
-                        text.classList.add("AutoCompleteClasses", "form-control");
-                        text.setAttribute("multiple","multiple");
-                        text.setAttribute("name", "classes[]");
-                        text.style.width = "110% !important";
-
-                        getElementsNames().forEach(element => {
-                            let option = document.createElement("option");
-                            option.setAttribute("value", element);
-                            option.innerHTML = element;
-                            text.appendChild(option);
-                        });
-
-                        $(document).ready(function () {
-                            $('.AutoCompleteClasses').select2(
-                                {theme: 'classic',
-                                width: 'resolve',
-                                placeholder: 'Select classes'}
-                            );
-                        });
+                        text = createMultipleSelect(name);
 
                         // mxForm method that adds a <tr> <td> tags as parents of the element
                         form.addField(name, text);
@@ -1642,11 +1624,11 @@ var EditDataDialog = function(ui, cell)
 			// class properties
 			addProperty('SubClassOf');
             addProperty('Constraint');
-            addProperty('SubClassOfAnonymousAncestor');
 			addProperty('DisjointWith');
-			addProperty('DisjointUnionOf');
 			addProperty('EquivalentTo');
 			addProperty('hasSynonym');
+            addProperty('SubClassOfAnonymousAncestor');
+			addProperty('DisjointUnionOf');
 		}
 
 		//createAnnotationsSection();
@@ -1740,6 +1722,54 @@ var EditDataDialog = function(ui, cell)
 			};
 		}
 	}
+
+    /**
+     * Add a multiple Select2 input
+     */
+    function createMultipleSelect(name, value = null) {
+        select = document.createElement("select");
+        if(getLanguage() == 'en')
+            select.placeholder = "Select classes";
+        else
+            select.placeholder = "Selecione classes";
+
+        select.classList.add("AutoCompleteClasses", "form-control");
+        select.id = name;
+        select.setAttribute("multiple","multiple");
+        select.setAttribute("name", "classes[]");
+        select.style.width = "110% !important";
+
+        getElementsNames().forEach(element => {
+            let option = document.createElement("option");
+            option.setAttribute("value", element);
+            option.innerHTML = element;
+            select.appendChild(option);
+        });
+
+        if(value === null)
+        {
+
+            $(document).ready(function () {
+                $('#'+name).select2({
+                    theme: 'classic',
+                    width: 'resolve'
+                }
+                );
+            });
+        }
+        else{
+            $(document).ready(function () {
+                $('#'+name).select2({
+                    theme: 'classic',
+                    width: 'resolve'
+                }
+                ).val(value).trigger('change');
+            });
+
+        }
+        console.log(value);
+        return select;
+    }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -1841,6 +1871,7 @@ var EditDataDialog = function(ui, cell)
 				}
 				else
 				{
+
 					value.setAttribute(names[i], texts[i].value);
 					removeLabel = removeLabel || (names[i] == 'placeholder' &&
 						value.getAttribute('placeholders') == '1');
