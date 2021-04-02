@@ -1408,20 +1408,21 @@ var EditDataDialog = function(ui, cell)
 	var addTextArea = function(index, name, value)
 	{
 		names[index] = name;
-
+        console.log(name, cell.value.getAttribute(name).split(','));
         switch (name) {
             case "DisjointWith":
-                texts[index] = createMultipleSelect(name, properties.DisjointWith);
-                form.addField(name, texts[index]);
+                texts[index] = createMultipleSelect(name, cell.value.getAttribute(name).split(',') );
+                form.addField(name, texts[index])
+                autoCompleteInputs(cell, name, texts[index]);
                 break;
 
             case "hasSynonym":
-                texts[index] = createMultipleSelect(name, properties.hasSynonym);
+                texts[index] = createMultipleSelect(name, cell.value.getAttribute(name).split(','));
                 form.addField(name, texts[index]);
                 break;
 
             case "EquivalentTo":
-                texts[index] = createMultipleSelect(name, properties.EquivalentTo);
+                texts[index] = createMultipleSelect(name, cell.value.getAttribute(name).split(','));
                 form.addField(name, texts[index]);
                 break;
             default:
@@ -1429,18 +1430,6 @@ var EditDataDialog = function(ui, cell)
                 break;
         }
 
-		//texts[index] = form.addTextarea(names[count] + ':', value, 2);
-        /*
-        if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
-        {
-            texts[index] = createMultipleSelect(name, properties.DisjointWith);
-            form.addField(name, texts[index]);
-            console.log("Carregadas: ", properties);
-            //if(name ==="DisjointWith")
-             //   $('#DisjointWith').val(properties.DisjointWith).trigger('change');
-        }
-        else
-		    texts[index] = form.addTextarea(names[count], value, 2);*/
 
 
 
@@ -1602,7 +1591,6 @@ var EditDataDialog = function(ui, cell)
 						text.disabled = true;
 						text.style.width = '95%';
 						autoCompleteInputs(cell, name, text);
-						console.log(cell);
 					}
 
 					texts.push(text);
@@ -1754,11 +1742,6 @@ var EditDataDialog = function(ui, cell)
      */
     function createMultipleSelect(name, value = null) {
         select = document.createElement("select");
-        if(getLanguage() == 'en')
-            select.placeholder = "Select classes";
-        else
-            select.placeholder = "Selecione classes";
-
         select.classList.add("AutoCompleteClasses", "form-control");
         select.id = name;
         select.setAttribute("multiple","multiple");
@@ -1930,8 +1913,13 @@ var EditDataDialog = function(ui, cell)
 						value.getAttribute('placeholders') == '1');
 				}
 			}
+
+            // sets the properties with the multiple select value
             value.setAttribute("DisjointWith", properties.DisjointWith);
-            console.log(value);
+            value.setAttribute("EquivalentTo", properties.EquivalentTo);
+			value.setAttribute("hasSynonym", properties.hasSynonym);
+
+
 
 			// Removes label if placeholder is assigned
 			if (removeLabel)
