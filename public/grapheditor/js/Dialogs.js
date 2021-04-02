@@ -1764,8 +1764,11 @@ var EditDataDialog = function(ui, cell)
         select.setAttribute("multiple","multiple");
         select.setAttribute("name", "classes[]");
 
+		// get and removes current cell name from the select options
+		let cellName = typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value;
+		let currentClasses = getElementsNames('Class').filter(e => e !== cellName);
 
-        getElementsNames().forEach(element => {
+        currentClasses.forEach(element => {
             let option = document.createElement("option");
             option.setAttribute("value", element);
             option.innerHTML = element;
@@ -1774,7 +1777,6 @@ var EditDataDialog = function(ui, cell)
 
         if(value === null)
         {
-
             $(document).ready(function () {
                 $('#'+name).select2({
                     theme: 'classic',
@@ -1800,21 +1802,20 @@ var EditDataDialog = function(ui, cell)
             console.log($('#'+name).val());
             console.log(properties);
 
-                switch (name) {
-                    case "DisjointWith":
-                        properties.DisjointWith = $('#'+name).val();
-                        break;
+            switch (name) {
+                case "DisjointWith":
+                    properties.DisjointWith = $("#" + name).val();
+                    break;
 
-                    case "hasSynonym":
-                        properties.hasSynonym = $('#'+name).val();
-                        break;
+                case "hasSynonym":
+                    properties.hasSynonym = $("#" + name).val();
+                    break;
 
-                    case "EquivalentTo":
-                        properties.EquivalentTo = $('#'+name).val();
-                        break;
-                    default:
-
-                        break;
+                case "EquivalentTo":
+                    properties.EquivalentTo = $("#" + name).val();
+                    break;
+                default:
+                    break;
                 }
         }
 
