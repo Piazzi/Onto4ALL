@@ -1609,7 +1609,6 @@ var EditDataDialog = function(ui, cell)
 		}
 	}
 
-	//console.log(cell);
 	// relations properties
 	if(window.location.pathname.split('/')[2] === 'home')
 	{
@@ -1619,8 +1618,8 @@ var EditDataDialog = function(ui, cell)
 			addProperty('domain');
 			addProperty('range');
 			addProperty('inverseOf');
-			addProperty('subPropertyOf');
 			addProperty('equivalentProperty');
+			addProperty('subPropertyOf');
 			addProperty('FunctionalProperty');
 			addProperty('InverseFunctionalProperty');
 			addProperty('TransitiveProperty');
@@ -1803,11 +1802,6 @@ var EditDataDialog = function(ui, cell)
         return select;
     }
 
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 	var addBtn = mxUtils.button(mxResources.get('addProperty'), function()
 	{
 		var name = nameInput.value;
@@ -1915,7 +1909,7 @@ var EditDataDialog = function(ui, cell)
 
             console.log(cell);
 
-            // Sets the autocomplete atributes 
+            // Sets the autocomplete atributes
 
             // if the cell is a class
             if(!cell.edge)
@@ -2040,6 +2034,7 @@ var EditDataDialog = function(ui, cell)
 
 	this.container = div;
 };
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
  * Optional help link.

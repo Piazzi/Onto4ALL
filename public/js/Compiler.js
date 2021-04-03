@@ -538,7 +538,7 @@ function addIdToErrorArray(elementId) {
  * @param inputField
  */
 function autoCompleteInputs(element, propertyName, inputField) {
- 
+
     // check if the element is a relation
     if (element.edge == true) {
         if (element.source && element.source.id != null && propertyName === 'domain')
@@ -559,8 +559,8 @@ function autoCompleteInputs(element, propertyName, inputField) {
         for (let i = 0; i < objects.length; i++) {
             if(isClass(objects[i].childNodes[0]) || isRelation(objects[i].childNodes[0]))
             {
-                let propertyValues = objects[i].getAttribute(propertyName).split(',');
-                if(propertyValues.indexOf(currentElementName) > -1)
+                let propertyValues = objects[i].getAttribute(propertyName)?.split(',');
+                if(propertyValues?.indexOf(currentElementName) > -1)
                    values.push(objects[i].getAttribute('label'));
             }
 
