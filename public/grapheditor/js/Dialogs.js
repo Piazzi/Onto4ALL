@@ -1413,25 +1413,7 @@ var EditDataDialog = function(ui, cell)
 		if(name === "DisjointWith" || name === 'hasSynonym' || name === 'EquivalentTo')
 		{
             let valuesFromAutoComplete = autoCompleteInputs(cell, name, texts[index]);
-            let valuesFromCell = cell.value.getAttribute(name).split(',');
-            let valuesToInsert = [];
-
-            console.log("Values from autocomplete: ", valuesFromAutoComplete);
-            console.log("Values from cell: ", valuesFromCell);
-
-            if(valuesFromAutoComplete.length > 0)
-                valuesFromCell.push(valuesFromAutoComplete);
-
-            /*for (let i = 0; i < valuesFromCell.length; i++) {
-                if(valuesFromAutoComplete.indexOf(valuesFromCell[i]) > -1)
-                {
-                    valuesFromCell.push
-                }
-
-            }*/
-            console.log("values to be inserted: ", valuesFromCell);
-
-			texts[index] = createMultipleSelect(name, valuesFromCell);
+			texts[index] = createMultipleSelect(name, valuesFromAutoComplete);
 			form.addField(name, texts[index]);
 
 		}
@@ -1919,13 +1901,16 @@ var EditDataDialog = function(ui, cell)
 				}
 			}
 
-            // sets the properties with the multiple select value
-            if(properties.DisjointWith !== null)
-                value.setAttribute("DisjointWith", properties.DisjointWith);
-            if(properties.EquivalentTo !== null)
-                value.setAttribute("EquivalentTo", properties.EquivalentTo);
-            if(properties.hasSynonym !== null)
-			    value.setAttribute("hasSynonym", properties.hasSynonym);
+            console.log(cell);
+            // if the cell is a class
+            if(!cell.edge)
+                // sets the properties with the multiple select value
+                if(properties.DisjointWith !== null)
+                    value.setAttribute("DisjointWith", properties.DisjointWith);
+                if(properties.EquivalentTo !== null)
+                    value.setAttribute("EquivalentTo", properties.EquivalentTo);
+                if(properties.hasSynonym !== null)
+                    value.setAttribute("hasSynonym", properties.hasSynonym);
 
 
 

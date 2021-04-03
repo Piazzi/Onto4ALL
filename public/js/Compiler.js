@@ -538,7 +538,7 @@ function addIdToErrorArray(elementId) {
  * @param inputField
  */
 function autoCompleteInputs(element, propertyName, inputField) {
-    console.log(element, propertyName);
+    //console.log(element, propertyName);
     // check if the element is a relation
     if (element.edge == true) {
         if (element.source && element.source.id != null && propertyName === 'domain')
@@ -555,23 +555,15 @@ function autoCompleteInputs(element, propertyName, inputField) {
     else if(propertyName === 'DisjointWith' || propertyName === 'EquivalentTo' || propertyName === "hasSynonym"){
         let values = [];
         let currentElementName = typeof element.value === 'object' ? element.value.getAttribute('label') : element.value;
-        console.log('Current element name: ', currentElementName);
         for (let i = 0; i < objects.length; i++) {
             if(isClass(objects[i].childNodes[0]))
             {
                 let propertyValues = objects[i].getAttribute(propertyName).split(',');
-                console.log(propertyName, propertyValues);
                 if(propertyValues.indexOf(currentElementName) > -1)
-                {
                    values.push(objects[i].getAttribute('label'));
-                }
             }
 
         }
-        //$('#'+propertyName).val(values).trigger('change');
-        console.log("values to be inserted: ",values);
-        console.log($('#'+propertyName).val());
-        //console.log(document.getElementById(propertyName));
         return values;
     }
     return null;
