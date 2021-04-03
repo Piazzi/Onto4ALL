@@ -1408,29 +1408,35 @@ var EditDataDialog = function(ui, cell)
 	var addTextArea = function(index, name, value)
 	{
 		names[index] = name;
-        console.log(name, cell.value.getAttribute(name).split(','));
-        switch (name) {
-            case "DisjointWith":
-                texts[index] = createMultipleSelect(name, cell.value.getAttribute(name).split(',') );
-                form.addField(name, texts[index])
-                autoCompleteInputs(cell, name, texts[index]);
-                break;
-
-            case "hasSynonym":
-                texts[index] = createMultipleSelect(name, cell.value.getAttribute(name).split(','));
-                form.addField(name, texts[index]);
-                break;
-
-            case "EquivalentTo":
-                texts[index] = createMultipleSelect(name, cell.value.getAttribute(name).split(','));
-                form.addField(name, texts[index]);
-                break;
-            default:
-                texts[index] = form.addTextarea(names[count], value, 2);
-                break;
-        }
 
 
+		if(name === "DisjointWith" || name === 'hasSynonym' || name === 'EquivalentTo')
+		{
+            let valuesFromAutoComplete = autoCompleteInputs(cell, name, texts[index]);
+            let valuesFromCell = cell.value.getAttribute(name).split(',');
+            let valuesToInsert = [];
+
+            console.log("Values from autocomplete: ", valuesFromAutoComplete);
+            console.log("Values from cell: ", valuesFromCell);
+
+            if(valuesFromAutoComplete.length > 0)
+                valuesFromCell.push(valuesFromAutoComplete);
+
+            /*for (let i = 0; i < valuesFromCell.length; i++) {
+                if(valuesFromAutoComplete.indexOf(valuesFromCell[i]) > -1)
+                {
+                    valuesFromCell.push
+                }
+
+            }*/
+            console.log("values to be inserted: ", valuesFromCell);
+
+			texts[index] = createMultipleSelect(name, valuesFromCell);
+			form.addField(name, texts[index]);
+
+		}
+		else
+			texts[index] = form.addTextarea(names[count], value, 2);
 
 
 		texts[index].style.width = '100%';
@@ -1572,10 +1578,12 @@ var EditDataDialog = function(ui, cell)
                     var text;
                     if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
                     {
-                        text = createMultipleSelect(name);
-
+                        // creates the multiple select and fill it
+                        text = createMultipleSelect(name, autoCompleteInputs(cell, name, text));
                         // mxForm method that adds a <tr> <td> tags as parents of the element
                         form.addField(name, text);
+                        //autoCompleteInputs(cell, name, text);
+
                     }
                     else
 					    text = form.addTextarea(name + ':', '',  2);
@@ -1782,9 +1790,6 @@ var EditDataDialog = function(ui, cell)
 
         select.onchange =  function (e) {
 
-            console.log($('#'+name).val());
-            console.log(properties);
-
             switch (name) {
                 case "DisjointWith":
                     properties.DisjointWith = $("#" + name).val();
@@ -1915,9 +1920,12 @@ var EditDataDialog = function(ui, cell)
 			}
 
             // sets the properties with the multiple select value
-            value.setAttribute("DisjointWith", properties.DisjointWith);
-            value.setAttribute("EquivalentTo", properties.EquivalentTo);
-			value.setAttribute("hasSynonym", properties.hasSynonym);
+            if(properties.DisjointWith !== null)
+                value.setAttribute("DisjointWith", properties.DisjointWith);
+            if(properties.EquivalentTo !== null)
+                value.setAttribute("EquivalentTo", properties.EquivalentTo);
+            if(properties.hasSynonym !== null)
+			    value.setAttribute("hasSynonym", properties.hasSynonym);
 
 
 

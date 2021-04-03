@@ -3,7 +3,7 @@
  * The main function is the movementCompiler()
  */
 
-var classes = [], relations = [], instances = [], previousElements = [], elementsIdWithError = [], compilerCounter = 0;
+var classes = [], relations = [], instances = [], previousElements = [], elementsIdWithError = [], compilerCounter = 0, objects = [];
 
 /**
  * Gets the XML from the editor after any change is made.
@@ -258,7 +258,7 @@ function movementCompiler(xml) {
 
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Search for 'object' elements in the XML
-    let objects = xmlDoc.getElementsByTagName("object");
+    objects = xmlDoc.getElementsByTagName("object");
     for (let i = 0; i < objects.length; i++) {
 
         if (objects[i].getAttribute("label") != null) {
@@ -532,25 +532,49 @@ function addIdToErrorArray(elementId) {
 }
 
 /**
- * Autocomplete the SubClassOf, Domain and Range properties.
+ * Autocomplete the SubClassOf, Domain, Range, DisjointWith, EquivalentTo and hasSynonum properties.
  * @param element
  * @param propertyName
  * @param inputField
  */
 function autoCompleteInputs(element, propertyName, inputField) {
-    console.log(element.value);
+    console.log(element, propertyName);
     // check if the element is a relation
     if (element.edge == true) {
         if (element.source && element.source.id != null && propertyName === 'domain')
             inputField.value = findNameById(previousElements, element.source.id);
         if (element.target && element.target.id != null && propertyName === 'range')
             inputField.value = findNameById(previousElements, element.target.id);
-    } else {
-        if (propertyName === 'SubClassOf' && (element.value !== 'Thing' && element.value !== 'Coisa'))
-            for (let i = 0; i < previousElements.length; i++)
-                if (isRelation(previousElements[i]) && (getValueOrLabel(previousElements[i]) === 'is_a' || getValueOrLabel(previousElements[i]) === 'é_um') && previousElements[i].getAttribute("source") == element.id)
-                    inputField.value = findNameById(previousElements, previousElements[i].getAttribute("target"));
     }
+    else if (propertyName === 'SubClassOf' && (element.value !== 'Thing' && element.value !== 'Coisa'))
+    {
+        for (let i = 0; i < previousElements.length; i++)
+            if (isRelation(previousElements[i]) && (getValueOrLabel(previousElements[i]) === 'is_a' || getValueOrLabel(previousElements[i]) === 'é_um') && previousElements[i].getAttribute("source") == element.id)
+                inputField.value = findNameById(previousElements, previousElements[i].getAttribute("target"));
+    }
+    else if(propertyName === 'DisjointWith' || propertyName === 'EquivalentTo' || propertyName === "hasSynonym"){
+        let values = [];
+        let currentElementName = typeof element.value === 'object' ? element.value.getAttribute('label') : element.value;
+        console.log('Current element name: ', currentElementName);
+        for (let i = 0; i < objects.length; i++) {
+            if(isClass(objects[i].childNodes[0]))
+            {
+                let propertyValues = objects[i].getAttribute(propertyName).split(',');
+                console.log(propertyName, propertyValues);
+                if(propertyValues.indexOf(currentElementName) > -1)
+                {
+                   values.push(objects[i].getAttribute('label'));
+                }
+            }
+
+        }
+        //$('#'+propertyName).val(values).trigger('change');
+        console.log("values to be inserted: ",values);
+        console.log($('#'+propertyName).val());
+        //console.log(document.getElementById(propertyName));
+        return values;
+    }
+    return null;
 }
 
 /**
@@ -561,7 +585,6 @@ function updateSaveButtonInFrontEnd(saved) {
     // Updates the save file button
     if(saved)
     {
-        console.log(document.getElementById('save-ontology'));
         if(getLanguage() == 'pt')
             message = 'Todas as alterações foram salvas';
         else
