@@ -1746,6 +1746,9 @@ var EditDataDialog = function(ui, cell)
         else
 		    options = getElementsNames('Class').filter(e => e !== cellName);
 
+        // remove duplicated options 
+        options = [...new Set(options)];
+
         options.forEach(element => {
             let option = document.createElement("option");
             option.setAttribute("value", element);
