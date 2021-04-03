@@ -538,7 +538,7 @@ function addIdToErrorArray(elementId) {
  * @param inputField
  */
 function autoCompleteInputs(element, propertyName, inputField) {
-    //console.log(element, propertyName);
+ 
     // check if the element is a relation
     if (element.edge == true) {
         if (element.source && element.source.id != null && propertyName === 'domain')
@@ -552,11 +552,12 @@ function autoCompleteInputs(element, propertyName, inputField) {
             if (isRelation(previousElements[i]) && (getValueOrLabel(previousElements[i]) === 'is_a' || getValueOrLabel(previousElements[i]) === 'é_um') && previousElements[i].getAttribute("source") == element.id)
                 inputField.value = findNameById(previousElements, previousElements[i].getAttribute("target"));
     }
-    else if(propertyName === 'DisjointWith' || propertyName === 'EquivalentTo' || propertyName === "hasSynonym"){
+
+    if(propertyName === 'DisjointWith' || propertyName === 'EquivalentTo' || propertyName === "hasSynonym" || propertyName === "equivalentProperty"){
         let values = [];
         let currentElementName = typeof element.value === 'object' ? element.value.getAttribute('label') : element.value;
         for (let i = 0; i < objects.length; i++) {
-            if(isClass(objects[i].childNodes[0]))
+            if(isClass(objects[i].childNodes[0]) || isRelation(objects[i].childNodes[0]))
             {
                 let propertyValues = objects[i].getAttribute(propertyName).split(',');
                 if(propertyValues.indexOf(currentElementName) > -1)

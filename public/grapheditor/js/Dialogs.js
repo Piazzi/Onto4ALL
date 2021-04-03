@@ -1290,10 +1290,13 @@ ExportDialog.saveLocalFile = function(editorUi, data, filename, format)
 	}
 };
 
+
+// Properties that needs auto completion
 var properties = {
     DisjointWith: null,
     EquivalentTo: null,
     hasSynonym: null,
+    equivalentProperty: null
 }
 
 /**
@@ -1410,7 +1413,7 @@ var EditDataDialog = function(ui, cell)
 		names[index] = name;
 
 
-		if(name === "DisjointWith" || name === 'hasSynonym' || name === 'EquivalentTo')
+		if(name === "DisjointWith" || name === 'hasSynonym' || name === 'EquivalentTo' || name === 'equivalentProperty')
 		{
             let valuesFromAutoComplete = autoCompleteInputs(cell, name, texts[index]);
 			texts[index] = createMultipleSelect(name, valuesFromAutoComplete);
@@ -1558,7 +1561,7 @@ var EditDataDialog = function(ui, cell)
 					names.push(name);
 
                     var text;
-                    if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo")
+                    if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo" || name === 'equivalentProperty')
                     {
                         // creates the multiple select and fill it
                         text = createMultipleSelect(name, autoCompleteInputs(cell, name, text));
@@ -1732,16 +1735,19 @@ var EditDataDialog = function(ui, cell)
      */
     function createMultipleSelect(name, value = null) {
         select = document.createElement("select");
-        select.classList.add("AutoCompleteClasses", "form-control");
+        select.classList.add("form-control");
         select.id = name;
         select.setAttribute("multiple","multiple");
-        select.setAttribute("name", "classes[]");
 
 		// get and removes current cell name from the select options
 		let cellName = typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value;
-		let currentClasses = getElementsNames('Class').filter(e => e !== cellName);
+        let options = [];
+        if(cell.edge)
+            options = getElementsNames('Relation').filter(e => e !== cellName);
+        else
+		    options = getElementsNames('Class').filter(e => e !== cellName);
 
-        currentClasses.forEach(element => {
+        options.forEach(element => {
             let option = document.createElement("option");
             option.setAttribute("value", element);
             option.innerHTML = element;
@@ -1784,6 +1790,11 @@ var EditDataDialog = function(ui, cell)
                 case "EquivalentTo":
                     properties.EquivalentTo = $("#" + name).val();
                     break;
+
+                case "equivalentProperty":
+                    properties.equivalentProperty = $("#" + name).val();
+                    break;
+
                 default:
                     break;
                 }
@@ -1901,7 +1912,11 @@ var EditDataDialog = function(ui, cell)
 				}
 			}
 
+
             console.log(cell);
+
+            // Sets the autocomplete atributes 
+
             // if the cell is a class
             if(!cell.edge)
                 // sets the properties with the multiple select value
@@ -1911,6 +1926,9 @@ var EditDataDialog = function(ui, cell)
                     value.setAttribute("EquivalentTo", properties.EquivalentTo);
                 if(properties.hasSynonym !== null)
                     value.setAttribute("hasSynonym", properties.hasSynonym);
+            else
+                if(properties.equivalentProperty !== null)
+                    value.setAttribute("equivalentProperty", properties.equivalentProperty);
 
 
 
