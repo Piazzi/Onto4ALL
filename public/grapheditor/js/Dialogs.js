@@ -1741,12 +1741,12 @@ var EditDataDialog = function(ui, cell)
 		// get and removes current cell name from the select options
 		let cellName = typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value;
         let options = [];
-        if(cell.edge)
+        if(cell.isEdge())
             options = getElementsNames('Relation').filter(e => e !== cellName);
         else
 		    options = getElementsNames('Class').filter(e => e !== cellName);
 
-        // remove duplicated options 
+        // remove duplicated options
         options = [...new Set(options)];
 
         options.forEach(element => {
@@ -1756,6 +1756,7 @@ var EditDataDialog = function(ui, cell)
             select.appendChild(option);
         });
 
+        console.log(cell);
         if(value === null)
         {
             $(document).ready(function () {
@@ -1915,7 +1916,7 @@ var EditDataDialog = function(ui, cell)
             // Sets the autocomplete atributes
 
             // if the cell is a class
-            if(!cell.edge)
+            if(!cell.isEdge())
                 // sets the properties with the multiple select value
                 if(properties.DisjointWith !== null)
                     value.setAttribute("DisjointWith", properties.DisjointWith);
