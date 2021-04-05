@@ -119,7 +119,7 @@
 						</div>
 						<br>
 						<div class="row">
-							<h4 style="text-align: center"><strong>Version</strong> 2.3.0</h4>
+							<h4 style="text-align: center"><strong>Version</strong> Beta 2.5.0</h4>
 						</div>
 					</div>
 					<!-- /.login-box-body -->
@@ -128,7 +128,7 @@
 		</div>
 	</div>
 
-	
+
 	@stop
 
 
@@ -146,4 +146,3 @@
 	</script>
 	@yield('js')
 	@stop
-	

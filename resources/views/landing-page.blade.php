@@ -306,7 +306,7 @@
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container">
-            <div class="small text-center text-muted">Copyright © 2020 - Onto4ALL Editor</div>
+            <div class="small text-center text-muted">Copyright © 2021 - Onto4ALL Editor</div>
         </div>
     </footer>
     <!-- Bootstrap core JS-->
