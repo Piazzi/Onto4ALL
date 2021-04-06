@@ -1418,7 +1418,7 @@ var EditDataDialog = function(ui, cell)
 		{
             let valuesFromAutoComplete = autoCompleteInputs(cell, name, texts[index]);
 
-
+            // checks if the value from autocomplete is empty
             value = valuesFromAutoComplete.length == 0 ? value.split(',') : valuesFromAutoComplete;
             console.log(value);
             console.log(valuesFromAutoComplete);
@@ -1762,8 +1762,7 @@ var EditDataDialog = function(ui, cell)
             option.innerHTML = element;
             select.appendChild(option);
         });
-        console.log(name);
-        console.log(value);
+
         let placeholder;
         if(name === 'inverseOf')
         {
@@ -1788,7 +1787,8 @@ var EditDataDialog = function(ui, cell)
                 $('#'+name).select2({
                     theme: 'classic',
                     width: 'resolve',
-                    placeholder: placeholder
+                    placeholder: placeholder,
+                    allowClear: true,
                 }
                 );
             });
@@ -1798,9 +1798,8 @@ var EditDataDialog = function(ui, cell)
                 $('#'+name).select2({
                     theme: 'classic',
                     width: 'resolve',
-                    placeholder: placeholder
-
-
+                    placeholder: placeholder,
+                    allowClear: true,
                 }
                 ).val(value).trigger('change');
             });
