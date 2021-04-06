@@ -1610,72 +1610,23 @@ var EditDataDialog = function(ui, cell)
 		}
 	}
 
-	// relations properties
+    let classProperties = ['SubClassOf','Constraint','DisjointWith','EquivalentTo','hasSynonym','SubClassOfAnonymousAncestor','DisjointUnionOf'];
+    let relationProperties = ['domain','range','inverseOf','equivalentProperty','subPropertyOf','FunctionalProperty','InverseFunctionalProperty','TransitiveProperty','SymmetricProperty'];
+    let annotations = ['definition','definitionSource','alternativeTerm','editorNote','curatorNote','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','member','licence','contributor','elucidation','termEditor'];
+    let thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
+
+    // adds the properties into the dialog
 	if(window.location.pathname.split('/')[2] === 'home')
 	{
 		if(cell.isEdge())
-		{
-			// range properties
-			addProperty('domain');
-			addProperty('range');
-			addProperty('inverseOf');
-			addProperty('equivalentProperty');
-			addProperty('subPropertyOf');
-			addProperty('FunctionalProperty');
-			addProperty('InverseFunctionalProperty');
-			addProperty('TransitiveProperty');
-			addProperty('SymmetricProperty');
-		}
+            relationProperties.forEach(element => {addProperty(element)});
 		else
-		{
-			// class properties
-			addProperty('SubClassOf');
-            addProperty('Constraint');
-			addProperty('DisjointWith');
-			addProperty('EquivalentTo');
-			addProperty('hasSynonym');
-            addProperty('SubClassOfAnonymousAncestor');
-			addProperty('DisjointUnionOf');
-		}
+            classProperties.forEach(element => {addProperty(element)});
 
-		//createAnnotationsSection();
-
-		// Annotations
-		addProperty('definition');
-		addProperty('definitionSource');
-		addProperty('alternativeTerm');
-		addProperty('editorNote');
-		addProperty('curatorNote');
-		addProperty('seeAlso');
-		addProperty('isDefinedBy');
-		addProperty('comment');
-		addProperty('versionInfo');
-		addProperty('priorVersion');
-		addProperty('member');
-		addProperty('licence');
-		addProperty('contributor');
-		addProperty('elucidation');
-		addProperty('termEditor');
+        annotations.forEach(element => {addProperty(element)});
 	}
 	else
-	{
-		// thesaurus properties
-		addProperty('altLabel');
-		addProperty('broader');
-		addProperty('narrower');
-		addProperty('prefLabel');
-		addProperty('related');
-		addProperty('subject');
-		addProperty('scopeNote');
-		addProperty('broadMatch');
-		addProperty('changeNote');
-		addProperty('definition');
-		addProperty('editorialNote');
-		addProperty('hiddenLabel');
-		addProperty('historyNote');
-		addProperty('note');
-		addProperty('topConceptOf');
-	}
+        thesaurusProperties.forEach(element => {addProperty(element)});
 
 	/**
 	 * Adds a help text below the textarea input
