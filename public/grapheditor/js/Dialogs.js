@@ -1292,7 +1292,7 @@ ExportDialog.saveLocalFile = function(editorUi, data, filename, format)
 
 
 // Properties that needs auto completion
-var properties = {
+var autoCompleteProperties = {
     DisjointWith: null,
     EquivalentTo: null,
     hasSynonym: null,
@@ -1414,7 +1414,8 @@ var EditDataDialog = function(ui, cell)
 		names[index] = name;
 
 
-		if(name === "DisjointWith" || name === 'hasSynonym' || name === 'EquivalentTo' || name === 'equivalentProperty' || name === 'inverseOf')
+        // check if the current name is in the properties object
+		if (name in autoCompleteProperties)
 		{
             let valuesFromAutoComplete = autoCompleteInputs(cell, name, texts[index]);
 
@@ -1567,22 +1568,16 @@ var EditDataDialog = function(ui, cell)
 					names.push(name);
 
                     var text;
-                    if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo" || name === 'equivalentProperty' || name === 'inverseOf')
+                    if(name in autoCompleteProperties)
                     {
                         // creates the multiple select and fill it
                         text = createMultipleSelect(name, autoCompleteInputs(cell, name, text));
                         // mxForm method that adds a <tr> <td> tags as parents of the element
                         form.addField(name, text);
-                        //autoCompleteInputs(cell, name, text);
-
                     }
                     else
 					    text = form.addTextarea(name + ':', '',  2);
-                    //console.log(text);
 					text.style.width = '100%';
-
-
-
 
 					// Disable the inputs
 					if(name === 'SubClassOf' || name === 'domain' || name === 'range')
@@ -1737,6 +1732,8 @@ var EditDataDialog = function(ui, cell)
 
     /**
      * Add a multiple Select2 input
+     * @param name
+	 * @param value
      */
     function createMultipleSelect(name, value = null) {
         select = document.createElement("select");
@@ -1806,33 +1803,10 @@ var EditDataDialog = function(ui, cell)
 
         }
 
-
+        // update the select value in the object when the user changes its value
         select.onchange =  function (e) {
-
-            switch (name) {
-                case "DisjointWith":
-                    properties.DisjointWith = $("#" + name).val();
-                    break;
-
-                case "hasSynonym":
-                    properties.hasSynonym = $("#" + name).val();
-                    break;
-
-                case "EquivalentTo":
-                    properties.EquivalentTo = $("#" + name).val();
-                    break;
-
-                case "equivalentProperty":
-                    properties.equivalentProperty = $("#" + name).val();
-                    break;
-
-                case "inverseOf":
-                    properties.inverseOf = $("#" + name).val();
-                    break;
-
-                default:
-                    break;
-                }
+            if(name in autoCompleteProperties)
+                autoCompleteProperties[name] = $("#" + name).val();
         }
 
         return select;
@@ -1935,38 +1909,17 @@ var EditDataDialog = function(ui, cell)
 				}
 				else
 				{
+                    // apply the properties into the current graph
 					value.setAttribute(names[i], texts[i].value);
+
+                    // apply the autocomplete properties into the current graph
+                    if(names[i] in autoCompleteProperties && texts[i].value != null)
+                        value.setAttribute(names[i], autoCompleteProperties[names[i]]);
 
 					removeLabel = removeLabel || (names[i] == 'placeholder' &&
 						value.getAttribute('placeholders') == '1');
 				}
 			}
-
-
-            console.log(properties);
-
-            // Sets the autocomplete atributes
-
-            // if the cell is a class
-            if(!cell.isEdge())
-            {
-                // sets the properties with the multiple select value
-                if(properties.DisjointWith !== null)
-                value.setAttribute("DisjointWith", properties.DisjointWith);
-                if(properties.EquivalentTo !== null)
-                value.setAttribute("EquivalentTo", properties.EquivalentTo);
-                if(properties.hasSynonym !== null)
-                value.setAttribute("hasSynonym", properties.hasSynonym);
-            }
-            else
-            {
-                if(properties.equivalentProperty !== null)
-                value.setAttribute("equivalentProperty", properties.equivalentProperty);
-                if(properties.inverseOf !== null)
-                value.setAttribute("inverseOf", properties.inverseOf);
-            }
-
-
 
 			// Removes label if placeholder is assigned
 			if (removeLabel)

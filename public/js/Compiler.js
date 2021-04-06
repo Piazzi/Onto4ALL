@@ -559,7 +559,7 @@ function autoCompleteInputs(element, propertyName, inputField) {
                 inputField.value = findNameById(previousElements, previousElements[i].getAttribute("target"));
     }
 
-    if(propertyName === 'DisjointWith' || propertyName === 'EquivalentTo' || propertyName === "hasSynonym" || propertyName === "equivalentProperty" || propertyName === 'inverseOf'){
+    if(propertyName in autoCompleteProperties){
         let values = [];
         let currentElementName = typeof element.value === 'object' ? element.value.getAttribute('label') : element.value;
         for (let i = 0; i < objects.length; i++) {
