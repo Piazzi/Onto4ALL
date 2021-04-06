@@ -1296,7 +1296,8 @@ var properties = {
     DisjointWith: null,
     EquivalentTo: null,
     hasSynonym: null,
-    equivalentProperty: null
+    equivalentProperty: null,
+    inverseOf: null,
 }
 
 /**
@@ -1413,7 +1414,7 @@ var EditDataDialog = function(ui, cell)
 		names[index] = name;
 
 
-		if(name === "DisjointWith" || name === 'hasSynonym' || name === 'EquivalentTo' || name === 'equivalentProperty')
+		if(name === "DisjointWith" || name === 'hasSynonym' || name === 'EquivalentTo' || name === 'equivalentProperty' || name === 'inverseOf')
 		{
             let valuesFromAutoComplete = autoCompleteInputs(cell, name, texts[index]);
 			texts[index] = createMultipleSelect(name, valuesFromAutoComplete);
@@ -1561,7 +1562,7 @@ var EditDataDialog = function(ui, cell)
 					names.push(name);
 
                     var text;
-                    if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo" || name === 'equivalentProperty')
+                    if(name === "DisjointWith" || name === "hasSynonym" || name === "EquivalentTo" || name === 'equivalentProperty' || name === 'inverseOf')
                     {
                         // creates the multiple select and fill it
                         text = createMultipleSelect(name, autoCompleteInputs(cell, name, text));
@@ -1736,7 +1737,8 @@ var EditDataDialog = function(ui, cell)
         select = document.createElement("select");
         select.classList.add("form-control");
         select.id = name;
-        select.setAttribute("multiple","multiple");
+        if(!(name === "inverseOf"))
+            select.setAttribute("multiple","multiple");
 
 		// get and removes current cell name from the select options
 		let cellName = typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value;
@@ -1756,13 +1758,30 @@ var EditDataDialog = function(ui, cell)
             select.appendChild(option);
         });
 
-        console.log(cell);
+        console.log(name);
+        console.log(value);
+
+        let placeholder;
+        if(name === 'inverseOf')
+        {
+            if(getLanguage() == 'pt')
+                placeholder = 'Selecione uma relação';
+            else
+                placeholder = 'Select one relation';
+        }
+        else
+            if(getLanguage() == 'pt')
+                placeholder = 'Selecione uma ou mais classes';
+            else
+                placeholder = 'Select one or more classes';
+
         if(value === null)
         {
             $(document).ready(function () {
                 $('#'+name).select2({
                     theme: 'classic',
-                    width: 'resolve'
+                    width: 'resolve',
+                    placeholder: placeholder
                 }
                 );
             });
@@ -1771,7 +1790,10 @@ var EditDataDialog = function(ui, cell)
             $(document).ready(function () {
                 $('#'+name).select2({
                     theme: 'classic',
-                    width: 'resolve'
+                    width: 'resolve',
+                    placeholder: placeholder
+
+
                 }
                 ).val(value).trigger('change');
             });
@@ -1796,6 +1818,10 @@ var EditDataDialog = function(ui, cell)
 
                 case "equivalentProperty":
                     properties.equivalentProperty = $("#" + name).val();
+                    break;
+
+                case "inverseOf":
+                    properties.inverseOf = $("#" + name).val();
                     break;
 
                 default:
@@ -1911,22 +1937,28 @@ var EditDataDialog = function(ui, cell)
 			}
 
 
-            console.log(cell);
+            console.log(properties);
 
             // Sets the autocomplete atributes
 
             // if the cell is a class
             if(!cell.isEdge())
+            {
                 // sets the properties with the multiple select value
                 if(properties.DisjointWith !== null)
-                    value.setAttribute("DisjointWith", properties.DisjointWith);
+                value.setAttribute("DisjointWith", properties.DisjointWith);
                 if(properties.EquivalentTo !== null)
-                    value.setAttribute("EquivalentTo", properties.EquivalentTo);
+                value.setAttribute("EquivalentTo", properties.EquivalentTo);
                 if(properties.hasSynonym !== null)
-                    value.setAttribute("hasSynonym", properties.hasSynonym);
+                value.setAttribute("hasSynonym", properties.hasSynonym);
+            }
             else
+            {
                 if(properties.equivalentProperty !== null)
-                    value.setAttribute("equivalentProperty", properties.equivalentProperty);
+                value.setAttribute("equivalentProperty", properties.equivalentProperty);
+                if(properties.inverseOf !== null)
+                value.setAttribute("inverseOf", properties.inverseOf);
+            }
 
 
 
