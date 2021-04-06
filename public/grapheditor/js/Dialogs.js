@@ -1417,7 +1417,12 @@ var EditDataDialog = function(ui, cell)
 		if(name === "DisjointWith" || name === 'hasSynonym' || name === 'EquivalentTo' || name === 'equivalentProperty' || name === 'inverseOf')
 		{
             let valuesFromAutoComplete = autoCompleteInputs(cell, name, texts[index]);
-			texts[index] = createMultipleSelect(name, valuesFromAutoComplete);
+
+
+            value = valuesFromAutoComplete.length == 0 ? value.split(',') : valuesFromAutoComplete;
+            console.log(value);
+            console.log(valuesFromAutoComplete);
+			texts[index] = createMultipleSelect(name, value);
 			form.addField(name, texts[index]);
 
 		}
@@ -1757,10 +1762,8 @@ var EditDataDialog = function(ui, cell)
             option.innerHTML = element;
             select.appendChild(option);
         });
-
         console.log(name);
         console.log(value);
-
         let placeholder;
         if(name === 'inverseOf')
         {
@@ -1769,11 +1772,15 @@ var EditDataDialog = function(ui, cell)
             else
                 placeholder = 'Select one relation';
         }
-        else
+        else if (name === 'equivalentProperty')
             if(getLanguage() == 'pt')
-                placeholder = 'Selecione uma ou mais classes';
+                placeholder = 'Selecione uma ou mais relações';
             else
-                placeholder = 'Select one or more classes';
+                placeholder = 'Select one or more relations';
+        else if(getLanguage() == 'pt')
+            placeholder = 'Selecione uma ou mais classes';
+        else
+            placeholder = 'Select one or more classes';
 
         if(value === null)
         {
