@@ -10,7 +10,13 @@ var classes = [], relations = [], instances = [], previousElements = [], element
  * And finds any measurable error.
  * @param xml
  */
-function movementCompiler(xml) {
+function movementCompiler(xml, graphModel)
+{
+    //console.log(graphModel);
+    console.log(graphModel.cells);
+    //graphModel.setStyle(graphModel.cells[2], "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
+    //graphModel.cells[2].setStyle("ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
+    //graph.getModel().setValue(cell, value);
     classes = [];
     relations = [];
     instances = [];
