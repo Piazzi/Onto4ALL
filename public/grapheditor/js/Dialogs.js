@@ -1416,67 +1416,7 @@ var EditDataDialog = function(ui, cell)
 	var id = (EditDataDialog.getDisplayIdForCell != null) ?
 		EditDataDialog.getDisplayIdForCell(ui, cell) : null;
 
-	var addRemoveButton = function(text, name)
-	{
-		// does not add the remove button if the name is equal to one of the strings below
-		if(name === 'SubClassOf' || name === 'domain' || name === 'range' )
-			return;
 
-		var wrapper = document.createElement('div');
-		wrapper.style.position = 'relative';
-		wrapper.style.paddingRight = '20px';
-		wrapper.style.boxSizing = 'border-box';
-		wrapper.style.width = '100%';
-
-		var removeAttr = document.createElement('a');
-		var img = mxUtils.createImage(Dialog.prototype.closeImage);
-		img.style.height = '9px';
-		img.style.fontSize = '9px';
-		img.style.marginBottom = (mxClient.IS_IE11) ? '-1px' : '5px';
-
-		removeAttr.className = 'geButton';
-		removeAttr.setAttribute('title', mxResources.get('delete'));
-		removeAttr.style.position = 'absolute';
-		removeAttr.style.top = '4px';
-		removeAttr.style.right = '0px';
-		removeAttr.style.margin = '0px';
-		removeAttr.style.width = '9px';
-		removeAttr.style.height = '9px';
-		removeAttr.style.cursor = 'pointer';
-		removeAttr.appendChild(img);
-
-		var removeAttrFn = (function(name)
-		{
-			return function()
-			{
-				var count = 1;
-
-				for (var j = 0; j < names.length; j++)
-				{
-					if (names[j] == name)
-					{
-						texts[j] = null;
-						form.table.deleteRow(count + ((id != null) ? 1 : 0));
-
-						break;
-					}
-
-					if (texts[j] != null)
-					{
-						count++;
-					}
-				}
-			};
-		})(name);
-
-		mxEvent.addListener(removeAttr, 'click', removeAttrFn);
-
-
-		var parent = text.parentNode;
-		wrapper.appendChild(text);
-		wrapper.appendChild(removeAttr);
-		parent.appendChild(wrapper);
-	};
 
 	/**
 	 * Creates a section for the Annotations properties
@@ -1520,7 +1460,6 @@ var EditDataDialog = function(ui, cell)
 		if(name === 'SubClassOf' || name === 'domain' || name === 'range')
 		{
 			texts[index].disabled = true;
-			texts[index].style.width = '95%';
 			autoCompleteInputs(cell, name, texts[index]);
 		}
 
@@ -1535,7 +1474,6 @@ var EditDataDialog = function(ui, cell)
 			texts[index].setAttribute('rows', '2');
 		}
 
-		addRemoveButton(texts[index], name);
 
 		// Axiom Editor / ClassExpressionEditor
 		if(name === 'Constraint')
@@ -1660,12 +1598,10 @@ var EditDataDialog = function(ui, cell)
 					if(name === 'SubClassOf' || name === 'domain' || name === 'range')
 					{
 						text.disabled = true;
-						text.style.width = '95%';
 						autoCompleteInputs(cell, name, text);
 					}
 
 					texts.push(text);
-					addRemoveButton(text, name);
 
 					text.focus();
 
@@ -1871,7 +1807,6 @@ var EditDataDialog = function(ui, cell)
 					var text = form.addTextarea(name + ':', '', 2);
 					text.style.width = '100%';
 					texts.push(text);
-					addRemoveButton(text, name);
 
 					text.focus();
 				}
