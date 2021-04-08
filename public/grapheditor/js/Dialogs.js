@@ -1300,6 +1300,11 @@ var autoCompleteProperties = {
     inverseOf: null,
 }
 
+var classProperties = ['SubClassOf','Constraint','DisjointWith','EquivalentTo','hasSynonym','SubClassOfAnonymousAncestor','DisjointUnionOf'];
+var relationProperties = ['domain','range','inverseOf','equivalentProperty','subPropertyOf','FunctionalProperty','InverseFunctionalProperty','TransitiveProperty','SymmetricProperty'];
+var annotations = ['definition','definitionSource','alternativeTerm','editorNote','curatorNote','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','member','licence','contributor','elucidation','termEditor'];
+var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
+
 /*
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
@@ -1386,8 +1391,6 @@ function createPropertiesModal(){
  */
 var EditDataDialog = function(ui, cell)
 {
-
-
 	var div = document.createElement('div');
     div.id = 'properties-dialog';
     div.classList.add("form-control");
@@ -1415,20 +1418,6 @@ var EditDataDialog = function(ui, cell)
 
 	var id = (EditDataDialog.getDisplayIdForCell != null) ?
 		EditDataDialog.getDisplayIdForCell(ui, cell) : null;
-
-
-
-	/**
-	 * Creates a section for the Annotations properties
-	 */
-	function createAnnotationsSection()
-	{
-		let annotationsTitle = document.createElement('h3');
-		let annotationsText = document.createTextNode('--------------- Annotations ---------------');
-		annotationsTitle.appendChild(annotationsText);
-		//form.addField('', annotationsTitle);
-	}
-
 
 
 	// THIS FUNCTION IS CALLED WHEN ANY PROPERTY IS FILLED
@@ -1463,17 +1452,13 @@ var EditDataDialog = function(ui, cell)
 			autoCompleteInputs(cell, name, texts[index]);
 		}
 
-		// Detects where the Annotations start
-		//if(name === 'EquivalentTo' || name === 'SymmetricProperty')
-		//	createAnnotationsSection();
-
-
-
 		if (value.indexOf('\n') > 0)
 		{
 			texts[index].setAttribute('rows', '2');
 		}
 
+        if(!classProperties.concat(annotations).concat(relationProperties).includes(name))
+            addRemoveButton(texts[index], name);
 
 		// Axiom Editor / ClassExpressionEditor
 		if(name === 'Constraint')
@@ -1495,24 +1480,6 @@ var EditDataDialog = function(ui, cell)
 		}
 	}
 
-	// Sorts by name
-	/*
-	temp.sort(function(a, b)
-	{
-	    if (a.name < b.name)
-	    {
-	    	return -1;
-	    }
-	    else if (a.name > b.name)
-	    {
-	    	return 1;
-	    }
-	    else
-	    {
-	    	return 0;
-	    }
-	});
-	*/
 	if (id != null)
 	{
 		var text = document.createElement('div');
@@ -1555,8 +1522,6 @@ var EditDataDialog = function(ui, cell)
     div.appendChild(form.table);
 	div.appendChild(dialogBottom);
 	dialogBottom.appendChild(nameInput);
-
-	///////////////////////// ADD NEW PROPERTIES TO THE CELL ///////////////////////////////////////////////////
 
 	/**
 	 * Add a property to the cell
@@ -1603,6 +1568,10 @@ var EditDataDialog = function(ui, cell)
 
 					texts.push(text);
 
+                    // add the remove button if the property was created by the user
+                    if(!classProperties.concat(annotations).concat(relationProperties).includes(name))
+                        addRemoveButton(text, name);
+
 					text.focus();
 
 					// Axiom Editor / ClassExpressionEditor
@@ -1622,11 +1591,6 @@ var EditDataDialog = function(ui, cell)
 			mxUtils.alert(mxResources.get('invalidName'));
 		}
 	}
-
-    let classProperties = ['SubClassOf','Constraint','DisjointWith','EquivalentTo','hasSynonym','SubClassOfAnonymousAncestor','DisjointUnionOf'];
-    let relationProperties = ['domain','range','inverseOf','equivalentProperty','subPropertyOf','FunctionalProperty','InverseFunctionalProperty','TransitiveProperty','SymmetricProperty'];
-    let annotations = ['definition','definitionSource','alternativeTerm','editorNote','curatorNote','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','member','licence','contributor','elucidation','termEditor'];
-    let thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
 
     // adds the properties into the dialog
 	if(window.location.pathname.split('/')[2] === 'home')
@@ -1776,6 +1740,69 @@ var EditDataDialog = function(ui, cell)
         return select;
     }
 
+    /**
+     * Add a remove button for new created properties
+     * @param {*} text
+     * @param {*} name
+     */
+    function addRemoveButton(text, name)
+	{
+		var wrapper = document.createElement('div');
+		wrapper.style.position = 'relative';
+		wrapper.style.paddingRight = '20px';
+		wrapper.style.boxSizing = 'border-box';
+		wrapper.style.width = '100%';
+
+		var removeAttr = document.createElement('a');
+		var img = mxUtils.createImage(Dialog.prototype.closeImage);
+		img.style.height = '9px';
+		img.style.fontSize = '9px';
+		img.style.marginBottom = (mxClient.IS_IE11) ? '-1px' : '5px';
+
+		removeAttr.className = 'geButton';
+		removeAttr.setAttribute('title', mxResources.get('delete'));
+		removeAttr.style.position = 'absolute';
+		removeAttr.style.top = '4px';
+		removeAttr.style.right = '0px';
+		removeAttr.style.margin = '0px';
+		removeAttr.style.width = '9px';
+		removeAttr.style.height = '9px';
+		removeAttr.style.cursor = 'pointer';
+		removeAttr.appendChild(img);
+
+		var removeAttrFn = (function(name)
+		{
+			return function()
+			{
+				var count = 1;
+
+				for (var j = 0; j < names.length; j++)
+				{
+					if (names[j] == name)
+					{
+						texts[j] = null;
+						form.table.deleteRow(count + ((id != null) ? 1 : 0));
+
+						break;
+					}
+
+					if (texts[j] != null)
+					{
+						count++;
+					}
+				}
+			};
+		})(name);
+
+		mxEvent.addListener(removeAttr, 'click', removeAttrFn);
+
+
+		var parent = text.parentNode;
+		wrapper.appendChild(text);
+		wrapper.appendChild(removeAttr);
+		parent.appendChild(wrapper);
+	};
+
 	var addBtn = mxUtils.button(mxResources.get('addProperty'), function()
 	{
 		var name = nameInput.value;
@@ -1807,6 +1834,7 @@ var EditDataDialog = function(ui, cell)
 					var text = form.addTextarea(name + ':', '', 2);
 					text.style.width = '100%';
 					texts.push(text);
+                    addRemoveButton(text, name);
 
 					text.focus();
 				}

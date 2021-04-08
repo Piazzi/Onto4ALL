@@ -48,7 +48,7 @@ class HomeController extends Controller
      */
     public function aboutUs()
     {
-        return view('about_us', compact('users'));
+        return view('about_us');
     }
 
     /**
