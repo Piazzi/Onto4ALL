@@ -1393,7 +1393,12 @@ var EditDataDialog = function(ui, cell)
 {
 	var div = document.createElement('div');
     div.id = 'properties-dialog';
-    div.classList.add("form-control");
+    div.classList.add("row");
+    // fix dialog size. Default is Width 480, height 420
+	div.style.setProperty("width", "780px", "important");
+	div.style.setProperty("height", "620px", "important");
+    div.style.setProperty("border","0px solid", "!important");
+
 	var graph = ui.editor.graph;
 
 	var value = graph.getModel().getValue(cell);
@@ -2015,9 +2020,7 @@ var EditDataDialog = function(ui, cell)
 	}
 
 	dialogBottom.appendChild(buttons);
-	// fix dialog size. Default is Width 480, height 420
-	div.style.setProperty("width", "680px", "important");
-	div.style.setProperty("height", "520px", "important");
+
 
 	this.container = div;
 };
