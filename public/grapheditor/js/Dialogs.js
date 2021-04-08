@@ -1300,11 +1300,94 @@ var autoCompleteProperties = {
     inverseOf: null,
 }
 
+/*
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
+
+/**
+ * Create a modal
+ */
+function createPropertiesModal(){
+
+
+    let modal = document.createElement('div');
+    modal.classList.add(['modal','fade']);
+    modal.id = "propertiesModal";
+    modal.setAttribute('tabindex', '-1');
+    modal.setAttribute('role','dialog');
+    modal.setAttribute('aria-labelledby', 'myModalLabel');
+
+    let modalDialog = document.createElement('div');
+    modalDialog.classList.add('modal-dialog');
+    modalDialog.setAttribute('role','document');
+
+    modal.appendChild(modalDialog);
+
+    let modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+
+    modalDialog.appendChild(modalContent);
+
+    let modalHeader = document.createElement('div');
+    modalHeader.classList.add('modal-header');
+
+    modalContent.appendChild(modalHeader);
+
+    let closeButtonTop = document.createElement('button');
+    closeButtonTop.classList.add('close');
+    closeButtonTop.setAttribute('type', 'button');
+    closeButtonTop.setAttribute('data-dismiss', 'modal');
+    closeButtonTop.setAttribute('aria-label', 'close');
+
+    let span = document.createElement('span');
+    span.setAttribute('aria-hidden','true');
+    span.textContent = '&times;';
+
+    closeButtonTop.appendChild(span);
+
+    let title = document.createElement('h4');
+    title.classList.add('modal-title');
+    title.id = 'myModalLabel';
+
+    modalHeader.appendChild(closeButtonTop);
+    modalHeader.appendChild(title);
+
+    let modalBody = document.createElement('div');
+    modalBody.classList.add('modal-body');
+
+    modalContent.appendChild(modalBody);
+
+    let modalFooter = document.createElement('div');
+    modalFooter.classList.add('modal-footer');
+
+    modalContent.appendChild(modalFooter);
+
+    let closeButtonBottom = document.createElement('button');
+    closeButtonBottom.classList.add(['btn', 'btn-default']);
+    closeButtonBottom.setAttribute('type', 'button');
+    closeButtonBottom.setAttribute('data-dismiss','modal');
+    closeButtonBottom.textContent = 'Close';
+
+    let saveButton = document.createElement('button');
+    saveButton.classList.add(['btn', 'btn-primary']);
+    saveButton.setAttribute('type', 'button');
+    saveButton.textContent = 'Save Changes';
+
+    modalFooter.appendChild(closeButtonBottom);
+    modalFooter.appendChild(saveButton);
+
+    document.body.appendChild(modal);
+};
+
 /**
  * Constructs a new metadata dialog.
  */
 var EditDataDialog = function(ui, cell)
 {
+
+
 	var div = document.createElement('div');
     div.id = 'properties-dialog';
     div.classList.add("form-control");
@@ -1518,16 +1601,11 @@ var EditDataDialog = function(ui, cell)
 	}
 
 
-	var top = document.createElement('div');
-	top.style.cssText = 'position:absolute;left:30px;right:30px;overflow-y:auto;top:30px;bottom:80px;';
-	top.appendChild(form.table);
-
-	var newProp = document.createElement('div');
-	newProp.style.boxSizing = 'border-box';
-	newProp.style.paddingRight = '160px';
-	newProp.style.whiteSpace = 'nowrap';
-	newProp.style.marginTop = '6px';
-	newProp.style.width = '100%';
+    // Creates the new property input
+	var dialogBottom = document.createElement('div');
+	dialogBottom.style.cssText = '';
+    dialogBottom.id = 'dialogBottom';
+    dialogBottom.classList.add('form-group');
 
 	var nameInput = document.createElement('input');
 	nameInput.setAttribute('placeholder', mxResources.get('enterPropertyName'));
@@ -1535,11 +1613,10 @@ var EditDataDialog = function(ui, cell)
 	nameInput.setAttribute('size', (mxClient.IS_IE || mxClient.IS_IE11) ? '36' : '40');
 	nameInput.style.boxSizing = 'border-box';
 	nameInput.style.marginLeft = '2px';
-	nameInput.style.width = '100%';
 
-	newProp.appendChild(nameInput);
-	top.appendChild(newProp);
-	div.appendChild(top);
+    div.appendChild(form.table);
+	div.appendChild(dialogBottom);
+	dialogBottom.appendChild(nameInput);
 
 	///////////////////////// ADD NEW PROPERTIES TO THE CELL ///////////////////////////////////////////////////
 
@@ -1828,12 +1905,11 @@ var EditDataDialog = function(ui, cell)
 	addBtn.setAttribute('title', mxResources.get('addProperty'));
 	addBtn.setAttribute('disabled', 'disabled');
 	addBtn.style.textOverflow = 'ellipsis';
-	addBtn.style.position = 'absolute';
 	addBtn.style.overflow = 'hidden';
 	addBtn.style.width = '144px';
 	addBtn.style.right = '0px';
 	addBtn.className = 'geBtn';
-	newProp.appendChild(addBtn);
+	dialogBottom.appendChild(addBtn);
 
 	var cancelBtn = mxUtils.button(mxResources.get('cancel'), function()
 	{
@@ -1906,7 +1982,9 @@ var EditDataDialog = function(ui, cell)
 	mxEvent.addListener(nameInput, 'change', updateAddBtn);
 
 	var buttons = document.createElement('div');
-	buttons.style.cssText = 'position:absolute;left:30px;right:30px;text-align:right;bottom:30px;height:40px;'
+	buttons.style.cssText = '';
+    buttons.id = 'footerButtons';
+    buttons.style.padding = '10px';
 
 	if (ui.editor.graph.getModel().isVertex(cell) || ui.editor.graph.getModel().isEdge(cell))
 	{
@@ -1973,7 +2051,7 @@ var EditDataDialog = function(ui, cell)
 		buttons.appendChild(cancelBtn);
 	}
 
-	div.appendChild(buttons);
+	dialogBottom.appendChild(buttons);
 	// fix dialog size. Default is Width 480, height 420
 	div.style.setProperty("width", "680px", "important");
 	div.style.setProperty("height", "520px", "important");
