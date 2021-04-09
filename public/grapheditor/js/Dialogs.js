@@ -1552,39 +1552,15 @@ var EditDataDialog = function(ui, cell)
 					names.push(name);
 
                     var text;
-                    if(name in autoCompleteProperties)
-                    {
-                        // creates the multiple select and fill it
-                        text = createMultipleSelect(name, autoCompleteInputs(cell, name, text));
-                        // mxForm method that adds a <tr> <td> tags as parents of the element
-                        form.addField(name, text);
-                    }
-                    else
-					    text = form.addTextarea(name + ':', '',  2);
-					text.style.width = '100%';
 
-					// Disable the inputs
-					if(name === 'SubClassOf' || name === 'domain' || name === 'range')
-					{
-						text.disabled = true;
-						autoCompleteInputs(cell, name, text);
-					}
+					text = form.addTextarea(name + ':', '',  2);
+					text.style.width = '100%';
 
 					texts.push(text);
 
-                    // add the remove button if the property was created by the user
-                    if(!classProperties.concat(annotations).concat(relationProperties).includes(name))
-                        addRemoveButton(text, name);
-
 					text.focus();
 
-					// Axiom Editor / ClassExpressionEditor
-					if(name === 'Constraint')
-					{
-						addHTMLAttributes(text);
-						addKeyupEvents(text);
-						addHelpText(text);
-					}
+
 				}
 
 				nameInput.value = '';
@@ -1595,20 +1571,7 @@ var EditDataDialog = function(ui, cell)
 			mxUtils.alert(mxResources.get('invalidName'));
 		}
 	}
-/*
-    // adds the properties into the dialog
-	if(window.location.pathname.split('/')[2] === 'home')
-	{
-		if(cell.isEdge())
-            relationProperties.forEach(element => {addProperty(element)});
-		else
-            classProperties.forEach(element => {addProperty(element)});
 
-        annotations.forEach(element => {addProperty(element)});
-	}
-	else
-        thesaurusProperties.forEach(element => {addProperty(element)});
-*/
 	/**
 	 * Adds a help text below the textarea input
 	 * @param textArea
