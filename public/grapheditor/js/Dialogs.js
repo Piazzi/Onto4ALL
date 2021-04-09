@@ -1300,10 +1300,6 @@ var autoCompleteProperties = {
     inverseOf: null,
 }
 
-var classProperties = ['SubClassOf','Constraint','DisjointWith','EquivalentTo','hasSynonym','SubClassOfAnonymousAncestor','DisjointUnionOf'];
-var relationProperties = ['domain','range','inverseOf','equivalentProperty','subPropertyOf','FunctionalProperty','InverseFunctionalProperty','TransitiveProperty','SymmetricProperty'];
-var annotations = ['definition','definitionSource','alternativeTerm','editorNote','curatorNote','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','member','licence','contributor','elucidation','termEditor'];
-var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
 
 /*
 <!-- Button trigger modal -->
@@ -1410,12 +1406,14 @@ var EditDataDialog = function(ui, cell)
 		var obj = doc.createElement('object');
 		obj.setAttribute('label', value || '');
 		value = obj;
+        console.log(obj);
 	}
 
 	// Creates the dialog contents
 	var form = new mxForm('properties');
 	form.table.style.width = '100%';
 
+    // Get all properties
 	var attrs = value.attributes;
 	var names = [];
 	var texts = [];
@@ -1477,6 +1475,7 @@ var EditDataDialog = function(ui, cell)
 	var temp = [];
 	var isLayer = graph.getModel().getParent(cell) == graph.getModel().getRoot();
 
+    // Only triggers if the cell has attributes
 	for (var i = 0; i < attrs.length; i++)
 	{
 		if ((isLayer || attrs[i].nodeName != 'label') && attrs[i].nodeName != 'placeholders')
@@ -1596,7 +1595,7 @@ var EditDataDialog = function(ui, cell)
 			mxUtils.alert(mxResources.get('invalidName'));
 		}
 	}
-
+/*
     // adds the properties into the dialog
 	if(window.location.pathname.split('/')[2] === 'home')
 	{
@@ -1609,7 +1608,7 @@ var EditDataDialog = function(ui, cell)
 	}
 	else
         thesaurusProperties.forEach(element => {addProperty(element)});
-
+*/
 	/**
 	 * Adds a help text below the textarea input
 	 * @param textArea
@@ -1896,6 +1895,7 @@ var EditDataDialog = function(ui, cell)
 			value = value.cloneNode(true);
 			var removeLabel = false;
 
+            // set the attributes in the <object> tag
 			for (var i = 0; i < names.length; i++)
 			{
 				if (texts[i] == null)
@@ -1905,11 +1905,11 @@ var EditDataDialog = function(ui, cell)
 				else
 				{
                     // apply the properties into the current graph
-					value.setAttribute(names[i], texts[i].value);
+					value.setAttributeNS(null, names[i], texts[i].value);
 
                     // apply the autocomplete properties into the current graph
                     if(names[i] in autoCompleteProperties && texts[i].value != null)
-                        value.setAttribute(names[i], autoCompleteProperties[names[i]]);
+                        value.setAttributeNS(null, names[i], autoCompleteProperties[names[i]]);
 
 					removeLabel = removeLabel || (names[i] == 'placeholder' &&
 						value.getAttribute('placeholders') == '1');
