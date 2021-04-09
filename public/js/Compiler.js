@@ -663,31 +663,11 @@ function thingClassExists() {
  * This function is called by Actions.js
  */
 function addThingClassToCurrentOntology() {
-    let xmlDoc = document.implementation.createDocument(null, "", null);
-    let xml = editor.getGraphXml();
-    let rootNode = xml.childNodes[0];
-    let classNode = xmlDoc.createElement("mxCell");
-    // Sets each attribute following the default pattern of the editor
-
-    classNode.setAttribute("id", 2);
-    if (getLanguage() === 'en')
-        classNode.setAttribute("value", 'Thing');
-    else
-        classNode.setAttribute("value", 'Coisa');
-    classNode.setAttribute("style", "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#00A65A;strokeColor=#FFFFFF;shadow=1;fontColor=#FFFFFF;");
-    classNode.setAttribute("vertex", "1");
-    classNode.setAttribute("parent", "1");
-
-    let mxGeometryNode = xmlDoc.createElement("mxGeometry");
-    mxGeometryNode.setAttribute("width", "80");
-    mxGeometryNode.setAttribute("as", "geometry");
-    mxGeometryNode.setAttribute("x", "20");
-    mxGeometryNode.setAttribute("y", "20");
-    mxGeometryNode.setAttribute("height", "80");
-
-    classNode.appendChild(mxGeometryNode);
-    rootNode.appendChild(classNode);
-
-    editor.setGraphXml(xml);
+    let object = document.createElement('object');
+    object.setAttribute('label', getLanguage() == 'en' ? 'Thing' : 'Coisa');
+    classProperties.forEach(element => {object.setAttributeNS(null, element, '');});
+    annotations.forEach(element => {object.setAttributeNS(null, element, '');});
+    editor.graph.insertVertex(editor.graph.getDefaultParent(), null, object, 20, 20, 80, 80, "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#00A65A;strokeColor=#FFFFFF;shadow=1;fontColor=#FFFFFF;");
 }
+
 
