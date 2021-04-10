@@ -1395,23 +1395,18 @@ var EditDataDialog = function(ui, cell)
 	dialog.style.setProperty("height", "620px", "important");
     dialog.style.setProperty("border","0px solid", "!important");
 
-	var graph = ui.editor.graph;
+    let dialogTop = document.createElement('h4');
+    dialogTop.style.textAlign = "center";
+    dialogTop.style.fontWeight = "bold";
 
-	var value = graph.getModel().getValue(cell);
+    let idIcon = document.createElement('i');
+    idIcon.classList.add('fa','fa-fw','fa-tag');
 
-	// Converts the value to an XML node
-	if (!mxUtils.isNode(value))
-	{
-		var doc = mxUtils.createXmlDocument();
-		var obj = doc.createElement('object');
-		obj.setAttribute('label', value || '');
-		value = obj;
-        console.log(obj);
-	}
+    let idText = document.createTextNode('id: ' + cell.id);
+    dialogTop.appendChild(idIcon);
+    dialogTop.appendChild(idText);
 
-	// Creates the dialog contents
-	var form = new mxForm('properties');
-	form.table.style.width = '100%';
+    dialog.appendChild(dialogTop);
 
     let propertiesColumn = document.createElement('div');
     propertiesColumn.classList.add('col-lg-6');
@@ -1439,7 +1434,9 @@ var EditDataDialog = function(ui, cell)
 
     annotationsColumn.appendChild(annotationsHeader);
 
-    function createFormInput(propertyName) {
+    propertiesColumn.appendChild(createFormInput('label', typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value));
+
+    function createFormInput(propertyName, value) {
         /**
          * <div class="form-group has-success">
                   <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i> Input with success</label>
@@ -1453,10 +1450,14 @@ var EditDataDialog = function(ui, cell)
         let label = document.createElement('label');
         label.textContent = propertyName;
 
+
         let textArea = document.createElement('textarea');
         textArea.classList.add('form-control');
         textArea.setAttribute('rows','1');
         textArea.placeholder = '...';
+
+        if(value !== null)
+            textArea.value = value;
 
         formGroup.appendChild(label);
         formGroup.appendChild(textArea);
@@ -1465,10 +1466,32 @@ var EditDataDialog = function(ui, cell)
             propertiesColumn.appendChild(formGroup);
         else
             annotationsColumn.appendChild(formGroup);
+
+        return formGroup;
     }
 
     dialog.appendChild(propertiesColumn);
     dialog.appendChild(annotationsColumn);
+
+
+
+	var graph = ui.editor.graph;
+
+	var value = graph.getModel().getValue(cell);
+
+	// Converts the value to an XML node
+	if (!mxUtils.isNode(value))
+	{
+		var doc = mxUtils.createXmlDocument();
+		var obj = doc.createElement('object');
+		obj.setAttribute('label', value || '');
+		value = obj;
+        console.log(obj);
+	}
+
+	// Creates the dialog contents
+	var form = new mxForm('properties');
+	form.table.style.width = '100%';
 
     // Get all properties
 	var attrs = value.attributes;
@@ -1581,7 +1604,10 @@ var EditDataDialog = function(ui, cell)
 	nameInput.style.boxSizing = 'border-box';
 	nameInput.style.marginLeft = '2px';
 
-    dialog.appendChild(form.table);
+
+    //dialog.appendChild(form.table);
+
+
 	annotationsColumn.appendChild(dialogBottom);
 	dialogBottom.appendChild(nameInput);
 
