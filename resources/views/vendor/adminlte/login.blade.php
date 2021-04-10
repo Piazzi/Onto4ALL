@@ -119,7 +119,7 @@
 						</div>
 						<br>
 						<div class="row">
-							<h4 style="text-align: center"><strong>Version</strong> Beta 2.5.1</h4>
+							<h4 style="text-align: center"><strong>Version</strong> Beta 2.6.0</h4>
 						</div>
 					</div>
 					<!-- /.login-box-body -->

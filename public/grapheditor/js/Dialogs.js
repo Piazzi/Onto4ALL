@@ -1387,13 +1387,13 @@ function createPropertiesModal(){
  */
 var EditDataDialog = function(ui, cell)
 {
-	var div = document.createElement('div');
-    div.id = 'properties-dialog';
-    div.classList.add("row");
+	var dialog = document.createElement('div');
+    dialog.id = 'properties-dialog';
+    dialog.classList.add("row");
     // fix dialog size. Default is Width 480, height 420
-	div.style.setProperty("width", "780px", "important");
-	div.style.setProperty("height", "620px", "important");
-    div.style.setProperty("border","0px solid", "!important");
+	dialog.style.setProperty("width", "780px", "important");
+	dialog.style.setProperty("height", "620px", "important");
+    dialog.style.setProperty("border","0px solid", "!important");
 
 	var graph = ui.editor.graph;
 
@@ -1413,6 +1413,63 @@ var EditDataDialog = function(ui, cell)
 	var form = new mxForm('properties');
 	form.table.style.width = '100%';
 
+    let propertiesColumn = document.createElement('div');
+    propertiesColumn.classList.add('col-lg-6');
+
+    let propertiesHeader = document.createElement('h4');
+    propertiesHeader.style.textAlign = 'center';
+
+    let propertiesIcon = document.createElement('i');
+    propertiesIcon.classList.add('fa','fa-fw','fa-cogs');
+
+    let propertiesTitle = document.createTextNode(' Properties');
+
+    propertiesHeader.appendChild(propertiesIcon);
+    propertiesHeader.appendChild(propertiesTitle);
+    propertiesColumn.appendChild(propertiesHeader);
+
+    let annotationsColumn = document.createElement('div');
+    annotationsColumn.classList.add('col-lg-6');
+
+    let annotationsHeader = propertiesHeader.cloneNode(true);
+    console.log(annotationsHeader);
+    annotationsHeader.firstChild.classList.add('fa-comment');
+    annotationsHeader.firstChild.classList.remove('fa-cogs');
+    annotationsHeader.childNodes[1].nodeValue = ' Annotations';
+
+    annotationsColumn.appendChild(annotationsHeader);
+
+    function createFormInput(propertyName) {
+        /**
+         * <div class="form-group has-success">
+                  <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i> Input with success</label>
+                  <input type="text" class="form-control" id="inputSuccess" placeholder="Enter ...">
+                  <span class="help-block">Help block with success</span>
+                </div>
+         */
+        let formGroup = document.createElement('div');
+        formGroup.classList.add('form-group');
+
+        let label = document.createElement('label');
+        label.textContent = propertyName;
+
+        let textArea = document.createElement('textarea');
+        textArea.classList.add('form-control');
+        textArea.setAttribute('rows','1');
+        textArea.placeholder = '...';
+
+        formGroup.appendChild(label);
+        formGroup.appendChild(textArea);
+
+        if(classProperties.includes(propertyName) || relationProperties.includes(propertyName))
+            propertiesColumn.appendChild(formGroup);
+        else
+            annotationsColumn.appendChild(formGroup);
+    }
+
+    dialog.appendChild(propertiesColumn);
+    dialog.appendChild(annotationsColumn);
+
     // Get all properties
 	var attrs = value.attributes;
 	var names = [];
@@ -1428,7 +1485,6 @@ var EditDataDialog = function(ui, cell)
 	{
 		names[index] = name;
 
-
         // check if the current name is in the properties object
 		if (name in autoCompleteProperties)
 		{
@@ -1440,6 +1496,7 @@ var EditDataDialog = function(ui, cell)
             console.log(valuesFromAutoComplete);
 			texts[index] = createMultipleSelect(name, value);
 			form.addField(name, texts[index]);
+            //propertiesColumn.appendChild(texts[index]);
 
 		}
 		else
@@ -1460,6 +1517,7 @@ var EditDataDialog = function(ui, cell)
 			texts[index].setAttribute('rows', '2');
 		}
 
+        // add a remove button if the property was created by the user
         if(!classProperties.concat(annotations).concat(relationProperties).includes(name))
             addRemoveButton(texts[index], name);
 
@@ -1523,8 +1581,8 @@ var EditDataDialog = function(ui, cell)
 	nameInput.style.boxSizing = 'border-box';
 	nameInput.style.marginLeft = '2px';
 
-    div.appendChild(form.table);
-	div.appendChild(dialogBottom);
+    dialog.appendChild(form.table);
+	annotationsColumn.appendChild(dialogBottom);
 	dialogBottom.appendChild(nameInput);
 
 	/**
@@ -1982,10 +2040,10 @@ var EditDataDialog = function(ui, cell)
 		buttons.appendChild(cancelBtn);
 	}
 
-	dialogBottom.appendChild(buttons);
+	dialog.appendChild(buttons);
 
 
-	this.container = div;
+	this.container = dialog;
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
