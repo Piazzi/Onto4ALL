@@ -1437,7 +1437,7 @@ var EditDataDialog = function(ui, cell)
     annotationsColumn.appendChild(annotationsHeader);
 
     // add label property and fill it
-    propertiesColumn.appendChild(createFormInput('label', typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value).parentNode);
+   // propertiesColumn.appendChild(createFormInput('label', typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value).parentNode);
 
     function createFormInput(propertyName, value) {
         /**
@@ -1466,7 +1466,7 @@ var EditDataDialog = function(ui, cell)
         formGroup.appendChild(textArea);
 
         // add the property to its properly column
-        if(classProperties.includes(propertyName) || relationProperties.includes(propertyName))
+        if(classProperties.includes(propertyName) || relationProperties.includes(propertyName) || propertyName == 'label')
             propertiesColumn.appendChild(formGroup);
         else
             annotationsColumn.appendChild(formGroup);
@@ -1560,7 +1560,7 @@ var EditDataDialog = function(ui, cell)
 		}
 
         // add a remove button if the property was created by the user
-        if(!classProperties.concat(annotations).concat(relationProperties).includes(name))
+        if(!(classProperties.concat(annotations).concat(relationProperties).includes(name) || name == 'label'))
             addRemoveButton(formInputs[index], name);
 
 		// Axiom Editor / ClassExpressionEditor
@@ -1579,11 +1579,13 @@ var EditDataDialog = function(ui, cell)
     // Only triggers if the cell has attributes
 	for (var i = 0; i < cellProperties.length; i++)
 	{
-		if ((isLayer || cellProperties[i].nodeName != 'label') && cellProperties[i].nodeName != 'placeholders')
+        //if ((isLayer || cellProperties[i].nodeName != 'label') && cellProperties[i].nodeName != 'placeholders')
+		if (cellProperties[i].nodeName != 'placeholders')
 		{
 			temp.push({name: cellProperties[i].nodeName, value: cellProperties[i].nodeValue});
 		}
 	}
+    console.log(cellProperties);
 
     /*
 	if (id != null)
