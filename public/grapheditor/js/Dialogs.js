@@ -1412,6 +1412,7 @@ var EditDataDialog = function(ui, cell)
     dialog.appendChild(dialogTop);
 
     let propertiesColumn = document.createElement('div');
+    propertiesColumn.id = 'properties-column';
     propertiesColumn.classList.add('col-lg-6');
 
     let propertiesHeader = document.createElement('h4');
@@ -1427,6 +1428,7 @@ var EditDataDialog = function(ui, cell)
     propertiesColumn.appendChild(propertiesHeader);
 
     let annotationsColumn = document.createElement('div');
+    annotationsColumn.id = 'annotations-column';
     annotationsColumn.classList.add('col-lg-6');
 
     let annotationsHeader = propertiesHeader.cloneNode(true);
@@ -1449,6 +1451,7 @@ var EditDataDialog = function(ui, cell)
          */
         let formGroup = document.createElement('div');
         formGroup.classList.add('form-group');
+        formGroup.id = propertyName;
 
         let label = document.createElement('label');
         label.textContent = propertyName;
@@ -1848,24 +1851,21 @@ var EditDataDialog = function(ui, cell)
 		{
 			return function()
 			{
-				var count = 1;
+                let annotationsNodes = document.getElementById("annotations-column");
+                for (let i = 0; i < annotationsNodes.childElementCount; i++) {
+                    if(annotationsNodes.childNodes[i].id == name)
+                    {
+                        // remove the element from the array of inputs
+                        annotationsNodes.childNodes[i].remove();
+                        let index = propertiesNames.indexOf(name);
+                        if(index > -1)
+                            formInputs[index] = null;
 
-				for (var j = 0; j < propertiesNames.length; j++)
-				{
-					if (propertiesNames[j] == name)
-					{
-						formInputs[j] = null;
-						form.table.deleteRow(count + ((id != null) ? 1 : 0));
+                        //formInputs[i] == null;
 
-						break;
-					}
-
-					if (formInputs[j] != null)
-					{
-						count++;
-					}
-				}
-			};
+                    }
+                }
+            };
 		})(name);
 
 		mxEvent.addListener(removeAttr, 'click', removeAttrFn);
