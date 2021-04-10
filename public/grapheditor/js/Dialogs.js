@@ -1298,6 +1298,9 @@ var autoCompleteProperties = {
     hasSynonym: null,
     equivalentProperty: null,
     inverseOf: null,
+    SubClassOf: null,
+    domain: null,
+    range: null,
 }
 
 
@@ -1427,14 +1430,14 @@ var EditDataDialog = function(ui, cell)
     annotationsColumn.classList.add('col-lg-6');
 
     let annotationsHeader = propertiesHeader.cloneNode(true);
-    console.log(annotationsHeader);
     annotationsHeader.firstChild.classList.add('fa-comment');
     annotationsHeader.firstChild.classList.remove('fa-cogs');
     annotationsHeader.childNodes[1].nodeValue = ' Annotations';
 
     annotationsColumn.appendChild(annotationsHeader);
 
-    propertiesColumn.appendChild(createFormInput('label', typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value));
+    // add label property and fill it
+    propertiesColumn.appendChild(createFormInput('label', typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value).parentNode);
 
     function createFormInput(propertyName, value) {
         /**
@@ -1462,17 +1465,17 @@ var EditDataDialog = function(ui, cell)
         formGroup.appendChild(label);
         formGroup.appendChild(textArea);
 
+        // add the property to its properly column
         if(classProperties.includes(propertyName) || relationProperties.includes(propertyName))
             propertiesColumn.appendChild(formGroup);
         else
             annotationsColumn.appendChild(formGroup);
 
-        return formGroup;
+        return textArea;
     }
 
     dialog.appendChild(propertiesColumn);
     dialog.appendChild(annotationsColumn);
-
 
 
 	var graph = ui.editor.graph;
@@ -1494,9 +1497,9 @@ var EditDataDialog = function(ui, cell)
 	form.table.style.width = '100%';
 
     // Get all properties
-	var attrs = value.attributes;
-	var names = [];
-	var texts = [];
+	var cellProperties = value.attributes;
+	var propertiesNames = [];
+	var formInputs = [];
 	var count = 0;
 
 	var id = (EditDataDialog.getDisplayIdForCell != null) ?
@@ -1504,67 +1507,85 @@ var EditDataDialog = function(ui, cell)
 
 
 	// THIS FUNCTION IS CALLED WHEN ANY PROPERTY IS FILLED
-	var addTextArea = function(index, name, value)
+	var addFormInput = function(index, name, value)
 	{
-		names[index] = name;
+		propertiesNames[index] = name;
 
         // check if the current name is in the properties object
 		if (name in autoCompleteProperties)
 		{
-            let valuesFromAutoComplete = autoCompleteInputs(cell, name, texts[index]);
+            // Auto complete of the properties 'SubClassOf', 'domain' and 'range'
+            if(name === 'SubClassOf' || name === 'domain' || name === 'range')
+            {
+                formInputs[index] = createFormInput(name, value);
+                formInputs[index].disabled = true;
+                autoCompleteInputs(cell, name, formInputs[index]);
+                // sets the value received from autocomplete to the array
+                autoCompleteProperties[name] = formInputs[index].value;
+            }
+            else
+            {
+                let valuesFromAutoComplete = autoCompleteInputs(cell, name, formInputs[index]);
 
-            // checks if the value from autocomplete is empty
-            value = valuesFromAutoComplete.length == 0 ? value.split(',') : valuesFromAutoComplete;
-            console.log(value);
-            console.log(valuesFromAutoComplete);
-			texts[index] = createMultipleSelect(name, value);
-			form.addField(name, texts[index]);
-            //propertiesColumn.appendChild(texts[index]);
+                // checks if the value from autocomplete is empty
+                value = valuesFromAutoComplete.length == 0 ? value.split(',') : valuesFromAutoComplete;
+                //console.log(value);
+                //console.log(valuesFromAutoComplete);
+                formInputs[index] = createMultipleSelect(name, value);
+                form.addField(name, formInputs[index]);
 
+                let formGroup = document.createElement('div');
+                formGroup.classList.add('form-group');
+
+                let label = document.createElement('label');
+                label.textContent = name;
+
+                formGroup.appendChild(label);
+                formGroup.appendChild(formInputs[index]);
+
+                propertiesColumn.appendChild(formGroup);
+            }
 		}
 		else
-			texts[index] = form.addTextarea(names[count], value, 2);
+			formInputs[index] = createFormInput(name, value);
 
 
-		texts[index].style.width = '100%';
+		formInputs[index].style.width = '100%';
 
-		// Auto complete of the properties 'SubClassOf', 'domain' and 'range'
-		if(name === 'SubClassOf' || name === 'domain' || name === 'range')
-		{
-			texts[index].disabled = true;
-			autoCompleteInputs(cell, name, texts[index]);
-		}
+
 
 		if (value.indexOf('\n') > 0)
 		{
-			texts[index].setAttribute('rows', '2');
+			formInputs[index].setAttribute('rows', '2');
 		}
 
         // add a remove button if the property was created by the user
         if(!classProperties.concat(annotations).concat(relationProperties).includes(name))
-            addRemoveButton(texts[index], name);
+            addRemoveButton(formInputs[index], name);
 
 		// Axiom Editor / ClassExpressionEditor
 		if(name === 'Constraint')
 		{
-			addHTMLAttributes(texts[index]);
-			addKeyupEvents(texts[index]);
-			addHelpText(texts[index])
+			addHTMLAttributes(formInputs[index]);
+			addKeyupEvents(formInputs[index]);
+			addHelpText(formInputs[index])
 		}
 	};
 
+    // hold properties names and values
 	var temp = [];
 	var isLayer = graph.getModel().getParent(cell) == graph.getModel().getRoot();
 
     // Only triggers if the cell has attributes
-	for (var i = 0; i < attrs.length; i++)
+	for (var i = 0; i < cellProperties.length; i++)
 	{
-		if ((isLayer || attrs[i].nodeName != 'label') && attrs[i].nodeName != 'placeholders')
+		if ((isLayer || cellProperties[i].nodeName != 'label') && cellProperties[i].nodeName != 'placeholders')
 		{
-			temp.push({name: attrs[i].nodeName, value: attrs[i].nodeValue});
+			temp.push({name: cellProperties[i].nodeName, value: cellProperties[i].nodeValue});
 		}
 	}
 
+    /*
 	if (id != null)
 	{
 		var text = document.createElement('div');
@@ -1581,12 +1602,12 @@ var EditDataDialog = function(ui, cell)
 		label.style.textAlign = 'center';
         mxUtils.write(label, typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value);
         form.addField('label' + ':', label);
-	}
+	}*/
 
 	for (var i = 0; i < temp.length; i++)
 	{
 
-		addTextArea(count, temp[i].name, temp[i].value);
+		addFormInput(count, temp[i].name, temp[i].value);
 		count++;
 	}
 
@@ -1619,28 +1640,28 @@ var EditDataDialog = function(ui, cell)
 		// Avoid ':' in attribute names which seems to be valid in Chrome
 		if (name.length > 0 && name != 'label' && name != 'placeholders' && name.indexOf(':') < 0) {
 			try {
-				var idx = mxUtils.indexOf(names, name);
+				var idx = mxUtils.indexOf(propertiesNames, name);
 
-				if (idx >= 0 && texts[idx] != null) {
-					texts[idx].focus();
+				if (idx >= 0 && formInputs[idx] != null) {
+					formInputs[idx].focus();
 				} else {
 					// Checks if the name is valid
 					var clone = value.cloneNode(false);
 					clone.setAttribute(name, '');
 
 					if (idx >= 0) {
-						names.splice(idx, 1);
-						texts.splice(idx, 1);
+						propertiesNames.splice(idx, 1);
+						formInputs.splice(idx, 1);
 					}
 
-					names.push(name);
+					propertiesNames.push(name);
 
                     var text;
 
 					text = form.addTextarea(name + ':', '',  2);
 					text.style.width = '100%';
 
-					texts.push(text);
+					formInputs.push(text);
 
 					text.focus();
 
@@ -1827,17 +1848,17 @@ var EditDataDialog = function(ui, cell)
 			{
 				var count = 1;
 
-				for (var j = 0; j < names.length; j++)
+				for (var j = 0; j < propertiesNames.length; j++)
 				{
-					if (names[j] == name)
+					if (propertiesNames[j] == name)
 					{
-						texts[j] = null;
+						formInputs[j] = null;
 						form.table.deleteRow(count + ((id != null) ? 1 : 0));
 
 						break;
 					}
 
-					if (texts[j] != null)
+					if (formInputs[j] != null)
 					{
 						count++;
 					}
@@ -1863,11 +1884,11 @@ var EditDataDialog = function(ui, cell)
 		{
 			try
 			{
-				var idx = mxUtils.indexOf(names, name);
+				var idx = mxUtils.indexOf(propertiesNames, name);
 
-				if (idx >= 0 && texts[idx] != null)
+				if (idx >= 0 && formInputs[idx] != null)
 				{
-					texts[idx].focus();
+					formInputs[idx].focus();
 				}
 				else
 				{
@@ -1877,17 +1898,17 @@ var EditDataDialog = function(ui, cell)
 
 					if (idx >= 0)
 					{
-						names.splice(idx, 1);
-						texts.splice(idx, 1);
+						propertiesNames.splice(idx, 1);
+						formInputs.splice(idx, 1);
 					}
 
-					names.push(name);
-					var text = form.addTextarea(name + ':', '', 2);
-					text.style.width = '100%';
-					texts.push(text);
-                    addRemoveButton(text, name);
+					propertiesNames.push(name);
+					var input = form.addTextarea(name + ':', '', 2);
+					input.style.width = '100%';
+					formInputs.push(input);
+                    addRemoveButton(input, name);
 
-					text.focus();
+					input.focus();
 				}
 
 				addBtn.setAttribute('disabled', 'disabled');
@@ -1906,9 +1927,9 @@ var EditDataDialog = function(ui, cell)
 
 	this.init = function()
 	{
-		if (texts.length > 0)
+		if (formInputs.length > 0)
 		{
-			texts[0].focus();
+			formInputs[0].focus();
 		}
 		else
 		{
@@ -1943,22 +1964,22 @@ var EditDataDialog = function(ui, cell)
 			var removeLabel = false;
 
             // set the attributes in the <object> tag
-			for (var i = 0; i < names.length; i++)
+			for (var i = 0; i < propertiesNames.length; i++)
 			{
-				if (texts[i] == null)
+				if (formInputs[i] == null)
 				{
-					value.removeAttribute(names[i]);
+					value.removeAttribute(propertiesNames[i]);
 				}
 				else
 				{
                     // apply the properties into the current graph
-					value.setAttributeNS(null, names[i], texts[i].value);
+					value.setAttributeNS(null, propertiesNames[i], formInputs[i].value);
 
                     // apply the autocomplete properties into the current graph
-                    if(names[i] in autoCompleteProperties && texts[i].value != null)
-                        value.setAttributeNS(null, names[i], autoCompleteProperties[names[i]]);
+                    if(propertiesNames[i] in autoCompleteProperties && formInputs[i].value != null)
+                        value.setAttributeNS(null, propertiesNames[i], autoCompleteProperties[propertiesNames[i]]);
 
-					removeLabel = removeLabel || (names[i] == 'placeholder' &&
+					removeLabel = removeLabel || (propertiesNames[i] == 'placeholder' &&
 						value.getAttribute('placeholders') == '1');
 				}
 			}
