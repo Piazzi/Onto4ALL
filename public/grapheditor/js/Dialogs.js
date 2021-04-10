@@ -1905,7 +1905,7 @@ var EditDataDialog = function(ui, cell)
 					}
 
 					propertiesNames.push(name);
-					var input = form.addTextarea(name + ':', '', 2);
+					var input = createFormInput(name, null);
 					input.style.width = '100%';
 					formInputs.push(input);
                     addRemoveButton(input, name);
