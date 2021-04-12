@@ -1471,7 +1471,7 @@ var EditDataDialog = function(ui, cell)
         // add the property to its properly column
         if(classProperties.includes(propertyName) || relationProperties.includes(propertyName) || propertyName == 'label')
             propertiesColumn.appendChild(formGroup);
-        else
+        else if (propertyName != 'xmlns')
             annotationsColumn.appendChild(formGroup);
 
         return textArea;
