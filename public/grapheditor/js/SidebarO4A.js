@@ -1046,15 +1046,15 @@ var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related'
 
 // Passing this as a parameter in the function below, creates elements with properties filled up ----------------------------------------------------------------------------
 // setAttributeNS is needed to create case-sensetive attributes
-classObject = document.createElement('object');
+classObject = mxUtils.createXmlDocument().createElement('object');
 classObject.setAttribute('label', 'Label');
-classProperties.forEach(element => {classObject.setAttributeNS(null, element, '');});
-annotations.forEach(element => {classObject.setAttributeNS(null, element, '');});
+classProperties.forEach(element => {classObject.setAttribute( element, '');});
+annotations.forEach(element => {classObject.setAttribute( element, '');});
 
-relationObject = document.createElement('object');
+relationObject = mxUtils.createXmlDocument().createElement('object');
 relationObject.setAttribute('label', 'new_relation');
-relationProperties.forEach(element => {relationObject.setAttributeNS(null, element, '');});
-annotations.forEach(element => {relationObject.setAttributeNS(null, element, '');});
+relationProperties.forEach(element => {relationObject.setAttribute( element, '');});
+annotations.forEach(element => {relationObject.setAttribute( element, '');});
 
 /**
  * Adds the taxonomy palette to the sidebar

@@ -1471,7 +1471,7 @@ var EditDataDialog = function(ui, cell)
         // add the property to its properly column
         if(classProperties.includes(propertyName) || relationProperties.includes(propertyName) || propertyName == 'label')
             propertiesColumn.appendChild(formGroup);
-        else if (propertyName != 'xmlns')
+        else 
             annotationsColumn.appendChild(formGroup);
 
         return textArea;
@@ -1975,11 +1975,11 @@ var EditDataDialog = function(ui, cell)
 				else
 				{
                     // apply the properties into the current graph
-					value.setAttributeNS(null, propertiesNames[i], formInputs[i].value);
+					value.setAttribute(propertiesNames[i], formInputs[i].value);
 
                     // apply the autocomplete properties into the current graph
                     if(propertiesNames[i] in autoCompleteProperties && formInputs[i].value != null)
-                        value.setAttributeNS(null, propertiesNames[i], autoCompleteProperties[propertiesNames[i]]);
+                        value.setAttribute( propertiesNames[i], autoCompleteProperties[propertiesNames[i]]);
 
 					removeLabel = removeLabel || (propertiesNames[i] == 'placeholder' &&
 						value.getAttribute('placeholders') == '1');

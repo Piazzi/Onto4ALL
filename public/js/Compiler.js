@@ -663,10 +663,10 @@ function thingClassExists() {
  * This function is called by Actions.js
  */
 function addThingClassToCurrentOntology() {
-    let object = document.createElement('object');
+    let object = mxUtils.createXmlDocument().createElement('object');
     object.setAttribute('label', getLanguage() == 'en' ? 'Thing' : 'Coisa');
-    classProperties.forEach(element => {object.setAttributeNS(null, element, '');});
-    annotations.forEach(element => {object.setAttributeNS(null, element, '');});
+    classProperties.forEach(element => {object.setAttribute( element, '');});
+    annotations.forEach(element => {object.setAttribute( element, '');});
     editor.graph.insertVertex(editor.graph.getDefaultParent(), null, object, 20, 20, 80, 80, "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#00A65A;strokeColor=#FFFFFF;shadow=1;fontColor=#FFFFFF;");
 }
 
