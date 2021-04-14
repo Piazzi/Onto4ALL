@@ -1396,8 +1396,6 @@ var EditDataDialog = function(ui, cell)
 
     // fix dialog size. Default is Width 480, height 420
 	//dialog.style.setProperty("width", "780px", "important");
-	dialog.style.setProperty("height", "720px", "important");
-    //dialog.style.setProperty("border","0px solid", "!important");
 
     let dialogTop = document.createElement('h4');
     dialogTop.style.textAlign = "center";
@@ -1439,10 +1437,7 @@ var EditDataDialog = function(ui, cell)
 
     annotationsColumn.appendChild(annotationsHeader);
 
-    // add label property and fill it
-   // propertiesColumn.appendChild(createFormInput('label', typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value).parentNode);
-
-    function createFormInput(propertyName, value) {
+    function createFormInput(propertyName, value = null) {
         /**
          * <div class="form-group has-success">
                   <label class="control-label" for="inputSuccess"><i class="fa fa-check"></i> Input with success</label>
@@ -1481,7 +1476,6 @@ var EditDataDialog = function(ui, cell)
     dialog.appendChild(propertiesColumn);
     dialog.appendChild(annotationsColumn);
 
-
 	var graph = ui.editor.graph;
 
 	var value = graph.getModel().getValue(cell);
@@ -1495,10 +1489,6 @@ var EditDataDialog = function(ui, cell)
 		value = obj;
         console.log(obj);
 	}
-
-	// Creates the dialog contents
-	var form = new mxForm('properties');
-	form.table.style.width = '100%';
 
     // Get all properties
 	var cellProperties = value.attributes;
@@ -1536,7 +1526,6 @@ var EditDataDialog = function(ui, cell)
                 //console.log(value);
                 //console.log(valuesFromAutoComplete);
                 formInputs[index] = createMultipleSelect(name, value);
-                form.addField(name, formInputs[index]);
 
                 let formGroup = document.createElement('div');
                 formGroup.classList.add('form-group');
@@ -1591,32 +1580,12 @@ var EditDataDialog = function(ui, cell)
 	}
     console.log(cellProperties);
 
-    /*
-	if (id != null)
-	{
-		var text = document.createElement('div');
-		text.style.width = '100%';
-		text.style.fontSize = '14px';
-		text.style.textAlign = 'center';
-		mxUtils.write(text, id);
-		form.addField(mxResources.get('id') + ':', text);
-
-        // Adds label value in the properties dialog
-        var label = document.createElement('div');
-        label.style.width = '100%';
-		label.style.fontSize = '14px';
-		label.style.textAlign = 'center';
-        mxUtils.write(label, typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value);
-        form.addField('label' + ':', label);
-	}*/
-
 	for (var i = 0; i < temp.length; i++)
 	{
 
 		addFormInput(count, temp[i].name, temp[i].value);
 		count++;
 	}
-
 
     // Creates the new property input
 	var dialogBottom = document.createElement('div');
@@ -1631,13 +1600,25 @@ var EditDataDialog = function(ui, cell)
 	nameInput.style.boxSizing = 'border-box';
 	nameInput.style.marginLeft = '2px';
 
-
-    //dialog.appendChild(form.table);
-
-
 	dialog.appendChild(dialogBottom);
 	dialogBottom.appendChild(nameInput);
 
+    // add the default properties if the element don't have them
+    if(cell.isEdge())
+        relationProperties.forEach(element => {
+            if(!value.hasAttribute(element))
+                addProperty(element);
+        });
+    else
+        classProperties.forEach(element => {
+            if(!value.hasAttribute(element))
+        addProperty(element);
+    });
+
+    annotations.forEach(element => {
+        if(!value.hasAttribute(element))
+        addProperty(element);
+    });
 	/**
 	 * Add a property to the cell
 	 * @param name
@@ -1662,16 +1643,43 @@ var EditDataDialog = function(ui, cell)
 
 					propertiesNames.push(name);
 
-                    var text;
+                    let formInput;
 
-					text = form.addTextarea(name + ':', '',  2);
-					text.style.width = '100%';
+                    // check if the current name is in the properties object
+                    if (name in autoCompleteProperties)
+                    {
+                        // Auto complete of the properties 'SubClassOf', 'domain' and 'range'
+                        if(name === 'SubClassOf' || name === 'domain' || name === 'range')
+                        {
+                            formInput = createFormInput(name);
+                            formInput.disabled = true;
+                            autoCompleteInputs(cell, name, formInput);
+                            // sets the value received from autocomplete to the array
+                            autoCompleteProperties[name] = formInput.value;
+                        }
+                        else
+                        {
+                            let valuesFromAutoComplete = autoCompleteInputs(cell, name, formInput);
 
-					formInputs.push(text);
+                            formInput = createMultipleSelect(name, valuesFromAutoComplete);
 
-					text.focus();
+                            let formGroup = document.createElement('div');
+                            formGroup.classList.add('form-group');
 
+                            let label = document.createElement('label');
+                            label.textContent = name;
 
+                            formGroup.appendChild(label);
+                            formGroup.appendChild(formInput);
+
+                            propertiesColumn.appendChild(formGroup);
+                        }
+                    }
+                    else
+                        formInput = createFormInput(name);
+
+					formInputs.push(formInput);
+					formInput.focus();
 				}
 
 				nameInput.value = '';
