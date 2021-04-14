@@ -219,7 +219,7 @@
                                 <span>{{__('Help Menu')}}</span></a>
                         </li>
                         <li>
-                            <a href="{{route('tutorial', app()->getLocale())}}">
+                            <a target="_blank" href="{{route('tutorial', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-info-circle "></i>
                                 <span>{{__('Tutorial')}}</span></a>
                         </li>
