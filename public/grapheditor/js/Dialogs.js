@@ -1394,9 +1394,9 @@ var EditDataDialog = function(ui, cell)
     dialog.id = 'properties-dialog';
     dialog.classList.add("row");
     // fix dialog size. Default is Width 480, height 420
-	dialog.style.setProperty("width", "780px", "important");
-	dialog.style.setProperty("height", "620px", "important");
-    dialog.style.setProperty("border","0px solid", "!important");
+	//dialog.style.setProperty("width", "780px", "important");
+	//dialog.style.setProperty("height", "620px", "important");
+    //dialog.style.setProperty("border","0px solid", "!important");
 
     let dialogTop = document.createElement('h4');
     dialogTop.style.textAlign = "center";
@@ -1471,7 +1471,7 @@ var EditDataDialog = function(ui, cell)
         // add the property to its properly column
         if(classProperties.includes(propertyName) || relationProperties.includes(propertyName) || propertyName == 'label')
             propertiesColumn.appendChild(formGroup);
-        else 
+        else
             annotationsColumn.appendChild(formGroup);
 
         return textArea;
@@ -1634,7 +1634,7 @@ var EditDataDialog = function(ui, cell)
     //dialog.appendChild(form.table);
 
 
-	annotationsColumn.appendChild(dialogBottom);
+	dialog.appendChild(dialogBottom);
 	dialogBottom.appendChild(nameInput);
 
 	/**
