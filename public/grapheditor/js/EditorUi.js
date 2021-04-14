@@ -3472,6 +3472,9 @@ EditorUi.prototype.createDivs = function()
 	this.hsplit.style.width = this.splitSize + 'px';
 	this.sidebarFooterContainer = this.createSidebarFooterContainer();
 
+    // fix in case pulls this div inside the left sidebar
+    this.hsplit.style.zIndex = '100';
+
 	if (this.sidebarFooterContainer)
 	{
 		this.sidebarFooterContainer.style.left = '0px';
