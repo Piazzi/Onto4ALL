@@ -1393,9 +1393,10 @@ var EditDataDialog = function(ui, cell)
 	var dialog = document.createElement('div');
     dialog.id = 'properties-dialog';
     dialog.classList.add("row");
+
     // fix dialog size. Default is Width 480, height 420
 	//dialog.style.setProperty("width", "780px", "important");
-	//dialog.style.setProperty("height", "620px", "important");
+	dialog.style.setProperty("height", "720px", "important");
     //dialog.style.setProperty("border","0px solid", "!important");
 
     let dialogTop = document.createElement('h4');
