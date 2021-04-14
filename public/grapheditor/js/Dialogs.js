@@ -1520,23 +1520,10 @@ var EditDataDialog = function(ui, cell)
             else
             {
                 let valuesFromAutoComplete = autoCompleteInputs(cell, name, formInputs[index]);
-
                 // checks if the value from autocomplete is empty
                 value = valuesFromAutoComplete.length == 0 ? value.split(',') : valuesFromAutoComplete;
-                //console.log(value);
-                //console.log(valuesFromAutoComplete);
                 formInputs[index] = createMultipleSelect(name, value);
 
-                let formGroup = document.createElement('div');
-                formGroup.classList.add('form-group');
-
-                let label = document.createElement('label');
-                label.textContent = name;
-
-                formGroup.appendChild(label);
-                formGroup.appendChild(formInputs[index]);
-
-                propertiesColumn.appendChild(formGroup);
             }
 		}
 		else
@@ -1660,19 +1647,7 @@ var EditDataDialog = function(ui, cell)
                         else
                         {
                             let valuesFromAutoComplete = autoCompleteInputs(cell, name, formInput);
-
                             formInput = createMultipleSelect(name, valuesFromAutoComplete);
-
-                            let formGroup = document.createElement('div');
-                            formGroup.classList.add('form-group');
-
-                            let label = document.createElement('label');
-                            label.textContent = name;
-
-                            formGroup.appendChild(label);
-                            formGroup.appendChild(formInput);
-
-                            propertiesColumn.appendChild(formGroup);
                         }
                     }
                     else
@@ -1773,6 +1748,17 @@ var EditDataDialog = function(ui, cell)
             option.innerHTML = element;
             select.appendChild(option);
         });
+
+        let formGroup = document.createElement('div');
+        formGroup.classList.add('form-group');
+
+        let label = document.createElement('label');
+        label.textContent = name;
+
+        formGroup.appendChild(label);
+        formGroup.appendChild(select);
+
+        propertiesColumn.appendChild(formGroup);
 
         let placeholder;
         if(name === 'inverseOf')
