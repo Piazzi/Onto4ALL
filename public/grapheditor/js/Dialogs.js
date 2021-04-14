@@ -1741,6 +1741,8 @@ var EditDataDialog = function(ui, cell)
 
         // remove duplicated options
         options = [...new Set(options)];
+        // remove the class Thing
+        options = options.filter(e => getLanguage() == 'en' ? e.toUpperCase() !== 'THING' : e.toUpperCase() !== 'COISA');
 
         options.forEach(element => {
             let option = document.createElement("option");
