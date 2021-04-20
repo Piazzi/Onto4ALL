@@ -1159,9 +1159,11 @@ EditorUi.prototype.init = function()
 		graph.getModel().addListener(mxEvent.CHANGE, mxUtils.bind(this, function()
 		{
 			this.updateActionStates();
-			console.log(this.editor.getGraphXml());
+
+
 			if(window.location.pathname.split('/')[2] !== 'thesaurus-editor')
-				movementCompiler(mxUtils.getXml(this.editor.getGraphXml()), editor.graph.getModel());
+				compileCells(editor.graph.getModel());
+
 		}));
 
 		// Changes action states after change of default parent

@@ -1,134 +1,138 @@
-/**
- * This file is responsible for the warning console in the editor page
- * The main function is the movementCompiler()
- */
-
 var classes = [], relations = [], instances = [], previousElements = [], elementsIdWithError = [], compilerCounter = 0, objects = [];
+let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
+
+let warningMessages = {
+    relationNotConnected: {
+        en: "",
+        pt: ""
+    }
+}
+/**
+ * Searches for errors in the relation
+ * @param {mxCell} relation 
+ */
+function compileRelation(relation) {
+    let label = relation.value.getAttribute('label');
+   
+    // Checks if the relation is connected to 2 classes or instances
+    if(label !== null && relation.target === null || relation.source === null){
+        basicErrorsCount++;
+        if (getLanguage() === 'pt')
+            sendWarningMessage('A relação ' + label.bold() + ' (ID: ' + relation.id + ') não está conectada a duas classes', 9, 'Erro Basico');
+        else
+            sendWarningMessage('The relation ' + label.bold() + ' (ID: ' + relation.id + ') it is not fully connected to 2 classes', 9, 'Basic Error');
+    }
+
+    // Shows a error message if two classes has been connected with the instance_of relation
+    if((label == 'instance_of' || label == "instancia_um" ) && relation.source !== null && relation.target !== null){
+        if(relation.source.style.includes('Class') && relation.target.style.includes('Class')){
+            conceptualErrorsCount++;
+            if (getLanguage() === 'pt')
+                sendWarningMessage("Você não pode ter uma relação instancia_um entre duas classes (" + relation.source.getAttribute('label').bold() + ', ' + relation.target.getAttribute('label').bold() + "). A relação precisa estar entre uma classe e uma instância. ", 3, " Erro Conceitual");
+            else
+                sendWarningMessage("You cant have a instance_of relation between two classes (" + relation.source.getAttribute('label').bold() + ', ' + relation.target.getAttribute('label').bold() + "). It must be between one class and one instance. ", 3, " Conceptual Error");
+        }
+    }
+
+
+    
+}
 
 /**
- * Gets the XML from the editor after any change is made.
+ * Searches for errors in the class
+ * @param {mxCell} classCell 
+ */
+function compileClass(classCell) {
+    
+}
+
+/**
+ * Searches for errors in the instance
+ * @param {mxCell} instance 
+ */
+function compileInstance(instance) {
+    
+    // shows a error if there is any relation besides instance_of connected to a instance
+    if(instance.edges !== null && instance.edges.length > 0){
+        instance.edges.forEach(relation => {
+            if(relation.getAttribute('label') !== 'instance_of' && relation.getAttribute('label') !== 'instancia_um'){
+                conceptualErrorsCount++;
+                if (getLanguage() === 'pt')
+                sendWarningMessage("Você só poder ter uma relação instancia_um entre uma classe e uma instância. (" + relation.getAttribute('label').bold() + ")", 4, ' Erro Conceitual');
+                else
+                sendWarningMessage("You can only have a instance_of relation between a class and a instance. (" + relation.getAttribute('label').bold() + ")", 4, ' Conceptual Error'); 
+            }
+        });
+    }
+}
+
+/**
+ * Gets the current cells from the graph after any change is made.
  * And finds any measurable error.
  * @param xml
  */
-function movementCompiler(xml, graphModel)
+function compileCells(graphModel)
 {
-    //console.log(graphModel);
+    console.log(editor.getGraphXml());
     console.log(graphModel.cells);
+    /**
+     * mxCell
+        connectable: true
+        geometry: mxGeometry {x: 20, y: 20, width: 80, height: 80, relative: false}
+        id: "2"
+        mxObjectId: "mxCell#271"
+        parent: mxCell {value: undefined, geometry: undefined, style: undefined, parent: mxCell, id: "1", …}
+        source: null
+        style: "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#00A65A;strokeColor=#FFFFFF;shadow=1;fontColor=#FFFFFF;"
+        target: null
+        value: object
+     */
+    //editor.graph.getModel().cells[2].getAttribute('label');
+    //console.log(graphModel);
     //graphModel.setStyle(graphModel.cells[2], "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
     //graphModel.cells[2].setStyle("ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
     //graph.getModel().setValue(cell, value);
     classes = [];
     relations = [];
     instances = [];
+    warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
     compilerCounter++;
 
     // Removes the previous error messages
     $(".direct-chat-messages").empty();
 
-    let xmlDoc, missingClassProperties = "", missingRelationProperties = "", warningsCount = 0, basicErrorsCount = 0,
-        conceptualErrorsCount = 0;
-    xmlDoc = new DOMParser().parseFromString(xml, "text/xml");
+    let missingClassProperties = "", missingRelationProperties = "";
 
-    //console.log("Elementos Antigos", previousElements);
-    // get a array of HTML elements representing the Classes, Instances and Relations
-    let elements = xmlDoc.getElementsByTagName("mxCell");
-    //console.log("Elementos Atuais", elements);
-
-    // Starts the XML interpretation send by the editor
-    // Each mxCell element is compared to each other to find any measurable error
-    // Complexity: O(n^2)
-    for (let i = 1; i < elements.length; i++) {
-        try {
-            if (!elementIsValid(elements[i]))
-                continue;
-
-            if (isRelation(elements[i]))
-                relations.push(elements[i]);
-            else if (isClass(elements[i]))
-                classes.push(elements[i]);
-            else if (isInstance(elements[i]))
-                instances.push(elements[i]);
-            else
-                continue;
-
-        } catch (e) {
-            console.log(e);
-            console.log('Element: ', elements[i]);
-            console.log('Parent: ', elements[i].parentNode);
+    let currentCells = graphModel.cells;
+    // iterate throught the current cells in the graph to find any measurable error
+    for (const [key, cell] of Object.entries(currentCells)) {
+        if (typeof cell.value === "undefined")
             continue;
+        
+        if(cell.isEdge()){
+            relations.push(cell);
+            compileRelation(cell);
         }
-
-        /*
-        console.log(getElementId(elements[i]));
-        if (elements[i].isEqualNode(previousElements[i]) && elementsIdWithError.indexOf(getElementId(elements[i])) === -1) {
+        else if(cell.getStyle().includes('Class')){
+            classes.push(cell);
+            compileClass(cell);
+        }
+        else if(cell.getStyle().includes('Instance')){
+            instances.push(cell);
+            compileInstance(cell);
+        }
+        else
             continue;
-        }*/
 
-        //editor.editor.setGraphXml();
-        //console.log(xmlDoc.documentElement);
+    }
 
-        if (isRelation(elements[i])) {
-            // Checks if the relation is connected to 2 classes
-            if (getValueOrLabel(elements[i]) !== null && elements[i].getAttribute("target") === null || elements[i].getAttribute("source") === null) {
-                basicErrorsCount++;
-                addIdToErrorArray(getElementId(elements[i]));
-                if (getLanguage() === 'pt')
-                    sendWarningMessage('A relação ' + getValueOrLabel(elements[i]).bold() + ' (ID: ' + getElementId(elements[i]) + ') não está conectada a duas classes', 9, 'Erro Basico');
-                else
-                    sendWarningMessage('The relation ' + getValueOrLabel(elements[i]).bold() + ' (ID: ' + getElementId(elements[i]) + ') it is not fully connected to 2 classes', 9, 'Basic Error');
-            }
 
-            // Shows a error message if two classes has been connected with the instance_of relation
-            if ((getValueOrLabel(elements[i]) === 'instance_of' || getValueOrLabel(elements[i]) === 'instancia_um') && (elements[i].hasAttribute("source") && elements[i].hasAttribute("target"))) {
-                let domainClass, rangeClass;
-                // Look for the two mxCells using the ids
-                for (let k = 0; k < elements.length; k++) {
-                    if (!elementIsValid(elements[k]))
-                        continue;
-                    if (getElementId(elements[k]) === elements[i].getAttribute("source"))
-                        domainClass = elements[k];
-                    if (getElementId(elements[k]) === elements[i].getAttribute("target"))
-                        rangeClass = elements[k];
+    /*
+   
 
-                }
+           
 
-                // shows a error if the mxCells are two classes
-                if (isClass(domainClass) && isClass(rangeClass)) {
-                    conceptualErrorsCount++;
-                    addIdToErrorArray(getElementId(elements[i]));
-                    if (getLanguage() === 'pt')
-                        sendWarningMessage("Você não pode ter uma relação instancia_um entre duas classes (" + getValueOrLabel(domainClass).bold() + ', ' + getValueOrLabel(rangeClass).bold() + "). A relação precisa estar entre uma classe e uma instância. ", "", " Erro Conceitual");
-                    else
-                        sendWarningMessage("You cant have a instance_of relation between two classes (" + getValueOrLabel(domainClass).bold() + ', ' + getValueOrLabel(rangeClass).bold() + "). It must be between one class and one instance. ", "", " Conceptual Error");
-                }
-            }
-        }
-
-        // If the mxCell is a Instance, start searching for his relations. If any relation belonging to the instance it's not a instance_of
-        // relation, shows a error message
-        if (isInstance(elements[i])) {
-            for (let k = 0; k < elements.length; k++) {
-                if (elements[k].getAttribute("edge") != null &&
-                    getValueOrLabel(elements[k]) !== 'instance_of' &&
-                    getValueOrLabel(elements[k]) !== 'instancia_um' &&
-                    elements[k].getAttribute("source") === getElementId(elements[i]) ||
-                    elements[k].getAttribute("target") === getElementId(elements[i]) &&
-                    elements[k].getAttribute("source") !== null &&
-                    elements[k].getAttribute("target") !== null) {
-
-                    conceptualErrorsCount++;
-                    addIdToErrorArray(getElementId(elements[i]));
-                    addIdToErrorArray(getElementId(elements[k]));
-                    if (getLanguage() === 'pt')
-                        sendWarningMessage("Você só poder ter uma relação instancia_um entre uma classe e uma instância. (" + findNameById(elements, elements[k].getAttribute("source")).bold() + ")", "", ' Erro Conceitual');
-                    else
-                        sendWarningMessage("You can only have a instance_of relation between a class and a instance. (" + findNameById(elements, elements[k].getAttribute("source")).bold() + ")", "", ' Conceptual Error');
-                }
-            }
-            // skip to the next iteration because this is the only error for instances implemented yet
-            continue;
-        }
-
+      
         let name = removeSpaces(getValueOrLabel(elements[i]));
         // Check if the Name is in Plural or singular
         /*
@@ -139,7 +143,7 @@ function movementCompiler(xml, graphModel)
                 sendWarningMessage("É recomendável que os nomes estejam no singular e não no plural.",'','Má Prática');
             else
                 sendWarningMessage("It is recommended that the names be in the singular and not in the plural",'','Bad Practice')
-        }*/
+        }
 
         // Check if the name contains a Acronym
         // /([a-z]{1}\.)/gi
@@ -255,7 +259,7 @@ function movementCompiler(xml, graphModel)
                sendWarningMessage("You can only have 1 relation between 2 classes. This error occurs between these two classes: "+getMxCellName(xmlDoc, elements[j].getAttribute("target")) +" and "+
                      getMxCellName(xmlDoc, elements[j].getAttribute("source"))+" .", "", 8);
                 excessOfRelationsWarning++;
-            }*/
+            }
 
         }
 
@@ -311,7 +315,7 @@ function movementCompiler(xml, graphModel)
 
 
          if (objects[i].getAttribute("range") === "")
-             missingRelationProperties = missingRelationProperties + ' range,';*/
+             missingRelationProperties = missingRelationProperties + ' range,';
 
 
         if (objects[i].getAttribute("inverseOf") === "")
@@ -348,14 +352,15 @@ function movementCompiler(xml, graphModel)
             sendWarningMessage('É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia.', "", "Erro Conceitual");
         else
             sendWarningMessage('It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology.', "", "Conceptual Error");
-    }
+    }*/
+    
 
 
     updateCountersInFrontEnd(warningsCount, basicErrorsCount, conceptualErrorsCount);
     updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCount);
     updateSaveButtonInFrontEnd(false);
 
-    previousElements = elements;
+    previousElements = currentCells;
     elementsIdWithError = [];
 }
 
@@ -667,7 +672,7 @@ function addThingClassToCurrentOntology() {
     object.setAttribute('label', getLanguage() == 'en' ? 'Thing' : 'Coisa');
     classProperties.forEach(element => {object.setAttribute( element, '');});
     annotations.forEach(element => {object.setAttribute( element, '');});
-    editor.graph.insertVertex(editor.graph.getDefaultParent(), null, object, 20, 20, 80, 80, "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#00A65A;strokeColor=#FFFFFF;shadow=1;fontColor=#FFFFFF;");
+    editor.graph.insertVertex(editor.graph.getDefaultParent(), null, object, 20, 20, 80, 80, "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#00A65A;strokeColor=#FFFFFF;fontColor=#FFFFFF;");
 }
 
 
