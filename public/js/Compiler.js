@@ -1,12 +1,6 @@
 var classes = [], relations = [], instances = [], previousElements = [], elementsIdWithError = [], compilerCounter = 0, objects = [];
 let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
 
-let warningMessages = {
-    relationNotConnected: {
-        en: "",
-        pt: ""
-    }
-}
 /**
  * Searches for errors in the relation
  * @param {mxCell} relation 
@@ -43,7 +37,44 @@ function compileRelation(relation) {
  * @param {mxCell} classCell 
  */
 function compileClass(classCell) {
-    
+
+    // remove the current class from the classes array
+    let classesToCompare = classes.filter(item => item.id !== classCell.id);
+
+    // Shows a error message if two classes have the same name
+    if(classCell.getAttribute('label') !== null)
+        for (let i = 0; i < classesToCompare.length; i++) {
+            if(classCell.getAttribute('label') == classesToCompare[i].getAttribute('label')){
+                conceptualErrorsCount++;
+                if (getLanguage() === 'pt')
+                    sendWarningMessage("Você não pode ter duas classes com o mesmo nome, você tem duas classes chamadas " + classCell.getAttribute('label').bold() + ".", 1, 'Erro Conceitual');
+                else
+                    sendWarningMessage("You can not have two classes with the same name, you have two classes named " + classCell.getAttribute('label').bold() + ".", 1, 'Conceptual Error');
+            } 
+        }
+
+    // Shows a error message if two classes has the same relation between them more than one time
+    if(classCell.edges !== null && classCell.edges.length > 1){
+        let connectedRelations = classCell.edges.filter(relation => relation.target !== null && relation.source !== null && relation.getAttribute('label') !== "");
+        for (let i = 0; i < connectedRelations.length; i++) {
+            for (let j = 0; j < connectedRelations.length; j++) {
+                if(connectedRelations[i].id != connectedRelations[j].id && connectedRelations[i].getAttribute('label') == connectedRelations[j].getAttribute('label') && connectedRelations[i].target.getAttribute('label') == connectedRelations[j].target.getAttribute('label') && connectedRelations[i].source.getAttribute('label') == connectedRelations[j].source.getAttribute('label')){
+                    basicErrorsCount++;
+                    if (getLanguage() === 'pt')
+                        sendWarningMessage("Você não pode ter duas relações iguais apontando para as mesmas classes. Esse erro ocorre nas seguintes classes: " + connectedRelations[i].source.getAttribute('label') + " e " + connectedRelations[i].target.getAttribute('label') + ".", 2, 'Erro Básico');
+                    else
+                        sendWarningMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: " + connectedRelations[i].source.getAttribute('label') + " and " + connectedRelations[i].target.getAttribute('label') + ".", 2, 'Basic Error');
+                    connectedRelations.splice(i, 1);
+                    connectedRelations.splice(j, 1);
+                } 
+            }
+            
+        }
+    }
+
+
+
+
 }
 
 /**
@@ -95,27 +126,12 @@ function compileLabel(label) {
 /**
  * Gets the current cells from the graph after any change is made.
  * And finds any measurable error.
- * @param xml
+ * @param graphModel
  */
 function compileCells(graphModel)
 {
     console.log(editor.getGraphXml());
     console.log(graphModel.cells);
-    /**
-     * mxCell
-        connectable: true
-        geometry: mxGeometry {x: 20, y: 20, width: 80, height: 80, relative: false}
-        id: "2"
-        mxObjectId: "mxCell#271"
-        parent: mxCell {value: undefined, geometry: undefined, style: undefined, parent: mxCell, id: "1", …}
-        source: null
-        style: "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#00A65A;strokeColor=#FFFFFF;shadow=1;fontColor=#FFFFFF;"
-        target: null
-        value: object
-     */
-    //editor.graph.getModel().cells[2].getAttribute('label');
-    //console.log(graphModel);
-    //graphModel.setStyle(graphModel.cells[2], "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
     //graphModel.cells[2].setStyle("ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
     //graph.getModel().setValue(cell, value);
     classes = [];
@@ -154,52 +170,8 @@ function compileCells(graphModel)
 
     }
 
-
     /*
-
-       
-       
-        for (let j = i + 1; j < elements.length; j++) {
-            // Shows a error message if two classes has the same name
-            if (isClass(elements[i]) && isClass(elements[j]) && (getValueOrLabel(elements[i]) === getValueOrLabel(elements[j])) && (getElementId(elements[i]) !== getElementId(elements[j])) && getValueOrLabel(elements[i]) != null && getValueOrLabel(elements[j]) != null) {
-                conceptualErrorsCount++;
-                addIdToErrorArray(getElementId(elements[i]));
-                addIdToErrorArray(getElementId(elements[j]));
-                if (getLanguage() === 'pt')
-                    sendWarningMessage("Você não pode ter duas classes com o mesmo nome, você tem duas classes chamadas " + (getValueOrLabel(elements[i])).bold() + ".", 1, 'Erro Conceitual');
-                else
-                    sendWarningMessage("You can not have two classes with the same name, you have two classes named " + (getValueOrLabel(elements[i])).bold() + ".", 1, 'Conceptual Error');
-
-            }
-
-            if (isRelation(elements[i]) && isRelation(elements[j])) {
-                // Shows a error message if two classes has the same relation between them more than one time
-                if (getValueOrLabel(elements[i]) ===
-                    getValueOrLabel(elements[j]) &&
-                    elements[i].getAttribute("target") ===
-                    elements[j].getAttribute("target") &&
-                    elements[i].getAttribute("source") ===
-                    elements[j].getAttribute("source") &&
-                    getValueOrLabel(elements[i]) != null &&
-                    getValueOrLabel(elements[j]) != null &&
-                    (elements[i].getAttribute("target") != null &&
-                        elements[j].getAttribute("target") != null &&
-                        elements[i].getAttribute("source") != null &&
-                        elements[j].getAttribute("source") != null)) {
-                    basicErrorsCount++;
-                    addIdToErrorArray(getElementId(elements[i]));
-                    addIdToErrorArray(getElementId(elements[j]));
-
-                    if (getLanguage() === 'pt')
-                        sendWarningMessage("Você não pode ter duas relações iguais apontando para as mesmas classes. Esse erro ocorre nas seguintes classes: " +
-                            findNameById(elements, elements[i].getAttribute("source")) +
-                            " e " + findNameById(elements, elements[i].getAttribute("target")) + ".", '', 'Erro Básico');
-                    else
-                        sendWarningMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: " +
-                            findNameById(elements, elements[i].getAttribute("source")) +
-                            " and " + findNameById(elements, elements[i].getAttribute("target")) + ".", '', 'Basic Error');
-                }
-
+           
                 //Shows a error if a class has multiple inheritance
                 if (getLanguage() === 'en' && getValueOrLabel(elements[i]) === "is_a" &&
                     getValueOrLabel(elements[j]) === "is_a" &&
