@@ -67,6 +67,32 @@ function compileInstance(instance) {
 }
 
 /**
+ * Compile only the label of the cell to find any measurable error
+ * @param {string} label
+ */
+function compileLabel(label) {
+    
+    // Check if the label contains a Acronym
+    if (/^([a-z]\.)+/i.test(label)) {
+        warningsCount++;
+        if (getLanguage() === 'pt')
+            sendWarningMessage("É recomendável que os nomes não tenham acrônimos. (" + label.bold() + ")", '', 'Má Prática');
+        else
+            sendWarningMessage("It is recommended that the labels do not have acronyms. (" + label.bold() + ")", '', 'Bad Practice');
+    }
+
+     // Check if the label is all on uppercase
+     if (/^[^a-z]*$/.test(removeSpaces(label))) {
+        warningsCount++;
+        if (getLanguage() === 'pt')
+            sendWarningMessage("É recomendável que os nomes sejam escritos em letras minúsculas. (" + label.bold() + ")", '', 'Má Prática');
+        else
+            sendWarningMessage("It is recommended that labels are written in lowercase letters. (" + label.bold() + ")", '', 'Bad Practice');
+    }
+
+}
+
+/**
  * Gets the current cells from the graph after any change is made.
  * And finds any measurable error.
  * @param xml
@@ -113,61 +139,26 @@ function compileCells(graphModel)
             relations.push(cell);
             compileRelation(cell);
         }
-        else if(cell.getStyle().includes('Class')){
+        else if(cell.style.includes('Class')){
             classes.push(cell);
             compileClass(cell);
         }
-        else if(cell.getStyle().includes('Instance')){
+        else if(cell.style.includes('Instance')){
             instances.push(cell);
             compileInstance(cell);
         }
         else
             continue;
 
+        compileLabel(cell.getAttribute('label'));
+
     }
 
 
     /*
-   
 
-           
-
-      
-        let name = removeSpaces(getValueOrLabel(elements[i]));
-        // Check if the Name is in Plural or singular
-        /*
-        if(isClass(elements[i]) && name.charAt(name.length-1) === 's' || name.charAt(name.length-1) === 'S')
-        {
-            warningsCount++;
-            if(getLanguage() === 'pt')
-                sendWarningMessage("É recomendável que os nomes estejam no singular e não no plural.",'','Má Prática');
-            else
-                sendWarningMessage("It is recommended that the names be in the singular and not in the plural",'','Bad Practice')
-        }
-
-        // Check if the name contains a Acronym
-        // /([a-z]{1}\.)/gi
-        // /^([a-z]\.)+/i
-        // /^([a-z]\.)+$/i
-        if (/^([a-z]\.)+/i.test(name)) {
-            warningsCount++;
-            addIdToErrorArray(getElementId(elements[i]));
-            if (getLanguage() === 'pt')
-                sendWarningMessage("É recomendável que os nomes não tenham acrônimos. (" + name.bold() + ")", '', 'Má Prática');
-            else
-                sendWarningMessage("It is recommended that the names do not have acronyms. (" + name.bold() + ")", '', 'Bad Practice');
-        }
-
-        // Check if the name is all on uppercase
-        if (/^[^a-z]*$/.test(removeSpaces(name))) {
-            warningsCount++;
-            addIdToErrorArray(getElementId(elements[i]));
-            if (getLanguage() === 'pt')
-                sendWarningMessage("É recomendável que os nomes sejam escritos em letras minúsculas. (" + name.bold() + ")", '', 'Má Prática');
-            else
-                sendWarningMessage("It is recommended that names are written in lowercase letters. (" + name.bold() + ")", '', 'Bad Practice');
-        }
-
+       
+       
         for (let j = i + 1; j < elements.length; j++) {
             // Shows a error message if two classes has the same name
             if (isClass(elements[i]) && isClass(elements[j]) && (getValueOrLabel(elements[i]) === getValueOrLabel(elements[j])) && (getElementId(elements[i]) !== getElementId(elements[j])) && getValueOrLabel(elements[i]) != null && getValueOrLabel(elements[j]) != null) {
