@@ -53,8 +53,9 @@ function compileClass(classCell) {
             } 
         }
 
-    // Shows a error message if two classes has the same relation between them more than one time
     if(classCell.edges !== null && classCell.edges.length > 1){
+
+        // Shows a error message if two classes has the same relation between them more than one time
         let connectedRelations = classCell.edges.filter(relation => relation.target !== null && relation.source !== null && relation.getAttribute('label') !== "");
         for (let i = 0; i < connectedRelations.length; i++) {
             for (let j = 0; j < connectedRelations.length; j++) {
@@ -70,9 +71,27 @@ function compileClass(classCell) {
             }
             
         }
+
+        //Shows a error if a class has multiple inheritance
+        let inheritanceCount = 0;
+        classCell.edges.forEach(relation => {
+            if(relation.getAttribute('label') == 'is_a' || relation.getAttribute('label') == 'é_um' && relation.source !== null){
+                if(relation.source.id == classCell.id){
+                    inheritanceCount++;
+                }
+            }
+        });
+        if(inheritanceCount > 1){
+            warningsCount++;
+            if(getLanguage() == 'pt')
+                sendWarningMessage("Classes não podem ter herança múltipla. Sua classe " + classCell.getAttribute('label') + "(ID: " + classCell.id + ") não pode ser o domínio de mais de uma relação is_a", 8, 'Má Prática');
+            else
+                sendWarningMessage("A class can't have multiple inheritance. Your " + classCell.getAttribute('label') + "(ID: " + classCell.id + ") class can't be the domain of more than one is_a relation", 8, 'Bad Practice');
+        }
+
     }
 
-
+    
 
 
 }
