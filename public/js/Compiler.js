@@ -17,14 +17,27 @@ function compileRelation(relation) {
             sendWarningMessage('The relation ' + label.bold() + ' (ID: ' + relation.id + ') it is not fully connected to 2 classes', 9, 'Basic Error');
     }
 
-    // Shows a error message if two classes has been connected with the instance_of relation
-    if((label == 'instance_of' || label == "instancia_um" ) && relation.source !== null && relation.target !== null){
-        if(relation.source.style.includes('Class') && relation.target.style.includes('Class')){
-            conceptualErrorsCount++;
-            if (getLanguage() === 'pt')
+    if(relation.source !== null && relation.target !== null)
+    {
+        // Shows a error message if two classes has been connected with the instance_of relation
+        if((label == 'instance_of' || label == "instancia_um" )){
+            if(relation.source.style.includes('Class') && relation.target.style.includes('Class')){
+                conceptualErrorsCount++;
+                if (getLanguage() === 'pt')
                 sendWarningMessage("Você não pode ter uma relação instancia_um entre duas classes (" + relation.source.getAttribute('label').bold() + ', ' + relation.target.getAttribute('label').bold() + "). A relação precisa estar entre uma classe e uma instância. ", 3, " Erro Conceitual");
-            else
+                else
                 sendWarningMessage("You cant have a instance_of relation between two classes (" + relation.source.getAttribute('label').bold() + ', ' + relation.target.getAttribute('label').bold() + "). It must be between one class and one instance. ", 3, " Conceptual Error");
+            }
+        }
+
+        // Shows a error message if the domain and range properties are equal
+        if(relation.source.getAttribute('label') == relation.target.getAttribute('label')){
+            basicErrorsCount++;
+            if (getLanguage() === 'pt')
+                sendWarningMessage('As propriedades domain e range da relaçao ' + relation.getAttribute('label').bold() + ' não podem ser iguais.', "", 'Erro Básico');
+            else
+                sendWarningMessage('The properties domain and range from the ' + relation.getAttribute('label').bold() + ' relation cannot be equal.', "", 'Basic Error');
+
         }
     }
 
@@ -91,6 +104,7 @@ function compileClass(classCell) {
 
     }
 
+    
     
 
 
@@ -187,86 +201,22 @@ function compileCells(graphModel)
 
         compileLabel(cell.getAttribute('label'));
 
+        
     }
 
-    /*
-           
-                //Shows a error if a class has multiple inheritance
-                if (getLanguage() === 'en' && getValueOrLabel(elements[i]) === "is_a" &&
-                    getValueOrLabel(elements[j]) === "is_a" &&
-                    elements[i].getAttribute("source") ===
-                    elements[j].getAttribute("source") &&
-                    elements[i].getAttribute("target") !==
-                    elements[j].getAttribute("target") &&
-                    elements[i].getAttribute("target") !== null &&
-                    elements[j].getAttribute("target") !== null &&
-                    elements[i].getAttribute("source") !== null &&
-                    elements[j].getAttribute("source") !== null) {
-                    sendWarningMessage("A class can't have multiple inheritance. Your " + findNameById(elements, elements[i].getAttribute("source")) + "(ID: " + elements[i].getAttribute('id') + ") class can't be the domain of more than one is_a relation", 8, 'Bad Practice');
-                    warningsCount++;
-                    addIdToErrorArray(getElementId(elements[i]));
-                    addIdToErrorArray(getElementId(elements[j]));
-
-                } else if (getValueOrLabel(elements[i]) === "é_um" &&
-                    getValueOrLabel(elements[j]) === "é_um" &&
-                    elements[i].getAttribute("source") ===
-                    elements[j].getAttribute("source") &&
-                    elements[i].getAttribute("target") !==
-                    elements[j].getAttribute("target") &&
-                    elements[i].getAttribute("target") !== null &&
-                    elements[j].getAttribute("target") !== null &&
-                    elements[i].getAttribute("source") !== null &&
-                    elements[j].getAttribute("source") !== null) {
-                    sendWarningMessage("Classes não podem ter herança múltipla. Sua classe " + findNameById(elements, elements[i].getAttribute("source")) + "(ID: " + elements[i].getAttribute('id') + ") não pode ser o domínio de mais de uma relação is_a", 8, 'Má Prática');
-                    warningsCount++;
-                    addIdToErrorArray(getElementId(elements[i]));
-                    addIdToErrorArray(getElementId(elements[j]));
-
-                }
-            }
+    // Shows a error if a Thing Class doesn't exist in the current ontology
+    if(!thingClassExists()){
+        basicErrorsCount++;
+        if (getLanguage() === 'pt')
+            sendWarningMessage('É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia.', "", "Erro Conceitual");
+        else
+            sendWarningMessage('It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology.', "", "Conceptual Error");
+    }
+   
 
             /*
-            // Shows a error message if a class has more than one relation attached to it
-            if(elements[i].getAttribute("edge") != null &&
-                elements[j].getAttribute("edge") != null &&
-                elements[i].getAttribute("source") != null &&
-                elements[j].getAttribute("source") != null &&
-                elements[i].getAttribute("target") != null &&
-                elements[j].getAttribute("target") != null &&
-                (elements[i].getAttribute("target") ===
-                elements[j].getAttribute("target") &&
-                elements[i].getAttribute("source") ===
-                elements[j].getAttribute("source")))
-            {
-               sendWarningMessage("You can only have 1 relation between 2 classes. This error occurs between these two classes: "+getMxCellName(xmlDoc, elements[j].getAttribute("target")) +" and "+
-                     getMxCellName(xmlDoc, elements[j].getAttribute("source"))+" .", "", 8);
-                excessOfRelationsWarning++;
-            }
-
-        }
-
-
-    }
-
     // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // Search for 'object' elements in the XML
-    objects = xmlDoc.getElementsByTagName("object");
-    for (let i = 0; i < objects.length; i++) {
-
-        if (objects[i].getAttribute("label") != null) {
-            // Show the inverse of error if the relation and the inverse Of property have the same name
-            if (objects[i].getAttribute("label") === objects[i].getAttribute("inverseOf")) {
-                conceptualErrorsCount++;
-                addIdToErrorArray(objects[i].getAttribute("id"));
-                if (getLanguage() === 'pt')
-                    sendWarningMessage("Na relação " + objects[i].getAttribute("label") + ", a propriedade inverse_of não pode ter o mesmo nome que a relação", "", 'Erro Conceitual');
-                else
-                    sendWarningMessage("In the " + objects[i].getAttribute("label") + " relation, the Inverse Of property can't have the same name of the relation", "", 'Conceptual Error');
-
-            }
-
-        }
-
+   
         if (isClass(objects[i].childNodes[0])) {
             // Search for missing properties in each class element
             if (objects[i].getAttribute("definition") === "")
@@ -313,28 +263,10 @@ function compileCells(graphModel)
             missingRelationProperties = "";
         }
 
-        // Throws a error if the domain and range properties are equal
-        if (isRelation(objects[i].childNodes[0]) &&
-            objects[i].getAttribute("domain") ===
-            objects[i].getAttribute("range")) {
-            basicErrorsCount++;
-            addIdToErrorArray(objects[i].getAttribute("id"));
-            if (getLanguage() === 'pt')
-                sendWarningMessage('As propriedades domain e range da relaçao ' + objects[i].getAttribute("label").bold() + ' não podem ser iguais.', "", 'Erro Básico');
-            else
-                sendWarningMessage('The properties domain and range from the ' + objects[i].getAttribute("label").bold() + ' relation cannot be equal.', "", 'Basic Error');
-        }
-
+    
     }
 
-    // Throws a error if the things class doesnt exists in the current ontology
-    if (!thingClassExists()) {
-        basicErrorsCount++;
-        if (getLanguage() === 'pt')
-            sendWarningMessage('É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia.', "", "Erro Conceitual");
-        else
-            sendWarningMessage('It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology.', "", "Conceptual Error");
-    }*/
+   */
     
 
 
@@ -638,9 +570,8 @@ function updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCo
  * Check if the Thing Class exists in the current ontology
  */
 function thingClassExists() {
-    let classes = getElementsNames();
     for (let i = 0; i < classes.length; i++)
-        if (classes[i].toUpperCase() === 'THING' || classes[i].toUpperCase() === 'COISA')
+        if (classes[i].getAttribute('label').toUpperCase() === 'THING' || classes[i].getAttribute('label').toUpperCase() === 'COISA')
             return true;
     return false;
 }
