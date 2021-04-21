@@ -121,6 +121,12 @@ function compileRelation(relation) {
             missingRelationProperties = "";
     }
 
+    // Autocomplete the domain and range properties
+    if(relation.source !== null)
+        relation.setAttribute('domain', relation.source.getAttribute('label'));
+    if(relation.target !== null)
+        relation.setAttribute('range', relation.target.getAttribute('label'));
+
 }
 
 /**
@@ -166,7 +172,7 @@ function compileClass(classCell) {
         //Shows a error if a class has multiple inheritance
         let inheritanceCount = 0;
         classCell.edges.forEach(relation => {
-            if(relation.getAttribute('label') == 'is_a' || relation.getAttribute('label') == 'é_um' && relation.source !== null){
+            if((relation.getAttribute('label') == 'is_a' || relation.getAttribute('label') == 'é_um') && relation.source !== null){
                 if(relation.source.id == classCell.id){
                     inheritanceCount++;
                 }
@@ -329,14 +335,7 @@ function removeSpaces(string) {
  */
 function autoCompleteInputs(element, propertyName, inputField) {
 
-    // check if the element is a relation
-    if (element.edge == true) {
-        if (element.source && element.source.id != null && propertyName === 'domain')
-            inputField.value = element.source.getAttribute('label');
-        if (element.target && element.target.id != null && propertyName === 'range')
-            inputField.value = element.target.getAttribute('label');
-    }
-    else if (propertyName === 'SubClassOf' && (element.value !== 'Thing' && element.value !== 'Coisa'))
+    if (propertyName === 'SubClassOf' && (element.value !== 'Thing' && element.value !== 'Coisa'))
     {
         for (let i = 0; i < previousElements.length; i++)
             if (previousElements[i].isEdge() && (previousElements[i].getAttribute('label') === 'is_a' || previousElements[i].getAttribute('label') === 'é_um') && previousElements[i].source.id == element.id)

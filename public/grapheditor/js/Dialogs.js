@@ -1298,9 +1298,6 @@ var autoCompleteProperties = {
     hasSynonym: null,
     equivalentProperty: null,
     inverseOf: null,
-    SubClassOf: null,
-    domain: null,
-    range: null,
 }
 
 
@@ -1508,28 +1505,18 @@ var EditDataDialog = function(ui, cell)
         // check if the current name is in the properties object
 		if (name in autoCompleteProperties)
 		{
-            // Auto complete of the properties 'SubClassOf', 'domain' and 'range'
-            if(name === 'SubClassOf' || name === 'domain' || name === 'range')
-            {
-                formInputs[index] = createFormInput(name, value);
-                formInputs[index].disabled = true;
-                autoCompleteInputs(cell, name, formInputs[index]);
-                // sets the value received from autocomplete to the array
-                autoCompleteProperties[name] = formInputs[index].value;
-            }
-            else
-            {
-                let valuesFromAutoComplete = autoCompleteInputs(cell, name, formInputs[index]);
-                // checks if the value from autocomplete is empty
-                value = valuesFromAutoComplete.length == 0 ? value.split(',') : valuesFromAutoComplete;
-                formInputs[index] = createMultipleSelect(name, value);
-
-            }
+            let valuesFromAutoComplete = autoCompleteInputs(cell, name, formInputs[index]);
+            // checks if the value from autocomplete is empty
+            value = valuesFromAutoComplete.length == 0 ? value.split(',') : valuesFromAutoComplete;
+            formInputs[index] = createMultipleSelect(name, value);
 		}
 		else
 			formInputs[index] = createFormInput(name, value);
 
 
+		if(name === 'SubClassOf' || name === 'domain' || name === 'range')
+			formInputs[index].disabled = true;
+		
 		formInputs[index].style.width = '100%';
 
 
@@ -1635,23 +1622,14 @@ var EditDataDialog = function(ui, cell)
                     // check if the current name is in the properties object
                     if (name in autoCompleteProperties)
                     {
-                        // Auto complete of the properties 'SubClassOf', 'domain' and 'range'
-                        if(name === 'SubClassOf' || name === 'domain' || name === 'range')
-                        {
-                            formInput = createFormInput(name);
-                            formInput.disabled = true;
-                            autoCompleteInputs(cell, name, formInput);
-                            // sets the value received from autocomplete to the array
-                            autoCompleteProperties[name] = formInput.value;
-                        }
-                        else
-                        {
-                            let valuesFromAutoComplete = autoCompleteInputs(cell, name, formInput);
-                            formInput = createMultipleSelect(name, valuesFromAutoComplete);
-                        }
+                        let valuesFromAutoComplete = autoCompleteInputs(cell, name, formInput);
+                        formInput = createMultipleSelect(name, valuesFromAutoComplete);
                     }
                     else
                         formInput = createFormInput(name);
+
+					if(name === 'SubClassOf' || name === 'domain' || name === 'range')
+						formInput.disabled = true;
 
 					formInputs.push(formInput);
 					formInput.focus();
