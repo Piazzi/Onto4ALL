@@ -1505,7 +1505,7 @@ var EditDataDialog = function(ui, cell)
         // check if the current name is in the properties object
 		if (name in autoCompleteProperties)
 		{
-            let valuesFromAutoComplete = autoCompleteInputs(cell, name, formInputs[index]);
+            let valuesFromAutoComplete = autoCompleteInputs(cell, name);
             // checks if the value from autocomplete is empty
             value = valuesFromAutoComplete.length == 0 ? value.split(',') : valuesFromAutoComplete;
             formInputs[index] = createMultipleSelect(name, value);
@@ -1622,7 +1622,7 @@ var EditDataDialog = function(ui, cell)
                     // check if the current name is in the properties object
                     if (name in autoCompleteProperties)
                     {
-                        let valuesFromAutoComplete = autoCompleteInputs(cell, name, formInput);
+                        let valuesFromAutoComplete = autoCompleteInputs(cell, name);
                         formInput = createMultipleSelect(name, valuesFromAutoComplete);
                     }
                     else

@@ -23,7 +23,7 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
      let currentCells = graphModel.cells;
      // iterate throught the current cells in the graph to find any measurable error
      for (const [key, cell] of Object.entries(currentCells)) {
-         if (typeof cell.value === "undefined")
+         if (typeof cell.value !== "object")
              continue;
          
          if(cell.isEdge()){
@@ -65,7 +65,7 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
  * @param {mxCell} relation 
  */
 function compileRelation(relation) {
-    let label = relation.value.getAttribute('label');
+    let label = relation.getAttribute('label');
    
     // Checks if the relation is connected to 2 classes or instances
     if(label !== null && relation.target === null || relation.source === null){
@@ -128,8 +128,12 @@ function compileRelation(relation) {
     // Autocomplete the domain and range properties
     if(relation.source !== null)
         relation.setAttribute('domain', relation.source.getAttribute('label'));
+    else
+        relation.setAttribute('domain', '');
     if(relation.target !== null)
         relation.setAttribute('range', relation.target.getAttribute('label'));
+    else
+        relation.setAttribute('range','');
     
 
 }
@@ -336,9 +340,8 @@ function removeSpaces(string) {
  * Autocomplete the SubClassOf, Domain, Range, DisjointWith, EquivalentTo and hasSynonum properties.
  * @param element
  * @param propertyName
- * @param inputField
  */
-function autoCompleteInputs(element, propertyName, inputField) {
+function autoCompleteInputs(element, propertyName) {
 
     if(propertyName in autoCompleteProperties){
         let values = [];
