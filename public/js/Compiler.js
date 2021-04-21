@@ -1,5 +1,64 @@
-var classes = [], relations = [], instances = [], previousElements = [], elementsIdWithError = [], compilerCounter = 0, objects = [];
+var classes = [], relations = [], instances = [], previousElements = [], compilerCounter = 0, objects = [];
 let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
+
+
+/**
+ * Gets the current cells from the graph after any change is made.
+ * And finds any measurable error.
+ * @param graphModel
+ */
+ function compileCells(graphModel)
+ {
+     console.log(editor.getGraphXml());
+     console.log(graphModel.cells);
+     //graphModel.cells[2].setStyle("ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
+     //graph.getModel().setValue(cell, value);
+     classes = [], relations = [], instances = [];
+     warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
+     compilerCounter++;
+ 
+     // Removes the previous error messages
+     $(".direct-chat-messages").empty();
+ 
+     let currentCells = graphModel.cells;
+     // iterate throught the current cells in the graph to find any measurable error
+     for (const [key, cell] of Object.entries(currentCells)) {
+         if (typeof cell.value === "undefined")
+             continue;
+         
+         if(cell.isEdge()){
+             relations.push(cell);
+             compileRelation(cell);
+         }
+         else if(cell.style.includes('Class')){
+             classes.push(cell);
+             compileClass(cell);
+         }
+         else if(cell.style.includes('Instance')){
+             instances.push(cell);
+             compileInstance(cell);
+         }
+         else
+             continue;
+ 
+         compileLabel(cell.getAttribute('label')); 
+     }
+ 
+     // Shows a error if a Thing Class doesn't exist in the current ontology
+     if(!thingClassExists()){
+         basicErrorsCount++;
+         if (getLanguage() === 'pt')
+             sendWarningMessage('É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia.', "", "Erro Conceitual");
+         else
+             sendWarningMessage('It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology.', "", "Conceptual Error");
+     }
+    
+     updateCountersInFrontEnd(warningsCount, basicErrorsCount, conceptualErrorsCount);
+     updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCount);
+     updateSaveButtonInFrontEnd(false);
+     previousElements = currentCells;
+ }
+
 
 /**
  * Searches for errors in the relation
@@ -41,8 +100,27 @@ function compileRelation(relation) {
         }
     }
 
+    // Search for missing properties in each relation element
+    let missingRelationProperties = "";
 
-    
+    if (relation.getAttribute("domain") === "")
+        missingRelationProperties = missingRelationProperties + ' domain,';
+
+    if (relation.getAttribute("range") === "")
+        missingRelationProperties = missingRelationProperties + ' range,';
+
+    if (relation.getAttribute("inverseOf") === "")
+        missingRelationProperties = missingRelationProperties + ' inverseOf';
+
+    if (missingRelationProperties !== "") {
+        basicErrorsCount++;
+        if (getLanguage() === 'pt')
+            sendWarningMessage('Na relação ' + relation.getAttribute("label").bold() + '(ID: ' + relation.id.bold() + ')' + ', você não preencheu as seguintes propriedades: ' + missingRelationProperties.bold() + '', 7, 'Erro Básico');
+        else
+            sendWarningMessage('In the ' + relation.getAttribute("label").bold() + '(ID: ' + relation.id.bold() + ')' + ' Relation, you did not fill the following properties: ' + missingRelationProperties.bold() + '', 7, 'Basic Error');
+            missingRelationProperties = "";
+    }
+
 }
 
 /**
@@ -104,9 +182,25 @@ function compileClass(classCell) {
 
     }
 
-    
-    
+    // Search for missing properties in each class element
+    let missingClassProperties = "";
+    if(classCell.getAttribute('definition') === "")
+        missingClassProperties = missingClassProperties + ' definition,';
 
+    if ((classCell.getAttribute("SubClassOf") === ""))
+        missingClassProperties = missingClassProperties + ' SubClassOf';
+
+    if ((classCell.getAttribute("exampleOfUsage") === ""))
+        missingClassProperties = missingClassProperties + ' exampleOfUsage';
+
+    if (missingClassProperties !== "") {
+        basicErrorsCount++;
+        if (getLanguage() === 'pt')
+            sendWarningMessage('Na classe ' + classCell.getAttribute("label").bold() + ', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold() + '', 6, 'Erro Básico');
+        else
+            sendWarningMessage('In the ' + classCell.getAttribute("label").bold() + ' Class, you did not fill the following properties: ' + missingClassProperties.bold() + '', 6, 'Basic Error');
+            missingClassProperties = "";
+    }   
 
 }
 
@@ -157,175 +251,6 @@ function compileLabel(label) {
 }
 
 /**
- * Gets the current cells from the graph after any change is made.
- * And finds any measurable error.
- * @param graphModel
- */
-function compileCells(graphModel)
-{
-    console.log(editor.getGraphXml());
-    console.log(graphModel.cells);
-    //graphModel.cells[2].setStyle("ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
-    //graph.getModel().setValue(cell, value);
-    classes = [];
-    relations = [];
-    instances = [];
-    warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
-    compilerCounter++;
-
-    // Removes the previous error messages
-    $(".direct-chat-messages").empty();
-
-    let missingClassProperties = "", missingRelationProperties = "";
-
-    let currentCells = graphModel.cells;
-    // iterate throught the current cells in the graph to find any measurable error
-    for (const [key, cell] of Object.entries(currentCells)) {
-        if (typeof cell.value === "undefined")
-            continue;
-        
-        if(cell.isEdge()){
-            relations.push(cell);
-            compileRelation(cell);
-        }
-        else if(cell.style.includes('Class')){
-            classes.push(cell);
-            compileClass(cell);
-        }
-        else if(cell.style.includes('Instance')){
-            instances.push(cell);
-            compileInstance(cell);
-        }
-        else
-            continue;
-
-        compileLabel(cell.getAttribute('label'));
-
-        
-    }
-
-    // Shows a error if a Thing Class doesn't exist in the current ontology
-    if(!thingClassExists()){
-        basicErrorsCount++;
-        if (getLanguage() === 'pt')
-            sendWarningMessage('É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia.', "", "Erro Conceitual");
-        else
-            sendWarningMessage('It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology.', "", "Conceptual Error");
-    }
-   
-
-            /*
-    // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-   
-        if (isClass(objects[i].childNodes[0])) {
-            // Search for missing properties in each class element
-            if (objects[i].getAttribute("definition") === "")
-                missingClassProperties = missingClassProperties + ' definition,';
-
-
-            if (objects[i].getAttribute("SubClassOf") === "")
-                missingClassProperties = missingClassProperties + ' SubClassOf,';
-
-
-            if (objects[i].getAttribute("exampleOfUsage") === "")
-                missingClassProperties = missingClassProperties + ' exampleOfUsage';
-
-            if (missingClassProperties !== "") {
-                basicErrorsCount++;
-                addIdToErrorArray(objects[i].getAttribute("id"));
-                if (getLanguage() === 'pt')
-                    sendWarningMessage('Na classe ' + objects[i].getAttribute("label").bold() + ', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold() + '', "", 'Erro Básico');
-                else
-                    sendWarningMessage('In the ' + objects[i].getAttribute("label").bold() + ' Class, you did not fill the following properties: ' + missingClassProperties.bold() + '', "", 'Basic Error');
-                missingClassProperties = "";
-            }
-        }
-
-        // Search for missing properties in each relation element
-        /* if (objects[i].getAttribute("domain") === "")
-             missingRelationProperties = missingRelationProperties + ' domain,';
-
-
-         if (objects[i].getAttribute("range") === "")
-             missingRelationProperties = missingRelationProperties + ' range,';
-
-
-        if (objects[i].getAttribute("inverseOf") === "")
-            missingRelationProperties = missingRelationProperties + ' inverseOf';
-
-        if (missingRelationProperties !== "") {
-            basicErrorsCount++;
-            addIdToErrorArray(objects[i].getAttribute("id"));
-            if (getLanguage() === 'pt')
-                sendWarningMessage('Na relação ' + objects[i].getAttribute("label").bold() + '(ID: ' + objects[i].getAttribute("id").bold() + ')' + ', você não preencheu as seguintes propriedades: ' + missingRelationProperties.bold() + '', "", 'Erro Básico');
-            else
-                sendWarningMessage('In the ' + objects[i].getAttribute("label").bold() + '(ID: ' + objects[i].getAttribute("id").bold() + ')' + ' Relation, you did not fill the following properties: ' + missingRelationProperties.bold() + '', "", 'Basic Error');
-            missingRelationProperties = "";
-        }
-
-    
-    }
-
-   */
-    
-
-
-    updateCountersInFrontEnd(warningsCount, basicErrorsCount, conceptualErrorsCount);
-    updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCount);
-    updateSaveButtonInFrontEnd(false);
-
-    previousElements = currentCells;
-    elementsIdWithError = [];
-}
-
-/**
- * Checks if the properties from a given
- * element is filled
- * @param element
- * return integer
- */
-function filledProperties(element) {
-    try {
-        return element.parentNode.getAttribute('label') !== null && element.parentNode.nodeName === 'object' || element.nodeName === 'object';
-    } catch (e) {
-        console.log(e);
-    }
-}
-
-/**
- * Returns if the given element is a relation or not
- * @returns {boolean}
- */
-function isRelation(element) {
-    try {
-        return element.getAttribute('edge') != null
-        // ||// element.childNodes[0].getAttribute("style").includes('Relation');
-    } catch (e) {
-        console.log(e);
-    }
-}
-
-/**
- * Returns if the given element is a class or not
- * @returns {boolean}
- */
-function isClass(element) {
-    try {
-        return element.getAttribute("style").includes('ellipse');
-    } catch (e) {
-        console.log(e);
-    }
-}
-
-/**
- * Returns if the given element is a instance or not
- * @returns {boolean}
- */
-function isInstance(element) {
-    return element.getAttribute("edge") === null && element.getAttribute("style").includes('Instance');
-}
-
-/**
  * Creates a new warning message in the warning console for the given text
  * @param text
  * @param warningId
@@ -360,39 +285,6 @@ function sendWarningMessage(text, warningId, type) {
 }
 
 /**
- * Returns the value (property) of a mxCell Tag or the label (property) of a object Tag
- * This function is used during the comparisons
- * @param element
- * return a string
- */
-function getValueOrLabel(element) {
-    return element.getAttribute("value") ? element.getAttribute("value") : element.parentNode.getAttribute('label')
-}
-
-/**
- * Returns the id from a mxCell Tag or a object Tag
- * @param element
- * return integer
- */
-function getElementId(element) {
-    if (element)
-        return element.getAttribute("id") ? element.getAttribute("id") : element.parentNode.getAttribute('id')
-}
-
-/**
- * Returns the value(name)/label for the given id
- * This functions works for both object and mxCell Tags
- * @param id
- * @param elements
- * @returns {*}
- */
-function findNameById(elements, id) {
-    for (let i = 0; i < elements.length; i++)
-        if (getElementId(elements[i]) === id)
-            return getValueOrLabel(elements[i])
-}
-
-/**
  * Get the language by looking at the pathname
  * @returns {string}
  */
@@ -401,35 +293,17 @@ function getLanguage() {
 }
 
 /**
- * Check if the mxCell is valid (have the necessary attributes for the compiler to read)
- * @param mxCell
- * @returns {boolean}
- */
-function elementIsValid(mxCell) {
-    try {
-        return mxCell.hasAttribute('style') && mxCell.hasAttribute('parent');
-    } catch (e) {
-        console.log(e);
-    }
-    // mxCell.getAttribute('style').includes('Relation') ||
-    //    mxCell.getAttribute('style').includes('Instance') ||
-    //  mxCell.getAttribute('style').includes('Class');
-    //else
-    //   return false;
-}
-
-/**
- * Gets all classes names in the current diagram
+ * Gets all classes or relations names in the current diagram
  * @returns {Array}
  */
 function getElementsNames(category = 'Class') {
     let names = [];
     if (category === 'Relation') {
         for (let i = 0; i < relations.length; i++)
-            names.push(getValueOrLabel(relations[i]));
+            names.push(relations[i].getAttribute('label'));
     } else {
         for (let i = 0; i < classes.length; i++)
-            names.push(getValueOrLabel(classes[i]));
+            names.push(classes[i].getAttribute('label'));
     }
     return names;
 }
@@ -448,15 +322,6 @@ function removeSpaces(string) {
 }
 
 /**
- * Add the element id to the array if he aren't there
- * @param elementId
- */
-function addIdToErrorArray(elementId) {
-    if (elementsIdWithError.indexOf(elementId) === -1)
-        elementsIdWithError.push(elementId);
-}
-
-/**
  * Autocomplete the SubClassOf, Domain, Range, DisjointWith, EquivalentTo and hasSynonum properties.
  * @param element
  * @param propertyName
@@ -467,26 +332,26 @@ function autoCompleteInputs(element, propertyName, inputField) {
     // check if the element is a relation
     if (element.edge == true) {
         if (element.source && element.source.id != null && propertyName === 'domain')
-            inputField.value = findNameById(previousElements, element.source.id);
+            inputField.value = element.source.getAttribute('label');
         if (element.target && element.target.id != null && propertyName === 'range')
-            inputField.value = findNameById(previousElements, element.target.id);
+            inputField.value = element.target.getAttribute('label');
     }
     else if (propertyName === 'SubClassOf' && (element.value !== 'Thing' && element.value !== 'Coisa'))
     {
         for (let i = 0; i < previousElements.length; i++)
-            if (isRelation(previousElements[i]) && (getValueOrLabel(previousElements[i]) === 'is_a' || getValueOrLabel(previousElements[i]) === 'é_um') && previousElements[i].getAttribute("source") == element.id)
-                inputField.value = findNameById(previousElements, previousElements[i].getAttribute("target"));
+            if (previousElements[i].isEdge() && (previousElements[i].getAttribute('label') === 'is_a' || previousElements[i].getAttribute('label') === 'é_um') && previousElements[i].source.id == element.id)
+                inputField.value = previousElements.target.getAttribute('label');
     }
 
     if(propertyName in autoCompleteProperties){
         let values = [];
         let currentElementName = typeof element.value === 'object' ? element.value.getAttribute('label') : element.value;
-        for (let i = 0; i < objects.length; i++) {
-            if(isClass(objects[i].childNodes[0]) || isRelation(objects[i].childNodes[0]))
+        for (let i = 0; i < previousElements.length; i++) {
+            if(previousElements[i].style.includes('Class') || previousElements[i].isEdge())
             {
-                let propertyValues = objects[i].getAttribute(propertyName)?.split(',');
+                let propertyValues = previousElements[i].getAttribute(propertyName)?.split(',');
                 if(propertyValues?.indexOf(currentElementName) > -1)
-                   values.push(objects[i].getAttribute('label'));
+                   values.push(previousElements[i].getAttribute('label'));
             }
 
         }
