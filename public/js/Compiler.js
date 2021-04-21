@@ -98,6 +98,10 @@ function compileRelation(relation) {
                 sendWarningMessage('The properties domain and range from the ' + relation.getAttribute('label').bold() + ' relation cannot be equal.', "", 'Basic Error');
 
         }
+
+        // Autocomplete the SubClassOf property from the domain of a is_a relation
+        if(relation.getAttribute('label') == 'is_a' || relation.getAttribute('label') == 'é_um' )
+        relation.source.setAttribute('SubClassOf', relation.target.getAttribute('label'));
     }
 
     // Search for missing properties in each relation element
@@ -126,6 +130,7 @@ function compileRelation(relation) {
         relation.setAttribute('domain', relation.source.getAttribute('label'));
     if(relation.target !== null)
         relation.setAttribute('range', relation.target.getAttribute('label'));
+    
 
 }
 
@@ -334,13 +339,6 @@ function removeSpaces(string) {
  * @param inputField
  */
 function autoCompleteInputs(element, propertyName, inputField) {
-
-    if (propertyName === 'SubClassOf' && (element.value !== 'Thing' && element.value !== 'Coisa'))
-    {
-        for (let i = 0; i < previousElements.length; i++)
-            if (previousElements[i].isEdge() && (previousElements[i].getAttribute('label') === 'is_a' || previousElements[i].getAttribute('label') === 'é_um') && previousElements[i].source.id == element.id)
-                inputField.value = previousElements.target.getAttribute('label');
-    }
 
     if(propertyName in autoCompleteProperties){
         let values = [];
