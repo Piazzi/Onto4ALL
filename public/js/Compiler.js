@@ -98,11 +98,17 @@ function compileRelation(relation) {
                 sendWarningMessage('The properties domain and range from the ' + relation.getAttribute('label').bold() + ' relation cannot be equal.', "", 'Basic Error');
 
         }
-
-        // Autocomplete the SubClassOf property from the domain of a is_a relation
-        if(relation.getAttribute('label') == 'is_a' || relation.getAttribute('label') == 'é_um' )
-        relation.source.setAttribute('SubClassOf', relation.target.getAttribute('label'));
     }
+
+    // Autocomplete the domain and range properties
+    if(relation.source !== null)
+        relation.setAttribute('domain', relation.source.getAttribute('label'));
+    else
+        relation.setAttribute('domain', '');
+    if(relation.target !== null)
+        relation.setAttribute('range', relation.target.getAttribute('label'));
+    else
+        relation.setAttribute('range','');
 
     // Search for missing properties in each relation element
     let missingRelationProperties = "";
@@ -125,15 +131,7 @@ function compileRelation(relation) {
             missingRelationProperties = "";
     }
 
-    // Autocomplete the domain and range properties
-    if(relation.source !== null)
-        relation.setAttribute('domain', relation.source.getAttribute('label'));
-    else
-        relation.setAttribute('domain', '');
-    if(relation.target !== null)
-        relation.setAttribute('range', relation.target.getAttribute('label'));
-    else
-        relation.setAttribute('range','');
+    
     
 
 }
@@ -158,50 +156,69 @@ function compileClass(classCell) {
                     sendWarningMessage("You can not have two classes with the same name, you have two classes named " + classCell.getAttribute('label').bold() + ".", 1, 'Conceptual Error');
             } 
         }
+    
+    if(classCell.edges !== null){
 
-    if(classCell.edges !== null && classCell.edges.length > 1){
-
-        // Shows a error message if two classes has the same relation between them more than one time
-        let connectedRelations = classCell.edges.filter(relation => relation.target !== null && relation.source !== null && relation.getAttribute('label') !== "");
-        for (let i = 0; i < connectedRelations.length; i++) {
-            for (let j = 0; j < connectedRelations.length; j++) {
-                if(connectedRelations[i].id != connectedRelations[j].id && connectedRelations[i].getAttribute('label') == connectedRelations[j].getAttribute('label') && connectedRelations[i].target.getAttribute('label') == connectedRelations[j].target.getAttribute('label') && connectedRelations[i].source.getAttribute('label') == connectedRelations[j].source.getAttribute('label')){
-                    basicErrorsCount++;
-                    if (getLanguage() === 'pt')
+        // Autocomplete the SubClassOf property 
+        let isSubClassOf = 0;
+        classCell.edges.forEach(relation => {
+            if((relation.getAttribute('label') == 'is_a' || relation.getAttribute('label') == 'é_um'))
+            {
+                isSubClassOf++;
+                if(relation.source !== null && relation.target !== null && relation.source.id == classCell.id)
+                    classCell.setAttribute('SubClassOf', relation.target.getAttribute('label'));
+            }
+        });
+        if(isSubClassOf == 0)
+            classCell.setAttribute('SubClassOf', "");
+        
+            
+        if(classCell.edges.length > 1){
+            
+            // Shows a error message if two classes has the same relation between them more than one time
+            let connectedRelations = classCell.edges.filter(relation => relation.target !== null && relation.source !== null && relation.getAttribute('label') !== "");
+            for (let i = 0; i < connectedRelations.length; i++) {
+                for (let j = 0; j < connectedRelations.length; j++) {
+                    if(connectedRelations[i].id != connectedRelations[j].id && connectedRelations[i].getAttribute('label') == connectedRelations[j].getAttribute('label') && connectedRelations[i].target.getAttribute('label') == connectedRelations[j].target.getAttribute('label') && connectedRelations[i].source.getAttribute('label') == connectedRelations[j].source.getAttribute('label')){
+                        basicErrorsCount++;
+                        if (getLanguage() === 'pt')
                         sendWarningMessage("Você não pode ter duas relações iguais apontando para as mesmas classes. Esse erro ocorre nas seguintes classes: " + connectedRelations[i].source.getAttribute('label') + " e " + connectedRelations[i].target.getAttribute('label') + ".", 2, 'Erro Básico');
-                    else
+                        else
                         sendWarningMessage("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: " + connectedRelations[i].source.getAttribute('label') + " and " + connectedRelations[i].target.getAttribute('label') + ".", 2, 'Basic Error');
-                    connectedRelations.splice(i, 1);
-                    connectedRelations.splice(j, 1);
-                } 
+                        connectedRelations.splice(i, 1);
+                        connectedRelations.splice(j, 1);
+                    } 
+                }
+                
+            }
+            
+            //Shows a error if a class has multiple inheritance
+            let inheritanceCount = 0;
+            classCell.edges.forEach(relation => {
+                if((relation.getAttribute('label') == 'is_a' || relation.getAttribute('label') == 'é_um') && relation.source !== null){
+                    if(relation.source.id == classCell.id){
+                        inheritanceCount++;
+                    }
+                }
+            });
+            if(inheritanceCount > 1){
+                warningsCount++;
+                if(getLanguage() == 'pt')
+                sendWarningMessage("Classes não podem ter herança múltipla. Sua classe " + classCell.getAttribute('label') + "(ID: " + classCell.id + ") não pode ser o domínio de mais de uma relação is_a", 8, 'Má Prática');
+                else
+                sendWarningMessage("A class can't have multiple inheritance. Your " + classCell.getAttribute('label') + "(ID: " + classCell.id + ") class can't be the domain of more than one is_a relation", 8, 'Bad Practice');
             }
             
         }
-
-        //Shows a error if a class has multiple inheritance
-        let inheritanceCount = 0;
-        classCell.edges.forEach(relation => {
-            if((relation.getAttribute('label') == 'is_a' || relation.getAttribute('label') == 'é_um') && relation.source !== null){
-                if(relation.source.id == classCell.id){
-                    inheritanceCount++;
-                }
-            }
-        });
-        if(inheritanceCount > 1){
-            warningsCount++;
-            if(getLanguage() == 'pt')
-                sendWarningMessage("Classes não podem ter herança múltipla. Sua classe " + classCell.getAttribute('label') + "(ID: " + classCell.id + ") não pode ser o domínio de mais de uma relação is_a", 8, 'Má Prática');
-            else
-                sendWarningMessage("A class can't have multiple inheritance. Your " + classCell.getAttribute('label') + "(ID: " + classCell.id + ") class can't be the domain of more than one is_a relation", 8, 'Bad Practice');
-        }
-
     }
-
-    // Search for missing properties in each class element
-    let missingClassProperties = "";
-    if(classCell.getAttribute('definition') === "")
+        
+        
+        
+        // Search for missing properties in each class element
+        let missingClassProperties = "";
+        if(classCell.getAttribute('definition') === "")
         missingClassProperties = missingClassProperties + ' definition,';
-
+        
     if ((classCell.getAttribute("SubClassOf") === ""))
         missingClassProperties = missingClassProperties + ' SubClassOf';
 
