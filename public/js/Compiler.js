@@ -172,7 +172,7 @@ function compileClass(classCell) {
         if(isSubClassOf == 0)
             classCell.setAttribute('SubClassOf', "");
         
-            
+
         if(classCell.edges.length > 1){
             
             // Shows a error message if two classes has the same relation between them more than one time
@@ -470,4 +470,23 @@ function addThingClassToCurrentOntology() {
     editor.graph.insertVertex(editor.graph.getDefaultParent(), null, object, 20, 20, 80, 80, "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#00A65A;strokeColor=#FFFFFF;fontColor=#FFFFFF;");
 }
 
+/**
+ * Find a cell using the id
+ * @param {string} id 
+ * @param {string} type 
+ * @returns object
+ */
+function findCellById(id, type) {
+    if(type == 'Class')
+        cells = classes;
+    else if(type == 'Relation')
+        cells = relations;
+    else if(type == 'Instance')
+        cells = instances;
+    else
+        cells = relations.concat(classes).concat(instances);
 
+    for (let i = 0; i < cells.length; i++) 
+        if(cells[i].id == id)
+            return cells[i];
+}

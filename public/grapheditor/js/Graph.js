@@ -3490,31 +3490,24 @@ Graph.prototype.getTooltipForCell = function(cell)
 			{
 				if (mxUtils.indexOf(ignored, attrs[i].nodeName) < 0 && attrs[i].nodeValue.length > 0)
 				{
-					temp.push({name: attrs[i].nodeName, value: attrs[i].nodeValue});
+					// find the classes names 
+					if(attrs[i].nodeName in autoCompleteProperties && attrs[i].nodeValue != "null")
+					{
+						let cellsNames = [];
+						let ids = attrs[i].nodeValue.split(',');
+						for (let i = 0; i < ids.length; i++) {
+							cellsNames.push(findCellById(ids[i], null).getAttribute('label'));
+						}
+						temp.push({name: attrs[i].nodeName, value: cellsNames});
+					}
+					else
+						temp.push({name: attrs[i].nodeName, value: attrs[i].nodeValue});
 				}
 			}
 
 			// ------------ Onto4ALL ------------
 			// Adds the id in the tooltips
 			temp.unshift({name: 'id', value: cell.id});
-
-			// Sorts by name
-			/*
-			temp.sort(function(a, b)
-			{
-				if (a.name < b.name)
-				{
-					return -1;
-				}
-				else if (a.name > b.name)
-				{
-					return 1;
-				}
-				else
-				{
-					return 0;
-				}
-			});*/
 
 			for (var i = 0; i < temp.length; i++)
 			{

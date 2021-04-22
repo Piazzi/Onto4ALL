@@ -1504,12 +1504,7 @@ var EditDataDialog = function(ui, cell)
 
         // check if the current name is in the properties object
 		if (name in autoCompleteProperties)
-		{
-            let valuesFromAutoComplete = autoCompleteInputs(cell, name);
-            // checks if the value from autocomplete is empty
-            value = valuesFromAutoComplete.length == 0 ? value.split(',') : valuesFromAutoComplete;
-            formInputs[index] = createMultipleSelect(name, value);
-		}
+            formInputs[index] = createMultipleSelect(name, value.split(','));
 		else
 			formInputs[index] = createFormInput(name, value);
 
@@ -1710,22 +1705,18 @@ var EditDataDialog = function(ui, cell)
             select.setAttribute("multiple","multiple");
 
 		// get and removes current cell name from the select options
-		let cellName = typeof cell.value === 'object' ? cell.value.getAttribute('label') : cell.value;
         let options = [];
-        if(cell.isEdge())
-            options = getElementsNames('Relation').filter(e => e !== cellName);
-        else
-		    options = getElementsNames('Class').filter(e => e !== cellName);
-
+        cell.isEdge() ? options = relations.filter(e => e.id !== cell.id) : options = classes.filter(e => e.id !== cell.id)
+      
         // remove duplicated options
         options = [...new Set(options)];
         // remove the class Thing
-        options = options.filter(e => getLanguage() == 'en' ? e.toUpperCase() !== 'THING' : e.toUpperCase() !== 'COISA');
+        options = options.filter(e => getLanguage() == 'en' ? e.getAttribute('label').toUpperCase() !== 'THING' : e.getAttribute('label').toUpperCase() !== 'COISA');
 
         options.forEach(element => {
             let option = document.createElement("option");
-            option.setAttribute("value", element);
-            option.innerHTML = element;
+            option.setAttribute("value", element.id);
+            option.innerHTML = element.getAttribute('label');
             select.appendChild(option);
         });
 
@@ -1737,7 +1728,6 @@ var EditDataDialog = function(ui, cell)
 
         formGroup.appendChild(label);
         formGroup.appendChild(select);
-
         propertiesColumn.appendChild(formGroup);
 
         let placeholder;
@@ -1954,7 +1944,7 @@ var EditDataDialog = function(ui, cell)
 
                     // apply the autocomplete properties into the current graph
                     if(propertiesNames[i] in autoCompleteProperties && formInputs[i].value != null)
-                        value.setAttribute( propertiesNames[i], autoCompleteProperties[propertiesNames[i]]);
+						value.setAttribute( propertiesNames[i], autoCompleteProperties[propertiesNames[i]]);
 
 					removeLabel = removeLabel || (propertiesNames[i] == 'placeholder' &&
 						value.getAttribute('placeholders') == '1');
