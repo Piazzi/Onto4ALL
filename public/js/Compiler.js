@@ -1,6 +1,5 @@
-var classes = [], relations = [], instances = [], previousElements = [], compilerCounter = 0, objects = [];
+var classes = [], relations = [], instances = [], previousCells = [], compilerCounter = 0;
 let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
-
 
 /**
  * Gets the current cells from the graph after any change is made.
@@ -10,19 +9,19 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
  function compileCells(graphModel)
  {
      console.log(editor.getGraphXml());
-     console.log(graphModel.cells);
      //graphModel.cells[2].setStyle("ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
      //graph.getModel().setValue(cell, value);
+     previousCells = classes.concat(relations).concat(instances);
      classes = [], relations = [], instances = [];
      warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
      compilerCounter++;
  
-     // Removes the previous error messages
+     // Removes the previous error messages in the console 
      $(".direct-chat-messages").empty();
  
-     let currentCells = graphModel.cells;
      // iterate throught the current cells in the graph to find any measurable error
-     for (const [key, cell] of Object.entries(currentCells)) {
+     for (const [key, cell] of Object.entries(graphModel.cells)) {
+         // skip the cells that is not valid for compilation
          if (typeof cell.value !== "object")
              continue;
          
@@ -44,19 +43,10 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
          compileLabel(cell.getAttribute('label')); 
      }
  
-     // Shows a error if a Thing Class doesn't exist in the current ontology
-     if(!thingClassExists()){
-         basicErrorsCount++;
-         if (getLanguage() === 'pt')
-             sendWarningMessage('É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia.', "", "Erro Conceitual");
-         else
-             sendWarningMessage('It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology.', "", "Conceptual Error");
-     }
-    
+     thingClassExists();
      updateCountersInFrontEnd(warningsCount, basicErrorsCount, conceptualErrorsCount);
      updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCount);
      updateSaveButtonInFrontEnd(false);
-     previousElements = currentCells;
  }
 
 
@@ -131,9 +121,6 @@ function compileRelation(relation) {
             missingRelationProperties = "";
     }
 
-    
-    
-
 }
 
 /**
@@ -142,31 +129,30 @@ function compileRelation(relation) {
  */
 function compileClass(classCell) {
 
-    // remove the current class from the classes array
-    let classesToCompare = classes.filter(item => item.id !== classCell.id);
-
     // Shows a error message if two classes have the same name
-    if(classCell.getAttribute('label') !== null)
+    if(classCell.getAttribute('label') !== null){
+
+        // remove the current class from the classes array
+        let classesToCompare = classes.filter(item => item.id !== classCell.id);
         for (let i = 0; i < classesToCompare.length; i++) {
             if(classCell.getAttribute('label') == classesToCompare[i].getAttribute('label')){
                 conceptualErrorsCount++;
                 if (getLanguage() === 'pt')
-                    sendWarningMessage("Você não pode ter duas classes com o mesmo nome, você tem duas classes chamadas " + classCell.getAttribute('label').bold() + ".", 1, 'Erro Conceitual');
+                sendWarningMessage("Você não pode ter duas classes com o mesmo nome, você tem duas classes chamadas " + classCell.getAttribute('label').bold() + ".", 1, 'Erro Conceitual');
                 else
-                    sendWarningMessage("You can not have two classes with the same name, you have two classes named " + classCell.getAttribute('label').bold() + ".", 1, 'Conceptual Error');
+                sendWarningMessage("You can not have two classes with the same name, you have two classes named " + classCell.getAttribute('label').bold() + ".", 1, 'Conceptual Error');
             } 
         }
+    }
     
     if(classCell.edges !== null){
 
         // Autocomplete the SubClassOf property 
         let isSubClassOf = 0;
         classCell.edges.forEach(relation => {
-            if((relation.getAttribute('label') == 'is_a' || relation.getAttribute('label') == 'é_um'))
-            {
+            if((relation.getAttribute('label') == 'is_a' || relation.getAttribute('label') == 'é_um') && relation.source !== null && relation.target !== null && relation.source.id == classCell.id){
                 isSubClassOf++;
-                if(relation.source !== null && relation.target !== null && relation.source.id == classCell.id)
-                    classCell.setAttribute('SubClassOf', relation.target.getAttribute('label'));
+                classCell.setAttribute('SubClassOf', relation.target.getAttribute('label'));
             }
         });
         if(isSubClassOf == 0)
@@ -212,11 +198,9 @@ function compileClass(classCell) {
         }
     }
         
-        
-        
-        // Search for missing properties in each class element
-        let missingClassProperties = "";
-        if(classCell.getAttribute('definition') === "")
+    // Search for missing properties in each class element
+    let missingClassProperties = "";
+    if(classCell.getAttribute('definition') === "")
         missingClassProperties = missingClassProperties + ' definition,';
         
     if ((classCell.getAttribute("SubClassOf") === ""))
@@ -234,6 +218,8 @@ function compileClass(classCell) {
             missingClassProperties = "";
     }   
 
+    //if(classCell.getAttribute('DisjointWith') !== "")
+    //    autoCompleteProperty(classCell, "DisjointWith");
 }
 
 /**
@@ -354,27 +340,37 @@ function removeSpaces(string) {
 }
 
 /**
- * Autocomplete the SubClassOf, Domain, Range, DisjointWith, EquivalentTo and hasSynonum properties.
- * @param element
+ * Autocomplete the equivalentProperty, inverseOf, DisjointWith, EquivalentTo and hasSynonym properties.
+ * @param cell
  * @param propertyName
  */
-function autoCompleteInputs(element, propertyName) {
+function autoCompleteProperty(cell, propertyName) {
+    console.log(propertyName);
+    switch (propertyName) {
+       
+        case "inverseOf":
+            break;
 
-    if(propertyName in autoCompleteProperties){
-        let values = [];
-        let currentElementName = typeof element.value === 'object' ? element.value.getAttribute('label') : element.value;
-        for (let i = 0; i < previousElements.length; i++) {
-            if(previousElements[i].style.includes('Class') || previousElements[i].isEdge())
-            {
-                let propertyValues = previousElements[i].getAttribute(propertyName)?.split(',');
-                if(propertyValues?.indexOf(currentElementName) > -1)
-                   values.push(previousElements[i].getAttribute('label'));
-            }
-
-        }
-        return values;
+        default:
+            let ids = cell.getAttribute(propertyName).split(",");
+            console.log("ids", ids);
+            ids.forEach((id) => {
+                if(id != "")
+                {
+                    console.log("id atual", id);
+                    let cellToUpdate = findCellById(id, cell.isEdge() ? 'Relation' : 'Class');
+                    let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
+                    console.log("cell to update", cellToUpdate);
+                    console.log(cellToUpdate.getAttribute(propertyName));
+                    if(!updatedValue.includes(cell.id))
+                        updatedValue.push(cell.id);
+                    //addOrRemove(updatedValue, cell.id);
+                    console.log(cellToUpdate.getAttribute(propertyName));
+                    cellToUpdate.setAttribute(propertyName, updatedValue);
+                }
+            });
+            break;
     }
-    return null;
 }
 
 /**
@@ -455,7 +451,12 @@ function thingClassExists() {
     for (let i = 0; i < classes.length; i++)
         if (classes[i].getAttribute('label').toUpperCase() === 'THING' || classes[i].getAttribute('label').toUpperCase() === 'COISA')
             return true;
-    return false;
+ 
+    basicErrorsCount++;
+    if (getLanguage() === 'pt')
+        sendWarningMessage('É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia.', "", "Erro Conceitual");
+    else
+        sendWarningMessage('It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology.', "", "Conceptual Error");
 }
 
 /**
@@ -489,4 +490,17 @@ function findCellById(id, type) {
     for (let i = 0; i < cells.length; i++) 
         if(cells[i].id == id)
             return cells[i];
+}
+
+/**
+ * toggle an element in array
+ * @param {*} array 
+ * @param {*} value 
+ */
+function addOrRemove(array, value) {
+    var index = array.indexOf(value);
+    if (index === -1) 
+        array.push(value);
+    else 
+        array.splice(index, 1);
 }

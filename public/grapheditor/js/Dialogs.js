@@ -1616,10 +1616,7 @@ var EditDataDialog = function(ui, cell)
 
                     // check if the current name is in the properties object
                     if (name in autoCompleteProperties)
-                    {
-                        let valuesFromAutoComplete = autoCompleteInputs(cell, name);
-                        formInput = createMultipleSelect(name, valuesFromAutoComplete);
-                    }
+                        formInput = createMultipleSelect(name);
                     else
                         formInput = createFormInput(name);
 
@@ -1706,10 +1703,12 @@ var EditDataDialog = function(ui, cell)
 
 		// get and removes current cell name from the select options
         let options = [];
-        cell.isEdge() ? options = relations.filter(e => e.id !== cell.id) : options = classes.filter(e => e.id !== cell.id)
-      
-        // remove duplicated options
-        options = [...new Set(options)];
+        cell.isEdge() ? options = relations.filter(e => e.id !== cell.id) : options = classes.filter(e => e.id !== cell.id);
+
+		// remove duplicated options
+		//let ids = options.map(o => o.id);
+        //options = options.filter(({id}, index) => !ids.includes(id, index+1));
+
         // remove the class Thing
         options = options.filter(e => getLanguage() == 'en' ? e.getAttribute('label').toUpperCase() !== 'THING' : e.getAttribute('label').toUpperCase() !== 'COISA');
 
@@ -1944,7 +1943,8 @@ var EditDataDialog = function(ui, cell)
 
                     // apply the autocomplete properties into the current graph
                     if(propertiesNames[i] in autoCompleteProperties && formInputs[i].value != null)
-						value.setAttribute( propertiesNames[i], autoCompleteProperties[propertiesNames[i]]);
+						value.setAttribute(propertiesNames[i], autoCompleteProperties[propertiesNames[i]]);
+					
 
 					removeLabel = removeLabel || (propertiesNames[i] == 'placeholder' &&
 						value.getAttribute('placeholders') == '1');
@@ -1956,9 +1956,10 @@ var EditDataDialog = function(ui, cell)
 			{
 				value.removeAttribute('label');
 			}
-
+			
 			// Updates the value of the cell (undoable)
 			graph.getModel().setValue(cell, value);
+
 		}
 		catch (e)
 		{
