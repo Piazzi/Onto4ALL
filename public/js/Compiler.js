@@ -352,23 +352,39 @@ function autoCompleteProperty(cell, propertyName) {
 
         //equivalentProperty, DisjointWith, EquivalentTo and hasSynonym
         default:
-            let ids = cell.getAttribute(propertyName).split(",");
-            console.log(ids);
+            let cellsIds = cell.getAttribute(propertyName).split(",");
+
+            // remove the current cell id from another cell property if needed
+            // this happens when the user remove a cell from an property
+            if(!cell.isEdge())
+            {
+                classes.forEach(element => {
+                    let classProperty = element.getAttribute(propertyName).split(',');
+                    if(classProperty.includes(cell.id) && !cellsIds.includes(element.id)){
+                        let index = classProperty.indexOf(cell.id);
+                        if(index > -1){
+                            classProperty.splice(index, 1);
+                            element.setAttribute(propertyName, classProperty);
+                        }
+                    }
+                });
+            } else {
+
+            }
+
+           
+                cellsIds.forEach((id) => {
+                    if(id != "")
+                    {
+                        let cellToUpdate = findCellById(id, cell.isEdge() ? 'Relation' : 'Class');
+                        let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
+                        if(!updatedValue.includes(cell.id))
+                            updatedValue.push(cell.id);
+                        cellToUpdate.setAttribute(propertyName, updatedValue);
+                    }
+                });
+                break;
             
-            ids.forEach((id) => {
-                if(id != "")
-                {
-                    let cellToUpdate = findCellById(id, cell.isEdge() ? 'Relation' : 'Class');
-                    let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
-                    if(!updatedValue.includes(cell.id))
-                        updatedValue.push(cell.id);
-                        
-                    console.log("old value: ",cellToUpdate.getAttribute(propertyName));
-                    console.log("new value: ", updatedValue);
-                    cellToUpdate.setAttribute(propertyName, updatedValue);
-                }
-            });
-            break;
     }
 }
 
