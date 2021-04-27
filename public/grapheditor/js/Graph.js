@@ -3491,12 +3491,13 @@ Graph.prototype.getTooltipForCell = function(cell)
 				if (mxUtils.indexOf(ignored, attrs[i].nodeName) < 0 && attrs[i].nodeValue.length > 0)
 				{
 					// find the classes names 
-					if(attrs[i].nodeName in autoCompleteProperties && attrs[i].nodeValue != "null")
+					if(attrs[i].nodeName in autoCompleteProperties && attrs[i].nodeValue != "")
 					{
 						let cellsNames = [];
 						let ids = attrs[i].nodeValue.split(',');
 						for (let i = 0; i < ids.length; i++) {
-							cellsNames.push(findCellById(ids[i], null).getAttribute('label'));
+							if(ids[i] != "")
+								cellsNames.push(findCellById(ids[i], null).getAttribute('label'));
 						}
 						temp.push({name: attrs[i].nodeName, value: cellsNames});
 					}

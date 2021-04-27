@@ -1695,6 +1695,13 @@ var EditDataDialog = function(ui, cell)
 	 * @param value
      */
     function createMultipleSelect(name, value = null) {
+		
+		// remove empty ("") value from the array
+		const index = value.indexOf("");
+		if (index > -1) {
+			value.splice(index, 1);
+		}
+		
         select = document.createElement("select");
         select.classList.add("form-control");
         select.id = name;
@@ -1959,6 +1966,17 @@ var EditDataDialog = function(ui, cell)
 			
 			// Updates the value of the cell (undoable)
 			graph.getModel().setValue(cell, value);
+
+			// Autocomplete properties
+			if(cell.isEdge()){
+				autoCompleteProperty(cell, "equivalentProperty");
+				autoCompleteProperty(cell, "inverseOf");
+			} else {
+				autoCompleteProperty(cell, "DisjointWith");
+				autoCompleteProperty(cell, "hasSynonym");
+				autoCompleteProperty(cell, "EquivalentTo");
+
+			}
 
 		}
 		catch (e)

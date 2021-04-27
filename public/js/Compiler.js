@@ -345,27 +345,26 @@ function removeSpaces(string) {
  * @param propertyName
  */
 function autoCompleteProperty(cell, propertyName) {
-    console.log(propertyName);
     switch (propertyName) {
        
         case "inverseOf":
             break;
 
+        //equivalentProperty, DisjointWith, EquivalentTo and hasSynonym
         default:
             let ids = cell.getAttribute(propertyName).split(",");
-            console.log("ids", ids);
+            console.log(ids);
+            
             ids.forEach((id) => {
                 if(id != "")
                 {
-                    console.log("id atual", id);
                     let cellToUpdate = findCellById(id, cell.isEdge() ? 'Relation' : 'Class');
                     let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
-                    console.log("cell to update", cellToUpdate);
-                    console.log(cellToUpdate.getAttribute(propertyName));
                     if(!updatedValue.includes(cell.id))
                         updatedValue.push(cell.id);
-                    //addOrRemove(updatedValue, cell.id);
-                    console.log(cellToUpdate.getAttribute(propertyName));
+                        
+                    console.log("old value: ",cellToUpdate.getAttribute(propertyName));
+                    console.log("new value: ", updatedValue);
                     cellToUpdate.setAttribute(propertyName, updatedValue);
                 }
             });
@@ -490,17 +489,4 @@ function findCellById(id, type) {
     for (let i = 0; i < cells.length; i++) 
         if(cells[i].id == id)
             return cells[i];
-}
-
-/**
- * toggle an element in array
- * @param {*} array 
- * @param {*} value 
- */
-function addOrRemove(array, value) {
-    var index = array.indexOf(value);
-    if (index === -1) 
-        array.push(value);
-    else 
-        array.splice(index, 1);
 }
