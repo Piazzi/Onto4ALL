@@ -356,34 +356,32 @@ function autoCompleteProperty(cell, propertyName) {
 
             // remove the current cell id from another cell property if needed
             // this happens when the user remove a cell from an property
-            if(!cell.isEdge())
-            {
-                classes.forEach(element => {
-                    let classProperty = element.getAttribute(propertyName).split(',');
-                    if(classProperty.includes(cell.id) && !cellsIds.includes(element.id)){
-                        let index = classProperty.indexOf(cell.id);
-                        if(index > -1){
-                            classProperty.splice(index, 1);
-                            element.setAttribute(propertyName, classProperty);
-                        }
-                    }
-                });
-            } else {
+            let cells;
+            cell.isEdge() ? cells = relations : cells = classes;
 
-            }
-
-           
-                cellsIds.forEach((id) => {
-                    if(id != "")
-                    {
-                        let cellToUpdate = findCellById(id, cell.isEdge() ? 'Relation' : 'Class');
-                        let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
-                        if(!updatedValue.includes(cell.id))
-                            updatedValue.push(cell.id);
-                        cellToUpdate.setAttribute(propertyName, updatedValue);
+            cells.forEach(currentCell => {
+                let cellProperty = currentCell.getAttribute(propertyName).split(',');
+                if(cellProperty.includes(cell.id) && !cellsIds.includes(currentCell.id)){
+                    let index = cellProperty.indexOf(cell.id);
+                    if(index > -1){
+                        cellProperty.splice(index, 1);
+                        currentCell.setAttribute(propertyName, cellProperty);
                     }
+                }
+            });
+
+           // update the property value in the correspondent cells
+            cellsIds.forEach((id) => {
+                if(id != "")
+                {
+                    let cellToUpdate = findCellById(id, cell.isEdge() ? 'Relation' : 'Class');
+                    let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
+                    if(!updatedValue.includes(cell.id))
+                        updatedValue.push(cell.id);
+                    cellToUpdate.setAttribute(propertyName, updatedValue);
+                }
                 });
-                break;
+            break;
             
     }
 }
