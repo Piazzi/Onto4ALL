@@ -1711,9 +1711,9 @@ var EditDataDialog = function(ui, cell)
 		// get and removes current cell name from the select options
         let options = [];
         if(cell.isEdge()){
-			options = relations.filter(e => e.id !== cell.id)
+			options = relations.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'))
 		} else {
-			options = classes.filter(e => e.id !== cell.id);
+			options = classes.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
 			 // remove the class Thing
 			 options = options.filter(e => getLanguage() == 'en' ? e.getAttribute('label').toUpperCase() !== 'THING' : e.getAttribute('label').toUpperCase() !== 'COISA');
 		} 
