@@ -368,12 +368,43 @@ function autoCompleteProperty(cell, propertyName) {
                         currentCell.setAttribute(propertyName, cellProperty);
                     }
                 }
+
+                // remove the value from the other relations with same label
+                if(cell.isEdge()){
+                    let relationsLength = relations.length;
+                    let cellProperty = currentCell.getAttribute(propertyName).split(',');
+                    for (let i = 0; i < relationsLength; i++) {
+                        if(relations[i].getAttribute('label') == cell.getAttribute('label') && relations[i].getAttribute(propertyName) != cell.getAttribute(propertyName)){
+                           relations[i].setAttribute(propertyName, cell.getAttribute(propertyName));
+                        }
+                    }
+                }
             });
 
            // update the property value in the correspondent cells
             cellsIds.forEach((id) => {
+
                 if(id != "")
                 {
+                    // update the property value in other relations with the same label
+                    if(cell.isEdge()){
+                        let relationsLength = relations.length;
+                        let cellToUpdate = findCellById(id,'Relation');
+                        for (let i = 0; i < relationsLength; i++) {
+                            if(relations[i].id != cell.id && relations[i].getAttribute('label') == cellToUpdate.getAttribute('label')){
+                                let updatedValue = relations[i].getAttribute(propertyName).split(',');
+                                if(!updatedValue.includes(cell.id))
+                                    updatedValue.push(cell.id);
+                                relations[i].setAttribute(propertyName, updatedValue);
+                            }
+
+                            if(relations[i].getAttribute('label') == cell.getAttribute('label')){
+                                relations[i].setAttribute(propertyName, cell.getAttribute(propertyName));
+                            }
+                            
+                        }
+                    }
+
                     let cellToUpdate = findCellById(id, cell.isEdge() ? 'Relation' : 'Class');
                     let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
                     if(!updatedValue.includes(cell.id))
