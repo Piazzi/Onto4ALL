@@ -1710,14 +1710,21 @@ var EditDataDialog = function(ui, cell)
 
 		// get and removes current cell name from the select options
         let options = [];
-        cell.isEdge() ? options = relations.filter(e => e.id !== cell.id) : options = classes.filter(e => e.id !== cell.id);
+        if(cell.isEdge()){
+			options = relations.filter(e => e.id !== cell.id)
+		} else {
+			options = classes.filter(e => e.id !== cell.id);
+			 // remove the class Thing
+			 options = options.filter(e => getLanguage() == 'en' ? e.getAttribute('label').toUpperCase() !== 'THING' : e.getAttribute('label').toUpperCase() !== 'COISA');
+		} 
 
 		// remove duplicated options
-		//let ids = options.map(o => o.id);
-        //options = options.filter(({id}, index) => !ids.includes(id, index+1));
-
-        // remove the class Thing
-        options = options.filter(e => getLanguage() == 'en' ? e.getAttribute('label').toUpperCase() !== 'THING' : e.getAttribute('label').toUpperCase() !== 'COISA');
+		options = options.reduce((unique, o) => {
+			if(!unique.some(obj => obj.getAttribute('label') === o.getAttribute('label'))) {
+			  unique.push(o);
+			}
+			return unique;
+		},[]);
 
         options.forEach(element => {
             let option = document.createElement("option");
