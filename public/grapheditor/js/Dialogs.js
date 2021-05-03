@@ -1712,6 +1712,25 @@ var EditDataDialog = function(ui, cell)
 		return options;
 	}
 
+	
+	/**
+	 * Removes empty and null values from the array
+	 * @param {*} arr 
+	 * @param {*} value 
+	 * @returns array
+	 */
+	function removeItemAll(arr, value) {
+		let i = 0;
+		while (i < arr.length) {
+		  if (arr[i] === value) {
+			arr.splice(i, 1);
+		  } else {
+			++i;
+		  }
+		}
+		return arr;
+	  }
+
     /**
      * Add a multiple Select2 input
      * @param name
@@ -1719,10 +1738,12 @@ var EditDataDialog = function(ui, cell)
      */
     function createMultipleSelect(name, value = null) {
 		
-		// remove empty ("") value from the array
-		const index = value.indexOf("");
-		if (index > -1) {
-			value.splice(index, 1);
+		// remove empty and null values from the array
+		console.log(value);
+
+		if(value.length > 0){
+			removeItemAll(value, "");
+			removeItemAll(value, "null");
 		}
 		console.log(value);
 		
@@ -1791,30 +1812,16 @@ var EditDataDialog = function(ui, cell)
         else
             placeholder = 'Select one or more classes';
 
-        if(value === null)
-        {
-            $(document).ready(function () {
-                $('#'+name).select2({
-                    theme: 'classic',
-                    width: 'resolve',
-                    placeholder: placeholder,
-                    allowClear: true,
-                }
-                );
-            });
-        }
-        else{
-            $(document).ready(function () {
-                $('#'+name).select2({
-                    theme: 'classic',
-                    width: 'resolve',
-                    placeholder: placeholder,
-                    allowClear: true,
-                }
-                ).val(value).trigger('change');
-            });
-
-        }
+       
+		// select the options according to the property value
+        $(document).ready(function () {
+            $('#'+name).select2({
+                theme: 'classic',
+                width: 'resolve',
+                placeholder: placeholder,
+                allowClear: true,
+            }).val(value).trigger('change');
+        });
 
         // update the select value in the object when the user changes its value
         select.onchange =  function (e) {

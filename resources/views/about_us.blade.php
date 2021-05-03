@@ -9,10 +9,10 @@
 
 @section('content')
 
-<!-- Button trigger modal -->
+<!-- Button trigger modal 
 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
     Launch demo modal
-  </button>
+  </button>-->
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -23,8 +23,45 @@
           <h4 class="modal-title" id="myModalLabel">Modal title</h4>
         </div>
         <div class="modal-body">
-            <div class="row">
-                <div class="col-lg-6">
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+          <!-- Custom Tabs -->
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class=""><a href="#tab_1" data-toggle="tab" aria-expanded="false">Classes </a></li>
+              <li class="active"><a href="#tab_2" data-toggle="tab" aria-expanded="true">Object Properties.</a></li>
+              <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Data Properties</a></li>
+              <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Annotation Properties</a></li>
+              <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Datatypes</a></li>
+              <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">Individuals</a></li>
+              <li class="dropdown">
+              <!--
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                  Dropdown <span class="caret"></span>
+                </a>-->
+                <ul class="dropdown-menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                </ul>
+              </li>
+              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane" id="tab_1">
+              <div class="row">
+                <div class="col-md-12">
                   <h2 style="text-align: center"><i class="fa fa-fw fa-gears"></i> Properties</h4>
                     <div class="form-group">
                         <label for="exampleInputEmail1">ID</label>
@@ -95,9 +132,43 @@
                       </div>
                   </div>
                 </div>
-                <div class="col-lg-6">
-                  <h2 style="text-align: center"><i class="fa fa-fw fa-comment"></i> Annotations</h4>
+                
+            </div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane active" id="tab_2">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Version Info</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                  </div>
                   <div class="form-group">
+                    <label for="exampleInputEmail1">Previor Version</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Member</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">License</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Contributor</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Elucidation</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Term Editor</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
+                  </div>
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_3">
+              <div class="form-group">
                     <label for="exampleInputEmail1">Definition</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
                   </div>
@@ -129,45 +200,13 @@
                     <label for="exampleInputEmail1">Comment</label>
                     <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Version Info</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Previor Version</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Member</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">License</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Contributor</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Elucidation</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Term Editor</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="">
-                  </div>
-                </div>
+              </div>
+              <!-- /.tab-pane -->
             </div>
+            <!-- /.tab-content -->
+          </div>
+          <!-- nav-tabs-custom -->
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
 @stop
 
 @section('footer')
