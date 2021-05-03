@@ -368,7 +368,7 @@ function autoCompleteProperty(cell, propertyName) {
                         currentCell.setAttribute(propertyName, cellProperty);
                     }
                 }
-
+                // NA HORA DE COMPARAR RELAÇÕES TEM Q USAR LABEL E NÃO ID
                 // remove the value from the other relations with same label
                 if(cell.isEdge()){
                     let relationsLength = relations.length;
@@ -389,7 +389,7 @@ function autoCompleteProperty(cell, propertyName) {
                     // update the property value in other relations with the same label
                     if(cell.isEdge()){
                         let relationsLength = relations.length;
-                        let cellToUpdate = findCellById(id,'Relation');
+                        let cellToUpdate = getCellById(id,'Relation');
                         for (let i = 0; i < relationsLength; i++) {
                             if(relations[i].id != cell.id && relations[i].getAttribute('label') == cellToUpdate.getAttribute('label')){
                                 let updatedValue = relations[i].getAttribute(propertyName).split(',');
@@ -405,7 +405,7 @@ function autoCompleteProperty(cell, propertyName) {
                         }
                     }
 
-                    let cellToUpdate = findCellById(id, cell.isEdge() ? 'Relation' : 'Class');
+                    let cellToUpdate = getCellById(id, cell.isEdge() ? 'Relation' : 'Class');
                     let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
                     if(!updatedValue.includes(cell.id))
                         updatedValue.push(cell.id);
@@ -413,7 +413,6 @@ function autoCompleteProperty(cell, propertyName) {
                 }
                 });
             break;
-            
     }
 }
 
@@ -521,7 +520,7 @@ function addThingClassToCurrentOntology() {
  * @param {string} type 
  * @returns object
  */
-function findCellById(id, type) {
+function getCellById(id, type) {
     if(type == 'Class')
         cells = classes;
     else if(type == 'Relation')
@@ -535,3 +534,4 @@ function findCellById(id, type) {
         if(cells[i].id == id)
             return cells[i];
 }
+

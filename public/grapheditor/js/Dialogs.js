@@ -1705,19 +1705,36 @@ var EditDataDialog = function(ui, cell)
         select = document.createElement("select");
         select.classList.add("form-control");
         select.id = name;
-        if(!(name === "inverseOf"))
-            select.setAttribute("multiple","multiple");
-
+		select.setAttribute("multiple","multiple");
+		
 		// get and removes current cell name from the select options
         let options = [];
         if(cell.isEdge()){
-			options = relations.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'))
+			if(name == "inverseOf"){
+
+				select.removeAttribute("multiple");
+				let inverseOfValues = [];
+
+				relations.forEach(relation => {
+					if(relation.getAttribute('inverseOf') != "null" && relation.getAttribute('inverseOf') != "")
+						inverseOfValues.push(getCellById(relation.getAttribute('inverseOf')).getAttribute('label'));
+				});
+				console.log(inverseOfValues);
+				relations.forEach(relation => {
+					if(!inverseOfValues.includes(relation.getAttribute('label'))){
+						options.push(relation);
+					}
+				});
+				options = options.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
+			}
+			else
+				options = relations.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
 		} else {
 			options = classes.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
-			 // remove the class Thing
-			 options = options.filter(e => getLanguage() == 'en' ? e.getAttribute('label').toUpperCase() !== 'THING' : e.getAttribute('label').toUpperCase() !== 'COISA');
+			// remove the class Thing
+			options = options.filter(e => getLanguage() == 'en' ? e.getAttribute('label').toUpperCase() !== 'THING' : e.getAttribute('label').toUpperCase() !== 'COISA');
 		} 
-
+		
 		// remove duplicated options
 		options = options.reduce((unique, o) => {
 			if(!unique.some(obj => obj.getAttribute('label') === o.getAttribute('label'))) {
