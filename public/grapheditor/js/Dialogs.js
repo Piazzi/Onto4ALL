@@ -1689,6 +1689,29 @@ var EditDataDialog = function(ui, cell)
 		}
 	}
 
+	/**
+	 * Returns the correct values for the inverseOf property,
+	 * if a relation is already a inverseOf another, it should not appear in the select options
+	 * @returns array
+	 */
+	function getInverseOfOptions() {
+		let inverseOfValues = [];
+		let options = [];
+
+		// push the relations that is an inverse of another
+		relations.forEach(relation => {
+			if(relation.getAttribute('inverseOf') != "null" && relation.getAttribute('inverseOf') != "" )
+				inverseOfValues.push(getCellById(relation.getAttribute('inverseOf')).getAttribute('label'));
+		});
+
+		// build the options and includes the current cell inverseOf as a selected option
+		relations.forEach(relation => {
+			if(!inverseOfValues.includes(relation.getAttribute('label')) || cell.getAttribute('inverseOf').includes(relation.id))
+				options.push(relation);	
+		});
+		return options;
+	}
+
     /**
      * Add a multiple Select2 input
      * @param name
@@ -1701,34 +1724,24 @@ var EditDataDialog = function(ui, cell)
 		if (index > -1) {
 			value.splice(index, 1);
 		}
+		console.log(value);
 		
         select = document.createElement("select");
         select.classList.add("form-control");
         select.id = name;
 		select.setAttribute("multiple","multiple");
 		
-		// get and removes current cell name from the select options
         let options = [];
         if(cell.isEdge()){
+			options = relations;
+
 			if(name == "inverseOf"){
-
 				select.removeAttribute("multiple");
-				let inverseOfValues = [];
-
-				relations.forEach(relation => {
-					if(relation.getAttribute('inverseOf') != "null" && relation.getAttribute('inverseOf') != "")
-						inverseOfValues.push(getCellById(relation.getAttribute('inverseOf')).getAttribute('label'));
-				});
-				console.log(inverseOfValues);
-				relations.forEach(relation => {
-					if(!inverseOfValues.includes(relation.getAttribute('label'))){
-						options.push(relation);
-					}
-				});
-				options = options.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
+				options = getInverseOfOptions();
 			}
-			else
-				options = relations.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
+			
+			// get and removes current cell name from the select options
+			options = options.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
 		} else {
 			options = classes.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
 			// remove the class Thing
