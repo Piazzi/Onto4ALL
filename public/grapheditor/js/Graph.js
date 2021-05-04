@@ -3501,7 +3501,7 @@ Graph.prototype.getTooltipForCell = function(cell)
 							if(ids[i] != "" && ids[i] != "null" && cellExists(ids[i]))
 								cellsNames.push(getCellById(ids[i], null).getAttribute('label'));
 						}
-						temp.push({name: attrs[i].nodeName, value: cellsNames});
+						temp.push({name: attrs[i].nodeName, value: [...new Set(cellsNames)]});
 					}
 					else
 						temp.push({name: attrs[i].nodeName, value: attrs[i].nodeValue});
