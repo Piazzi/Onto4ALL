@@ -345,6 +345,7 @@ function removeSpaces(string) {
  * @param propertyName
  */
 function autoCompleteProperty(cell, propertyName) {
+    
     switch (propertyName) {
        
         //Autocomplete for the properties: inverseOf, equivalentProperty, DisjointWith, EquivalentTo and hasSynonym 
@@ -364,7 +365,6 @@ function autoCompleteProperty(cell, propertyName) {
                         currentCell.setAttribute(propertyName, cellProperty);
                     }
                 }
-                // NA HORA DE COMPARAR RELAÇÕES TEM Q USAR LABEL E NÃO ID
                 // remove the value from the other relations with same label
                 if(cell.isEdge()){
                     let relationsLength = relations.length;
@@ -374,15 +374,6 @@ function autoCompleteProperty(cell, propertyName) {
                             // propragates the update to the other relations
                             autoCompleteProperty(getCellById(relations[i].id, 'Relation'), propertyName);
                         }
-                        /*
-                        let propertyValue = relations[i].getAttribute(propertyName).split(',');
-                        
-                        for (let j = 0; j < propertyValue.length; j++){
-                            console.log(propertyValue[i]);
-                            if(propertyValue[j] != "" && getCellById(propertyValue[j],'Relation').getAttribute('label') == cell.getAttribute('label'))
-                                relations[i].setAttribute(propertyName, propertyValue.splice(j,1));
-                        } */
-                        
                     
                     }
                 }
@@ -416,7 +407,7 @@ function autoCompleteProperty(cell, propertyName) {
                     let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
                     removeItemAll(updatedValue, "null");
                     removeItemAll(updatedValue, "");
-                    if(!updatedValue.includes(cell.id) && getCellById(updatedValue).getAttribute('label') != cell.getAttribute('label'))
+                    if(!updatedValue.includes(cell.id))
                         updatedValue.push(cell.id);
                     cellToUpdate.setAttribute(propertyName, updatedValue);
                 }

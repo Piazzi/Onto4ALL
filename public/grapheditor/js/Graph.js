@@ -3497,7 +3497,6 @@ Graph.prototype.getTooltipForCell = function(cell)
 						let ids = attrs[i].nodeValue.split(',');
 						console.log(ids);
 						for (let i = 0; i < ids.length; i++) {
-							console.log(cellExists(ids[i]));
 							if(ids[i] != "" && ids[i] != "null" && cellExists(ids[i]))
 								cellsNames.push(getCellById(ids[i], null).getAttribute('label'));
 						}
