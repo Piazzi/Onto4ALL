@@ -347,7 +347,7 @@ function removeSpaces(string) {
 function autoCompleteProperty(cell, propertyName) {
     switch (propertyName) {
        
-        //equivalentProperty, DisjointWith, EquivalentTo and hasSynonym
+        //Autocomplete for the properties: inverseOf, equivalentProperty, DisjointWith, EquivalentTo and hasSynonym 
         default:
             let cellsIds = cell.getAttribute(propertyName).split(",");
             // remove the current cell id from another cell property if needed
@@ -370,8 +370,20 @@ function autoCompleteProperty(cell, propertyName) {
                     let relationsLength = relations.length;
                     for (let i = 0; i < relationsLength; i++) {
                         if(relations[i].getAttribute('label') == cell.getAttribute('label') && relations[i].getAttribute(propertyName) != cell.getAttribute(propertyName)){
-                           relations[i].setAttribute(propertyName, cell.getAttribute(propertyName));
+                            relations[i].setAttribute(propertyName, cell.getAttribute(propertyName));
+                            // propragates the update to the other relations
+                            autoCompleteProperty(getCellById(relations[i].id, 'Relation'), propertyName);
                         }
+                        /*
+                        let propertyValue = relations[i].getAttribute(propertyName).split(',');
+                        
+                        for (let j = 0; j < propertyValue.length; j++){
+                            console.log(propertyValue[i]);
+                            if(propertyValue[j] != "" && getCellById(propertyValue[j],'Relation').getAttribute('label') == cell.getAttribute('label'))
+                                relations[i].setAttribute(propertyName, propertyValue.splice(j,1));
+                        } */
+                        
+                    
                     }
                 }
             });
@@ -562,4 +574,17 @@ function getCellById(id, type) {
             return true;
           
       return false;
+  }
+
+  /**
+   * Returns an array of cell names
+   * @param {*} ids 
+   * @returns array
+   */
+  function getCellsNamesById(ids) {
+      let names = [];
+      ids.forEach(id => {
+          names.push(getCellById(id, null).getAttribute('label'));
+      });
+      return names;
   }

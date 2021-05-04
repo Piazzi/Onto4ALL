@@ -1703,8 +1703,9 @@ var EditDataDialog = function(ui, cell)
 			let inverseOf = relation.getAttribute('inverseOf').split(',');
 			removeItemAll(inverseOf, "");
 			removeItemAll(inverseOf, "null");
+			console.log(inverseOf);
 			if(inverseOf != "null" && inverseOf != "" )
-				inverseOfValues.push(getCellById(inverseOf).getAttribute('label'));
+				inverseOfValues.push(getCellById(inverseOf[0]).getAttribute('label'));
 		});
 
 		// build the options and includes the current cell inverseOf as a selected option
