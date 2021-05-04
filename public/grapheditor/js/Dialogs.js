@@ -1721,13 +1721,7 @@ var EditDataDialog = function(ui, cell)
      * @param name
 	 * @param value
      */
-    function createMultipleSelect(name, value = "") {
-		
-		// remove empty and null values from the array
-		if(value.length > 0){
-			removeItemAll(value, "");
-			removeItemAll(value, "null");
-		}
+    function createMultipleSelect(name, value) {
 		
         select = document.createElement("select");
         select.classList.add("form-control");
@@ -1736,18 +1730,18 @@ var EditDataDialog = function(ui, cell)
 		
         let options = [];
         if(cell.isEdge()){
-			options = relations;
 
+			options = relations;
 			if(name == "inverseOf"){
 				select.removeAttribute("multiple");
 				options = getInverseOfOptions();
 			}
 			
-			// get and removes current cell name from the select options
+			// removes current cell name from the select options
 			options = options.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
 		} else {
 			options = classes.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
-			// remove the class Thing
+			// removes the class Thing from the options
 			options = options.filter(e => getLanguage() == 'en' ? e.getAttribute('label').toUpperCase() !== 'THING' : e.getAttribute('label').toUpperCase() !== 'COISA');
 		} 
 		
