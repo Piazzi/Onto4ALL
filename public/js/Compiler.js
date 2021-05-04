@@ -347,13 +347,9 @@ function removeSpaces(string) {
 function autoCompleteProperty(cell, propertyName) {
     switch (propertyName) {
        
-        case "inverseOf":
-            break;
-
         //equivalentProperty, DisjointWith, EquivalentTo and hasSynonym
         default:
             let cellsIds = cell.getAttribute(propertyName).split(",");
-
             // remove the current cell id from another cell property if needed
             // this happens when the user remove a cell from an property
             let cells;
@@ -372,7 +368,6 @@ function autoCompleteProperty(cell, propertyName) {
                 // remove the value from the other relations with same label
                 if(cell.isEdge()){
                     let relationsLength = relations.length;
-                    let cellProperty = currentCell.getAttribute(propertyName).split(',');
                     for (let i = 0; i < relationsLength; i++) {
                         if(relations[i].getAttribute('label') == cell.getAttribute('label') && relations[i].getAttribute(propertyName) != cell.getAttribute(propertyName)){
                            relations[i].setAttribute(propertyName, cell.getAttribute(propertyName));
@@ -407,6 +402,8 @@ function autoCompleteProperty(cell, propertyName) {
 
                     let cellToUpdate = getCellById(id, cell.isEdge() ? 'Relation' : 'Class');
                     let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
+                    removeItemAll(updatedValue, "null");
+                    removeItemAll(updatedValue, "");
                     if(!updatedValue.includes(cell.id))
                         updatedValue.push(cell.id);
                     cellToUpdate.setAttribute(propertyName, updatedValue);
@@ -535,3 +532,20 @@ function getCellById(id, type) {
             return cells[i];
 }
 
+/**
+	 * Removes all ocurrences of an value in the array
+	 * @param {*} arr 
+	 * @param {*} value 
+	 * @returns array
+	 */
+ function removeItemAll(arr, value) {
+    let i = 0;
+    while (i < arr.length) {
+      if (arr[i] === value) {
+        arr.splice(i, 1);
+      } else {
+        ++i;
+      }
+    }
+    return arr;
+  }

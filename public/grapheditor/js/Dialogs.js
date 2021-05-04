@@ -1700,8 +1700,11 @@ var EditDataDialog = function(ui, cell)
 
 		// push the relations that is an inverse of another
 		relations.forEach(relation => {
-			if(relation.getAttribute('inverseOf') != "null" && relation.getAttribute('inverseOf') != "" )
-				inverseOfValues.push(getCellById(relation.getAttribute('inverseOf')).getAttribute('label'));
+			let inverseOf = relation.getAttribute('inverseOf').split(',');
+			removeItemAll(inverseOf, "");
+			removeItemAll(inverseOf, "null");
+			if(inverseOf != "null" && inverseOf != "" )
+				inverseOfValues.push(getCellById(inverseOf).getAttribute('label'));
 		});
 
 		// build the options and includes the current cell inverseOf as a selected option
@@ -1713,39 +1716,18 @@ var EditDataDialog = function(ui, cell)
 	}
 
 	
-	/**
-	 * Removes empty and null values from the array
-	 * @param {*} arr 
-	 * @param {*} value 
-	 * @returns array
-	 */
-	function removeItemAll(arr, value) {
-		let i = 0;
-		while (i < arr.length) {
-		  if (arr[i] === value) {
-			arr.splice(i, 1);
-		  } else {
-			++i;
-		  }
-		}
-		return arr;
-	  }
-
     /**
      * Add a multiple Select2 input
      * @param name
 	 * @param value
      */
-    function createMultipleSelect(name, value = null) {
+    function createMultipleSelect(name, value = "") {
 		
 		// remove empty and null values from the array
-		console.log(value);
-
 		if(value.length > 0){
 			removeItemAll(value, "");
 			removeItemAll(value, "null");
 		}
-		console.log(value);
 		
         select = document.createElement("select");
         select.classList.add("form-control");
@@ -1991,9 +1973,8 @@ var EditDataDialog = function(ui, cell)
 				{
                     // apply the properties into the current graph
 					value.setAttribute(propertiesNames[i], formInputs[i].value);
-
                     // apply the autocomplete properties into the current graph
-                    if(propertiesNames[i] in autoCompleteProperties && formInputs[i].value != null)
+                    if(propertiesNames[i] in autoCompleteProperties && formInputs[i].value != "null" && formInputs[i].value != "" )
 						value.setAttribute(propertiesNames[i], autoCompleteProperties[propertiesNames[i]]);
 					
 
