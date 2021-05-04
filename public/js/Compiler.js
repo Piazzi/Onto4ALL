@@ -379,7 +379,7 @@ function autoCompleteProperty(cell, propertyName) {
            // update the property value in the correspondent cells
             cellsIds.forEach((id) => {
 
-                if(id != "")
+                if(id != "" && id != "null")
                 {
                     // update the property value in other relations with the same label
                     if(cell.isEdge()){
@@ -404,7 +404,7 @@ function autoCompleteProperty(cell, propertyName) {
                     let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
                     removeItemAll(updatedValue, "null");
                     removeItemAll(updatedValue, "");
-                    if(!updatedValue.includes(cell.id))
+                    if(!updatedValue.includes(cell.id) && getCellById(updatedValue).getAttribute('label') != cell.getAttribute('label'))
                         updatedValue.push(cell.id);
                     cellToUpdate.setAttribute(propertyName, updatedValue);
                 }
@@ -548,4 +548,18 @@ function getCellById(id, type) {
       }
     }
     return arr;
+  }
+
+  /**
+   * Return if a cell exists in the current graph
+   * @param {*} id 
+   */
+  function cellExists(id) {
+      let cells = classes.concat(relations).concat(instances);
+      let cellsLength = cells.length;
+      for (let i = 0; i < cellsLength; i++) 
+          if(cells[i].id == id)
+            return true;
+          
+      return false;
   }
