@@ -256,16 +256,6 @@ function compileLabel(label) {
         else
             sendWarningMessage("It is recommended that the labels do not have acronyms. (" + label.bold() + ")", '', 'Bad Practice');
     }
-
-     // Check if the label is all on uppercase
-     if (/^[^a-z]*$/.test(removeSpaces(label))) {
-        warningsCount++;
-        if (getLanguage() === 'pt')
-            sendWarningMessage("É recomendável que os nomes sejam escritos em letras minúsculas. (" + label.bold() + ")", '', 'Má Prática');
-        else
-            sendWarningMessage("It is recommended that labels are written in lowercase letters. (" + label.bold() + ")", '', 'Bad Practice');
-    }
-
 }
 
 /**
