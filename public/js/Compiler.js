@@ -24,7 +24,7 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
          // skip the cells that is not valid for compilation
          if (typeof cell.value !== "object")
              continue;
-             
+
         compileLabel(cell); 
          
          if(cell.isEdge()){
@@ -251,6 +251,8 @@ function compileLabel(cell) {
     
     let label = cell.getAttribute('label');
 
+    cell.setAttribute('label', sanitizeString(label));
+    
     // Check if the label contains a Acronym
     if (/^([a-z]\.)+/i.test(label)) {
         warningsCount++;
@@ -260,12 +262,19 @@ function compileLabel(cell) {
             sendWarningMessage("It is recommended that the labels do not have acronyms. (" + label.bold() + ")", '', 'Bad Practice');
     }
 
-    // replace whitespace whith underscore
-    label = label.split(' ').join('_');
-    cell.setAttribute('label', label);
 
     console.log(cell.value);
-    
+}
+
+/**
+ * Sanitizes the string, removing HTML entities and replacing unwanted characters
+ * @param {*} string 
+ * @returns string
+ */
+function sanitizeString(string) {
+    string = string.split(' ').join('_');
+    string = string.replace(/[&]nbsp[;]/gi,"");
+    return string
 }
 
 /**
