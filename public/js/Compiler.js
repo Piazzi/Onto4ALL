@@ -24,6 +24,8 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
          // skip the cells that is not valid for compilation
          if (typeof cell.value !== "object")
              continue;
+             
+        compileLabel(cell); 
          
          if(cell.isEdge()){
              relations.push(cell);
@@ -40,7 +42,6 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
          else
              continue;
  
-         compileLabel(cell.getAttribute('label')); 
      }
  
      thingClassExists();
@@ -244,10 +245,12 @@ function compileInstance(instance) {
 
 /**
  * Compile only the label of the cell to find any measurable error
- * @param {string} label
+ * @param {mxCell} cell
  */
-function compileLabel(label) {
+function compileLabel(cell) {
     
+    let label = cell.getAttribute('label');
+
     // Check if the label contains a Acronym
     if (/^([a-z]\.)+/i.test(label)) {
         warningsCount++;
@@ -256,6 +259,13 @@ function compileLabel(label) {
         else
             sendWarningMessage("It is recommended that the labels do not have acronyms. (" + label.bold() + ")", '', 'Bad Practice');
     }
+
+    // replace whitespace whith underscore
+    label = label.split(' ').join('_');
+    cell.setAttribute('label', label);
+
+    console.log(cell.value);
+    
 }
 
 /**

@@ -1993,7 +1993,6 @@ var EditDataDialog = function(ui, cell)
 			{
 				value.removeAttribute('label');
 			}
-			
 			// Updates the value of the cell (undoable)
 			graph.getModel().setValue(cell, value);
 
