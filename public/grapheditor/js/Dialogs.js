@@ -1568,8 +1568,13 @@ var EditDataDialog = function(ui, cell)
 	nameInput.setAttribute('size', (mxClient.IS_IE || mxClient.IS_IE11) ? '36' : '40');
 	nameInput.style.boxSizing = 'border-box';
 	nameInput.style.marginLeft = '2px';
-
+	
+	let span = document.createElement('span');
+	span.classList.add('help-block');
+	span.textContent = getLanguage() == 'en' ? '(The property name must be only numbers and letters)' : '(O nome da propriedade pode conter apenas letras e números)';
+	
 	dialog.appendChild(dialogBottom);
+	dialogBottom.appendChild(span);
 	dialogBottom.appendChild(nameInput);
 
     // add the default properties if the element don't have them
@@ -1871,6 +1876,12 @@ var EditDataDialog = function(ui, cell)
 	var addBtn = mxUtils.button(mxResources.get('addProperty'), function()
 	{
 		var name = nameInput.value;
+
+		// remove spaces from the name
+		name = name.split(' ').join('_');
+		if (!isNaN(name.charAt(0))) //If is a number
+			name = "_" + name;
+		  
 
 		// Avoid ':' in attribute names which seems to be valid in Chrome
 		if (name.length > 0 && name != 'label' && name != 'placeholders' && name.indexOf(':') < 0)
