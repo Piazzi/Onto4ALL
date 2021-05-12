@@ -940,27 +940,6 @@
         <!-- /.modal-dialog -->
     </div>
 
-
-    @if(app()->getLocale() == 'pt')
-        <div style="z-index: 100; width: 20%;position: fixed;
-    bottom: 0;" class="box box-success">
-            <div class="box-header with-border">
-                <h3 class="box-title">Avaliação do Editor</h3> <i class="fa fa-fw fa-question-circle-o"></i>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-                <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-                Nos ajude a melhorar o Onto4ALL respondendo a essa rápida pesquisa. Demora menos de 5 minutos!
-                <a href="https://forms.gle/F1rKDFgyFoikCxHY8"> Clique aqui para responder.</a>
-            </div>
-            <!-- /.box-body -->
-        </div>
-    @endif
-
     <div id="overlay" style="background-color: #FFFFFF; z-index: 999999;
 		position: absolute;
 		left: 0;
@@ -1027,17 +1006,13 @@
 
     <!-- Onto4ALL -->
     <script src="{{asset('js/Browser.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/HomeFunctions.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/EditorFunctions.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/NightMode.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/Tooltips.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Report.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
-    <script defer type="text/javascript" src="{{asset('js/SearchTip.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/BuildMenu.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/OpenOntology.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/SaveOntology.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/OntologyManager.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/"
             crossorigin="anonymous"></script>
 

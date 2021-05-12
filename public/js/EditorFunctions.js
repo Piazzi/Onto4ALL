@@ -11,6 +11,18 @@ function setVisible(selector, visible) {
     document.querySelector(selector).style.display = visible ? 'block' : 'none';
 }
 
+function buildMenu() {
+    // Append the extra Onto4all buttons in the toolbar
+    if(document.getElementsByClassName('geToolbar')[0].childElementCount < 22 || document.getElementsByClassName('geMenubar')[0].childElementCount < 7)
+    {
+        $(".geToolbar").append('<div class="geSeparator"> </div>');
+        $(".geToolbar").append($('#control-sidebar, #classes, #relations, #instances, #download-ontology-report, #open-last-updated-ontology'));
+        $(".geMenubar").append($('#open-ontology, #ontology-name, #edit-ontology, #save-ontology'));
+    }
+}
+
+setInterval(buildMenu, 2000);
+
 onReady(function () {
     setVisible('body', true);
     setVisible('#loading', false);
@@ -18,6 +30,7 @@ onReady(function () {
 
 $(document).ready(function () {
 
+    // Select2 Plugin
     $(document).ready(function () {
         $('.js-example-basic-multiple').select2(
             {theme: 'classic'}
@@ -42,39 +55,6 @@ $(document).ready(function () {
         $('#progress-text').text(percentage + "% complete");
 
     });
-
-    /// Send a notification to the notification menu
-    $('.geItem').click(function () {
-        $('ul .notification-menu').append(' <li>\n' +
-            '                                            <a href="#">\n' +
-            '                                                <i class="fa fa-warning text-yellow"></i> Dont forget to save your ontology \n' +
-            '                                            </a>\n' +
-            '                                        </li>');
-
-        $('#notification-counter').text(1);
-
-    });
-
-    // Notification counter
-    $("#notifications-menu").click(function () {
-        $('#notification-counter').text('');
-    });
-
-
-    // Downloads a .txt file containing all the errors that the user made in the current drawing
-    $('#download-errors-txt').click(function () {
-        let texts = $('.direct-chat-text').text();
-        this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(texts);
-    });
-
-    // Change the text on the sidebar-control button
-    let hideSidebar = false;
-
-    $("#control-sidebar").click(function () {
-        hideSidebar = !hideSidebar;
-    });
-
-
 });
 
 
