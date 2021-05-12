@@ -42,7 +42,7 @@ class OntologyController extends Controller
      */
     public function create()
     {
-        return view('ontologies.ontologies_store');
+        return view('ontologies.ontologies-store');
     }
 
     /**
@@ -85,7 +85,7 @@ class OntologyController extends Controller
     {
         $ontology = Ontology::findOrFail($id);
         if ($ontology->userCanEdit())
-            return view('ontologies.ontologies_show', compact('ontology'));
+            return view('ontologies.ontologies-show', compact('ontology'));
         else
             return view('lockscreen');
     }
@@ -101,7 +101,7 @@ class OntologyController extends Controller
         $ontology = Ontology::findOrFail($id);
         $users = User::all();
         if ($ontology->userCanEdit())
-            return view('ontologies.ontologies_edit', compact('ontology', 'id', 'users'));
+            return view('ontologies.ontologies-edit', compact('ontology', 'id', 'users'));
         else
             return view('lockscreen');
     }

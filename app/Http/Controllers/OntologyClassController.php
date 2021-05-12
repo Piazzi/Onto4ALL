@@ -48,7 +48,7 @@ class OntologyClassController extends Controller
     public function store(OntologyClassStoreRequest $request, $locale)
     {
         OntologyClass::create($request->all());
-        return redirect()->route('ontology_class.index', $locale)->with('Success', 'Your ontology class has been successfully stored')->withInput();
+        return redirect()->route('ontology-class.index', $locale)->with('Success', 'Your ontology class has been successfully stored')->withInput();
     }
 
     /**
@@ -86,7 +86,7 @@ class OntologyClassController extends Controller
     {
         $ontologyClass = OntologyClass::findOrFail($id);
         $ontologyClass->update($request->all());
-        return redirect()->route('ontology_class.index', $locale)->with('Success', 'Your ontology class has been successfully updated');
+        return redirect()->route('ontology-class.index', $locale)->with('Success', 'Your ontology class has been successfully updated');
     }
 
     /**

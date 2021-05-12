@@ -58,7 +58,7 @@ class AdminController extends Controller
     public function edit($locale, $id)
     {
         $user = User::findOrFail($id);
-        return view('admin.admin_edit', compact('user'));
+        return view('admin.admin-edit', compact('user'));
     }
 
     /**

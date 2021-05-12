@@ -105,7 +105,7 @@ class UserController extends Controller
     {
         if($id != Auth::user()->id)
             return view('lockscreen');
-        return view('user.change_password');
+        return view('user.change-password');
     }
 
     /**
