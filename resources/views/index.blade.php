@@ -3,7 +3,7 @@
 @section('title', 'AdminLTE')
 
 @section('content_header')
-    <div id="loading"><strong>{{__('WAIT UNTIL ONTO4ALL IS READY!')}} </strong></div>
+    <div id="loading"></div>
 @stop
 
 @section('content')
