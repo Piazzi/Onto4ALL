@@ -742,12 +742,12 @@
     </a>
 
     <a id="open-ontology" class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#ontology-manager">
-        <i class="fa fa-fw fa-folder-open"></i> {{__('Open Ontology Manager')}}
+        <i class="fa fa-fw fa-folder-open"></i> {{__('Ontology Manager')}}
     </a>
     <a id="edit-ontology" class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#edit-ontology-modal">
-        <i class="fa fa-fw fa-edit"></i> {{__('Edit Ontology Info')}}
+        <i class="fa fa-fw fa-edit"></i> {{__('Edit Ontology')}}
     </a>
-    <a id="ontology-name" class="geItem geStatus btn btn-default editor-timeline-item " data-toggle="modal" data-target="#edit-ontology-modal">
+    <a id="ontology-name" class="geItem geStatus">
         <i class="fa fa-fw fa-object-group"></i>{{__('Current Ontology: None')}}
     </a>
     <a id="save-ontology" class="geItem geStatus btn btn-default editor-timeline-item unsaved">
