@@ -1,4 +1,7 @@
- <h1 align="center"> <strong> ONTO4ALL </strong> </h1>
+<img style="display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;" src="public/css/images/Logo3.png"> 
  
  <h3 align="center">
  OntoForALL é um editor gráfico com a capacidade de criar, editar e exportar ontologias para XML, OWL, SVG. Disponível em:
@@ -13,7 +16,6 @@
 * Ferramenta 1: Laravel 6.x+ / https://laravel.com/docs/6.x
 * Ferramenta 2: AdminLTE / https://adminlte.io/themes/AdminLTE/pages/UI/general.html
 * Ferramenta 3: mxGraph / https://jgraph.github.io/mxgraph/ 
-* Ferramenta 4: Jquery / https://api.jquery.com/
 
 ### Guia de instalaçao 
 #### Pré-requisitos 
@@ -63,38 +65,7 @@ DB_PASSWORD=sua_password
 
 #### Desenvolvimento 
 
-* OntoForAll usa a biblioteca de Javascript mxGraph como componente principal para diagramação das ontologias, com o GraphEditor Example como base para tudo.
+* OntoForAll usa a biblioteca de Javascript mxGraph como componente principal para diagramação das ontologias, com o GraphEditor Example como base para tudo. O restante do projeto foi desenvolvido utilizando Laravel. O frontend foi feito utilizando o template AdminLTE2 como base.
 
-* Algumas mudanças foram necessárias para a integração da biblioteca mxgraph com o laravel.
-
-* 0. O arquivo **index.blade.php** é o arquivo principal do sistema e onde o diagrama é inicializado. Grande parte dos arquivos de JS são carregados aqui. O arquivo possui também todo o menu de dicas (Sidebar) **CUIDADO AO ALTERAR**
-* 1. Os arquivos de view (**open.html** / **viewer.html**) que deveriam estar localizados na pasta resources/views estão, por motivos de compatibilidade, estão localizados na pasta public.
-* 2. A grande maioria de arquivos de javascript do mxgraph foi colocada e integrada a pasta public/js 
- padrão do laravel.
-* 3. Imagens e gifs do mxgraph também foram inseridos na pasta public/js por motivos de integração.
-* 4. A pasta public possui várias pastas a mais referentes ao mxgraph: " src ", "stencils", "examples","jscolor", "styles", "java", "sanitizer". **NÃO EXCLUIR**
-* 5. Dentro da pasta public/css estão contidos uma série de arquivos referentes ao CSS utilizado no diagrama. Nessa pasta também se encontram gifs e imagens que também fazem parte de componentes do diagrama.
-* 6. Foram realizadas uma série de mudanças no CSS do diagrama para que ele se encaixasse com o layout do sistema. Essas alterações podem ser vistas em public/css/mxgraph/grapheditor.css. (Estão separadas no final do arquivo).
-* 7. A pasta config possui outra série de arquivos relacionados a compatibilidade do diagrama com o sistema.
-* 9. Todo design do sistema foi desenvolvido para ser utilizado no modo top-nav do AdminLTE, trocar o estilo de menu irá acarretar em bugs.
-* 10. O arquivo Dialogs.js foi modificado para receber novas propriedades("Domain", "Range") referentes as ontologias. A partir da **linha 1473**.
-* 11. Dezenas de alterações foram feitas no CSS para encaixar a SideBar e as caixas de dicas. A maioria das mudanças feitas estão localizadas em **public/css/mxgraph/grapheditor.css**.
-
-*  As demais funcionalidades do sistema foram feitas utilizando as ferramentas padrões do laravel sem nenhum tipo de integração por cima.
-
-### Mapeamento de Arquivos
-
-    Principais arquivos:
-    
-* **resources/views/index.blade.php** - Principal arquivo do sistema onde é carregado grande parte do javascript e várias componentes como menus e dicas.
-* **public/Actions.js** - Define as ações (Atalhos) do editor como Salvar, importar, exportar, etc...
-* **public/Dialogs.js** - Define e implementa as caixas de dialog (modal) e as suas respectivas funções (Ex: Exportar, Salvar, Importar) **IMPORTANTE**.
-* **public/EditorUI.js** - Onde está localizada a função de salvar em XML do editor. **EditorUI.prototype.saveXML**.  **IMPORTANTE**
-* **public/Init.js** - Onde está definido as rotas para algumas funções do diagrama.
-* **public/SearchTip** - Contém as funções de busca/filtro de dicas da sidebar de dicas do editor.
-* **public/SearchBar** - Contém a função de filtro de todos os CRUD's.
-* **public/css/mxgraph/grapheditor.css**- Contém todas as alterações feitas para encaixar o editor com o tema do adminlte.
-* **public/css/resources/grapheditor.txt** - Contém os nomes de todos os botões e funções do diagrama.
-* **app/Http/Controllers/HomeController** - É o controller que gerencia as principais funções de salvar e exportar do editor.
 
 #### Desenvolvido por Lucas Piazzi de Castro ####
