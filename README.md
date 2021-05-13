@@ -1,8 +1,6 @@
-<img style="display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;" src="public/css/images/Logo3.png"> 
- 
+<p align="center">
+<img src="public/css/images/Logo3.png"> 
+ </p>
  <h3 align="center">
  OntoForALL é um editor gráfico com a capacidade de criar, editar e exportar ontologias para XML, OWL, SVG. Disponível em:
  <a href="https://onto4alleditor.com/">https://onto4alleditor.com/</a>
