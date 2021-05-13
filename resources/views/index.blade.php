@@ -8,8 +8,9 @@
 
 @section('content')
 
-    <!--tips menu-->
+    <!-- Right Sidebar -->
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
+
         <!-- Warning Console -->
         <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings ">
             <div id="warnings-console-header" class="box-header">
@@ -37,11 +38,9 @@
                     <button id="open-error-console" type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 </div>
             </div>
-            <!-- /.box-header -->
             <div class="box-body" style="">
-                <!-- Conversations are loaded here -->
+                <!-- Warnings are loaded here -->
                 <div class="direct-chat-messages">
-
                     <!-- Message to the right -->
                     <div class="direct-chat-msg">
                         <div class="direct-chat-info clearfix">
@@ -53,30 +52,134 @@
                         <div id="no-warning-text" class="direct-chat-text">
                             {{__('You dont have any warnings.')}}
                         </div>
-                        <!-- /.direct-chat-text -->
                     </div>
-                    <!-- /.direct-chat-msg -->
                 </div>
-                <!--/.direct-chat-messages-->
-                <!-- /.direct-chat-pane -->
             </div>
-            <!-- /.box-body -->
         </div>
         <!--  ./Warning Console -->
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class=""><a class="menu-title" href="#control-sidebar-theme-demo-options-tab" data-toggle="tab" aria-expanded="false"><i
-                            class="fa fa-fw fa-info-circle"></i> {{__('Methodology')}}</a></li>
-            <li class="active"><a class="menu-title" href="#control-sidebar-home-tab" data-toggle="tab" aria-expanded="true"><i
-                            class="fa fa-search"></i> {{__('Tips')}}</a></li>
-            <li><a class="menu-title" data-toggle="modal" data-target="#ontology-manager"><i class="fa fa-object-group"></i> {{__('Ontologies')}}</a></li>
-        </ul>
 
-        <div class="tab-content">
+        <!-- Tabs -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#methodology" data-toggle="tab"> <i class="fa fa-fw fa-info-circle"></i> {{__('Methodology')}}</a></li>
+              <li><a href="#tips" data-toggle="tab"> <i class="fa fa-search"></i> {{__('Tips')}}</a></li>
+              <!--
+              <li><a href="#classes" data-toggle="tab">Classes</a></li>
+              <li><a href="#classes" data-toggle="tab">Relations</a></li>
+              <li><a href="#classes" data-toggle="tab">Classes</a></li>
+              <li><a href="#classes" data-toggle="tab">Classes</a></li>
+              <li><a href="#classes" data-toggle="tab">Classes</a></li>
 
-            <!-- Home tab content -->
-            <div class="tab-pane active" id="control-sidebar-home-tab">
-                <a style="margin-bottom: 5px" class="btn btn-default img-max-width" data-toggle="modal" data-target="#modal" aria-expanded="false"><i
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  Dropdown <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+                  <li role="presentation" class="divider"></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                </ul>
+              </li>
+              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>-->
+            </ul>
+            <div class="tab-content">
+
+              <!-- Methodology -->
+              <div class="tab-pane active" id="methodology">
+                <div id="menu-scroll">
+                    <div class="box box-widget methodology-box">
+                        <div class="box-header">
+                            <h3 class="box-title methodology-title">{{__('OntoForInfoScience')}}</h3> 
+                            <a href="#" data-toggle="modal" data-target="#methodologyDefinition" aria-expanded="false">
+                                <i class="fa fa-question-circle"></i>
+                            </a>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <ul class="todo-list ui-sortable">
+                                <li>
+                                    <!-- checkbox -->
+                                    <input type="checkbox" value="">
+                                    <!-- todo text -->
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#specification" aria-expanded="false">1. {{__('Specification of the ontology')}}</a></span>
+                                    <!-- Emphasis label -->
+                                    <!-- General tools such as edit or delete-->
+                                    <div class="tools">
+                                        <a href="#" data-toggle="modal" data-target="#specification" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" value="">
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#acquisitionExtractionKnowledge"
+                                                          aria-expanded="false">2. {{__('Acquisition and extraction of knowledge')}}</a></span>
+                                    <div class="tools">
+                                        <a href="#" data-toggle="modal" data-target="#acquisitionExtractionKnowledge" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" value="">
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#conceptualization" aria-expanded="false"> 3. {{__('Conceptualization')}}</a></span>
+                                    <div class="tools">
+                                        <a href="#" data-toggle="modal" data-target="#conceptualization" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" value="">
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#ontologicalGrounding" aria-expanded="false"> 4. {{__('Ontological grounding')}} </a></span>
+                                    <div class="tools">
+                                        <a href="#" data-toggle="modal" data-target="#ontologicalGrounding" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
+                                    </div>
+                                </li>
+                                <li class="">
+                                    <input type="checkbox" value="">
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#formalization" aria-expanded="false"> 5. {{__('Formalization of the ontology')}} </a></span>
+                                    <div class="tools">
+                                        <a href="#" data-toggle="modal" data-target="#formalization" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" value="">
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#evaluation" aria-expanded="false"> 6. {{__('Evaluation of the ontology')}} </a></span>
+                                    <div class="tools">
+                                        <a href="#" data-toggle="modal" data-target="#evaluation" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" value="">
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#documentation" aria-expanded="false"> 7. {{__('Documentation')}} </a></span>
+                                    <div class="tools">
+                                        <a href="#" data-toggle="modal" data-target="#documentation" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" value="">
+                                    <span class="text"><a href="#" data-toggle="modal" data-target="#publication" aria-expanded="false"> 8. {{__('Publication of the ontology')}} </a></span>
+                                    <div class="tools">
+                                        <a href="#" data-toggle="modal" data-target="#publication" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.box-body -->
+
+                        <div class="box-footer clearfix no-border methodology-footer">
+                            <h4>{{__('Your progress')}}: </h4>
+                            <div class="progress progress active">
+                                <div id="progress-bar" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0"
+                                     aria-valuemin="0" aria-valuemax="100" style="width: 0">
+                                    <span id="progress-text" class="">0% {{__('Complete')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+              <!-- Tips -->
+              <div class="tab-pane" id="tips">
+              <a style="margin-bottom: 5px" class="btn btn-default img-max-width" data-toggle="modal" data-target="#modal" aria-expanded="false"><i
                             class="fa fa-fw fa-compass"></i>{{__('External Ontology Databases')}}</a>
                 <div id="searchBar" class="input-group input-group-sm">
                     <input value="" id="search-tip-input" type="text" class="form-control"
@@ -237,103 +340,17 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.control-sidebar-menu -->
-
+              </div>
+              <!-- /.tab-pane -->
+              <div class="tab-pane" id="tab_3">
+               
+              </div>
+              <!-- /.tab-pane -->
             </div>
-            <div id="control-sidebar-theme-demo-options-tab" class="tab-pane">
-                <div id="menu-scroll">
-                    <div class="box box-success methodology-box">
-                        <div class="box-header with-border">
-                            <i class="fa fa-text-width"></i>
-
-                            <h3 class="box-title methodology-title">{{__('Methodology')}}</h3>  <a href="#" data-toggle="modal" data-target="#methodologyDefinition" aria-expanded="false"><i
-                                        style="float: right;"
-                                        class="fa fa-question-circle"></i></a>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <ul class="todo-list ui-sortable">
-                                <li>
-                                    <!-- checkbox -->
-                                    <input type="checkbox" value="">
-                                    <!-- todo text -->
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#specification" aria-expanded="false">1. {{__('Specification of the ontology')}}</a></span>
-                                    <!-- Emphasis label -->
-                                    <!-- General tools such as edit or delete-->
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#specification" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#acquisitionExtractionKnowledge"
-                                                          aria-expanded="false">2. {{__('Acquisition and extraction of knowledge')}}</a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#acquisitionExtractionKnowledge" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#conceptualization" aria-expanded="false"> 3. {{__('Conceptualization')}}</a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#conceptualization" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#ontologicalGrounding" aria-expanded="false"> 4. {{__('Ontological grounding')}} </a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#ontologicalGrounding" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li class="">
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#formalization" aria-expanded="false"> 5. {{__('Formalization of the ontology')}} </a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#formalization" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#evaluation" aria-expanded="false"> 6. {{__('Evaluation of the ontology')}} </a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#evaluation" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#documentation" aria-expanded="false"> 7. {{__('Documentation')}} </a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#documentation" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#publication" aria-expanded="false"> 8. {{__('Publication of the ontology')}} </a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#publication" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.box-body -->
-
-                        <div class="box-footer clearfix no-border methodology-footer">
-                            <h4>{{__('Your progress')}}: </h4>
-                            <div class="progress progress active">
-                                <div id="progress-bar" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: 0">
-                                    <span id="progress-text" class="">0% {{__('Complete')}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /.tab-pane -->
-        </div>
+            <!-- /.tab-content -->
+          </div>
+        
     </aside>
-    <!-- /.tips menu -->
 
     <div class="tab modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
