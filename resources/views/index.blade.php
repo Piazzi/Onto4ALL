@@ -726,53 +726,59 @@
     <!--./Warning Console Info modal -->
 
 
-    <!-- Tracker spans  -->
-    <a class="tracker" id="control-sidebar" href="#" data-toggle="control-sidebar">
-        <i style="padding-top: 5px" class="fa fa-1.5x fa-fw fa-exchange "></i>
+    <!-- Toolbar Icons  -->
+    
+    <a id="classes" data-widget="collapse" class="toolbar-icon">
+        <i class="fa fa-fw fa-circle-o"></i>
+        <span id="classes-count"> 0</span>
+    </a>
+    
+    <a id="relations" data-widget="collapse" class="toolbar-icon">
+        <i class="fa fa-1.5x fa-fw fa-exchange"></i>
+        <span id="relations-count"> 0</span>
+    </a>
+    
+    <a id="instances" data-widget="collapse" class="toolbar-icon">
+        <i class="fa fa-fw fa-diamond"></i>
+        <span id="instances-count"> 0</span>
+    </a>
+    
+    <a class="toolbar-icon" download="ontology-report.txt"  href="#" id="download-ontology-report">
+        <i class="fa fa-fw fa-file-text-o"></i> 
+    </a>
+    
+    <a id="open-last-updated-ontology" class="toolbar-icon"  href="#">
+        <i class="fa fa-fw fa-cloud-download"></i> 
+    </a>
+    
+    <a id="methodology-icon" href="#" class="toolbar-icon">
+        <i class="fa fa-fw fa-info-circle"></i> 
+    </a>
+    
+    <a id="tips-icon" href="#" class="toolbar-icon">
+        <i class="fa fa-fw fa-search"></i> 
     </a>
 
-    <span id="classes" data-widget="collapse" class="badge bg-green tracker">
-                    <i class="fa fa-fw fa-circle-o"></i>
-                    <span id="classes-count"> 0</span>
-                </span>
-
-    <span id="relations" data-widget="collapse" class="badge bg-green tracker">
-                    <i class="fa fa-fw fa-long-arrow-right"></i>
-                    <span id="relations-count"> 0</span>
-                </span>
-
-    <span id="instances" data-widget="collapse" class="badge bg-green tracker">
-                    <i class="fa fa-fw fa-diamond"></i>
-                    <span id="instances-count"> 0</span>
-                </span>
-    <!--
-    <span id="night-mode" class="badge bg-green-gradient tracker">
-        <a style="color: white;"   href="#"><i class="fa fa-fw fa-moon-o"></i></a>
-    </span>-->
-    <!-- ./Tracker spans  -->
-    <a download="ontology-report.txt"  href="#" id="download-ontology-report">
-        <span data-toggle="tooltip" title="" class="badge bg-green tracker">
-                    <i class="fa fa-fw fa-file-text-o"></i> {{__('Report')}}
-        </span>
+    <a class="toolbar-icon" id="control-sidebar" href="#" data-toggle="control-sidebar">
+        <i style="padding-top: 5px" class="fa fa-1.5x fa-fw fa-arrows-h"></i>
     </a>
-    <a id="open-last-updated-ontology"  class="r" href="#">
-        <span class="badge bg-green tracker ">
-             <i class="fa fa-fw fa-cloud-download"></i> {{__('Last Updated Ontology')}}
-        </span>
-    </a>
+    <!-- ./Toolbar icons  -->
 
-    <a id="open-ontology" class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#ontology-manager">
+    <!-- Menubar Icons -->
+    <a id="open-ontology" class="geItem geStatus btn btn-default editor-timeline-item menubar-icon" data-toggle="modal" data-target="#ontology-manager">
         <i class="fa fa-fw fa-folder-open"></i> {{__('Ontology Manager')}}
     </a>
-    <a id="edit-ontology" class="geItem geStatus btn btn-default editor-timeline-item" data-toggle="modal" data-target="#edit-ontology-modal">
+    <a id="edit-ontology" class="geItem geStatus btn btn-default editor-timeline-item menubar-icon" data-toggle="modal" data-target="#edit-ontology-modal">
         <i class="fa fa-fw fa-edit"></i> {{__('Edit Ontology')}}
     </a>
-    <a id="ontology-name" class="geItem geStatus">
+    <a id="ontology-name" class="geItem geStatus menubar-icon">
         <i class="fa fa-fw fa-object-group"></i>{{__('Current Ontology: None')}}
     </a>
-    <a id="save-ontology" class="geItem geStatus btn btn-default editor-timeline-item unsaved">
+    <a id="save-ontology" class="geItem geStatus btn btn-default editor-timeline-item unsaved menubar-icon">
         <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
     </a>
+    <!-- ./Menubar Icons -->
+
 
     <!-- Edit Ontology -->
     <div class="modal fade" id="edit-ontology-modal" style="display: none;">

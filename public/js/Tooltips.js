@@ -49,4 +49,11 @@ $(document).ready(function () {
        content: "Open the last updated ontology in your ontology manager (useful when multiple collaborators are editing the ontology at the same time)"
     });
 
+    tippy('#methodology-icon', {
+        content: "Methodology Menu"
+    });
+
+    tippy('#tips-icon', {
+        content: "Tips Menu"
+    });
 });

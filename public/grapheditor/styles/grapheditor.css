@@ -101,13 +101,15 @@ aside {
 	border-color: #00a65a !important;
 }
 
-.tracker {
+.toolbar-icon {
 	margin-right: 3px;
 	padding: 5px;
 	color: #666666 !important;
 	background-color: transparent !important;
 	font-size: 1em;
     font-weight: initial;
+	cursor: pointer !important;
+
 }
 
 
@@ -134,7 +136,7 @@ aside {
 	background-color: #00a65a !important;
 }
 
-#edit-ontology, #save-ontology, #ontology-name, #open-ontology {
+.menubar-icon {
 	width: auto !important;
 	padding: 2px !important;
 	margin-top: 2px;
@@ -196,9 +198,6 @@ aside {
     padding: 2px !important;
 }
 
-.geToolbar a {
-	padding: 2px;
-}
 
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
 
