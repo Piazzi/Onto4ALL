@@ -42,7 +42,7 @@
                     <button id="open-error-console" type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 </div>
             </div>
-            <div class="box-body" style="">
+            <div class="box-body">
                 <!-- Warnings are loaded here -->
                 <div class="direct-chat-messages">
                     <!-- Message to the right -->
@@ -63,11 +63,10 @@
         <!--  ./Warning Console -->
 
         <!-- Tabs -->
+        <!--
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#methodology" data-toggle="tab"> <i class="fa fa-fw fa-info-circle"></i> {{__('Methodology')}}</a></li>
-              <li><a href="#tips" data-toggle="tab"> <i class="fa fa-search"></i> {{__('Tips')}}</a></li>
-              
+
               <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-circle-thin"></i> Classes</a></li>
               <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-long-arrow-right"></i> Object Properties</a></li>
               <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-book"></i> Annotation Properties</a></li>
@@ -92,406 +91,16 @@
             </ul>
             <div class="tab-content">
 
-              <!-- Methodology -->
-              <div class="tab-pane active" id="methodology">
-                <div id="menu-scroll">
-                    <div class="box box-widget methodology-box">
-                        <div class="box-header">
-                            <h3 class="box-title methodology-title">{{__('OntoForInfoScience')}}</h3> 
-                            <a href="#" data-toggle="modal" data-target="#methodologyDefinition" aria-expanded="false">
-                                <i class="fa fa-question-circle"></i>
-                            </a>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <ul class="todo-list ui-sortable">
-                                <li>
-                                    <!-- checkbox -->
-                                    <input type="checkbox" value="">
-                                    <!-- todo text -->
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#specification" aria-expanded="false">1. {{__('Specification of the ontology')}}</a></span>
-                                    <!-- Emphasis label -->
-                                    <!-- General tools such as edit or delete-->
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#specification" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#acquisitionExtractionKnowledge"
-                                                          aria-expanded="false">2. {{__('Acquisition and extraction of knowledge')}}</a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#acquisitionExtractionKnowledge" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#conceptualization" aria-expanded="false"> 3. {{__('Conceptualization')}}</a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#conceptualization" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#ontologicalGrounding" aria-expanded="false"> 4. {{__('Ontological grounding')}} </a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#ontologicalGrounding" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li class="">
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#formalization" aria-expanded="false"> 5. {{__('Formalization of the ontology')}} </a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#formalization" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#evaluation" aria-expanded="false"> 6. {{__('Evaluation of the ontology')}} </a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#evaluation" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#documentation" aria-expanded="false"> 7. {{__('Documentation')}} </a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#documentation" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <input type="checkbox" value="">
-                                    <span class="text"><a href="#" data-toggle="modal" data-target="#publication" aria-expanded="false"> 8. {{__('Publication of the ontology')}} </a></span>
-                                    <div class="tools">
-                                        <a href="#" data-toggle="modal" data-target="#publication" aria-expanded="false"><i class="fa fa-info fa-2x"></i></a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- /.box-body -->
 
-                        <div class="box-footer clearfix no-border methodology-footer">
-                            <h4>{{__('Your progress')}}: </h4>
-                            <div class="progress progress active">
-                                <div id="progress-bar" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="0"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: 0">
-                                    <span id="progress-text" class="">0% {{__('Complete')}}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
-
-              <!-- Tips -->
-              <div class="tab-pane" id="tips">
               
-              </div>
-              <!-- /.tab-pane -->
               <div class="tab-pane" id="tab_3">
-               
+
               </div>
-              <!-- /.tab-pane -->
             </div>
-            <!-- /.tab-content -->
-          </div>
-        
+            <!-- /.tab-content 
+          </div>-->
+
     </aside>
-
-    <!-- METHODOLOGY MODALS  -->
-    <div class="tab modal fade" id="specification" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <strong>{{__('Specification of the ontology')}}</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {{__('In this phase, the developer performs the specification of the ontology through a template, which has to contain at least information about: the domain and scope of the ontology, its general purpose, its audience, scenarios for its application and the required degree of formality. In addition, the developer establishes the coverage of the  ontology by describing its starting point, its limits within the domain and competency questions.')}}
-                    </p>
-                    <p>
-                        {{__('You can edit the information of a ontology by clicking on the Edit Ontology Info button or by accessing the ontology manager and selecting the ontology you want and then clicking in the Update button')}}</p>
-                    <img alt="superior-menu" src="{{asset('css/images/Methodology/menu-superior.png')}}">
-                    <hr>
-                    <p>{{__('After clicking the button a modal will show up with all the information the ontology has.')}}</p>
-                    <img style="width: 90%" alt="ontology-info" src="{{asset('css/images/Methodology/info.png')}}">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab modal fade" id="methodologyDefinition" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <strong>{{__('Definition')}}</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {{__('OntoForInfoScience is a detailed methodology for construction of ontologies that details each step of the ontology development cycle. The goal of such methodology is to enable experts in Knowledge Organization to overcome the technical jargon difficulties, as well as logical and philosophical issues that involve the ontology development (Mendonça, 2016).The methodology OntoForInfoScience consists of nine phases:')}}
-                    </p>
-                    <ul>
-                        <li>
-                            1) {{__('Specification of the ontology')}}
-                        </li>
-                        <li>
-                            2) {{__('Acquisition and extraction of knowledge')}}
-                        </li>
-                        <li>
-                            3) {{__('Conceptualization')}}
-                        </li>
-                        <li>
-                            4) {{__('Ontological grounding')}}
-                        </li>
-                        <li>
-                            5) {{__('Formalization of the ontology')}}
-                        </li>
-                        <li>
-                            6) {{__('Evaluation of the ontology')}}
-                        </li>
-                        <li>
-                            7) {{__('Documentation')}}
-                        </li>
-                        <li>
-                            8) {{__('Publication of the ontology')}}
-                        </li>
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab modal fade" id="acquisitionExtractionKnowledge" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <strong>{{__('Acquisition and extraction of knowledge')}}</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {{__('Phase 2 consists of the knowledge acquisition, which encompasses the selection of materials to be approached (about the subject of the domain) and the selection of methods for extracting knowledge. Within OntoForInfoScience, these activities are conducted in a way that mixes different methods, like: textual analysis of books and papers, automatic terminological extraction, semi-automatic methods for identification of concepts, to mention a few.')}}
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab modal fade" id="conceptualization" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <strong>{{__('Conceptualization')}}</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>{{__('Phase 3 concerns conceptualization, when the developer performs activities of identification and analysis of the concepts that are candidates to classes in the ontology. In addition, the developer promotes the knowledge organization so that one is able to obtain relations, properties and constraints of the ontology. The more appropriate way to represent the conceptualization of ontology it is through of a graphical conceptual model, representing conceptual relations between identified concepts through graphs or similar structures.In the Onto4AllEditor, the Phase 3 must be performed in ')}}
-                        <strong>{{__('this page using the graphical editor')}}</strong>.
-                        {{__('You can access this page again by clicking in the “Ontology Editor” on the menu')}}
-                    </p>
-                    <img class="img-max-width" alt="editor" src="{{asset('css/images/Methodology/editor.png')}}">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab modal fade" id="ontologicalGrounding" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <strong>{{__('Ontological grounding')}}</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {{__('Phase 4 corresponds to the activity of ontological grounding in which the developer surveys top-levels ontologies to be used as starting points. Developers choose the top-level ontology more suitable to their aims in considering the underlying philosophical approach that will justify modeling decisions. From the operational point of view, the developer imports selected top-level ontology to an ontology editor tool for successful implementation.')}}
-                    </p>
-                    <p>
-                        <strong>{{__('You can edit your previous saved ontologies using the button open in the editor on the right sidebar')}}</strong>
-                    </p>
-                    <img class="img-max-width" alt="import" src="{{asset('css/images/Methodology/importFromSidebar.png')}}">
-                    <p>
-                        <strong>
-                            {{__('You can import other ontologies to this editor if they have been created using the Onto4AllEditor and have a .XML extension. You can also import OWL files made by other editors (Beware that this function only works for valid OWL files with right syntax. If you have any issues with this feature, please, contact us). All ontologies exported by this editor can be imported in later projects.Using the editor menu, click on the file button and then on the import as showed below:')}}
-                        </strong>
-                    </p>
-                    <img class="img-max-width" alt="import" src="{{asset('css/images/Methodology/import.png')}}">
-                    <p>{{__('Select a valid file from your computer using the choose file button or drag a file direct to the box and then click in import')}}</p>
-                    <img class="img-max-width" alt="select-file" src="{{asset('css/images/Methodology/select-file.png')}}">
-                    <p>{{__('After that, your imported ontology will be showing on the editor')}}</p>
-                    <img class="img-max-width" alt="pizza ontology" src="{{asset('css/images/Methodology/pizza.png')}}">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab modal fade" id="formalization" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <strong>{{__('Formalization of the ontology')}}</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {{__('In this phase, the developer produces a formal description of the domain from the conceptualization of the prior phase 3. Activities of phase 5 are:')}}
-                    </p>
-                    <ul>
-                        <li>
-                            5.1){{__('to construct general taxonomy of the ontology based on previously selected top-level taxonomy (in the Onto4AllEditor, this activity must be performed in the Ontology Editor, the page you are right now)')}}
-                            <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/editor.png')}}">
-                        </li>
-                        <li>
-                            5.2) {{__('to define descriptive properties of the classes involving textual attributes as names, synonyms, definitions and annotations (in the Onto4AllEditor, this activity must be performed in the editor, clicking under a class or relation with the right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class/relation and pressing CTRL + M))')}}
-                            <img alt="properties" src="{{asset('css/images/Methodology/propriedades.png')}}">
-                        </li>
-                        <li>
-                            5.3) {{__('to create formal definitions for each class using a logical language, so that the formal definition is able to be derived from the textual definitions created previously')}}
-                        </li>
-                        <li>
-                            5.4) {{__('to define properties of classes, involving attributes as data types, cardinality, existential and universal quantifiers (in the Onto4AllEditor, this activity must be performed in the menu “Ontology Editor”, clicking under a class or relation with the right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class/relation and pressing CTRL + M))')}}
-                            <img alt="properties" src="{{asset('css/images/Methodology/propriedades.png')}}">
-                            <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/class-properties.png')}}">
-                        </li>
-                        <li>
-                            5.5) {{__('to create instances for ontological classes (in the Onto4AllEditor, this activity must be performed in the Ontology Editor, adding the symbol “Instance” (rectangle) to the ontology in the drawing area, this symbol can be find on the ontology palette, in the left of the editor)')}}
-                        </li>
-                        <li>
-                            5.6) {{__('to specify ontological relations, consisting of the application of a defined set of rules and principles carrying out the transformation of conceptual relations into formal relations (in the Onto4AllEditor, this activity must be performed in the editor, clicking under a class or relation with the right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the relation and pressing CTRL + M)).')}}
-                            <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/relation.png')}}">
-                            <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/relation-properties.png')}}">
-                        </li>
-                    </ul>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab modal fade" id="evaluation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <strong>{{__('Evaluation of the ontology')}}</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {{__('The evaluation of the ontology correspond to the application of a set of criteria allowing one to perform both the ontological validation (validation of the correspondence between ontology and the real world) and the ontological verification (analysis of the ontology with respect to the correctness of its construction). Examples of validation criteria are: non-recursivity in definitions, the specification of different types of part_of relations, the definition of inverse relations, and the creation of the cardinalities.In the Onto4AllEditor, the Phase 6 is performed automatically by the editor through of the functionality Warnings Console, that suggests good modeling practices for the current drawn ontology.')}}
-                    </p>
-                    <img class="img-max-width" alt="console" src="{{asset('css/images/Methodology/console.png')}}">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab modal fade" id="documentation" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <strong>{{__('Documentation')}}</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>
-                        {{__('In phase 7, documentation of all activities performed along the ontology development cycle is organized. The production of documentation occurs during all the time the ontology has been constructed. The content of the documentation encompasses the document of specification (from phase 1), documents of reference about the domain (from phase 2), the set of conceptual models (from phase 3), reused ontologies (phases 4 and 5), ontological and formal content (phase 5), and other useful')}}
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="tab modal fade" id="publication" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <strong>{{__('Publication of the ontology')}}</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>{{__('In phase 8 the developer makes the ontological artifact available in a way that be downloaded and properly visualized by a community of users.You can download the ontology you just draw by clicking in the file menu and then in the export submenu')}}
-                    </p>
-                    <img class="img-max-width" alt="export" src="{{asset('css/images/Methodology/export.png')}}">
-                    <p>{{__('You can export your ontology in XML, OWL or SVG (image).When you do that your ontology is also saved in your account, you can look all the ontologies you made by clicking on the File Manager menu on the top of the page.')}}</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ./ METHODOLOGY MODALS  -->
 
     <!-- Error Console Info modal -->
     <div class="tab modal fade" id="warningsConsole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -528,36 +137,36 @@
 
 
     <!-- Toolbar Icons  -->
-    
+
     <a id="classes" data-widget="collapse" class="toolbar-icon">
         <i class="fa fa-fw fa-circle-o"></i>
         <span id="classes-count"> 0</span>
     </a>
-    
+
     <a id="relations" data-widget="collapse" class="toolbar-icon">
         <i class="fa fa-1.5x fa-fw fa-exchange"></i>
         <span id="relations-count"> 0</span>
     </a>
-    
+
     <a id="instances" data-widget="collapse" class="toolbar-icon">
         <i class="fa fa-fw fa-diamond"></i>
         <span id="instances-count"> 0</span>
     </a>
-    
+
     <a class="toolbar-icon" download="ontology-report.txt"  href="#" id="download-ontology-report">
-        <i class="fa fa-fw fa-file-text-o"></i> 
+        <i class="fa fa-fw fa-file-text-o"></i>
     </a>
-    
+
     <a id="open-last-updated-ontology" class="toolbar-icon"  href="#">
-        <i class="fa fa-fw fa-cloud-download"></i> 
+        <i class="fa fa-fw fa-cloud-download"></i>
     </a>
-    
-    <a id="methodology-icon" href="#" class="toolbar-icon">
-        <i class="fa fa-fw fa-info-circle"></i> 
+
+    <a id="methodology-icon" href="#" class="toolbar-icon" data-toggle="modal" data-target="#methodology-menu">
+        <i class="fa fa-fw fa-info-circle"></i>
     </a>
-    
+
     <a id="tips-icon" href="#" class="toolbar-icon" data-toggle="modal" data-target="#tips-menu">
-        <i class="fa fa-fw fa-search"></i> 
+        <i class="fa fa-fw fa-search"></i>
     </a>
 
     <a class="toolbar-icon" id="control-sidebar" href="#" data-toggle="control-sidebar">
@@ -778,7 +387,7 @@
 
                 </div>
                 <div class="modal-body">
-                
+
                 <div style="margin-bottom: 10px" id="searchBar" class="input-group input-group-sm">
                     <input value="" id="search-tip-input" type="text" class="form-control"
                            placeholder="{{__('Search for tips')}}">
@@ -953,7 +562,172 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    
+
+    <!-- Methodology Menu Modal -->
+    <div class="modal fade" id="methodology-menu" style="display: none;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 style="text-align: center" class="modal-title">{{__('Methodology')}}</h4>
+
+                </div>
+                <div class="modal-body">
+
+                        <!-- Custom Tabs -->
+                    <div class="nav-tabs-custom">
+                        <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">1. {{__('Specification of the ontology')}} </a></li>
+                        <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">2. {{__('Acquisition and extraction of knowledge')}}</a></li>
+                        <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">3. {{__('Conceptualization')}}</a></li>
+                        <li class=""><a href="#tab_4" data-toggle="tab" aria-expanded="false">4. {{__('Ontological grounding')}}</a></li>
+                        <li class=""><a href="#tab_5" data-toggle="tab" aria-expanded="false">5. {{__('Formalization of the ontology')}}</a></li>
+                        <li class=""><a href="#tab_6" data-toggle="tab" aria-expanded="false">6. {{__('Evaluation of the ontology')}}</a></li>
+                        <li class=""><a href="#tab_7" data-toggle="tab" aria-expanded="false">7. {{__('Documentation')}}</a></li>
+                        <li class=""><a href="#tab_8" data-toggle="tab" aria-expanded="false">8. {{__('Publication of the ontology')}}</a></li>
+
+                        <li class="pull-right"><a href="#tab_9" data-toggle="tab" aria-expanded="false" class="text-muted"><i class="fa fa-question-circle"></i></a></li>
+                        </ul>
+                        <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1">
+                                <p>
+                                    {{__('In this phase, the developer performs the specification of the ontology through a template, which has to contain at least information about: the domain and scope of the ontology, its general purpose, its audience, scenarios for its application and the required degree of formality. In addition, the developer establishes the coverage of the  ontology by describing its starting point, its limits within the domain and competency questions.')}}
+                                </p>
+                                <p>
+                                    {{__('You can edit the information of a ontology by clicking on the Edit Ontology Info button or by accessing the ontology manager and selecting the ontology you want and then clicking in the Update button')}}</p>
+                                <img alt="superior-menu" src="{{asset('css/images/Methodology/menu-superior.png')}}">
+                                <hr>
+                                <p>{{__('After clicking the button a modal will show up with all the information the ontology has.')}}</p>
+                                <img style="width: 90%" alt="ontology-info" src="{{asset('css/images/Methodology/info.png')}}">
+                        </div>
+                        <div class="tab-pane " id="tab_2">
+                                <p>
+                                    {{__('Phase 2 consists of the knowledge acquisition, which encompasses the selection of materials to be approached (about the subject of the domain) and the selection of methods for extracting knowledge. Within OntoForInfoScience, these activities are conducted in a way that mixes different methods, like: textual analysis of books and papers, automatic terminological extraction, semi-automatic methods for identification of concepts, to mention a few.')}}
+                                </p>
+                        </div>
+                        <div class="tab-pane" id="tab_3">
+                                <p>{{__('Phase 3 concerns conceptualization, when the developer performs activities of identification and analysis of the concepts that are candidates to classes in the ontology. In addition, the developer promotes the knowledge organization so that one is able to obtain relations, properties and constraints of the ontology. The more appropriate way to represent the conceptualization of ontology it is through of a graphical conceptual model, representing conceptual relations between identified concepts through graphs or similar structures.In the Onto4AllEditor, the Phase 3 must be performed in ')}}
+                                    <strong>{{__('this page using the graphical editor')}}</strong>.
+                                    {{__('You can access this page again by clicking in the “Ontology Editor” on the menu')}}
+                                </p>
+                                <img class="img-max-width" alt="editor" src="{{asset('css/images/Methodology/editor.png')}}">
+
+                        </div>
+                        <div class="tab-pane" id="tab_4">
+                        <p>
+                                    {{__('Phase 4 corresponds to the activity of ontological grounding in which the developer surveys top-levels ontologies to be used as starting points. Developers choose the top-level ontology more suitable to their aims in considering the underlying philosophical approach that will justify modeling decisions. From the operational point of view, the developer imports selected top-level ontology to an ontology editor tool for successful implementation.')}}
+                                </p>
+                                <p>
+                                    <strong>{{__('You can edit your previous saved ontologies using the button open in the editor on the right sidebar')}}</strong>
+                                </p>
+                                <img class="img-max-width" alt="import" src="{{asset('css/images/Methodology/importFromSidebar.png')}}">
+                                <p>
+                                    <strong>
+                                        {{__('You can import other ontologies to this editor if they have been created using the Onto4AllEditor and have a .XML extension. You can also import OWL files made by other editors (Beware that this function only works for valid OWL files with right syntax. If you have any issues with this feature, please, contact us). All ontologies exported by this editor can be imported in later projects.Using the editor menu, click on the file button and then on the import as showed below:')}}
+                                    </strong>
+                                </p>
+                                <img class="img-max-width" alt="import" src="{{asset('css/images/Methodology/import.png')}}">
+                                <p>{{__('Select a valid file from your computer using the choose file button or drag a file direct to the box and then click in import')}}</p>
+                                <img class="img-max-width" alt="select-file" src="{{asset('css/images/Methodology/select-file.png')}}">
+                                <p>{{__('After that, your imported ontology will be showing on the editor')}}</p>
+                                <img class="img-max-width" alt="pizza ontology" src="{{asset('css/images/Methodology/pizza.png')}}">
+
+                        </div>
+                        <div class="tab-pane" id="tab_5">
+                                <p>
+                                    {{__('In this phase, the developer produces a formal description of the domain from the conceptualization of the prior phase 3. Activities of phase 5 are:')}}
+                                </p>
+                                <ul>
+                                    <li>
+                                        5.1){{__('to construct general taxonomy of the ontology based on previously selected top-level taxonomy (in the Onto4AllEditor, this activity must be performed in the Ontology Editor, the page you are right now)')}}
+                                        <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/editor.png')}}">
+                                    </li>
+                                    <li>
+                                        5.2) {{__('to define descriptive properties of the classes involving textual attributes as names, synonyms, definitions and annotations (in the Onto4AllEditor, this activity must be performed in the editor, clicking under a class or relation with the right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class/relation and pressing CTRL + M))')}}
+                                        <img alt="properties" src="{{asset('css/images/Methodology/propriedades.png')}}">
+                                    </li>
+                                    <li>
+                                        5.3) {{__('to create formal definitions for each class using a logical language, so that the formal definition is able to be derived from the textual definitions created previously')}}
+                                    </li>
+                                    <li>
+                                        5.4) {{__('to define properties of classes, involving attributes as data types, cardinality, existential and universal quantifiers (in the Onto4AllEditor, this activity must be performed in the menu “Ontology Editor”, clicking under a class or relation with the right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class/relation and pressing CTRL + M))')}}
+                                        <img alt="properties" src="{{asset('css/images/Methodology/propriedades.png')}}">
+                                        <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/class-properties.png')}}">
+                                    </li>
+                                    <li>
+                                        5.5) {{__('to create instances for ontological classes (in the Onto4AllEditor, this activity must be performed in the Ontology Editor, adding the symbol “Instance” (rectangle) to the ontology in the drawing area, this symbol can be find on the ontology palette, in the left of the editor)')}}
+                                    </li>
+                                    <li>
+                                        5.6) {{__('to specify ontological relations, consisting of the application of a defined set of rules and principles carrying out the transformation of conceptual relations into formal relations (in the Onto4AllEditor, this activity must be performed in the editor, clicking under a class or relation with the right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the relation and pressing CTRL + M)).')}}
+                                        <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/relation.png')}}">
+                                        <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/relation-properties.png')}}">
+                                    </li>
+                                </ul>
+                        </div>
+                        <div class="tab-pane" id="tab_6">
+                                <p>
+                                    {{__('The evaluation of the ontology correspond to the application of a set of criteria allowing one to perform both the ontological validation (validation of the correspondence between ontology and the real world) and the ontological verification (analysis of the ontology with respect to the correctness of its construction). Examples of validation criteria are: non-recursivity in definitions, the specification of different types of part_of relations, the definition of inverse relations, and the creation of the cardinalities.In the Onto4AllEditor, the Phase 6 is performed automatically by the editor through of the functionality Warnings Console, that suggests good modeling practices for the current drawn ontology.')}}
+                                </p>
+                                <img class="img-max-width" alt="console" src="{{asset('css/images/Methodology/console.png')}}">
+
+                        </div>
+                        <div class="tab-pane" id="tab_7">
+                                <p>
+                                    {{__('In phase 7, documentation of all activities performed along the ontology development cycle is organized. The production of documentation occurs during all the time the ontology has been constructed. The content of the documentation encompasses the document of specification (from phase 1), documents of reference about the domain (from phase 2), the set of conceptual models (from phase 3), reused ontologies (phases 4 and 5), ontological and formal content (phase 5), and other useful')}}
+                                </p>
+                        </div>
+                        <div class="tab-pane" id="tab_8">
+                                <p>{{__('In phase 8 the developer makes the ontological artifact available in a way that be downloaded and properly visualized by a community of users.You can download the ontology you just draw by clicking in the file menu and then in the export submenu')}}
+                                </p>
+                                <img class="img-max-width" alt="export" src="{{asset('css/images/Methodology/export.png')}}">
+                                <p>{{__('You can export your ontology in XML, OWL or SVG (image).When you do that your ontology is also saved in your account, you can look all the ontologies you made by clicking on the File Manager menu on the top of the page.')}}</p>
+
+                        </div>
+                        <div class="tab-pane" id="tab_9">
+                        <p>
+                                    {{__('OntoForInfoScience is a detailed methodology for construction of ontologies that details each step of the ontology development cycle. The goal of such methodology is to enable experts in Knowledge Organization to overcome the technical jargon difficulties, as well as logical and philosophical issues that involve the ontology development (Mendonça, 2016).The methodology OntoForInfoScience consists of nine phases:')}}
+                                </p>
+                                <ul>
+                                    <li>
+                                        1) {{__('Specification of the ontology')}}
+                                    </li>
+                                    <li>
+                                        2) {{__('Acquisition and extraction of knowledge')}}
+                                    </li>
+                                    <li>
+                                        3) {{__('Conceptualization')}}
+                                    </li>
+                                    <li>
+                                        4) {{__('Ontological grounding')}}
+                                    </li>
+                                    <li>
+                                        5) {{__('Formalization of the ontology')}}
+                                    </li>
+                                    <li>
+                                        6) {{__('Evaluation of the ontology')}}
+                                    </li>
+                                    <li>
+                                        7) {{__('Documentation')}}
+                                    </li>
+                                    <li>
+                                        8) {{__('Publication of the ontology')}}
+                                    </li>
+                                </ul>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('Close')}}</button>
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
 
     <!-- LOADS MXGRAPH GRAPHEDITOR AND ITS FUNCTIONS -->
 
@@ -1065,4 +839,3 @@
         })();
     </script>
 @stop
-
