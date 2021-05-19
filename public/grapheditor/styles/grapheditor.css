@@ -40,7 +40,7 @@ html {
 }
 
 
- .geToolbarContainer, .gePaletteContainer, .geMenubarContainer {
+  .gePaletteContainer, .geMenubarContainer {
 	 padding-left: 52px !important;
  }
 

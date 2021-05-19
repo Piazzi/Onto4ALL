@@ -875,7 +875,7 @@ BaseFormatPanel.prototype.createOption = function(label, isCheckedFn, setChecked
 	div.style.whiteSpace = 'nowrap';
 	div.style.overflow = 'hidden';
 	div.style.width = '200px';
-	div.style.height = (mxClient.IS_QUIRKS) ? '27px' : '18px';
+	div.style.height = '27px';
 	
 	var cb = document.createElement('input');
 	cb.setAttribute('type', 'checkbox');
@@ -1039,7 +1039,7 @@ BaseFormatPanel.prototype.createColorOption = function(label, getColorFn, setCol
 	div.style.whiteSpace = 'nowrap';
 	div.style.overflow = 'hidden';
 	div.style.width = '200px';
-	div.style.height = (mxClient.IS_QUIRKS) ? '27px' : '18px';
+	div.style.height = '27px' ;
 	
 	var cb = document.createElement('input');
 	cb.setAttribute('type', 'checkbox');
@@ -1446,9 +1446,9 @@ BaseFormatPanel.prototype.styleButtons = function(elts)
 		mxUtils.setPrefixedStyle(elts[i].style, 'borderRadius', '3px');
 		mxUtils.setOpacity(elts[i], 100);
 		elts[i].style.border = '1px solid #a0a0a0';
-		elts[i].style.padding = '4px';
-		elts[i].style.paddingTop = '3px';
-		elts[i].style.paddingRight = '1px';
+		//elts[i].style.padding = '4px';
+		//elts[i].style.paddingTop = '3px';
+		//elts[i].style.paddingRight = '1px';
 		elts[i].style.margin = '1px';
 		elts[i].style.width = '24px';
 		elts[i].style.height = '20px';
@@ -2735,7 +2735,7 @@ TextFormatPanel.prototype.addFont = function(container)
 		cssMenu.style.margin = '0px';
 		this.addArrow(cssMenu);
 		cssMenu.style.width = '192px';
-		cssMenu.style.height = '15px';
+		//cssMenu.style.height = '15px';
 		
 		var arrow = cssMenu.getElementsByTagName('div')[0];
 		arrow.style.cssFloat = 'right';
@@ -2759,7 +2759,7 @@ TextFormatPanel.prototype.addFont = function(container)
 	
 	this.addArrow(fontMenu);
 	fontMenu.style.width = '192px';
-	fontMenu.style.height = '15px';
+	//fontMenu.style.height = '15px';
 	
 	var stylePanel2 = stylePanel.cloneNode(false);
 	stylePanel2.style.marginLeft = '-3px';
@@ -4644,7 +4644,7 @@ StyleFormatPanel.prototype.addStroke = function(container)
 	stylePanel.style.fontWeight = 'normal';
 	stylePanel.style.whiteSpace = 'nowrap';
 	stylePanel.style.position = 'relative';
-	stylePanel.style.paddingLeft = '16px'
+	//stylePanel.style.paddingLeft = '16px'
 	stylePanel.style.marginBottom = '2px';
 	stylePanel.style.marginTop = '2px';
 	stylePanel.className = 'geToolbarContainer';
@@ -4757,12 +4757,12 @@ StyleFormatPanel.prototype.addStroke = function(container)
 	{
 		input.style.position = 'absolute';
 		input.style.right = '32px';
-		input.style.height = '15px';
+		//input.style.height = '15px';
 		stepper.style.right = '20px';
 
 		altInput.style.position = 'absolute';
 		altInput.style.right = '32px';
-		altInput.style.height = '15px';
+		//altInput.style.height = '15px';
 		altStepper.style.right = '20px';
 	}
 	else
@@ -4928,9 +4928,9 @@ StyleFormatPanel.prototype.addStroke = function(container)
 	altSolid.style.marginBottom = '9px';
 	altSymbol.appendChild(altSolid);
 
-	pattern.style.height = '15px';
-	altPattern.style.height = '15px';
-	edgeShape.style.height = '15px';
+	//pattern.style.height = '15px';
+	//altPattern.style.height = '15px';
+	//edgeShape.style.height = '15px';
 	edgeStyle.style.height = '17px';
 	lineStart.style.marginLeft = '3px';
 	lineStart.style.height = '17px';
@@ -4995,7 +4995,7 @@ StyleFormatPanel.prototype.addStroke = function(container)
 	var perimeterPanel = colorPanel.cloneNode(false);
 	perimeterPanel.style.fontWeight = 'normal';
 	perimeterPanel.style.position = 'relative';
-	perimeterPanel.style.paddingLeft = '16px'
+	//perimeterPanel.style.paddingLeft = '16px'
 	perimeterPanel.style.marginBottom = '2px';
 	perimeterPanel.style.marginTop = '6px';
 	perimeterPanel.style.borderWidth = '0px';
