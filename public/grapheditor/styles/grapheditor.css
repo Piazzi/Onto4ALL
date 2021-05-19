@@ -104,6 +104,10 @@ aside {
 .tracker {
 	margin-right: 3px;
 	padding: 5px;
+	color: #666666 !important;
+	background-color: transparent !important;
+	font-size: 1em;
+    font-weight: initial;
 }
 
 
@@ -190,6 +194,10 @@ aside {
 
 #properties-dialog td {
     padding: 2px !important;
+}
+
+.geToolbar a {
+	padding: 2px;
 }
 
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
@@ -507,7 +515,7 @@ aside {
 }
 .geToolbarContainer .geButton {
 	float:left;
-	width:20px;
+	/*width:20px;*/
 	height:20px;
 	padding:0px 2px 4px 2px;
 	margin:2px;

@@ -63,12 +63,14 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="#methodology" data-toggle="tab"> <i class="fa fa-fw fa-info-circle"></i> {{__('Methodology')}}</a></li>
               <li><a href="#tips" data-toggle="tab"> <i class="fa fa-search"></i> {{__('Tips')}}</a></li>
-              <!--
-              <li><a href="#classes" data-toggle="tab">Classes</a></li>
-              <li><a href="#classes" data-toggle="tab">Relations</a></li>
-              <li><a href="#classes" data-toggle="tab">Classes</a></li>
-              <li><a href="#classes" data-toggle="tab">Classes</a></li>
-              <li><a href="#classes" data-toggle="tab">Classes</a></li>
+              
+              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-circle-thin"></i> Classes</a></li>
+              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-long-arrow-right"></i> Object Properties</a></li>
+              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-book"></i> Annotation Properties</a></li>
+              <li><a href="#classes" data-toggle="tab">Datatype Properties</a></li>
+              <li><a href="#classes" data-toggle="tab">Datatypes</a></li>
+              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-user"></i> Individuals</a></li>
+
 
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -82,7 +84,7 @@
                   <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
                 </ul>
               </li>
-              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>-->
+              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
             </ul>
             <div class="tab-content">
 
@@ -724,12 +726,13 @@
     <!--./Warning Console Info modal -->
 
 
+    <!-- Tracker spans  -->
     <a class="tracker" id="control-sidebar" href="#" data-toggle="control-sidebar">
         <i style="padding-top: 5px" class="fa fa-1.5x fa-fw fa-exchange "></i>
     </a>
-    <!-- Tracker spans  -->
+
     <span id="classes" data-widget="collapse" class="badge bg-green tracker">
-                    <i class="fa fa-fw fa-circle-thin"></i>
+                    <i class="fa fa-fw fa-circle-o"></i>
                     <span id="classes-count"> 0</span>
                 </span>
 
