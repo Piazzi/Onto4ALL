@@ -169,9 +169,10 @@
         <i class="fa fa-fw fa-search"></i>
     </a>
 
+    <!--
     <a class="toolbar-icon" id="control-sidebar" href="#" data-toggle="control-sidebar">
         <i style="padding-top: 5px" class="fa fa-1.5x fa-fw fa-arrows-h"></i>
-    </a>
+    </a>-->
     <!-- ./Toolbar icons  -->
 
     <!-- Menubar Icons -->

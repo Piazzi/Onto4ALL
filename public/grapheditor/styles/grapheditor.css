@@ -104,8 +104,11 @@ aside {
 	width: 700px;
     right: inherit;
     cursor: row-resize;
-    left: 280px;
-    bottom: 20px
+    left: 50%;
+    bottom: 20px;
+    margin-left: -350px;
+    bottom: 20px;
+	border-radius: 15px;
 }
 
 .toolbar-icon {
@@ -123,6 +126,8 @@ aside {
 #warnings-console-header {
 	background-color: whitesmoke;
 	color: #333;
+	border-radius: 15px;
+
 }
 
 

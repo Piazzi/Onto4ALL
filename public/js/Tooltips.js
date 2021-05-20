@@ -9,10 +9,6 @@ $(document).ready(function () {
         content: "Show/Hide the Sidebar"
     });
 
-    tippy('#open-error-console', {
-        content: "Opens the error console"
-    });
-
     tippy('.fa-download', {
         content: "Downloads a .txt file containing all the current warnings in the ontology"
     });
