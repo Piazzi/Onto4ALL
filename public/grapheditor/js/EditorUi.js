@@ -3463,6 +3463,9 @@ EditorUi.prototype.createDivs = function()
 	this.menubarContainer.style.right = '0px';
 	this.toolbarContainer.style.left = '0px';
 	this.toolbarContainer.style.right = '0px';
+	//fix for the onto4all layout
+	this.toolbarContainer.style.left = '50px';
+
 	this.sidebarContainer.style.left = '0px';
 	this.formatContainer.style.right = '0px';
 	this.formatContainer.style.zIndex = '1';
