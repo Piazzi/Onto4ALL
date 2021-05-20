@@ -12,55 +12,55 @@
 
 @section('content')
 
-    <!-- Right Sidebar -->
-    <aside class="control-sidebar control-sidebar-light control-sidebar-open">
+<!-- Warning Console -->
+<div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box">
+    <div data-widget="collapse" id="warnings-console-header" class="box-header">
+        <h3 class="box-title">{{__('Warnings Console')}}</h3>
 
-        <!-- Warning Console -->
-        <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings ">
-            <div id="warnings-console-header" class="box-header">
-                <h3 class="box-title">{{__('Warnings Console')}}</h3>
+        <a href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle"></i></a>
+        <div class="box-tools pull-right">
 
-                <a href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle"></i></a>
-                <div class="box-tools pull-right">
+            <a download="ontology-errors.txt" href="#" id="download-errors-txt">
+                <span data-toggle="tooltip" title="" class="badge bg-info">
+                    <i class="fa fa-download"></i>
+                </span>
+            </a>
 
-                    <a download="ontology-errors.txt" href="#" id="download-errors-txt">
-                        <span data-toggle="tooltip" title="" class="badge bg-info">
-                            <i class="fa fa-download"></i>
-                        </span>
-                    </a>
+            <span id="errors" data-widget="collapse" class="badge bg-green" data-original-title="Errors">
+                <i class="fa fa-close"></i>
+                <span id="error-count"> 0</span>
+            </span>
 
-                    <span id="errors" data-widget="collapse" class="badge bg-green" data-original-title="Errors">
-                        <i class="fa fa-close"></i>
-                        <span id="error-count"> 0</span>
-                    </span>
+            <span id="warnings" data-widget="collapse" class="badge bg-green" data-original-title="Warnings">
+                <i class="fa fa-warning"> </i>
+                <span id="warnings-count"> 0</span>
+            </span>
 
-                    <span id="warnings" data-widget="collapse" class="badge bg-green" data-original-title="Warnings">
-                        <i class="fa fa-warning"> </i>
-                        <span id="warnings-count"> 0</span>
-                    </span>
-
-                    <button id="open-error-console" type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button id="open-error-console" type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+        </div>
+    </div>
+    <div data-widget="collapse" class="box-body">
+        <!-- Warnings are loaded here -->
+        <div class="direct-chat-messages">
+            <!-- Message to the right -->
+            <div class="direct-chat-msg">
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-name pull-right">{{__('Welcome')}}</span>
+                    <span class="direct-chat-timestamp pull-left"></span>
                 </div>
-            </div>
-            <div class="box-body">
-                <!-- Warnings are loaded here -->
-                <div class="direct-chat-messages">
-                    <!-- Message to the right -->
-                    <div class="direct-chat-msg">
-                        <div class="direct-chat-info clearfix">
-                            <span class="direct-chat-name pull-right">{{__('Welcome')}}</span>
-                            <span class="direct-chat-timestamp pull-left"></span>
-                        </div>
-                        <!-- /.direct-chat-info -->
-                        <img id="no-warning-img" class="direct-chat-img" src="{{asset('css/images/LogoMini.png')}}" alt="Message User Image"><!-- /.direct-chat-img -->
-                        <div id="no-warning-text" class="direct-chat-text">
-                            {{__('You dont have any warnings.')}}
-                        </div>
-                    </div>
+                <!-- /.direct-chat-info -->
+                <img id="no-warning-img" class="direct-chat-img" src="{{asset('css/images/LogoMini.png')}}" alt="Message User Image"><!-- /.direct-chat-img -->
+                <div id="no-warning-text" class="direct-chat-text">
+                    {{__('You dont have any warnings.')}}
                 </div>
             </div>
         </div>
-        <!--  ./Warning Console -->
+    </div>
+</div>
+<!--  ./Warning Console -->
+    <!-- Right Sidebar -->
+    <aside class="control-sidebar control-sidebar-light control-sidebar-open">
+
 
         <!-- Tabs -->
         <!--

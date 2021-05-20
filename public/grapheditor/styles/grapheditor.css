@@ -99,6 +99,13 @@ aside {
 	margin-bottom: 2px !important;
 	margin-top: 1px !important;
 	border-color: #00a65a !important;
+	position: fixed;
+	bottom: 0;
+	width: 700px;
+    right: inherit;
+    cursor: row-resize;
+    left: 280px;
+    bottom: 20px
 }
 
 .toolbar-icon {
