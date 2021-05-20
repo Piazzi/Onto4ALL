@@ -19,10 +19,10 @@
         <!-- Main Header -->
         <header class="main-header">
             <!-- Logo -->
-            <a class="logo">
+            <a class="logo" style="background-color: #222d32;">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">
-                    <img  style="padding: 0px; border-right: 1px solid #00a65a; border-bottom: 1px solid #d2d6de;"src="{{asset('css/images/LogoMini.png')}}">
+                    <img  style="padding: 0px; "src="{{asset('css/images/LogoDark.png')}}">
                 </span>
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg">
@@ -186,66 +186,66 @@
 
     @if(config('adminlte.layout') != 'top-nav')
         <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar" style="border-right: 1px solid #00a65a !important;">
+            <aside class="main-sidebar" style="">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar" style="height: auto">
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu tree" data-widget="tree">
                         <li class="header">{{__('MAIN NAVIGATION')}}</li>
-                        <li>
+                        <li  @if(Route::currentRouteName() == 'home') class="active" @endif >
                             <a href="{{route('home', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-object-group "></i>
                                 <span>{{__('Ontology Editor')}}</span></a>
                         </li>
-                        <li>
+                        <li  @if(Route::currentRouteName() == 'ontologies.index') class="active" @endif  >
                             <a href="{{route('ontologies.index', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-folder-open "></i>
                                 <span>{{__('My Ontologies')}}</span></a>
                         </li>
-                        <li>
+                        <li @if(Route::currentRouteName() == 'thesaurus-editor') class="active" @endif>
                             <a href="{{route('thesaurus-editor', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-book "></i>
                                 <span>{{__('Thesaurus Editor')}}</span></a>
                         </li>
-                        <li>
+                        <li @if(Route::currentRouteName() == 'thesaurus.index') class="active" @endif>
                             <a href="{{route('thesaurus.index', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-folder-open "></i>
                                 <span>{{__('My Thesaurus')}}</span></a>
                         </li>
                         <li class="header">INFO</li>
-                        <li>
+                        <li @if(Route::currentRouteName() == 'help') class="active" @endif>
                             <a href="{{route('help', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-question "></i>
                                 <span>{{__('Help Menu')}}</span></a>
                         </li>
-                        <li>
+                        <li @if(Route::currentRouteName() == 'tutorial') class="active" @endif>
                             <a target="_blank" href="{{route('tutorial', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-info-circle "></i>
                                 <span>{{__('Tutorial')}}</span></a>
                         </li>
-                        <li>
+                        <li @if(Route::currentRouteName() == 'aboutUs') class="active" @endif>
                             <a href="{{route('aboutUs', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-institution"></i>
                                 <span>{{__('About Us')}}</span></a>
                         </li>
                         @can('eAdmin')
                             <li class="header">ADMIN PANEL</li>
-                            <li>
+                            <li @if(Route::currentRouteName() == 'ontology_relation.index') class="active" @endif>
                                 <a href="{{route('ontology_relation.index', app()->getLocale())}}">
                                     <i class="fa fa-fw fa-arrow-right "></i>
                                     <span>{{__('Ontological Relations')}}</span></a>
                             </li>
-                            <li>
+                            <li @if(Route::currentRouteName() == 'ontology_class.index') class="active" @endif>
                                 <a href="{{route('ontology_class.index', app()->getLocale())}}">
                                     <i class="fa fa-fw fa-circle "></i>
                                     <span>{{__('Ontological Classes')}}</span></a>
                             </li>
-                            <li>
+                            <li @if(Route::currentRouteName() == 'messages.index') class="active" @endif>
                                 <a href="{{route('messages.index', app()->getLocale())}}">
                                     <i class="fa fa-fw fa-envelope "></i>
                                     <span>{{__('Messages')}}</span></a>
                             </li>
-                            <li>
+                            <li @if(Route::currentRouteName() == 'admin.index') class="active" @endif>
                                 <a href="{{route('admin.index', app()->getLocale())}}">
                                     <i class="fa fa-fw fa-users "></i>
                                     <span>{{__('Users')}}</span></a>

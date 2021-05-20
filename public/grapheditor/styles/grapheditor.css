@@ -199,6 +199,18 @@ aside {
 }
 
 
+/* Fix for the top nav layout
+ .geToolbarContainer , .geSidebarContainer ,  .geDiagramContainer {
+	top:100px !important;
+}
+
+.geMenubarContainer {
+	top: 70px !important;
+}
+
+.geHsplit {
+	top: 139px !important;
+}*/
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
 
 
