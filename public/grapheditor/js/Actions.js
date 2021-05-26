@@ -40,10 +40,11 @@ Actions.prototype.init = function()
 	this.addAction('new...', function() { graph.openLink(ui.getUrl()); });
 	this.addAction('open...', function()
 	{
-		window.openNew = true;
+		document.getElementById('open-ontology').click();
+		/*window.openNew = true;
 		window.openKey = 'open';
-
-		ui.openFile();
+		
+		ui.openFile();*/
 	});
 	this.addAction('import...', function()
 	{
