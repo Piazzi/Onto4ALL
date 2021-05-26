@@ -60,19 +60,19 @@
 <!--  ./Warning Console -->
     <!-- Right Sidebar -->
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
-
+        
 
         <!-- Tabs -->
-        <!--
+        
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
 
-              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-circle-thin"></i> Classes</a></li>
-              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-long-arrow-right"></i> Object Properties</a></li>
-              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-book"></i> Annotation Properties</a></li>
-              <li><a href="#classes" data-toggle="tab">Datatype Properties</a></li>
-              <li><a href="#classes" data-toggle="tab">Datatypes</a></li>
-              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-user"></i> Individuals</a></li>
+              <li><a href="#classes" data-toggle="tab" style="color: #f39c12" ><i class="fa fa-fw fa-circle-thin"></i> Classes</a></li>
+              <li><a href="#classes" data-toggle="tab" style="color: #3c8dbc"><i  class="fa fa-fw fa-exchange"></i> Object Properties</a></li>
+              <li><a href="#classes" data-toggle="tab" style="color: grey"><i  class="fa fa-fw fa-book"></i> Annotation Properties</a></li>
+              <li><a href="#classes" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
+              <li><a href="#classes" data-toggle="tab" style="color: darkred"><i class="fa fa-fw fa-file-code-o"></i> Datatypes</a></li>
+              <li><a href="#classes" data-toggle="tab" style="color: rebeccapurple" ><i class="fa fa-fw fa-user"></i> Individuals</a></li>
 
 
               <li class="dropdown">
@@ -97,8 +97,7 @@
 
               </div>
             </div>
-            <!-- /.tab-content 
-          </div>-->
+          </div>
 
     </aside>
 
@@ -169,10 +168,9 @@
         <i class="fa fa-fw fa-search"></i>
     </a>
 
-    <!--
     <a class="toolbar-icon" id="control-sidebar" href="#" data-toggle="control-sidebar">
         <i style="padding-top: 5px" class="fa fa-1.5x fa-fw fa-arrows-h"></i>
-    </a>-->
+    </a>
     <!-- ./Toolbar icons  -->
 
     <!-- Menubar Icons -->
