@@ -1796,6 +1796,7 @@ ArrangePanel.prototype.addGroupOps = function(div)
 		count++;
 	}
 	
+	/*
 	if (graph.getSelectionCount() == 1)
 	{
 		if (count > 0)
@@ -1825,7 +1826,7 @@ ArrangePanel.prototype.addGroupOps = function(div)
 		btn.style.marginBottom = '2px';
 		div.appendChild(btn);
 		count++;
-	}
+	}*/
 	
 	if (count == 0)
 	{
@@ -4393,6 +4394,7 @@ StyleFormatPanel.prototype.addEditOps = function(div)
 	var ss = this.format.getSelectionState();
 	var btn = null;
 	
+	/*
 	if (this.editorUi.editor.graph.getSelectionCount() == 1)
 	{
 		btn = mxUtils.button(mxResources.get('editStyle'), mxUtils.bind(this, function(evt)
@@ -4430,7 +4432,7 @@ StyleFormatPanel.prototype.addEditOps = function(div)
 		
 		div.appendChild(btn2);
 	}
-	
+	*/
 	return div;
 };
 
@@ -5925,6 +5927,7 @@ DiagramFormatPanel.prototype.addPaperSize = function(div)
  */
 DiagramFormatPanel.prototype.addStyleOps = function(div)
 {
+	/*
 	var btn = mxUtils.button(mxResources.get('editData'), mxUtils.bind(this, function(evt)
 	{
 		this.editorUi.actions.get('editData').funct();
@@ -5935,7 +5938,7 @@ DiagramFormatPanel.prototype.addStyleOps = function(div)
 	btn.style.marginBottom = '2px';
 	div.appendChild(btn);
 
-	mxUtils.br(div);
+	mxUtils.br(div);*/
 	
 	btn = mxUtils.button(mxResources.get('clearDefaultStyle'), mxUtils.bind(this, function(evt)
 	{
