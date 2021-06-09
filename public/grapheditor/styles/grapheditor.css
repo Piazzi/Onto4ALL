@@ -17,6 +17,8 @@
 	no-repeat center center;
 
 }
+
+
 /* --------------------------------------------ONTO4ALL------------------------------------------------------------*/
 header {
 	pointer-events: none;
@@ -45,8 +47,15 @@ html {
  }
 
  .control-sidebar {
-	 /*width: 18% !important;*/
-	 padding-top: 0 !important;
+	 width: 12% !important;
+	 overflow-y: auto !important;
+	 padding-top: 0px !important;
+	 margin-top: 66px !important;
+ }
+
+ .nav-tabs-custom li {
+	width: 100%;
+	text-align: center;
  }
 
 .fa-refresh {
@@ -210,6 +219,9 @@ aside {
     padding: 2px !important;
 }
 
+.navbar-custom-menu a{
+	color: black;
+}
 
 /* Fix for the top nav layout
  .geToolbarContainer , .geSidebarContainer ,  .geDiagramContainer {
