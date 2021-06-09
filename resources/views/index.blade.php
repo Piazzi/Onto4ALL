@@ -135,11 +135,10 @@
                 </li>
             </ul>
         </li>
-        <!--
         <li>
             <a id="control-sidebar" href="#" data-toggle="control-sidebar"><i
                     class="fa fa-1.5x fa-fw fa-bars "></i></a>
-        </li>-->
+        </li>
         @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))
         <!-- Control Sidebar Toggle Button -->
         <li>
@@ -198,12 +197,9 @@
     </div>
 </div>
 <!--  ./Warning Console -->
-    <!-- Right Sidebar 
+    <!-- Right Sidebar -->
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
-        
-
-        <!-- Tabs 
-        
+        <!-- Tabs -->
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
 
@@ -219,7 +215,7 @@
             <div class="tab-content">
               <div class="tab-pane active" id="classes-tab">
                 <div class="form-group">
-                  <label>SubClass Of</label>
+                  <label>SubClassOf</label>
                   <input disabled type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
@@ -235,11 +231,11 @@
                   <input  type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label>Target for Key</label>
+                  <label>TargetForKey</label>
                   <input  type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label>Disjoint With</label>
+                    <label>DisjointWith</label>
                     <select data-placeholder="Select Classes" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
                         <option>AS</option>
                         <option>AS</option>
@@ -251,39 +247,39 @@
 
               <div class="tab-pane " id="annotations-tab">
                 <div class="form-group">
-                  <label>Label</label>
+                  <label>label</label>
                   <input  type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label>Comment</label>
+                  <label>comment</label>
                   <input  type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label>Is Defined By</label>
+                  <label>isDefinedBy</label>
                   <input  type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label>See Also</label>
+                  <label>seeAlso</label>
                   <input  type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label>Backward Compartible With</label>
+                  <label>backwardCompartibleWith</label>
                   <input  type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label>Deprecated</label>
+                  <label>deprecated</label>
                   <input  type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label>IncompatibleWith</label>
+                  <label>incompatibleWith</label>
                   <input  type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label>PriorVersion</label>
+                  <label>priorVersion</label>
                   <input  type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label>Version Info</label>
+                  <label>versionInfo</label>
                   <input  type="text" class="form-control" placeholder="">
                 </div>
               </div>
@@ -292,15 +288,15 @@
 
               <div class="tab-pane" id="object-properties-tab">
                 <div class="form-group">
-                  <label>Domain</label>
+                  <label>domain</label>
                   <input disabled type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                  <label>Range</label>
+                  <label>range</label>
                   <input disabled type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label>Equivalent To</label>
+                    <label>equivalentTo</label>
                     <select data-placeholder="Select Relations" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
                         <option>AS</option>
                         <option>AS</option>
@@ -308,7 +304,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Subproperty Of</label>
+                    <label>subpropertyOf</label>
                     <select data-placeholder="Select Relation" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]">
                         <option>AS</option>
                         <option>AS</option>
@@ -316,7 +312,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Inverse Of</label>
+                    <label>inverseOf</label>
                     <select data-placeholder="Select Relation" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]">
                         <option>AS</option>
                         <option>AS</option>
@@ -324,7 +320,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Disjoint With</label>
+                    <label>disjointWith</label>
                     <select data-placeholder="Select Relations" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
                         <option>AS</option>
                         <option>AS</option>
@@ -342,7 +338,7 @@
                   <div class="checkbox">
                     <label>
                       <input type="checkbox">
-                      Inverse Functiona
+                      Inverse Functional
                     </label>
                   </div>
                   <div class="checkbox">
@@ -380,9 +376,8 @@
               </div>
             </div>
           </div>
-
     </aside>
-    -->
+
     <!-- Error Console Info modal -->
     <div class="tab modal fade" id="warningsConsole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -450,10 +445,6 @@
         <i class="fa fa-fw fa-search"></i>
     </a>
 
-    <!--
-    <a class="toolbar-icon" id="control-sidebar" href="#" data-toggle="control-sidebar">
-        <i style="padding-top: 5px" class="fa fa-1.5x fa-fw fa-arrows-h"></i>
-    </a>-->
     <!-- ./Toolbar icons  -->
 
     <!-- Menubar Icons -->
