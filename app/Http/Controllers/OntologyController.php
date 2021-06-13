@@ -252,6 +252,7 @@ class OntologyController extends Controller
                     "degree_of_formality" => $request->degree_of_formality,
                     "scope" => $request->scope,
                     "competence_questions" => $request->competence_questions,
+                    "namespace" => $request->namespace,
                 ]);
             }
         } else {
@@ -272,6 +273,7 @@ class OntologyController extends Controller
                 "degree_of_formality" => $request->degree_of_formality,
                 "scope" => $request->scope,
                 "competence_questions" => $request->competence_questions,
+                "namespace" => $request->namespace,
             ]);
         }
         /*

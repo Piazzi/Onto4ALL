@@ -295,6 +295,16 @@
                         <input id="competence-questions" value="" name="competence_questions" type="text" class="form-control">
                     </div>
                     <div class="form-group">
+                        <label>Namespace</label>
+                        <select data-placeholder="{{__('Insert used namespaces here')}}" id="namespace-select" style="width: 100%; " class="js-example-basic-multiple js-example-tags"  name="namespace[]" multiple="multiple">
+                            <option value="http://www.w3.org/2002/07/owl#">http://www.w3.org/2002/07/owl#</option>
+                            <option value="http://www.w3.org/1999/02/22-rdf-syntax-ns">http://www.w3.org/1999/02/22-rdf-syntax-ns</option>
+                            <option value="http://www.w3.org/2000/01/rdf-schema#">http://www.w3.org/2000/01/rdf-schema#</option>
+                            <option value="http://www.w3.org/XML/1998/namespace">http://www.w3.org/XML/1998/namespace</option>
+                            <option value="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label>Collaborators</label>
                         <span >- {{__('Insert usernames to share your ontology with other Onto4ALL users')}}</span> <strong style="color: #761c19">({{__('Collaborators will be able to edit this ontology')}})</strong>
                         <select data-placeholder="{{__('Insert usernames here')}}" id="collaborators-select" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
@@ -839,4 +849,5 @@
             });
         })();
     </script>
+
 @stop

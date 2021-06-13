@@ -37,6 +37,10 @@ $(document).ready(function () {
                 $("#created-by").val(data['owner_name']);
                 $("title").text($("#name").val() + ' | Onto4ALL - Ontology Graphical Editor');
 
+                // Select the namespaces on the <select> tag
+                $('#namespace-select').val(data['namespace']).trigger('change');
+
+                
                 // Select the collaborators on the <select> tag
                 $('#collaborators-select').val(data['collaborators']).trigger('change');
 
@@ -82,6 +86,9 @@ $(document).ready(function () {
                 $("#created-by").val(data['owner_name']);
                 $("title").text($("#name").val() + ' | Onto4ALL - Ontology Graphical Editor');
 
+                // Select the namespace on the <select> tag
+                $('#collaborators-select').val(data['collaborators']).trigger('change');
+                
                 // Select the collaborators on the <select> tag
                 $('#collaborators-select').val(data['collaborators']).trigger('change');
             },
@@ -129,6 +136,7 @@ $(document).ready(function () {
                 degree_of_formality: $("#degree-of-formality").val(),
                 scope: $("#scope").val(),
                 competence_questions: $("#competence-questions").val(),
+                namespace: $("#namespace-select").val().toString(),
                 collaborators: $("#collaborators-select").val()
             },
 

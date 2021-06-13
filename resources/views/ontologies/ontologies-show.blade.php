@@ -72,6 +72,10 @@
                 <label class="form-control"> {{$ontology->competence_questions}}</label>
             </div>
             <div class="form-group">
+                <label>Namespaces</label>
+                <label class="form-control"> {{$ontology->namespace}}</label>
+            </div>
+            <div class="form-group">
                 <label>{{__('Collaborators')}}</label>
                 @foreach($ontology->users as $user)
                     <label class="form-control"> {{$user->name}}</label>

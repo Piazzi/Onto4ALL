@@ -132,6 +132,16 @@
                            class="form-control">
                 </div>
                 <div class="form-group">
+                    <label>Namespace</label>
+                    <select data-placeholder="{{$ontology->namespace}}" id="namespace-select" style="width: 100%; " class="js-example-basic-multiple js-example-tags" name="namespace[]" multiple="multiple">
+                        <option value="http://www.w3.org/2002/07/owl#">http://www.w3.org/2002/07/owl#</option>
+                        <option value="http://www.w3.org/1999/02/22-rdf-syntax-ns">http://www.w3.org/1999/02/22-rdf-syntax-ns</option>
+                        <option value="http://www.w3.org/2000/01/rdf-schema#">http://www.w3.org/2000/01/rdf-schema#</option>
+                        <option value="http://www.w3.org/XML/1998/namespace">http://www.w3.org/XML/1998/namespace</option>
+                        <option value="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label>{{__('Collaborators')}}</label>
                     <select id="collaborators-select" style="width: 100%" class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
                         @foreach($users as $user)
@@ -149,6 +159,10 @@
         $(document).ready(function () {
             $('.js-example-basic-multiple').select2({
                 theme: 'classic'
+            });
+            $('.js-example-tags').select2({
+                theme: 'classic',
+                tags: true
             });
         });
     </script>
