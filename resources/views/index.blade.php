@@ -11,6 +11,145 @@
 @stop
 
 @section('content')
+<div style="position:absolute; top:0; right:0;z-index:1000; background-color:#fbfbfb" class="navbar-custom-menu">
+    <ul class="nav navbar-nav">
+        @if(Auth::user()->categoria == 'administrador')
+        @php
+        $count = Auth::user()->unreadNotifications->count();
+        @endphp
+        <li class="dropdown messages-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-envelope-o"></i>
+                <span class="label label-primary">{{$count > 0 ? $count : ''}}</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="header">You have {{$count}} new messages</li>
+                <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="menu">
+                        @foreach(Auth::user()->unreadNotifications as $notification)
+                        <li>
+                            <!-- start message -->
+                            <a href="{{route('messages.index', app()->getLocale())}}">
+                                <div class="pull-left">
+                                    <img src="{{asset('css/images/LogoMini.png')}}" class="img-circle" alt="User Image">
+                                </div>
+                                <h4>
+                                    Message:
+                                    <small>
+                                        <i
+                                            class="fa fa-clock-o"></i>{{date("d-m-Y | H:i", strtotime($notification->created_at))}}
+                                    </small>
+                                </h4>
+                                <p>{{str_limit($notification->data['data'],20)}}</p>
+                            </a>
+                        </li>
+                        <!-- end message -->
+                        @endforeach
+                    </ul>
+                </li>
+                <li class="footer"><a href="{{route('messages.index', app()->getLocale())}}">See All
+                        Messages</a></li>
+            </ul>
+        </li>
+        @endif
+        <li id="notifications-menu" class="dropdown notifications-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <i class="fa fa-bell-o"></i>
+                <span id="notification-counter" class="label label-warning"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="header">{{__('Your notifications')}}</li>
+                <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="notification-menu menu">
+
+                    </ul>
+                </li>
+                <!--<li class="footer"><a href="#">View all</a></li>-->
+            </ul>
+        </li>
+        <li class="dropdown user user-menu">
+            <!-- Menu Toggle Button -->
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                <!-- The user image in the navbar-->
+                <i class="fa fa-user"></i>
+                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                <span class="hidden-xs">{{Auth::user()->name}}</span>
+            </a>
+            <ul class="dropdown-menu">
+                <!-- The user image in the menu -->
+                <li class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
+                    <img src="{{asset('css/images/LogoMini.png')}}" class="img-circle" alt="User Image">
+                    <p style="color:black">
+                        {{Auth::user()->name}}
+                    </p>
+                </li>
+                <!-- Menu Body -->
+                <li class="user-body">
+                    <div class="row">
+                        <div class="col-xs-4 text-center border-right">
+                            <a class="user-body-link"
+                                href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">{{__('Account Settings')}}</a>
+                        </div>
+                        <div class="col-xs-4 text-center border-right">
+                            <a class="user-body-link"
+                                href="{{route('ontologies.index', app()->getLocale())}}">{{__('My Ontologies')}}</a>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <a class="user-body-link"
+                                href="{{route('help', app()->getLocale())}}">{{__('Help Menu')}}</a>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </li>
+                <!-- Menu Footer-->
+                <li class="user-footer">
+
+                    <div class="pull-left">
+                        <a href="{{route('user.index', app()->getLocale())}}" class="btn btn-default btn-flat"><i
+                                class="fa fa-user-plus"></i> Profile</a>
+                    </div>
+                    <div class="pull-right">
+                        @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') &&
+                        version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<')) <a
+                            class="btn btn-default btn-flat"
+                            href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
+                            <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                            </a>
+                            @else
+                            <a class="btn btn-default btn-flat" href="#"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                            </a>
+                            <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}"
+                                method="POST" style="display: none;">
+                                @if(config('adminlte.logout_method'))
+                                {{ method_field(config('adminlte.logout_method')) }}
+                                @endif
+                                {{ csrf_field() }}
+                            </form>
+                            @endif
+                    </div>
+
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a id="control-sidebar" href="#" data-toggle="control-sidebar"><i
+                    class="fa fa-1.5x fa-fw fa-bars "></i></a>
+        </li>
+        @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))
+        <!-- Control Sidebar Toggle Button -->
+        <li>
+            <a href="#" data-toggle="control-sidebar" @if(!config('adminlte.right_sidebar_slide'))
+                data-controlsidebar-slide="false" @endif>
+                <i class="{{config('adminlte.right_sidebar_icon')}}"></i>
+            </a>
+        </li>
+        @endif
+    </ul>
+</div>
 
 <!-- Warning Console -->
 <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box">
@@ -60,46 +199,183 @@
 <!--  ./Warning Console -->
     <!-- Right Sidebar -->
     <aside class="control-sidebar control-sidebar-light control-sidebar-open">
-
-
         <!-- Tabs -->
-        <!--
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
 
-              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-circle-thin"></i> Classes</a></li>
-              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-long-arrow-right"></i> Object Properties</a></li>
-              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-book"></i> Annotation Properties</a></li>
-              <li><a href="#classes" data-toggle="tab">Datatype Properties</a></li>
-              <li><a href="#classes" data-toggle="tab">Datatypes</a></li>
-              <li><a href="#classes" data-toggle="tab"><i class="fa fa-fw fa-user"></i> Individuals</a></li>
-
-
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  Dropdown <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                  <li role="presentation" class="divider"></li>
-                  <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                </ul>
-              </li>
-              <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
-            </ul>
-            <div class="tab-content">
-
+              <li  class="active"><a href="#classes-tab" data-toggle="tab" style="color: #f39c12" ><i class="fa fa-fw fa-circle-thin"></i> Classes</a></li>
+              <li><a href="#object-properties-tab" data-toggle="tab" style="color: #3c8dbc"><i  class="fa fa-fw fa-exchange"></i> Object Properties</a></li>
+              <li><a href="#annotations-tab" data-toggle="tab" style="color: grey"><i  class="fa fa-fw fa-book"></i> Annotation Properties</a></li>
+              <li><a href="#classes" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
+              <li><a href="#classes" data-toggle="tab" style="color: darkred"><i class="fa fa-fw fa-file-code-o"></i> Datatypes</a></li>
+              <li><a href="#classes" data-toggle="tab" style="color: rebeccapurple" ><i class="fa fa-fw fa-user"></i> Individuals</a></li>
 
               
-              <div class="tab-pane" id="tab_3">
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="classes-tab">
+                <div class="form-group">
+                  <label>SubClassOf</label>
+                  <input disabled type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label>Equivalence</label>
+                    <select data-placeholder="Select Classes" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
+                        <option>AS</option>
+                        <option>AS</option>
+                        <option>AS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <label>Instances</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>TargetForKey</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label>DisjointWith</label>
+                    <select data-placeholder="Select Classes" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
+                        <option>AS</option>
+                        <option>AS</option>
+                        <option>AS</option>
+                    </select>
+                </div>
+              </div>
 
+
+              <div class="tab-pane " id="annotations-tab">
+                <div class="form-group">
+                  <label>label</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>comment</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>isDefinedBy</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>seeAlso</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>backwardCompartibleWith</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>deprecated</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>incompatibleWith</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>priorVersion</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>versionInfo</label>
+                  <input  type="text" class="form-control" placeholder="">
+                </div>
+              </div>
+
+
+
+              <div class="tab-pane" id="object-properties-tab">
+                <div class="form-group">
+                  <label>domain</label>
+                  <input disabled type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label>range</label>
+                  <input disabled type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label>equivalentTo</label>
+                    <select data-placeholder="Select Relations" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
+                        <option>AS</option>
+                        <option>AS</option>
+                        <option>AS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>subpropertyOf</label>
+                    <select data-placeholder="Select Relation" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]">
+                        <option>AS</option>
+                        <option>AS</option>
+                        <option>AS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>inverseOf</label>
+                    <select data-placeholder="Select Relation" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]">
+                        <option>AS</option>
+                        <option>AS</option>
+                        <option>AS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>disjointWith</label>
+                    <select data-placeholder="Select Relations" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
+                        <option>AS</option>
+                        <option>AS</option>
+                        <option>AS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Functional
+                    </label>
+                  </div>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Inverse Functional
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Transitive
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Symetric
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Asymmetric
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Reflexive
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox">
+                      Irreflexive
+                    </label>
+                  </div>
+                </div>
+                
               </div>
             </div>
-            <!-- /.tab-content 
-          </div>-->
-
+          </div>
     </aside>
 
     <!-- Error Console Info modal -->
@@ -169,10 +445,6 @@
         <i class="fa fa-fw fa-search"></i>
     </a>
 
-    <!--
-    <a class="toolbar-icon" id="control-sidebar" href="#" data-toggle="control-sidebar">
-        <i style="padding-top: 5px" class="fa fa-1.5x fa-fw fa-arrows-h"></i>
-    </a>-->
     <!-- ./Toolbar icons  -->
 
     <!-- Menubar Icons -->

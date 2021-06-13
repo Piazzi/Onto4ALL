@@ -46,10 +46,10 @@ $(document).ready(function () {
     });
 
     tippy('#methodology-icon', {
-        content: "Methodology Menu"
+        content: "Methodology OntoForInfoScience"
     });
 
     tippy('#tips-icon', {
-        content: "Tips Menu"
+        content: "Tips"
     });
 });
