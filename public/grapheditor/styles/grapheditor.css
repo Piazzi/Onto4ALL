@@ -47,10 +47,14 @@ html {
  }
 
  .control-sidebar {
-	 width: 12% !important;
+	 width: 15.5% !important;
 	 overflow-y: auto !important;
 	 padding-top: 0px !important;
 	 margin-top: 66px !important;
+ }
+
+ .control-sidebar input, textarea {
+	 border-radius: 5px;
  }
 
  .nav-tabs-custom li {

@@ -517,10 +517,10 @@ function thingClassExists() {
  */
 function addThingClassToCurrentOntology() {
     let object = mxUtils.createXmlDocument().createElement('object');
-    object.setAttribute('label', getLanguage() == 'en' ? 'Thing' : 'Coisa');
     classProperties.forEach(element => {object.setAttribute( element, '');});
     annotations.forEach(element => {object.setAttribute( element, '');});
-    editor.graph.insertVertex(editor.graph.getDefaultParent(), null, object, 20, 20, 80, 80, "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#00A65A;strokeColor=#FFFFFF;fontColor=#FFFFFF;");
+    object.setAttribute('label', getLanguage() == 'en' ? 'Thing' : 'Coisa');
+    editor.graph.insertVertex(editor.graph.getDefaultParent(), null, object, 20, 20, 80, 80, "ellipse;whiteSpace=wrap;html=1;aspect=fixed;dashed=1;Class;");
 }
 
 /**
