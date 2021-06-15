@@ -253,7 +253,7 @@
                 </div>
                 <div class="form-group">
                     <label>Constraint</label>
-                    <textarea id="Constraint" rows="3"> </textarea>
+                    <textarea style="width: 100%;" id="Constraint" rows="3"> </textarea>
                 </div>
             </div>
 
