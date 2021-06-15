@@ -1042,6 +1042,7 @@ Sidebar.prototype.addThesauruAdvancedPalette = function(expand)
 var classProperties = ['SubClassOf','Constraint','DisjointWith','Equivalence','TargetForKey','Instances'];
 var relationProperties = ['domain','range','inverseOf','equivalentProperty','subPropertyOf','disjointWith','functional','inverseFunctional','transitive','symetric','asymmetric','reflexive','irreflexive'];
 var annotations = ['label','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','deprecated','incompatibleWith','backwardCompatibleWith'];
+var datatypeProperties = ['label','domain','range','inverseOf','equivalentProperty','subPropertyOf','disjointWith','functional'];
 var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
 
 // Passing this as a parameter in the function below, creates elements with properties filled up ----------------------------------------------------------------------------
@@ -1055,6 +1056,10 @@ relationObject = mxUtils.createXmlDocument().createElement('object');
 relationObject.setAttribute('label', 'new_relation');
 relationProperties.forEach(element => {relationObject.setAttribute( element, '');});
 annotations.forEach(element => {relationObject.setAttribute( element, '');});
+
+datatypePropertyObject = mxUtils.createXmlDocument().createElement('object');
+classObject.setAttribute('label', 'new_datatype_property');
+datatypeProperties.forEach(element => {datatypePropertyObject.setAttribute( element, '');});
 
 /**
  * Adds the taxonomy palette to the sidebar
@@ -1094,7 +1099,11 @@ Sidebar.prototype.addBasicOntologyPalette = function(expand)
 
 	let instance = classObject.cloneNode(true);
 	instance.setAttribute('label', getLanguage() == 'en' ? 'Instance' : 'Instância');
-	fns.push(this.createVertexTemplateEntry('rhombus;whiteSpace=wrap;html=1;strokeColor=#663399;Instance;', 110, 50, instance, 'Instance', null, null, 'Class Instance'))
+	fns.push(this.createVertexTemplateEntry('rhombus;whiteSpace=wrap;html=1;strokeColor=#663399;Instance;', 110, 50, instance, 'Instance', null, null, 'Class Instance'));
+
+	let datatypeProperty = datatypePropertyObject.cloneNode(true);
+	datatypeProperty.setAttribute('label', getLanguage() == 'en' ? 'new_datatype_property' : 'new_datatype_property');
+    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#006633;DatatypeProperty;', 80, 0, datatypeProperty, 'new_datatype_property', null, 'uml sequence message call invoke dispatch'));
 
     this.addPaletteFunctions(paletteName, paletteName, (expand != null) ? expand : true, fns);
 };
