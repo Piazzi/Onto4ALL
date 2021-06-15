@@ -1066,10 +1066,10 @@ Sidebar.prototype.addTaxonomyPalette = function(expand)
     let paletteName = getLanguage() == 'en' ? 'Taxonomy' : 'Taxonomia';
 
     classObject.setAttribute('label', getLanguage() == 'en' ? 'Label' : 'Label');
-    fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, classObject, 'Class', null, null, 'circle'));
+    fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, classObject, 'Class', null, null, 'circle'));
 
     relationObject.setAttribute('label', getLanguage() == 'en' ? 'is_a' : 'é_um');
-    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, relationObject, 'is_a', null, 'uml sequence message call invoke dispatch'));
+    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, relationObject, 'is_a', null, 'uml sequence message call invoke dispatch'));
 
     this.addPaletteFunctions(paletteName, paletteName, (expand != null) ? expand : true, fns);
 };
@@ -1083,18 +1083,18 @@ Sidebar.prototype.addBasicOntologyPalette = function(expand)
     let paletteName =  getLanguage() == 'en' ? 'Basic Ontology' : 'Ontologia Básica';
 
 	classObject.setAttribute('label', getLanguage() == 'en' ? 'Label' : 'Label');
-    fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, classObject, 'Class', null, null, 'circle'));
+    fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, classObject, 'Class', null, null, 'circle'));
 
     relationObject.setAttribute('label', getLanguage() == 'en' ? 'is_a' : 'é_um');
-    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, relationObject, 'is_a', null, 'uml sequence message call invoke dispatch'));
+    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, relationObject, 'is_a', null, 'uml sequence message call invoke dispatch'));
 
 	let newRelation = relationObject.cloneNode(true);
 	newRelation.setAttribute('label', getLanguage() == 'en' ? 'new_relation' : 'nova_relação');
-    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, newRelation, 'new_relation', null, 'uml sequence message call invoke dispatch'));
+    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, newRelation, 'new_relation', null, 'uml sequence message call invoke dispatch'));
 
 	let instance = classObject.cloneNode(true);
 	instance.setAttribute('label', getLanguage() == 'en' ? 'Instance' : 'Instância');
-	fns.push(this.createVertexTemplateEntry('rhombus;whiteSpace=wrap;html=1;Instance;', 110, 50, instance, 'Instance', null, null, 'Class Instance'))
+	fns.push(this.createVertexTemplateEntry('rhombus;whiteSpace=wrap;html=1;strokeColor=#663399;Instance;', 110, 50, instance, 'Instance', null, null, 'Class Instance'))
 
     this.addPaletteFunctions(paletteName, paletteName, (expand != null) ? expand : true, fns);
 };
@@ -1107,208 +1107,208 @@ Sidebar.prototype.addBFOOntologyPalette = function(expand)
 	// CLASSES
 	let continuant = classObject.cloneNode(true);
 	continuant.setAttribute('label', getLanguage() == 'en' ? 'Continuant' : 'Continuante');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, continuant, 'continuant', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, continuant, 'continuant', null, null, 'circle'));
 
 	let independentContinuant = classObject.cloneNode(true);
 	independentContinuant.setAttribute('label', getLanguage() == 'en' ? 'Independent Continuant' : 'Continuante independente');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, independentContinuant, 'independent continuant', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, independentContinuant, 'independent continuant', null, null, 'circle'));
 
 	let genericallyDependentContinuant = classObject.cloneNode(true);
 	genericallyDependentContinuant.setAttribute('label', getLanguage() == 'en' ? 'Generically Dependent Continuant' : 'Continuante Genericamente Dependente');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, genericallyDependentContinuant, 'generically dependent continuant', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, genericallyDependentContinuant, 'generically dependent continuant', null, null, 'circle'));
 
 	let specificallyDependentContinuant = classObject.cloneNode(true);
 	specificallyDependentContinuant.setAttribute('label', getLanguage() == 'en' ? 'Specifically Dependent Continuant' : 'Continuante Especificamente Dependente');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, specificallyDependentContinuant, 'specifically dependent continuant', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, specificallyDependentContinuant, 'specifically dependent continuant', null, null, 'circle'));
 
 	let materialEntity = classObject.cloneNode(true);
 	materialEntity.setAttribute('label', getLanguage() == 'en' ? 'Material Entity' : 'Entidade Material');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, materialEntity, 'material entity', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, materialEntity, 'material entity', null, null, 'circle'));
 
 	let immaterialEntity = classObject.cloneNode(true);
 	immaterialEntity.setAttribute('label', getLanguage() == 'en' ? 'Immaterial Entity' : 'Entidade Imaterial');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, immaterialEntity, 'immaterial entity', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, immaterialEntity, 'immaterial entity', null, null, 'circle'));
 
 	let quality = classObject.cloneNode(true);
 	quality.setAttribute('label', getLanguage() == 'en' ? 'Quality' : 'Qualidade');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80,  quality, 'quality', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80,  quality, 'quality', null, null, 'circle'));
 
 	let realizableEntity = classObject.cloneNode(true);
 	realizableEntity.setAttribute('label', getLanguage() == 'en' ? 'Realizable Entity' : 'Entidade Realizável');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, realizableEntity, 'realizable entity', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, realizableEntity, 'realizable entity', null, null, 'circle'));
 
 	let object = classObject.cloneNode(true);
 	object.setAttribute('label', getLanguage() == 'en' ? 'Object' : 'Objeto');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80,  object, 'object', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80,  object, 'object', null, null, 'circle'));
 
 	let fiatObjectPart = classObject.cloneNode(true);
 	fiatObjectPart.setAttribute('label', getLanguage() == 'en' ? 'Fiat Object Part' : 'Parte Fiat de Objeto');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, fiatObjectPart, 'fiat object part', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, fiatObjectPart, 'fiat object part', null, null, 'circle'));
 
 	let objectAggregate = classObject.cloneNode(true);
 	objectAggregate.setAttribute('label', getLanguage() == 'en' ? 'Object Aggregate' : 'Objeto Agregado');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80,  objectAggregate , 'object aggregate', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80,  objectAggregate , 'object aggregate', null, null, 'circle'));
 
 	let site = classObject.cloneNode(true);
 	site.setAttribute('label', getLanguage() == 'en' ? 'Site' : 'Local');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, site, 'site', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, site, 'site', null, null, 'circle'));
 
 	let continuantFiatBoundary = classObject.cloneNode(true);
 	continuantFiatBoundary.setAttribute('label', getLanguage() == 'en' ? 'Continuant Fiat Boundary' : 'Limite Fiat Continuante');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, continuantFiatBoundary, 'continuant fiat boundary', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, continuantFiatBoundary, 'continuant fiat boundary', null, null, 'circle'));
 
 	let spatialRegion = classObject.cloneNode(true);
 	spatialRegion.setAttribute('label', getLanguage() == 'en' ? 'Spatial Region' : 'Região espacial');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, spatialRegion, 'spatial region', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, spatialRegion, 'spatial region', null, null, 'circle'));
 
 	let relationalQuality = classObject.cloneNode(true);
 	relationalQuality.setAttribute('label', getLanguage() == 'en' ? 'Relational Quality' : 'Qualidade Relacional');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, relationalQuality, 'relational quality', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, relationalQuality, 'relational quality', null, null, 'circle'));
 
 	let role = classObject.cloneNode(true);
 	role.setAttribute('label', getLanguage() == 'en' ? 'Role' : 'Papel');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, role, 'role', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, role, 'role', null, null, 'circle'));
 
 	let disposition = classObject.cloneNode(true);
 	disposition.setAttribute('label', getLanguage() == 'en' ? 'Disposition' : 'Disposição');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80,  disposition, 'disposition', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80,  disposition, 'disposition', null, null, 'circle'));
 
 	let zeroDimensionalContinuantFiatBoundary = classObject.cloneNode(true);
 	zeroDimensionalContinuantFiatBoundary.setAttribute('label', getLanguage() == 'en' ? 'Zero-dimensional Continuant Fiat Boundary' : 'Limite Fiat de Continuante 0-D');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, zeroDimensionalContinuantFiatBoundary, 'zero-dimensional continuant fiat boundary', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, zeroDimensionalContinuantFiatBoundary, 'zero-dimensional continuant fiat boundary', null, null, 'circle'));
 
 	let oneDimensionalContinuantFiatBoundary = classObject.cloneNode(true);
 	oneDimensionalContinuantFiatBoundary.setAttribute('label', getLanguage() == 'en' ? 'One-dimensional Continuant Fiat Boundary' : 'Limite Fiat de Continuante 1-D');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, oneDimensionalContinuantFiatBoundary, 'one-dimensional continuant fiat boundary', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, oneDimensionalContinuantFiatBoundary, 'one-dimensional continuant fiat boundary', null, null, 'circle'));
 
 	let twoDimensionalContinuantFiatBoundary = classObject.cloneNode(true);
 	twoDimensionalContinuantFiatBoundary.setAttribute('label', getLanguage() == 'en' ? 'Two-dimensional Continuant Fiat Boundary' : 'Limite Fiat de Continuante 2-D');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, twoDimensionalContinuantFiatBoundary, 'two-dimensional continuant fiat boundary', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, twoDimensionalContinuantFiatBoundary, 'two-dimensional continuant fiat boundary', null, null, 'circle'));
 
 	let zeroDimensionalSpatialRegion = classObject.cloneNode(true);
 	zeroDimensionalSpatialRegion.setAttribute('label', getLanguage() == 'en' ? 'Zero-dimensional Spatial Region' : 'Região espacial 0-D');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, zeroDimensionalSpatialRegion, 'zero-dimensional spatial region', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, zeroDimensionalSpatialRegion, 'zero-dimensional spatial region', null, null, 'circle'));
 
 	let oneDimensionalSpatialRegion = classObject.cloneNode(true);
 	oneDimensionalSpatialRegion.setAttribute('label', getLanguage() == 'en' ? 'One-dimensional Spatial Region' : 'Região espacial 1-D');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, oneDimensionalSpatialRegion, 'one-dimensional spatial region', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, oneDimensionalSpatialRegion, 'one-dimensional spatial region', null, null, 'circle'));
 
 	let twoDimensionalSpatialRegion = classObject.cloneNode(true);
 	twoDimensionalSpatialRegion.setAttribute('label', getLanguage() == 'en' ? 'Two-dimensional Spatial Region' : 'Região espacial 2-D');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, twoDimensionalSpatialRegion, 'two-dimensional spatial region', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, twoDimensionalSpatialRegion, 'two-dimensional spatial region', null, null, 'circle'));
 
 	let threeDimensionalSpatialRegion = classObject.cloneNode(true);
 	threeDimensionalSpatialRegion.setAttribute('label', getLanguage() == 'en' ? 'Three-dimensional Spatial Region' : 'Região espacial 3-D');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, threeDimensionalSpatialRegion, 'three-dimensional spatial region', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, threeDimensionalSpatialRegion, 'three-dimensional spatial region', null, null, 'circle'));
 
 	let occurrent = classObject.cloneNode(true);
 	occurrent.setAttribute('label', getLanguage() == 'en' ? 'Occurrent' : 'Ocorrente');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, occurrent, 'occurrent', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, occurrent, 'occurrent', null, null, 'circle'));
 
 	let process = classObject.cloneNode(true);
 	process.setAttribute('label', getLanguage() == 'en' ? 'Process' : 'Processo');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80,  process, 'process', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80,  process, 'process', null, null, 'circle'));
 
 	let processBoundary = classObject.cloneNode(true);
 	processBoundary.setAttribute('label', getLanguage() == 'en' ? 'Process Boundary' : 'Limite de processo');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, processBoundary, 'process boundary', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, processBoundary, 'process boundary', null, null, 'circle'));
 
 	let temporalRegion = classObject.cloneNode(true);
 	temporalRegion.setAttribute('label', getLanguage() == 'en' ? 'Temporal Region' : 'Região temporal');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80,  temporalRegion, 'temporal region', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80,  temporalRegion, 'temporal region', null, null, 'circle'));
 
 	let spatiotemporalRegion = classObject.cloneNode(true);
 	spatiotemporalRegion.setAttribute('label', getLanguage() == 'en' ? 'Spatiotemporal Region' : 'Região espaço-temporal');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, spatiotemporalRegion, 'spatiotemporal region', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, spatiotemporalRegion, 'spatiotemporal region', null, null, 'circle'));
 
 	let processProfile = classObject.cloneNode(true);
 	processProfile.setAttribute('label', getLanguage() == 'en' ? 'Process Profile' : 'Perfil de processo');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, processProfile, 'process profile', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, processProfile, 'process profile', null, null, 'circle'));
 
 	let zeroDimensionalTemporalRegion = classObject.cloneNode(true);
 	zeroDimensionalTemporalRegion.setAttribute('label', getLanguage() == 'en' ? 'Zero-dimensional Temporal Region' : 'Região temporal 0-D');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, zeroDimensionalTemporalRegion, 'zero-dimensional temporal region', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, zeroDimensionalTemporalRegion, 'zero-dimensional temporal region', null, null, 'circle'));
 
 	let oneDimensionalTemporalRegion = classObject.cloneNode(true);
 	oneDimensionalTemporalRegion.setAttribute('label', getLanguage() == 'en' ? 'One-dimensional Temporal Region' : 'Região temporal 1-D');
-	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;', 80, 80, oneDimensionalTemporalRegion, 'one-dimensional temporal region', null, null, 'circle'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, oneDimensionalTemporalRegion, 'one-dimensional temporal region', null, null, 'circle'));
 
 	// RELATIONS
 	let instanceOf = relationObject.cloneNode(true);
 	instanceOf.setAttribute('label', getLanguage() == 'en' ? 'instance_of' : 'instancia_um');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, instanceOf, 'instance_of', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, instanceOf, 'instance_of', null, 'uml sequence message call invoke dispatch'));
 
 	let inheresIn = relationObject.cloneNode(true);
 	inheresIn.setAttribute('label', getLanguage() == 'en' ? 'inheres_in' : 'Inerente_a');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, inheresIn, 'inheres_in', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, inheresIn, 'inheres_in', null, 'uml sequence message call invoke dispatch'));
 
 	let bearerOf = relationObject.cloneNode(true);
 	bearerOf.setAttribute('label', getLanguage() == 'en' ? 'bearer_of' : 'Portador_de');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, bearerOf, 'bearer_of', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, bearerOf, 'bearer_of', null, 'uml sequence message call invoke dispatch'));
 
 	let specificallyDepend = relationObject.cloneNode(true);
 	specificallyDepend.setAttribute('label', getLanguage() == 'en' ? 'specifically_depend' : 'e_depende_de');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, specificallyDepend, 'specifically_depend', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, specificallyDepend, 'specifically_depend', null, 'uml sequence message call invoke dispatch'));
 
 	let genericallyDepend = relationObject.cloneNode(true);
 	genericallyDepend.setAttribute('label', getLanguage() == 'en' ? 'generically_depend' : 'g_depende_de');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, genericallyDepend, 'generically_depend', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, genericallyDepend, 'generically_depend', null, 'uml sequence message call invoke dispatch'));
 
 	let qualityOf = relationObject.cloneNode(true);
 	qualityOf.setAttribute('label', getLanguage() == 'en' ? 'quality_of' : 'Qualidade_de');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, qualityOf, 'quality_of', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, qualityOf, 'quality_of', null, 'uml sequence message call invoke dispatch'));
 
 	let participatesIn = relationObject.cloneNode(true);
 	participatesIn.setAttribute('label', getLanguage() == 'en' ? 'participates_in' : 'Participa_de');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, participatesIn, 'participates_in', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, participatesIn, 'participates_in', null, 'uml sequence message call invoke dispatch'));
 
 	let existsAt = relationObject.cloneNode(true);
 	existsAt.setAttribute('label', getLanguage() == 'en' ? 'exists_at' : 'Existe_em');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, existsAt, 'exists_at', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, existsAt, 'exists_at', null, 'uml sequence message call invoke dispatch'));
 
 	let partOf = relationObject.cloneNode(true);
 	partOf.setAttribute('label', getLanguage() == 'en' ? 'part_of' : 'Parte_de');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, partOf, 'part_of', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, partOf, 'part_of', null, 'uml sequence message call invoke dispatch'));
 
 	let concretizes = relationObject.cloneNode(true);
 	concretizes.setAttribute('label', getLanguage() == 'en' ? 'concretizes' : 'Concretiza_em');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, concretizes, 'concretizes', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, concretizes, 'concretizes', null, 'uml sequence message call invoke dispatch'));
 
 	let projectsOnto = relationObject.cloneNode(true);
 	projectsOnto.setAttribute('label', getLanguage() == 'en' ? 'projects_onto' : 'Projeta_sobre');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, projectsOnto, 'projects_onto', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, projectsOnto, 'projects_onto', null, 'uml sequence message call invoke dispatch'));
 
 	let occupies = relationObject.cloneNode(true);
 	occupies.setAttribute('label', getLanguage() == 'en' ? 'occupies' : 'Ocupa');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, occupies, 'occupies', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, occupies, 'occupies', null, 'uml sequence message call invoke dispatch'));
 
 	let locatedIn = relationObject.cloneNode(true);
 	locatedIn.setAttribute('label', getLanguage() == 'en' ? 'located_in' : 'Localizado_em');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, locatedIn, 'located_in', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, locatedIn, 'located_in', null, 'uml sequence message call invoke dispatch'));
 
 	let occursIn = relationObject.cloneNode(true);
 	occursIn.setAttribute('label', getLanguage() == 'en' ? 'occurs_in' : 'Ocorre_em');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, occursIn, 'occurs_in', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, occursIn, 'occurs_in', null, 'uml sequence message call invoke dispatch'));
 
 	let realizes = relationObject.cloneNode(true);
 	realizes.setAttribute('label', getLanguage() == 'en' ? 'realizes' : 'Realiza');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, realizes, 'realizes', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, realizes, 'realizes', null, 'uml sequence message call invoke dispatch'));
 
 	let projectsInto = relationObject.cloneNode(true);
 	projectsInto.setAttribute('label', getLanguage() == 'en' ? 'projects_into' : 'q_projeta_em');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, projectsInto, 'projects_into', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, projectsInto, 'projects_into', null, 'uml sequence message call invoke dispatch'));
 
 	let roleOf = relationObject.cloneNode(true);
 	roleOf.setAttribute('label', getLanguage() == 'en' ? 'role_of' : 'é_papel_de');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, roleOf, 'role_of', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, roleOf, 'role_of', null, 'uml sequence message call invoke dispatch'));
 
 	let dispositionOf = relationObject.cloneNode(true);
 	dispositionOf.setAttribute('label', getLanguage() == 'en' ? 'disposition_of' : 'é_disposição_de');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, dispositionOf, 'disposition_of', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, dispositionOf, 'disposition_of', null, 'uml sequence message call invoke dispatch'));
 
 	let functionOf = relationObject.cloneNode(true);
 	functionOf.setAttribute('label', getLanguage() == 'en' ? 'function_of' : 'é_função_de');
-	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;Relation;', 80, 0, functionOf, 'function_of', null, 'uml sequence message call invoke dispatch'));
+	fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, functionOf, 'function_of', null, 'uml sequence message call invoke dispatch'));
 
 	this.addPaletteFunctions(paletteName, paletteName, (expand != null) ? expand : true, fns);
 };
