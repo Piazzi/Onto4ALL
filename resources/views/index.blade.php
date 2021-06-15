@@ -232,10 +232,8 @@
                 <div class="form-group">
                     <label>Equivalence</label>
                     <select id="Equivalence" data-placeholder="Select Classes" style="width: 100%; "
-                        class="js-example-basic-multiple" name="" multiple="multiple">
-                        <option>AS</option>
-                        <option>AS</option>
-                        <option>AS</option>
+                        class="js-example-basic-multiple" multiple="multiple">
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -249,10 +247,8 @@
                 <div class="form-group">
                     <label>DisjointWith</label>
                     <select id="DisjointWith" data-placeholder="Select Classes" style="width: 100%; "
-                        class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
-                        <option>AS</option>
-                        <option>AS</option>
-                        <option>AS</option>
+                        class="js-example-basic-multiple" multiple="multiple">
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -315,37 +311,29 @@
                 <div class="form-group">
                     <label>equivalentTo</label>
                     <select id="equivalentTo" data-placeholder="Select Relations" style="width: 100%; "
-                        class="js-example-basic-multiple" name="" multiple="multiple">
-                        <option>AS</option>
-                        <option>AS</option>
-                        <option>AS</option>
+                        class="js-example-basic-multiple" multiple="multiple">
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
                     <select id="subpropertyOf" data-placeholder="Select Relation" style="width: 100%; "
-                        class="js-example-basic-multiple" name="collaborators[]">
-                        <option>AS</option>
-                        <option>AS</option>
-                        <option>AS</option>
+                        class="js-example-basic-multiple">
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>inverseOf</label>
                     <select id="inverseOf" data-placeholder="Select Relation" style="width: 100%; "
-                        class="js-example-basic-multiple" name="collaborators[]">
-                        <option>AS</option>
-                        <option>AS</option>
-                        <option>AS</option>
+                        class="js-example-basic-multiple" >
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
                     <select id="disjointWithRelations" data-placeholder="Select Relations" style="width: 100%; "
-                        class="js-example-basic-multiple" name="" multiple="multiple">
-                        <option>AS</option>
-                        <option>AS</option>
-                        <option>AS</option>
+                        class="js-example-basic-multiple"  multiple="multiple">
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -405,7 +393,7 @@
                 <div class="form-group">
                     <label>types</label>
                     <select id="types" data-placeholder="Select Datatypes" style="width: 100%; "
-                        class="js-example-basic-multiple" name="" >
+                        class="js-example-basic-multiple" >
                         <option>owl:rational</option>
                         <option>owl:real</option>
                         <option>rdf:PlainLiteral</option>
@@ -445,19 +433,15 @@
                 <div class="form-group">
                     <label>sameAs</label>
                     <select id="sameAs" data-placeholder="Select Individuals" style="width: 100%; "
-                        class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
-                        <option>AS</option>
-                        <option>AS</option>
-                        <option>AS</option>
+                        class="js-example-basic-multiple" multiple="multiple">
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>differentAs</label>
                     <select id="differentAs" data-placeholder="Select Individuals" style="width: 100%; "
-                        class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
-                        <option>AS</option>
-                        <option>AS</option>
-                        <option>AS</option>
+                        class="js-example-basic-multiple" multiple="multiple">
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -492,22 +476,22 @@
                 <div class="form-group">
                     <label>equivalentTo</label>
                     <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; "
-                        class="js-example-basic-multiple" name="collaborators[]">
-                        <option>AS</option>
+                        class="js-example-basic-multiple" multiple>
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
                     <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; "
-                        class="js-example-basic-multiple" name="collaborators[]">
-                        <option>AS</option>
+                        class="js-example-basic-multiple" multiple>
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
                     <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; "
-                        class="js-example-basic-multiple" name="collaborators[]">
-                        <option>AS</option>
+                        class="js-example-basic-multiple" multiple>
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -525,7 +509,7 @@
                 <div class="form-group">
                     <label>datatype</label>
                     <select id="datatype" data-placeholder="Select Datatypes" style="width: 100%; "
-                        class="js-example-basic-multiple" name="">
+                        class="js-example-basic-multiple">
                         <option>owl:rational</option>
                         <option>owl:real</option>
                         <option>rdf:PlainLiteral</option>
