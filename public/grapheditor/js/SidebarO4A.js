@@ -1039,9 +1039,9 @@ Sidebar.prototype.addThesauruAdvancedPalette = function(expand)
 	}
 };
 
-var classProperties = ['SubClassOf','Constraint','DisjointWith','EquivalentTo','hasSynonym','SubClassOfAnonymousAncestor','DisjointUnionOf'];
-var relationProperties = ['domain','range','inverseOf','equivalentProperty','subPropertyOf','FunctionalProperty','InverseFunctionalProperty','TransitiveProperty','SymmetricProperty'];
-var annotations = ['definition','definitionSource','alternativeTerm','editorNote','curatorNote','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','member','licence','contributor','elucidation','termEditor'];
+var classProperties = ['SubClassOf','Constraint','DisjointWith','Equivalence','TargetForKey','Instances'];
+var relationProperties = ['domain','range','inverseOf','equivalentProperty','subPropertyOf','disjointWith','functional','inverseFunctional','transitive','symetric','asymmetric','reflexive','irreflexive'];
+var annotations = ['label','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','deprecated','incompatibleWith','backwardCompatibleWith'];
 var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
 
 // Passing this as a parameter in the function below, creates elements with properties filled up ----------------------------------------------------------------------------
