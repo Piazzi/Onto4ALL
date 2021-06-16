@@ -136,7 +136,7 @@
             </ul>
         </li>
         <li>
-            <a id="control-sidebar" href="#" data-toggle="control-sidebar"><i
+            <a id="control-sidebar" title="{{__('Show/Hide the Sidebar')}}" href="#" data-toggle="control-sidebar"><i
                     class="fa fa-1.5x fa-fw fa-bars "></i></a>
         </li>
         @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))
@@ -156,21 +156,21 @@
     <div data-widget="collapse" id="warnings-console-header" class="box-header">
         <h3 class="box-title">{{__('Warnings Console')}}</h3>
 
-        <a href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle"></i></a>
+        <a href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle" title="{{__('Click to see more information!')}}"></i></a>
         <div class="box-tools pull-right">
 
             <a download="ontology-errors.txt" href="#" id="download-errors-txt">
                 <span data-toggle="tooltip" title="" class="badge bg-info">
-                    <i class="fa fa-download"></i>
+                    <i class="fa fa-download" title="{{__('Downloads a .txt file containing all the current warnings in the ontology')}}"></i>
                 </span>
             </a>
 
-            <span id="errors" data-widget="collapse" class="badge bg-green" data-original-title="Errors">
+            <span id="errors" title="{{__('The number of errors in your current ontology')}}" data-widget="collapse" class="badge bg-green" data-original-title="Errors">
                 <i class="fa fa-close"></i>
                 <span id="error-count"> 0</span>
             </span>
 
-            <span id="warnings" data-widget="collapse" class="badge bg-green" data-original-title="Warnings">
+            <span id="warnings" title="{{__('The number of warnings in your current ontology')}}" data-widget="collapse" class="badge bg-green" data-original-title="Warnings">
                 <i class="fa fa-warning"> </i>
                 <span id="warnings-count"> 0</span>
             </span>
@@ -414,34 +414,34 @@
 
     <!-- Toolbar Icons  -->
 
-    <a id="classes" data-widget="collapse" class="toolbar-icon">
+    <a id="classes" title="{{__('The number of classes in your current ontology')}}" data-widget="collapse" class="toolbar-icon">
         <i class="fa fa-fw fa-circle-o"></i>
         <span id="classes-count"> 0</span>
     </a>
 
-    <a id="relations" data-widget="collapse" class="toolbar-icon">
+    <a id="relations" title="{{__('The number of relations in your current ontology')}}" data-widget="collapse" class="toolbar-icon">
         <i class="fa fa-1.5x fa-fw fa-exchange"></i>
         <span id="relations-count"> 0</span>
     </a>
 
-    <a id="instances" data-widget="collapse" class="toolbar-icon">
+    <a id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse" class="toolbar-icon">
         <i class="fa fa-fw fa-diamond"></i>
         <span id="instances-count"> 0</span>
     </a>
 
-    <a class="toolbar-icon" download="ontology-report.txt"  href="#" id="download-ontology-report">
+    <a class="toolbar-icon" download="ontology-report.txt"  href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
         <i class="fa fa-fw fa-file-text-o"></i>
     </a>
 
-    <a id="open-last-updated-ontology" class="toolbar-icon"  href="#">
+    <a id="open-last-updated-ontology" title="{{__('Open the last updated ontology in your ontology manager (useful when multiple collaborators are editing the ontology at the same time)')}}" class="toolbar-icon"  href="#">
         <i class="fa fa-fw fa-cloud-download"></i>
     </a>
 
-    <a id="methodology-icon" href="#" class="toolbar-icon" data-toggle="modal" data-target="#methodology-menu">
+    <a id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#methodology-menu">
         <i class="fa fa-fw fa-info-circle"></i>
     </a>
 
-    <a id="tips-icon" href="#" class="toolbar-icon" data-toggle="modal" data-target="#tips-menu">
+    <a id="tips-icon" title="{{__('Tips')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#tips-menu">
         <i class="fa fa-fw fa-search"></i>
     </a>
 
@@ -1043,9 +1043,6 @@
         mxLoadResources = false;
     </script>
 
-    <!-- Tooltips -->
-    <script src="https://unpkg.com/popper.js@1"></script>
-    <script src="https://unpkg.com/tippy.js@5"></script>
 
     <!-- MxGraph -->
     <script type="text/javascript" src="{{asset('grapheditor/js/Init.js')}}"></script>
@@ -1070,7 +1067,6 @@
     <script type="text/javascript" src="{{asset('js/EditorFunctions.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/NightMode.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Tooltips.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/OntologyManager.js')}}"></script>
