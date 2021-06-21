@@ -9,6 +9,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\OntologyStoreRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 
 class OntologyController extends Controller
@@ -301,6 +302,10 @@ class OntologyController extends Controller
         $ontology->users()->sync($request->collaborators);
         Ontology::verifyOntologyLimit($request->user());
 
+        foreach($ontology->users as $user){
+            if($user->id != $ontology->user_id)
+            Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
+        }
         return response()->json([
             "message-pt" => 'Todas as alterações foram salvas',
             "message-en" => 'All changes saved',
