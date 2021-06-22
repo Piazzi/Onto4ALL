@@ -26,7 +26,7 @@ $(document).ready(function () {
                 $("#last-uploaded").val(data['last_uploaded']);
                 $("#description").val(data['description']);
                 $("#link").val(data['link']);
-                $("#domain").val(data['domain']);
+                $("#ontology-domain").val(data['domain']);
                 $("#general-purpose").val(data['general_purpose']);
                 $("#profile-users").val(data['profile_users']);
                 $("#intended-use").val(data['intended_use']);
@@ -71,7 +71,7 @@ $(document).ready(function () {
                 $("#last-uploaded").val(data['last_uploaded']);
                 $("#description").val(data['description']);
                 $("#link").val(data['link']);
-                $("#domain").val(data['domain']);
+                $("#ontology-domain").val(data['domain']);
                 $("#general-purpose").val(data['general_purpose']);
                 $("#profile-users").val(data['profile_users']);
                 $("#intended-use").val(data['intended_use']);
@@ -121,7 +121,7 @@ $(document).ready(function () {
                 last_uploaded: $("#last-uploaded").val(),
                 description: $("#description").val(),
                 link: $("#link").val(),
-                domain: $("#domain").val(),
+                domain: $("#ontology-domain").val(),
                 general_purpose: $("#general-purpose").val(),
                 profile_users: $("#profile-users").val(),
                 intended_use: $("#intended-use").val(),

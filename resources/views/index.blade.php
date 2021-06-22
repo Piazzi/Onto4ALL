@@ -300,7 +300,7 @@
             <div class="tab-pane" id="object-properties-tab">
                 <div class="form-group">
                     <label>domain</label>
-                    <input id="domain-relation" disabled type="text" class="form-control" placeholder="">
+                    <input id="ontology-domain" disabled type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>range</label>
@@ -503,6 +503,46 @@
                             Functional
                         </label>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label>datatype</label>
+                    <select id="datatype" data-placeholder="Select Datatypes" style="width: 100%; "
+                        class="js-example-basic-multiple" name="">
+                        <option>owl:rational</option>
+                        <option>owl:real</option>
+                        <option>rdf:PlainLiteral</option>
+                        <option>rdf:XMLLiteral</option>
+                        <option>rdfs:Literal</option>
+                        <option>xsd:anyURI</option>
+                        <option>xsd:base64Binary</option>
+                        <option>xsd:boolean</option>
+                        <option>xsd:byte</option>
+                        <option>xsd:dateTime</option>
+                        <option>xsd:dateTimeStamp</option>
+                        <option>xsd:decimal</option>
+                        <option>xsd:double</option>
+                        <option>xsd:float</option>
+                        <option>xsd:hexBinary</option>
+                        <option>xsd:int</option>
+                        <option>xsd:integer</option>
+                        <option>xsd:language</option>
+                        <option>xsd:long</option>
+                        <option>xsd:Name</option>
+                        <option>xsd:NCName</option>
+                        <option>xsd:negativeInteger</option>
+                        <option>xsd:NMTOKEN</option>
+                        <option>xsd:nonNegativeInteger</option>
+                        <option>xsd:nonPositiveInteger</option>
+                        <option>xsd:normalizedString</option>
+                        <option>xsd:positiveInteger</option>
+                        <option>xsd:short</option>
+                        <option>xsd:string</option>
+                        <option>xsd:token</option>
+                        <option>xsd:unsignedByte</option>
+                        <option>xsd:unsignedInt</option>
+                        <option>xsd:unsignedLong</option>
+                        <option>xsd:unsignedShort</option>
+                    </select>
                 </div>
             </div>
 
