@@ -208,20 +208,18 @@
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
 
-            <li class="active"><a href="#classes-tab" data-toggle="tab" style="color: #f39c12"><i
+            <li><a id="classes-nav" href="#classes-tab" data-toggle="tab" style="color: #f39c12"><i
                         class="fa fa-fw fa-circle-thin"></i> Classes</a></li>
-            <li><a href="#object-properties-tab" data-toggle="tab" style="color: #3c8dbc"><i
+            <li><a id="object-properties-nav" href="#object-properties-tab" data-toggle="tab" style="color: #3c8dbc"><i
                         class="fa fa-fw fa-exchange"></i> Object Properties</a></li>
-            <li><a href="#annotations-tab" data-toggle="tab" style="color: grey"><i class="fa fa-fw fa-book"></i>
+            <li><a id="annotations-nav" href="#annotations-tab" data-toggle="tab" style="color: darkred"><i class="fa fa-fw fa-book"></i>
                     Annotation Properties</a></li>
-            <li><a href="#datatype-properties-tab" data-toggle="tab" style="color: #00a65a"><i
+            <li><a id="datatype-properties-nav" href="#datatype-properties-tab" data-toggle="tab" style="color: #00a65a"><i
                         class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
-            <li><a href="#datatypes-tab" data-toggle="tab" style="color: darkred"><i
-                        class="fa fa-fw fa-file-code-o"></i> Datatypes</a></li>
-            <li><a href="#individuals-tab" data-toggle="tab" style="color: rebeccapurple"><i
+            <li><a id="individuals-nav" href="#individuals-tab" data-toggle="tab" style="color: rebeccapurple"><i
                         class="fa fa-fw fa-user"></i> Individuals</a></li>
-
-
+            <li><a id="empty-nav" href="#empty-tab" data-toggle="tab" style="visibility: hidden"></a></li>
+            
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="classes-tab">
@@ -509,47 +507,9 @@
             </div>
 
 
-            <div class="tab-pane" id="datatypes-tab">
-                <div class="form-group">
-                    <label>datatype</label>
-                    <select id="datatype" data-placeholder="Select Datatypes" style="width: 100%; "
-                        class="js-example-basic-multiple">
-                        <option>owl:rational</option>
-                        <option>owl:real</option>
-                        <option>rdf:PlainLiteral</option>
-                        <option>rdf:XMLLiteral</option>
-                        <option>rdfs:Literal</option>
-                        <option>xsd:anyURI</option>
-                        <option>xsd:base64Binary</option>
-                        <option>xsd:boolean</option>
-                        <option>xsd:byte</option>
-                        <option>xsd:dateTime</option>
-                        <option>xsd:dateTimeStamp</option>
-                        <option>xsd:decimal</option>
-                        <option>xsd:double</option>
-                        <option>xsd:float</option>
-                        <option>xsd:hexBinary</option>
-                        <option>xsd:int</option>
-                        <option>xsd:integer</option>
-                        <option>xsd:language</option>
-                        <option>xsd:long</option>
-                        <option>xsd:Name</option>
-                        <option>xsd:NCName</option>
-                        <option>xsd:negativeInteger</option>
-                        <option>xsd:NMTOKEN</option>
-                        <option>xsd:nonNegativeInteger</option>
-                        <option>xsd:nonPositiveInteger</option>
-                        <option>xsd:normalizedString</option>
-                        <option>xsd:positiveInteger</option>
-                        <option>xsd:short</option>
-                        <option>xsd:string</option>
-                        <option>xsd:token</option>
-                        <option>xsd:unsignedByte</option>
-                        <option>xsd:unsignedInt</option>
-                        <option>xsd:unsignedLong</option>
-                        <option>xsd:unsignedShort</option>
-                    </select>
-                </div>
+            <div class="tab-pane" id="empty-tab" style="text-align: center; padding-top: 100px; padding-bottom: 100px;">
+                <i class="fa fa-fw fa-3x fa-hand-pointer-o"></i>
+                <h3>{{__('Select a element in your ontology')}}</h3>
             </div>
         </div>
     </div>
@@ -1290,6 +1250,7 @@
 <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/OntologyManager.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/Cell.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
     integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous">
 </script>

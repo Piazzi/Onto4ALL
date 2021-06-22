@@ -239,6 +239,12 @@ aside {
 .geHsplit {
 	top: 139px !important;
 }*/
+
+.tab-disabled {
+	background-color: gainsboro !important;
+	pointer-events: none  !important;
+	color: grey  !important;
+}
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
 
 

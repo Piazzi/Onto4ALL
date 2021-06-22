@@ -3204,6 +3204,8 @@ EditorUi.prototype.addUndoListener = function()
 */
 EditorUi.prototype.updateActionStates = function()
 {
+	getSelectedCell(this.editor.graph.getSelectionCell());
+
 	var graph = this.editor.graph;
 	var selected = !graph.isSelectionEmpty();
 	var vertexSelected = false;
