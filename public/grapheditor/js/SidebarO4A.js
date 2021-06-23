@@ -1040,25 +1040,30 @@ Sidebar.prototype.addThesauruAdvancedPalette = function(expand)
 };
 
 var classProperties = ['SubClassOf','Constraint','DisjointWith','Equivalence','TargetForKey','Instances'];
-var relationProperties = ['domain','range','inverseOf','equivalentProperty','subPropertyOf','disjointWith','functional','inverseFunctional','transitive','symetric','asymmetric','reflexive','irreflexive'];
+var relationProperties = ['domain','range','inverseOf','equivalentTo','subpropertyOf','disjointWith','functional','inverseFunctional','transitive','symetric','asymmetric','reflexive','irreflexive'];
 var annotations = ['label','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','deprecated','incompatibleWith','backwardCompatibleWith'];
-var datatypeProperties = ['label','domain','range','inverseOf','equivalentProperty','subPropertyOf','disjointWith','functional'];
+var datatypeProperties = ['label','domain','range','inverseOf','equivalentProperty','subpropertyOf','disjointWith','functional','datatype'];
+var instanceProperties = ['label','datatype','sameAs','differentAs','objectProperties','dataProperties','negativeObjectProperties','negativeDataProperties']
 var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
 
 // Passing this as a parameter in the function below, creates elements with properties filled up ----------------------------------------------------------------------------
 // setAttributeNS is needed to create case-sensetive attributes
-classObject = mxUtils.createXmlDocument().createElement('object');
+let classObject = mxUtils.createXmlDocument().createElement('object');
 classObject.setAttribute('label', 'Label');
 classProperties.forEach(element => {classObject.setAttribute( element, '');});
 annotations.forEach(element => {classObject.setAttribute( element, '');});
 
-relationObject = mxUtils.createXmlDocument().createElement('object');
+let relationObject = mxUtils.createXmlDocument().createElement('object');
 relationObject.setAttribute('label', 'new_relation');
 relationProperties.forEach(element => {relationObject.setAttribute( element, '');});
 annotations.forEach(element => {relationObject.setAttribute( element, '');});
 
-datatypePropertyObject = mxUtils.createXmlDocument().createElement('object');
-classObject.setAttribute('label', 'new_datatype_property');
+let instanceObject = mxUtils.createXmlDocument().createElement('object');
+instanceObject.setAttribute('label','Instance');
+instanceProperties.forEach(element => {instanceObject.setAttribute( element, '');});
+
+let datatypePropertyObject = mxUtils.createXmlDocument().createElement('object');
+datatypePropertyObject.setAttribute('label', 'new_datatype_property');
 datatypeProperties.forEach(element => {datatypePropertyObject.setAttribute( element, '');});
 
 /**

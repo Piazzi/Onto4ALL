@@ -300,7 +300,7 @@
             <div class="tab-pane" id="object-properties-tab">
                 <div class="form-group">
                     <label>domain</label>
-                    <input id="ontology-domain" disabled type="text" class="form-control" placeholder="">
+                    <input id="domain" disabled type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>range</label>
@@ -329,7 +329,7 @@
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
-                    <select id="disjointWithRelations" data-placeholder="Select Relations" style="width: 100%; "
+                    <select id="disjointWith-relations" data-placeholder="Select Relations" style="width: 100%; "
                         class="js-example-basic-multiple"  multiple="multiple">
                         <option></option>
                     </select>
@@ -700,7 +700,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Domain</label>
-                            <input id="domain" value="" name="domain" type="text" class="form-control">
+                            <input id="ontology-domain" value="" name="ontology-domain" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
