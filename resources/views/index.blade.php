@@ -275,7 +275,7 @@
                 </div>
                 <div class="form-group">
                     <label>backwardCompartibleWith</label>
-                    <input id="backwardCompartibleWith" type="text" class="form-control" placeholder="">
+                    <input id="backwardCompatibleWith" type="text" class="form-control" placeholder="">
                 </div>
                 <div class="form-group">
                     <label>deprecated</label>

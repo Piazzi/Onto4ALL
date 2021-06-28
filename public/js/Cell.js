@@ -90,13 +90,23 @@ function updateTabs(cellType) {
  
     let cellProperties = cell.value.attributes;
     let cellType = cell.style;
+    let propertiesInputs;
 
-    if(cellType.includes('Class')){
-        
-    } else if(cellType.includes('Relation')) {
-       
-    } else if(cellType.includes('DatatypeProperty')){
-        
+    if(cellType.includes('Class'))
+        propertiesInputs = classInputs;
+    else if(cellType.includes('Relation'))
+        propertiesInputs = relationInputs;
+    else if(cellType.includes('DatatypeProperty'))
+        propertiesInputs = datatypePropertyInputs;
+    else if(cellType.includes('Instance'))
+        propertiesInputs = instanceInputs
+    
+    for (let i = 0; i < cellProperties.length; i++) {
+        console.log(cellProperties[i]);
+        if(propertiesInputs.hasOwnProperty(cellProperties[i].name))
+            propertiesInputs[cellProperties[i].name].value = cellProperties[i].value;
+        if(annotationInputs.hasOwnProperty(cellProperties[i].name))
+           annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
     }
 }
 
@@ -109,7 +119,9 @@ function updateCurrentCell(cell) {
     
 }
 
-let classInputs = {
+// Properties for each cell 
+
+var classInputs = {
     "SubClassOf": document.getElementById('SubClassOf'),
     "Equivalence": document.getElementById('Equivalence'),
     "Instances": document.getElementById('Instances'),
