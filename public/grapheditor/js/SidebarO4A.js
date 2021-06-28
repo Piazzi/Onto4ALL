@@ -1044,7 +1044,7 @@ var relationProperties = ['domain','range','inverseOf','equivalentTo','subproper
 var annotations = ['label','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','deprecated','incompatibleWith','backwardCompatibleWith'];
 var datatypeProperties = ['label','domain','range','inverseOf','equivalentTo','subpropertyOf','disjointWith','functional','datatype'];
 var instanceProperties = ['label','types','sameAs','differentAs','objectProperties','dataProperties','negativeObjectProperties','negativeDataProperties']
-var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
+//var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
 
 // Passing this as a parameter in the function below, creates elements with properties filled up ----------------------------------------------------------------------------
 // setAttributeNS is needed to create case-sensetive attributes
@@ -1061,10 +1061,14 @@ annotations.forEach(element => {relationObject.setAttribute( element, '');});
 let instanceObject = mxUtils.createXmlDocument().createElement('object');
 instanceObject.setAttribute('label','Instance');
 instanceProperties.forEach(element => {instanceObject.setAttribute( element, '');});
+annotations.forEach(element => {instanceObject.setAttribute( element, '');});
+
 
 let datatypePropertyObject = mxUtils.createXmlDocument().createElement('object');
 datatypePropertyObject.setAttribute('label', 'new_datatype_property');
 datatypeProperties.forEach(element => {datatypePropertyObject.setAttribute( element, '');});
+annotations.forEach(element => {datatypePropertyObject.setAttribute( element, '');});
+
 
 /**
  * Adds the taxonomy palette to the sidebar
@@ -1102,7 +1106,7 @@ Sidebar.prototype.addBasicOntologyPalette = function(expand)
 	newRelation.setAttribute('label', getLanguage() == 'en' ? 'new_relation' : 'nova_relação');
     fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, newRelation, 'new_relation', null, 'uml sequence message call invoke dispatch'));
 
-	let instance = classObject.cloneNode(true);
+	let instance = instanceObject.cloneNode(true);
 	instance.setAttribute('label', getLanguage() == 'en' ? 'Instance' : 'Instância');
 	fns.push(this.createVertexTemplateEntry('rhombus;whiteSpace=wrap;html=1;strokeColor=#663399;Instance;', 110, 50, instance, 'Instance', null, null, 'Class Instance'));
 
