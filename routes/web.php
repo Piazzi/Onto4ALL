@@ -64,6 +64,9 @@ Route::group([
     Route::resource('/messages', 'MessageController')->middleware('can:eAdmin');
     Route::any('/messages/search', 'MessageController@search')->name('messages.search')->middleware('can:eAdmin');
 
+    //Notifications CRUD
+    Route::get('notifications', 'UserNotificationsController@index')->name('notifications.index')->middleware('auth');
+
     // Editor routes
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/aboutUs', 'HomeController@aboutUs')->name('aboutUs');

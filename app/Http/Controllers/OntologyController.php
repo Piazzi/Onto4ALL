@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\OntologyStoreRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notifications;
+use App\Notifications\UserNotification;
 
 
 class OntologyController extends Controller
@@ -303,8 +305,11 @@ class OntologyController extends Controller
         Ontology::verifyOntologyLimit($request->user());
 
         foreach($ontology->users as $user){
-            if($user->id != $ontology->user_id)
-            Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
+            if($user->id != $ontology->user_id){
+                $notification = ['title'=> __('New Ontology shared with you'), 'message'=> __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name];
+                Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
+                $user->notify(new UserNotification($notification));
+            }
         }
         return response()->json([
             "message-pt" => 'Todas as alterações foram salvas',

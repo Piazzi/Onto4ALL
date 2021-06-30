@@ -69,7 +69,7 @@
                                                                 <i class="fa fa-clock-o"></i>{{date("d-m-Y | H:i", strtotime($notification->created_at))}}
                                                             </small>
                                                         </h4>
-                                                        <p>{{str_limit($notification->data['data'],20)}}</p>
+                                                        <p>{{str_limit($notification->data['message'],20)}}</p>
                                                     </a>
                                                 </li>
                                                 <!-- end message -->
@@ -81,21 +81,36 @@
                                 </ul>
                             </li>
                         @endif
+                            @php
+                                $amount = Auth::user()->unreadNotifications->count();
+                            @endphp
                             <li id="notifications-menu" class="dropdown notifications-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                    aria-expanded="true">
                                     <i class="fa fa-bell-o"></i>
-                                    <span id="notification-counter" class="label label-warning"></span>
+                                    <span id="notification-counter" class="label label-warning">{{$amount > 0 ? $amount : ''}}</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">{{__('Your notifications')}}</li>
+                                    <li class="header">{{__('You have')}} {{$amount}} {{__('new notifications')}}</li>
                                     <li>
                                         <!-- inner menu: contains the actual data -->
-                                        <ul class="notification-menu menu">
-
+                                        <ul class="notification-menu menu" style="">
+                                        @foreach(Auth::user()->notifications->take(5) as $notification)
+                                            <li><!-- start message -->
+                                                <a href="{{route('notifications.index', app()->getLocale())}}">
+                                                    <h5>
+                                                        {{__($notification->data['title'])}}
+                                                        <br>
+                                                        <small>
+                                                            <i class="fa fa-clock-o"><i> | </i></i>{{ date(" d-m-Y | H:i", strtotime($notification->created_at))}}
+                                                        </small>
+                                                    </h5>
+                                                </a>
+                                            </li>
+                                        @endforeach
                                         </ul>
                                     </li>
-                                    <!--<li class="footer"><a href="#">View all</a></li>-->
+                                    <li class="footer"><a href="{{route('notifications.index', app()->getLocale())}}">{{__('See all notifications')}}</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown user user-menu">

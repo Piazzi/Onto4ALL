@@ -29,6 +29,21 @@
     "Reset Password Notification": "Notificação de redefinição de senha",
     "All rights reserved.": "Todos os direitos reservados.",
 
+    "Notifications":"Notificações",
+    "See all the notifications":"Ver todas as notificações",
+    "New Notifications":"Novas Notificações",
+    "Update notifications page":"Recarregar página de notitificações", 
+    "Seen":"Visto",
+    "Title":"Título",
+    "Date":"Data",
+    "You have":"Você tem",
+    "new notifications":"notificações novas",
+    "See all notifications": "Ver todas as notificações",
+
+    "New Ontology shared with you":"Nova Ontologia compartilhada",
+    "The user ": "O usuário ",
+    " shared with you the ontology ":" compartilhou com você a ontologia ",
+
     "A new Ontology has been shared with you": "Uma nova ontologia foi compartilhada com você",
     "New Ontology!": "Nova Ontologia!",
     "Hello,": "Olá",
