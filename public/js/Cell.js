@@ -71,7 +71,7 @@ function updateTabs(cellType) {
             document.getElementById("datatype-properties-nav").classList.remove('tab-disabled');
             document.getElementById("annotations-nav").classList.remove('tab-disabled');
             break;
-            
+
         default:
             document.getElementById("empty-nav").click();
             document.getElementById("classes-nav").classList.add('tab-disabled');
@@ -165,7 +165,6 @@ let annotationInputs = {
 }
 
 let datatypePropertyInputs = {
-    "label": document.getElementById('label-datatype-properties'),
     "domain": document.getElementById('domain-datatype-properties'),
     "range": document.getElementById('range-datatype-properties'),
     "equivalentTo": document.getElementById('equivalentTo-datatype-properties'),
@@ -176,7 +175,6 @@ let datatypePropertyInputs = {
 }
 
 let instanceInputs = {
-    "label": document.getElementById("label-individuals"),
     "types": document.getElementById("types"),
     "sameAs": document.getElementById("sameAs"),
     "differentAs": document.getElementById("differentAs"),

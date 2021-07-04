@@ -294,8 +294,6 @@
                 </div>
             </div>
 
-
-
             <div class="tab-pane" id="object-properties-tab">
                 <div class="form-group">
                     <label>domain</label>
@@ -384,10 +382,6 @@
 
             <div class="tab-pane" id="individuals-tab">
                 <div class="form-group">
-                    <label>label</label>
-                    <input id="label-individuals" type="text" class="form-control" placeholder="">
-                </div>
-                <div class="form-group">
                     <label>types</label>
                     <select id="types" data-placeholder="Select Datatypes" style="width: 100%; "
                         class="js-example-basic-multiple" >
@@ -462,10 +456,6 @@
 
 
             <div class="tab-pane" id="datatype-properties-tab">
-                <div class="form-group">
-                    <label>label</label>
-                    <input id="label-datatype-properties" type="text" class="form-control" placeholder="">
-                </div>
                 <div class="form-group">
                     <label>domain</label>
                     <input id="domain-datatype-properties" disabled type="text" class="form-control" placeholder="">
