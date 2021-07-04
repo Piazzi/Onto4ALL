@@ -14,19 +14,20 @@ function getSelectedCell(cell) {
 
     if(style.includes('Class')){
         updateTabs('Class');
-        setInputs(cell);
+        inputs = classInputs;
     } else if(style.includes('Relation')){
         updateTabs('Relation');
-        setInputs(cell);
+        inputs = relationInputs;
     } else if(style.includes('Instance')){
         updateTabs('Instance');
-        setInputs(cell);
+        inputs = instanceInputs
     } else if(style.includes('DatatypeProperty')){
         updateTabs('DatatypeProperty');
-        setInputs(cell);
+        inputs = datatypePropertyInputs;
     } else
         return;
     
+    setInputs(cell);
 }
 
 /**
@@ -51,7 +52,6 @@ function updateTabs(cellType) {
             document.getElementById("datatype-properties-nav").classList.add('tab-disabled');
             document.getElementById("object-properties-nav").classList.remove('tab-disabled');
             document.getElementById("annotations-nav").classList.remove('tab-disabled');
-
             break;
     
         case 'Instance':
@@ -61,7 +61,6 @@ function updateTabs(cellType) {
             document.getElementById("datatype-properties-nav").classList.add('tab-disabled');
             document.getElementById("individuals-nav").classList.remove('tab-disabled');
             document.getElementById("annotations-nav").classList.remove('tab-disabled');
-
             break;
 
         case 'DatatypeProperty':
@@ -71,8 +70,8 @@ function updateTabs(cellType) {
             document.getElementById("individuals-nav").classList.add('tab-disabled');
             document.getElementById("datatype-properties-nav").classList.remove('tab-disabled');
             document.getElementById("annotations-nav").classList.remove('tab-disabled');
-
             break;
+            
         default:
             document.getElementById("empty-nav").click();
             document.getElementById("classes-nav").classList.add('tab-disabled');
@@ -92,36 +91,25 @@ function updateTabs(cellType) {
  function setInputs(cell) {
  
     let cellProperties = cell.value.attributes;
-    let cellType = cell.style;
-    let propertiesInputs;
-
-    if(cellType.includes('Class'))
-        propertiesInputs = classInputs;
-    else if(cellType.includes('Relation'))
-        propertiesInputs = relationInputs;
-    else if(cellType.includes('DatatypeProperty'))
-        propertiesInputs = datatypePropertyInputs;
-    else if(cellType.includes('Instance'))
-        propertiesInputs = instanceInputs
     
     for (let i = 0; i < cellProperties.length; i++) {
         console.log(cellProperties[i]);
         // set properties
-        if(propertiesInputs.hasOwnProperty(cellProperties[i].name))
+        if(inputs.hasOwnProperty(cellProperties[i].name))
             if(cellProperties[i].name in selectInputs)
-                $(document).ready(function () {
-                    $('#'+cellProperties[i].name).select2({
-                        theme: 'classic',
-                        width: 'resolve',
-                        placeholder: "",
-                        allowClear: true,
-                    }).val(cellProperties[i].value).trigger('change');
-                });
-            else
-                propertiesInputs[cellProperties[i].name].value = cellProperties[i].value;
+            $(document).ready(function () {
+                $('#'+cellProperties[i].name).select2({
+                    theme: 'classic',
+                    width: 'resolve',
+                    placeholder: "",
+                    allowClear: true,
+                }).val(cellProperties[i].value).trigger('change');
+            });
+        else
+            inputs[cellProperties[i].name].value = cellProperties[i].value;
         // set annotations
         if(annotationInputs.hasOwnProperty(cellProperties[i].name))
-           annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
+            annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
     }
 }
 
@@ -134,10 +122,11 @@ function updateCurrentCell(cell) {
     
 }
 
+let inputs;
+
 let selectInputs = ["Equivalence","DisjointWith", "equivalentTo","subpropertyOf","inverseOf","disjointWith","sameAs","differentAs"];
 
 // Properties for each cell 
-
 let classInputs = {
     "SubClassOf": document.getElementById('SubClassOf'),
     "Equivalence": document.getElementById('Equivalence'),
