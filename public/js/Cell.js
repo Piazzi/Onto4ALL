@@ -165,6 +165,7 @@ let annotationInputs = {
 }
 
 let datatypePropertyInputs = {
+    "value": document.getElementById('value-datatype-properties'),
     "domain": document.getElementById('domain-datatype-properties'),
     "range": document.getElementById('range-datatype-properties'),
     "equivalentTo": document.getElementById('equivalentTo-datatype-properties'),

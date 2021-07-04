@@ -457,6 +457,10 @@
 
             <div class="tab-pane" id="datatype-properties-tab">
                 <div class="form-group">
+                    <label>Value</label>
+                    <input id="value-datatype-properties" type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
                     <label>domain</label>
                     <input id="domain-datatype-properties" disabled type="text" class="form-control" placeholder="">
                 </div>

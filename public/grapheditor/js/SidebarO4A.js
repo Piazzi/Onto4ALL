@@ -1042,7 +1042,7 @@ Sidebar.prototype.addThesauruAdvancedPalette = function(expand)
 var classProperties = ['SubClassOf','Constraint','DisjointWith','Equivalence','TargetForKey','Instances'];
 var relationProperties = ['domain','range','inverseOf','equivalentTo','subpropertyOf','disjointWith','functional','inverseFunctional','transitive','symetric','asymmetric','reflexive','irreflexive'];
 var annotations = ['label','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','deprecated','incompatibleWith','backwardCompatibleWith'];
-var datatypeProperties = ['domain','range','inverseOf','equivalentTo','subpropertyOf','disjointWith','functional','datatype'];
+var datatypeProperties = ['value','domain','range','inverseOf','equivalentTo','subpropertyOf','disjointWith','functional','datatype'];
 var instanceProperties = ['types','sameAs','differentAs','objectProperties','dataProperties','negativeObjectProperties','negativeDataProperties']
 //var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
 
