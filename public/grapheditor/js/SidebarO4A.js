@@ -1100,19 +1100,19 @@ Sidebar.prototype.addBasicOntologyPalette = function(expand)
     fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#f39c12;Class;', 80, 80, classObject, 'Class', null, null, 'circle'));
 
     relationObject.setAttribute('label', getLanguage() == 'en' ? 'is_a' : 'é_um');
-    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, relationObject, 'is_a', null, 'uml sequence message call invoke dispatch'));
+    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, relationObject, 'is_a Relation', null, 'uml sequence message call invoke dispatch'));
 
 	let newRelation = relationObject.cloneNode(true);
 	newRelation.setAttribute('label', getLanguage() == 'en' ? 'new_relation' : 'nova_relação');
-    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, newRelation, 'new_relation', null, 'uml sequence message call invoke dispatch'));
+    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#004C99;Relation;', 80, 0, newRelation, 'New Relation', null, 'uml sequence message call invoke dispatch'));
 
 	let instance = instanceObject.cloneNode(true);
 	instance.setAttribute('label', getLanguage() == 'en' ? 'Instance' : 'Instância');
-	fns.push(this.createVertexTemplateEntry('rhombus;whiteSpace=wrap;html=1;strokeColor=#663399;Instance;', 110, 50, instance, 'Instance', null, null, 'Class Instance'));
+	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#663399;Instance;', 60, 60, instance, 'Instance', null, null, 'circle'));
 
 	let datatypeProperty = datatypePropertyObject.cloneNode(true);
 	datatypeProperty.setAttribute('label', getLanguage() == 'en' ? 'new_datatype_property' : 'new_datatype_property');
-    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#006633;DatatypeProperty;', 80, 0, datatypeProperty, 'new_datatype_property', null, 'uml sequence message call invoke dispatch'));
+    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=block;strokeColor=#006633;DatatypeProperty;', 80, 0, datatypeProperty, 'Datatype Property', null, 'uml sequence message call invoke dispatch'));
 
     this.addPaletteFunctions(paletteName, paletteName, (expand != null) ? expand : true, fns);
 };
