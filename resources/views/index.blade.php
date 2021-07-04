@@ -231,7 +231,6 @@
                     <label>Equivalence</label>
                     <select id="Equivalence" data-placeholder="Select Classes" style="width: 100%; "
                         class="js-example-basic-multiple" multiple="multiple">
-                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">

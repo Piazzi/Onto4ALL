@@ -36,38 +36,41 @@ function getSelectedCell(cell) {
 function updateTabs(cellType) {
     switch (cellType) {
         case 'Class':
-            document.getElementById("classes-nav").classList.remove('tab-disabled');
             document.getElementById("classes-nav").click();
             document.getElementById("object-properties-nav").classList.add('tab-disabled');
             document.getElementById("datatype-properties-nav").classList.add('tab-disabled');
-            document.getElementById("annotations-nav").classList.remove('tab-disabled');
             document.getElementById("individuals-nav").classList.add('tab-disabled');
+            document.getElementById("classes-nav").classList.remove('tab-disabled');
+            document.getElementById("annotations-nav").classList.remove('tab-disabled');
             break;
 
         case 'Relation':
-            document.getElementById("classes-nav").classList.add('tab-disabled');
-            document.getElementById("object-properties-nav").classList.remove('tab-disabled');
             document.getElementById("object-properties-nav").click()
+            document.getElementById("classes-nav").classList.add('tab-disabled');
+            document.getElementById("individuals-nav").classList.add('tab-disabled');
+            document.getElementById("datatype-properties-nav").classList.add('tab-disabled');
+            document.getElementById("object-properties-nav").classList.remove('tab-disabled');
             document.getElementById("annotations-nav").classList.remove('tab-disabled');
 
             break;
     
         case 'Instance':
+            document.getElementById("individuals-nav").click();
             document.getElementById("classes-nav").classList.add('tab-disabled');
             document.getElementById("object-properties-nav").classList.add('tab-disabled');
             document.getElementById("datatype-properties-nav").classList.add('tab-disabled');
             document.getElementById("individuals-nav").classList.remove('tab-disabled');
-            document.getElementById("individuals-nav").click();
             document.getElementById("annotations-nav").classList.remove('tab-disabled');
 
             break;
 
         case 'DatatypeProperty':
-            document.getElementById("classes-nav").classList.add('tab-disabled');
-            document.getElementById("datatype-properties-nav").classList.remove('tab-disabled');
             document.getElementById("datatype-properties-nav").click();
-            document.getElementById("annotations-nav").classList.remove('tab-disabled');
+            document.getElementById("classes-nav").classList.add('tab-disabled');
             document.getElementById("object-properties-nav").classList.add('tab-disabled');
+            document.getElementById("individuals-nav").classList.add('tab-disabled');
+            document.getElementById("datatype-properties-nav").classList.remove('tab-disabled');
+            document.getElementById("annotations-nav").classList.remove('tab-disabled');
 
             break;
         default:
@@ -103,8 +106,20 @@ function updateTabs(cellType) {
     
     for (let i = 0; i < cellProperties.length; i++) {
         console.log(cellProperties[i]);
+        // set properties
         if(propertiesInputs.hasOwnProperty(cellProperties[i].name))
-            propertiesInputs[cellProperties[i].name].value = cellProperties[i].value;
+            if(cellProperties[i].name in selectInputs)
+                $(document).ready(function () {
+                    $('#'+cellProperties[i].name).select2({
+                        theme: 'classic',
+                        width: 'resolve',
+                        placeholder: "",
+                        allowClear: true,
+                    }).val(cellProperties[i].value).trigger('change');
+                });
+            else
+                propertiesInputs[cellProperties[i].name].value = cellProperties[i].value;
+        // set annotations
         if(annotationInputs.hasOwnProperty(cellProperties[i].name))
            annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
     }
@@ -119,9 +134,11 @@ function updateCurrentCell(cell) {
     
 }
 
+let selectInputs = ["Equivalence","DisjointWith", "equivalentTo","subpropertyOf","inverseOf","disjointWith","sameAs","differentAs"];
+
 // Properties for each cell 
 
-var classInputs = {
+let classInputs = {
     "SubClassOf": document.getElementById('SubClassOf'),
     "Equivalence": document.getElementById('Equivalence'),
     "Instances": document.getElementById('Instances'),
