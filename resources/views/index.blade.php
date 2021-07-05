@@ -250,7 +250,8 @@
                 </div>
                 <div class="form-group">
                     <label>Constraint</label>
-                    <textarea style="width: 100%;" id="Constraint" rows="3"> </textarea>
+                    <textarea placeholder="'Separate your axioms with semicolon; e.g: Man subClassOf People; Woman subClassOf People;" style="width: 100%;" id="Constraint" rows="3"> </textarea>
+                    <p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> {{__('None axiom to check!')}} </p>
                 </div>
             </div>
 

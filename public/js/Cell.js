@@ -268,3 +268,28 @@ let instanceInputs = {
     "negativeDataProperties": document.getElementById("negativeDataProperties")
 }
 
+
+
+	// Add keyup events for the given textArea
+    let constraintInput = classInputs.Constraint;
+    constraintInput.addEventListener('keyup', function () {
+        document.getElementById('help-text-icon').className = "fa fa-fw fa-clock-o";
+        if(getLanguage() === 'en')
+            document.getElementById('help-text').childNodes[1].nodeValue = 'Checking the axioms, please wait...';
+        else
+            document.getElementById('help-text').childNodes[1].nodeValue = 'Checando os axiomas, aguarde um momento...';
+    });
+    // Call the Class Expression Edior / Axiom Editor 2 seconds
+    // after the user stops typing
+    constraintInput.addEventListener('keyup', debounce( () => {
+        // code you would like to run 2000ms after the keyup event has stopped firing
+        // further keyup events reset the timer, as expected
+        validateAxiom();
+    }, 2000));
+    function debounce(callback, wait) {
+        let timeout;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = setTimeout(function () { callback.apply(this, args) }, wait);
+        };
+    }

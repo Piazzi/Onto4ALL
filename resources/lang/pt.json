@@ -408,6 +408,7 @@
 
     "Error": "Erro",
     "You can only access this software using the following browsers: Google Chrome, Firefox": "Você só pode acessar este software usando os seguintes navegadores: Google Chrome, Firefox",
-    "Select a element in your ontology": "Selecione um elemento em sua ontologia"
+    "Select a element in your ontology": "Selecione um elemento em sua ontologia",
+    "None axiom to check!": "Nenhum axioma para checar"
 }
 

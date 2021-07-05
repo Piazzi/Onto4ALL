@@ -3,7 +3,7 @@
  * the axioms is valid
  */
 function validateAxiom() {
-    let userInput = document.getElementById('ClassExpressionEditorInput');
+    let userInput = document.getElementById('Constraint');
 
     if (userInput.value === "")
     {
