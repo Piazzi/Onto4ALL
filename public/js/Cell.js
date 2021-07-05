@@ -91,20 +91,23 @@ function updateTabs(cellType) {
  function setInputs(cell) {
  
     let cellProperties = cell.value.attributes;
-    
+    console.log(cellProperties);
     for (let i = 0; i < cellProperties.length; i++) {
-        console.log(cellProperties[i]);
         // set properties
         if(inputs.hasOwnProperty(cellProperties[i].name))
-            if(cellProperties[i].name in selectInputs)
-            $(document).ready(function () {
-                $('#'+cellProperties[i].name).select2({
-                    theme: 'classic',
-                    width: 'resolve',
-                    placeholder: "",
-                    allowClear: true,
-                }).val(cellProperties[i].value).trigger('change');
-            });
+            // if the property has a select 
+            if(selectInputs.includes(cellProperties[i].name))
+            {
+                createSelectOptions(cell, cellProperties[i].name)
+                $(document).ready(function () {
+                    $('#'+cellProperties[i].name).select2({
+                        theme: 'classic',
+                        width: 'resolve',
+                        placeholder: "",
+                        allowClear: true,
+                    }).val(cellProperties[i].value).trigger('change');
+                });
+            }
         else
             inputs[cellProperties[i].name].value = cellProperties[i].value;
         // set annotations
@@ -119,7 +122,87 @@ function updateTabs(cellType) {
  * @param {mxCell} cell 
  */
 function updateCurrentCell(cell) {
+    //graph.getModel().setValue(cell, value);
+}
+
+/**
+ * Create the select options for the given property
+ * @param {mxCell} cell 
+ */
+function createSelectOptions(cell, propertyName) {
+    select = document.getElementById(propertyName);
+    if(select == null)
+        return;
+    if(select.options.length > 0)
+        removeSelectOptions(select);
+    let options = [];
+    if(cell.isEdge()){
+
+        options = relations;
+        if(propertyName == "inverseOf"){
+            select.removeAttribute("multiple");
+            options = getInverseOfOptions();
+        }
+        
+        // removes current cell name from the select options
+        options = options.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
+    } else {
+        options = classes.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
+        // removes the class Thing from the options
+        options = options.filter(e => getLanguage() == 'en' ? e.getAttribute('label').toUpperCase() !== 'THING' : e.getAttribute('label').toUpperCase() !== 'COISA');
+    } 
     
+    // remove duplicated options
+    options = options.reduce((unique, o) => {
+        if(!unique.some(obj => obj.getAttribute('label') === o.getAttribute('label'))) {
+          unique.push(o);
+        }
+        return unique;
+    },[]);
+
+    options.forEach(element => {
+        let option = document.createElement("option");
+        option.setAttribute("value", element.id);
+        option.innerHTML = element.getAttribute('label');
+        select.appendChild(option);
+    });
+    console.log(select);
+}
+
+/**
+ * Removes the current options from the given select
+ * @param {*} select 
+ */
+function removeSelectOptions(select) {
+    while (select.options.length > 0) {                
+        select.remove(0);
+    }  
+}
+
+/**
+	 * Returns the correct values for the inverseOf property,
+	 * if a relation is already a inverseOf another, it should not appear in the select options
+	 * @returns array
+	 */
+ function getInverseOfOptions() {
+    let inverseOfValues = [];
+    let options = [];
+
+    // push the relations that is an inverse of another
+    relations.forEach(relation => {
+        let inverseOf = relation.getAttribute('inverseOf').split(',');
+        removeItemAll(inverseOf, "");
+        removeItemAll(inverseOf, "null");
+        if(inverseOf != "null" && inverseOf != "" )
+            inverseOfValues.push(getCellById(inverseOf[0]).getAttribute('label'));
+    });
+
+    // build the options and includes the current cell inverseOf as a selected option
+    relations.forEach(relation => {
+        if(!inverseOfValues.includes(relation.getAttribute('label')) || cell.getAttribute('inverseOf').includes(relation.id))
+            options.push(relation);	
+    });
+    return options;
 }
 
 let inputs;
