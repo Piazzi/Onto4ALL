@@ -52,7 +52,8 @@
                     <thead>
                     <tr>
                         <td></td>
-                        <td>{{__('Seen')}}</td>
+                        <td>{{__('View')}}</td>
+                        <td>{{__('From')}}</td>
                         <td>{{__('Title')}}</td>
                         <td>{{__('Message')}}</td>
                         <td>{{__('Date')}}</td>
@@ -63,13 +64,19 @@
                     <tr id="table-search tr">
                         <td><div class="icheckbox_flat-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255); border: 0px; opacity: 0;"></ins></div></td>
                         <td class="mailbox-star">
-                            @if($notification->read_at)
-                                <i class="fa fa-eye" style="color: #acacac"></i>
+                            <a href="{{route('notifications.show', ['locale' => app()->getLocale(), 'notificationId' => $notification->id, 'notificationType' => $notification->data['type']])}}"><i class="fa fa-fw fa-plus" style="color: #acacac"></i></a>
+                        <td class="mailbox-subject">{{__($notification->data['from'])}}</td>
+                            @if($notification->data['title'] == 'bug')
+                                <td class="mailbox-subject">{{__('Onto4ALL Bug Report')}}</td>
+                            @elseif($notification->data['title'] == 'suggestion')
+                                <td class="mailbox-subject">{{__('Onto4All Suggestion')}}</td>
+                            @elseif($notification->data['title'] == 'question')
+                                <td class="mailbox-subject">{{__('Onto4All Question')}}</td>
+                            @elseif($notification->data['title'] == 'other')
+                                <td class="mailbox-subject">{{__('Onto4ALL Other')}}</td>
                             @else
-                                <i class="fa fa-eye"></i>
+                                <td class="mailbox-subject">{{__($notification->data['title'])}}</td>
                             @endif
-                        </td>
-                        <td class="mailbox-subject">{{__($notification->data['title'])}}</td>
                         <td class="mailbox-subject">{{__($notification->data['message'])}}</td>
                         <td class="mailbox-date">{{date("d-m-Y | H:i e", strtotime($notification->created_at))}}</td>
                     </tr>

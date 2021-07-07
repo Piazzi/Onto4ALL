@@ -203,7 +203,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form method="post" action="{{route('messages.store', app()->getLocale())}}">
+                <form method="post" action="{{route('notifications.send-contact', app()->getLocale())}}">
                     <div class="modal-body">
                             @csrf
                             <div class="form-group">

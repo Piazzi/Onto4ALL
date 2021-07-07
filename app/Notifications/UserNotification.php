@@ -14,7 +14,7 @@ class UserNotification extends Notification
 {
     use Queueable;
 
-    protected $title, $message;
+    protected $title, $message, $from, $type;
 
     /**
      * Create a new notification instance.
@@ -25,6 +25,8 @@ class UserNotification extends Notification
     {   
         $this->title = $notification['title'];
         $this->message = $notification['message'];
+        $this->from = $notification['from'];
+        $this->type = $notification['type'];
     }
 
     /**
@@ -59,7 +61,9 @@ class UserNotification extends Notification
     {
         return [
             'title' => $this->title,
-            'message'=> $this->message
+            'message'=> $this->message,
+            'from' => $this->from,
+            'type' => $this->type
         ];
     }
 }

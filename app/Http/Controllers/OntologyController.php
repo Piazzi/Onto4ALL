@@ -306,7 +306,7 @@ class OntologyController extends Controller
 
         foreach($ontology->users as $user){
             if($user->id != $ontology->user_id){
-                $notification = ['title'=> __('New Ontology shared with you'), 'message'=> __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name];
+                $notification = ['title'=> __('New Ontology shared with you'), 'message'=> __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from'=>$ontology->user->name, 'type'=> 'New Ontology Shared'];
                 Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
                 $user->notify(new UserNotification($notification));
             }

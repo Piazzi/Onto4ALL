@@ -60,12 +60,10 @@ Route::group([
     Route::resource('/thesaurus', 'ThesauruController')->middleware('can:eModelador');
     Route::get('/thesaurus-editor', 'ThesauruController@editor')->name('thesaurus-editor')->middleware('can:eModelador');
 
-    // Messages CRUD
-    Route::resource('/messages', 'MessageController')->middleware('can:eAdmin');
-    Route::any('/messages/search', 'MessageController@search')->name('messages.search')->middleware('can:eAdmin');
-
     //Notifications CRUD
     Route::get('notifications', 'UserNotificationsController@index')->name('notifications.index')->middleware('auth');
+    Route::post('notifications/send-contact', 'UserNotificationsController@sendContactNotification')->name('notifications.send-contact')->middleware('auth');
+    Route::get('notifications/{notificationId}/{notificationType}/show', 'UserNotificationsController@show')->name('notifications.show')->middleware('auth');
 
     // Editor routes
     Route::get('/home', 'HomeController@index')->name('home');
