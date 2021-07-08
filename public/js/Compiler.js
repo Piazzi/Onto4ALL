@@ -8,7 +8,7 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
  */
  function compileCells(graphModel)
  {
-     console.log(editor.getGraphXml());
+     //console.log(editor.getGraphXml());
      //graphModel.cells[2].setStyle("ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
      //graph.getModel().setValue(cell, value);
      previousCells = classes.concat(relations).concat(instances);
@@ -517,10 +517,10 @@ function thingClassExists() {
  */
 function addThingClassToCurrentOntology() {
     let object = mxUtils.createXmlDocument().createElement('object');
-    object.setAttribute('label', getLanguage() == 'en' ? 'Thing' : 'Coisa');
     classProperties.forEach(element => {object.setAttribute( element, '');});
     annotations.forEach(element => {object.setAttribute( element, '');});
-    editor.graph.insertVertex(editor.graph.getDefaultParent(), null, object, 20, 20, 80, 80, "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#00A65A;strokeColor=#FFFFFF;fontColor=#FFFFFF;");
+    object.setAttribute('label', getLanguage() == 'en' ? 'Thing' : 'Coisa');
+    editor.graph.insertVertex(editor.graph.getDefaultParent(), null, object, 20, 20, 80, 80, "ellipse;whiteSpace=wrap;html=1;aspect=fixed;dashed=1;Class;");
 }
 
 /**

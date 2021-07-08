@@ -1294,93 +1294,11 @@ ExportDialog.saveLocalFile = function(editorUi, data, filename, format)
 // Properties that needs auto completion
 var autoCompleteProperties = {
     DisjointWith: null,
-    EquivalentTo: null,
+    equivalentTo: null,
     hasSynonym: null,
     equivalentProperty: null,
     inverseOf: null,
 }
-
-
-/*
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Launch demo modal
-</button>
-
-/**
- * Create a modal
- */
-function createPropertiesModal(){
-
-
-    let modal = document.createElement('div');
-    modal.classList.add(['modal','fade']);
-    modal.id = "propertiesModal";
-    modal.setAttribute('tabindex', '-1');
-    modal.setAttribute('role','dialog');
-    modal.setAttribute('aria-labelledby', 'myModalLabel');
-
-    let modalDialog = document.createElement('div');
-    modalDialog.classList.add('modal-dialog');
-    modalDialog.setAttribute('role','document');
-
-    modal.appendChild(modalDialog);
-
-    let modalContent = document.createElement('div');
-    modalContent.classList.add('modal-content');
-
-    modalDialog.appendChild(modalContent);
-
-    let modalHeader = document.createElement('div');
-    modalHeader.classList.add('modal-header');
-
-    modalContent.appendChild(modalHeader);
-
-    let closeButtonTop = document.createElement('button');
-    closeButtonTop.classList.add('close');
-    closeButtonTop.setAttribute('type', 'button');
-    closeButtonTop.setAttribute('data-dismiss', 'modal');
-    closeButtonTop.setAttribute('aria-label', 'close');
-
-    let span = document.createElement('span');
-    span.setAttribute('aria-hidden','true');
-    span.textContent = '&times;';
-
-    closeButtonTop.appendChild(span);
-
-    let title = document.createElement('h4');
-    title.classList.add('modal-title');
-    title.id = 'myModalLabel';
-
-    modalHeader.appendChild(closeButtonTop);
-    modalHeader.appendChild(title);
-
-    let modalBody = document.createElement('div');
-    modalBody.classList.add('modal-body');
-
-    modalContent.appendChild(modalBody);
-
-    let modalFooter = document.createElement('div');
-    modalFooter.classList.add('modal-footer');
-
-    modalContent.appendChild(modalFooter);
-
-    let closeButtonBottom = document.createElement('button');
-    closeButtonBottom.classList.add(['btn', 'btn-default']);
-    closeButtonBottom.setAttribute('type', 'button');
-    closeButtonBottom.setAttribute('data-dismiss','modal');
-    closeButtonBottom.textContent = 'Close';
-
-    let saveButton = document.createElement('button');
-    saveButton.classList.add(['btn', 'btn-primary']);
-    saveButton.setAttribute('type', 'button');
-    saveButton.textContent = 'Save Changes';
-
-    modalFooter.appendChild(closeButtonBottom);
-    modalFooter.appendChild(saveButton);
-
-    document.body.appendChild(modal);
-};
 
 /**
  * Constructs a new metadata dialog.
@@ -2003,7 +1921,7 @@ var EditDataDialog = function(ui, cell)
 			} else {
 				autoCompleteProperty(cell, "DisjointWith");
 				autoCompleteProperty(cell, "hasSynonym");
-				autoCompleteProperty(cell, "EquivalentTo");
+				autoCompleteProperty(cell, "equivalentTo");
 
 			}
 
