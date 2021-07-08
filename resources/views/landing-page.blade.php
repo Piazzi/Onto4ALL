@@ -238,8 +238,9 @@
             <div class="row">
 
                 <div class="col-lg-12 mr-auto text-center">
-                    <i class="fas fa-envelope fa-3x mb-3 text-muted"></i
-                    ><a class="d-block">lpiazzi26@gmail.com</a>
+                    <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                    <a class="d-block">fabricio.mendonca@ice.ufjf.br</a>
+                    <a class="d-block">lpiazzi@ice.ufjf.br</a>
                 </div>
             </div>
         </div>
