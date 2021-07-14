@@ -116,7 +116,7 @@ $(document).ready(function () {
         $("#save-ontology").css('border-color','#00a65a');
         $.ajax({
             /* the route pointing to the post function */
-            url: '/updateOrCreate',
+            url: '/' + getLanguage() + '/updateOrCreate',
             type: 'POST',
             /* send the csrf-token and the input to the controller */
             data: {

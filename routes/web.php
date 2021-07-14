@@ -55,6 +55,7 @@ Route::group([
     Route::get('/ontologies/downloadOWL/{userId}/{ontologyId}', 'OntologyController@downloadOWL')->name('ontologies.downloadOWL')->middleware('can:eModelador');
     Route::put('/ontologies/favourite/{userId}/{ontologyId}', 'OntologyController@saveAsFavourite')->name('ontologies.favourite')->middleware('can:eModelador');
     Route::put('/ontologies/normal/{userId}/{ontologyId}', 'OntologyController@saveAsNormal')->name('ontologies.normal')->middleware('can:eModelador');
+    Route::post('/updateOrCreate', 'OntologyController@updateOrCreate');
 
     // Thesaurus CRUD
     Route::resource('/thesaurus', 'ThesauruController')->middleware('can:eModelador');
@@ -87,7 +88,6 @@ Route::post('/export', 'HomeController@export');
 Route::post('/exportImage', 'HomeController@exportImage');
 Route::post('/exportOWL', 'HomeController@exportOWL');
 Route::post('/exportXML', 'HomeController@exportXML');
-Route::post('/updateOrCreate', 'OntologyController@updateOrCreate');
 Route::get('/thesaurus/download/{userId}/{thesauruId}', 'ThesauruController@download')->name('thesaurus.download')->middleware('can:eModelador');
 // mxGraph Routes (don't remove)
 Route::get('/open');
