@@ -198,27 +198,29 @@ function compileClass(classCell) {
             
         }
     }
-        
-    // Search for missing properties in each class element
-    let missingClassProperties = "";
-    if(classCell.getAttribute('definition') === "")
-        missingClassProperties = missingClassProperties + ' definition,';
-        
-    if ((classCell.getAttribute("SubClassOf") === ""))
-        missingClassProperties = missingClassProperties + ' SubClassOf';
 
-    if ((classCell.getAttribute("exampleOfUsage") === ""))
-        missingClassProperties = missingClassProperties + ' exampleOfUsage';
+    if( classCell.getAttribute("label") !== 'Thing' && classCell.getAttribute("label") !== 'Coisa')
+    {    
+        // Search for missing properties in each class element
+        let missingClassProperties = "";
+        if(classCell.getAttribute('definition') === "")
+            missingClassProperties = missingClassProperties + ' definition,';
+            
+        if ((classCell.getAttribute("SubClassOf") === ""))
+            missingClassProperties = missingClassProperties + ' SubClassOf';
 
-    if (missingClassProperties !== "") {
-        basicErrorsCount++;
-        if (getLanguage() === 'pt')
-            sendWarningMessage('Na classe ' + classCell.getAttribute("label").bold() + ', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold() + '', 6, 'Erro Básico');
-        else
-            sendWarningMessage('In the ' + classCell.getAttribute("label").bold() + ' Class, you did not fill the following properties: ' + missingClassProperties.bold() + '', 6, 'Basic Error');
-            missingClassProperties = "";
-    }   
+        if ((classCell.getAttribute("exampleOfUsage") === ""))
+            missingClassProperties = missingClassProperties + ' exampleOfUsage';
 
+        if (missingClassProperties !== "") {
+            basicErrorsCount++;
+            if (getLanguage() === 'pt')
+                sendWarningMessage('Na classe ' + classCell.getAttribute("label").bold() + ', você não preencheu as seguintes propriedades: ' + missingClassProperties.bold() + '', 6, 'Erro Básico');
+            else
+                sendWarningMessage('In the ' + classCell.getAttribute("label").bold() + ' Class, you did not fill the following properties: ' + missingClassProperties.bold() + '', 6, 'Basic Error');
+                missingClassProperties = "";
+        }   
+    }
     //if(classCell.getAttribute('DisjointWith') !== "")
     //    autoCompleteProperty(classCell, "DisjointWith");
 }
@@ -263,7 +265,7 @@ function compileLabel(cell) {
     }
 
 
-    console.log(cell.value);
+    //console.log(cell.value);
 }
 
 /**
