@@ -121,6 +121,16 @@ class OntologyController extends Controller
         $ontology = Ontology::where('id', $id)->first();
         if ($ontology->userCanEdit()) {
             $ontology->update($request->all());
+            foreach($request->collaborators as $user){
+                if($user != $ontology->user_id){
+                    if($this->verifyUser($user, $ontology) == false){
+                        $user = User::find($user);
+                        $notification = ['title'=> __('New Ontology shared with you'), 'message'=> __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from'=>$ontology->user->name, 'type'=> 'New Ontology Shared'];
+                        Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
+                        $user->notify(new UserNotification($notification));
+                    }
+                }
+            }
             $ontology->users()->sync($request->collaborators);
             return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been updated with success');
         } else
@@ -301,21 +311,36 @@ class OntologyController extends Controller
             ]
         );*/
 
+        foreach($request->collaborators as $user){
+            if($user != $ontology->user_id){
+                if($this->verifyUser($user, $ontology) == false){
+                    $user = User::find($user);
+                    $notification = ['title'=> __('New Ontology shared with you'), 'message'=> __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from'=>$ontology->user->name, 'type'=> 'New Ontology Shared'];
+                    Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
+                    $user->notify(new UserNotification($notification));
+                }
+            }
+        }
+
         $ontology->users()->sync($request->collaborators);
         Ontology::verifyOntologyLimit($request->user());
 
-        foreach($ontology->users as $user){
-            if($user->id != $ontology->user_id){
-                $notification = ['title'=> __('New Ontology shared with you'), 'message'=> __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from'=>$ontology->user->name, 'type'=> 'New Ontology Shared'];
-                Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
-                $user->notify(new UserNotification($notification));
-            }
-        }
         return response()->json([
             "message-pt" => 'Todas as alterações foram salvas',
             "message-en" => 'All changes saved',
             "id" => $ontology->id,
         ]);
+    }
+
+    //helper function to verify if the collaborator is already a user on the ontology
+    //returns if the collaborator already is a user of the ontology
+    public function verifyUser($collaborator, $ontology){
+        foreach($ontology->users as $user){
+            if($collaborator == $user->id){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

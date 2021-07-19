@@ -737,8 +737,11 @@
                         style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]"
                         multiple="multiple">
                         @foreach($users as $user)
-                        <option value="{{$user->id}}">@if($user->id ==
-                            Auth::user()->id){{__('You')}}@else{{$user->name}}@endif</option>
+                            @if($user->id == Auth::user()->id)
+                                <option value="{{$user->id}}" selected="selected" locked="locked">{{__('You')}}</option>
+                            @else
+                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>
