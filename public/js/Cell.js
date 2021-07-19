@@ -107,6 +107,7 @@ function updateTabs(cellType) {
             // if the property has a select input
             if(selectInputs.includes(cellProperties[i].name))
             {
+                console.log(cellProperties[i].value);
                 createSelectOptions(cell, cellProperties[i].name)
                 $(document).ready(function () {
                     $('#'+cellProperties[i].name).select2({
@@ -114,7 +115,7 @@ function updateTabs(cellType) {
                         width: 'resolve',
                         placeholder: "",
                         allowClear: true,
-                    }).val(cellProperties[i].value).trigger('change');
+                    }).val(cellProperties[i].value.split(',')).trigger('change');
                 });
             }
             // if the property has a checkbox input
