@@ -3193,6 +3193,32 @@
 			}
 		};
 	});
+
+	//**********************************************************************************************************************************************************
+//Lost marker
+//**********************************************************************************************************************************************************
+mxMarker.addMarker('sysMLLost', function(c, shape, type, pe, unitX, unitY, size, source, sw, filled)
+{
+	var nx = unitX * (size + sw + 1);
+	var ny = unitY * (size + sw + 1);
+	var a = size / 2;
+
+	return function()
+	{
+		c.begin();
+		c.moveTo(pe.x - 1.5 * nx - ny / 2, pe.y - 1.5 * ny + nx / 2);
+		c.lineTo(pe.x - nx / 2, pe.y - ny / 2);
+		c.lineTo(pe.x - 1.5 * nx + ny / 2, pe.y - 1.5 * ny - nx / 2);
+		c.stroke();
+
+		c.ellipse(pe.x - 0.5 * nx - a, pe.y - 0.5 * ny - a, 2 * a, 2 * a);
+
+		var strokeColor = mxUtils.getValue(shape.style, mxConstants.STYLE_STROKECOLOR, '#000000');
+		c.setFillColor(strokeColor);
+		c.fillAndStroke();
+	};
+});
+
 	
 	function createOpenAsyncArrow(widthFactor)
 	{
