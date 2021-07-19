@@ -110,7 +110,8 @@ function compileRelation(relation) {
     if (relation.getAttribute("range") === "")
         missingRelationProperties = missingRelationProperties + ' range,';
 
-    if (relation.getAttribute("inverseOf") === "")
+    // is_a relations don't have a inverse of
+    if (relation.getAttribute("label") !== 'is_a' && relation.getAttribute("label") !== 'é_um ' && relation.getAttribute("inverseOf") === "")
         missingRelationProperties = missingRelationProperties + ' inverseOf';
 
     if (missingRelationProperties !== "") {
