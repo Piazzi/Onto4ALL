@@ -95,7 +95,8 @@ function updateTabs(cellType) {
     for (let i = 0; i < cellProperties.length; i++) {
         // set properties
         if(inputs.hasOwnProperty(cellProperties[i].name))
-            // if the property has a select 
+        {
+            // if the property has a select input
             if(selectInputs.includes(cellProperties[i].name))
             {
                 createSelectOptions(cell, cellProperties[i].name)
@@ -108,8 +109,18 @@ function updateTabs(cellType) {
                     }).val(cellProperties[i].value).trigger('change');
                 });
             }
-        else
-            inputs[cellProperties[i].name].value = cellProperties[i].value;
+            // if the property has a checkbox input
+            else if(checkboxInputs.includes(cellProperties[i].name))
+            {
+                if(cellProperties[i].value == "true")
+                    inputs[cellProperties[i].name].checked = true;
+                else
+                    inputs[cellProperties[i].name].checked = false;
+            }
+            else
+                inputs[cellProperties[i].name].value = cellProperties[i].value;
+        }
+       
         // set annotations
         if(annotationInputs.hasOwnProperty(cellProperties[i].name))
             annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
@@ -206,8 +217,8 @@ function removeSelectOptions(select) {
 }
 
 let inputs;
-
 let selectInputs = ["Equivalence","DisjointWith", "equivalentTo","subpropertyOf","inverseOf","disjointWith","sameAs","differentAs"];
+let checkboxInputs = ['functional','inverseFunctional','transitive','symetric','asymmetric','reflexive','irreflexive']
 
 // Properties for each cell 
 let classInputs = {
