@@ -83,6 +83,14 @@ function updateTabs(cellType) {
     }
 }
 
+/**
+ * Update the cell attribute with the given name and value
+ * @param {string} name 
+ * @param {string} value 
+ */
+ function updateInput(name, value){
+    currentCell.setAttribute(name, value)
+}
 
 /**
  * Sets the cells properties in their correpondent front end inputs
@@ -127,14 +135,6 @@ function updateTabs(cellType) {
     }
 }
 
-
-/**
- * Update the current cell with the inputs set in front end
- * @param {mxCell} cell 
- */
-function updateCurrentCell(cell) {
-    //graph.getModel().setValue(cell, value);
-}
 
 /**
  * Create the select options for the given property
@@ -195,7 +195,7 @@ function removeSelectOptions(select) {
 	 * if a relation is already a inverseOf another, it should not appear in the select options
 	 * @returns array
 	 */
- function getInverseOfOptions() {
+function getInverseOfOptions() {
     let inverseOfValues = [];
     let options = [];
 
@@ -215,6 +215,7 @@ function removeSelectOptions(select) {
     });
     return options;
 }
+
 
 let inputs;
 let selectInputs = ["Equivalence","DisjointWith", "equivalentTo","subpropertyOf","inverseOf","disjointWith","sameAs","differentAs"];
@@ -278,7 +279,6 @@ let instanceInputs = {
     "negativeObjectProperties": document.getElementById("negativeObjectProperties"),
     "negativeDataProperties": document.getElementById("negativeDataProperties")
 }
-
 
 
 	// Add keyup events for the given textArea

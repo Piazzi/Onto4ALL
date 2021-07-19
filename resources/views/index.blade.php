@@ -203,32 +203,32 @@
             <div class="tab-pane active" id="classes-tab">
                 <div class="form-group">
                     <label>SubClassOf</label>
-                    <input id="SubClassOf" disabled type="text" class="form-control" placeholder="">
+                    <input id="SubClassOf" disabled type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>Equivalence</label>
-                    <select id="Equivalence" data-placeholder="Select Classes" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple="multiple">
+                    <select id="Equivalence" data-placeholder="Select Classes" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Instances</label>
-                    <input id="Instances" type="text" class="form-control" placeholder="">
+                    <input id="Instances" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>TargetForKey</label>
-                    <input id="TargetForKey" type="text" class="form-control" placeholder="">
+                    <input id="TargetForKey" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>DisjointWith</label>
                     <select id="DisjointWith" data-placeholder="Select Classes" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple="multiple">
+                        class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Constraint</label>
-                    <textarea placeholder="'Separate your axioms with semicolon; e.g: Man subClassOf People; Woman subClassOf People;" style="width: 100%;" id="Constraint" rows="3"> </textarea>
+                    <textarea placeholder="'Separate your axioms with semicolon; e.g: Man subClassOf People; Woman subClassOf People;" 
+                    style="width: 100%;" id="Constraint" rows="3" onchange="updateInput(this.id, this.value)"> </textarea>
                     <p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> {{__('None axiom to check!')}} </p>
                 </div>
             </div>
@@ -237,120 +237,120 @@
             <div class="tab-pane " id="annotations-tab">
                 <div class="form-group">
                     <label>label</label>
-                    <input id="label" type="text" class="form-control" placeholder="">
+                    <input id="label" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>comment</label>
-                    <input id="comment" type="text" class="form-control" placeholder="">
+                    <input id="comment" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>isDefinedBy</label>
-                    <input id="isDefinedBy" type="text" class="form-control" placeholder="">
+                    <input id="isDefinedBy" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>seeAlso</label>
-                    <input id="seeAlso" type="text" class="form-control" placeholder="">
+                    <input id="seeAlso" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>backwardCompartibleWith</label>
-                    <input id="backwardCompatibleWith" type="text" class="form-control" placeholder="">
+                    <input id="backwardCompatibleWith" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>deprecated</label>
-                    <input id="deprecated" type="text" class="form-control" placeholder="">
+                    <input id="deprecated" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>incompatibleWith</label>
-                    <input id="incompatibleWith" type="text" class="form-control" placeholder="">
+                    <input id="incompatibleWith" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>priorVersion</label>
-                    <input id="priorVersion" type="text" class="form-control" placeholder="">
+                    <input id="priorVersion" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>versionInfo</label>
-                    <input id="versionInfo" type="text" class="form-control" placeholder="">
+                    <input id="versionInfo" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
             </div>
 
             <div class="tab-pane" id="object-properties-tab">
                 <div class="form-group">
                     <label>domain</label>
-                    <input id="domain" disabled type="text" class="form-control" placeholder="">
+                    <input id="domain" disabled type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>range</label>
-                    <input id="range" disabled type="text" class="form-control" placeholder="">
+                    <input id="range" disabled type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>equivalentTo</label>
                     <select id="equivalentTo" data-placeholder="Select Relations" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple="multiple">
+                        class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
                     <select id="subpropertyOf" data-placeholder="Select Relation" style="width: 100%; "
-                        class="js-example-basic-multiple">
+                        class="js-example-basic-multiple" onchange="updateInput(this.id, this.value)">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>inverseOf</label>
                     <select id="inverseOf" data-placeholder="Select Relation" style="width: 100%; "
-                        class="js-example-basic-multiple" >
+                        class="js-example-basic-multiple"  onchange="updateInput(this.id, this.value)">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
                     <select id="disjointWith-relations" data-placeholder="Select Relations" style="width: 100%; "
-                        class="js-example-basic-multiple"  multiple="multiple">
+                        class="js-example-basic-multiple"  multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                            <input id="functional" type="checkbox">
+                            <input id="functional" type="checkbox" onchange="updateInput(this.id, this.checked)">
                             Functional
                         </label>
                     </div>
 
                     <div class="checkbox">
                         <label>
-                            <input id="inverseFunctional" type="checkbox">
+                            <input id="inverseFunctional" type="checkbox" onchange="updateInput(this.id, this.checked)">
                             Inverse Functional
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input id="transitive" type="checkbox">
+                            <input id="transitive" type="checkbox" onchange="updateInput(this.id, this.checked)">
                             Transitive
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input id="symetric" type="checkbox">
+                            <input id="symetric" type="checkbox" onchange="updateInput(this.id, this.checked)">
                             Symetric
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input id="asymmetric" type="checkbox">
+                            <input id="asymmetric" type="checkbox" onchange="updateInput(this.id, this.checked)">
                             Asymmetric
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input id="reflexive" type="checkbox">
+                            <input id="reflexive" type="checkbox" onchange="updateInput(this.id, this.checked)">
                             Reflexive
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input id="irreflexive" type="checkbox">
+                            <input id="irreflexive" type="checkbox" onchange="updateInput(this.id, this.checked)">
                             Irreflexive
                         </label>
                     </div>
@@ -363,7 +363,7 @@
                 <div class="form-group">
                     <label>types</label>
                     <select id="types" data-placeholder="Select Datatypes" style="width: 100%; "
-                        class="js-example-basic-multiple" >
+                        class="js-example-basic-multiple" onchange="updateInput(this.id, this.value)" >
                         <option>owl:rational</option>
                         <option>owl:real</option>
                         <option>rdf:PlainLiteral</option>
@@ -403,32 +403,32 @@
                 <div class="form-group">
                     <label>sameAs</label>
                     <select id="sameAs" data-placeholder="Select Individuals" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple="multiple">
+                        class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>differentAs</label>
                     <select id="differentAs" data-placeholder="Select Individuals" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple="multiple">
+                        class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())"> 
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>objectProperties</label>
-                    <input id="objectProperties" type="text" class="form-control" placeholder="">
+                    <input id="objectProperties" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>dataProperties</label>
-                    <input id="dataProperties" type="text" class="form-control" placeholder="">
+                    <input id="dataProperties" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>negativeObjectProperties</label>
-                    <input id="negativeObjectProperties" type="text" class="form-control" placeholder="">
+                    <input id="negativeObjectProperties" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>negativeDataProperties</label>
-                    <input id="negativeDataProperties" type="text" class="form-control" placeholder="">
+                    <input id="negativeDataProperties" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
 
             </div>
@@ -437,41 +437,41 @@
             <div class="tab-pane" id="datatype-properties-tab">
                 <div class="form-group">
                     <label>Value</label>
-                    <input id="value-datatype-properties" type="text" class="form-control" placeholder="">
+                    <input id="value-datatype-properties" type="text" class="form-control" placeholder="" onchange="updateInput('value', this.value)">
                 </div>
                 <div class="form-group">
                     <label>domain</label>
-                    <input id="domain-datatype-properties" disabled type="text" class="form-control" placeholder="">
+                    <input id="domain-datatype-properties" disabled type="text" class="form-control" placeholder="" onchange="updateInput('domain', this.value)">
                 </div>
                 <div class="form-group">
                     <label>range</label>
-                    <input id="range-datatype-properties" disabled type="text" class="form-control" placeholder="">
+                    <input id="range-datatype-properties" disabled type="text" class="form-control" placeholder="" onchange="updateInput('range', this.value)">
                 </div>
                 <div class="form-group">
                     <label>equivalentTo</label>
                     <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple>
+                        class="js-example-basic-multiple" multiple onchange="updateInput('equivalentTo', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
                     <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple>
+                        class="js-example-basic-multiple" multiple onchange="updateInput('subpropertyOf', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
                     <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple>
+                        class="js-example-basic-multiple" multiple onchange="updateInput('disjointWith', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                            <input id="functional-datatype-properties" type="checkbox">
+                            <input id="functional-datatype-properties" type="checkbox" onchange="updateInput('functional', this.checked)">
                             Functional
                         </label>
                     </div>
@@ -479,7 +479,7 @@
                 <div class="form-group">
                     <label>datatype</label>
                     <select id="datatype" data-placeholder="Select Datatypes" style="width: 100%; "
-                        class="js-example-basic-multiple" name="">
+                        class="js-example-basic-multiple" name="" onchange="updateInput(this.id, this.value)">
                         <option>owl:rational</option>
                         <option>owl:real</option>
                         <option>rdf:PlainLiteral</option>
