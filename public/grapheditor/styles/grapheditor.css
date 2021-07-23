@@ -245,6 +245,12 @@ aside {
 	pointer-events: none  !important;
 	color: grey  !important;
 }
+
+/* Fix for the sidebar overflow*/
+.tab-content {
+	overflow-y: auto;
+    height: 600px;
+}
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
 
 
