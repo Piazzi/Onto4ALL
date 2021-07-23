@@ -333,7 +333,7 @@
         @hasSection('footer')
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> Beta 2.9.0
+                    <b>Version</b> Beta 3.0.0
                 </div>
                 <strong>Copyright © 2018-2021 <a href="https://onto4alleditor.com">Onto4ALL</a>.</strong> All rights
                 reserved
