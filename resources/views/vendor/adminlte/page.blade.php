@@ -22,7 +22,7 @@
             <a class="logo" style="background-color: #222d32;">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">
-                    <img  style="padding: 0px; "src="{{asset('css/images/LogoDark.png')}}">
+                    <img  style="padding: 0px; "src="{{asset('css/images/ontoowl.png')}}">
                 </span>
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg">
