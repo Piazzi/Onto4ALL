@@ -53,7 +53,7 @@
                                 <li class="header">{{__('You have')}} {{$amount}} {{__('new notifications')}}</li>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
-                                    <ul class="notification-menu menu" style="">
+                                    <ul class="notification-menu menu" >
                                     @foreach(Auth::user()->notifications->take(5) as $notification)
                                         <li><!-- start Notification -->
                                             <a href="{{route('notifications.show', ['locale' => app()->getLocale(), 'notificationId' => $notification->id, 'notificationType' => $notification->data['type']])}}">
@@ -86,24 +86,25 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
-                                    <li  class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
-                                        <img src="{{asset('css/images/LogoMini.png')}}" class="img-circle"
+                                    <li style="background-color: #222d32;"  class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
+                                        <img src="{{asset('css/images/LogoDark.png')}}" class="img-circle"
                                              alt="User Image">
                                         <p>
                                             {{Auth::user()->name}}
+                                            <small>{{Auth::user()->email}}</small>
                                         </p>
                                     </li>
                                     <!-- Menu Body -->
                                     <li class="user-body">
                                         <div class="row">
                                             <div class="col-xs-4 text-center border-right">
-                                                <a class="user-body-link" href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">{{__('Account Settings')}}</a>
+                                                <a class="user-body-link" href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}"> Tutorial</a>
                                             </div>
                                             <div class="col-xs-4 text-center border-right">
-                                                <a class="user-body-link" href="{{route('ontologies.index', app()->getLocale())}}">{{__('My Ontologies')}}</a>
+                                                <a class="user-body-link" href="{{route('ontologies.index', app()->getLocale())}}">{{__('Ontologies')}}</a>
                                             </div>
                                             <div class="col-xs-4 text-center">
-                                                <a class="user-body-link" href="{{route('help', app()->getLocale())}}">{{__('Help Menu')}}</a>
+                                                <a class="user-body-link" href="{{route('help', app()->getLocale())}}">{{__('Help')}}</a>
                                             </div>
                                         </div>
                                         <!-- /.row -->
@@ -112,31 +113,20 @@
                                     <li class="user-footer">
 
                                         <div class="pull-left">
-                                            <a href="{{route('user.index', app()->getLocale())}}"
-                                               class="btn btn-default btn-flat"><i
-                                                        class="fa fa-user-plus"></i> Profile</a>
+                                            <a href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}" class="btn btn-default btn-flat">
+                                               <i class="fa fa-cog"></i> {{__('Account Settings')}}
+                                            </a>
                                         </div>
                                         <div class="pull-right">
-                                            @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') && version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<'))
-                                                <a class="btn btn-default btn-flat"
-                                                   href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
-                                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                                </a>
-                                            @else
-                                                <a class="btn btn-default btn-flat" href="#"
-                                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                                >
-                                                    <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                                </a>
-                                                <form id="logout-form"
-                                                      action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}"
-                                                      method="POST" style="display: none;">
-                                                    @if(config('adminlte.logout_method'))
-                                                        {{ method_field(config('adminlte.logout_method')) }}
-                                                    @endif
-                                                    {{ csrf_field() }}
-                                                </form>
-                                            @endif
+                                            <a class="btn btn-default btn-flat" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @if(config('adminlte.logout_method'))
+                                                    {{ method_field(config('adminlte.logout_method')) }}
+                                                @endif
+                                            </form>
                                         </div>
 
                                     </li>
@@ -193,7 +183,7 @@
                         <li @if(Route::currentRouteName() == 'help') class="active" @endif>
                             <a href="{{route('help', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-question "></i>
-                                <span>{{__('Help Menu')}}</span></a>
+                                <span>{{__('Help')}}</span></a>
                         </li>
                         <li @if(Route::currentRouteName() == 'tutorial') class="active" @endif>
                             <a target="_blank" href="{{route('tutorial', app()->getLocale())}}">
@@ -255,23 +245,9 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="{{route('user.index', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">
-                                        <i class="fa fa-user-plus"></i>
-                                        <span>{{__('Profile')}}</span>
-                                        <span class="pull-right-container"></span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">
-                                        <i class="fa fa-gears"></i>
-                                        <span>{{__('Account Settings')}}</span>
-                                        <span class="pull-right-container"></span>
-                                    </a>
-                                </li>
-                                <li>
                                     <!-- Sidebar toggle button-->
                                     <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                                        <i class="fa fa-fw fa-bars"></i>
+                                        <i class="fa fa-fw fa-exchange "></i>
                                         <span>{{__('Show/Hide Left Sidebar')}}</span>
                                         <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
                                     </a>
@@ -279,23 +255,12 @@
                                 @if(Route::currentRouteName() === 'home')
                                 <li>
                                     <a href="#" data-toggle="control-sidebar">
-                                        <i class="fa fa-1.5x fa-fw fa-exchange "></i>
+                                        <i class="fa fa-1.5x fa-fw  fa-bars"></i>
                                         <span>{{__('Show/Hide Right Sidebar')}}</span>
                                     </a>
                                 </li>
                                 @endif
-                                <li>
-                                    <a class="btn btn-default btn-flat" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" >
-                                        <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                                    </a>
-                                    <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}"  method="POST" style="display: none;">
-                                        @if(config('adminlte.logout_method'))
-                                            {{ method_field(config('adminlte.logout_method')) }}
-                                        @endif
-                                        {{ csrf_field() }}
-                                    </form>
-                                </li>
-
+                                
 
                             </ul>
                         </li>

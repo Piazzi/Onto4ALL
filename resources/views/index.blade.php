@@ -35,7 +35,7 @@
                         <h5>
                             @if($notification->data['type'] == 'Onto4All Contact')
                                 {{__('New message: ')}}
-                            @endif        
+                            @endif
                                 {{__($notification->data['title'])}}
                             <br>
                                 <small>
@@ -60,10 +60,11 @@
             </a>
             <ul class="dropdown-menu">
                 <!-- The user image in the menu -->
-                <li class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
-                    <img src="{{asset('css/images/LogoMini.png')}}" class="img-circle" alt="User Image">
-                    <p style="color:black">
+                <li class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif" style="background-color: #222d32;">
+                    <img src="{{asset('css/images/LogoDark.png')}}" class="img-circle" alt="User Image">
+                    <p>
                         {{Auth::user()->name}}
+                        <small>{{Auth::user()->email}}</small>
                     </p>
                 </li>
                 <!-- Menu Body -->
@@ -71,15 +72,16 @@
                     <div class="row">
                         <div class="col-xs-4 text-center border-right">
                             <a class="user-body-link"
-                                href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">{{__('Account Settings')}}</a>
+                                href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">
+                                Tutorial</a>
                         </div>
                         <div class="col-xs-4 text-center border-right">
                             <a class="user-body-link"
-                                href="{{route('ontologies.index', app()->getLocale())}}">{{__('My Ontologies')}}</a>
+                                href="{{route('ontologies.index', app()->getLocale())}}">{{__('Ontologies')}}</a>
                         </div>
                         <div class="col-xs-4 text-center">
                             <a class="user-body-link"
-                                href="{{route('help', app()->getLocale())}}">{{__('Help Menu')}}</a>
+                                href="{{route('help', app()->getLocale())}}">{{__('Help')}}</a>
                         </div>
                     </div>
                     <!-- /.row -->
@@ -88,29 +90,20 @@
                 <li class="user-footer">
 
                     <div class="pull-left">
-                        <a href="{{route('user.index', app()->getLocale())}}" class="btn btn-default btn-flat"><i
-                                class="fa fa-user-plus"></i> Profile</a>
+                        <a href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}" class="btn btn-default btn-flat">
+                            <i class="fa fa-cog"></i> {{__('Account Settings')}}
+                        </a>
                     </div>
                     <div class="pull-right">
-                        @if(config('adminlte.logout_method') == 'GET' || !config('adminlte.logout_method') &&
-                        version_compare(\Illuminate\Foundation\Application::VERSION, '5.3.0', '<')) <a
-                            class="btn btn-default btn-flat"
-                            href="{{ url(config('adminlte.logout_url', 'auth/logout')) }}">
+                        <a class="btn btn-default btn-flat" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                            </a>
-                            @else
-                            <a class="btn btn-default btn-flat" href="#"
-                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
-                            </a>
-                            <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}"
-                                method="POST" style="display: none;">
-                                @if(config('adminlte.logout_method'))
-                                {{ method_field(config('adminlte.logout_method')) }}
-                                @endif
-                                {{ csrf_field() }}
-                            </form>
-                            @endif
+                        </a>
+                    <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
+                        @csrf
+                        @if(config('adminlte.logout_method'))
+                        {{ method_field(config('adminlte.logout_method')) }}
+                        @endif
+                    </form>
                     </div>
 
                 </li>
@@ -197,7 +190,7 @@
             <li><a id="individuals-nav" href="#individuals-tab" data-toggle="tab" style="color: rebeccapurple"><i
                         class="fa fa-fw fa-user"></i> Individuals</a></li>
             <li><a id="empty-nav" href="#empty-tab" data-toggle="tab" style="visibility: hidden"></a></li>
-            
+
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="classes-tab">
@@ -227,7 +220,7 @@
                 </div>
                 <div class="form-group">
                     <label>Constraint</label>
-                    <textarea placeholder="'Separate your axioms with semicolon; e.g: Man subClassOf People; Woman subClassOf People;" 
+                    <textarea placeholder="'Separate your axioms with semicolon; e.g: Man subClassOf People; Woman subClassOf People;"
                     style="width: 100%;" id="Constraint" rows="3" onchange="updateInput(this.id, this.value)"> </textarea>
                     <p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> {{__('None axiom to check!')}} </p>
                 </div>
@@ -410,7 +403,7 @@
                 <div class="form-group">
                     <label>differentAs</label>
                     <select id="differentAs" data-placeholder="Select Individuals" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())"> 
+                        class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
@@ -1230,7 +1223,7 @@
                     result[params[i].substring(0, idx)] = params[i].substring(idx + 1);
                 }
             }
-        }  
+        }
             return result;
         })(window.location.href);
 
