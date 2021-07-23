@@ -3204,7 +3204,10 @@ EditorUi.prototype.addUndoListener = function()
 */
 EditorUi.prototype.updateActionStates = function()
 {
-	getSelectedCell(this.editor.graph.getSelectionCell());
+	if(window.location.pathname.split('/')[2] !== 'thesaurus-editor')
+	{
+		getSelectedCell(this.editor.graph.getSelectionCell());
+	}
 
 	var graph = this.editor.graph;
 	var selected = !graph.isSelectionEmpty();
