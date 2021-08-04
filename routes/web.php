@@ -25,7 +25,7 @@ Route::group([
 
     Route::get('/', function () {
         return view('landing-page');
-    });
+    })->name('landing-page');
 
     //Auth::routes();
     // Authentication Routes...

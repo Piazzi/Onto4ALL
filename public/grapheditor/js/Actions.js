@@ -1,6 +1,6 @@
 // Variable that will be set below and have setGraphXML
 // getGraphXML, and other functions of the current graph
-var editor = {};
+var editor;
 
 /**
  * Copyright (c) 2006-2020, JGraph Ltd

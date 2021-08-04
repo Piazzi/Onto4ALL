@@ -11,25 +11,25 @@
     <div class="content">
         <div class="row">
             <div class="col-md-4">
-                <div style=" border-radius: 15px; margin-top: 200px " class="box box-default">
-                    <div class="box-header with-border">
+                <div class="box box-default" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; border-radius: 15px; margin-top: 200px ">
+                    <div style="text-align: center;" class="box-header with-border">
                         <i class="fa fa-warning"></i>
                         <h3 class="box-title">Alerts</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <div class="alert alert-warning alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h4><i class="icon fa fa-info"></i>{{__('Beta')}}!</h4>
-                            {{__('This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.')}}
+                        
+                        <div class="callout ">
+                            <h4>{{__('Beta')}}!</h4>
+                            <p> {{__('This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.')}}</p>
                         </div>
-                        <div class="alert alert-warning alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <h4><i class="icon fa fa-chrome"></i>Use {{__('Google Chrome')}}!</h4>
-                            {{__('We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.')}}
+
+                        <div class="callout ">
+                            <h4>Use {{__('Google Chrome')}}!</h4>
+                            <p>   {{__('We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.')}}</p>
                         </div>
-                        <div class="alert alert-success alert-dismissible">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+
+                        <div class="callout callout-success">
                             <h4><i class="icon fa fa-money"></i> {{__('Donate')}}</h4>
                             <h4>{{__('Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!')}}</h4>
                             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -50,7 +50,7 @@
                         <img class="img-responsive img full-width" id="login-image" src="{{asset('css/images/LogoGreen.png')}}" alt="" srcset="">
                     </div>
 
-                    <div class="register-box-body">
+                    <div class="register-box-body" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                         <p class="login-box-msg">{{ __('Register') }}</p>
                         <form data-grecaptcha-action="message"  action="{{route('register', app()->getLocale()) }}" method="post">
                             {!! csrf_field() !!}

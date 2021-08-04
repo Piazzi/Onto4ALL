@@ -50,7 +50,7 @@ html {
 	 width: 15.5% !important;
 	 overflow-y: auto !important;
 	 padding-top: 0px !important;
-	 margin-top: 66px !important;
+	 padding-top: 50px !important;
  }
 
  .control-sidebar input, textarea {
@@ -244,6 +244,16 @@ aside {
 	background-color: gainsboro !important;
 	pointer-events: none  !important;
 	color: grey  !important;
+}
+
+/* Fix for the sidebar overflow*/
+.tab-content {
+	overflow-y: auto;
+    height: 600px;
+}
+
+.nav-tabs-custom>.nav-tabs>li {
+    border-top: 3px solid gainsboro;
 }
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
 

@@ -83,6 +83,14 @@ function updateTabs(cellType) {
     }
 }
 
+/**
+ * Update the cell attribute with the given name and value
+ * @param {string} name 
+ * @param {string} value 
+ */
+ function updateInput(name, value){
+    currentCell.setAttribute(name, value)
+}
 
 /**
  * Sets the cells properties in their correpondent front end inputs
@@ -95,9 +103,11 @@ function updateTabs(cellType) {
     for (let i = 0; i < cellProperties.length; i++) {
         // set properties
         if(inputs.hasOwnProperty(cellProperties[i].name))
-            // if the property has a select 
+        {
+            // if the property has a select input
             if(selectInputs.includes(cellProperties[i].name))
             {
+                console.log(cellProperties[i].value);
                 createSelectOptions(cell, cellProperties[i].name)
                 $(document).ready(function () {
                     $('#'+cellProperties[i].name).select2({
@@ -105,25 +115,27 @@ function updateTabs(cellType) {
                         width: 'resolve',
                         placeholder: "",
                         allowClear: true,
-                    }).val(cellProperties[i].value).trigger('change');
+                    }).val(cellProperties[i].value.split(',')).trigger('change');
                 });
             }
-        else
-            inputs[cellProperties[i].name].value = cellProperties[i].value;
+            // if the property has a checkbox input
+            else if(checkboxInputs.includes(cellProperties[i].name))
+            {
+                if(cellProperties[i].value == "true")
+                    inputs[cellProperties[i].name].checked = true;
+                else
+                    inputs[cellProperties[i].name].checked = false;
+            }
+            else
+                inputs[cellProperties[i].name].value = cellProperties[i].value;
+        }
+       
         // set annotations
         if(annotationInputs.hasOwnProperty(cellProperties[i].name))
             annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
     }
 }
 
-
-/**
- * Update the current cell with the inputs set in front end
- * @param {mxCell} cell 
- */
-function updateCurrentCell(cell) {
-    //graph.getModel().setValue(cell, value);
-}
 
 /**
  * Create the select options for the given property
@@ -184,7 +196,7 @@ function removeSelectOptions(select) {
 	 * if a relation is already a inverseOf another, it should not appear in the select options
 	 * @returns array
 	 */
- function getInverseOfOptions() {
+function getInverseOfOptions() {
     let inverseOfValues = [];
     let options = [];
 
@@ -205,9 +217,10 @@ function removeSelectOptions(select) {
     return options;
 }
 
-let inputs;
 
+let inputs;
 let selectInputs = ["Equivalence","DisjointWith", "equivalentTo","subpropertyOf","inverseOf","disjointWith","sameAs","differentAs"];
+let checkboxInputs = ['functional','inverseFunctional','transitive','symetric','asymmetric','reflexive','irreflexive']
 
 // Properties for each cell 
 let classInputs = {
@@ -267,7 +280,6 @@ let instanceInputs = {
     "negativeObjectProperties": document.getElementById("negativeObjectProperties"),
     "negativeDataProperties": document.getElementById("negativeDataProperties")
 }
-
 
 
 	// Add keyup events for the given textArea
