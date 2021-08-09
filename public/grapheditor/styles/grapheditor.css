@@ -31,17 +31,13 @@ header {
 	pointer-events: all !important;
 }
 
-html {
-	overflow-y: hidden;
-}
-
 
   .gePaletteContainer, .geMenubarContainer {
 	 padding-left: 52px !important;
  }
 
  .control-sidebar {
-	 width: 15.5% !important;
+	 width: 240px !important;
 	 overflow-y: auto !important;
 	 padding-top: 0px !important;
 	 padding-top: 50px !important;
@@ -89,10 +85,6 @@ html {
 	height: 150%;
 }
 
-aside {
-	height: auto !important;
-}
-
 .editor-timeline-item {
 	display: flex;
 	align-items: center;
@@ -136,7 +128,6 @@ aside {
 	border-radius: 15px;
 
 }
-
 
 .dropdown-menu {
 	z-index: 14;
@@ -196,15 +187,6 @@ aside {
 }
 
 
-/* Fix for the select option in the properties dialog */
-.AutoCompleteClasses option {
-    z-index: 12321312321 !important;
-}
-
-.background {
-    z-index: 1000 !important;
-}
-
 aside {
     z-index: 100 !important;
 }
@@ -221,19 +203,6 @@ aside {
 	color: black;
 }
 
-/* Fix for the top nav layout
- .geToolbarContainer , .geSidebarContainer ,  .geDiagramContainer {
-	top:100px !important;
-}
-
-.geMenubarContainer {
-	top: 70px !important;
-}
-
-.geHsplit {
-	top: 139px !important;
-}*/
-
 .tab-disabled {
 	background-color: gainsboro !important;
 	pointer-events: none  !important;
@@ -241,10 +210,6 @@ aside {
 }
 
 /* Fix for the sidebar overflow*/
-.tab-content {
-	overflow-y: auto;
-    height: 600px;
-}
 
 .nav-tabs-custom>.nav-tabs>li {
     border-top: 3px solid gainsboro;

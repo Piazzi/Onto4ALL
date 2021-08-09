@@ -14,8 +14,8 @@
 @stop
 
 @section('content')
-<div style="position:absolute; top:0; right:0;z-index:1000; background-color:#fbfbfb" class="navbar-custom-menu">
-    <ul class="nav navbar-nav">
+<div style="position:absolute; top:0; right:0;z-index:1000; background-color:#fbfbfb; width: 240px; " class="navbar-custom-menu">
+    <ul class="nav navbar-nav" style="float: right">
         @php
             $amount = Auth::user()->unreadNotifications->count();
         @endphp
