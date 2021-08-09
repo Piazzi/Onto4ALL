@@ -35,12 +35,6 @@ html {
 	overflow-y: hidden;
 }
 
-.geDialog {
-	width: 700px !important;
-	height: 620px !important;
-    z-index: 1000 !important;
-}
-
 
   .gePaletteContainer, .geMenubarContainer {
 	 padding-left: 52px !important;
