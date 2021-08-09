@@ -1760,3 +1760,58 @@ html td.mxWindowTitle {
 	overflow-x : auto;
 	overflow-y : hidden;
 }
+
+
+
+
+/* ----------------------------------- DARK AND MINIMALIST SCROLLBAR -----------------------------------*/ 
+
+body { overflow:hidden; }
+div.picker { z-index: 10007; }
+.geSidebarContainer .geTitle input {
+	font-size:8pt;
+	color:#606060;
+}
+.geBlock {
+	z-index:-3;
+	margin:100px;
+	margin-top:40px;
+	margin-bottom:30px;
+	padding:20px;
+}
+.geBlock h1, .geBlock h2 {
+	margin-top:0px;
+	padding-top:0px;
+}
+.geEditor ::-webkit-scrollbar {
+	width:14px;
+	height:14px;
+}
+.geEditor ::-webkit-scrollbar-track {
+	background-clip:padding-box;
+	border:solid transparent;
+	border-width:1px;
+}
+.geEditor ::-webkit-scrollbar-corner {
+	background-color:transparent;
+}
+.geEditor ::-webkit-scrollbar-thumb {
+	background-color:rgba(0,0,0,.1);
+	background-clip:padding-box;
+	border:solid transparent;
+	border-radius:10px;
+}
+.geEditor ::-webkit-scrollbar-thumb:hover{
+	background-color:rgba(0,0,0,.4);
+}
+.geTemplate {
+	border:1px solid transparent;
+	display:inline-block;
+	_display:inline;
+	vertical-align:top;
+	border-radius:3px;
+	overflow:hidden;
+	font-size:14pt;
+	cursor:pointer;
+	margin:5px;
+}
