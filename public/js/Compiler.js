@@ -204,14 +204,14 @@ function compileClass(classCell) {
     {    
         // Search for missing properties in each class element
         let missingClassProperties = "";
-        if(classCell.getAttribute('definition') === "")
-            missingClassProperties = missingClassProperties + ' definition,';
+        //if(classCell.getAttribute('definition') === "")
+        //    missingClassProperties = missingClassProperties + ' definition,';
             
         if ((classCell.getAttribute("SubClassOf") === ""))
             missingClassProperties = missingClassProperties + ' SubClassOf';
 
-        if ((classCell.getAttribute("exampleOfUsage") === ""))
-            missingClassProperties = missingClassProperties + ' exampleOfUsage';
+        //if ((classCell.getAttribute("exampleOfUsage") === ""))
+        //    missingClassProperties = missingClassProperties + ' exampleOfUsage';
 
         if (missingClassProperties !== "") {
             basicErrorsCount++;
