@@ -33,7 +33,7 @@ class ContactMail extends Mailable
     {
         return $this->subject('New Suggestion from Onto4ALL')
                     ->from($this->email->email, $this->email->name)
-                    ->to('lpiazzi26@gmail.com')
+                    ->to('info@onto4alleditor.com')
                     ->view('email.contact-mail');
     }
 }

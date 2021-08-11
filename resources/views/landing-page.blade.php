@@ -239,8 +239,7 @@
 
                 <div class="col-lg-12 mr-auto text-center">
                     <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-                    <a class="d-block">fabricio.mendonca@ice.ufjf.br</a>
-                    <a class="d-block">lpiazzi@ice.ufjf.br</a>
+                    <a class="d-block">info@onto4alleditor.com</a>
                 </div>
             </div>
         </div>
