@@ -1,4 +1,4 @@
-var classes = [], relations = [], instances = [], previousCells = [], compilerCounter = 0;
+var classes = [], relations = [], instances = [], datatypeProperties = [], previousCells = [], compilerCounter = 0;
 let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
 
 /**
@@ -6,28 +6,22 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
  * And finds any measurable error.
  * @param graphModel
  */
- function compileCells(graphModel)
+ function compileCells()
  {
-     //console.log(editor.getGraphXml());
      //graphModel.cells[2].setStyle("ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;fillColor=#66B2FF;strokeColor=#FF0000;");
      //graph.getModel().setValue(cell, value);
-     previousCells = classes.concat(relations).concat(instances);
-     classes = [], relations = [], instances = [];
-     warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
-     compilerCounter++;
- 
-     // Removes the previous error messages in the console 
-     $(".direct-chat-messages").empty();
- 
+    resetVariables();
+    removePreviousConsoleMessages();
+    
      // iterate throught the current cells in the graph to find any measurable error
-     for (const [key, cell] of Object.entries(graphModel.cells)) {
+     for (const [key, cell] of Object.entries(editor.graph.getModel().cells)) {
          // skip the cells that is not valid for compilation
          if (typeof cell.value !== "object")
              continue;
 
         compileLabel(cell); 
          
-         if(cell.isEdge()){
+         if(cell.style.includes('Relation')){
              relations.push(cell);
              compileRelation(cell);
          }
@@ -39,8 +33,12 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
              instances.push(cell);
              compileInstance(cell);
          }
+         else if(cell.style.includes('DatatypeProperty')){
+            datatypeProperties.push(cell);
+            compileDatatypeProperty(cell);
+         } 
          else
-             continue;
+            continue;
  
      }
  
@@ -50,6 +48,34 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
      updateSaveButtonInFrontEnd(false);
  }
 
+ function removePreviousConsoleMessages() {
+    $(".direct-chat-messages").empty();
+ }
+
+/**
+ * Reset variables to it's default state
+ */
+ function resetVariables() {
+    previousCells = classes.concat(relations).concat(instances);
+    classes = [], relations = [], instances = [], datatypeProperties = [];
+    warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
+    compilerCounter++;
+ }
+
+ /**
+  * Searches for errors in the datatype property
+  * @param {mxCell} datatypeProperty 
+  */
+ function compileDatatypeProperty(datatypeProperty) {
+    let label = datatypeProperty.getAttribute('label');
+     if(datatypeProperty.source == null){
+        basicErrorsCount++;
+        if (getLanguage() === 'pt')
+            sendWarningMessage('O tipo de dado ' + label.bold() + ' (ID: ' + datatypeProperty.id + ') não está conectada a uma classe', 10, 'Erro Basico');
+        else
+            sendWarningMessage('The datatype property ' + label.bold() + ' (ID: ' + datatypeProperty.id + ') it is not connected to a class', 10, 'Basic Error');
+     }
+ }
 
 /**
  * Searches for errors in the relation
