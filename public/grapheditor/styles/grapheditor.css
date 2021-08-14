@@ -214,6 +214,11 @@ aside {
 .nav-tabs-custom>.nav-tabs>li {
     border-top: 3px solid gainsboro;
 }
+
+.geDialog {
+	width: auto !important;
+	height: auto !important;
+}
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
 
 
