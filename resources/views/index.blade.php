@@ -570,6 +570,11 @@
         <span id="relations-count"> 0</span>
     </a>
 
+    <a id="datatypeProperties" title="{{__('The number of datatypeproperties in your current ontology')}}" data-widget="collapse" class="toolbar-icon">
+        <i class="fa fa-fw fa-long-arrow-right"></i>
+        <span id="datatypeproperties-count"> 0</span>
+    </a>
+
     <a id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse" class="toolbar-icon">
         <i class="fa fa-fw fa-diamond"></i>
         <span id="instances-count"> 0</span>

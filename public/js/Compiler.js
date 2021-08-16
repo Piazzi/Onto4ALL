@@ -500,6 +500,7 @@ function updateCountersInFrontEnd(warningsCount, basicErrorsCount, conceptualErr
     $("#classes-count").text(classes.length);
     $("#relations-count").text(relations.length);
     $("#instances-count").text(instances.length);
+    $("#datatypeproperties-count").text(datatypeProperties.length);
 }
 
 /**
