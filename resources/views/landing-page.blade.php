@@ -154,8 +154,8 @@
         <div class="container-fluid p-0">
             <div class="row no-gutters">
                 <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="css/images/Landing-Page/editor.PNG"
-                    ><img class="img-fluid" src="css/images/Landing-Page/editor.PNG" alt=""/>
+                    <a class="portfolio-box" href="css/images/Landing-Page/OurEditor.PNG"
+                    ><img class="img-fluid" src="css/images/Landing-Page/OurEditor.PNG" alt=""/>
                         <div class="portfolio-box-caption">
                             <div class="project-category text-white-50"></div>
                             <div class="project-name">{{__('Our Editor')}}</div>
@@ -164,8 +164,8 @@
                     >
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="css/images/Landing-Page/ontology-manager.PNG"
-                    ><img class="img-fluid" src="css/images/Landing-Page/ontology-manager.PNG" alt=""/>
+                    <a class="portfolio-box" href="css/images/Landing-Page/OntologyManager.PNG"
+                    ><img class="img-fluid" src="css/images/Landing-Page/OntologyManager.PNG" alt=""/>
                         <div class="portfolio-box-caption">
                             <div class="project-category text-white-50"></div>
                             <div class="project-name">{{__('The Ontology Manager')}}</div>
@@ -174,8 +174,8 @@
                     >
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="css/images/Landing-Page/ontologies.PNG"
-                    ><img class="img-fluid" src="css/images/Landing-Page/ontologies.PNG" alt=""/>
+                    <a class="portfolio-box" href="css/images/Landing-Page/OpenWithOneClick.PNG"
+                    ><img class="img-fluid" src="css/images/Landing-Page/OpenWithOneClick.PNG" alt=""/>
                         <div class="portfolio-box-caption">
                             <div class="project-category text-white-50"></div>
                             <div class="project-name">{{__('Open your ontologies with one click')}}</div>
@@ -184,8 +184,8 @@
                     >
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="css/images/Landing-Page/warning-console.PNG"
-                    ><img class="img-fluid" src="css/images/Landing-Page/warning-console.PNG" alt=""/>
+                    <a class="portfolio-box" href="css/images/Landing-Page/WarningsConsole.PNG"
+                    ><img class="img-fluid" src="css/images/Landing-Page/WarningsConsole.PNG" alt=""/>
                         <div class="portfolio-box-caption">
                             <div class="project-category text-white-50"></div>
                             <div class="project-name">{{__('Our warning console will help you out')}}</div>
@@ -194,8 +194,8 @@
                     >
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="css/images/Landing-Page/tips.PNG"
-                    ><img class="img-fluid" src="css/images/Landing-Page/tips.PNG" alt=""/>
+                    <a class="portfolio-box" href="css/images/Landing-Page/TipsMenu.PNG"
+                    ><img class="img-fluid" src="css/images/Landing-Page/TipsMenu.PNG" alt=""/>
                         <div class="portfolio-box-caption">
                             <div class="project-category text-white-50"></div>
                             <div class="project-name">{{__('Get the information you need with the tips menu')}}</div>
@@ -204,8 +204,8 @@
                     >
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <a class="portfolio-box" href="css/images/Landing-Page/methodology.PNG"
-                    ><img class="img-fluid" src="css/images/Landing-Page/methodology.PNG" alt=""/>
+                    <a class="portfolio-box" href="css/images/Landing-Page/MethodologyMenu.PNG"
+                    ><img class="img-fluid" src="css/images/Landing-Page/MethodologyMenu.PNG" alt=""/>
                         <div class="portfolio-box-caption p-3">
                             <div class="project-category text-white-50"></div>
                             <div class="project-name">{{__('Mark your progress with our methodology menu')}}</div>
@@ -251,23 +251,23 @@
             <h2 class="text-center mt-0">{{__('Onto4ALL was built with')}}</h2>
             <hr class="divider my-4"/>
             <div class="row">
-                <div class="col-lg-4  text-center">
+                <div class="col-lg-6  text-center">
                     <div class="mt-5">
                         <img style="width: 90%" alt="laravel" src="css/images/Landing-Page/laravel.png">
 
                     </div>
                 </div>
-                <div class="col-lg-4  text-center">
+                <div class="col-lg-6  text-center">
                     <div class="mt-5">
                         <img alt="mxgraph" src="css/images/Landing-Page/mxgraph.png">
                     </div>
                 </div>
-                <div class="col-lg-4  text-center">
+                <!-- <div class="col-lg-4  text-center">
                     <div class="mt-5">
                         <img style="width: 90%" alt="jquery" src="css/images/Landing-Page/jquery.png">
 
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
