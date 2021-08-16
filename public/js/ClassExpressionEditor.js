@@ -4,7 +4,9 @@
  * the axioms is valid
  */
 function validateAxiom() {
+
     let userInput = document.getElementById('Constraint');
+    highlightSyntax(userInput);
 
     if (userInput.value === "")
     {
@@ -44,8 +46,6 @@ function validateAxiom() {
             "ontoproperties": ""
         };
     xhttp.send(JSON.stringify(data));
-
-    changeConstraintInputColor(userInput);
 }
 
 /**
@@ -75,35 +75,35 @@ function changeInputBorderColor(userInput, color) {
  * @param axiomIsValid
  */
 function changeTooltipText(axiomIsValid) {
-    let helpText = document.getElementById('help-text');
-    let helpTextIcon = document.getElementById('help-text-icon');
-    if (!helpText)
+    let tooltipText = document.getElementById('help-text');
+    let icon = document.getElementById('help-text-icon');
+    if (!tooltipText)
         return;
     let language = getLanguage();
     switch (axiomIsValid) {
         case true:
             if (language === 'en')
-                helpText.childNodes[1].nodeValue = 'The axioms are valid!'; // get only the text node, not the other inner HTML tags
+                tooltipText.childNodes[1].nodeValue = 'The axioms are valid!'; // get only the text node, not the other inner HTML tags
             else
-                helpText.childNodes[1].nodeValue = 'Os axiomas são válidos!';
-            helpText.style.color = 'green';
-            helpTextIcon.className = "fa fa-fw fa-check";
+                tooltipText.childNodes[1].nodeValue = 'Os axiomas são válidos!';
+            tooltipText.style.color = 'green';
+            icon.className = "fa fa-fw fa-check";
             break;
         case false:
             if (language === 'en')
-                helpText.childNodes[1].nodeValue = 'The axioms are not valid!';
+                tooltipText.childNodes[1].nodeValue = 'The axioms are not valid!';
             else
-                helpText.childNodes[1].nodeValue = 'Os axioma não são válidos!';
-            helpText.style.color = 'red';
-            helpTextIcon.className = "fa fa-fw fa-close";
+                tooltipText.childNodes[1].nodeValue = 'Os axioma não são válidos!';
+            tooltipText.style.color = 'red';
+            icon.className = "fa fa-fw fa-close";
             break;
         case 'empty':
             if (language === 'en')
-                helpText.childNodes[1].nodeValue = 'None axiom to check!';
+                tooltipText.childNodes[1].nodeValue = 'None axiom to check!';
             else
-                helpText.childNodes[1].nodeValue = 'Nenhum axioma para checar!';
-            helpText.style.color = 'black';
-            helpTextIcon.className = "fa fa-fw fa-info-circle";
+                tooltipText.childNodes[1].nodeValue = 'Nenhum axioma para checar!';
+            tooltipText.style.color = 'black';
+            icon.className = "fa fa-fw fa-info-circle";
             break;
     }
 }
@@ -117,10 +117,10 @@ function changeTooltipText(axiomIsValid) {
  *  [some, only, exactly, min, max, value] = Orange
  * @param {string} params 
  */
-function changeConstraintInputColor(input) {
+function highlightSyntax(input) {
     let words = input.value.split(" ");
-    let html = "";
     console.log(words);
+    let html = "";
     for (let i = 0; i < words.length; i++){
         if(words[i] == ";"){
             html += '<br>'; 
@@ -128,7 +128,6 @@ function changeConstraintInputColor(input) {
         }
         html += ' <span style="color:'+getWordColor(words[i])+';font-weight: bolder; display: inline-block; line-break: anywhere;">'+words[i]+'</span> ' ;
     }
-
     document.getElementById("highlight-constraint-text").innerHTML = html;
 }
 
@@ -137,8 +136,7 @@ function changeConstraintInputColor(input) {
  * @param {string} word 
  */
 function getWordColor(word) {
-    // remove line breaks from string;
-    word = word.replace(/(\r\n|\n|\r)/gm, "");
+    word = removeLineBreaks(word);
     if(classes.some(e => e.getAttribute('label') == word))
         return '#f39c12';
     else if(relations.some(e => e.getAttribute('label') === word))
@@ -147,8 +145,12 @@ function getWordColor(word) {
         return '#00a65a';
     else if(instances.some(e => e.getAttribute('label') === word))
         return 'rebeccapurple';
-    else if(word == 'some' || word == 'only' || word == 'exactly' ||word == 'min' ||word == 'max' ||word == 'value')
+    else if(word == 'some' || word == 'only' || word == 'exactly' || word == 'min' || word == 'max' || word == 'value')
         return 'orangered';
     else 
         return 'black';
+}
+
+function removeLineBreaks(string) {
+    return string.replace(/(\r\n|\n|\r)/gm, "");
 }

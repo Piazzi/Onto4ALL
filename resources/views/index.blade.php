@@ -226,7 +226,6 @@
                     <label>Axioms:</label>
                     <div id="highlight-constraint-text"> </div>
                     <p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> {{__('None axiom to check!')}} </p>
-
                 </div>
             </div>
 
