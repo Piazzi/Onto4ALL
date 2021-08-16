@@ -43,6 +43,7 @@ function updateTabs(cellType) {
             document.getElementById("individuals-nav").classList.add('tab-disabled');
             document.getElementById("classes-nav").classList.remove('tab-disabled');
             document.getElementById("annotations-nav").classList.remove('tab-disabled');
+            document.getElementById("highlight-constraint-text").innerHTML = "";
             break;
 
         case 'Relation':

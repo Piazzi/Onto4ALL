@@ -357,9 +357,15 @@ function getElementsNames(category = 'Class') {
     if (category === 'Relation') {
         for (let i = 0; i < relations.length; i++)
             names.push(relations[i].getAttribute('label'));
-    } else {
+    } else if(category === 'Class'){
         for (let i = 0; i < classes.length; i++)
             names.push(classes[i].getAttribute('label'));
+    } else if (category === 'Instance'){
+        for (let i = 0; i < instances.length; i++)
+            names.push(instances[i].getAttribute('label'));
+    } else if (category === 'DatatypeProperty') {
+        for (let i = 0; i < datatypeProperties.length; i++)
+            names.push(datatypeProperties[i].getAttribute('label'));
     }
     return names;
 }

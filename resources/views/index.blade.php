@@ -221,9 +221,12 @@
                 </div>
                 <div class="form-group">
                     <label>Constraint</label>
-                    <textarea placeholder="'Separate your axioms with semicolon; e.g: Man subClassOf People; Woman subClassOf People;"
-                    style="width: 100%;" id="Constraint" rows="3" onchange="updateInput(this.id, this.value)"> </textarea>
+                    <textarea placeholder="Separate your axioms with semicolon ; e.g: &#13;&#10; Man subClassOf People ; &#13;&#10; Woman subClassOf People ;"
+                    style="width: 100%;" id="Constraint" rows="4" onchange="updateInput(this.id, this.value)"> </textarea>
+                    <label>Axioms:</label>
+                    <div id="highlight-constraint-text"> </div>
                     <p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> {{__('None axiom to check!')}} </p>
+
                 </div>
             </div>
 

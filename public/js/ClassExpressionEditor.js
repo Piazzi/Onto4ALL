@@ -1,3 +1,4 @@
+
 /**
  * Validates the axiom in the OWL API and returns if
  * the axioms is valid
@@ -7,8 +8,8 @@ function validateAxiom() {
 
     if (userInput.value === "")
     {
-        changeHelpText('empty');
-        changeInputColor(userInput, 'black');
+        changeTooltipText('empty');
+        changeInputBorderColor(userInput, 'black');
         return;
     }
 
@@ -22,14 +23,14 @@ function validateAxiom() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 202) {
             if (this.responseText === "true") {
-                changeInputColor(userInput, "green");
-                changeHelpText(true);
+                changeInputBorderColor(userInput, "green");
+                changeTooltipText(true);
             } else {
-                changeInputColor(userInput, "red");
-                changeHelpText(false);
+                changeInputBorderColor(userInput, "red");
+                changeTooltipText(false);
             }
         } else {
-            changeInputColor(userInput, "yellow");
+            changeInputBorderColor(userInput, "yellow");
             //return alert('The server is not available at moment, try again later')
         }
     };
@@ -43,6 +44,8 @@ function validateAxiom() {
             "ontoproperties": ""
         };
     xhttp.send(JSON.stringify(data));
+
+    changeConstraintInputColor(userInput);
 }
 
 /**
@@ -50,22 +53,18 @@ function validateAxiom() {
  * @param userInput
  * @param color
  */
-function changeInputColor(userInput, color) {
+function changeInputBorderColor(userInput, color) {
     switch (color) {
         case "yellow":
-            userInput.style.setProperty('color', '#f39c12');
             userInput.style.setProperty('border-color', '#f39c12');
             break;
         case "green":
-            userInput.style.setProperty('color', 'green');
             userInput.style.setProperty('border-color', 'green');
             break;
         case "red":
-            userInput.style.setProperty('color', 'red');
             userInput.style.setProperty('border-color', 'red');
             break;
         case "black":
-            userInput.style.setProperty('color', 'black');
             userInput.style.setProperty('border-color', 'black');
             break;
     }
@@ -75,7 +74,7 @@ function changeInputColor(userInput, color) {
  * Change the help text/icon and its color
  * @param axiomIsValid
  */
-function changeHelpText(axiomIsValid) {
+function changeTooltipText(axiomIsValid) {
     let helpText = document.getElementById('help-text');
     let helpTextIcon = document.getElementById('help-text-icon');
     if (!helpText)
@@ -107,4 +106,49 @@ function changeHelpText(axiomIsValid) {
             helpTextIcon.className = "fa fa-fw fa-info-circle";
             break;
     }
+}
+
+/**
+ * Change each word color given the following rules:
+ *  Relations = Blue
+ *  Classes = Yellow
+ *  Instances = Purple
+ *  DatatypeProperty = Green
+ *  [some, only, exactly, min, max, value] = Orange
+ * @param {string} params 
+ */
+function changeConstraintInputColor(input) {
+    let words = input.value.split(" ");
+    let html = "";
+    console.log(words);
+    for (let i = 0; i < words.length; i++){
+        if(words[i] == ";"){
+            html += '<br>'; 
+            continue;
+        }
+        html += ' <span style="color:'+getWordColor(words[i])+';font-weight: bolder; display: inline-block; line-break: anywhere;">'+words[i]+'</span> ' ;
+    }
+
+    document.getElementById("highlight-constraint-text").innerHTML = html;
+}
+
+/**
+ * Return the correct color to be used in the word
+ * @param {string} word 
+ */
+function getWordColor(word) {
+    // remove line breaks from string;
+    word = word.replace(/(\r\n|\n|\r)/gm, "");
+    if(classes.some(e => e.getAttribute('label') == word))
+        return '#f39c12';
+    else if(relations.some(e => e.getAttribute('label') === word))
+        return '#3c8dbc';
+    else if(datatypeProperties.some(e => e.getAttribute('label') === word))
+        return '#00a65a';
+    else if(instances.some(e => e.getAttribute('label') === word))
+        return 'rebeccapurple';
+    else if(word == 'some' || word == 'only' || word == 'exactly' ||word == 'min' ||word == 'max' ||word == 'value')
+        return 'orangered';
+    else 
+        return 'black';
 }
