@@ -4,12 +4,12 @@
 
 @section('content_header')
     <h1>
-        Profile
-        <small>Your Onto4ALL profile</small>
+        {{__('Profile')}}
+        <small>{{__('Your Onto4ALL profile')}}</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{route('home', app()->getLocale())}}"><i class="fa fa-dashboard"></i>Home</a></li>
-        <li class="active">Profile</li>
+        <li class="active">{{__('Profile')}}</li>
     </ol>
 @stop
 
@@ -30,17 +30,17 @@
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>Member since</b> <a class="pull-right">{{$user->created_at}}</a>
+                            <b>{{__('Member since')}}</b> <a class="pull-right">{{$user->created_at}}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Saved Ontologies</b> <a class="pull-right">{{$count}}</a>
+                            <b>{{__('Saved Ontologies')}}</b> <a class="pull-right">{{$count}}</a>
                         </li>
                         <li class="list-group-item">
-                            <b>Category</b> <a class="pull-right">{{$user->categoria}}</a>
+                            <b>{{__('Category')}}</b> <a class="pull-right">{{$user->categoria}}</a>
                         </li>
                     </ul>
 
-                    <a href="{{route('user.edit', ['locale'=> app()->getLocale(), 'user'=> auth()->user()->id])}}" class="btn btn-success btn-block"><b>Account Settings</b></a>
+                    <a href="{{route('user.edit', ['locale'=> app()->getLocale(), 'user'=> auth()->user()->id])}}" class="btn btn-success btn-block"><b>{{__('Account Settings')}}</b></a>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -49,7 +49,7 @@
             <!-- About Me Box -->
             <div class="box box-success">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Your recent Ontologies</h3>
+                    <h3 class="box-title">{{__('Your recent Ontologies')}}</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -59,7 +59,7 @@
                         <p>{{$ontology->created_at}}</p>
                     @endforeach
                 </div>
-                <a href="{{route('ontologies.index', app()->getLocale())}}" class="btn btn-success btn-block"><b>All my Ontologies</b></a>
+                <a href="{{route('ontologies.index', app()->getLocale())}}" class="btn btn-success btn-block"><b>{{__('All my Ontologies')}}</b></a>
 
                 <!-- /.box-body -->
             </div>
@@ -68,7 +68,7 @@
         <!-- /.col -->
         <div class="col-md-9">
             <div class="callout callout-success">
-                <h4><strong>Your favourite ontologies</strong></h4>
+                <h4><strong>{{__('Your favourite ontologies')}}</strong></h4>
             </div>
             <ul class="timeline">
                 <!-- timeline time label -->
@@ -84,8 +84,8 @@
                     <i class="fa fa-fw fa-object-group bg-green "></i>
 
                     <div class="timeline-item">
-                        <span class="time"><strong>Publication Date:  <i class="fa fa-clock-o"></i> {{$ontology->publication_date}}</strong></span>
-                        <span class="time"><strong>Last Upload:  <i class="fa fa-clock-o"></i> {{$ontology->last_uploaded}}</strong></span>
+                        <span class="time"><strong>{{__('Publication Date:  ')}}<i class="fa fa-clock-o"></i> {{$ontology->publication_date}}</strong></span>
+                        <span class="time"><strong>{{__('Last Upload:  ')}}<i class="fa fa-clock-o"></i> {{$ontology->last_uploaded}}</strong></span>
 
                         <h3 class="timeline-header"><a href="#">{{$ontology->name}}</a> </h3>
 
@@ -95,7 +95,7 @@
                         <div class="timeline-footer">
                             <a  class="btn btn-success btn-sm">{{$ontology->created_by}}</a>
                             <a href="/ontologies/download/{{$user->id}}/{{$ontology->id}}" class="btn btn-info btn-file btn-sm ">
-                                <i class="fa fa-fw fa-file-code-o"></i> Download
+                                <i class="fa fa-fw fa-file-code-o"></i> {{__('Download')}}
                             </a>
                         </div>
                     </div>

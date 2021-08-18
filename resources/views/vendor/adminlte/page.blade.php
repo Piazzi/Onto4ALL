@@ -119,7 +119,7 @@
                                         </div>
                                         <div class="pull-right">
                                             <a class="btn btn-default btn-flat" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                                                <i class="fa fa-fw fa-power-off"></i> {{__('Log Out') }}
                                             </a>
                                             <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
                                                 @csrf
@@ -153,7 +153,7 @@
 
     @if(config('adminlte.layout') != 'top-nav')
         <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar" style="">
+            <aside class="main-sidebar">
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar" style="height: auto">
                     <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -179,7 +179,7 @@
                                 <i class="fa fa-fw fa-folder-open "></i>
                                 <span>{{__('My Thesaurus')}}</span></a>
                         </li>
-                        <li class="header">INFO</li>
+                        <li class="header">{{__('INFO')}}</li>
                         <li @if(Route::currentRouteName() == 'help') class="active" @endif>
                             <a href="{{route('help', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-question "></i>
@@ -196,7 +196,7 @@
                                 <span>{{__('About Us')}}</span></a>
                         </li>
                         @can('eAdmin')
-                            <li class="header">ADMIN PANEL</li>
+                            <li class="header">{{__('ADMIN PANEL')}}</li>
                             <li @if(Route::currentRouteName() == 'ontology_relation.index') class="active" @endif>
                                 <a href="{{route('ontology_relation.index', app()->getLocale())}}">
                                     <i class="fa fa-fw fa-arrow-right "></i>
@@ -226,19 +226,19 @@
                                     <li>
                                         <a class="nav-link"
                                            href="{{route('home', 'en')}}"
-                                           @if (app()->getLocale() == 'en') style="font-weight: bold; text-decoration: underline" @endif>English</a>
+                                           @if (app()->getLocale() == 'en') style="font-weight: bold; text-decoration: underline" @endif>{{__('English')}}</a>
                                     </li>
                                 <li>
                                     <a class="nav-link"
                                        href="{{route('home', 'pt')}}"
-                                       @if (app()->getLocale() == 'pt') style="font-weight: bold; text-decoration: underline" @endif>Português</a>
+                                       @if (app()->getLocale() == 'pt') style="font-weight: bold; text-decoration: underline" @endif>{{__('Portuguese')}}</a>
                                 </li>
                             </ul>
                         </li>
 
                         <li class="treeview">
                             <a style="margin-left: 3px" href="#">
-                                <i class="fa fa-gear"></i> <span>Options</span>
+                                <i class="fa fa-gear"></i> <span>{{__('Options')}}</span>
                                 <span class="pull-right-container">
                                   <i class="fa fa-angle-left pull-right"></i>
                                 </span>
