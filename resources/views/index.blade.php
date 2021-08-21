@@ -584,10 +584,6 @@
         <i class="fa fa-fw fa-file-text-o"></i>
     </a>
 
-    <a id="open-last-updated-ontology" title="{{__('Open the last updated ontology in your ontology manager (useful when multiple collaborators are editing the ontology at the same time)')}}" class="toolbar-icon"  href="#">
-        <i class="fa fa-fw fa-cloud-download"></i>
-    </a>
-
     <a id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#methodology-menu">
         <i class="fa fa-fw fa-info-circle"></i>
     </a>
