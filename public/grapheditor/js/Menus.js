@@ -500,12 +500,12 @@ Menus.prototype.init = function()
 	})));
 	this.put('extras', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
-		this.addMenuItems(menu, ['copyConnect', 'collapseExpand', '-']);
+		this.addMenuItems(menu, ['copyConnect', 'collapseExpand', /*'-'*/]);
 	})));
 	
 	this.put('help', new Menu(mxUtils.bind(this, function(menu, parent)
 	{
-		this.addMenuItems(menu, ['help', '-', 'about']);
+		this.addMenuItems(menu, ['help', /*'-', 'about'*/]);
 	})));
 };
 

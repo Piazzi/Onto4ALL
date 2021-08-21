@@ -888,8 +888,9 @@ Actions.prototype.init = function()
 		{
 			ext = '_' + mxClient.language;
 		}
-
-		graph.openLink(RESOURCES_PATH + '/help' + ext + '.html');
+		// redirecting to the help menu
+		//RESOURCES_PATH + '/help' + ext + '.html'
+		graph.openLink('/'+ getLanguage() + '/help');
 	});
 
 	var showingAbout = false;

@@ -97,6 +97,10 @@ header {
 	border-radius: 15px;
 }
 
+#ontology-name {
+	pointer-events: none; 
+	color: #00a65a;
+}
 .toolbar-icon {
 	margin-right: 3px;
 	padding: 5px;
@@ -128,12 +132,11 @@ header {
 }
 
 .menubar-icon {
-	width: auto !important;
-	padding: 2px !important;
-	margin-top: 3px;
-	padding-right: 5px !important;
-	padding-left: 5px !important;
-	cursor: pointer !important;
+
+}
+
+.geMenubar .geStatus {
+	padding: 0px  !important;
 }
 
 #save-ontology {

@@ -600,13 +600,13 @@
     <!-- ./Toolbar icons  -->
 
     <!-- Menubar Icons -->
-    <a id="open-ontology" class="geItem btn menubar-icon" data-toggle="modal" data-target="#ontology-manager">
+    <a id="open-ontology" class="geItem  menubar-icon" data-toggle="modal" data-target="#ontology-manager">
         {{__('Ontology Manager')}}
     </a>
-    <a id="edit-ontology" class="geItem btn menubar-icon" data-toggle="modal" data-target="#edit-ontology-modal">
+    <a id="edit-ontology" class="geItem menubar-icon" data-toggle="modal" data-target="#edit-ontology-modal">
        {{__('Edit Ontology')}}
     </a>
-    <a id="ontology-name" class="geItem btn menubar-icon">
+    <a id="ontology-name" class="geItem  menubar-icon">
         {{__('Current Ontology: None')}}
     </a>
     <a id="save-ontology" class="geItem  btn btn-default unsaved menubar-icon">
