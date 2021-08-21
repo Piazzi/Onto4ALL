@@ -130,14 +130,38 @@
     <div data-widget="collapse" id="warnings-console-header" class="box-header">
         <h3 class="box-title">{{__('Warnings Console')}}</h3>
 
-        <a href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false"><i class="fa fa-fw fa-question-circle" title="{{__('Click to see more information!')}}"></i></a>
-        <div class="box-tools pull-right">
+        <a href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false">
+            <i class="fa fa-fw fa-question-circle" title="{{__('Click to see more information!')}}"></i>
+        </a>
 
+  
             <a download="ontology-errors.txt" href="#" id="download-errors-txt">
-                <span data-toggle="tooltip" title="" class="badge bg-info">
+                <span>
                     <i class="fa fa-download" title="{{__('Downloads a .txt file containing all the current warnings in the ontology')}}"></i>
                 </span>
             </a>
+            
+            <span id="classes" title="{{__('The number of classes in your current ontology')}}" data-widget="collapse">
+                <i class="fa fa-fw fa-circle-o"></i>
+                <span id="classes-count"> 0</span>
+            </span>
+            
+            <span id="relations" title="{{__('The number of relations in your current ontology')}}" data-widget="collapse" >
+                <i class="fa fa-1.5x fa-fw fa-exchange"></i>
+                <span id="relations-count"> 0</span>
+            </span> 
+            <span id="datatypeProperties" title="{{__('The number of datatypeproperties in your current ontology')}}" data-widget="collapse">
+                <i class="fa fa-fw fa-long-arrow-right"></i>
+                <span id="datatypeproperties-count"> 0</span>
+            </span>
+            
+            <span id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse" >
+                <i class="fa fa-fw fa-diamond"></i>
+                <span id="instances-count"> 0</span>
+            </span>
+        
+
+        <div class="box-tools pull-right">
 
             <span id="errors" title="{{__('The number of errors in your current ontology')}}" data-widget="collapse" class="badge bg-green" data-original-title="Errors">
                 <i class="fa fa-close"></i>
@@ -149,8 +173,9 @@
                 <span id="warnings-count"> 0</span>
             </span>
 
-            <button id="open-error-console" type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                    class="fa fa-plus"></i></button>
+            <button id="open-warnings-console" type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-fw fa-expand"></i>
+            </button>
         </div>
     </div>
     <div data-widget="collapse" class="box-body">
@@ -559,26 +584,6 @@
 
 
     <!-- Toolbar Icons  -->
-
-    <a id="classes" title="{{__('The number of classes in your current ontology')}}" data-widget="collapse" class="toolbar-icon">
-        <i class="fa fa-fw fa-circle-o"></i>
-        <span id="classes-count"> 0</span>
-    </a>
-
-    <a id="relations" title="{{__('The number of relations in your current ontology')}}" data-widget="collapse" class="toolbar-icon">
-        <i class="fa fa-1.5x fa-fw fa-exchange"></i>
-        <span id="relations-count"> 0</span>
-    </a>
-
-    <a id="datatypeProperties" title="{{__('The number of datatypeproperties in your current ontology')}}" data-widget="collapse" class="toolbar-icon">
-        <i class="fa fa-fw fa-long-arrow-right"></i>
-        <span id="datatypeproperties-count"> 0</span>
-    </a>
-
-    <a id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse" class="toolbar-icon">
-        <i class="fa fa-fw fa-diamond"></i>
-        <span id="instances-count"> 0</span>
-    </a>
 
     <a class="toolbar-icon" download="ontology-report.txt"  href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
         <i class="fa fa-fw fa-file-text-o"></i>

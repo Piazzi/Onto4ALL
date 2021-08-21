@@ -61,34 +61,18 @@ header {
 	color: #00A65A !important;
 }
 
-/* MENU DE DICAS */
-#menu-wrapper {
-	position: relative;
-}
-
-#menu-scroll {
-	height: 80vh;
-	overflow: auto;
-}
-
-#menu-wrapper table {
-	width: 100%;
-
-}
-
-#menu-wrapper table {
-	position: absolute;
-	border: 1px solid red;
-}
-
-#searchBar {
-	height: 150%;
-}
-
 .editor-timeline-item {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+#classes , #relations, #instances, #datatypeProperties, #download-errors-txt {
+	padding-left: 5px;
+}
+
+#open-warnings-console {
+	font-size: 16px;
 }
 
 /* Error Console */
@@ -113,18 +97,17 @@ header {
 .toolbar-icon {
 	margin-right: 3px;
 	padding: 5px;
-	color: #666666 !important;
 	background-color: transparent !important;
 	font-size: 1em;
     font-weight: initial;
 	cursor: pointer !important;
-
+	position: relative;
 }
 
 
 #warnings-console-header {
 	background-color: whitesmoke;
-	color: #333;
+	color: black;
 	border-radius: 15px;
 
 }
