@@ -127,7 +127,7 @@
 
 <!-- Warning Console -->
 <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box">
-    <div data-widget="collapse" id="warnings-console-header" class="box-header">
+    <div id="warnings-console-header" class="box-header">
         <h3 class="box-title">{{__('Warnings Console')}}</h3>
 
         <a href="#" data-target="#warningsConsole" data-toggle="modal" aria-expanded="false">
@@ -600,16 +600,16 @@
     <!-- ./Toolbar icons  -->
 
     <!-- Menubar Icons -->
-    <a id="open-ontology" class="geItem geStatus btn btn-default editor-timeline-item menubar-icon" data-toggle="modal" data-target="#ontology-manager">
-        <i class="fa fa-fw fa-folder-open"></i> {{__('Ontology Manager')}}
+    <a id="open-ontology" class="geItem btn menubar-icon" data-toggle="modal" data-target="#ontology-manager">
+        {{__('Ontology Manager')}}
     </a>
-    <a id="edit-ontology" class="geItem geStatus btn btn-default editor-timeline-item menubar-icon" data-toggle="modal" data-target="#edit-ontology-modal">
-        <i class="fa fa-fw fa-edit"></i> {{__('Edit Ontology')}}
+    <a id="edit-ontology" class="geItem btn menubar-icon" data-toggle="modal" data-target="#edit-ontology-modal">
+       {{__('Edit Ontology')}}
     </a>
-    <a id="ontology-name" class="geItem geStatus menubar-icon">
-        <i class="fa fa-fw fa-object-group"></i>{{__('Current Ontology: None')}}
+    <a id="ontology-name" class="geItem btn menubar-icon">
+        {{__('Current Ontology: None')}}
     </a>
-    <a id="save-ontology" class="geItem geStatus btn btn-default editor-timeline-item unsaved menubar-icon">
+    <a id="save-ontology" class="geItem  btn btn-default unsaved menubar-icon">
         <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
     </a>
     <!-- ./Menubar Icons -->

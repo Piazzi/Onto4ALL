@@ -19,7 +19,7 @@ $(document).ready(function () {
                 let doc = mxUtils.parseXml(data['file']);
                 editor.setGraphXml(doc.documentElement);
                 //console.log(data);
-                $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+data['name']);
+                $("#ontology-name").html('Current Ontology:'+data['name']);
                 $("#id").val(data['id']);
                 $("#name").val(data['name']);
                 $("#publication-date").val(data['publication_date']);
@@ -68,7 +68,7 @@ $(document).ready(function () {
                 let doc = mxUtils.parseXml(data['file']);
                 editor.setGraphXml(doc.documentElement);
                 //console.log(data);
-                $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+data['name']);
+                $("#ontology-name").html('Current Ontology:'+data['name']);
                 $("#id").val(data['id']);
                 $("#name").val(data['name']);
                 $("#publication-date").val(data['publication_date']);

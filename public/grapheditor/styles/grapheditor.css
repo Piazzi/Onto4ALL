@@ -75,8 +75,6 @@ header {
 	font-size: 16px;
 }
 
-/* Error Console */
-
 #warnings-console {
 	z-index: 213;
 	margin-bottom: 2px !important;
@@ -86,11 +84,16 @@ header {
 	bottom: 0;
 	width: 700px;
     right: inherit;
-    cursor: row-resize;
     left: 50%;
     bottom: 20px;
     margin-left: -350px;
     bottom: 20px;
+	border-radius: 15px;
+}
+
+#warnings-console-header {
+	background-color: whitesmoke;
+	color: black;
 	border-radius: 15px;
 }
 
@@ -102,15 +105,10 @@ header {
     font-weight: initial;
 	cursor: pointer !important;
 	position: relative;
+	top: 4px
 }
 
 
-#warnings-console-header {
-	background-color: whitesmoke;
-	color: black;
-	border-radius: 15px;
-
-}
 
 .dropdown-menu {
 	z-index: 14;
@@ -132,17 +130,15 @@ header {
 .menubar-icon {
 	width: auto !important;
 	padding: 2px !important;
-	margin-top: 2px;
-	margin-right: 5px;
+	margin-top: 3px;
 	padding-right: 5px !important;
 	padding-left: 5px !important;
-	border-radius: 8px;
-	background-color: white;
 	cursor: pointer !important;
 }
 
 #save-ontology {
 	visibility: hidden;
+	border-radius: 15px;
 }
 
 .unsaved {
@@ -176,10 +172,6 @@ aside {
 
 .main-header {
     z-index: 1000 !important;
-}
-
-#properties-dialog td {
-    padding: 2px !important;
 }
 
 .navbar-custom-menu a{
