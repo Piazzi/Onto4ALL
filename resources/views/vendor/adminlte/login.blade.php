@@ -30,7 +30,7 @@
 	<div class="content">
 		<div class="row">
 			<div class="col-md-4">
-				<div class="box box-default" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; border-radius: 15px; margin-top: 150px">
+				<div class="box box-default" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; border-radius: 15px; ">
 					<div class="box-header with-border" style="text-align: center;">
 						<i class="fa fa-warning"></i>
 						<h3 class="box-title">Alerts</h3>
@@ -38,18 +38,40 @@
 					<!-- /.box-header -->
 					<div class="box-body" >
 						<div class="callout ">
-                            <h4>{{__('Beta')}}!</h4>
+                            <h4><i class="fa fa-fw fa-wrench"></i> {{__('Beta')}}!</h4>
                             <p> {{__('This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.')}}</p>
                         </div>
 
                         <div class="callout ">
-                            <h4>Use {{__('Google Chrome')}}!</h4>
+                            <h4><i class="fa fa-fw fa-chrome"></i> Use {{__('Google Chrome')}}!</h4>
                             <p>   {{__('We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.')}}</p>
                         </div>
 
-                        <div class="callout callout-success">
+						<div class="callout callout-success">
+							<span class="pull-right-container">
+								<small class="label pull-right bg-red">new</small>
+							</span>
+							<h4><i class="fa fa-fw fa-flask"></i> {{__('Upcoming Features')}}!</h4>
+							<ul>
+								<li>Dark Mode for the ontology editor (and for the entire system in the future)</li>
+								<li>Autosave</li>
+								<li>Import and Export ontologies in
+								<ul>
+									<li>RDF/XML</li>
+									<li>TURTLE</li>
+									<li>OWL/XML</li>
+									<li>SINTAXEMANCHESTER</li>
+								</ul>
+								</li>
+								<li>Real time collaboration</li>
+								<li>Live chat between collaborators</li>
+							</ul>
+							Any sugestion? Contact us
+						</div>
+
+                        <div class="callout ">
                             <h4><i class="icon fa fa-money"></i> {{__('Donate')}}</h4>
-                            <h4>{{__('Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!')}}</h4>
+                            <p>{{__('Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!')}}</p>
                             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                                 <input type="hidden" name="cmd" value="_s-xclick"/>
                                 <input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN"/>
@@ -119,20 +141,26 @@
 								<button type="button" class="btn btn-default btn-block">{{__('Register')}}</button>
 							</a>
 							@endif
-							<a href="{{route('landing-page', app()->getLocale())}}" class="text-center">
-								<button type="button" class="btn btn-default btn-block">{{__('Go back to main page')}}</button>
-							</a>
 							<a href="https://onto4alleditor.com/en#contact" class="text-center">
 								<button type="button" class="btn btn-default btn-block">{{__('Contact Us')}}</button>
+							</a>
+							<a  href="https://www.paypal.com/donate?token=HyB5GlzVKII440dH4aPCLKg9CJJ4Sau3xPG0W08GVgaK5cN2sBiYh3A-XCWjgL4E5uPI-HJDau8g84ni" class="text-center">
+								<button style="color: #00A65A !important" type="button" class="btn btn-default btn-block"><i class="fa fa-fw fa-paypal"></i>{{__('Donate')}}</button>
 							</a>
 						</div>
 						<br>
 						<div class="row">
 							<h4 style="text-align: center"><strong>Version</strong> Beta 3.0.0</h4>
+							<a style="display: block;" href="{{route('landing-page', app()->getLocale())}}" class="text-center">
+								<span style="color: #444; font-size:small"><i class="fa fa-fw fa-arrow-left"></i>{{__('Go back to main page')}}</span>
+							</a>
 						</div>
 					</div>
 					<!-- /.login-box-body -->
 				</div><!-- /.login-box -->
+			</div>
+			<div class="col-md-4">
+				
 			</div>
 		</div>
 	</div>
