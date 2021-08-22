@@ -142,6 +142,8 @@ header {
 #save-ontology {
 	visibility: hidden;
 	border-radius: 15px;
+	padding: 3px !important;
+    margin: 2px;
 }
 
 .unsaved {
@@ -197,6 +199,11 @@ aside {
 	width: auto !important;
 	height: auto !important;
 }
+/*
+.geMenubarContainer, .geDiagramContainer,  .geSidebarContainer, .gePaletteContainer, .geFooterContainer, .geToolbarContainer, .geSidebarTooltip, .geFormatContainer{
+	top: 40px !important;
+}*/
+
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
 
 

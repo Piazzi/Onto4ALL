@@ -4015,7 +4015,8 @@ EditorUi.prototype.isCompatibleString = function(data)
  */
 EditorUi.prototype.saveFile = function(forceDialog)
 {
-	$("#save-ontology").click();
+	
+	document.getElementById('save-ontology').click();
 	/*
 	if (!forceDialog && this.editor.filename != null)
 	{

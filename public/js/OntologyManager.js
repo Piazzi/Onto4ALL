@@ -109,7 +109,7 @@ $(document).ready(function () {
     let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
     // Fires the Ajax request when the button is clicked
 
-    $("#save-ontology").click(function () {
+    $("#save-ontology").on('click',function () {
 
         $("#save-ontology").html('<div  class="overlay"><i style="color: white !important;" class="fa fa-refresh fa-spin"></i></div>');
         $("#save-ontology").css('background-color','#00a65a');
