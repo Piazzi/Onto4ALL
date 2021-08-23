@@ -251,23 +251,23 @@
             <h2 class="text-center mt-0">{{__('Onto4ALL was built with')}}</h2>
             <hr class="divider my-4"/>
             <div class="row">
-                <div class="col-lg-6  text-center">
+                <div class="col-lg-4  text-center">
                     <div class="mt-5">
                         <img style="width: 90%" alt="laravel" src="css/images/Landing-Page/laravel.png">
 
                     </div>
                 </div>
-                <div class="col-lg-6  text-center">
+                <div class="col-lg-4  text-center">
                     <div class="mt-5">
                         <img alt="mxgraph" src="css/images/Landing-Page/mxgraph.png">
                     </div>
                 </div>
-                <!-- <div class="col-lg-4  text-center">
+                <div class="col-lg-4  text-center">
                     <div class="mt-5">
-                        <img style="width: 90%" alt="jquery" src="css/images/Landing-Page/jquery.png">
+                        <img style="width: 90%" alt="jquery" src="css/images/Landing-Page/adminlte.png">
 
                     </div>
-                </div> -->
+                </div> 
             </div>
         </div>
     </section>
