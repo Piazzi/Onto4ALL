@@ -96,7 +96,7 @@
                     </div>
                     <div class="pull-right">
                         <a class="btn btn-default btn-flat" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fa fa-fw fa-power-off"></i> {{ trans('adminlte::adminlte.log_out') }}
+                            <i class="fa fa-fw fa-power-off"></i> {{__('Log Out')}}
                         </a>
                     <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
                         @csrf
@@ -638,14 +638,14 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Publication Date</label>
+                            <label>{{__('Publication Date')}}</label>
                             <input id="publication-date" value="" name="publication_date" type="date"
                                 class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Last Uploaded</label>
+                            <label>{{__('Last Uploaded')}}</label>
                             <input id="last-uploaded" value="" name="last_uploaded" type="date" class="form-control">
                         </div>
                     </div>
@@ -657,45 +657,45 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
+                    <label>{{__('Description')}}</label>
                     <textarea id="description" name="description" class="form-control" rows="3"
                         placeholder=""></textarea>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Link</label>
+                            <label>{{__('Link')}}</label>
                             <input placeholder="e.g: https://basic-formal-ontology.org/" id="link" value="" name="link"
                                 type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Domain</label>
+                            <label>{{__('Domain')}}</label>
                             <input id="ontology-domain" value="" name="ontology-domain" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>General Purpose</label>
+                    <label>{{__('General Purpose')}}</label>
                     <input id="general-purpose" value="" name="general_purpose" type="text" class="form-control">
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Profile Users</label>
+                            <label>{{__('Profile Users')}}</label>
                             <input id="profile-users" value="" name="profile_users" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Intended Use</label>
+                            <label>{{__('Intended Use')}}</label>
                             <input id="intended-use" value="" name="intended_use" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Type of Ontology</label>
+                            <label>{{__('Type of Ontology')}}</label>
                             <input id="type-of-ontology" value="" name="type_of_ontology" type="text"
                                 class="form-control">
                         </div>
@@ -704,25 +704,25 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Degree of Formality</label>
+                            <label>{{__('Degree of Formality')}}</label>
                             <input id="degree-of-formality" value="" name="degree_of_formality" type="text"
                                 class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Scope</label>
+                            <label>{{__('Scope')}}</label>
                             <input id="scope" value="" name="scope" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Competence Questions</label>
+                    <label>{{__('Competence Questions')}}</label>
                     <input id="competence-questions" value="" name="competence_questions" type="text"
                         class="form-control">
                 </div>
                 <div class="form-group">
-                    <label>Namespace</label>
+                    <label>{{__('Namespaces')}}</label>
                     <select data-placeholder="{{__('Insert used namespaces here')}}" id="namespace-select" style="width: 100%; " class="js-example-basic-multiple js-example-tags"  name="namespace[]" multiple="multiple">
                         <option value="http://www.w3.org/2002/07/owl#">http://www.w3.org/2002/07/owl#</option>
                         <option value="http://www.w3.org/1999/02/22-rdf-syntax-ns">http://www.w3.org/1999/02/22-rdf-syntax-ns</option>
@@ -732,15 +732,18 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Collaborators</label>
+                    <label>{{__('Collaborators')}}</label>
                     <span>- {{__('Insert usernames to share your ontology with other Onto4ALL users')}}</span> <strong
                         style="color: #761c19">({{__('Collaborators will be able to edit this ontology')}})</strong>
                     <select data-placeholder="{{__('Insert usernames here')}}" id="collaborators-select"
                         style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]"
                         multiple="multiple">
                         @foreach($users as $user)
-                        <option value="{{$user->id}}">@if($user->id ==
-                            Auth::user()->id){{__('You')}}@else{{$user->name}}@endif</option>
+                            @if($user->id == Auth::user()->id)
+                                <option value="{{$user->id}}" selected="selected" locked="locked">{{__('You')}}</option>
+                            @else
+                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endif
                         @endforeach
                     </select>
                 </div>

@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'lucas@onto4alleditor.com'),
-        'name' => env('MAIL_FROM_NAME', 'Lucas'),
+        'address' => env('MAIL_FROM_ADDRESS', 'no-reply@onto4alleditor.com'),
+        'name' => env('MAIL_FROM_NAME', 'ONTO4ALL'),
     ],
 
     /*
