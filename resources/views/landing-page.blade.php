@@ -8,6 +8,14 @@
         <title>Onto4ALL - Ontology Graphical Editor</title>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" crossorigin="anonymous"></script>
+        
+        <!-- AdminLTE CSS -->
+        <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/AdminLTE.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/adminlte/plugins/iCheck/square/blue.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/font-awesome/css/font-awesome.min.css') }}">
+	    <link rel="stylesheet" href="{{ asset('vendor/adminlte/css/auth.css') }}">
+
+        
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
@@ -80,7 +88,53 @@
                 </div>
             </div>
         </div>
+        
     </section>
+    <div class="container">
+        <h2 class="text-black mt-0 row justify-content-center" style="padding-top:100px" >{{__('About The Users')}}</h2>
+        <hr class="divider my-4"/>
+            <div class="row">
+                <div class="col-lg-4  text-center">
+                    <div class="mt-5">
+                        <div class="info-box" style="border: 1px solid #d5d5d5; text-align:left;">
+                        <!-- Apply any bg-* class to to the icon to color it -->
+                            <span class="info-box-icon bg-blue"><i class="fa  fa-users"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">{{__('Amount of Users')}}</span>
+                                <span class="info-box-number">800</span>
+                            </div>
+                        <!-- /.info-box-content -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  text-center">
+                    <div class="mt-5">
+                        <div class="info-box"style="border: 1px solid #d5d5d5; text-align:left;">
+                        <!-- Apply any bg-* class to to the icon to color it -->
+                            <span class="info-box-icon bg-yellow"><i class="fa fa-object-group"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">{{__('Ontologies')}}</span>
+                                <span class="info-box-number">1200</span>
+                            </div>
+                        <!-- /.info-box-content -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  text-center">
+                    <div class="mt-5">
+                        <div class="info-box" style="border: 1px solid #d5d5d5; text-align:left;">
+                        <!-- Apply any bg-* class to to the icon to color it -->
+                            <span class="info-box-icon bg-red"><i class="fa  fa-mouse-pointer"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">{{__('Shared Ontologies')}}</span>
+                                <span class="info-box-number">520</span>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+    </div>
+
     <!-- Services section-->
     <section class="page-section" id="features">
         <div class="container">
