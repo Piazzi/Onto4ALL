@@ -4,13 +4,6 @@
 
 @section('content_header')
 <div id="loading"></div>
-<div id="overlay"
-    style="background-color: #FFFFFF; z-index: 999999;position: absolute;left: 0;	top: 0;	width: 100%;height: 100%;display: none;">
-    <img style="margin-left: auto;  margin-right: auto; display:block" src="{{asset('css/images/LogoWhite.png')}}"
-        alt="">
-    <h3 style="text-align: center;"><strong style="color: red;">{{__('Error')}}:</strong>
-        {{__('You can only access this software using the following browsers: Google Chrome, Firefox')}}.</h3>
-</div>
 @stop
 
 @section('content')
