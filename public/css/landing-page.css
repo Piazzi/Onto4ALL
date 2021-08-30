@@ -78,3 +78,13 @@
     background-color: #3b5998;
     border-color: rgba(0, 0, 0, 0.2);
 }
+
+.info-box {
+    border: 1px solid #d5d5d5; 
+    text-align:left;
+    font-size:large;
+}
+
+.page-section {
+    padding: 50px;
+}

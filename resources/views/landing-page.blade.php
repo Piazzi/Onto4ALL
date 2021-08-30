@@ -81,7 +81,7 @@
                     <hr class="divider light my-4"/>
                     <h2 class="text-white mt-0">{{__('What is the Onto4ALL Editor?')}}</h2>
                     <hr class="divider light my-4"/>
-                    <p class="text-white-50 mb-4">{{__('Is a free graphical editor capable of creating, editing and exporting ontologies being guided by an warnings console, an ontological building rules tab and an extensive palette of ontological classes and relationships.')}}</p>
+                    <p class="text-white mb-4">{{__('Is a free graphical editor capable of creating, editing and exporting ontologies being guided by an warnings console, an ontological building rules tab and an extensive palette of ontological classes and relationships.')}}</p>
                     <a href="{{route('register', app()->getLocale())}}" class="btn btn-light btn-xl js-scroll-trigger">{{__('Start Now')}}</a>
                     <a style="margin-left: 10px" class="btn btn-light btn-xl js-scroll-trigger" href="#features"
                     >{{__('See More')}}</a>
@@ -96,12 +96,12 @@
             <div class="row">
                 <div class="col-lg-4  text-center">
                     <div class="mt-5">
-                        <div class="info-box" style="border: 1px solid #d5d5d5; text-align:left;">
+                        <div class="info-box" >
                         <!-- Apply any bg-* class to to the icon to color it -->
-                            <span class="info-box-icon bg-blue"><i class="fa  fa-users"></i></span>
+                            <span class="info-box-icon bg-green"><i class="fa  fa-users"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">{{__('Amount of Users')}}</span>
-                                <span class="info-box-number">800</span>
+                                <span >{{__('Amount of Users')}}</span>
+                                <span class="info-box-number">+800</span>
                             </div>
                         <!-- /.info-box-content -->
                         </div>
@@ -109,12 +109,12 @@
                 </div>
                 <div class="col-lg-4  text-center">
                     <div class="mt-5">
-                        <div class="info-box"style="border: 1px solid #d5d5d5; text-align:left;">
+                        <div class="info-box">
                         <!-- Apply any bg-* class to to the icon to color it -->
-                            <span class="info-box-icon bg-yellow"><i class="fa fa-object-group"></i></span>
+                            <span class="info-box-icon bg-green"><i class="fa fa-object-group"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">{{__('Ontologies')}}</span>
-                                <span class="info-box-number">1200</span>
+                                <span >{{__('Ontologies')}}</span>
+                                <span class="info-box-number">+1200</span>
                             </div>
                         <!-- /.info-box-content -->
                         </div>
@@ -122,12 +122,12 @@
                 </div>
                 <div class="col-lg-4  text-center">
                     <div class="mt-5">
-                        <div class="info-box" style="border: 1px solid #d5d5d5; text-align:left;">
+                        <div class="info-box" >
                         <!-- Apply any bg-* class to to the icon to color it -->
-                            <span class="info-box-icon bg-red"><i class="fa  fa-mouse-pointer"></i></span>
+                            <span class="info-box-icon bg-green"><i class="fa  fa-share-alt"></i></span>
                             <div class="info-box-content">
-                                <span class="info-box-text">{{__('Shared Ontologies')}}</span>
-                                <span class="info-box-number">520</span>
+                                <span >{{__('Shared Ontologies')}}</span>
+                                <span class="info-box-number">+520</span>
                             </div>
                         </div>
                     </div>
@@ -286,13 +286,13 @@
                 <div class="col-lg-8 text-center">
                     <h2 class="mt-0">{{__('Have Any Question?')}}</h2>
                     <hr class="divider my-4"/>
-                    <p class="text-muted mb-5">{{__('Contact Us')}}</p>
+                    <p class=" mb-5">{{__('Contact Us')}}</p>
                 </div>
             </div>
             <div class="row">
 
                 <div class="col-lg-12 mr-auto text-center">
-                    <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                    <i class="fas fa-envelope fa-3x mb-3 "></i>
                     <a class="d-block">info@onto4alleditor.com</a>
                 </div>
             </div>
