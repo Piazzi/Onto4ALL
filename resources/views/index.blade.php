@@ -10,34 +10,35 @@
 <div style="position:absolute; top:0; right:0;z-index:1000; background-color:#fbfbfb; width: 240px; " class="navbar-custom-menu">
     <ul class="nav navbar-nav" style="float: right">
         @php
-            $amount = Auth::user()->unreadNotifications->count();
+        $amount = Auth::user()->unreadNotifications->count();
         @endphp
         <li id="notifications-menu" class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                 <i class="fa fa-bell-o"></i>
-                    <span id="notification-counter" class="label label-warning">{{$amount > 0 ? $amount : ''}}</span>
+                <span id="notification-counter" class="label label-warning">{{$amount > 0 ? $amount : ''}}</span>
             </a>
             <ul class="dropdown-menu">
-                    <li class="header">{{__('You have')}} {{$amount}} {{__('new notifications')}}</li>
-        <li>
-            <!-- inner menu: contains the actual data -->
-            <ul class="notification-menu menu">
-                @foreach(Auth::user()->notifications->take(5) as $notification)
-                    <li><!-- start notification -->
-                        <a href="{{route('notifications.show', ['locale' => app()->getLocale(), 'notificationId' => $notification->id, 'notificationType' => $notification->data['type']])}}">
-                        <h5>
-                            @if($notification->data['type'] == 'Onto4All Contact')
-                                {{__('New message: ')}}
-                            @endif
-                                {{__($notification->data['title'])}}
-                            <br>
-                                <small>
-                                    <i class="fa fa-clock-o"><i> | </i></i>{{ date(" d-m-Y | H:i", strtotime($notification->created_at))}}
-                                </small>
-                        </h5>
-                        </a>
-                    </li>
-                @endforeach
+                <li class="header">{{__('You have')}} {{$amount}} {{__('new notifications')}}</li>
+                <li>
+                    <!-- inner menu: contains the actual data -->
+                    <ul class="notification-menu menu">
+                        @foreach(Auth::user()->notifications->take(5) as $notification)
+                        <li>
+                            <!-- start notification -->
+                            <a href="{{route('notifications.show', ['locale' => app()->getLocale(), 'notificationId' => $notification->id, 'notificationType' => $notification->data['type']])}}">
+                                <h5>
+                                    @if($notification->data['type'] == 'Onto4All Contact')
+                                    {{__('New message: ')}}
+                                    @endif
+                                    {{__($notification->data['title'])}}
+                                    <br>
+                                    <small>
+                                        <i class="fa fa-clock-o"><i> | </i></i>{{ date(" d-m-Y | H:i", strtotime($notification->created_at))}}
+                                    </small>
+                                </h5>
+                            </a>
+                        </li>
+                        @endforeach
                     </ul>
                 </li>
                 <li class="footer"><a href="{{route('notifications.index', app()->getLocale())}}">{{__('See all notifications')}}</a></li>
@@ -64,17 +65,14 @@
                 <li class="user-body">
                     <div class="row">
                         <div class="col-xs-4 text-center border-right">
-                            <a class="user-body-link"
-                                href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">
+                            <a class="user-body-link" href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">
                                 Tutorial</a>
                         </div>
                         <div class="col-xs-4 text-center border-right">
-                            <a class="user-body-link"
-                                href="{{route('ontologies.index', app()->getLocale())}}">{{__('Ontologies')}}</a>
+                            <a class="user-body-link" href="{{route('ontologies.index', app()->getLocale())}}">{{__('Ontologies')}}</a>
                         </div>
                         <div class="col-xs-4 text-center">
-                            <a class="user-body-link"
-                                href="{{route('help', app()->getLocale())}}">{{__('Help')}}</a>
+                            <a class="user-body-link" href="{{route('help', app()->getLocale())}}">{{__('Help')}}</a>
                         </div>
                     </div>
                     <!-- /.row -->
@@ -91,26 +89,24 @@
                         <a class="btn btn-default btn-flat" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa fa-fw fa-power-off"></i> {{__('Log Out')}}
                         </a>
-                    <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
-                        @csrf
-                        @if(config('adminlte.logout_method'))
-                        {{ method_field(config('adminlte.logout_method')) }}
-                        @endif
-                    </form>
+                        <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
+                            @csrf
+                            @if(config('adminlte.logout_method'))
+                            {{ method_field(config('adminlte.logout_method')) }}
+                            @endif
+                        </form>
                     </div>
 
                 </li>
             </ul>
         </li>
         <li>
-            <a id="control-sidebar" title="{{__('Show/Hide the Sidebar')}}" href="#" data-toggle="control-sidebar"><i
-                    class="fa fa-1.5x fa-fw fa-bars "></i></a>
+            <a id="control-sidebar" title="{{__('Show/Hide the Sidebar')}}" href="#" data-toggle="control-sidebar"><i class="fa fa-1.5x fa-fw fa-bars "></i></a>
         </li>
         @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))
         <!-- Control Sidebar Toggle Button -->
         <li>
-            <a href="#" data-toggle="control-sidebar" @if(!config('adminlte.right_sidebar_slide'))
-                data-controlsidebar-slide="false" @endif>
+            <a href="#" data-toggle="control-sidebar" @if(!config('adminlte.right_sidebar_slide')) data-controlsidebar-slide="false" @endif>
                 <i class="{{config('adminlte.right_sidebar_icon')}}"></i>
             </a>
         </li>
@@ -127,32 +123,32 @@
             <i class="fa fa-fw fa-question-circle" title="{{__('Click to see more information!')}}"></i>
         </a>
 
-  
-            <a download="ontology-errors.txt" href="#" id="download-errors-txt">
-                <span>
-                    <i class="fa fa-download" title="{{__('Downloads a .txt file containing all the current warnings in the ontology')}}"></i>
-                </span>
-            </a>
-            
-            <span id="classes" title="{{__('The number of classes in your current ontology')}}" data-widget="collapse">
-                <i class="fa fa-fw fa-circle-o"></i>
-                <span id="classes-count"> 0</span>
+
+        <a download="ontology-errors.txt" href="#" id="download-errors-txt">
+            <span>
+                <i class="fa fa-download" title="{{__('Downloads a .txt file containing all the current warnings in the ontology')}}"></i>
             </span>
-            
-            <span id="relations" title="{{__('The number of relations in your current ontology')}}" data-widget="collapse" >
-                <i class="fa fa-1.5x fa-fw fa-exchange"></i>
-                <span id="relations-count"> 0</span>
-            </span> 
-            <span id="datatypeProperties" title="{{__('The number of datatypeproperties in your current ontology')}}" data-widget="collapse">
-                <i class="fa fa-fw fa-long-arrow-right"></i>
-                <span id="datatypeproperties-count"> 0</span>
-            </span>
-            
-            <span id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse" >
-                <i class="fa fa-fw fa-diamond"></i>
-                <span id="instances-count"> 0</span>
-            </span>
-        
+        </a>
+
+        <span id="classes" title="{{__('The number of classes in your current ontology')}}" data-widget="collapse">
+            <i class="fa fa-fw fa-circle-o"></i>
+            <span id="classes-count"> 0</span>
+        </span>
+
+        <span id="relations" title="{{__('The number of relations in your current ontology')}}" data-widget="collapse">
+            <i class="fa fa-1.5x fa-fw fa-exchange"></i>
+            <span id="relations-count"> 0</span>
+        </span>
+        <span id="datatypeProperties" title="{{__('The number of datatypeproperties in your current ontology')}}" data-widget="collapse">
+            <i class="fa fa-fw fa-long-arrow-right"></i>
+            <span id="datatypeproperties-count"> 0</span>
+        </span>
+
+        <span id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse">
+            <i class="fa fa-fw fa-diamond"></i>
+            <span id="instances-count"> 0</span>
+        </span>
+
 
         <div class="box-tools pull-right">
 
@@ -181,8 +177,7 @@
                     <span class="direct-chat-timestamp pull-left"></span>
                 </div>
                 <!-- /.direct-chat-info -->
-                <img id="no-warning-img" class="direct-chat-img" src="{{asset('css/images/LogoMini.png')}}"
-                    alt="Message User Image"><!-- /.direct-chat-img -->
+                <img id="no-warning-img" class="direct-chat-img" src="{{asset('css/images/LogoMini.png')}}" alt="Message User Image"><!-- /.direct-chat-img -->
                 <div id="no-warning-text" class="direct-chat-text">
                     {{__('You dont have any warnings.')}}
                 </div>
@@ -191,22 +186,20 @@
     </div>
 </div>
 <!--  ./Warning Console -->
+
+
 <!-- Right Sidebar -->
 <aside class="control-sidebar control-sidebar-light control-sidebar-open">
     <!-- Tabs -->
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
 
-            <li><a id="classes-nav" href="#classes-tab" data-toggle="tab" style="color: #f39c12"><i
-                        class="fa fa-fw fa-circle-thin"></i> Classes</a></li>
-            <li><a id="object-properties-nav" href="#object-properties-tab" data-toggle="tab" style="color: #3c8dbc"><i
-                        class="fa fa-fw fa-exchange"></i> Object Properties</a></li>
+            <li><a id="classes-nav" href="#classes-tab" data-toggle="tab" style="color: #f39c12"><i class="fa fa-fw fa-circle-thin"></i> Classes</a></li>
+            <li><a id="object-properties-nav" href="#object-properties-tab" data-toggle="tab" style="color: #3c8dbc"><i class="fa fa-fw fa-exchange"></i> Object Properties</a></li>
             <li><a id="annotations-nav" href="#annotations-tab" data-toggle="tab" style="color: darkred"><i class="fa fa-fw fa-book"></i>
                     Annotation Properties</a></li>
-            <li><a id="datatype-properties-nav" href="#datatype-properties-tab" data-toggle="tab" style="color: #00a65a"><i
-                        class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
-            <li><a id="individuals-nav" href="#individuals-tab" data-toggle="tab" style="color: rebeccapurple"><i
-                        class="fa fa-fw fa-user"></i> Individuals</a></li>
+            <li><a id="datatype-properties-nav" href="#datatype-properties-tab" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
+            <li><a id="individuals-nav" href="#individuals-tab" data-toggle="tab" style="color: rebeccapurple"><i class="fa fa-fw fa-user"></i> Individuals</a></li>
             <li><a id="empty-nav" href="#empty-tab" data-toggle="tab" style="visibility: hidden"></a></li>
 
         </ul>
@@ -232,18 +225,13 @@
                 </div>
                 <div class="form-group">
                     <label>DisjointWith</label>
-                    <select id="DisjointWith" data-placeholder="Select Classes" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="DisjointWith" data-placeholder="Select Classes" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Constraint</label>
-                    <textarea placeholder="Separate your axioms with semicolon ; e.g: &#13;&#10; Man subClassOf People ; &#13;&#10; Woman subClassOf People ;"
-                    style="width: 100%;" id="Constraint" rows="4" onchange="updateInput(this.id, this.value)"> </textarea>
-                    <label>Axioms:</label>
-                    <div id="highlight-constraint-text"> </div>
-                    <p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> {{__('None axiom to check!')}} </p>
+                    <button data-toggle="modal" data-target="#ClassExpressionEditorModal" type="button" class="btn btn-default btn-block"><i class="fa fa-fw fa-folder-open"></i> Class Expression Editor</button>
                 </div>
             </div>
 
@@ -298,29 +286,25 @@
                 </div>
                 <div class="form-group">
                     <label>equivalentTo</label>
-                    <select id="equivalentTo" data-placeholder="Select Relations" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="equivalentTo" data-placeholder="Select Relations" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
-                    <select id="subpropertyOf" data-placeholder="Select Relation" style="width: 100%; "
-                        class="js-example-basic-multiple" onchange="updateInput(this.id, this.value)">
+                    <select id="subpropertyOf" data-placeholder="Select Relation" style="width: 100%; " class="js-example-basic-multiple" onchange="updateInput(this.id, this.value)">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>inverseOf</label>
-                    <select id="inverseOf" data-placeholder="Select Relation" style="width: 100%; "
-                        class="js-example-basic-multiple"  onchange="updateInput(this.id, this.value)">
+                    <select id="inverseOf" data-placeholder="Select Relation" style="width: 100%; " class="js-example-basic-multiple" onchange="updateInput(this.id, this.value)">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
-                    <select id="disjointWith-relations" data-placeholder="Select Relations" style="width: 100%; "
-                        class="js-example-basic-multiple"  multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="disjointWith-relations" data-placeholder="Select Relations" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
@@ -376,8 +360,7 @@
             <div class="tab-pane" id="individuals-tab">
                 <div class="form-group">
                     <label>types</label>
-                    <select id="types" data-placeholder="Select Datatypes" style="width: 100%; "
-                        class="js-example-basic-multiple" onchange="updateInput(this.id, this.value)" >
+                    <select id="types" data-placeholder="Select Datatypes" style="width: 100%; " class="js-example-basic-multiple" onchange="updateInput(this.id, this.value)">
                         <option>owl:rational</option>
                         <option>owl:real</option>
                         <option>rdf:PlainLiteral</option>
@@ -416,15 +399,13 @@
                 </div>
                 <div class="form-group">
                     <label>sameAs</label>
-                    <select id="sameAs" data-placeholder="Select Individuals" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="sameAs" data-placeholder="Select Individuals" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>differentAs</label>
-                    <select id="differentAs" data-placeholder="Select Individuals" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="differentAs" data-placeholder="Select Individuals" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
@@ -463,22 +444,19 @@
                 </div>
                 <div class="form-group">
                     <label>equivalentTo</label>
-                    <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple onchange="updateInput('equivalentTo', $('#'+this.id).val())">
+                    <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput('equivalentTo', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
-                    <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple onchange="updateInput('subpropertyOf', $('#'+this.id).val())">
+                    <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput('subpropertyOf', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
-                    <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; "
-                        class="js-example-basic-multiple" multiple onchange="updateInput('disjointWith', $('#'+this.id).val())">
+                    <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput('disjointWith', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
@@ -492,8 +470,7 @@
                 </div>
                 <div class="form-group">
                     <label>datatype</label>
-                    <select id="datatype" data-placeholder="Select Datatypes" style="width: 100%; "
-                        class="js-example-basic-multiple" name="" onchange="updateInput(this.id, this.value)">
+                    <select id="datatype" data-placeholder="Select Datatypes" style="width: 100%; " class="js-example-basic-multiple" name="" onchange="updateInput(this.id, this.value)">
                         <option>owl:rational</option>
                         <option>owl:real</option>
                         <option>rdf:PlainLiteral</option>
@@ -539,81 +516,81 @@
             </div>
         </div>
     </div>
-    </aside>
+</aside>
+<!--./ Right Sidebar -->
 
-    <!-- Error Console Info modal -->
-    <div class="tab modal fade" id="warningsConsole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">
-                        <strong>{{__('Warnings Console')}}</strong>
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>{{__('The warnings console is the way our editor tells you good modeling practices you should implement when building a ontology.This console will show you warnings that will help you build a better ontology.')}}
-                        <a target="_blank" href="{{route('warningIndex', app()->getLocale())}}">{{__('Click here')}}</a>
-                        {{__('to see all the warnings our console track. We will be updating this console with more warnings in the future,')}}
-                        <a href="{{route('help', app()->getLocale())}}">{{__('contact us')}}</a>
-                        {{__('if you had any problem with this feature.')}}
-                    </p>
-                    <img class="img-max-width" alt="export" src="{{asset('css/images/warningConsole.png')}}">
-                    <p>
-                        {{__('Here you can see that the pizza ontology have several warnings that need to be solved.')}}
-                    </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
-                </div>
+
+<!-- Error Console Info modal -->
+<div class="tab modal fade" id="warningsConsole" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <strong>{{__('Warnings Console')}}</strong>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>{{__('The warnings console is the way our editor tells you good modeling practices you should implement when building a ontology.This console will show you warnings that will help you build a better ontology.')}}
+                    <a target="_blank" href="{{route('warningIndex', app()->getLocale())}}">{{__('Click here')}}</a>
+                    {{__('to see all the warnings our console track. We will be updating this console with more warnings in the future,')}}
+                    <a href="{{route('help', app()->getLocale())}}">{{__('contact us')}}</a>
+                    {{__('if you had any problem with this feature.')}}
+                </p>
+                <img class="img-max-width" alt="export" src="{{asset('css/images/warningConsole.png')}}">
+                <p>
+                    {{__('Here you can see that the pizza ontology have several warnings that need to be solved.')}}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
             </div>
         </div>
     </div>
+</div>
 
-    <!--./Warning Console Info modal -->
+<!--./Warning Console Info modal -->
 
 
-    <!-- Toolbar Icons  -->
+<!-- Toolbar Icons  -->
 
-    <a class="toolbar-icon" download="ontology-report.txt"  href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
-        <i class="fa fa-fw fa-file-text-o"></i>
-    </a>
+<a class="toolbar-icon" download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
+    <i class="fa fa-fw fa-file-text-o"></i>
+</a>
 
-    <a id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#methodology-menu">
-        <i class="fa fa-fw fa-info-circle"></i>
-    </a>
+<a id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#methodology-menu">
+    <i class="fa fa-fw fa-info-circle"></i>
+</a>
 
-    <a id="tips-icon" title="{{__('Tips')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#tips-menu">
-        <i class="fa fa-fw fa-search"></i>
-    </a>
+<a id="tips-icon" title="{{__('Tips')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#tips-menu">
+    <i class="fa fa-fw fa-search"></i>
+</a>
 
-    <!-- ./Toolbar icons  -->
+<!-- ./Toolbar icons  -->
 
-    <!-- Menubar Icons -->
-    <a id="open-ontology" class="geItem  menubar-icon" data-toggle="modal" data-target="#ontology-manager">
-        {{__('Ontology Manager')}}
-    </a>
-    <a id="edit-ontology" class="geItem menubar-icon" data-toggle="modal" data-target="#edit-ontology-modal">
-       {{__('Edit Ontology')}}
-    </a>
-    <a id="ontology-name" class="geItem  menubar-icon">
-        {{__('Current Ontology: None')}}
-    </a>
-    <a id="save-ontology" class="geItem  btn btn-default unsaved menubar-icon">
-        <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
-    </a>
-    <!-- ./Menubar Icons -->
+<!-- Menubar Icons -->
+<a id="open-ontology" class="geItem  menubar-icon" data-toggle="modal" data-target="#ontology-manager">
+    {{__('Ontology Manager')}}
+</a>
+<a id="edit-ontology" class="geItem menubar-icon" data-toggle="modal" data-target="#edit-ontology-modal">
+    {{__('Edit Ontology')}}
+</a>
+<a id="ontology-name" class="geItem  menubar-icon">
+    {{__('Current Ontology: None')}}
+</a>
+<a id="save-ontology" class="geItem  btn btn-default unsaved menubar-icon">
+    <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
+</a>
+<!-- ./Menubar Icons -->
 
 <!-- Edit Ontology -->
 <div class="modal fade" id="edit-ontology-modal" style="display: none;">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <button style="color: red; opacity: 1" type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
+                <button style="color: red; opacity: 1" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span></button>
                 <h4 class="modal-title">{{__('Edit Current Ontology')}}</h4>
             </div>
@@ -623,8 +600,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>{{__('Name')}}</label>
-                            <input id="name" required value="{{__('New_Ontology')}}" name="name" type="text"
-                                class="form-control" placeholder="">
+                            <input id="name" required value="{{__('New_Ontology')}}" name="name" type="text" class="form-control" placeholder="">
                         </div>
                     </div>
                 </div>
@@ -632,8 +608,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>{{__('Publication Date')}}</label>
-                            <input id="publication-date" value="" name="publication_date" type="date"
-                                class="form-control">
+                            <input id="publication-date" value="" name="publication_date" type="date" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -651,15 +626,13 @@
                 </div>
                 <div class="form-group">
                     <label>{{__('Description')}}</label>
-                    <textarea id="description" name="description" class="form-control" rows="3"
-                        placeholder=""></textarea>
+                    <textarea id="description" name="description" class="form-control" rows="3" placeholder=""></textarea>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>{{__('Link')}}</label>
-                            <input placeholder="e.g: https://basic-formal-ontology.org/" id="link" value="" name="link"
-                                type="text" class="form-control">
+                            <input placeholder="e.g: https://basic-formal-ontology.org/" id="link" value="" name="link" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -689,8 +662,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>{{__('Type of Ontology')}}</label>
-                            <input id="type-of-ontology" value="" name="type_of_ontology" type="text"
-                                class="form-control">
+                            <input id="type-of-ontology" value="" name="type_of_ontology" type="text" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -698,8 +670,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>{{__('Degree of Formality')}}</label>
-                            <input id="degree-of-formality" value="" name="degree_of_formality" type="text"
-                                class="form-control">
+                            <input id="degree-of-formality" value="" name="degree_of_formality" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -711,12 +682,11 @@
                 </div>
                 <div class="form-group">
                     <label>{{__('Competence Questions')}}</label>
-                    <input id="competence-questions" value="" name="competence_questions" type="text"
-                        class="form-control">
+                    <input id="competence-questions" value="" name="competence_questions" type="text" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>{{__('Namespaces')}}</label>
-                    <select data-placeholder="{{__('Insert used namespaces here')}}" id="namespace-select" style="width: 100%; " class="js-example-basic-multiple js-example-tags"  name="namespace[]" multiple="multiple">
+                    <select data-placeholder="{{__('Insert used namespaces here')}}" id="namespace-select" style="width: 100%; " class="js-example-basic-multiple js-example-tags" name="namespace[]" multiple="multiple">
                         <option value="http://www.w3.org/2002/07/owl#">http://www.w3.org/2002/07/owl#</option>
                         <option value="http://www.w3.org/1999/02/22-rdf-syntax-ns">http://www.w3.org/1999/02/22-rdf-syntax-ns</option>
                         <option value="http://www.w3.org/2000/01/rdf-schema#">http://www.w3.org/2000/01/rdf-schema#</option>
@@ -726,25 +696,21 @@
                 </div>
                 <div class="form-group">
                     <label>{{__('Collaborators')}}</label>
-                    <span>- {{__('Insert usernames to share your ontology with other Onto4ALL users')}}</span> <strong
-                        style="color: #761c19">({{__('Collaborators will be able to edit this ontology')}})</strong>
-                    <select data-placeholder="{{__('Insert usernames here')}}" id="collaborators-select"
-                        style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]"
-                        multiple="multiple">
+                    <span>- {{__('Insert usernames to share your ontology with other Onto4ALL users')}}</span> <strong style="color: #761c19">({{__('Collaborators will be able to edit this ontology')}})</strong>
+                    <select data-placeholder="{{__('Insert usernames here')}}" id="collaborators-select" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
                         @foreach($users as $user)
-                            @if($user->id == Auth::user()->id)
-                                <option value="{{$user->id}}" selected="selected" locked="locked">{{__('You')}}</option>
-                            @else
-                                <option value="{{$user->id}}">{{$user->name}}</option>
-                            @endif
+                        @if($user->id == Auth::user()->id)
+                        <option value="{{$user->id}}" selected="selected" locked="locked">{{__('You')}}</option>
+                        @else
+                        <option value="{{$user->id}}">{{$user->name}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('Close')}}</button>
-                <button onclick="$('#save-ontology').click()" type="button" class="btn btn-success pull-right"
-                    data-dismiss="modal">{{__('Save Changes')}}</button>
+                <button onclick="$('#save-ontology').click()" type="button" class="btn btn-success pull-right" data-dismiss="modal">{{__('Save Changes')}}</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -782,8 +748,7 @@
                             @endif
 
                             <h3 class="timeline-header">
-                                <a class="openOntology" data-dismiss="modal" id="{{$ontology->id}}"
-                                    href="">{{$ontology->name}}</a>
+                                <a class="openOntology" data-dismiss="modal" id="{{$ontology->id}}" href="">{{$ontology->name}}</a>
                                 @if($ontology->created_at !== $ontology->updated_at)
                                 {{__('was updated')}}
                                 @else
@@ -800,9 +765,7 @@
                                 @endif
                             </div>
                             <div class="timeline-footer">
-                                <a data-dismiss="modal" id="{{$ontology->id}}"
-                                    class="btn btn-default editor-timeline-item openOntology" href="#"><i
-                                        class="fa fa-fw fa-object-group"></i> {{__('Open in the editor')}}</a>
+                                <a data-dismiss="modal" id="{{$ontology->id}}" class="btn btn-default editor-timeline-item openOntology" href="#"><i class="fa fa-fw fa-object-group"></i> {{__('Open in the editor')}}</a>
                             </div>
                         </div>
                     </li>
@@ -832,8 +795,7 @@
             <div class="modal-body">
 
                 <div style="margin-bottom: 10px" id="searchBar" class="input-group input-group-sm">
-                    <input value="" id="search-tip-input" type="text" class="form-control"
-                        placeholder="{{__('Search for tips')}}">
+                    <input value="" id="search-tip-input" type="text" class="form-control" placeholder="{{__('Search for tips')}}">
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default"><i class="fa fa-search-plus"></i></button>
                     </div>
@@ -841,16 +803,13 @@
                 <div id="menu-wrapper">
                     <div class="tab-content">
                         <div id="menu-scroll">
-                            <div id="control-sidebar-theme-demo-options-tab table-search"
-                                class="tab-pane active table-search">
+                            <div id="control-sidebar-theme-demo-options-tab table-search" class="tab-pane active table-search">
                                 @foreach($relations as $ontologyRelation)
                                 <div id="tipSearch" class="box box-default collapsed-box box-solid relation-box">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title title">{{$ontologyRelation->name}} <i
-                                                class="fa fa-fw fa-long-arrow-right"></i></h3>
+                                        <h3 class="box-title title">{{$ontologyRelation->name}} <i class="fa fa-fw fa-long-arrow-right"></i></h3>
                                         <div class="box-tools pull-right">
-                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                                    class="fa fa-plus"></i></button>
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                                         </div>
                                     </div>
                                     <div class="box-body">
@@ -874,8 +833,7 @@
                                             @if($ontologyRelation->imported_from)
                                             <dt>Imported From</dt>
                                             <dd>
-                                                <a target="_blank"
-                                                    href="{{$ontologyRelation->imported_from}}">{{$ontologyRelation->imported_from}}</a>
+                                                <a target="_blank" href="{{$ontologyRelation->imported_from}}">{{$ontologyRelation->imported_from}}</a>
                                             </dd>
                                             @endif
                                             <dt>ID</dt>
@@ -920,12 +878,10 @@
                                 @foreach ($classes as $class)
                                 <div id="tipSearch" class="box box-success collapsed-box box-solid">
                                     <div class="box-header with-border">
-                                        <h3 class="box-title title">{{$class->name}} <i
-                                                class="fa fa-fw fa-circle-thin"></i>
+                                        <h3 class="box-title title">{{$class->name}} <i class="fa fa-fw fa-circle-thin"></i>
                                         </h3>
                                         <div class="box-tools pull-right">
-                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                                    class="fa fa-plus"></i></button>
+                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                                         </div>
                                     </div>
                                     <div class="box-body">
@@ -955,8 +911,7 @@
                                             @if($class->imported_from)
                                             <dt>Imported From</dt>
                                             <dd>
-                                                <a target="_blank"
-                                                    href="{{$class->imported_from}}">{{$class->imported_from}}</a>
+                                                <a target="_blank" href="{{$class->imported_from}}">{{$class->imported_from}}</a>
                                             </dd>
                                             @endif
                                             @if(app()->getLocale() =='pt' && $ontologyRelation->label_pt)
@@ -1041,8 +996,7 @@
                         <li class=""><a href="#tab_8" data-toggle="tab" aria-expanded="false">8.
                                 {{__('Publication of the ontology')}}</a></li>
 
-                        <li class="pull-right"><a href="#tab_9" data-toggle="tab" aria-expanded="false"
-                                class="text-muted"><i class="fa fa-question-circle"></i></a></li>
+                        <li class="pull-right"><a href="#tab_9" data-toggle="tab" aria-expanded="false" class="text-muted"><i class="fa fa-question-circle"></i></a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1">
@@ -1056,8 +1010,7 @@
                             <hr>
                             <p>{{__('After clicking the button a modal will show up with all the information the ontology has.')}}
                             </p>
-                            <img style="width: 90%" alt="ontology-info"
-                                src="{{asset('css/images/Methodology/info.png')}}">
+                            <img style="width: 90%" alt="ontology-info" src="{{asset('css/images/Methodology/info.png')}}">
                         </div>
                         <div class="tab-pane " id="tab_2">
                             <p>
@@ -1069,8 +1022,7 @@
                                 <strong>{{__('this page using the graphical editor')}}</strong>.
                                 {{__('You can access this page again by clicking in the “Ontology Editor” on the menu')}}
                             </p>
-                            <img class="img-max-width" alt="editor"
-                                src="{{asset('css/images/Methodology/editor.png')}}">
+                            <img class="img-max-width" alt="editor" src="{{asset('css/images/Methodology/editor.png')}}">
 
                         </div>
                         <div class="tab-pane" id="tab_4">
@@ -1080,22 +1032,18 @@
                             <p>
                                 <strong>{{__('You can edit your previous saved ontologies using the button open in the editor on the right sidebar')}}</strong>
                             </p>
-                            <img class="img-max-width" alt="import"
-                                src="{{asset('css/images/Methodology/importFromSidebar.png')}}">
+                            <img class="img-max-width" alt="import" src="{{asset('css/images/Methodology/importFromSidebar.png')}}">
                             <p>
                                 <strong>
                                     {{__('You can import other ontologies to this editor if they have been created using the Onto4AllEditor and have a .XML extension. You can also import OWL files made by other editors (Beware that this function only works for valid OWL files with right syntax. If you have any issues with this feature, please, contact us). All ontologies exported by this editor can be imported in later projects.Using the editor menu, click on the file button and then on the import as showed below:')}}
                                 </strong>
                             </p>
-                            <img class="img-max-width" alt="import"
-                                src="{{asset('css/images/Methodology/import.png')}}">
+                            <img class="img-max-width" alt="import" src="{{asset('css/images/Methodology/import.png')}}">
                             <p>{{__('Select a valid file from your computer using the choose file button or drag a file direct to the box and then click in import')}}
                             </p>
-                            <img class="img-max-width" alt="select-file"
-                                src="{{asset('css/images/Methodology/select-file.png')}}">
+                            <img class="img-max-width" alt="select-file" src="{{asset('css/images/Methodology/select-file.png')}}">
                             <p>{{__('After that, your imported ontology will be showing on the editor')}}</p>
-                            <img class="img-max-width" alt="pizza ontology"
-                                src="{{asset('css/images/Methodology/pizza.png')}}">
+                            <img class="img-max-width" alt="pizza ontology" src="{{asset('css/images/Methodology/pizza.png')}}">
 
                         </div>
                         <div class="tab-pane" id="tab_5">
@@ -1105,8 +1053,7 @@
                             <ul>
                                 <li>
                                     5.1){{__('to construct general taxonomy of the ontology based on previously selected top-level taxonomy (in the Onto4AllEditor, this activity must be performed in the Ontology Editor, the page you are right now)')}}
-                                    <img class="img-max-width" alt="properties"
-                                        src="{{asset('css/images/Methodology/editor.png')}}">
+                                    <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/editor.png')}}">
                                 </li>
                                 <li>
                                     5.2)
@@ -1121,8 +1068,7 @@
                                     5.4)
                                     {{__('to define properties of classes, involving attributes as data types, cardinality, existential and universal quantifiers (in the Onto4AllEditor, this activity must be performed in the menu “Ontology Editor”, clicking under a class or relation with the right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the class/relation and pressing CTRL + M))')}}
                                     <img alt="properties" src="{{asset('css/images/Methodology/propriedades.png')}}">
-                                    <img class="img-max-width" alt="properties"
-                                        src="{{asset('css/images/Methodology/class-properties.png')}}">
+                                    <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/class-properties.png')}}">
                                 </li>
                                 <li>
                                     5.5)
@@ -1131,10 +1077,8 @@
                                 <li>
                                     5.6)
                                     {{__('to specify ontological relations, consisting of the application of a defined set of rules and principles carrying out the transformation of conceptual relations into formal relations (in the Onto4AllEditor, this activity must be performed in the editor, clicking under a class or relation with the right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the relation and pressing CTRL + M)).')}}
-                                    <img class="img-max-width" alt="properties"
-                                        src="{{asset('css/images/Methodology/relation.png')}}">
-                                    <img class="img-max-width" alt="properties"
-                                        src="{{asset('css/images/Methodology/relation-properties.png')}}">
+                                    <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/relation.png')}}">
+                                    <img class="img-max-width" alt="properties" src="{{asset('css/images/Methodology/relation-properties.png')}}">
                                 </li>
                             </ul>
                         </div>
@@ -1142,8 +1086,7 @@
                             <p>
                                 {{__('The evaluation of the ontology correspond to the application of a set of criteria allowing one to perform both the ontological validation (validation of the correspondence between ontology and the real world) and the ontological verification (analysis of the ontology with respect to the correctness of its construction). Examples of validation criteria are: non-recursivity in definitions, the specification of different types of part_of relations, the definition of inverse relations, and the creation of the cardinalities.In the Onto4AllEditor, the Phase 6 is performed automatically by the editor through of the functionality Warnings Console, that suggests good modeling practices for the current drawn ontology.')}}
                             </p>
-                            <img class="img-max-width" alt="console"
-                                src="{{asset('css/images/Methodology/console.png')}}">
+                            <img class="img-max-width" alt="console" src="{{asset('css/images/Methodology/console.png')}}">
 
                         </div>
                         <div class="tab-pane" id="tab_7">
@@ -1154,8 +1097,7 @@
                         <div class="tab-pane" id="tab_8">
                             <p>{{__('In phase 8 the developer makes the ontological artifact available in a way that be downloaded and properly visualized by a community of users.You can download the ontology you just draw by clicking in the file menu and then in the export submenu')}}
                             </p>
-                            <img class="img-max-width" alt="export"
-                                src="{{asset('css/images/Methodology/export.png')}}">
+                            <img class="img-max-width" alt="export" src="{{asset('css/images/Methodology/export.png')}}">
                             <p>{{__('You can export your ontology in XML, OWL or SVG (image).When you do that your ontology is also saved in your account, you can look all the ontologies you made by clicking on the File Manager menu on the top of the page.')}}
                             </p>
 
@@ -1194,8 +1136,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left"
-                        data-dismiss="modal">{{__('Close')}}</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('Close')}}</button>
 
                 </div>
             </div>
@@ -1205,6 +1146,34 @@
     <!-- /.modal-dialog -->
 </div>
 
+<!-- Class Expression Editor Modal -->
+
+<div class="tab modal fade" id="ClassExpressionEditorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <h4 style="text-align: center" class="modal-title">{{__('Class Expression Editor')}}</h4>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <label>Constraint</label>
+                <textarea placeholder="Separate your axioms with semicolon ; e.g: &#13;&#10; Man subClassOf People ; &#13;&#10; Woman subClassOf People ;" style="width: 100%;" id="Constraint" rows="4" onchange="updateInput(this.id, this.value)"> </textarea>
+                <label>Axioms:</label>
+                <div id="highlight-constraint-text"> </div>
+                <p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> {{__('None axiom to check!')}} </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--./Class Expression Editor Modal -->
 
 <!-- LOADS MXGRAPH GRAPHEDITOR AND ITS FUNCTIONS -->
 
@@ -1214,7 +1183,7 @@
     // - touch=1: Enables a touch-style user interface.
     // - storage=local: Enables HTML5 local storage.
     // - chrome=0: Chromeless mode.
-    var urlParams = (function (url) {
+    var urlParams = (function(url) {
         var result = new Object();
         var idx = url.lastIndexOf('?');
 
@@ -1229,90 +1198,89 @@
                 }
             }
         }
-            return result;
-        })(window.location.href);
+        return result;
+    })(window.location.href);
 
-        // Default resources are included in grapheditor resources
-        mxLoadResources = false;
-    </script>
+    // Default resources are included in grapheditor resources
+    mxLoadResources = false;
+</script>
 
 
-    <!-- MxGraph -->
-    <script type="text/javascript" src="{{asset('grapheditor/js/Init.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/deflate/pako.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/deflate/base64.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/jscolor/jscolor.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/sanitizer/sanitizer.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/mxClient.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/EditorUi.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/Editor.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/SidebarO4A.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/Graph.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/Format.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/Shapes.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/Actions.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/Menus.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/Toolbar.js')}}"></script>
-    <script type="text/javascript" src="{{asset('grapheditor/js/Dialogs.js')}}"></script>
+<!-- MxGraph -->
+<script type="text/javascript" src="{{asset('grapheditor/js/Init.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/deflate/pako.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/deflate/base64.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/jscolor/jscolor.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/sanitizer/sanitizer.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/mxClient.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/EditorUi.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/Editor.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/SidebarO4A.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/Graph.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/Format.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/Shapes.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/Actions.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/Menus.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/Toolbar.js')}}"></script>
+<script type="text/javascript" src="{{asset('grapheditor/js/Dialogs.js')}}"></script>
 
-    <!-- Onto4ALL -->
-    <script src="{{asset('js/Browser.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/EditorFunctions.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/NightMode.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/OntologyManager.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/Cell.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"
-        integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous">
-    </script>
+<!-- Onto4ALL -->
+<script src="{{asset('js/Browser.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/EditorFunctions.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/NightMode.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/OntologyManager.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/Cell.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous">
+</script>
 
-    <script type="text/javascript">
-        // Extends EditorUi to update I/O action states based on availability of backend
-        (function () {
-            var editorUiInit = EditorUi.prototype.init;
+<script type="text/javascript">
+    // Extends EditorUi to update I/O action states based on availability of backend
+    (function() {
+        var editorUiInit = EditorUi.prototype.init;
 
-            EditorUi.prototype.init = function () {
-                editorUiInit.apply(this, arguments);
-                this.actions.get('export').setEnabled(false);
+        EditorUi.prototype.init = function() {
+            editorUiInit.apply(this, arguments);
+            this.actions.get('export').setEnabled(false);
 
-                // Updates action states which require a backend
-                if (!Editor.useLocalStorage) {
-                    mxUtils.post(OPEN_URL, '', mxUtils.bind(this, function (req) {
-                        var enabled = req.getStatus() != 404;
-                        this.actions.get('open').setEnabled(enabled || Graph.fileSupport);
-                        this.actions.get('import').setEnabled(enabled || Graph.fileSupport);
-                        this.actions.get('save').setEnabled(enabled);
-                        this.actions.get('saveAs').setEnabled(enabled);
-                        this.actions.get('export').setEnabled(enabled);
-                    }));
-                }
-            };
+            // Updates action states which require a backend
+            if (!Editor.useLocalStorage) {
+                mxUtils.post(OPEN_URL, '', mxUtils.bind(this, function(req) {
+                    var enabled = req.getStatus() != 404;
+                    this.actions.get('open').setEnabled(enabled || Graph.fileSupport);
+                    this.actions.get('import').setEnabled(enabled || Graph.fileSupport);
+                    this.actions.get('save').setEnabled(enabled);
+                    this.actions.get('saveAs').setEnabled(enabled);
+                    this.actions.get('export').setEnabled(enabled);
+                }));
+            }
+        };
 
-            // Adds required resources (disables loading of fallback properties, this can only
-            // be used if we know that all keys are defined in the language specific file)
-            mxResources.loadDefaultBundle = false;
-            var bundle = mxResources.getDefaultBundle(RESOURCE_BASE, mxLanguage) ||
-                mxResources.getSpecialBundle(RESOURCE_BASE, mxLanguage);
+        // Adds required resources (disables loading of fallback properties, this can only
+        // be used if we know that all keys are defined in the language specific file)
+        mxResources.loadDefaultBundle = false;
+        var bundle = mxResources.getDefaultBundle(RESOURCE_BASE, mxLanguage) ||
+            mxResources.getSpecialBundle(RESOURCE_BASE, mxLanguage);
 
-            // Fixes possible asynchronous requests
-            mxUtils.getAll([bundle, STYLE_PATH + '/default.xml'], function (xhr) {
-                // Adds bundle text to resources
-                mxResources.parse(xhr[0].getText());
+        // Fixes possible asynchronous requests
+        mxUtils.getAll([bundle, STYLE_PATH + '/default.xml'], function(xhr) {
+            // Adds bundle text to resources
+            mxResources.parse(xhr[0].getText());
 
-                // Configures the default graph theme
-                var themes = new Object();
-                themes[Graph.prototype.defaultThemeName] = xhr[1].getDocumentElement();
+            // Configures the default graph theme
+            var themes = new Object();
+            themes[Graph.prototype.defaultThemeName] = xhr[1].getDocumentElement();
 
-                // Main
-                new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
-            }, function () {
+            // Main
+            new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
+        }, function() {
             document.body.innerHTML =
                 '<center style="margin-top:10%;">Error loading resource files. Please check browser console.</center>';
-            });
-        })();
-    </script>
+        });
+    })();
+</script>
 
 
 @stop
