@@ -141,11 +141,20 @@
 								<button type="button" class="btn btn-default btn-block">{{__('Register')}}</button>
 							</a>
 							@endif
+							
+							<a onclick="document.getElementById('donate').submit()" class="text-center">
+								<button style="color: #00A65A !important" type="button" class="btn btn-default btn-block"><i class="fa fa-fw fa-paypal"></i>{{__('Donate')}}
+									<form id="donate" style="visibility: hidden; height: 0px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+										<input type="hidden" name="cmd" value="_s-xclick"/>
+										<input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN"/>
+										<input class="center-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
+											title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button"/>
+										<img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1"/>
+									</form>
+								</button>
+							</a>
 							<a href="https://onto4alleditor.com/en#contact" class="text-center">
 								<button type="button" class="btn btn-default btn-block">{{__('Contact Us')}}</button>
-							</a>
-							<a  href="https://www.paypal.com/donate?token=HyB5GlzVKII440dH4aPCLKg9CJJ4Sau3xPG0W08GVgaK5cN2sBiYh3A-XCWjgL4E5uPI-HJDau8g84ni" class="text-center">
-								<button style="color: #00A65A !important" type="button" class="btn btn-default btn-block"><i class="fa fa-fw fa-paypal"></i>{{__('Donate')}}</button>
 							</a>
 						</div>
 						<br>
