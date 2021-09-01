@@ -141,11 +141,11 @@ function compileRelation(relation) {
         missingRelationProperties = missingRelationProperties + ' inverseOf';
 
     if (missingRelationProperties !== "") {
-        basicErrorsCount++;
+        warningsCount++;
         if (getLanguage() === 'pt')
-            sendWarningMessage('Na relação ' + relation.getAttribute("label").bold() + '(ID: ' + relation.id.bold() + ')' + ', você não preencheu as seguintes propriedades: ' + missingRelationProperties.bold() + '', 7, 'Erro Básico');
+            sendWarningMessage('Na relação ' + relation.getAttribute("label").bold() + '(ID: ' + relation.id.bold() + ')' + ', você não preencheu as seguintes propriedades: ' + missingRelationProperties.bold() + '', 7, 'Má Prática');
         else
-            sendWarningMessage('In the ' + relation.getAttribute("label").bold() + '(ID: ' + relation.id.bold() + ')' + ' Relation, you did not fill the following properties: ' + missingRelationProperties.bold() + '', 7, 'Basic Error');
+            sendWarningMessage('In the ' + relation.getAttribute("label").bold() + '(ID: ' + relation.id.bold() + ')' + ' Relation, you did not fill the following properties: ' + missingRelationProperties.bold() + '', 7, 'Bad Practice');
             missingRelationProperties = "";
     }
 
@@ -226,6 +226,7 @@ function compileClass(classCell) {
         }
     }
 
+    /*
     if( classCell.getAttribute("label") !== 'Thing' && classCell.getAttribute("label") !== 'Coisa')
     {    
         // Search for missing properties in each class element
@@ -247,7 +248,7 @@ function compileClass(classCell) {
                 sendWarningMessage('In the ' + classCell.getAttribute("label").bold() + ' Class, you did not fill the following properties: ' + missingClassProperties.bold() + '', 6, 'Basic Error');
                 missingClassProperties = "";
         }   
-    }
+    }*/
     //if(classCell.getAttribute('DisjointWith') !== "")
     //    autoCompleteProperty(classCell, "DisjointWith");
 }
