@@ -249,8 +249,8 @@ function compileClass(classCell) {
                 missingClassProperties = "";
         }   
     }*/
-    //if(classCell.getAttribute('DisjointWith') !== "")
-    //    autoCompleteProperty(classCell, "DisjointWith");
+    if(classCell.getAttribute('DisjointWith') !== "")
+        autoCompleteProperty(classCell, "DisjointWith");
 }
 
 /**
@@ -449,12 +449,14 @@ function autoCompleteProperty(cell, propertyName) {
                     }
 
                     let cellToUpdate = getCellById(id, cell.isEdge() ? 'Relation' : 'Class');
-                    let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
-                    removeItemAll(updatedValue, "null");
-                    removeItemAll(updatedValue, "");
-                    if(!updatedValue.includes(cell.id))
+                    if(cellToUpdate != undefined){
+                        let updatedValue = cellToUpdate.getAttribute(propertyName).split(',');
+                        removeItemAll(updatedValue, "null");
+                        removeItemAll(updatedValue, "");
+                        if(!updatedValue.includes(cell.id))
                         updatedValue.push(cell.id);
-                    cellToUpdate.setAttribute(propertyName, updatedValue);
+                        cellToUpdate.setAttribute(propertyName, updatedValue);
+                    }
                 }
                 });
             break;
