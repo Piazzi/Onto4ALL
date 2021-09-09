@@ -710,7 +710,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('Close')}}</button>
-                <button onclick="$('#save-ontology').click()" type="button" class="btn btn-success pull-right" data-dismiss="modal">{{__('Save Changes')}}</button>
+                <button onclick="document.getElementById('save-ontology').click()" type="button" class="btn btn-success pull-right" data-dismiss="modal">{{__('Save Changes')}}</button>
             </div>
         </div>
         <!-- /.modal-content -->
