@@ -68,29 +68,14 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-   /**
-     * When a user clicks on the ontology palette the name of
-     * the class or relation is searched in the tips menu
-     */
-    document.getElementsByClassName('geSidebar geItem').addEventListener('click', function () {
-        let name =  document.querySelector(this).getAttribute('class');
-        name = name.replace("geItem", "").trim();
-        if(name != 'Class' && name != 'Callout' && name != 'Textbox' && name != 'Text' && name != 'Instance' && name != 'new_relation')
-        {
-            document.getElementById('search-tip-input').setAttribute('value', name);
-            document.querySelectorAll('#menu-scroll .collapsed-box').filter(function () {
-                this.classList.toggle(this.textContent.toLowerCase().indexOf(name) > -1)
-            });
-        }
-    });
-
     document.getElementById('search-tip-input').addEventListener("keyup", function () {
         let value = this.value.toLowerCase();
-
         document.querySelectorAll('#menu-scroll .collapsed-box').filter(function () {
-            this.classList.toggle(this.textContent.toLowerCase().indexOf(value) > -1)
+            if(this.textContent.toLowerCase().indexOf(value) > -1){
+                this.style.visibility = "visible";
+            }
+            else{
+                this.style.visibility = "hidden";
+            }
         });
-
     });
-
-
