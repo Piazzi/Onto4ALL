@@ -237,8 +237,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Downloads a .txt file containing all the errors that the user made in the current ontology
 document.getElementById('download-errors-txt').addEventListener('click', function(){
-    let texts = document.querySelector(".direct-chat-text").textContent;
-    this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(texts);
+    // let texts = document.querySelectorAll(".direct-chat-text").textContent;
+    let consoleMessages = document.getElementsByClassName('direct-chat-text');
+    let txts;
+    for (let i = 0; i < consoleMessages.length; i++) 
+        txts = txts + consoleMessages[i].textContent;
+    this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(txts);
 });
 
 /**
