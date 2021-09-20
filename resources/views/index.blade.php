@@ -1225,10 +1225,8 @@
 <script type="text/javascript" src="{{asset('grapheditor/js/Dialogs.js')}}"></script>
 
 <!-- Onto4ALL -->
-<script src="{{asset('js/Browser.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/EditorFunctions.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/NightMode.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/OntologyManager.js')}}"></script>

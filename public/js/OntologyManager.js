@@ -164,73 +164,31 @@ document.addEventListener("DOMContentLoaded", function() {
 // Reads the current ontology XML and then writes the report on a string for download
 document.addEventListener("DOMContentLoaded", function() { 
     document.getElementById('download-ontology-report').addEventListener('click', function () {
-        // get the XML document from the editor
-        let xmlDoc = editor.getGraphXml();
+
         let report = '/************* Ontology Report *************/ \n\nClasses:';
 
-        // Starts the XML interpretation
-        for (let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
-        {
-            if(!elementIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
-                continue;
-            if(isClass(xmlDoc.getElementsByTagName("mxCell")[i]))
-            {
-                report = report + '\n       '+labelFilter(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]));
-                // check if the properties are filled
-                if(filledProperties(xmlDoc.getElementsByTagName("mxCell")[i]))
-                {
-                    report = report + '\n       Properties:';
-                    let parentNode = xmlDoc.getElementsByTagName("mxCell")[i].parentNode;
-                    // write the properties
-                    for(let i = 0; i < parentNode.attributes.length; i++)
-                    {
-                        report = report + '\n           - '+parentNode.attributes[i].name+': '+ labelFilter(parentNode.attributes[i].value);
-                    }
-                }
+        // write the classes in the document
+        classes.forEach(ontologyClass => {
+            report = report + '\n       Class: '+ ontologyClass.value.attributes['label'].value + ' | ID: ' + ontologyClass.id;
+            report = report + '\n       Properties:';
+            for (let i = 0; i < ontologyClass.value.attributes.length; i++) 
+                report = report + '\n           - '+ontologyClass.value.attributes[i].name+': '+ ontologyClass.value.attributes[i].value;
+            report = report+ '\n    ----------------------------------------';
+        });
 
-                report = report+ '\n    ----------------------------------------';
-
-
-            }
-        }
         report = report + '\nRelations: ';
 
-        for (let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
-        {
-            if(!elementIsValid(xmlDoc.getElementsByTagName("mxCell")[i]))
-                continue;
-            if(isRelation(xmlDoc.getElementsByTagName("mxCell")[i]))
-            {
-                if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source") != null &&
-                    xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target") != null)
-                {
-                    let domainId = xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("source");
-                    let rangeId =  xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("target");
-                    report = report + '\n       '+labelFilter(findNameById(xmlDoc.getElementsByTagName("mxCell"),domainId))+' '+labelFilter(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i])+' '+labelFilter(findNameById(xmlDoc.getElementsByTagName("mxCell"), rangeId)));
-                }
-                else
-                    report = report + '\n       '+labelFilter(getValueOrLabel(xmlDoc.getElementsByTagName("mxCell")[i]));
-
-                // check if the properties are filled
-                if(filledProperties(xmlDoc.getElementsByTagName("mxCell")[i]))
-                {
-                    report = report + '\n       Properties:';
-                    let parentNode = xmlDoc.getElementsByTagName("mxCell")[i].parentNode;
-                    for(let i = 0; i < parentNode.attributes.length; i++)
-                    {
-                        report = report + '\n           - '+parentNode.attributes[i].name+': '+labelFilter(parentNode.attributes[i].value);
-                    }
-                }
-
-                report = report+ '\n    ---------------------------------------- ';
-
-
-            }
-        }
+        // write the relations in the document
+        relations.forEach(relation => {
+            report = report + '\n      Relation:  '+ relation.value.attributes['label'].value + ' | ID: ' + relation.id;
+            report = report + '\n       Properties:';
+            for (let i = 0; i < relation.value.attributes.length; i++) 
+                report = report + '\n           - '+relation.value.attributes[i].name+': '+ relation.value.attributes[i].value;
+            report = report+ '\n    ----------------------------------------';
+        });
+       
         report = report + '\n\n/************ Made with Onto4ALL ************/';
-        console.log(report);
         document.getElementById('download-ontology-report').setAttribute("href", "data:text/plain;charset=UTF-8," + encodeURIComponent(report));
-
     })
 
 });
