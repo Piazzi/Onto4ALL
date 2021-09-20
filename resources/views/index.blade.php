@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-<div style="position:absolute; top:0; right:0;z-index:1000; background-color:#fbfbfb; width: 240px; " class="navbar-custom-menu">
+<div style="position:absolute; top:0; right:0;z-index:1000; background-color:#fbfbfb; width: 180px; " class="navbar-custom-menu">
     <ul class="nav navbar-nav" style="float: right">
         @php
         $amount = Auth::user()->unreadNotifications->count();
@@ -200,7 +200,7 @@
                     Annotation Properties</a></li>
             <li><a id="datatype-properties-nav" href="#datatype-properties-tab" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
             <li><a id="individuals-nav" href="#individuals-tab" data-toggle="tab" style="color: rebeccapurple"><i class="fa fa-fw fa-user"></i> Individuals</a></li>
-            <li><a id="empty-nav" href="#empty-tab" data-toggle="tab" style="visibility: hidden"></a></li>
+            <li style="visibility: hidden; display:none"><a id="empty-nav" href="#empty-tab" data-toggle="tab" ></a></li>
 
         </ul>
         <div class="tab-content">
