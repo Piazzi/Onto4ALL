@@ -1,3 +1,7 @@
+var geToolbar = document.getElementsByClassName('geToolbar');
+var geMenubar = document.getElementsByClassName('geMenubar');
+var toolbarIcon = document.getElementsByClassName('toolbar-icon');
+var menubarIcon = document.getElementsByClassName('menubar-icon');
 function onReady(callback) {
     var intervalId = window.setInterval(function () {
         if (document.getElementsByTagName('body')[0] !== undefined) {
@@ -16,8 +20,8 @@ function buildMenu() {
     if(document.getElementsByClassName('geToolbar')[0].childElementCount < 22 || document.getElementsByClassName('geMenubar')[0].childElementCount < 8)
     {
         $(".geToolbar").append('<div class="geSeparator"> </div>');
-        $(".geToolbar").append($('.toolbar-icon'));
-        $(".geMenubar").append($('.menubar-icon'));
+        $(".geToolbar").append(toolbarIcon);
+        $(".geMenubar").append(menubarIcon);
     }
 }
 
@@ -28,7 +32,7 @@ onReady(function () {
     setVisible('#loading', false);
 });
 
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function() { 
 
     // Select2 Plugin
     $(document).ready(function () {
@@ -43,48 +47,35 @@ $(document).ready(function () {
     });
 
     // Progress bar from the Methodology tab
-    let percentage = $("#progress-bar").width() / $('#progress-bar').offsetParent().width() * 100;
-    $('input[type="checkbox"]').click(function () {
-        if ($(this).prop("checked")) {
-            $(this).closest('li').attr('class', 'done');
+    let percentage = document.getElementById('progress-bar').clientWidth / document.getElementById('progress-bar').offsetParent().clientWidth * 100;
+    document.querySelector('input[type="checkbox"]').addEventListener('click', function () {
+        if (this.checked) {
+            this.closest('li').setAttribute('class', 'done');
             percentage = percentage + 12.5;
-            $('#progress-bar').width(percentage + '%').attr('aria-valuenow', percentage);
+            document.getElementById('progress-bar').clientWidth = percentage + '%';
+            document.getElementById('progress-bar').setAttribute('aria-valuenow', percentage);
             console.log(percentage);
 
         } else {
-            $(this).closest('li').attr('class', '');
+            this.closest('li').attr('class', '');
             percentage = percentage - 12.5;
-            $('#progress-bar').width(percentage + '%').attr('aria-valuenow', percentage);
+            document.getElementById('progress-bar').clientWidth = percentage + '%';
+            document.setAttribute('aria-valuenow', percentage);
 
         }
-        $('#progress-text').text(percentage + "% complete");
+        document.getElementById('progress-text').textContent = percentage + "% complete";
 
     });
 });
 
-   /**
-     * When a user clicks on the ontology palette the name of
-     * the class or relation is searched in the tips menu
-     */
-    $(".geSidebar .geItem").click(function () {
-        let name =  $(this).attr('class');
-        name = name.replace("geItem", "").trim();
-        if(name != 'Class' && name != 'Callout' && name != 'Textbox' && name != 'Text' && name != 'Instance' && name != 'new_relation')
-        {
-            $('#search-tip-input').attr('value', name);
-            $("#menu-scroll .collapsed-box").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(name) > -1)
-            });
-        }
-    });
-
-    $("#search-tip-input").on("keyup", function () {
-        let value = $(this).val().toLowerCase();
-
-        $("#menu-scroll .collapsed-box").filter(function () {
-            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    document.getElementById('search-tip-input').addEventListener("keyup", function () {
+        let value = this.value.toLowerCase();
+        document.querySelectorAll('#menu-scroll .collapsed-box').filter(function () {
+            if(this.textContent.toLowerCase().indexOf(value) > -1){
+                this.style.visibility = "visible";
+            }
+            else{
+                this.style.visibility = "hidden";
+            }
         });
-
     });
-
-

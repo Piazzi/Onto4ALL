@@ -92,7 +92,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body" style="display: none;">
-                    <strong>{{__('If you do this you will lost all your saved ontologies')}}</strong>
+                    <strong>{{__('If you do this you will lose all your saved ontologies')}}</strong>
                 </div>
                 <!-- /.box-body -->
 

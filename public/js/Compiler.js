@@ -1,6 +1,10 @@
 var classes = [], relations = [], instances = [], datatypeProperties = [], previousCells = [], compilerCounter = 0;
 let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
-
+var saveOntology = document.getElementById('save-ontology');
+var warnings = document.getElementById('warnings');
+var errors = document.getElementById('errors');
+var warningsConsole = document.getElementById('warnings-console');
+var directChatMessages = document.querySelector(".direct-chat-messages");
 /**
  * Gets the current cells from the graph after any change is made.
  * And finds any measurable error.
@@ -49,7 +53,7 @@ let warningsCount = 0, basicErrorsCount = 0, conceptualErrorsCount = 0;
  }
 
  function removePreviousConsoleMessages() {
-    $(".direct-chat-messages").empty();
+    directChatMessages.innerHTML = '';
  }
 
 /**
@@ -328,17 +332,18 @@ function sendWarningMessage(text, warningId, type) {
             imgSrc: '/css/images/error-icon.png'
         };
 
-    $(".direct-chat-messages").append(' <div class="direct-chat-msg ">' +
-        '<div class="direct-chat-info clearfix">' +
-        '<span class="direct-chat-name pull-right">' +
-        '<i class="fa' + warning.icon + '"></i>' +
-        '<strong> ' + type + '  </strong>' +
-        '</span>' +
-        '<span class="direct-chat-timestamp pull-left">' + new Date().toLocaleString() + '</span>' +
-        '</div>' +
-        '<img class="direct-chat-img" src="' + warning.imgSrc + '" alt="Warning Message">' +
-        '<div style="background-color: ' + warning.backgroundColor + '; color: white; border-color: ' + warning.borderColor + '" class="direct-chat-text"> ' + text + '</div>' +
-        '</div>');
+    directChatMessages.innerHTML += ' <div class="direct-chat-msg ">' +
+    '<div class="direct-chat-info clearfix">' +
+    '<span class="direct-chat-name pull-right">' +
+    '<i class="fa' + warning.icon + '"></i>' +
+    '<strong> ' + type + '  </strong>' +
+    '</span>' +
+    '<span class="direct-chat-timestamp pull-left">' + new Date().toLocaleString() + '</span>' +
+    '</div>' +
+    '<img class="direct-chat-img" src="' + warning.imgSrc + '" alt="Warning Message">' +
+    '<div style="background-color: ' + warning.backgroundColor + '; color: white; border-color: ' + warning.borderColor + '" class="direct-chat-text"> ' + text + '</div>' +
+    '</div>';
+
 }
 
 /**
@@ -468,6 +473,8 @@ function autoCompleteProperty(cell, propertyName) {
  */
 function updateSaveButtonInFrontEnd(saved) {
     let message = '';
+    let icon = document.createElement('i');
+    icon.className = 'fa fa-fw fa-cloud-upload';
     // Updates the save file button
     if(saved)
     {
@@ -475,20 +482,26 @@ function updateSaveButtonInFrontEnd(saved) {
             message = 'Todas as alterações foram salvas';
         else
             message = 'All changes saved';
-        $("#save-ontology").removeClass("unsaved").addClass("saved").html('<i class="fa fa-fw fa-cloud-upload"></i> '+message+'');
+        saveOntology.classList.remove("unsaved");
+        saveOntology.classList.add("saved");
+        saveOntology.innerHTML = message;
+        saveOntology.prepend(icon);
     }
     else
     {
         if(getLanguage() == 'pt')
-        message = 'Alterações não salvas. Clique aqui para salvar';
+            message = 'Alterações não salvas. Clique aqui para salvar';
         else
-        message = 'Unsaved changes. Click here to save';
-        $("#save-ontology").removeClass("saved").addClass("unsaved").html('<i class="fa fa-fw fa-cloud-upload"></i> '+message+'');
+            message = 'Unsaved changes. Click here to save';
+        saveOntology.classList.remove("saved");
+        saveOntology.classList.add("unsaved");
+        saveOntology.innerHTML = message;
+        saveOntology.prepend(icon);
     }
 
     // shows the button only if the user has made chances in the empty diagram
     if(compilerCounter > 1)
-     $("#save-ontology").css("visibility", "visible")
+        saveOntology.style.visibility = "visible";
 }
 
 /**
@@ -498,12 +511,12 @@ function updateSaveButtonInFrontEnd(saved) {
  * @param conceptualErrorsCount
  */
 function updateCountersInFrontEnd(warningsCount, basicErrorsCount, conceptualErrorsCount) {
-    $("#warnings-count").text(warningsCount);
-    $("#error-count").text(basicErrorsCount + conceptualErrorsCount);
-    $("#classes-count").text(classes.length);
-    $("#relations-count").text(relations.length);
-    $("#instances-count").text(instances.length);
-    $("#datatypeproperties-count").text(datatypeProperties.length);
+    document.querySelector("#warnings-count").textContent = warningsCount;
+    document.querySelector("#error-count").textContent = basicErrorsCount + conceptualErrorsCount;
+    document.querySelector("#classes-count").textContent = classes.length;
+    document.querySelector("#relations-count").textContent = relations.length;
+    document.querySelector("#instances-count").textContent = instances.length;
+    document.querySelector("#datatypeproperties-count").textContent = datatypeProperties.length;
 }
 
 /**
@@ -516,22 +529,22 @@ function updateConsoleColors(warningsCount, basicErrorsCount, conceptualErrorsCo
     let borderColor = '#00a65a';
     if (warningsCount !== 0) {
         borderColor = '#f39c12';
-        $('#warnings')[0].style.setProperty('background-color', '#f39c12', 'important');
+        warnings.style.setProperty('background-color', '#f39c12', 'important');
     }
     if (basicErrorsCount + conceptualErrorsCount !== 0) {
         borderColor = 'indianred';
-        $('#errors')[0].style.setProperty('background-color', 'indianred', 'important');
+        errors.style.setProperty('background-color', 'indianred', 'important');
     }
-    $('#warnings-console')[0].style.setProperty('border-color', borderColor, 'important');
+    warningsConsole.style.setProperty('border-color', borderColor, 'important');
 
     if (basicErrorsCount + conceptualErrorsCount + warningsCount === 0) {
-        $('#warnings')[0].style.setProperty('background-color', '#00a65a', 'important');
-        $('#errors')[0].style.setProperty('background-color', '#00a65a', 'important');
-        $('#warnings-console')[0].style.setProperty('border-color', '#00a65a', 'important');
+        warnings.style.setProperty('background-color', '#00a65a', 'important');
+        errors.style.setProperty('background-color', '#00a65a', 'important');
+        warningsConsole.style.setProperty('border-color', '#00a65a', 'important');
         let message = 'You dont have any warnings.';
         if (getLanguage() === 'pt')
             message = 'Voce não tem nenhum aviso';
-        $(".direct-chat-messages").append('<img id="no-warning-img" class="direct-chat-img" src="/css/images/LogoMini.png" alt="Message User Image"><div id="no-warning-text" class="direct-chat-text">' + message + '</div>');
+        directChatMessages.innerHTML += '<img id="no-warning-img" class="direct-chat-img" src="/css/images/LogoMini.png" alt="Message User Image"><div id="no-warning-text" class="direct-chat-text">' + message + '</div>';
     }
 }
 

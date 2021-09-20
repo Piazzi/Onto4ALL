@@ -385,6 +385,7 @@ class OntologyController extends Controller
                 'degree_of_formality' => $ontology['degree_of_formality'],
                 'scope' => $ontology['scope'],
                 'competence_questions' => $ontology['competence_questions'],
+                'namespace' =>  $ontology['namespace'],
                 'collaborators' => $ontology->users->modelKeys(),
                 'owner_name' => $ownerName
             );

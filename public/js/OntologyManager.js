@@ -1,8 +1,7 @@
-
-// AJAX request to open an ontology
-$(document).ready(function () {
-
-    let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+var ontologyName = document.getElementById("ontology-name");
+// Request to open an ontology
+document.addEventListener("DOMContentLoaded", function() { 
+    let CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
    
     // Fires the Ajax request when the button is clicked
     // Open the selected ontology
@@ -12,7 +11,7 @@ $(document).ready(function () {
             url: '/openOntology',
             type: 'POST',
             /* send the csrf-token and the input to the controller */
-            data: {_token: CSRF_TOKEN, id: $(this).attr('id')},
+            data: {_token: CSRF_TOKEN, id: this.getAttribute('id')},
             dataType: 'JSON',
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
@@ -20,25 +19,25 @@ $(document).ready(function () {
                 editor.setGraphXml(doc.documentElement);
                 //console.log(data);
                 if(getLanguage() =='en')
-                    $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+data['name']);
+                    ontologyName.innerHTML = '<i class="fa fa-fw fa-object-group"></i> Current Ontology:' + data['name'];
                 else
-                    $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Ontologia Atual:'+data['name']);
-                $("#id").val(data['id']);
-                $("#name").val(data['name']);
-                $("#publication-date").val(data['publication_date']);
-                $("#last-uploaded").val(data['last_uploaded']);
-                $("#description").val(data['description']);
-                $("#link").val(data['link']);
-                $("#ontology-domain").val(data['domain']);
-                $("#general-purpose").val(data['general_purpose']);
-                $("#profile-users").val(data['profile_users']);
-                $("#intended-use").val(data['intended_use']);
-                $("#type-of-ontology").val(data['type_of_ontology']);
-                $("#degree-of-formality").val(data['degree_of_formality']);
-                $("#scope").val(data['scope']);
-                $("#competence-questions").val(data['competence_questions']);
-                $("#created-by").val(data['owner_name']);
-                $("title").text($("#name").val() + ' | Onto4ALL - Ontology Graphical Editor');
+                    ontologyName.innerHTML = '<i class="fa fa-fw fa-object-group"></i> Ontologia Atual:' + data['name'];
+                document.getElementById('id').value = data['id'];
+                document.getElementById('name').value = data['name'];
+                document.getElementById('publication-date').value = data['publication_date'];
+                document.getElementById('last-uploaded').value = data['last_uploaded'];
+                document.getElementById('description').value = data['description'];
+                document.getElementById('link').value = data['link'];
+                document.getElementById('ontology-domain').value = data['domain'];
+                document.getElementById('general-purpose').value = data['general_purpose'];
+                document.getElementById('profile-users').value = data['profile_users'];
+                document.getElementById('intended-use').value = data['intended_use'];
+                document.getElementById('type-of-ontology').value = data['type_of_ontology'];
+                document.getElementById('degree-of-formality').value = data['degree_of_formality'];
+                document.getElementById('scope').value = data['scope'];
+                document.getElementById('competence-questions').value = data['competence_questions'];
+                document.getElementById('created-by').value = data['owner_name'];
+                document.querySelector("title").textContent = document.getElementById('name').value + ' | Onto4ALL - Ontology Graphical Editor';
 
                 // Select the namespaces on the <select> tag
                 $('#namespace-select').val(data['namespace']).trigger('change');
@@ -58,39 +57,39 @@ $(document).ready(function () {
     });
 
     // Open the last updatead ontology
-    $('#open-last-updated-ontology').click(function () {
+    document.getElementById('open-last-updated-ontology').addEventListener('click', function () {
         $.ajax({
             /* the route pointing to the post function */
             url: '/openLastUpdatedOntology',
             type: 'POST',
             /* send the csrf-token and the input to the controller */
-            data: {_token: CSRF_TOKEN, id: $(this).attr('id')},
+            data: {_token: CSRF_TOKEN, id: this.getAttribute('id')},
             dataType: 'JSON',
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
                 let doc = mxUtils.parseXml(data['file']);
                 editor.setGraphXml(doc.documentElement);
                 //console.log(data);
-                $("#ontology-name").html('Current Ontology:'+data['name']);
-                $("#id").val(data['id']);
-                $("#name").val(data['name']);
-                $("#publication-date").val(data['publication_date']);
-                $("#last-uploaded").val(data['last_uploaded']);
-                $("#description").val(data['description']);
-                $("#link").val(data['link']);
-                $("#ontology-domain").val(data['domain']);
-                $("#general-purpose").val(data['general_purpose']);
-                $("#profile-users").val(data['profile_users']);
-                $("#intended-use").val(data['intended_use']);
-                $("#type-of-ontology").val(data['type_of_ontology']);
-                $("#degree-of-formality").val(data['degree_of_formality']);
-                $("#scope").val(data['scope']);
-                $("#competence-questions").val(data['competence_questions']);
-                $("#created-by").val(data['owner_name']);
-                $("title").text($("#name").val() + ' | Onto4ALL - Ontology Graphical Editor');
+                document.getElementById('ontology-name').innerHTML = 'Current Ontology:'+data['name'];
+                document.getElementById('id').value = data['id'];
+                document.getElementById('name').value = data['name'];
+                document.getElementById('publication-date').value = data['publication_date'];
+                document.getElementById('last-uploaded').value = data['last_uploaded'];
+                document.getElementById('description').value = data['description'];
+                document.getElementById('link').value = data['link'];
+                document.getElementById('ontology-domain').value = data['domain'];
+                document.getElementById('general-purpose').value = data['general_purpose'];
+                document.getElementById('profile-users').value = data['profile_users'];
+                document.getElementById('intended-use').value = data['intended_use'];
+                document.getElementById('type-of-ontology').value = data['type_of_ontology'];
+                document.getElementById('degree-of-formality').value = data['degree_of_formality'];
+                document.getElementById('scope').value = data['scope'];
+                document.getElementById('competence-questions').value = data['competence_questions'];
+                document.getElementById('created-by').value = data['owner_name'];
+                document.querySelector("title").textContent = document.getElementById('name').value + ' | Onto4ALL - Ontology Graphical Editor';
 
                 // Select the namespace on the <select> tag
-                $('#collaborators-select').val(data['collaborators']).trigger('change');
+                $('#namespace-select').val(data['namespace']).trigger('change');
                 
                 // Select the collaborators on the <select> tag
                 $('#collaborators-select').val(data['collaborators']).trigger('change');
@@ -106,17 +105,16 @@ $(document).ready(function () {
 });
 
 
-// AJAX Request to save the current ontology 
-$(document).ready(function () {
+// Request to save the current ontology 
+document.addEventListener("DOMContentLoaded", function() { 
 
-    let CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    let CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     // Fires the Ajax request when the button is clicked
 
-    $("#save-ontology").on('click',function () {
-
-        $("#save-ontology").html('<div  class="overlay"><i style="color: white !important;" class="fa fa-refresh fa-spin"></i></div>');
-        $("#save-ontology").css('background-color','#00a65a');
-        $("#save-ontology").css('border-color','#00a65a');
+    document.getElementById('save-ontology').addEventListener('click', function () {
+        document.getElementById('save-ontology').innerHTML='<div  class="overlay"><i style="color: white !important;" class="fa fa-refresh fa-spin"></i></div>';
+        document.getElementById('save-ontology').style.backgroundColor = "#00a65a";
+        document.getElementById('save-ontology').style.borderColor = "#00a65a";
         $.ajax({
             /* the route pointing to the post function */
             url: '/' + getLanguage() + '/updateOrCreate',
@@ -124,21 +122,21 @@ $(document).ready(function () {
             /* send the csrf-token and the input to the controller */
             data: {
                 _token: CSRF_TOKEN,
-                id: $("#id").val(),
+                id: document.getElementById('id').value,
                 xml_string: new XMLSerializer().serializeToString(editor.getGraphXml()),
-                name: $("#name").val(),
-                publication_date: $("#publication-date").val(),
-                last_uploaded: $("#last-uploaded").val(),
-                description: $("#description").val(),
-                link: $("#link").val(),
-                domain: $("#ontology-domain").val(),
-                general_purpose: $("#general-purpose").val(),
-                profile_users: $("#profile-users").val(),
-                intended_use: $("#intended-use").val(),
-                type_of_ontology: $("#type-of-ontology").val(),
-                degree_of_formality: $("#degree-of-formality").val(),
-                scope: $("#scope").val(),
-                competence_questions: $("#competence-questions").val(),
+                name: document.getElementById('name').value,
+                publication_date: document.getElementById('publication-date').value,
+                last_uploaded: document.getElementById('last-uploaded').value,
+                description: document.getElementById('description').value,
+                link: document.getElementById('link').value,
+                domain: document.getElementById('ontology-domain').value,
+                general_purpose: document.getElementById('general-purpose').value,
+                profile_users: document.getElementById('profile-users').value,
+                intended_use: document.getElementById('intended-use').value,
+                type_of_ontology: document.getElementById('type-of-ontology').value,
+                degree_of_formality: document.getElementById('degree-of-formality').value,
+                scope: document.getElementById('scope').value,
+                competence_questions: document.getElementById('competence-questions').value,
                 namespace: $("#namespace-select").val().toString(),
                 collaborators: $("#collaborators-select").val()
             },
@@ -147,9 +145,9 @@ $(document).ready(function () {
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
                 updateSaveButtonInFrontEnd(true);
-                $("#ontology-name").html('<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+$("#name").val());
-                $("#id").val(data['id']);
-                $("title").text($("#name").val() + ' | Onto4ALL - Ontology Graphical Editor');
+                document.getElementById('ontology-name').innerHTML='<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+ document.getElementById('name').value;
+                document.getElementById('id').value=data['id'];
+                document.getElementById('title').textContent = document.getElementById('name').value + ' | Onto4ALL - Ontology Graphical Editor';
             },
 
             error: function(jqXHR, textStatus, errorThrown) {
@@ -164,9 +162,8 @@ $(document).ready(function () {
 
 
 // Reads the current ontology XML and then writes the report on a string for download
-$(document).ready(function () {
-    $('#download-ontology-report').click(function () {
-
+document.addEventListener("DOMContentLoaded", function() { 
+    document.getElementById('download-ontology-report').addEventListener('click', function () {
         // get the XML document from the editor
         let xmlDoc = editor.getGraphXml();
         let report = '/************* Ontology Report *************/ \n\nClasses:';
@@ -232,16 +229,20 @@ $(document).ready(function () {
         }
         report = report + '\n\n/************ Made with Onto4ALL ************/';
         console.log(report);
-        $('#download-ontology-report').attr("href", "data:text/plain;charset=UTF-8," + encodeURIComponent(report));
+        document.getElementById('download-ontology-report').setAttribute("href", "data:text/plain;charset=UTF-8," + encodeURIComponent(report));
 
     })
 
 });
 
 // Downloads a .txt file containing all the errors that the user made in the current ontology
-$('#download-errors-txt').click(function () {
-    let texts = $('.direct-chat-text').text();
-    this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(texts);
+document.getElementById('download-errors-txt').addEventListener('click', function(){
+    // let texts = document.querySelectorAll(".direct-chat-text").textContent;
+    let consoleMessages = document.getElementsByClassName('direct-chat-text');
+    let txts;
+    for (let i = 0; i < consoleMessages.length; i++) 
+        txts = txts + consoleMessages[i].textContent;
+    this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(txts);
 });
 
 /**
