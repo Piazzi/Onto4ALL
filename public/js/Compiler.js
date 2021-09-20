@@ -111,6 +111,7 @@ function compileRelation(relation) {
         }
 
         // Shows a error message if the domain and range properties are equal
+        /*
         if(relation.source.getAttribute('label') == relation.target.getAttribute('label')){
             basicErrorsCount++;
             if (getLanguage() === 'pt')
@@ -118,7 +119,7 @@ function compileRelation(relation) {
             else
                 sendWarningMessage('The properties domain and range from the ' + relation.getAttribute('label').bold() + ' relation cannot be equal.', "", 'Basic Error');
 
-        }
+        }*/
     }
 
     // Autocomplete the domain and range properties
