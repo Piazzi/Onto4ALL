@@ -55,53 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         })
     });
-
-    // Open the last updatead ontology
-    document.getElementById('open-last-updated-ontology').addEventListener('click', function () {
-        $.ajax({
-            /* the route pointing to the post function */
-            url: '/openLastUpdatedOntology',
-            type: 'POST',
-            /* send the csrf-token and the input to the controller */
-            data: {_token: CSRF_TOKEN, id: this.getAttribute('id')},
-            dataType: 'JSON',
-            /* remind that 'data' is the response of the OntologyController */
-            success: function (data) {
-                let doc = mxUtils.parseXml(data['file']);
-                editor.setGraphXml(doc.documentElement);
-                //console.log(data);
-                document.getElementById('ontology-name').innerHTML = 'Current Ontology:'+data['name'];
-                document.getElementById('id').value = data['id'];
-                document.getElementById('name').value = data['name'];
-                document.getElementById('publication-date').value = data['publication_date'];
-                document.getElementById('last-uploaded').value = data['last_uploaded'];
-                document.getElementById('description').value = data['description'];
-                document.getElementById('link').value = data['link'];
-                document.getElementById('ontology-domain').value = data['domain'];
-                document.getElementById('general-purpose').value = data['general_purpose'];
-                document.getElementById('profile-users').value = data['profile_users'];
-                document.getElementById('intended-use').value = data['intended_use'];
-                document.getElementById('type-of-ontology').value = data['type_of_ontology'];
-                document.getElementById('degree-of-formality').value = data['degree_of_formality'];
-                document.getElementById('scope').value = data['scope'];
-                document.getElementById('competence-questions').value = data['competence_questions'];
-                document.getElementById('created-by').value = data['owner_name'];
-                document.querySelector("title").textContent = document.getElementById('name').value + ' | Onto4ALL - Ontology Graphical Editor';
-
-                // Select the namespace on the <select> tag
-                $('#namespace-select').val(data['namespace']).trigger('change');
-                
-                // Select the collaborators on the <select> tag
-                $('#collaborators-select').val(data['collaborators']).trigger('change');
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                console.log(JSON.stringify(jqXHR));
-                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-                alert('The following error has occurred: ' + JSON.stringify(jqXHR));
-            }
-        })
-    });
-
 });
 
 

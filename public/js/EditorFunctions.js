@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Progress bar from the Methodology tab
+    /*
     let percentage = document.getElementById('progress-bar').clientWidth / document.getElementById('progress-bar').offsetParent().clientWidth * 100;
     document.querySelector('input[type="checkbox"]').addEventListener('click', function () {
         if (this.checked) {
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
         document.getElementById('progress-text').textContent = percentage + "% complete";
 
-    });
+    });*/
 });
 
     document.getElementById('search-tip-input').addEventListener("keyup", function () {
