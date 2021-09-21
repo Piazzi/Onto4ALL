@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\OntologyClass;
 use Illuminate\Database\Seeder;
 
 class OntologyClassTableSeeder extends Seeder
@@ -11,8 +12,6 @@ class OntologyClassTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\OntologyClass::class, 50)->create()->each(function ($user) {
-
-        });
+        OntologyClass::factory()->count(50)->create();
     }
 }

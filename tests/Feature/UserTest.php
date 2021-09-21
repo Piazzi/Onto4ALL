@@ -2,9 +2,9 @@
 
 namespace Tests\Feature;
 
-use App\OntologyClass;
-use App\OntologyRelation;
-use App\User;
+use App\Models\OntologyClass;
+use App\Models\OntologyRelation;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
@@ -15,7 +15,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
             ]);
         Auth::loginUsingId($user->id);
@@ -29,7 +29,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
             ]);
         Auth::loginUsingId($user->id);
@@ -43,7 +43,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
             ]);
         Auth::loginUsingId($user->id);
@@ -57,7 +57,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
             ]);
         Auth::loginUsingId($user->id);
@@ -71,7 +71,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
             ]);
         Auth::loginUsingId($user->id);
@@ -88,7 +88,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
             ]);
         Auth::loginUsingId($user->id);
@@ -105,7 +105,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
             ]);
         Auth::loginUsingId($user->id);
@@ -122,7 +122,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
             ]);
         Auth::loginUsingId($user->id);
@@ -139,7 +139,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -150,7 +150,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -164,7 +164,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -175,7 +175,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -189,11 +189,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyRelation::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyRelation::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -204,7 +204,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -218,11 +218,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyRelation::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyRelation::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -233,7 +233,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -247,11 +247,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyRelation::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyRelation::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -262,7 +262,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -276,11 +276,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyRelation::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyRelation::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -291,7 +291,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -305,11 +305,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyRelation::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyRelation::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -320,7 +320,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -334,11 +334,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyRelation::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyRelation::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -349,7 +349,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -363,11 +363,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyRelation::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyRelation::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -378,7 +378,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -392,11 +392,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyRelation::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyRelation::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -407,7 +407,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -421,11 +421,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyRelation::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyRelation::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -436,7 +436,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -445,14 +445,14 @@ class UserTest extends TestCase
         $response = $this->put('en/ontology_relation/' . $ontology->id, [$ontology->all()]);
         $response->assertStatus(403);
     }
-    
+
 
 
     public function test_only_administrator_can_see_ontology_class_pt()
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -463,7 +463,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -477,7 +477,7 @@ class UserTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -488,7 +488,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -502,11 +502,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyClass::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyClass::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -517,7 +517,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -531,11 +531,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyClass::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyClass::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -546,7 +546,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -560,11 +560,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyClass::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyClass::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -575,7 +575,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -589,11 +589,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyClass::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyClass::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -604,7 +604,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -618,11 +618,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyClass::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyClass::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -633,7 +633,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -647,11 +647,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyClass::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyClass::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -662,7 +662,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -676,11 +676,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyClass::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyClass::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -691,7 +691,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -705,11 +705,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyClass::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyClass::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -720,7 +720,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);
@@ -734,11 +734,11 @@ class UserTest extends TestCase
     {
         $ontology = OntologyClass::inRandomOrder()->first();
         if ($ontology == null)
-            $ontology = factory(OntologyClass::class)->create();
+            $ontology = OntologyRelation::factory()->create();
 
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -749,7 +749,7 @@ class UserTest extends TestCase
 
         $user = User::where('categoria', 'modelador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'modelador',
             ]);

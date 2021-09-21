@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\User;
+use App\Models\User;
 use Tests\TestCase;
 
 class LoginTest extends TestCase
@@ -25,7 +25,7 @@ class LoginTest extends TestCase
 
     public function test_user_cannot_view_a_login_pt_form_when_authenticated()
     {
-        $user = factory(User::class)->make();
+        $user = User::factory()->make();
 
         $response = $this->actingAs($user)->get('/pt/login');
 
@@ -34,7 +34,7 @@ class LoginTest extends TestCase
 
     public function test_user_cannot_view_a_login_en_form_when_authenticated()
     {
-        $user = factory(User::class)->make();
+        $user = User::factory()->make();
 
         $response = $this->actingAs($user)->get('/en/login');
 
@@ -43,7 +43,7 @@ class LoginTest extends TestCase
 
     public function test_user_can_login_pt_with_correct_credentials()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => bcrypt($password = 'teste'),
         ]);
 
@@ -58,7 +58,7 @@ class LoginTest extends TestCase
 
     public function test_user_can_login_en_with_correct_credentials()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => bcrypt($password = 'teste'),
         ]);
 
@@ -73,8 +73,8 @@ class LoginTest extends TestCase
 
     public function test_user_pt_cannot_login_with_incorrect_password()
     {
-        $user = factory(User::class)->create([
-            'password' => bcrypt('teste'),
+       $user = User::factory()->create([
+            'password' => bcrypt($password = 'teste'),
         ]);
         
         $response = $this->from('/pt/login')->post('/pt/login', [
@@ -91,8 +91,8 @@ class LoginTest extends TestCase
 
     public function test_user_en_cannot_login_with_incorrect_password()
     {
-        $user = factory(User::class)->create([
-            'password' => bcrypt('teste'),
+       $user = User::factory()->create([
+            'password' => bcrypt($password = 'teste'),
         ]);
         
         $response = $this->from('/en/login')->post('/en/login', [
@@ -109,7 +109,7 @@ class LoginTest extends TestCase
 
     public function test_remember_me_functionality_pt()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => bcrypt($password = 'teste'),
         ]);
         
@@ -125,7 +125,7 @@ class LoginTest extends TestCase
 
     public function test_remember_me_functionality_en()
     {
-        $user = factory(User::class)->create([
+        $user = User::factory()->create([
             'password' => bcrypt($password = 'teste'),
         ]);
         

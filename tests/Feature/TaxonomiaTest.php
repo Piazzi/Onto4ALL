@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\User;
+use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -14,7 +14,7 @@ class TaxonomiaTest extends TestCase
     {
         $user = User::where('categoria', 'administrador')->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
             ]);
         Auth::loginUsingId($user->id);

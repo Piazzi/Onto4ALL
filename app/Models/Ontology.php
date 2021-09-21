@@ -1,13 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 
 class Ontology extends Model
 {
+
+    use HasFactory;
     /**
      * @var array
      */
@@ -127,6 +130,6 @@ class Ontology extends Model
      */
     public function users()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany(User::class);
     }
 }

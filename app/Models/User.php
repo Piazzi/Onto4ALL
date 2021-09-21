@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
@@ -8,10 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasFactory;
 
     public function sendPasswordResetNotification($token)
     {
@@ -67,7 +69,7 @@ class User extends Authenticatable
      */
     public function ontologies()
     {
-        return $this->belongsToMany('App\Ontology');
+        return $this->belongsToMany(Ontology::class);
     }
 
     /**

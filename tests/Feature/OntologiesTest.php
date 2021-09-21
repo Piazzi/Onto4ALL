@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Ontology;
-use App\User;
+use App\Models\Ontology;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
@@ -14,7 +14,7 @@ class OntologiesTest extends TestCase
     {
         $user = User::inRandomOrder()->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -28,7 +28,7 @@ class OntologiesTest extends TestCase
     {
         $user = User::inRandomOrder()->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -43,7 +43,7 @@ class OntologiesTest extends TestCase
         $faker = \Faker\Factory::create();
         $user = User::inRandomOrder()->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -69,7 +69,7 @@ class OntologiesTest extends TestCase
         $faker = \Faker\Factory::create();
         $user = User::inRandomOrder()->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -95,7 +95,7 @@ class OntologiesTest extends TestCase
         $faker = \Faker\Factory::create();
         $user = User::inRandomOrder()->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -121,7 +121,7 @@ class OntologiesTest extends TestCase
         $faker = \Faker\Factory::create();
         $user = User::inRandomOrder()->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -147,7 +147,7 @@ class OntologiesTest extends TestCase
         $faker = \Faker\Factory::create();
         $user = User::inRandomOrder()->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
@@ -173,7 +173,7 @@ class OntologiesTest extends TestCase
         $faker = \Faker\Factory::create();
         $user = User::inRandomOrder()->first();
         if ($user == null)
-            $user = factory(User::class)->create([
+            $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
                 'categorie' => 'administrador',
             ]);
