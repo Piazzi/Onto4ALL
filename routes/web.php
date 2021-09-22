@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/logout', 'Auth\LoginController@logout');
+Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/', function () {
     return redirect(app()->getLocale());
 });
