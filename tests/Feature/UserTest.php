@@ -141,7 +141,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -152,7 +152,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -166,7 +166,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -177,7 +177,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -195,7 +195,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -206,7 +206,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -224,7 +224,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -235,7 +235,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -253,7 +253,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -264,7 +264,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -282,7 +282,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -293,7 +293,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -311,7 +311,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -322,7 +322,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -340,7 +340,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -351,7 +351,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -369,7 +369,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -380,7 +380,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -398,7 +398,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -409,7 +409,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -427,7 +427,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -438,7 +438,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -454,7 +454,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -465,7 +465,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -479,7 +479,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -490,7 +490,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -508,7 +508,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -519,7 +519,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -537,7 +537,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -548,7 +548,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -566,7 +566,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -577,7 +577,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -595,7 +595,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -606,7 +606,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -624,7 +624,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -635,7 +635,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -653,7 +653,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -664,7 +664,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -682,7 +682,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -693,7 +693,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -711,7 +711,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -722,7 +722,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -740,7 +740,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'administrador',
+                'categoria' => 'administrador',
             ]);
         Auth::loginUsingId($user->id);
 
@@ -751,7 +751,7 @@ class UserTest extends TestCase
         if ($user == null)
             $user = User::factory()->create([
                 'password' => bcrypt($password = 'teste'),
-                'categorie' => 'modelador',
+                'categoria' => 'modelador',
             ]);
         Auth::loginUsingId($user->id);
 
