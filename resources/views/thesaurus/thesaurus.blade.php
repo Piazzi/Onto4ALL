@@ -93,20 +93,20 @@
                                                 </button>
                                             </a>
                                         </td>
-                                        <td><a href="{{route('thesaurus.show', ['locale' => app()->getLocale(), 'thesaurus' => $thesauru->id])}}">
+                                        <td><a href="{{route('thesaurus.show', ['locale' => app()->getLocale(), 'thesauru' => $thesauru->id])}}">
                                                 <button style="color: white" class="btn thesauru-box"><i class="fa fa-fw fa-plus"></i>
                                                 </button>
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="{{route('thesaurus.edit',['locale' => app()->getLocale(), 'thesaurus' => $thesauru->id])}}">
+                                            <a href="{{route('thesaurus.edit',['locale' => app()->getLocale(), 'thesauru' => $thesauru->id])}}">
                                                 <button style="color: white" class="btn thesauru-box"><i class="fa fa-fw fa-edit"></i>
                                                 </button>
                                             </a>
                                         </td>
                                         <td>
                                             <form method="post"
-                                                  action="{{route('thesaurus.destroy', ['locale' => app()->getLocale(), 'thesaurus' => $thesauru->id])}}">
+                                                  action="{{route('thesaurus.destroy', ['locale' => app()->getLocale(), 'thesauru' => $thesauru->id])}}">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger" type="submit"><i

@@ -11,8 +11,8 @@ class MessagesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Message::class, 50)->create()->each(function ($user) {
+        /*factory(App\Message::class, 50)->create()->each(function ($user) {
 
-        });
+        });*/
     }
 }

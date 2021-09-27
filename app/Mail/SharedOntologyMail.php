@@ -2,8 +2,8 @@
 
 namespace App\Mail;
 
-use App\User;
-use App\Ontology;
+use App\Models\User;
+use App\Models\Ontology;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;

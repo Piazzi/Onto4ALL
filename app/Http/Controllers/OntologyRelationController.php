@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\OntologyRelation;
+use App\Models\OntologyRelation;
 use App\Http\Requests\OntologyRelationStoreRequest;
 
 

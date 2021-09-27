@@ -145,10 +145,10 @@ function getWordColor(word) {
         return '#00a65a';
     else if(instances.some(e => e.getAttribute('label') === word))
         return 'rebeccapurple';
-    else if(word == 'some' || word == 'only' || word == 'exactly' || word == 'min' || word == 'max' || word == 'value')
-        return 'orangered';
-    else 
+    else if(word == 'some' || word == 'only' || word == 'exactly' || word == 'min' || word == 'max' || word == 'value' || word == 'SubClassOf')
         return 'black';
+    else 
+        return 'red';
 }
 
 function removeLineBreaks(string) {

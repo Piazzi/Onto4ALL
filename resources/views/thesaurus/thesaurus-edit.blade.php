@@ -25,7 +25,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <form method="post" action="{{route('thesaurus.update', ['locale' => app()->getLocale(), 'thesaurus' => $thesauru->id])}}" role="form">
+            <form method="post" action="{{route('thesaurus.update', ['locale' => app()->getLocale(), 'thesauru' => $thesauru->id])}}" role="form">
                 @csrf
                 <input name="_method" type="hidden" value="PATCH">
                 <div class="row">
