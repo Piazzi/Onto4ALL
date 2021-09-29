@@ -2849,40 +2849,40 @@ fieldset:disabled a.btn {
 
 .btn-success {
   color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
+  background-color: #064c72;
+  border-color: #064c72;
   box-shadow: none;
 }
 
 .btn-success:hover {
   color: #fff;
-  background-color: #218838;
-  border-color: #1e7e34;
+  background-color: #62a0bb;
+  border-color: #62a0bb;
 }
 
 .btn-success:focus, .btn-success.focus {
   color: #fff;
-  background-color: #218838;
-  border-color: #1e7e34;
-  box-shadow: 0 0 0 0 rgba(72, 180, 97, 0.5);
+  background-color: #064c72;
+  border-color: #064c72;
+  box-shadow: 0 0 0 0 #064c72;
 }
 
 .btn-success.disabled, .btn-success:disabled {
   color: #fff;
-  background-color: #28a745;
-  border-color: #28a745;
+  background-color: #064c72;
+  border-color: #064c72;
 }
 
 .btn-success:not(:disabled):not(.disabled):active, .btn-success:not(:disabled):not(.disabled).active,
 .show > .btn-success.dropdown-toggle {
   color: #fff;
-  background-color: #1e7e34;
-  border-color: #1c7430;
+  background-color: #064c72;
+  border-color: #064c72;
 }
 
 .btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus,
 .show > .btn-success.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0 rgba(72, 180, 97, 0.5);
+  box-shadow: 0 0 0 0 #62a0bb;
 }
 
 .btn-info {
@@ -27183,7 +27183,7 @@ body.text-sm .input-group-text {
 }
 
 .card-primary.card-outline {
-  border-top: 3px solid #007bff;
+  border-top: 3px solid #62a0bb;
 }
 
 .card-primary.card-outline-tabs > .card-header a:hover {
@@ -27191,7 +27191,7 @@ body.text-sm .input-group-text {
 }
 
 .card-primary.card-outline-tabs > .card-header a.active {
-  border-top: 3px solid #007bff;
+  border-top: 3px solid #62a0bb;
 }
 
 .bg-primary > .card-header .btn-tool,
@@ -33162,7 +33162,7 @@ html.maximized-card {
 }
 
 .callout.callout-success {
-  border-left-color: #1e7e34;
+  border-left-color: #62a0bb;
 }
 
 .dark-mode .callout {
@@ -36748,7 +36748,7 @@ select.form-control-sm ~ .select2-container--default .select2-selection--multipl
 .select2-container--default .select2-lightblue .select2-selection--multiple .select2-selection__choice,
 .select2-lightblue .select2-container--default .select2-selection--multiple .select2-selection__choice {
   background-color: #3c8dbc;
-  border-color: #367fa9;
+  border-color: #064c72;
   color: #fff;
 }
 

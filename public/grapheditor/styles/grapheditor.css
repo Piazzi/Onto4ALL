@@ -1,7 +1,7 @@
 /* Loading Screen */
 #loading {
 	position: fixed;
-	color: #00A65A;
+	color: #064c72;
 	font-size: 30px;
 	left: 0;
 	top: 0;
@@ -54,11 +54,11 @@ header {
 
 .fa-refresh {
 	margin-bottom: 550px;
-	color: #00A65A !important;
+	color: #064c72 !important;
 }
 
 #loading {
-	color: #00A65A !important;
+	color: #064c72 !important;
 }
 
 .editor-timeline-item {
@@ -99,7 +99,7 @@ header {
 
 #ontology-name {
 	pointer-events: none; 
-	color: #00a65a;
+	color: #62a0bb;
 }
 .toolbar-icon {
 	margin-right: 3px;
@@ -128,7 +128,7 @@ header {
 }
 
 .geSidebarContainer .geTitle:active, .geMenubarContainer a:active, .geToolbarContainer a:active {
-	background-color: #00a65a !important;
+	background-color: #62a0bb !important;
 }
 
 .menubar-icon {
