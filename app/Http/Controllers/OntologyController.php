@@ -121,11 +121,11 @@ class OntologyController extends Controller
         $ontology = Ontology::where('id', $id)->first();
         if ($ontology->userCanEdit()) {
             $ontology->update($request->all());
-            foreach($request->collaborators as $user){
-                if($user != $ontology->user_id){
-                    if($this->verifyUser($user, $ontology) == false){
+            foreach ($request->collaborators as $user) {
+                if ($user != $ontology->user_id) {
+                    if ($this->verifyUser($user, $ontology) == false) {
                         $user = User::find($user);
-                        $notification = ['title'=> __('New Ontology shared with you'), 'message'=> __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from'=>$ontology->user->name, 'type'=> 'New Ontology Shared'];
+                        $notification = ['title' => __('New Ontology shared with you'), 'message' => __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from' => $ontology->user->name, 'type' => 'New Ontology Shared'];
                         Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
                         $user->notify(new UserNotification($notification));
                     }
@@ -246,7 +246,7 @@ class OntologyController extends Controller
     public function updateOrCreate(Request $request)
     {
         $ontology = Ontology::where('id', $request->id)->exists();
-        if ($ontology) { 
+        if ($ontology) {
             $ontology = Ontology::find($request->id);
             if ($ontology->userCanEdit()) {
                 $ontology->update([
@@ -311,11 +311,11 @@ class OntologyController extends Controller
             ]
         );*/
 
-        foreach($request->collaborators as $user){
-            if($user != $ontology->user_id){
-                if($this->verifyUser($user, $ontology) == false){
+        foreach ($request->collaborators as $user) {
+            if ($user != $ontology->user_id) {
+                if ($this->verifyUser($user, $ontology) == false) {
                     $user = User::find($user);
-                    $notification = ['title'=> __('New Ontology shared with you'), 'message'=> __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from'=>$ontology->user->name, 'type'=> 'New Ontology Shared'];
+                    $notification = ['title' => __('New Ontology shared with you'), 'message' => __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from' => $ontology->user->name, 'type' => 'New Ontology Shared'];
                     Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
                     $user->notify(new UserNotification($notification));
                 }
@@ -334,9 +334,10 @@ class OntologyController extends Controller
 
     //helper function to verify if the collaborator is already a user on the ontology
     //returns if the collaborator already is a user of the ontology
-    public function verifyUser($collaborator, $ontology){
-        foreach($ontology->users as $user){
-            if($collaborator == $user->id){
+    public function verifyUser($collaborator, $ontology)
+    {
+        foreach ($ontology->users as $user) {
+            if ($collaborator == $user->id) {
                 return true;
             }
         }

@@ -23,8 +23,14 @@
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Edit Ontology')}}</h3>
         </div>
+
         <!-- /.box-header -->
         <div class="box-body">
+
+            <div class="box-header with-border">
+                <a href="https://onto4alleditor.com/en/ontologies/{{$ontology->id}}" target="_blank"> <span class="badge badge-secondary">https://onto4alleditor.com/en/ontologies/{{$ontology->id}}</span> </a>
+            </div>
+
             <form method="post"
                   action="{{route('ontologies.update',['ontology' => $ontology->id, 'locale' => app()->getLocale()])}}"
                   role="form">
