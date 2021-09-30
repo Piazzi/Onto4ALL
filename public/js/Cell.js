@@ -108,7 +108,6 @@ function updateTabs(cellType) {
             // if the property has a select input
             if(selectInputs.includes(cellProperties[i].name))
             {
-                console.log(cellProperties[i].value);
                 createSelectOptions(cell, cellProperties[i].name)
                 $(document).ready(function () {
                     $('#'+cellProperties[i].name).select2({
@@ -179,7 +178,6 @@ function createSelectOptions(cell, propertyName) {
         option.innerHTML = element.getAttribute('label');
         select.appendChild(option);
     });
-    console.log(select);
 }
 
 /**
