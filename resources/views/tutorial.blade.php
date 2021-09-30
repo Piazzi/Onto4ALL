@@ -108,7 +108,7 @@
                                 <span class="label-danger">{{__('Attention: If you want to export your ontology to OWL and import it in another editor we recommend you not to put spaces in the names of classes and relations, just use upper and lower case letters, underlines, and numbers from 0 to 9 to avoid any import errors. If you are only using our editor for building your ontology you can ignore this warning')}}</span></li>
                             <p>
                                 {{__('Examples')}}:
-                                <span class="label-success">{{__('PepperoniPizza, AutomaticCar, Pepperoni_Pizza, Automatic_Car')}}</span>
+                                <span class="label-success" style="background-color:#00c0ef !important">{{__('PepperoniPizza, AutomaticCar, Pepperoni_Pizza, Automatic_Car')}}</span>
                             </p>
                             <li>{{__('You can expand its size by hovering your mouse over the circle and pulling its edge.')}} </li>
                             <li>{{__('It is possible to change the colors (the interior and the border).')}} </li>

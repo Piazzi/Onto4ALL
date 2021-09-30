@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
-use App\Ontology;
-use App\User;
+use App\Models\Ontology;
+use App\Models\User;
 use DOMDocument;
 use function foo\func;
 use Illuminate\Http\Request;
-use App\OntologyRelation;
-use App\OntologyClass;
+use App\Models\OntologyRelation;
+use App\Models\OntologyClass;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;

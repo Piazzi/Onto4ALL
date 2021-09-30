@@ -29,7 +29,7 @@
                             <p>   {{__('We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.')}}</p>
                         </div>
 
-                        <div class="callout callout-success">
+                        <div class="callout callout-success" style="background-color:#62a0bb !important">
                             <h4><i class="icon fa fa-money"></i> {{__('Donate')}}</h4>
                             <h4>{{__('Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!')}}</h4>
                             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
@@ -95,7 +95,7 @@
                         </span>
                                 @endif
                             </div>
-                            <button style="background-color: #00A65A;" type="submit"
+                            <button style="background-color: #064c72;" type="submit"
                                     class="btn btn-primary btn-block btn-flat"
                             >{{ __('Register') }}</button>
                         </form>

@@ -1,5 +1,6 @@
 <?php
 
+use Database\Seeders\UsersTableSeeder;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -11,7 +12,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         $this->call(OntologyClassTableSeeder::class);
         $this->call(OntologyRelationTableSeeder::class);
         $this->call(MessagesTableSeeder::class);

@@ -63,7 +63,7 @@
             <div class="row h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-10 align-self-end">
                     <h1 class="text-uppercase text-white font-weight-bold">{{__('Draw your own ontologies')}}</h1>
-                    <hr class="divider my-4"/>
+                    <hr class="divider light my-4"/>
                 </div>
                 <div class="col-lg-8 align-self-baseline">
                     <p class="text-white-75 font-weight-light mb-5">{{__('Build your first ontology using the many features in our editor')}}</p>
@@ -95,7 +95,7 @@
         <hr class="divider my-4"/>
             <div class="row">
                 <div class="col-lg-4  text-center">
-                    <div class="mt-5">
+                    <div class="mt-5 text-black">
                         <div class="info-box" >
                         <!-- Apply any bg-* class to to the icon to color it -->
                             <span class="info-box-icon bg-green"><i class="fa  fa-users"></i></span>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4  text-center">
-                    <div class="mt-5">
+                    <div class="mt-5  text-black">
                         <div class="info-box">
                         <!-- Apply any bg-* class to to the icon to color it -->
                             <span class="info-box-icon bg-green"><i class="fa fa-object-group"></i></span>
@@ -121,7 +121,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4  text-center">
-                    <div class="mt-5">
+                    <div class="mt-5  text-black">
                         <div class="info-box" >
                         <!-- Apply any bg-* class to to the icon to color it -->
                             <span class="info-box-icon bg-green"><i class="fa  fa-share-alt"></i></span>
@@ -272,7 +272,7 @@
     </section>
 
     <!-- Call to action section-->
-    <section style="background-color: #00a65a !important;" class="page-section bg-dark text-white">
+    <section style="background-color: #064c72 !important;" class="page-section bg-dark text-white">
         <div class="container text-center">
             <h2 class="mb-4">{{__('Start Drawing Your Ontologies')}}</h2>
             <a style="color: black" class="btn btn-light btn-xl" href="{{route('login', app()->getLocale())}}">{{__('Register Now!')}}</a>
