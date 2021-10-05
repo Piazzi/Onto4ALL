@@ -19,9 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 editor.setGraphXml(doc.documentElement);
                 //console.log(data);
                 if(getLanguage() =='en')
-                    ontologyName.innerHTML = '<i class="fa fa-fw fa-object-group"></i> Current Ontology:' + data['name'];
+                    ontologyName.innerHTML = '<i class="fa fa-fw fa-object-group"></i> ' + data['name'];
                 else
-                    ontologyName.innerHTML = '<i class="fa fa-fw fa-object-group"></i> Ontologia Atual:' + data['name'];
+                    ontologyName.innerHTML = '<i class="fa fa-fw fa-object-group"></i> ' + data['name'];
                 document.getElementById('id').value = data['id'];
                 document.getElementById('name').value = data['name'];
                 document.getElementById('publication-date').value = data['publication_date'];
@@ -68,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('save-ontology').innerHTML='<div  class="overlay"><i style="color: white !important;" class="fa fa-refresh fa-spin"></i></div>';
         document.getElementById('save-ontology').style.backgroundColor = "#00a65a";
         document.getElementById('save-ontology').style.borderColor = "#00a65a";
+        document.getElementById('name').value = document.getElementById("ontology-name").textContent;
         $.ajax({
             /* the route pointing to the post function */
             url: '/' + getLanguage() + '/updateOrCreate',
@@ -98,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
                 updateSaveButtonInFrontEnd(true);
-                document.getElementById('ontology-name').innerHTML='<i class="fa fa-fw fa-object-group"></i> Current Ontology:'+ document.getElementById('name').value;
+                document.getElementById('ontology-name').innerHTML='<i class="fa fa-fw fa-object-group"></i> '+ document.getElementById('name').value;
                 document.getElementById('id').value=data['id'];
                 document.getElementById('title').textContent = document.getElementById('name').value + ' | Onto4ALL - Ontology Graphical Editor';
             },
@@ -112,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
-
 
 // Reads the current ontology XML and then writes the report on a string for download
 document.addEventListener("DOMContentLoaded", function() { 
