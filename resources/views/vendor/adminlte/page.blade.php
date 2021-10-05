@@ -29,7 +29,7 @@
                     <b>Onto4ALL</b>
                 </span>
             </a>
-            @if(Route::currentRouteName() !== 'home' && Route::currentRouteName() !== 'thesaurus-editor')
+            @if(Route::currentRouteName() !== 'thesaurus-editor')
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -38,7 +38,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-
+                <!-- <div class="navbar-custom-menu"> -->
+                @if(Route::currentRouteName() == 'home')
+                    <ul class="nav navbar-nav" style="font-size: 16px;">
+                        <li contentEditable="true">
+                            <a id="ontology-name" class="geItem">{{__('New Ontology')}}</a>
+                        </li>
+                        <li>
+                            <a id="open-ontology" class="geItem" data-toggle="modal" data-target="#ontology-manager">
+                                <i class="fa fa-fw fa-folder-open-o"></i>{{__(' Ontology Manager')}}
+                            </a>
+                        </li>
+                        <li>
+                            <a id="edit-ontology" class="geItem" data-toggle="modal" data-target="#edit-ontology-modal">
+                                <i class="fa fa-fw  fa-edit"></i>{{__(' Edit Ontology')}}
+                            </a>
+                        </li>
+                    </ul>
+                @endif
+                <!-- </div> -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         @php

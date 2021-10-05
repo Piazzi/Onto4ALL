@@ -7,112 +7,6 @@
 @stop
 
 @section('content')
-<div style="position:absolute; top:0; right:0;z-index:1000; background-color:#fbfbfb; width: 180px; " class="navbar-custom-menu">
-    <ul class="nav navbar-nav" style="float: right">
-        @php
-        $amount = Auth::user()->unreadNotifications->count();
-        @endphp
-        <li id="notifications-menu" class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                <i class="fa fa-bell-o"></i>
-                <span id="notification-counter" class="label label-warning">{{$amount > 0 ? $amount : ''}}</span>
-            </a>
-            <ul class="dropdown-menu">
-                <li class="header">{{__('You have')}} {{$amount}} {{__('new notifications')}}</li>
-                <li>
-                    <!-- inner menu: contains the actual data -->
-                    <ul class="notification-menu menu">
-                        @foreach(Auth::user()->notifications->take(5) as $notification)
-                        <li>
-                            <!-- start notification -->
-                            <a href="{{route('notifications.show', ['locale' => app()->getLocale(), 'notificationId' => $notification->id, 'notificationType' => $notification->data['type']])}}">
-                                <h5>
-                                    @if($notification->data['type'] == 'Onto4All Contact')
-                                    {{__('New message: ')}}
-                                    @endif
-                                    {{__($notification->data['title'])}}
-                                    <br>
-                                    <small>
-                                        <i class="fa fa-clock-o"><i> | </i></i>{{ date(" d-m-Y | H:i", strtotime($notification->created_at))}}
-                                    </small>
-                                </h5>
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li class="footer"><a href="{{route('notifications.index', app()->getLocale())}}">{{__('See all notifications')}}</a></li>
-            </ul>
-        </li>
-        <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                <!-- The user image in the navbar-->
-                <i class="fa fa-user"></i>
-                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">{{Auth::user()->name}}</span>
-            </a>
-            <ul class="dropdown-menu">
-                <!-- The user image in the menu -->
-                <li class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif" style="background-color: #222d32;">
-                    <img src="{{asset('css/images/LogoDark.png')}}" class="img-circle" alt="User Image">
-                    <p>
-                        {{Auth::user()->name}}
-                        <small>{{Auth::user()->email}}</small>
-                    </p>
-                </li>
-                <!-- Menu Body -->
-                <li class="user-body">
-                    <div class="row">
-                        <div class="col-xs-4 text-center border-right">
-                            <a class="user-body-link" href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">
-                                Tutorial</a>
-                        </div>
-                        <div class="col-xs-4 text-center border-right">
-                            <a class="user-body-link" href="{{route('ontologies.index', app()->getLocale())}}">{{__('Ontologies')}}</a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                            <a class="user-body-link" href="{{route('help', app()->getLocale())}}">{{__('Help')}}</a>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                </li>
-                <!-- Menu Footer-->
-                <li class="user-footer">
-
-                    <div class="pull-left">
-                        <a href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}" class="btn btn-default btn-flat">
-                            <i class="fa fa-cog"></i> {{__('Account Settings')}}
-                        </a>
-                    </div>
-                    <div class="pull-right">
-                        <a class="btn btn-default btn-flat" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fa fa-fw fa-power-off"></i> {{__('Log Out')}}
-                        </a>
-                        <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
-                            @csrf
-                            @if(config('adminlte.logout_method'))
-                            {{ method_field(config('adminlte.logout_method')) }}
-                            @endif
-                        </form>
-                    </div>
-
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a id="control-sidebar" title="{{__('Show/Hide the Sidebar')}}" href="#" data-toggle="control-sidebar"><i class="fa fa-1.5x fa-fw fa-bars "></i></a>
-        </li>
-        @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))
-        <!-- Control Sidebar Toggle Button -->
-        <li>
-            <a href="#" data-toggle="control-sidebar" @if(!config('adminlte.right_sidebar_slide')) data-controlsidebar-slide="false" @endif>
-                <i class="{{config('adminlte.right_sidebar_icon')}}"></i>
-            </a>
-        </li>
-        @endif
-    </ul>
-</div>
 
 <!-- Warning Console -->
 <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box">
@@ -571,15 +465,7 @@
 <!-- ./Toolbar icons  -->
 
 <!-- Menubar Icons -->
-<a id="open-ontology" class="geItem  menubar-icon" data-toggle="modal" data-target="#ontology-manager">
-    {{__('Ontology Manager')}}
-</a>
-<a id="edit-ontology" class="geItem menubar-icon" data-toggle="modal" data-target="#edit-ontology-modal">
-    {{__('Edit Ontology')}}
-</a>
-<a id="ontology-name" class="geItem  menubar-icon">
-    {{__('Current Ontology: None')}}
-</a>
+
 <a id="save-ontology" class="geItem  btn btn-default unsaved menubar-icon">
     <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
 </a>
@@ -596,14 +482,9 @@
             </div>
             <div class="modal-body">
                 <input id="id" name="id" type="hidden">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>{{__('Name')}}</label>
-                            <input id="name" required value="{{__('New_Ontology')}}" name="name" type="text" class="form-control" placeholder="">
-                        </div>
-                    </div>
-                </div>
+                <input id="name" name="name" type="hidden">
+                
+                
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">

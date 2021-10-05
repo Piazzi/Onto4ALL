@@ -17,7 +17,7 @@ function setVisible(selector, visible) {
 
 function buildMenu() {
     // Append the extra Onto4all buttons in the toolbar
-    if(document.getElementsByClassName('geToolbar')[0].childElementCount < 22 || document.getElementsByClassName('geMenubar')[0].childElementCount < 8)
+    if(document.getElementsByClassName('geToolbar')[0].childElementCount < 22)
     {
         $(".geToolbar").append('<div class="geSeparator"> </div>');
         $(".geToolbar").append(toolbarIcon);
