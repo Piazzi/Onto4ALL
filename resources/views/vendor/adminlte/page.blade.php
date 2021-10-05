@@ -254,34 +254,7 @@
                             </ul>
                         </li>
 
-                        <li class="treeview">
-                            <a style="margin-left: 3px" href="#">
-                                <i class="fa fa-gear"></i> <span>{{__('Options')}}</span>
-                                <span class="pull-right-container">
-                                  <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li>
-                                    <!-- Sidebar toggle button-->
-                                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                                        <i class="fa fa-fw fa-exchange "></i>
-                                        <span>{{__('Show/Hide Left Sidebar')}}</span>
-                                        <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
-                                    </a>
-                                </li>
-                                @if(Route::currentRouteName() === 'home')
-                                <li>
-                                    <a href="#" data-toggle="control-sidebar">
-                                        <i class="fa fa-1.5x fa-fw  fa-bars"></i>
-                                        <span>{{__('Show/Hide Right Sidebar')}}</span>
-                                    </a>
-                                </li>
-                                @endif
-                                
-
-                            </ul>
-                        </li>
+                        
 
                     </ul>
                 </section>
