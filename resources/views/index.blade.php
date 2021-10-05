@@ -482,14 +482,9 @@
             </div>
             <div class="modal-body">
                 <input id="id" name="id" type="hidden">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>{{__('Name')}}</label>
-                            <input id="name" required value="{{__('New_Ontology')}}" name="name" type="text" class="form-control" placeholder="">
-                        </div>
-                    </div>
-                </div>
+                <input id="name" name="name" type="hidden">
+                
+                
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
