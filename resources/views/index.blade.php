@@ -132,6 +132,10 @@
 
             <div class="tab-pane " id="annotations-tab">
                 <div class="form-group">
+                    <label>IRI</label> <a id="IRI-link" target="_blank" href=""><i title="copy link" class="fa fa-fw fa-link"></i></a>
+                    <input id="IRI" type="text" class="form-control" placeholder="" disabled onchange="updateInput(this.id, this.value)">
+                </div>
+                <div class="form-group">
                     <label>label</label>
                     <input id="label" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
                 </div>
