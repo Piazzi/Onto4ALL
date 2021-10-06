@@ -7,6 +7,31 @@ function saveName(event){
     }
 }
 
+function favoriteOntology(){
+    $.ajax({
+        /* the route pointing to the post function */
+        url: '/' + getLanguage() + '/favouriteOntologyIndex',
+        type: 'POST',
+        data: {
+            _token: CSRF_TOKEN,
+            id: document.getElementById('id').value,
+            favourite: document.getElementById('favorite-ontology').value
+        },
+
+        dataType: 'JSON',
+        success: function (data) {
+            if(data['favourite'] == 1)
+                document.getElementById('favorite-ontology').innerHTML = '<i style="color:#f39c12" class="fa fa-fw fa-star"></i>';
+            else              
+                document.getElementById('favorite-ontology').innerHTML = '<i class="fa fa-fw fa-star-o"></i>';
+        },
+
+        error: function() {
+            alert('You already have 5 favourite ontologies');
+        }
+    })
+}
+
 // Request to open an ontology
 document.addEventListener("DOMContentLoaded", function() { 
     let CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -51,7 +76,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 // Select the collaborators on the <select> tag
                 $('#collaborators-select').val(data['collaborators']).trigger('change');
-
+                
+                //Show when the ontology was last updated
+                document.getElementById('last-update').innerHTML = '<span class="time"><i class="fa fa-clock-o"></i> ' + 'Last update: ' + data['last_update'];
+                //Update the little star on the navbar
+                if(data['favourite'] == 1)
+                    document.getElementById('favorite-ontology').innerHTML = '<i style="color:#f39c12" class="fa fa-fw fa-star"></i>';
+                else              
+                    document.getElementById('favorite-ontology').innerHTML = '<i class="fa fa-fw fa-star-o"></i>';
                 updateSaveButtonInFrontEnd(true);
             },
             error: function(jqXHR, textStatus, errorThrown) {

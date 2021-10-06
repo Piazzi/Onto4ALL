@@ -20,6 +20,10 @@
 
 
 /* --------------------------------------------ONTO4ALL------------------------------------------------------------*/
+.nav.navbar-nav>li>a{
+	padding-right:8px !important;
+	padding-left:8px !important;
+}
 .ontology-name{
 	padding:13.5px 8px !important;
 	padding-right: 0px;
@@ -36,11 +40,22 @@
     min-width: 1px;
     padding: 2px 7px;
     visibility: hidden;
+	padding-right:8px !important;
+	padding-left:8px !important;
 }
 .name-input:focus {
 	border: 1px solid #FFFFFF;
 	box-shadow: none;
 	border-radius: 2px !important;
+}
+
+
+#last-update{
+	/* display:none; */
+	font-size: 11px;
+	padding-top:18px;
+	padding-left:30px;
+	color:#FFFFFF;
 }
 
 .sidebar-menu>li>a {
