@@ -41,16 +41,18 @@
                 <!-- <div class="navbar-custom-menu"> -->
                 @if(Route::currentRouteName() == 'home')
                     <ul class="nav navbar-nav" style="font-size: 16px;">
-                        <li contentEditable="true">
-                            <a id="ontology-name" class="geItem">{{__('New Ontology')}}</a>
+                        <li class="ontology-name">
+                            <i class="fa fa-fw fa-object-group" style="color:#FFFFFF"></i>
+                            <input onKeyPress="saveName(event)" id="name" title="Rename the Ontology" class="name-input" spellcheck="false" type="text" autocomplete="off" value="Unknown Ontology" tabindex="0" style="visibility: visible; width: 155px;">
                         </li>
+                        
                         <li>
-                            <a id="open-ontology" class="geItem" data-toggle="modal" data-target="#ontology-manager">
+                            <a href="#" id="open-ontology" class="geItem" data-toggle="modal" data-target="#ontology-manager">
                                 <i class="fa fa-fw fa-folder-open-o"></i>{{__(' Ontology Manager')}}
                             </a>
                         </li>
                         <li>
-                            <a id="edit-ontology" class="geItem" data-toggle="modal" data-target="#edit-ontology-modal">
+                            <a href="#" id="edit-ontology" class="geItem" data-toggle="modal" data-target="#edit-ontology-modal">
                                 <i class="fa fa-fw  fa-edit"></i>{{__(' Edit Ontology')}}
                             </a>
                         </li>
