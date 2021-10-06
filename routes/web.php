@@ -72,6 +72,7 @@ Route::group([
     Route::put('/ontologies/favourite/{userId}/{ontologyId}', [OntologyController::class, 'saveAsFavourite'])->name('ontologies.favourite')->middleware('can:eModelador');
     Route::put('/ontologies/normal/{userId}/{ontologyId}', [OntologyController::class, 'saveAsNormal'])->name('ontologies.normal')->middleware('can:eModelador');
     Route::post('/updateOrCreate', [OntologyController::class, 'updateOrCreate']);
+    Route::post('/favouriteOntologyIndex', [OntologyController::class, 'favouriteOntologyIndex'] )->middleware('can:eModelador');
 
     // Thesaurus CRUD
     Route::resource('/thesaurus', ThesauruController::class)->middleware('can:eModelador');

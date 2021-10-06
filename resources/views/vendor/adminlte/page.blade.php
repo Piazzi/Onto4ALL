@@ -42,7 +42,8 @@
                 @if(Route::currentRouteName() == 'home')
                     <ul class="nav navbar-nav" style="font-size: 16px;">
                         <li class="ontology-name">
-                            <input onKeyPress="saveName(event)" id="name" title="Rename the Ontology" class="name-input" spellcheck="false" type="text" autocomplete="off" value="Unknown Ontology" tabindex="0" style="visibility: visible; width: 155px;">
+                            <i style="color: white;" class="fa fa-fw fa-tag"></i>
+                            <input onKeyPress="saveName(event)" id="name-input" title="Rename the Ontology" placeholder="{{__('Untitled Ontology')}}"  spellcheck="false" type="text" autocomplete="off" value="{{__('Untitled Ontology')}}" tabindex="0" style="visibility: visible; width: 155px;">
                         </li>
                         
                         <li>
@@ -58,7 +59,7 @@
                         <li class="favorite-ontology">
                             <a onclick="favoriteOntology()" value="0" title="Favorite ontology" href="#" id="favorite-ontology" class="geItem"></a>
                         </li>
-                        <li id="last-update"></li>
+                        <li style="font-size: 14px;" id="last-update"></li>
                     </ul>
                 @endif
                 <!-- </div> -->

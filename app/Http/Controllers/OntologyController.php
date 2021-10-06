@@ -193,23 +193,21 @@ class OntologyController extends Controller
         return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been added to favorites');
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function favouriteOntologyIndex(Request $request)
     {
-        $ontology = Ontology::where('id', $request->id)->exists();
-        if ($ontology) { 
-            $ontology = Ontology::find($request->id);
-            if ($ontology->userCanEdit()) {
-                $ontology->update([
-                    "favourite" => 0
-                ]);
-            }
-        }
-        return response()->json([
-            "message-pt" => 'Ontologia Favoritada',
-            "message-en" => 'Favourite Ontology',
-            "id" => $ontology->id,
+        $ontology = Ontology::find($request->id);
+        if($ontology->favourite)
+            $ontology->favourite = 0;
+        else 
+            $ontology->favourite = 1;
+        $ontology->save();
+        return response()->json([ 
+            "favourite" => $ontology->favourite
         ]);
-
     }
 
     /**

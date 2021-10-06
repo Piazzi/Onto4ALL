@@ -486,8 +486,15 @@
             </div>
             <div class="modal-body">
                 <input id="id" name="id" type="hidden">
-                <input id="name" name="name" type="hidden">
-                
+                                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>IRI</label>
+                            <input class="form-control" type="text" id="ontology-iri"  disabled value="{{__('Save the ontology first to see its IRI')}}" >
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="row">
                     <div class="col-md-3">

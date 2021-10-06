@@ -13,13 +13,14 @@ function favoriteOntology(){
         url: '/' + getLanguage() + '/favouriteOntologyIndex',
         type: 'POST',
         data: {
-            _token: CSRF_TOKEN,
+            _token: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             id: document.getElementById('id').value,
             favourite: document.getElementById('favorite-ontology').value
         },
 
         dataType: 'JSON',
         success: function (data) {
+            console.log(data['favourite']);
             if(data['favourite'] == 1)
                 document.getElementById('favorite-ontology').innerHTML = '<i style="color:#f39c12" class="fa fa-fw fa-star"></i>';
             else              
@@ -54,7 +55,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementsByClassName('name-input').value = data['name'];
 
                 document.getElementById('id').value = data['id'];
-                document.getElementById('name').value = data['name'];
+                document.getElementById('name-input').value = data['name'];
+                document.getElementById('ontology-iri').value = "https://onto4alleditor.com/en/ontologies/"+data['id'];
                 document.getElementById('publication-date').value = data['publication_date'];
                 document.getElementById('last-uploaded').value = data['last_uploaded'];
                 document.getElementById('description').value = data['description'];
@@ -68,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById('scope').value = data['scope'];
                 document.getElementById('competence-questions').value = data['competence_questions'];
                 document.getElementById('created-by').value = data['owner_name'];
-                document.querySelector("title").textContent = document.getElementById('name').value + ' | Onto4ALL - Ontology Graphical Editor';
+                document.querySelector("title").textContent = document.getElementById('name-input').value + ' | Onto4ALL - Ontology Graphical Editor';
 
                 // Select the namespaces on the <select> tag
                 $('#namespace-select').val(data['namespace']).trigger('change');
@@ -115,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 _token: CSRF_TOKEN,
                 id: document.getElementById('id').value,
                 xml_string: new XMLSerializer().serializeToString(editor.getGraphXml()),
-                name: document.getElementById('name').value,
+                name: document.getElementById('name-input').value,
                 publication_date: document.getElementById('publication-date').value,
                 last_uploaded: document.getElementById('last-uploaded').value,
                 description: document.getElementById('description').value,
@@ -136,9 +138,8 @@ document.addEventListener("DOMContentLoaded", function() {
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
                 updateSaveButtonInFrontEnd(true);
-                document.getElementById('name-input').value = data['name'];
-                document.getElementById('id').value=data['id'];
-                document.getElementById('title').textContent = document.getElementById('name').value + ' | Onto4ALL - Ontology Graphical Editor';
+                document.getElementById('id').value = data['id'];
+                document.getElementById('title').textContent = document.getElementById('name-input').value + ' | Onto4ALL - Ontology Graphical Editor';
             },
 
             error: function(jqXHR, textStatus, errorThrown) {
