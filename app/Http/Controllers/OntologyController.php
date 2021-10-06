@@ -193,6 +193,25 @@ class OntologyController extends Controller
         return redirect()->route('ontologies.index', app()->getLocale())->with('Sucess', 'Your ontology has been added to favorites');
     }
 
+    public function favouriteOntologyIndex(Request $request)
+    {
+        $ontology = Ontology::where('id', $request->id)->exists();
+        if ($ontology) { 
+            $ontology = Ontology::find($request->id);
+            if ($ontology->userCanEdit()) {
+                $ontology->update([
+                    "favourite" => 0
+                ]);
+            }
+        }
+        return response()->json([
+            "message-pt" => 'Ontologia Favoritada',
+            "message-en" => 'Favourite Ontology',
+            "id" => $ontology->id,
+        ]);
+
+    }
+
     /**
      * Unmark the favourite column from a ontology
      * @param Request $request
@@ -366,6 +385,7 @@ class OntologyController extends Controller
     {
         $ontology = Ontology::where('id', $request->id)->first();
         $ownerName = $ontology->user->name;
+        $lastUpdate = date("d-m-Y | H:i", strtotime($ontology->updated_at));
         if (Auth::user()->id == $ontology['user_id'] || $ontology->users->contains($request->user()->id)) {
             $response = array(
                 'status' => 'success',
@@ -388,7 +408,8 @@ class OntologyController extends Controller
                 'competence_questions' => $ontology['competence_questions'],
                 'namespace' =>  $ontology['namespace'],
                 'collaborators' => $ontology->users->modelKeys(),
-                'owner_name' => $ownerName
+                'owner_name' => $ownerName,
+                'last_update' => $lastUpdate
             );
             return response()->json($response);
             //return $ontology;

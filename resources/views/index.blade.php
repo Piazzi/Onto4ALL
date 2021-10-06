@@ -629,7 +629,7 @@
                             <span class="time"><i class="fa fa-clock-o"></i> {{__('Last update')}}:
                                 {{date("d-m-Y | H:i e", strtotime($ontology->updated_at))}}</span>
                             @if($ontology->favourite == 1)
-                            <span class="time"><i style="color: #ffe70a" class="fa fa-fw fa-star"></i></span>
+                            <span class="time"><i style="color: #f39c12" class="fa fa-fw fa-star"></i></span>
                             @endif
 
                             <h3 class="timeline-header">

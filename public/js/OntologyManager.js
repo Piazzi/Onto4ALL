@@ -1,4 +1,37 @@
 var ontologyName = document.getElementById("ontology-name");
+
+function saveName(event){
+    if(event.key == 'Enter'){
+        document.getElementById('save-ontology').click();
+        $('.name-input').blur();
+    }
+}
+
+function favoriteOntology(){
+    $.ajax({
+        /* the route pointing to the post function */
+        url: '/' + getLanguage() + '/favouriteOntologyIndex',
+        type: 'POST',
+        data: {
+            _token: CSRF_TOKEN,
+            id: document.getElementById('id').value,
+            favourite: document.getElementById('favorite-ontology').value
+        },
+
+        dataType: 'JSON',
+        success: function (data) {
+            if(data['favourite'] == 1)
+                document.getElementById('favorite-ontology').innerHTML = '<i style="color:#f39c12" class="fa fa-fw fa-star"></i>';
+            else              
+                document.getElementById('favorite-ontology').innerHTML = '<i class="fa fa-fw fa-star-o"></i>';
+        },
+
+        error: function() {
+            alert('You already have 5 favourite ontologies');
+        }
+    })
+}
+
 // Request to open an ontology
 document.addEventListener("DOMContentLoaded", function() { 
     let CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -17,11 +50,9 @@ document.addEventListener("DOMContentLoaded", function() {
             success: function (data) {
                 let doc = mxUtils.parseXml(data['file']);
                 editor.setGraphXml(doc.documentElement);
-                //console.log(data);
-                if(getLanguage() =='en')
-                    ontologyName.innerHTML = '<i class="fa fa-fw fa-object-group"></i> ' + data['name'];
-                else
-                    ontologyName.innerHTML = '<i class="fa fa-fw fa-object-group"></i> ' + data['name'];
+                
+                document.getElementsByClassName('name-input').value = data['name'];
+
                 document.getElementById('id').value = data['id'];
                 document.getElementById('name').value = data['name'];
                 document.getElementById('publication-date').value = data['publication_date'];
@@ -45,7 +76,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 
                 // Select the collaborators on the <select> tag
                 $('#collaborators-select').val(data['collaborators']).trigger('change');
-
+                
+                //Show when the ontology was last updated
+                document.getElementById('last-update').innerHTML = '<span class="time"><i class="fa fa-clock-o"></i> ' + 'Last update: ' + data['last_update'];
+                //Update the little star on the navbar
+                if(data['favourite'] == 1)
+                    document.getElementById('favorite-ontology').innerHTML = '<i style="color:#f39c12" class="fa fa-fw fa-star"></i>';
+                else              
+                    document.getElementById('favorite-ontology').innerHTML = '<i class="fa fa-fw fa-star-o"></i>';
                 updateSaveButtonInFrontEnd(true);
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -68,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('save-ontology').innerHTML='<div  class="overlay"><i style="color: white !important;" class="fa fa-refresh fa-spin"></i></div>';
         document.getElementById('save-ontology').style.backgroundColor = "#00a65a";
         document.getElementById('save-ontology').style.borderColor = "#00a65a";
-        document.getElementById('name').value = document.getElementById("ontology-name").textContent;
         $.ajax({
             /* the route pointing to the post function */
             url: '/' + getLanguage() + '/updateOrCreate',
@@ -99,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
                 updateSaveButtonInFrontEnd(true);
-                document.getElementById('ontology-name').innerHTML='<i class="fa fa-fw fa-object-group"></i> '+ document.getElementById('name').value;
+                document.getElementById('name-input').value = data['name'];
                 document.getElementById('id').value=data['id'];
                 document.getElementById('title').textContent = document.getElementById('name').value + ' | Onto4ALL - Ontology Graphical Editor';
             },

@@ -41,19 +41,24 @@
                 <!-- <div class="navbar-custom-menu"> -->
                 @if(Route::currentRouteName() == 'home')
                     <ul class="nav navbar-nav" style="font-size: 16px;">
-                        <li contentEditable="true">
-                            <a id="ontology-name" class="geItem">{{__('New Ontology')}}</a>
+                        <li class="ontology-name">
+                            <input onKeyPress="saveName(event)" id="name" title="Rename the Ontology" class="name-input" spellcheck="false" type="text" autocomplete="off" value="Unknown Ontology" tabindex="0" style="visibility: visible; width: 155px;">
                         </li>
+                        
                         <li>
-                            <a id="open-ontology" class="geItem" data-toggle="modal" data-target="#ontology-manager">
-                                <i class="fa fa-fw fa-folder-open-o"></i>{{__(' Ontology Manager')}}
+                            <a title="Ontology Manager" href="#" id="open-ontology" class="geItem" data-toggle="modal" data-target="#ontology-manager">
+                                <i class="fa fa-fw fa-folder-open-o"></i>
                             </a>
                         </li>
                         <li>
-                            <a id="edit-ontology" class="geItem" data-toggle="modal" data-target="#edit-ontology-modal">
-                                <i class="fa fa-fw  fa-edit"></i>{{__(' Edit Ontology')}}
+                            <a title="Edit Ontology" href="#" id="edit-ontology" class="geItem" data-toggle="modal" data-target="#edit-ontology-modal">
+                                <i class="fa fa-fw  fa-edit"></i>
                             </a>
                         </li>
+                        <li class="favorite-ontology">
+                            <a onclick="favoriteOntology()" value="0" title="Favorite ontology" href="#" id="favorite-ontology" class="geItem"></a>
+                        </li>
+                        <li id="last-update"></li>
                     </ul>
                 @endif
                 <!-- </div> -->
