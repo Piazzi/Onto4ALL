@@ -59,12 +59,12 @@
                         <li class="favorite-ontology">
                             <a onclick="favoriteOntology()" value="0" title="Favorite ontology" href="#" id="favorite-ontology" class="geItem"></a>
                         </li>
-                        <li style="font-size: 14px;" id="last-update"></li>
                         <li>
                             <a id="save-ontology" class=" btn btn-default unsaved">
                                 <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
                             </a>
                         </li>
+                        <li style="font-size: 14px;" id="last-update"></li>
                     </ul>
                 @endif
                 <!-- </div> -->

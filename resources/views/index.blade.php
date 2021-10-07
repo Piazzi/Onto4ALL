@@ -84,6 +84,18 @@
 
 <!-- Right Sidebar -->
 <aside class="control-sidebar control-sidebar-light control-sidebar-open">
+    <div class="btn-group" style="display: flex; flex-direction: row; align-content: stretch; justify-content: space-evenly;">
+            <a class="btn btn-default" style="width: 100%;" download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
+                <i class="fa fa-fw fa-file-text-o"></i>
+            </a>
+
+            <a class="btn btn-default" style="width: 100%;" id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" data-toggle="modal" data-target="#methodology-menu">
+                <i class="fa fa-fw fa-info-circle"></i>
+            </a>
+            <a class="btn btn-default"  style="width: 100%;" id="tips-icon" title="{{__('Tips')}}" href="#"  data-toggle="modal" data-target="#tips-menu">
+                <i class="fa fa-fw fa-search"></i>
+            </a>
+    </div>
     <!-- Tabs -->
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
@@ -448,27 +460,7 @@
         </div>
     </div>
 </div>
-
 <!--./Warning Console Info modal -->
-
-
-<!-- Toolbar Icons  -->
-
-<a class="toolbar-icon" download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
-    <i class="fa fa-fw fa-file-text-o"></i>
-</a>
-
-<a id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#methodology-menu">
-    <i class="fa fa-fw fa-info-circle"></i>
-</a>
-
-<a id="tips-icon" title="{{__('Tips')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#tips-menu">
-    <i class="fa fa-fw fa-search"></i>
-</a>
-
-<!-- ./Toolbar icons  -->
-
-<!-- ./Menubar Icons -->
 
 <!-- Edit Ontology -->
 <div class="modal fade" id="edit-ontology-modal" style="display: none;">
@@ -1112,7 +1104,6 @@
 <script type="text/javascript" src="{{asset('grapheditor/js/Dialogs.js')}}"></script>
 
 <!-- Onto4ALL -->
-<script type="text/javascript" src="{{asset('js/EditorFunctions.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
@@ -1165,6 +1156,77 @@
                 '<center style="margin-top:10%;">Error loading resource files. Please check browser console.</center>';
         });
     })();
+
+
+    // ONTO4ALL JQUERY SCRIPTS
+    
+    function onReady(callback) {
+        var intervalId = window.setInterval(function () {
+            if (document.getElementsByTagName('body')[0] !== undefined) {
+                window.clearInterval(intervalId);
+                callback.call(this);
+            }
+        }, 2000);
+    }
+
+    function setVisible(selector, visible) {
+        document.querySelector(selector).style.display = visible ? 'block' : 'none';
+    }
+
+    onReady(function () {
+        setVisible('body', true);
+        setVisible('#loading', false);
+    });
+
+    document.addEventListener("DOMContentLoaded", function() { 
+
+    // Select2 Plugin
+    $(document).ready(function () {
+        $('.js-example-basic-multiple').select2(
+            {theme: 'classic'}
+            
+        );
+        $('.js-example-tags').select2({
+            theme: 'classic',
+            tags: true
+        });
+    });
+
+    // Progress bar from the Methodology tab
+    /*
+    let percentage = document.getElementById('progress-bar').clientWidth / document.getElementById('progress-bar').offsetParent().clientWidth * 100;
+    document.querySelector('input[type="checkbox"]').addEventListener('click', function () {
+        if (this.checked) {
+            this.closest('li').setAttribute('class', 'done');
+            percentage = percentage + 12.5;
+            document.getElementById('progress-bar').clientWidth = percentage + '%';
+            document.getElementById('progress-bar').setAttribute('aria-valuenow', percentage);
+            console.log(percentage);
+
+        } else {
+            this.closest('li').attr('class', '');
+            percentage = percentage - 12.5;
+            document.getElementById('progress-bar').clientWidth = percentage + '%';
+            document.setAttribute('aria-valuenow', percentage);
+
+        }
+        document.getElementById('progress-text').textContent = percentage + "% complete";
+
+    });*/
+});
+
+    document.getElementById('search-tip-input').addEventListener("keyup", function () {
+        let value = this.value.toLowerCase();
+        document.querySelectorAll('#menu-scroll .collapsed-box').filter(function () {
+            if(this.textContent.toLowerCase().indexOf(value) > -1){
+                this.style.visibility = "visible";
+            }
+            else{
+                this.style.visibility = "hidden";
+            }
+        });
+    });
+
 </script>
 
 
