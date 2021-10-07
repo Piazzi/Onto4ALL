@@ -1,7 +1,5 @@
 var geToolbar = document.getElementsByClassName('geToolbar');
-var geMenubar = document.getElementsByClassName('geMenubar');
 var toolbarIcon = document.getElementsByClassName('toolbar-icon');
-var menubarIcon = document.getElementsByClassName('menubar-icon');
 function onReady(callback) {
     var intervalId = window.setInterval(function () {
         if (document.getElementsByTagName('body')[0] !== undefined) {
@@ -21,7 +19,6 @@ function buildMenu() {
     {
         $(".geToolbar").append('<div class="geSeparator"> </div>');
         $(".geToolbar").append(toolbarIcon);
-        $(".geMenubar").append(menubarIcon);
     }
 }
 

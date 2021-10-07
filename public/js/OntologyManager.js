@@ -20,7 +20,7 @@ function favoriteOntology(){
 
         dataType: 'JSON',
         success: function (data) {
-\            if(data['favourite'] == 1)
+            if(data['favourite'] == 1)
                 document.getElementById('favorite-ontology').innerHTML = '<i style="color:#f39c12" class="fa fa-fw fa-star"></i>';
             else              
                 document.getElementById('favorite-ontology').innerHTML = '<i class="fa fa-fw fa-star-o"></i>';

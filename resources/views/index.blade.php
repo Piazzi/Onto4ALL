@@ -468,11 +468,6 @@
 
 <!-- ./Toolbar icons  -->
 
-<!-- Menubar Icons -->
-
-<a id="save-ontology" class="geItem  btn btn-default unsaved menubar-icon">
-    <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
-</a>
 <!-- ./Menubar Icons -->
 
 <!-- Edit Ontology -->
@@ -486,7 +481,7 @@
             </div>
             <div class="modal-body">
                 <input id="id" name="id" type="hidden">
-                                
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
