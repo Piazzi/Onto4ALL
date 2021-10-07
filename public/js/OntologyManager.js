@@ -20,8 +20,7 @@ function favoriteOntology(){
 
         dataType: 'JSON',
         success: function (data) {
-            console.log(data['favourite']);
-            if(data['favourite'] == 1)
+\            if(data['favourite'] == 1)
                 document.getElementById('favorite-ontology').innerHTML = '<i style="color:#f39c12" class="fa fa-fw fa-star"></i>';
             else              
                 document.getElementById('favorite-ontology').innerHTML = '<i class="fa fa-fw fa-star-o"></i>';
@@ -140,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 updateSaveButtonInFrontEnd(true);
                 document.getElementById('id').value = data['id'];
                 document.getElementById('title').textContent = document.getElementById('name-input').value + ' | Onto4ALL - Ontology Graphical Editor';
+                document.getElementById('last-update').innerHTML = '<span class="time"><i class="fa fa-clock-o"></i> ' + 'Last update: ' + data['updated_at'];;
             },
 
             error: function(jqXHR, textStatus, errorThrown) {

@@ -346,6 +346,7 @@ class OntologyController extends Controller
             "message-pt" => 'Todas as alterações foram salvas',
             "message-en" => 'All changes saved',
             "id" => $ontology->id,
+            'updated_at' => date("d-m-Y | H:i", strtotime($ontology['updated_at']))
         ]);
     }
 
@@ -407,7 +408,7 @@ class OntologyController extends Controller
                 'namespace' =>  $ontology['namespace'],
                 'collaborators' => $ontology->users->modelKeys(),
                 'owner_name' => $ownerName,
-                'last_update' => $lastUpdate
+                'last_update' => $lastUpdate,
             );
             return response()->json($response);
             //return $ontology;
