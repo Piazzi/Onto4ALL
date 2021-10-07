@@ -29,7 +29,7 @@
                     <b>Onto4ALL</b>
                 </span>
             </a>
-            @if(Route::currentRouteName() !== 'home' && Route::currentRouteName() !== 'thesaurus-editor')
+            @if(Route::currentRouteName() !== 'thesaurus-editor')
             <nav class="navbar navbar-static-top">
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
@@ -38,7 +38,36 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-
+                <!-- <div class="navbar-custom-menu"> -->
+                @if(Route::currentRouteName() == 'home')
+                    <ul class="nav navbar-nav" style="font-size: 16px;">
+                        <li class="ontology-name">
+                            <i style="color: white;" class="fa fa-fw fa-tag"></i>
+                            <input onKeyPress="saveName(event)" id="name-input" title="Rename the Ontology" placeholder="{{__('Untitled Ontology')}}"  spellcheck="false" type="text" autocomplete="off" value="{{__('Untitled Ontology')}}" tabindex="0" style="visibility: visible; width: 155px;">
+                        </li>
+                        
+                        <li>
+                            <a title="Ontology Manager" href="#" id="open-ontology" class="geItem" data-toggle="modal" data-target="#ontology-manager">
+                                <i class="fa fa-fw fa-folder-open-o"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a title="Edit Ontology" href="#" id="edit-ontology" class="geItem" data-toggle="modal" data-target="#edit-ontology-modal">
+                                <i class="fa fa-fw  fa-edit"></i>
+                            </a>
+                        </li>
+                        <li class="favorite-ontology">
+                            <a onclick="favoriteOntology()" value="0" title="Favorite ontology" href="#" id="favorite-ontology" class="geItem"></a>
+                        </li>
+                        <li>
+                            <a id="save-ontology" class=" btn btn-default unsaved">
+                                <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
+                            </a>
+                        </li>
+                        <li style="font-size: 14px;" id="last-update"></li>
+                    </ul>
+                @endif
+                <!-- </div> -->
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         @php
@@ -236,34 +265,7 @@
                             </ul>
                         </li>
 
-                        <li class="treeview">
-                            <a style="margin-left: 3px" href="#">
-                                <i class="fa fa-gear"></i> <span>{{__('Options')}}</span>
-                                <span class="pull-right-container">
-                                  <i class="fa fa-angle-left pull-right"></i>
-                                </span>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li>
-                                    <!-- Sidebar toggle button-->
-                                    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                                        <i class="fa fa-fw fa-exchange "></i>
-                                        <span>{{__('Show/Hide Left Sidebar')}}</span>
-                                        <span class="sr-only">{{ trans('adminlte::adminlte.toggle_navigation') }}</span>
-                                    </a>
-                                </li>
-                                @if(Route::currentRouteName() === 'home')
-                                <li>
-                                    <a href="#" data-toggle="control-sidebar">
-                                        <i class="fa fa-1.5x fa-fw  fa-bars"></i>
-                                        <span>{{__('Show/Hide Right Sidebar')}}</span>
-                                    </a>
-                                </li>
-                                @endif
-                                
-
-                            </ul>
-                        </li>
+                        
 
                     </ul>
                 </section>

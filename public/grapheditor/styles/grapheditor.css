@@ -1,7 +1,7 @@
 /* Loading Screen */
 #loading {
 	position: fixed;
-	color: #00A65A;
+	color: #064c72;
 	font-size: 30px;
 	left: 0;
 	top: 0;
@@ -20,15 +20,46 @@
 
 
 /* --------------------------------------------ONTO4ALL------------------------------------------------------------*/
-header {
-	pointer-events: none;
+.nav.navbar-nav>li>a{
+	padding-right:8px !important;
+	padding-left:8px !important;
 }
-.sidebar-menu>li>a {
-	padding-right: 15px !important;
+.ontology-name{
+	padding:13.5px 8px !important;
+	padding-right: 0px;
+}
+#name-input {
+	background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 2px!important;
+    color: #FFFFFF;
+    font-size: 18px;
+    height: 20px;
+    line-height: 22px;
+    margin: 0;
+    min-width: 1px;
+    padding: 2px 7px;
+    visibility: hidden;
+	padding-right:8px !important;
+	padding-left:8px !important;
+}
+#name-input:focus {
+	border: 1px solid #FFFFFF;
+	box-shadow: none;
+	border-radius: 2px !important;
 }
 
-.logo, .navbar-custom-menu, .sidebar-toggle, .geMenubar {
-	pointer-events: all !important;
+
+#last-update{
+	/* display:none; */
+	font-size: 14px;
+	padding-top:14px;
+	padding-left:14px;
+	color:#FFFFFF;
+}
+
+.sidebar-menu>li>a {
+	padding-right: 15px !important;
 }
 
 
@@ -54,11 +85,11 @@ header {
 
 .fa-refresh {
 	margin-bottom: 550px;
-	color: #00A65A !important;
+	color: #064c72 !important;
 }
 
 #loading {
-	color: #00A65A !important;
+	color: #064c72 !important;
 }
 
 .editor-timeline-item {
@@ -99,7 +130,7 @@ header {
 
 #ontology-name {
 	pointer-events: none; 
-	color: #00a65a;
+	color: #FFFFFF;
 }
 .toolbar-icon {
 	margin-right: 3px;
@@ -127,13 +158,14 @@ header {
 	margin-top: 500px;
 }
 
-.geSidebarContainer .geTitle:active, .geMenubarContainer a:active, .geToolbarContainer a:active {
-	background-color: #00a65a !important;
+.geToolbarContainer a:active {
+	background-color: #62a0bb !important;
 }
 
-.menubar-icon {
-
+.geItem:active{
+	background-color: #62a0bb !important;
 }
+
 
 .geMenubar .geStatus {
 	padding: 0px  !important;
@@ -142,8 +174,9 @@ header {
 #save-ontology {
 	visibility: hidden;
 	border-radius: 15px;
-	padding: 3px !important;
-    margin: 2px;
+	padding: 2px;
+    margin-top: 10px;
+	margin-left: 10px;
 }
 
 .unsaved {
@@ -267,6 +300,7 @@ aside {
 	background-color:#ffffff;
 	font-size:0px;
 	outline:none;
+	margin-top: 50px;
 }
 .geMenubar, .geToolbar {
 	white-space:nowrap;
@@ -442,6 +476,7 @@ aside {
 }
 .geMenubarContainer, .geToolbarContainer, .geHsplit, .geVsplit {
 	background-color:#fbfbfb;
+	margin-top: 50px;
 }
 .geMenubar {
 	padding:0px 2px 0px 2px;
@@ -552,6 +587,7 @@ div.mxWindow .geButton {
 	overflow:hidden;
 	position:absolute;
 	overflow:auto;
+	margin-top: 50px;
 }
 .geTabContainer {
 	border-top:1px solid #e5e5e5;
@@ -593,7 +629,7 @@ div.mxWindow .geButton {
 	padding:6px;
 	margin:6px;
 	color:#a0a0a0;
-	fontSize:13px;
+	font-size:13px;
 }
 .geTitle img {
 	opacity:0.5;
@@ -631,6 +667,7 @@ div.mxWindow .geButton {
 	box-shadow:0 2px 6px 2px rgba(60,64,67,.15);
 	border-radius:6px;
 	_filter:progid:DXImageTransform.Microsoft.DropShadow(OffX=2, OffY=2, Color='#d5d5d5', Positive='true');
+	margin-top: 60px;
 }
 .geFooterContainer {
 	background:#e5e5e5;
@@ -757,7 +794,7 @@ div.mxWindow .geButton {
 	white-space: nowrap;
 	border-radius:3px;
 	background-color:#0052cc;
-	currsor:pointer;
+	cursor:pointer;
 	transition: background-color 0.1s ease-out;
 	overflow:hidden;
 	text-overflow: ellipsis;

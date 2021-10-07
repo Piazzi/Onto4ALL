@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\OntologyClass;
+use App\Models\OntologyClass;
 use App\Http\Requests\OntologyClassStoreRequest;
 
 class OntologyClassController extends Controller

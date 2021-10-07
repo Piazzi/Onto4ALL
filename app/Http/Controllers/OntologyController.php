@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Ontology;
+use App\Models\Ontology;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\OntologyStoreRequest;
@@ -121,11 +121,11 @@ class OntologyController extends Controller
         $ontology = Ontology::where('id', $id)->first();
         if ($ontology->userCanEdit()) {
             $ontology->update($request->all());
-            foreach($request->collaborators as $user){
-                if($user != $ontology->user_id){
-                    if($this->verifyUser($user, $ontology) == false){
+            foreach ($request->collaborators as $user) {
+                if ($user != $ontology->user_id) {
+                    if ($this->verifyUser($user, $ontology) == false) {
                         $user = User::find($user);
-                        $notification = ['title'=> __('New Ontology shared with you'), 'message'=> __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from'=>$ontology->user->name, 'type'=> 'New Ontology Shared'];
+                        $notification = ['title' => __('New Ontology shared with you'), 'message' => __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from' => $ontology->user->name, 'type' => 'New Ontology Shared'];
                         Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
                         $user->notify(new UserNotification($notification));
                     }
@@ -194,6 +194,23 @@ class OntologyController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function favouriteOntologyIndex(Request $request)
+    {
+        $ontology = Ontology::find($request->id);
+        if($ontology->favourite)
+            $ontology->favourite = 0;
+        else 
+            $ontology->favourite = 1;
+        $ontology->save();
+        return response()->json([ 
+            "favourite" => $ontology->favourite
+        ]);
+    }
+
+    /**
      * Unmark the favourite column from a ontology
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -246,7 +263,7 @@ class OntologyController extends Controller
     public function updateOrCreate(Request $request)
     {
         $ontology = Ontology::where('id', $request->id)->exists();
-        if ($ontology) { 
+        if ($ontology) {
             $ontology = Ontology::find($request->id);
             if ($ontology->userCanEdit()) {
                 $ontology->update([
@@ -311,11 +328,11 @@ class OntologyController extends Controller
             ]
         );*/
 
-        foreach($request->collaborators as $user){
-            if($user != $ontology->user_id){
-                if($this->verifyUser($user, $ontology) == false){
+        foreach ($request->collaborators as $user) {
+            if ($user != $ontology->user_id) {
+                if ($this->verifyUser($user, $ontology) == false) {
                     $user = User::find($user);
-                    $notification = ['title'=> __('New Ontology shared with you'), 'message'=> __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from'=>$ontology->user->name, 'type'=> 'New Ontology Shared'];
+                    $notification = ['title' => __('New Ontology shared with you'), 'message' => __('The user ') . $ontology->user->name . __(' shared with you the ontology ') . $ontology->name, 'from' => $ontology->user->name, 'type' => 'New Ontology Shared'];
                     Mail::send(new \App\Mail\SharedOntologyMail($user, $ontology));
                     $user->notify(new UserNotification($notification));
                 }
@@ -329,14 +346,16 @@ class OntologyController extends Controller
             "message-pt" => 'Todas as alterações foram salvas',
             "message-en" => 'All changes saved',
             "id" => $ontology->id,
+            'updated_at' => date("d-m-Y | H:i", strtotime($ontology['updated_at']))
         ]);
     }
 
     //helper function to verify if the collaborator is already a user on the ontology
     //returns if the collaborator already is a user of the ontology
-    public function verifyUser($collaborator, $ontology){
-        foreach($ontology->users as $user){
-            if($collaborator == $user->id){
+    public function verifyUser($collaborator, $ontology)
+    {
+        foreach ($ontology->users as $user) {
+            if ($collaborator == $user->id) {
                 return true;
             }
         }
@@ -365,6 +384,7 @@ class OntologyController extends Controller
     {
         $ontology = Ontology::where('id', $request->id)->first();
         $ownerName = $ontology->user->name;
+        $lastUpdate = date("d-m-Y | H:i", strtotime($ontology->updated_at));
         if (Auth::user()->id == $ontology['user_id'] || $ontology->users->contains($request->user()->id)) {
             $response = array(
                 'status' => 'success',
@@ -385,8 +405,10 @@ class OntologyController extends Controller
                 'degree_of_formality' => $ontology['degree_of_formality'],
                 'scope' => $ontology['scope'],
                 'competence_questions' => $ontology['competence_questions'],
+                'namespace' =>  $ontology['namespace'],
                 'collaborators' => $ontology->users->modelKeys(),
-                'owner_name' => $ownerName
+                'owner_name' => $ownerName,
+                'last_update' => $lastUpdate,
             );
             return response()->json($response);
             //return $ontology;
