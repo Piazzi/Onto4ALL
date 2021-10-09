@@ -239,6 +239,34 @@ class OntologyController extends Controller
     }
 
     /**
+     * Download the diagram to SVG format
+     * @param Request $request
+     * @return
+     */
+    public function downloadSVG(Request $request)
+    {
+        // Implementar Autentocação mais tarde
+        //$file = Ontology::where('user_id', '=', $request->userId)->where('id', '=', $request->ontologyId)->first();
+        $file = Ontology::findOrFail($request->ontologyId);
+        $fileRequest = new Request();
+        $fileRequest->setMethod('POST');
+        $fileRequest->request->add(['xml' => $file->xml_string]);
+        $fileRequest->request->add(['fileName' => $this->setFileExtension($file->name, '.svg')]);
+
+        // converts the file to OWL
+        $convertedFile = app('App\Http\Controllers\HomeController')->exportOWL($fileRequest)->getOriginalContent();
+
+        $response = Response::create($convertedFile, 200);
+        $response->header('Content-Type', 'text/xml');
+        $response->header('Cache-Control', 'public');
+        $response->header('Content-Description', 'File Transfer');
+        $response->header('Content-Disposition', 'attachment; filename=' . $this->setFileExtension($file->name, '.svg') . '');
+        $response->header('Content-Transfer-Encoding', 'binary');
+
+        return $response;
+    }
+
+    /**
      * Update a existing ontology or create a new one
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse

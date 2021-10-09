@@ -69,6 +69,7 @@ Route::group([
     Route::resource('/ontologies', OntologyController::class)->middleware('can:eModelador');
     Route::get('/ontologies/download/{userId}/{ontologyId}', [OntologyController::class, 'downloadXML'])->name('ontologies.download')->middleware('can:eModelador');
     Route::get('/ontologies/downloadOWL/{userId}/{ontologyId}', [OntologyController::class, 'downloadOWL'])->name('ontologies.downloadOWL')->middleware('can:eModelador');
+    Route::get('/ontologies/downloadSVG/{userId}/{ontologyId}', [OntologyController::class, 'downloadSVG'])->name('ontologies.downloadSVG')->middleware('can:eModelador');
     Route::put('/ontologies/favourite/{userId}/{ontologyId}', [OntologyController::class, 'saveAsFavourite'])->name('ontologies.favourite')->middleware('can:eModelador');
     Route::put('/ontologies/normal/{userId}/{ontologyId}', [OntologyController::class, 'saveAsNormal'])->name('ontologies.normal')->middleware('can:eModelador');
     Route::post('/updateOrCreate', [OntologyController::class, 'updateOrCreate']);

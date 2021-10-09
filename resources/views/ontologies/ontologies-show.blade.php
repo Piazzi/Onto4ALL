@@ -26,6 +26,12 @@
                 <button class="btn btn-default"><i class="fa fa-fw fa-download"></i>
                 </button>
             </a>
+            {{ __('SVG File') }}
+            <a
+                href="{{ route('ontologies.downloadSVG', ['locale' => app()->getLocale(), 'userId' => auth()->user()->id, 'ontologyId' => $ontology->id]) }}">
+                <button class="btn btn-default"><i class="fa fa-fw fa-download"></i>
+                </button>
+            </a>
         </div>
 
         <div id="graph"></div>
@@ -40,13 +46,15 @@
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
 
-                    <div class="informations-no">
-                        <div class="container">
-                            <div class="row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="informations-no">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <h4 id="#nome"></h4>
                                         <div class="tab-pane active" id="classes-tab">
+
+                                            <h4 id="nome"></h4>
+
                                             <div class="form-group">
                                                 <label>SubClassOf</label>
                                                 <input id="SubClassOf" disabled="" type="text" class="form-control"
@@ -96,87 +104,46 @@
                             <div class="informations-aresta">
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <h4 id="#nome"></h4>
                                         <div class="tab-pane active" id="classes-tab">
-                                            <div class="form-group">
-                                                <label>SubClassOf</label>
-                                                <div class="tab-pane active" id="object-properties-tab">
-                                                    <div class="form-group">
-                                                        <label>domain</label>
-                                                        <input id="domain" disabled="" type="text" class="form-control"
-                                                            placeholder="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>range</label>
-                                                        <input id="range" disabled="" type="text" class="form-control"
-                                                            placeholder="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>equivalentTo</label>
-                                                        <input id="equivalentTo" disabled="" type="text"
-                                                            class="form-control" placeholder="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>subpropertyOf</label>
-                                                        <input id="subpropertyOf" disabled="" type="text"
-                                                            class="form-control" placeholder="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>inverseOf</label>
-                                                        <input id="inverseOf" disabled="" type="text" class="form-control"
-                                                            placeholder="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>disjointWith</label>
-                                                        <input id="disjointWith-relations" disabled="" type="text"
-                                                            class="form-control" placeholder="">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input id="functional" type="checkbox" disabled>
-                                                                Functional
-                                                            </label>
-                                                        </div>
 
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input id="inverseFunctional" type="checkbox" disabled>
-                                                                Inverse Functional
-                                                            </label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input id="transitive" type="checkbox" disabled>
-                                                                Transitive
-                                                            </label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input id="symetric" type="checkbox" disabled>
-                                                                Symetric
-                                                            </label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input id="asymmetric" type="checkbox" disabled>
-                                                                Asymmetric
-                                                            </label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input id="reflexive" type="checkbox" disabled>
-                                                                Reflexive
-                                                            </label>
-                                                        </div>
-                                                        <div class="checkbox">
-                                                            <label>
-                                                                <input id="irreflexive" type="checkbox" disabled>
-                                                                Irreflexive
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            <h4 id="nome"></h4>
+
+
+                                            <div class="form-group">
+                                                <label>domain</label>
+                                                <input id="domain" disabled="" type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>range</label>
+                                                <input id="range" disabled="" type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Equivalence</label>
+                                                <input id="Equivalence" disabled type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>InverseOf</label>
+                                                <input id="InverseOf" disabled="" type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>equivalentTo</label>
+                                                <input id="equivalentTo" disabled="" type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>disjointWith</label>
+                                                <input id="disjointWith-relations" disabled="" type="text"
+                                                    class="form-control" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>TargetForKey</label>
+                                                <input id="TargetForKey" disabled type="text" class="form-control"
+                                                    placeholder="">
                                             </div>
                                         </div>
                                     </div>
@@ -314,12 +281,12 @@
                 </div>
             </div>
         </div>
-        
+
         <a href="{{ route('ontologies.index', app()->getLocale()) }}">
             <button class="btn btn-success btn-block" type="button">Go back</button>
         </a>
     </div>
-    
+
 
     @php
     $xml = str_replace('"', '\"', $ontology->xml_string);
@@ -402,99 +369,110 @@
 
             xmlDoc = parser.parseFromString("<?php echo "$xml"; ?>", "text/xml");
 
+            // Esconde os elementos que serão utilizados para clonar
+            $('.informations-no:last').css('display', 'none');
+            $('.informations-aresta:last').css('display', 'none');
+
             for (let i = 0; i < xmlDoc.getElementsByTagName("object").length; i++) {
                 if (xmlDoc.getElementsByTagName("object")[i].getAttribute("label") != null) {
-
-
-                    if (i != 0) {
-                        var newel = $('.informations:last').clone();
-                        $(newel).insertAfter(".informations:last");
-                    }
 
                     var SubClassOf;
                     var DisjointWith;
                     var Equivalence;
                     var TargetForKey;
                     var Instances;
-                    var label;
-                    var seeAlso;
-                    var isDefinedBy;
-                    var comment;
-                    var versionInfo;
-                    var priorVersion;
-                    var deprecated;
-                    var incompatibleWith;
-                    var backwardCompatibleWith;
+                    var Domain;
+                    var Range;
+                    var InverseOf;
+
+                    var classe;
+
+                    // Apenas arestas tem o atributo domain
+                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("domain") != null) {
+                        var newel = $('.informations-aresta:first').clone();
+                        newel.css('display', 'block')
+                        $(newel).insertAfter(".informations-aresta:last");
 
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf") != null || xmlDoc
-                        .getElementsByTagName("object")[i].getAttribute("SubClassOf") != "")
-                        SubClassOf = xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf");
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("SubClassOf") != "")
+                            SubClassOf = xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf");
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("DisjointWith") != null || xmlDoc
-                        .getElementsByTagName("object")[i].getAttribute("DisjointWith") != "")
-                        DisjointWith = xmlDoc.getElementsByTagName("object")[i].getAttribute("DisjointWith");
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("DisjointWith") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("DisjointWith") != "")
+                            DisjointWith = xmlDoc.getElementsByTagName("object")[i].getAttribute("DisjointWith");
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("Equivalence") != null || xmlDoc
-                        .getElementsByTagName("object")[i].getAttribute("Equivalence") != "")
-                        Equivalence = xmlDoc.getElementsByTagName("object")[i].getAttribute("Equivalence");
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("Equivalence") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("Equivalence") != "")
+                            Equivalence = xmlDoc.getElementsByTagName("object")[i].getAttribute("Equivalence");
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("Instances") != null || xmlDoc
-                        .getElementsByTagName("object")[i].getAttribute("Instances") != "")
-                        Instances = xmlDoc.getElementsByTagName("object")[i].getAttribute("Instances");
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("TargetForKey") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("TargetForKey") != "")
+                            TargetForKey = xmlDoc.getElementsByTagName("object")[i].getAttribute("TargetForKey");
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("label") != null || xmlDoc.getElementsByTagName(
-                            "object")[i].getAttribute("label") != "")
-                        label = xmlDoc.getElementsByTagName("object")[i].getAttribute("label");
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("domain") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("domain") != "")
+                            Domain = xmlDoc.getElementsByTagName("object")[i].getAttribute("domain");
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("seeAlso") != null || xmlDoc.getElementsByTagName(
-                            "object")[i].getAttribute("seeAlso") != "")
-                        seeAlso = xmlDoc.getElementsByTagName("object")[i].getAttribute("seeAlso");
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("range") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("range") != "")
+                            Range = xmlDoc.getElementsByTagName("object")[i].getAttribute("range");
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("isDefinedBy") != null || xmlDoc
-                        .getElementsByTagName("object")[i].getAttribute("isDefinedBy") != "")
-                        isDefinedBy = xmlDoc.getElementsByTagName("object")[i].getAttribute("isDefinedBy");
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("InverseOf") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("domain") != "")
+                            InverseOf = xmlDoc.getElementsByTagName("object")[i].getAttribute("InverseOf");
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("comment") != null || xmlDoc.getElementsByTagName(
-                            "object")[i].getAttribute("comment") != "")
-                        comment = xmlDoc.getElementsByTagName("object")[i].getAttribute("comment");
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("versionInfo") != null || xmlDoc
-                        .getElementsByTagName("object")[i].getAttribute("versionInfo") != "")
-                        versionInfo = xmlDoc.getElementsByTagName("object")[i].getAttribute("versionInfo");
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("priorVersion") != null || xmlDoc
-                        .getElementsByTagName("object")[i].getAttribute("priorVersion") != "")
-                        priorVersion = xmlDoc.getElementsByTagName("object")[i].getAttribute("priorVersion");
+                        $('.informations-aresta:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i].getAttribute(
+                            "label"));
+                        $('.informations-aresta:last').find('#SubClassOf').val(SubClassOf);
+                        $('.informations-aresta:last').find('#DisjointWith').val(DisjointWith);
+                        $('.informations-aresta:last').find('#Equivalence').val(Equivalence);
+                        $('.informations-aresta:last').find('#TargetForKey').val(TargetForKey);
+                        $('.informations-aresta:last').find('#Domain').val(Domain);
+                        $('.informations-aresta:last').find('#Range').val(Range);
+                        $('.informations-aresta:last').find('#InverseOf').val(InverseOf);
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("deprecated") != null || xmlDoc
-                        .getElementsByTagName("object")[i].getAttribute("deprecated") != "")
-                        deprecated = xmlDoc.getElementsByTagName("object")[i].getAttribute("deprecated");
+                    } else {
+                        var newel = $('.informations-no:first').clone();
+                        newel.css('display', 'block')
+                        $(newel).insertAfter(".informations-no:last");
+                        classe = ".informations-no:last";
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("incompatibleWith") != null || xmlDoc
-                        .getElementsByTagName("object")[i].getAttribute("incompatibleWith") != "")
-                        incompatibleWith = xmlDoc.getElementsByTagName("object")[i].getAttribute("incompatibleWith");
 
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("backwardCompatibleWith") != null || xmlDoc
-                        .getElementsByTagName("object")[i].getAttribute("backwardCompatibleWith") != "")
-                        backwardCompatibleWith = xmlDoc.getElementsByTagName("object")[i].getAttribute(
-                            "backwardCompatibleWith");
 
-                    $('[id$=nome]').last().text(xmlDoc.getElementsByTagName("object")[i].getAttribute("label"));
-                    $('[id$=SubClassOf]').last().text(SubClassOf);
-                    $('[id$=DisjointWith]').last().text(DisjointWith);
-                    $('[id$=Equivalence]').last().text(Equivalence);
-                    $('[id$=TargetForKey]').last().text(TargetForKey);
-                    $('[id$=Instances]').last().text(Instances);
-                    $('[id$=label]').last().text(label);
-                    $('[id$=seeAlso]').last().text(seeAlso);
-                    $('[id$=isDefinedBy]').last().text(isDefinedBy);
-                    $('[id$=comment]').last().text(comment);
-                    $('[id$=versionInfo]').last().text(versionInfo);
-                    $('[id$=priorVersion]').last().text(priorVersion);
-                    $('[id$=deprecated]').last().text(deprecated);
-                    $('[id$=incompatibleWith]').last().text(incompatibleWith);
-                    $('[id$=backwardCompatibleWith]').last().text(backwardCompatibleWith);
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("SubClassOf") != "")
+                            SubClassOf = xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf");
+
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("DisjointWith") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("DisjointWith") != "")
+                            DisjointWith = xmlDoc.getElementsByTagName("object")[i].getAttribute("DisjointWith");
+
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("Equivalence") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("Equivalence") != "")
+                            Equivalence = xmlDoc.getElementsByTagName("object")[i].getAttribute("Equivalence");
+
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("TargetForKey") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("TargetForKey") != "")
+                            TargetForKey = xmlDoc.getElementsByTagName("object")[i].getAttribute("TargetForKey");
+
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("Instances") != null || xmlDoc
+                            .getElementsByTagName("object")[i].getAttribute("Instances") != "")
+                            Instances = xmlDoc.getElementsByTagName("object")[i].getAttribute("Instances");
+
+                        $('.informations-no:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i].getAttribute(
+                            "label"));
+                        $('.informations-no:last').find('#SubClassOf').val(SubClassOf);
+                        $('.informations-no:last').find('#DisjointWith').val(DisjointWith);
+                        $('.informations-no:last').find('#Equivalence').val(Equivalence);
+                        $('.informations-no:last').find('#TargetForKey').val(TargetForKey);
+                        $('.informations-no:last').find('#Instances').val(Instances);
+
+                    }
+
+
                 }
             }
         </script>
