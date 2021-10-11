@@ -486,6 +486,7 @@
     "Select a element in your ontology": "Selecione um elemento em sua ontologia",
     "None axiom to check!": "Nenhum axioma para checar",
     "Go back to main page": "Voltar a página principal",
-    "The number of datatypeproperties in your current ontology": "O número de propriedades de dado na sua ontologia atual"
+    "The number of datatypeproperties in your current ontology": "O número de propriedades de dado na sua ontologia atual",
+    "General Information": "Informações Gerais"
 }
 

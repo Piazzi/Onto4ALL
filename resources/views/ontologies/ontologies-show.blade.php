@@ -34,16 +34,17 @@
             </a>
         </div>
 
-        <div id="graph"></div>
+        <div style="margin-bottom: 20px" id="graph"></div>
 
 
         <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#collapse1">Informações dos nós</a>
-                    </h4>
-                </div>
+            <a data-toggle="collapse" href="#collapse1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">{{__("Classes")}}
+                        </h4>
+                    </div>
+                </a>
                 <div id="collapse1" class="panel-collapse collapse">
 
                     <div class="container">
@@ -92,12 +93,14 @@
 
 
         <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#collapse2">Informações das arestas</a>
-                    </h4>
-                </div>
+            <a data-toggle="collapse" href="#collapse2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            {{__("Relations")}}
+                        </h4>
+                    </div>
+                </a>
                 <div id="collapse2" class="panel-collapse collapse">
                     <div class="container">
                         <div class="row">
@@ -157,12 +160,14 @@
 
         <!-- /.box-header -->
         <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" href="#collapse3">Informações Gerais</a>
-                    </h4>
-                </div>
+            <a data-toggle="collapse" href="#collapse3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                        {{__("General Information")}}
+                        </h4>
+                    </div>
+                </a>
                 <div id="collapse3" class="panel-collapse collapse">
                     <div class="container">
                         <div class="row">
@@ -376,16 +381,16 @@
             for (let i = 0; i < xmlDoc.getElementsByTagName("object").length; i++) {
                 if (xmlDoc.getElementsByTagName("object")[i].getAttribute("label") != null) {
 
-                    var SubClassOf;
-                    var DisjointWith;
-                    var Equivalence;
-                    var TargetForKey;
-                    var Instances;
-                    var Domain;
-                    var Range;
-                    var InverseOf;
+                    let SubClassOf;
+                    let DisjointWith;
+                    let Equivalence;
+                    let TargetForKey;
+                    let Instances;
+                    let Domain;
+                    let Range;
+                    let InverseOf;
 
-                    var classe;
+                    let classe;
 
                     // Apenas arestas tem o atributo domain
                     if (xmlDoc.getElementsByTagName("object")[i].getAttribute("domain") != null) {
