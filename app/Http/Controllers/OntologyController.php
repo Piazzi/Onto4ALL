@@ -194,6 +194,23 @@ class OntologyController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function favouriteOntologyIndex(Request $request)
+    {
+        $ontology = Ontology::find($request->id);
+        if($ontology->favourite)
+            $ontology->favourite = 0;
+        else 
+            $ontology->favourite = 1;
+        $ontology->save();
+        return response()->json([ 
+            "favourite" => $ontology->favourite
+        ]);
+    }
+
+    /**
      * Unmark the favourite column from a ontology
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
@@ -357,6 +374,7 @@ class OntologyController extends Controller
             "message-pt" => 'Todas as alterações foram salvas',
             "message-en" => 'All changes saved',
             "id" => $ontology->id,
+            'updated_at' => date("d-m-Y | H:i", strtotime($ontology['updated_at']))
         ]);
     }
 
@@ -394,6 +412,7 @@ class OntologyController extends Controller
     {
         $ontology = Ontology::where('id', $request->id)->first();
         $ownerName = $ontology->user->name;
+        $lastUpdate = date("d-m-Y | H:i", strtotime($ontology->updated_at));
         if (Auth::user()->id == $ontology['user_id'] || $ontology->users->contains($request->user()->id)) {
             $response = array(
                 'status' => 'success',
@@ -414,8 +433,10 @@ class OntologyController extends Controller
                 'degree_of_formality' => $ontology['degree_of_formality'],
                 'scope' => $ontology['scope'],
                 'competence_questions' => $ontology['competence_questions'],
+                'namespace' =>  $ontology['namespace'],
                 'collaborators' => $ontology->users->modelKeys(),
-                'owner_name' => $ownerName
+                'owner_name' => $ownerName,
+                'last_update' => $lastUpdate,
             );
             return response()->json($response);
             //return $ontology;

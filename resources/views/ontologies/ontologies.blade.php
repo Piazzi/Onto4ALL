@@ -53,7 +53,7 @@
 
     <div class="box box-warning">
         <div class="box-header with-border">
-            <h1 class="box-title"><i style="color: #ffe70a" class="fa fa-fw fa-star"></i> {{__('Your favourite ontologies:')}} </h1>
+            <h1 class="box-title"><i style="color: #62a0bb" class="fa fa-fw fa-star"></i> {{__('Your favourite ontologies:')}} </h1>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -121,7 +121,7 @@
                                           action="{{route('ontologies.normal', ['locale' => app()->getLocale() , 'userId' => auth()->user()->id ,'ontologyId' => $ontology->id])}}">
                                         @csrf
                                         @method('PUT')
-                                        <button type="submit" class="btn btn-default"><i style="color: #ffe70a"
+                                        <button type="submit" class="btn btn-default"><i style="color: #f39c12"
                                                                                          class="fa fa-fw fa-star"></i>
                                         </button>
                                     </form>
@@ -148,7 +148,7 @@
 
     <div class="box box-success">
         <div class="box-header with-border">
-            <h1 class="box-title"><i style="color: #00a65a" class="fa fa-fw fa-object-group "></i> {{__('Your ontologies:')}} </h1>
+            <h1 class="box-title"><i style="color: #62a0bb" class="fa fa-fw fa-object-group "></i> {{__('Your ontologies:')}} </h1>
 
 
             <div class="box-tools pull-right">
@@ -247,7 +247,7 @@
 
     <div class="box box-info">
         <div class="box-header with-border">
-            <h3 class="box-title"><i style="color: #00c0ef" class="fa fa-fw fa-share-alt "></i> {{__('Ontologies shared with you:')}} </h3>
+            <h3 class="box-title"><i style="color: #62a0bb" class="fa fa-fw fa-share-alt "></i> {{__('Ontologies shared with you:')}} </h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -258,7 +258,7 @@
             <!-- /.box-tools -->
         </div>
         <!-- /.box-header -->
-        <div class="box-body" style="">
+        <div class="box-body">
             <div class="row">
                 <div class="col-xs-12">
 

@@ -3,7 +3,7 @@
  * -----------
  */
 .skin-green-light .main-header .navbar {
-  background-color: #00a65a;
+  background-color: #064c72;
 }
 .skin-green-light .main-header .navbar .nav > li > a {
   color: #ffffff;
@@ -29,7 +29,7 @@
   color: #fff;
 }
 .skin-green-light .main-header .navbar .sidebar-toggle:hover {
-  background-color: #008d4c;
+  background-color: #064c72;
 }
 @media (max-width: 767px) {
   .skin-green-light .main-header .navbar .dropdown-menu li.divider {
@@ -43,15 +43,15 @@
   }
 }
 .skin-green-light .main-header .logo {
-  background-color: #00a65a;
+  background-color: #064c72;
   color: #ffffff;
   border-bottom: 0 solid transparent;
 }
 .skin-green-light .main-header .logo:hover {
-  background-color: #00a157;
+  background-color: #064c72;
 }
 .skin-green-light .main-header li.user-header {
-  background-color: #00a65a;
+  background-color: #064c72;
 }
 .skin-green-light .content-header {
   background: transparent;
@@ -87,7 +87,7 @@
   background: #f4f4f5;
 }
 .skin-green-light .sidebar-menu > li.active {
-  border-left-color: #00a65a;
+  border-left-color: #064c72;
 }
 .skin-green-light .sidebar-menu > li.active > a {
   font-weight: 600;

@@ -47,7 +47,7 @@
                             <p>   {{__('We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.')}}</p>
                         </div>
 
-						<div class="callout callout-success">
+						<div class="callout callout-success" style="background-color:#62a0bb !important">
 							<span class="pull-right-container">
 								<small class="label pull-right bg-red">new</small>
 							</span>
@@ -125,7 +125,7 @@
 								</div>
 								<!-- /.col -->
 								<div class="col-xs-4">
-									<button style="background-color: #00A65A" type="submit" class="btn btn-primary btn-block btn-flat">{{ __('Sign In') }}</button>
+									<button style="background-color: #064c72" type="submit" class="btn btn-primary btn-block btn-flat">{{ __('Sign In') }}</button>
 								</div>
 								<!-- /.col -->
 
@@ -143,7 +143,7 @@
 							@endif
 							
 							<a onclick="document.getElementById('donate').submit()" class="text-center">
-								<button style="color: #00A65A !important" type="button" class="btn btn-default btn-block"><i class="fa fa-fw fa-paypal"></i>{{__('Donate')}}
+								<button style="color: #064c72 !important" type="button" class="btn btn-default btn-block"><i class="fa fa-fw fa-paypal"></i>{{__('Donate')}}
 									<form id="donate" style="visibility: hidden; height: 0px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 										<input type="hidden" name="cmd" value="_s-xclick"/>
 										<input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN"/>

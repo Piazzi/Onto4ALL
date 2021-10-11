@@ -7,112 +7,6 @@
 @stop
 
 @section('content')
-<div style="position:absolute; top:0; right:0;z-index:1000; background-color:#fbfbfb; width: 240px; " class="navbar-custom-menu">
-    <ul class="nav navbar-nav" style="float: right">
-        @php
-        $amount = Auth::user()->unreadNotifications->count();
-        @endphp
-        <li id="notifications-menu" class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                <i class="fa fa-bell-o"></i>
-                <span id="notification-counter" class="label label-warning">{{$amount > 0 ? $amount : ''}}</span>
-            </a>
-            <ul class="dropdown-menu">
-                <li class="header">{{__('You have')}} {{$amount}} {{__('new notifications')}}</li>
-                <li>
-                    <!-- inner menu: contains the actual data -->
-                    <ul class="notification-menu menu">
-                        @foreach(Auth::user()->notifications->take(5) as $notification)
-                        <li>
-                            <!-- start notification -->
-                            <a href="{{route('notifications.show', ['locale' => app()->getLocale(), 'notificationId' => $notification->id, 'notificationType' => $notification->data['type']])}}">
-                                <h5>
-                                    @if($notification->data['type'] == 'Onto4All Contact')
-                                    {{__('New message: ')}}
-                                    @endif
-                                    {{__($notification->data['title'])}}
-                                    <br>
-                                    <small>
-                                        <i class="fa fa-clock-o"><i> | </i></i>{{ date(" d-m-Y | H:i", strtotime($notification->created_at))}}
-                                    </small>
-                                </h5>
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li class="footer"><a href="{{route('notifications.index', app()->getLocale())}}">{{__('See all notifications')}}</a></li>
-            </ul>
-        </li>
-        <li class="dropdown user user-menu">
-            <!-- Menu Toggle Button -->
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                <!-- The user image in the navbar-->
-                <i class="fa fa-user"></i>
-                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                <span class="hidden-xs">{{Auth::user()->name}}</span>
-            </a>
-            <ul class="dropdown-menu">
-                <!-- The user image in the menu -->
-                <li class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif" style="background-color: #222d32;">
-                    <img src="{{asset('css/images/LogoDark.png')}}" class="img-circle" alt="User Image">
-                    <p>
-                        {{Auth::user()->name}}
-                        <small>{{Auth::user()->email}}</small>
-                    </p>
-                </li>
-                <!-- Menu Body -->
-                <li class="user-body">
-                    <div class="row">
-                        <div class="col-xs-4 text-center border-right">
-                            <a class="user-body-link" href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}">
-                                Tutorial</a>
-                        </div>
-                        <div class="col-xs-4 text-center border-right">
-                            <a class="user-body-link" href="{{route('ontologies.index', app()->getLocale())}}">{{__('Ontologies')}}</a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                            <a class="user-body-link" href="{{route('help', app()->getLocale())}}">{{__('Help')}}</a>
-                        </div>
-                    </div>
-                    <!-- /.row -->
-                </li>
-                <!-- Menu Footer-->
-                <li class="user-footer">
-
-                    <div class="pull-left">
-                        <a href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}" class="btn btn-default btn-flat">
-                            <i class="fa fa-cog"></i> {{__('Account Settings')}}
-                        </a>
-                    </div>
-                    <div class="pull-right">
-                        <a class="btn btn-default btn-flat" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fa fa-fw fa-power-off"></i> {{__('Log Out')}}
-                        </a>
-                        <form id="logout-form" action="{{ url(config('adminlte.logout_url', 'auth/logout')) }}" method="POST" style="display: none;">
-                            @csrf
-                            @if(config('adminlte.logout_method'))
-                            {{ method_field(config('adminlte.logout_method')) }}
-                            @endif
-                        </form>
-                    </div>
-
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a id="control-sidebar" title="{{__('Show/Hide the Sidebar')}}" href="#" data-toggle="control-sidebar"><i class="fa fa-1.5x fa-fw fa-bars "></i></a>
-        </li>
-        @if(config('adminlte.right_sidebar') and (config('adminlte.layout') != 'top-nav'))
-        <!-- Control Sidebar Toggle Button -->
-        <li>
-            <a href="#" data-toggle="control-sidebar" @if(!config('adminlte.right_sidebar_slide')) data-controlsidebar-slide="false" @endif>
-                <i class="{{config('adminlte.right_sidebar_icon')}}"></i>
-            </a>
-        </li>
-        @endif
-    </ul>
-</div>
 
 <!-- Warning Console -->
 <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box">
@@ -190,6 +84,18 @@
 
 <!-- Right Sidebar -->
 <aside class="control-sidebar control-sidebar-light control-sidebar-open">
+    <div class="btn-group" style="display: flex; flex-direction: row; align-content: stretch; justify-content: space-evenly;">
+            <a class="btn btn-default" style="width: 100%;" download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
+                <i class="fa fa-fw fa-file-text-o"></i>
+            </a>
+
+            <a class="btn btn-default" style="width: 100%;" id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" data-toggle="modal" data-target="#methodology-menu">
+                <i class="fa fa-fw fa-info-circle"></i>
+            </a>
+            <a class="btn btn-default"  style="width: 100%;" id="tips-icon" title="{{__('Tips')}}" href="#"  data-toggle="modal" data-target="#tips-menu">
+                <i class="fa fa-fw fa-search"></i>
+            </a>
+    </div>
     <!-- Tabs -->
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
@@ -200,7 +106,7 @@
                     Annotation Properties</a></li>
             <li><a id="datatype-properties-nav" href="#datatype-properties-tab" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
             <li><a id="individuals-nav" href="#individuals-tab" data-toggle="tab" style="color: rebeccapurple"><i class="fa fa-fw fa-user"></i> Individuals</a></li>
-            <li><a id="empty-nav" href="#empty-tab" data-toggle="tab" style="visibility: hidden"></a></li>
+            <li style="visibility: hidden; display:none"><a id="empty-nav" href="#empty-tab" data-toggle="tab" ></a></li>
 
         </ul>
         <div class="tab-content">
@@ -237,6 +143,10 @@
 
 
             <div class="tab-pane " id="annotations-tab">
+                <div class="form-group">
+                    <label>IRI</label> <a id="IRI-link" target="_blank" href=""><i title="copy link" class="fa fa-fw fa-link"></i></a>
+                    <input id="IRI" type="text" class="form-control" placeholder="" disabled onchange="updateInput(this.id, this.value)">
+                </div>
                 <div class="form-group">
                     <label>label</label>
                     <input id="label" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
@@ -550,40 +460,7 @@
         </div>
     </div>
 </div>
-
 <!--./Warning Console Info modal -->
-
-
-<!-- Toolbar Icons  -->
-
-<a class="toolbar-icon" download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
-    <i class="fa fa-fw fa-file-text-o"></i>
-</a>
-
-<a id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#methodology-menu">
-    <i class="fa fa-fw fa-info-circle"></i>
-</a>
-
-<a id="tips-icon" title="{{__('Tips')}}" href="#" class="toolbar-icon" data-toggle="modal" data-target="#tips-menu">
-    <i class="fa fa-fw fa-search"></i>
-</a>
-
-<!-- ./Toolbar icons  -->
-
-<!-- Menubar Icons -->
-<a id="open-ontology" class="geItem  menubar-icon" data-toggle="modal" data-target="#ontology-manager">
-    {{__('Ontology Manager')}}
-</a>
-<a id="edit-ontology" class="geItem menubar-icon" data-toggle="modal" data-target="#edit-ontology-modal">
-    {{__('Edit Ontology')}}
-</a>
-<a id="ontology-name" class="geItem  menubar-icon">
-    {{__('Current Ontology: None')}}
-</a>
-<a id="save-ontology" class="geItem  btn btn-default unsaved menubar-icon">
-    <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
-</a>
-<!-- ./Menubar Icons -->
 
 <!-- Edit Ontology -->
 <div class="modal fade" id="edit-ontology-modal" style="display: none;">
@@ -596,14 +473,16 @@
             </div>
             <div class="modal-body">
                 <input id="id" name="id" type="hidden">
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>{{__('Name')}}</label>
-                            <input id="name" required value="{{__('New_Ontology')}}" name="name" type="text" class="form-control" placeholder="">
+                            <label>IRI</label>
+                            <input class="form-control" type="text" id="ontology-iri"  disabled value="{{__('Save the ontology first to see its IRI')}}" >
                         </div>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
@@ -710,7 +589,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('Close')}}</button>
-                <button onclick="$('#save-ontology').click()" type="button" class="btn btn-success pull-right" data-dismiss="modal">{{__('Save Changes')}}</button>
+                <button onclick="document.getElementById('save-ontology').click()" type="button" class="btn btn-success pull-right" data-dismiss="modal">{{__('Save Changes')}}</button>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -744,7 +623,7 @@
                             <span class="time"><i class="fa fa-clock-o"></i> {{__('Last update')}}:
                                 {{date("d-m-Y | H:i e", strtotime($ontology->updated_at))}}</span>
                             @if($ontology->favourite == 1)
-                            <span class="time"><i style="color: #ffe70a" class="fa fa-fw fa-star"></i></span>
+                            <span class="time"><i style="color: #f39c12" class="fa fa-fw fa-star"></i></span>
                             @endif
 
                             <h3 class="timeline-header">
@@ -1225,10 +1104,7 @@
 <script type="text/javascript" src="{{asset('grapheditor/js/Dialogs.js')}}"></script>
 
 <!-- Onto4ALL -->
-<script src="{{asset('js/Browser.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/EditorFunctions.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/NightMode.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/OntologyManager.js')}}"></script>
@@ -1280,6 +1156,77 @@
                 '<center style="margin-top:10%;">Error loading resource files. Please check browser console.</center>';
         });
     })();
+
+
+    // ONTO4ALL JQUERY SCRIPTS
+    
+    function onReady(callback) {
+        var intervalId = window.setInterval(function () {
+            if (document.getElementsByTagName('body')[0] !== undefined) {
+                window.clearInterval(intervalId);
+                callback.call(this);
+            }
+        }, 2000);
+    }
+
+    function setVisible(selector, visible) {
+        document.querySelector(selector).style.display = visible ? 'block' : 'none';
+    }
+
+    onReady(function () {
+        setVisible('body', true);
+        setVisible('#loading', false);
+    });
+
+    document.addEventListener("DOMContentLoaded", function() { 
+
+    // Select2 Plugin
+    $(document).ready(function () {
+        $('.js-example-basic-multiple').select2(
+            {theme: 'classic'}
+            
+        );
+        $('.js-example-tags').select2({
+            theme: 'classic',
+            tags: true
+        });
+    });
+
+    // Progress bar from the Methodology tab
+    /*
+    let percentage = document.getElementById('progress-bar').clientWidth / document.getElementById('progress-bar').offsetParent().clientWidth * 100;
+    document.querySelector('input[type="checkbox"]').addEventListener('click', function () {
+        if (this.checked) {
+            this.closest('li').setAttribute('class', 'done');
+            percentage = percentage + 12.5;
+            document.getElementById('progress-bar').clientWidth = percentage + '%';
+            document.getElementById('progress-bar').setAttribute('aria-valuenow', percentage);
+            console.log(percentage);
+
+        } else {
+            this.closest('li').attr('class', '');
+            percentage = percentage - 12.5;
+            document.getElementById('progress-bar').clientWidth = percentage + '%';
+            document.setAttribute('aria-valuenow', percentage);
+
+        }
+        document.getElementById('progress-text').textContent = percentage + "% complete";
+
+    });*/
+});
+
+    document.getElementById('search-tip-input').addEventListener("keyup", function () {
+        let value = this.value.toLowerCase();
+        document.querySelectorAll('#menu-scroll .collapsed-box').filter(function () {
+            if(this.textContent.toLowerCase().indexOf(value) > -1){
+                this.style.visibility = "visible";
+            }
+            else{
+                this.style.visibility = "hidden";
+            }
+        });
+    });
+
 </script>
 
 

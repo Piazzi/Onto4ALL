@@ -10,7 +10,7 @@
 @section('body')
     <div class="login-box">
         <div class="login-logo">
-            <img alt="logo" href="{{route('home', 'en')}}" src="{{asset('css/images/LogoGreen.png')}}">
+            <img alt="logo" href="{{route('home', 'en')}}" style="width:100%"src="{{asset('css/images/LogoGreen.png')}}">
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
