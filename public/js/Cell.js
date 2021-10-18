@@ -289,7 +289,7 @@ function getInverseOfOptions() {
     relations.forEach((relation) => {
         if (
             !inverseOfValues.includes(relation.getAttribute("label")) ||
-            cell.getAttribute("inverseOf").includes(relation.id)
+            currentCell.getAttribute("inverseOf").includes(relation.id)
         )
             options.push(relation);
     });
