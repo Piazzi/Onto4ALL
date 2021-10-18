@@ -10,192 +10,87 @@
     <div class="box box-success">
 
         <div class="box-header with-border">
-            <h3 class="box-title"><strong> {{ $ontology->name }} </strong></h3>
-        </div>
-
-        <div class="text-right">
-            {{ __('XML File') }}
-            <a
-                href="{{ route('ontologies.download', ['locale' => app()->getLocale(), 'userId' => auth()->user()->id, 'ontologyId' => $ontology->id]) }}">
-                <button class="btn btn-default"><i class="fa fa-fw fa-download"></i>
-                </button>
-            </a>
-            {{ __('OWL File') }}
-            <a
-                href="{{ route('ontologies.downloadOWL', ['locale' => app()->getLocale(), 'userId' => auth()->user()->id, 'ontologyId' => $ontology->id]) }}">
-                <button class="btn btn-default"><i class="fa fa-fw fa-download"></i>
-                </button>
-            </a>
-            {{ __('SVG File') }}
-            <a
-                href="{{ route('ontologies.downloadSVG', ['locale' => app()->getLocale(), 'userId' => auth()->user()->id, 'ontologyId' => $ontology->id]) }}">
-                <button class="btn btn-default"><i class="fa fa-fw fa-download"></i>
-                </button>
-            </a>
-        </div>
-
-        <div style="margin-bottom: 20px" id="graph"></div>
-
-
-        <div class="panel-group">
-            <a data-toggle="collapse" href="#collapse1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">{{__("Classes")}}
-                        </h4>
-                    </div>
-                </a>
-                <div id="collapse1" class="panel-collapse collapse">
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="informations-no">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="tab-pane active" id="classes-tab">
-
-                                            <h4 id="nome"></h4>
-
-                                            <div class="form-group">
-                                                <label>SubClassOf</label>
-                                                <input id="SubClassOf" disabled="" type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Equivalence</label>
-                                                <input id="Equivalence" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Instances</label>
-                                                <input id="Instances" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>TargetForKey</label>
-                                                <input id="TargetForKey" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>DisjointWith</label>
-                                                <input id="DisjointWith" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h1 style="vertical-align: middle;" class="box-title"> {{ $ontology->name }} </h1>
+                </div>
+                <div class="col-md-10">
+                    <div class="text-right">
+                        {{ __('XML File') }}
+                        <a
+                            href="{{ route('ontologies.download', ['locale' => app()->getLocale(), 'userId' => auth()->user()->id, 'ontologyId' => $ontology->id]) }}">
+                            <button class="btn btn-default"><i class="fa fa-fw fa-download"></i>
+                            </button>
+                        </a>
+                        {{ __('OWL File') }}
+                        <a
+                            href="{{ route('ontologies.downloadOWL', ['locale' => app()->getLocale(), 'userId' => auth()->user()->id, 'ontologyId' => $ontology->id]) }}">
+                            <button class="btn btn-default"><i class="fa fa-fw fa-download"></i>
+                            </button>
+                        </a>
+                        {{ __('SVG File') }}
+                        <a
+                            href="{{ route('ontologies.downloadSVG', ['locale' => app()->getLocale(), 'userId' => auth()->user()->id, 'ontologyId' => $ontology->id]) }}">
+                            <button class="btn btn-default"><i class="fa fa-fw fa-download"></i>
+                            </button>
+                        </a>
                     </div>
                 </div>
+            </div>
+            
+        </div>
+
+       
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div style="margin-bottom: 20px;" id="graph"></div>
             </div>
         </div>
 
 
-        <div class="panel-group">
-            <a data-toggle="collapse" href="#collapse2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            {{__("Relations")}}
-                        </h4>
-                    </div>
-                </a>
-                <div id="collapse2" class="panel-collapse collapse">
-                    <div class="container">
-                        <div class="row">
-                            <div class="informations-aresta">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="tab-pane active" id="classes-tab">
-
-                                            <h4 id="nome"></h4>
-
-
-                                            <div class="form-group">
-                                                <label>domain</label>
-                                                <input id="domain" disabled="" type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>range</label>
-                                                <input id="range" disabled="" type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Equivalence</label>
-                                                <input id="Equivalence" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>InverseOf</label>
-                                                <input id="InverseOf" disabled="" type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>equivalentTo</label>
-                                                <input id="equivalentTo" disabled="" type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>disjointWith</label>
-                                                <input id="disjointWith-relations" disabled="" type="text"
-                                                    class="form-control" placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>TargetForKey</label>
-                                                <input id="TargetForKey" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- /.box-header -->
         <div class="panel-group">
             <a data-toggle="collapse" href="#collapse3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
+                         
                         <h4 class="panel-title">
-                        {{__("General Information")}}
-                        </h4>
+                        {{__("General Information")}} <i class="fa fa-fw fa-expand"></i>
+                        </h4>                        
                     </div>
                 </a>
-                <div id="collapse3" class="panel-collapse collapse">
-                    <div class="container">
-                        <div class="row">
+                <div id="collapse3" class="panel-collapse ">
                             <div class="box-body">
+
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>IRI</label>
+                                        <label  class="form-control form-textarea"> https://onto4alleditor.com/en/ontologies/{{ $ontology->id }} </label>
+                                    </div> 
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>{{ __('Name') }}</label>
-                                            <label>Name</label>
                                             <label class="form-control">{{ $ontology->name }}</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>{{ __('Created By') }}</label>
                                             <label class="form-control">{{ $ontology->user->name }}</label>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Publication Date</label>
                                             <label class="form-control"> {{ $ontology->publication_date }}</label>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         <div class="form-group">
                                             <label>Last Uploaded</label>
                                             <label class="form-control"> {{ $ontology->last_uploaded }}</label>
@@ -203,11 +98,17 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <textarea disabled
-                                        class="form-control form-textarea"> {{ $ontology->description }}</textarea>
+                               
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea disabled class="form-control form-textarea"> {{ $ontology->description }}</textarea>
+                                    </div> 
+                                    </div>
                                 </div>
+                                
 
                                 <div class="row">
                                     <div class="col-md-6">
@@ -281,11 +182,131 @@
                                 </div>
                             </div>
                             <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+        <div class="panel-group ">
+            <a data-toggle="collapse" href="#collapse1">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">{{__("Classes")}} <i class="fa fa-fw fa-expand"></i>
+                        </h4>
+                    </div>
+                </a>
+                <div id="collapse1" class="panel-collapse collapse">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="informations-no">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="tab-pane active" id="classes-tab">
+
+                                            <h4 id="nome"></h4>
+
+                                            <div class="form-group">
+                                                <label>SubClassOf</label>
+                                                <input id="SubClassOf" disabled="" type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Equivalence</label>
+                                                <input id="Equivalence" disabled type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Instances</label>
+                                                <input id="Instances" disabled type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>TargetForKey</label>
+                                                <input id="TargetForKey" disabled type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>DisjointWith</label>
+                                                <input id="DisjointWith" disabled type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <div class="panel-group">
+            <a data-toggle="collapse" href="#collapse2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            {{__("Relations")}} <i class="fa fa-fw fa-expand"></i>
+                        </h4>
+                    </div>
+                </a>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="container">
+                        <div class="row">
+                            <div class="informations-aresta">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="tab-pane active" id="classes-tab">
+
+                                            <h4 id="nome"></h4>
+
+
+                                            <div class="form-group">
+                                                <label>domain</label>
+                                                <input id="domain" disabled="" type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>range</label>
+                                                <input id="range" disabled="" type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Equivalence</label>
+                                                <input id="Equivalence" disabled type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>InverseOf</label>
+                                                <input id="InverseOf" disabled="" type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>equivalentTo</label>
+                                                <input id="equivalentTo" disabled="" type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>disjointWith</label>
+                                                <input id="disjointWith-relations" disabled="" type="text"
+                                                    class="form-control" placeholder="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>TargetForKey</label>
+                                                <input id="TargetForKey" disabled type="text" class="form-control"
+                                                    placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
 
         <a href="{{ route('ontologies.index', app()->getLocale()) }}">
             <button class="btn btn-success btn-block" type="button">Go back</button>
