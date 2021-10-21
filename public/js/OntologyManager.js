@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fires the Ajax request when the button is clicked
 
     document.getElementById('save-ontology').addEventListener('click', function () {
-        document.getElementById('save-ontology').innerHTML='<div  class="overlay"><i style="color: white !important;" class="fa fa-refresh fa-spin"></i></div>';
+        document.getElementById('save-ontology').innerHTML='<div  class="overlay"><i style="color: white !important;" class="fa fa-spinner fa-spin"></i></div>';
         document.getElementById('save-ontology').style.backgroundColor = "#00a65a";
         document.getElementById('save-ontology').style.borderColor = "#00a65a";
         $.ajax({
