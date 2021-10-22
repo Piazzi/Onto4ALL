@@ -204,12 +204,14 @@ function compileRelation(relation) {
         missingRelationProperties = missingRelationProperties + " range,";
 
     // is_a relations don't have a inverse of
+    /*
     if (
         relation.getAttribute("label") !== "is_a" &&
         relation.getAttribute("label") !== "é_um " &&
         relation.getAttribute("inverseOf") === ""
     )
         missingRelationProperties = missingRelationProperties + " inverseOf";
+    */
 
     if (missingRelationProperties !== "") {
         warningsCount++;
@@ -428,6 +430,7 @@ function compileClass(classCell) {
  */
 function compileInstance(instance) {
     // shows a error if there is any relation besides instance_of connected to a instance
+    /*
     if (instance.edges !== null && instance.edges.length > 0) {
         instance.edges.forEach((relation) => {
             if (
@@ -454,6 +457,8 @@ function compileInstance(instance) {
             }
         });
     }
+    */
+   
 }
 
 /**
