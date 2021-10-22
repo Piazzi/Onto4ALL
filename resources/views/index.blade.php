@@ -450,9 +450,7 @@
                     {{__('if you had any problem with this feature.')}}
                 </p>
                 <img class="img-max-width" alt="export" src="{{asset('css/images/warningConsole.png')}}">
-                <p>
-                    {{__('Here you can see that the pizza ontology have several warnings that need to be solved.')}}
-                </p>
+               
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
