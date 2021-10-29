@@ -1,13 +1,13 @@
 var ontologyName = document.getElementById("ontology-name");
 
-function saveName(event){
-    if(event.key == 'Enter'){
+function saveName(event) {
+    if (event.key == 'Enter') {
         document.getElementById('save-ontology').click();
         $('.name-input').blur();
     }
 }
 
-function favoriteOntology(){
+function favoriteOntology() {
     $.ajax({
         /* the route pointing to the post function */
         url: '/' + getLanguage() + '/favouriteOntologyIndex',
@@ -20,22 +20,22 @@ function favoriteOntology(){
 
         dataType: 'JSON',
         success: function (data) {
-            if(data['favourite'] == 1)
+            if (data['favourite'] == 1)
                 document.getElementById('favorite-ontology').innerHTML = '<i style="color:#f39c12" class="fa fa-fw fa-star"></i>';
-            else              
+            else
                 document.getElementById('favorite-ontology').innerHTML = '<i class="fa fa-fw fa-star-o"></i>';
         },
 
-        error: function() {
+        error: function () {
             alert('You already have 5 favourite ontologies');
         }
     })
 }
 
 // Request to open an ontology
-document.addEventListener("DOMContentLoaded", function() { 
+document.addEventListener("DOMContentLoaded", function () {
     let CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-   
+
     // Fires the Ajax request when the button is clicked
     // Open the selected ontology
     $(".openOntology").click(function () {
@@ -44,18 +44,18 @@ document.addEventListener("DOMContentLoaded", function() {
             url: '/openOntology',
             type: 'POST',
             /* send the csrf-token and the input to the controller */
-            data: {_token: CSRF_TOKEN, id: this.getAttribute('id')},
+            data: { _token: CSRF_TOKEN, id: this.getAttribute('id') },
             dataType: 'JSON',
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
                 let doc = mxUtils.parseXml(data['file']);
                 editor.setGraphXml(doc.documentElement);
-                
+
                 document.getElementsByClassName('name-input').value = data['name'];
 
                 document.getElementById('id').value = data['id'];
                 document.getElementById('name-input').value = data['name'];
-                document.getElementById('ontology-iri').value = "https://onto4alleditor.com/en/ontologies/"+data['id'];
+                document.getElementById('ontology-iri').value = "https://onto4alleditor.com/en/ontologies/" + data['id'];
                 document.getElementById('publication-date').value = data['publication_date'];
                 document.getElementById('last-uploaded').value = data['last_uploaded'];
                 document.getElementById('description').value = data['description'];
@@ -74,23 +74,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Select the namespaces on the <select> tag
                 $('#namespace-select').val(data['namespace']).trigger('change');
 
-                
+
                 // Select the collaborators on the <select> tag
                 $('#collaborators-select').val(data['collaborators']).trigger('change');
-                
+
                 //Show when the ontology was last updated
                 document.getElementById('last-update').innerHTML = '<span class="time"><i class="fa fa-clock-o"></i> ' + 'Last update: ' + data['last_update'];
                 //Update the little star on the navbar
-                if(data['favourite'] == 1)
+                if (data['favourite'] == 1)
                     document.getElementById('favorite-ontology').innerHTML = '<i style="color:#f39c12" class="fa fa-fw fa-star"></i>';
-                else              
+                else
                     document.getElementById('favorite-ontology').innerHTML = '<i class="fa fa-fw fa-star-o"></i>';
                 updateSaveButtonInFrontEnd(true);
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 console.log(JSON.stringify(jqXHR));
                 console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-                alert('The following error has occurred: ' + JSON.stringify(jqXHR));
+
+                updateSaveButtonErrorInFrontEnd();
             }
         })
     });
@@ -98,13 +99,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 // Request to save the current ontology 
-document.addEventListener("DOMContentLoaded", function() { 
+document.addEventListener("DOMContentLoaded", function () {
 
     let CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     // Fires the Ajax request when the button is clicked
 
     document.getElementById('save-ontology').addEventListener('click', function () {
-        document.getElementById('save-ontology').innerHTML='<div  class="overlay"><i style="color: white !important;" class="fa fa-spinner fa-spin"></i></div>';
+        document.getElementById('save-ontology').innerHTML = '<div  class="overlay"><i style="color: white !important;" class="fa fa-spinner fa-spin"></i></div>';
         document.getElementById('save-ontology').style.backgroundColor = "#00a65a";
         document.getElementById('save-ontology').style.borderColor = "#00a65a";
         $.ajax({
@@ -142,10 +143,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.getElementById('last-update').innerHTML = '<span class="time"><i class="fa fa-clock-o"></i> ' + 'Last update: ' + data['updated_at'];;
             },
 
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 console.log(JSON.stringify(jqXHR));
                 console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-                alert('The following error has occurred: ' + JSON.stringify(jqXHR));
+
+                updateSaveButtonErrorInFrontEnd();
             }
         })
     });
@@ -153,31 +155,31 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Reads the current ontology XML and then writes the report on a string for download
-document.addEventListener("DOMContentLoaded", function() { 
+document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('download-ontology-report').addEventListener('click', function () {
 
         let report = '/************* Ontology Report *************/ \n\nClasses:';
 
         // write the classes in the document
         classes.forEach(ontologyClass => {
-            report = report + '\n       Class: '+ ontologyClass.value.attributes['label'].value + ' | ID: ' + ontologyClass.id;
+            report = report + '\n       Class: ' + ontologyClass.value.attributes['label'].value + ' | ID: ' + ontologyClass.id;
             report = report + '\n       Properties:';
-            for (let i = 0; i < ontologyClass.value.attributes.length; i++) 
-                report = report + '\n           - '+ontologyClass.value.attributes[i].name+': '+ ontologyClass.value.attributes[i].value;
-            report = report+ '\n    ----------------------------------------';
+            for (let i = 0; i < ontologyClass.value.attributes.length; i++)
+                report = report + '\n           - ' + ontologyClass.value.attributes[i].name + ': ' + ontologyClass.value.attributes[i].value;
+            report = report + '\n    ----------------------------------------';
         });
 
         report = report + '\nRelations: ';
 
         // write the relations in the document
         relations.forEach(relation => {
-            report = report + '\n      Relation:  '+ relation.value.attributes['label'].value + ' | ID: ' + relation.id;
+            report = report + '\n      Relation:  ' + relation.value.attributes['label'].value + ' | ID: ' + relation.id;
             report = report + '\n       Properties:';
-            for (let i = 0; i < relation.value.attributes.length; i++) 
-                report = report + '\n           - '+relation.value.attributes[i].name+': '+ relation.value.attributes[i].value;
-            report = report+ '\n    ----------------------------------------';
+            for (let i = 0; i < relation.value.attributes.length; i++)
+                report = report + '\n           - ' + relation.value.attributes[i].name + ': ' + relation.value.attributes[i].value;
+            report = report + '\n    ----------------------------------------';
         });
-       
+
         report = report + '\n\n/************ Made with Onto4ALL ************/';
         document.getElementById('download-ontology-report').setAttribute("href", "data:text/plain;charset=UTF-8," + encodeURIComponent(report));
     })
@@ -185,12 +187,12 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // Downloads a .txt file containing all the errors that the user made in the current ontology
-document.getElementById('download-errors-txt').addEventListener('click', function(){
+document.getElementById('download-errors-txt').addEventListener('click', function () {
     let consoleMessages = document.getElementsByClassName('direct-chat-text');
     let txts = "";
-    for (let i = 0; i < consoleMessages.length; i++) 
+    for (let i = 0; i < consoleMessages.length; i++)
         txts = txts + consoleMessages[i].textContent;
-    
+
     this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(txts);
 });
 
