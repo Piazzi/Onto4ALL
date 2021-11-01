@@ -450,9 +450,7 @@
                     {{__('if you had any problem with this feature.')}}
                 </p>
                 <img class="img-max-width" alt="export" src="{{asset('css/images/warningConsole.png')}}">
-                <p>
-                    {{__('Here you can see that the pizza ontology have several warnings that need to be solved.')}}
-                </p>
+               
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
@@ -478,7 +476,9 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>IRI</label>
-                            <input class="form-control" type="text" id="ontology-iri"  disabled value="{{__('Save the ontology first to see its IRI')}}" >
+                            <a id="iri-link">
+                                <input title="Open Link" class="form-control iri-link" type="button" style="text-align:left" id="ontology-iri"  disabled value="{{__('Save the ontology first to see its IRI')}}" >
+                            </a>
                         </div>
                     </div>
                 </div>

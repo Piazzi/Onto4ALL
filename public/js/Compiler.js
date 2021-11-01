@@ -204,12 +204,14 @@ function compileRelation(relation) {
         missingRelationProperties = missingRelationProperties + " range,";
 
     // is_a relations don't have a inverse of
+    /*
     if (
         relation.getAttribute("label") !== "is_a" &&
         relation.getAttribute("label") !== "é_um " &&
         relation.getAttribute("inverseOf") === ""
     )
         missingRelationProperties = missingRelationProperties + " inverseOf";
+    */
 
     if (missingRelationProperties !== "") {
         warningsCount++;
@@ -254,7 +256,8 @@ function compileClass(classCell) {
         let classesToCompare = classes.filter(
             (item) => item.id !== classCell.id
         );
-        for (let i = 0; i < classesToCompare.length; i++) {
+        let classesLenght = classesToCompare.length;
+        for (let i = 0; i < classesLenght; i++) {
             if (
                 classCell.getAttribute("label") ==
                 classesToCompare[i].getAttribute("label")
@@ -300,7 +303,8 @@ function compileClass(classCell) {
         });
         if (isSubClassOf == 0) classCell.setAttribute("SubClassOf", "");
 
-        if (classCell.edges.length > 1) {
+        let classCellEdgesLength = classCell.edges.length;
+        if (classCellEdgesLength > 1) {
             // Shows a error message if two classes has the same relation between them more than one time
             let connectedRelations = classCell.edges.filter(
                 (relation) =>
@@ -308,8 +312,9 @@ function compileClass(classCell) {
                 relation.source !== null &&
                 relation.getAttribute("label") !== ""
             );
-            for (let i = 0; i < connectedRelations.length; i++) {
-                for (let j = 0; j < connectedRelations.length; j++) {
+            let connectedRelationsLenght = connectedRelations.length;
+            for (let i = 0; i < connectedRelationsLenght; i++) {
+                for (let j = 0; j < connectedRelationsLenght; j++) {
                     if (
                         connectedRelations[i].id != connectedRelations[j].id &&
                         connectedRelations[i].getAttribute("label") ==
@@ -428,6 +433,7 @@ function compileClass(classCell) {
  */
 function compileInstance(instance) {
     // shows a error if there is any relation besides instance_of connected to a instance
+    /*
     if (instance.edges !== null && instance.edges.length > 0) {
         instance.edges.forEach((relation) => {
             if (
@@ -454,6 +460,8 @@ function compileInstance(instance) {
             }
         });
     }
+    */
+   
 }
 
 /**
@@ -561,17 +569,18 @@ function getLanguage() {
  */
 function getElementsNames(category = "Class") {
     let names = [];
+    let relationsLength = relations.length, classesLength = classes.length, instancesLength = instances.length, datatypePropertiesLength = datatypeProperties.length;
     if (category === "Relation") {
-        for (let i = 0; i < relations.length; i++)
+        for (let i = 0; i < relationsLength; i++)
             names.push(relations[i].getAttribute("label"));
     } else if (category === "Class") {
-        for (let i = 0; i < classes.length; i++)
+        for (let i = 0; i < classesLength; i++)
             names.push(classes[i].getAttribute("label"));
     } else if (category === "Instance") {
-        for (let i = 0; i < instances.length; i++)
+        for (let i = 0; i < instancesLength; i++)
             names.push(instances[i].getAttribute("label"));
     } else if (category === "DatatypeProperty") {
-        for (let i = 0; i < datatypeProperties.length; i++)
+        for (let i = 0; i < datatypePropertiesLength; i++)
             names.push(datatypeProperties[i].getAttribute("label"));
     }
     return names;
@@ -791,7 +800,8 @@ function updateConsoleColors(
  * Check if the Thing Class exists in the current ontology
  */
 function thingClassExists() {
-    for (let i = 0; i < classes.length; i++)
+    let classesLength = classes.length;
+    for (let i = 0; i < classesLength; i++)
         if (
             classes[i].getAttribute("label").toUpperCase() === "THING" ||
             classes[i].getAttribute("label").toUpperCase() === "COISA"
@@ -847,8 +857,8 @@ function getCellById(id, type) {
     else if (type == "Relation") cells = relations;
     else if (type == "Instance") cells = instances;
     else cells = relations.concat(classes).concat(instances);
-
-    for (let i = 0; i < cells.length; i++)
+    let cellsLength = cells.length;
+    for (let i = 0; i < cellsLength; i++)
         if (cells[i].id == id) return cells[i];
 }
 
@@ -860,7 +870,8 @@ function getCellById(id, type) {
  */
 function removeItemAll(arr, value) {
     let i = 0;
-    while (i < arr.length) {
+    let arrayLength = arr.length;
+    while (i < arrayLength) {
         if (arr[i] === value) {
             arr.splice(i, 1);
         } else {

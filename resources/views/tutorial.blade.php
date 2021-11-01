@@ -1,5 +1,13 @@
 @extends('adminlte::page')
 
+<style>
+.credits-section{padding:20px}
+.credits-section img{padding-top:20px;padding-bottom:5px}
+.credits-section td{padding-right:20px;}
+.credits-table{text-align: center;}
+.ufjf-logo{text-align:center; padding-top:150px}
+</style>
+
 @section('title', 'AdminLTE')
 
 @section('content_header')
@@ -33,7 +41,6 @@
                     <a href="#relations"><li>{{__('Relation')}}</li></a>
                     <a href="#properties"><li>{{__('Propriedades')}}</li></a>
                     <a href="#colors"><li>{{__('Colors')}}</li></a>
-                    <a href="#save"><li>{{__('Save')}}</li></a>
                     <a href="#import"><li>{{__('Import')}}</li></a>
                 </ol>
                 </li>
@@ -42,9 +49,6 @@
                 <ol>
                     <a href="#diagram"><li>{{__('Diagram')}}</li></a>
                     <a href="#rules"><li>{{__('Tips Tab')}}</li></a>
-                    <a href="#ontology-palette"><li>{{__('Ontologies Palette')}}</li></a>
-                    <a href="#other-palettes"><li>{{__('Other Palettes')}}</li></a>
-                    <a href="#ontology-history"><li>{{__('Ontology History')}}</li></a>
                     <a href="#warnings-console"><li>{{__('Warnings Console')}}</li></a>
                     <a href="#methodology"><li>{{__('Methodology Tab')}}</li></a>
                 </ol>
@@ -194,29 +198,7 @@
         </div>
     </div>
 
-    <div id="save" class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">{{__('Save')}}</h3>
-        </div>
-        <div class="box-body">
-            <dd>{{__('It is possible to save the ontologies developed in Onto4All and access them later.')}}</dd>
-                <div class="row">
-                    <div class="col-md-6">
-                        <ul>
-                            <li>{{__('Clicking')}} <i>{{__('Save')}}</i>{{__(', in the menu')}} <i>{{__('File')}}</i>{{__(', or pressing')}} <strong>CTRL+S</strong>{{__('')}}</li>
-                            <li>{{__('When saving an ontology, it can be found in the')}} <a href="{{route('ontologies.index', app()->getLocale())}}"> {{__('Ontology Manager')}}</a> {{__('and on the Ontologies menu on the right sidebar.')}}</li>
-                            <li>{{__('You can access ontologies made by you previously by clicking the Open in the Editor button in the ontologies menu on the right sidebar. Or')}}  <a href="#import">{{__('')}} </a></li>
-                            <li><span class="label-warning">{{__('Attention: Only your last 10 ontologies were saved in our editor, if you exceed this limit, your oldest ontology will be deleted. If you want to avoid this, mark your ontology as a favorite, so that it will not be deleted. You can select up to 5 ontologies as favorites.')}}</span></li>
-                            <li>{{__('It is also possible to export the ontology in other formats, including OWL (Ontology Web Language) or SVG (to save only the image of the created ontology), by clicking')}} <i>{{__('Export')}}</i>{{__(', within the same menu.')}}</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <img alt="class image" src="{{asset('css/images/saving-ontology.png')}}">
-                    </div>
-                </div>
-        </div>
-    </div>
-
+    
     <div id="import" class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Import')}}</h3>
@@ -281,7 +263,7 @@
                     <div class="col-md-6">
                         <ul>
                             <li>{{__('Initially, the user has access to classes and relations BFO, IAO, IOF')}} </li>
-                            <li>{{__('When you click on an element in the')}} <a href="#palet">{{__('Ontologies Palette')}}</a>{{__(', only the rules related to that element will be displayed in the toolbar.')}}</li>
+                            
                             <li>{{__('Through the search field in the tip bar, it is possible to find rules related to a specific element, by typing its name.')}}</li>
                         </ul>
                     </div>
@@ -292,67 +274,7 @@
         </div>
     </div>
 
-    <div id="ontology-palette" class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">{{__('Ontologies Palette')}}</h3>
-        </div>
-        <div class="box-body">
-            <dd>{{__('In the left corner, you will find')}} <strong>{{__('Ontologies Palette')}}</strong>{{__(', which contains the main elements necessary for the construction of an ontology.')}}</dd>
-                <div class="row">
-                    <div class="col-md-6">
-                        <ul>
-                            <li>{{__('In the palette of ontologies, you will find, among other elements, classes and relations, mentioned earlier in this tutorial.')}}</li>
-                            <li>{{__('In addition to classes and relations, the palette of ontologies also offers the option of inserting texts in the diagram.')}}</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <img alt="class image" src="{{asset('css/images/ontology-palette.png')}}">
-                    </div>
-                </div>
-        </div>
-    </div>
-
-    <div id="other-palettes" class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">{{__('Other Palettes')}}</h3>
-        </div>
-        <div class="box-body">
-            <dd>{{__('There are alternative palettes of elements that can be used in the diagram.')}}</dd>
-                <div class="row">
-                    <div class="col-md-6">
-                        <ul>
-                            <li>{{__('The alternative palettes are arrows, UML, BPMN and clipart icons.')}}</li>
-                            <li>{{__('Just like the elements of the ontology palette, to insert an element from another palette in the diagram, just click on it or drag it.')}}</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <img alt="class image" src="{{asset('css/images/alternative-palettes.png')}}">
-                    </div>
-                </div>
-        </div>
-    </div>
-
-    <div id="ontology-history" class="box box-solid">
-        <div class="box-header with-border">
-            <h3 class="box-title">{{__('Ontology History')}}</h3>
-        </div>
-        <div class="box-body">
-            <dd>{{__('Also on the Onto4All ontology construction diagram page, we can view the history of ontologies saved by the user.')}}</dd>
-                <div class="row">
-                    <div class="col-md-6">
-                        <ul>
-                            <li>{{__('On the diagram page, to display the saved ontologies just click on')}} <strong>{{__('Ontologies')}}</strong>{{__(', at the top of')}} <a href="#rules">{{__('Tips Tab')}}</a>.</li>
-                            <li>{{__('The saved ontologies will be displayed in the form of a timeline showing the date and time when the ontologies were saved.')}}</li>
-                            <li>{{__('Still on the timeline of the ontology history, it is possible to export them in OWL and XML formats. It is also possible to open them in the editor')}}</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <img alt="class image" src="{{asset('css/images/ontology-history.png')}}">
-                    </div>
-                </div>
-        </div>
-    </div>
-
+    
     <div id="warnings-console" class="box box-solid">
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Warnings Console')}}</h3>
@@ -626,10 +548,37 @@
                     <dd>{{__('Onto4All was developed by')}} <a href="https://github.com/Piazzi/">Lucas Piazzi</a>{{__(', as part of a Scientific Initiation project linked to the Computer Science Department of the Federal University of Juiz de Fora (UFJF), also composed of')}}
                         <a href="professorfabriciomendonca.com.br/">Dr Fabrício Martins Mendonça</a>{{__('(Project Advisor)')}},
                         <a href="https://github.com/carvalhotiago">Tiago Carvalho</a>,<a href="https://github.com/pedroalves4">Pedro Henrique Alves</a>.
+                    <div class="credits-section">
+                        <table class="credits-table">
+                            <tr>
+                                <td><img alt="Fabrício Mendonça" src="{{asset('css/images/Landing-Page/Foto (1).png')}}"></td>
+                                <td><img alt="Lucas Piazzi" src="{{asset('css/images/Landing-Page/Foto (2).png')}}"></td>
+                                <td><img alt="Maurício Almeida" src="{{asset('css/images/Landing-Page/Foto (3).png')}}"></td>
+                                <td><img alt="Eduardo Felipe" src="{{asset('css/images/Landing-Page/Foto (4).png')}}"></td>
+                            </tr>
+                            <tr>
+                                <td>Fabrício<br>Mendonça</td>
+                                <td>Lucas<br>Piazzi</td>
+                                <td>Maurício<br>Almeida</td>
+                                <td>Eduardo<br>Feipe</td>
+                            </tr>
+                            <tr>
+                                <td><img alt="Jeanne Emygdio" src="{{asset('css/images/Landing-Page/Foto (5).png')}}"></td>
+                                <td><img alt="Larissa Fazza" src="{{asset('css/images/Landing-Page/Foto (6).png')}}"></td>
+                                <td><img alt="Guilherme Noronha" src="{{asset('css/images/Landing-Page/Foto (7).png')}}"></td>
+                                <td><img alt="Vinicius Corbelli" src="{{asset('css/images/Landing-Page/Foto (8).png')}}"></td>
+                            </tr>
+                            <tr>
+                                <td>Jeanne<br>Emygdio</td>
+                                <td>Larissa<br>Fazza</td>
+                                <td>Guilherme<br>Noronha</td>
+                                <td>Vinicius<br>Corbelli</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 ufjf-logo">
                     <img alt="ufjf" src="{{asset('css/images/Landing-Page/ufjf.png')}}">
-
                 </div>
             </div>
 

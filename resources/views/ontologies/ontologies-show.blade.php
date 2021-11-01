@@ -37,280 +37,403 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
 
-       
+
         <div class="row">
             <div class="col-md-12">
-                
+
                 <div style="margin-bottom: 20px;" id="graph"></div>
             </div>
         </div>
 
 
         <div class="panel-group">
-            <a data-toggle="collapse" href="#collapse3">
+            <a data-toggle="collapse" href="#collapse">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                         
+
                         <h4 class="panel-title">
-                        {{__("General Information")}} <i class="fa fa-fw fa-expand"></i>
-                        </h4>                        
-                    </div>
-                </a>
-                <div id="collapse3" class="panel-collapse ">
-                            <div class="box-body">
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>IRI</label>
-                                        <label  class="form-control form-textarea"> https://onto4alleditor.com/en/ontologies/{{ $ontology->id }} </label>
-                                    </div> 
-                                    </div>
-                                </div>
-                                
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>{{ __('Name') }}</label>
-                                            <label class="form-control">{{ $ontology->name }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>{{ __('Created By') }}</label>
-                                            <label class="form-control">{{ $ontology->user->name }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Publication Date</label>
-                                            <label class="form-control"> {{ $ontology->publication_date }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label>Last Uploaded</label>
-                                            <label class="form-control"> {{ $ontology->last_uploaded }}</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                               
-
-                                <div class="row">
-                                    <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Description</label>
-                                        <textarea disabled class="form-control form-textarea"> {{ $ontology->description }}</textarea>
-                                    </div> 
-                                    </div>
-                                </div>
-                                
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Link</label>
-                                            <label class="form-control"><a href="{{ $ontology->link }}">
-                                                    {{ $ontology->link }}
-                                                </a></label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Domain</label>
-                                            <label class="form-control"> {{ $ontology->domain }}</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>General Purpose</label>
-                                    <label class="form-control"> {{ $ontology->general_purpose }}</label>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Profiles Users</label>
-                                            <label class="form-control"> {{ $ontology->profile_users }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Intended Use</label>
-                                            <label class="form-control"> {{ $ontology->intended_use }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Type Of Ontology</label>
-                                            <label class="form-control"> {{ $ontology->type_of_ontology }}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Degree Of Formality</label>
-                                            <label class="form-control"> {{ $ontology->degree_of_formality }}</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Scope</label>
-                                            <label class="form-control"> {{ $ontology->scope }}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label>Competence Questions</label>
-                                    <label class="form-control"> {{ $ontology->competence_questions }}</label>
-                                </div>
-                                <div class="form-group">
-                                    <label>Namespaces</label>
-                                    <label class="form-control"> {{ $ontology->namespace }}</label>
-                                </div>
-                                <div class="form-group">
-                                    <label>{{ __('Collaborators') }}</label>
-                                    @foreach ($ontology->users as $user)
-                                        <label class="form-control"> {{ $user->name }}</label>
-                                    @endforeach
-                                </div>
-                            </div>
-                            <!-- /.box-body -->
-                </div>
-            </div>
-        </div>
-        <div class="panel-group ">
-            <a data-toggle="collapse" href="#collapse1">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">{{__("Classes")}} <i class="fa fa-fw fa-expand"></i>
+                            {{ __('General Information') }} <i class="fa fa-fw fa-expand"></i>
                         </h4>
                     </div>
-                </a>
-                <div id="collapse1" class="panel-collapse collapse">
+            </a>
+            <div id="collapse" class="panel-collapse ">
+                <div class="box-body">
 
-                    <div class="container">
-                        <div class="row">
-                            <div class="informations-no">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="tab-pane active" id="classes-tab">
-
-                                            <h4 id="nome"></h4>
-
-                                            <div class="form-group">
-                                                <label>SubClassOf</label>
-                                                <input id="SubClassOf" disabled="" type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Equivalence</label>
-                                                <input id="Equivalence" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Instances</label>
-                                                <input id="Instances" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>TargetForKey</label>
-                                                <input id="TargetForKey" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>DisjointWith</label>
-                                                <input id="DisjointWith" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>IRI</label>
+                                <label class="form-control form-textarea">
+                                    https://onto4alleditor.com/en/ontologies/{{ $ontology->id }} </label>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
 
-
-        <div class="panel-group">
-            <a data-toggle="collapse" href="#collapse2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            {{__("Relations")}} <i class="fa fa-fw fa-expand"></i>
-                        </h4>
-                    </div>
-                </a>
-                <div id="collapse2" class="panel-collapse collapse">
-                    <div class="container">
-                        <div class="row">
-                            <div class="informations-aresta">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="tab-pane active" id="classes-tab">
-
-                                            <h4 id="nome"></h4>
-
-
-                                            <div class="form-group">
-                                                <label>domain</label>
-                                                <input id="domain" disabled="" type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>range</label>
-                                                <input id="range" disabled="" type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Equivalence</label>
-                                                <input id="Equivalence" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>InverseOf</label>
-                                                <input id="InverseOf" disabled="" type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>equivalentTo</label>
-                                                <input id="equivalentTo" disabled="" type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>disjointWith</label>
-                                                <input id="disjointWith-relations" disabled="" type="text"
-                                                    class="form-control" placeholder="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>TargetForKey</label>
-                                                <input id="TargetForKey" disabled type="text" class="form-control"
-                                                    placeholder="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>{{ __('Name') }}</label>
+                                <label class="form-control">{{ $ontology->name }}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>{{ __('Created By') }}</label>
+                                <label class="form-control">{{ $ontology->user->name }}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Publication Date</label>
+                                <label class="form-control"> {{ $ontology->publication_date }}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Last Uploaded</label>
+                                <label class="form-control"> {{ $ontology->last_uploaded }}</label>
                             </div>
                         </div>
                     </div>
+
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Description</label>
+                                <textarea disabled
+                                    class="form-control form-textarea"> {{ $ontology->description }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Link</label>
+                                <label class="form-control"><a href="{{ $ontology->link }}">
+                                        {{ $ontology->link }}
+                                    </a></label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Domain</label>
+                                <label class="form-control"> {{ $ontology->domain }}</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>General Purpose</label>
+                        <label class="form-control"> {{ $ontology->general_purpose }}</label>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Profiles Users</label>
+                                <label class="form-control"> {{ $ontology->profile_users }}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Intended Use</label>
+                                <label class="form-control"> {{ $ontology->intended_use }}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Type Of Ontology</label>
+                                <label class="form-control"> {{ $ontology->type_of_ontology }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Degree Of Formality</label>
+                                <label class="form-control"> {{ $ontology->degree_of_formality }}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Scope</label>
+                                <label class="form-control"> {{ $ontology->scope }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Competence Questions</label>
+                        <label class="form-control"> {{ $ontology->competence_questions }}</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Namespaces</label>
+                        <label class="form-control"> {{ $ontology->namespace }}</label>
+                    </div>
+                    <div class="form-group">
+                        <label>{{ __('Collaborators') }}</label>
+                        @foreach ($ontology->users as $user)
+                            <label class="form-control"> {{ $user->name }}</label>
+                        @endforeach
+                    </div>
                 </div>
+                <!-- /.box-body -->
             </div>
         </div>
-
-        
-
-        <a href="{{ route('ontologies.index', app()->getLocale()) }}">
-            <button class="btn btn-success btn-block" type="button">Go back</button>
+    </div>
+    <div class="panel-group ">
+        <a data-toggle="collapse" href="#collapse1">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{{ __('Classes') }} <i class="fa fa-fw fa-expand"></i>
+                    </h4>
+                </div>
         </a>
+        <div id="collapse1" class="panel-collapse collapse">
+
+            <div class="container">
+                <div class="row">
+                    <div class="informations-no">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="tab-pane active" id="classes-tab">
+
+                                    <h4 id="nome"></h4>
+
+                                    <div class="form-group">
+                                        <label>SubClassOf</label>
+                                        <input id="SubClassOf" disabled="" type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Equivalence</label>
+                                        <input id="Equivalence" disabled type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Instances</label>
+                                        <input id="Instances" disabled type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>TargetForKey</label>
+                                        <input id="TargetForKey" disabled type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>DisjointWith</label>
+                                        <input id="DisjointWith" disabled type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <div class="panel-group">
+        <a data-toggle="collapse" href="#collapse4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        {{ __('Instances') }} <i class="fa fa-fw fa-expand"></i>
+                    </h4>
+                </div>
+        </a>
+        <div id="collapse4" class="panel-collapse collapse">
+            <div class="container">
+                <div class="row">
+                    <div class="informations-instance">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="tab-pane active" id="classes-tab">
+
+                                    <h4 id="nome"></h4>
+
+                                    <div class="form-group">
+                                        <label>types</label>
+                                        <input id="types" disabled="" type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>sameAs</label>
+                                        <input id="sameAs" disabled="" type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>differentAs</label>
+                                        <input id="differentAs" disabled type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>objectProperties</label>
+                                        <input id="objectProperties" disabled="" type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>dataProperties</label>
+                                        <input id="dataProperties" disabled="" type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>negativeObjectProperties</label>
+                                        <input id="negativeObjectProperties" disabled type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>negativeDataProperties</label>
+                                        <input id="negativeDataProperties" disabled type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="panel-group">
+        <a data-toggle="collapse" href="#collapse2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        {{ __('Relations') }} <i class="fa fa-fw fa-expand"></i>
+                    </h4>
+                </div>
+        </a>
+        <div id="collapse2" class="panel-collapse collapse">
+            <div class="container">
+                <div class="row">
+                    <div class="informations-aresta">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="tab-pane active" id="classes-tab">
+
+                                    <h4 id="nome"></h4>
+
+
+                                    <div class="form-group">
+                                        <label>domain</label>
+                                        <input id="domain" disabled="" type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>range</label>
+                                        <input id="range" disabled="" type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Equivalence</label>
+                                        <input id="Equivalence" disabled type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>InverseOf</label>
+                                        <input id="InverseOf" disabled="" type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>disjointWith</label>
+                                        <input id="disjointWith-relations" disabled="" type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>TargetForKey</label>
+                                        <input id="TargetForKey" disabled type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <div class="panel-group">
+        <a data-toggle="collapse" href="#collapse3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        {{ __('Annotation Propeties') }} <i class="fa fa-fw fa-expand"></i>
+                    </h4>
+                </div>
+        </a>
+        <div id="collapse3" class="panel-collapse collapse">
+            <div class="container">
+                <div class="row">
+                    <div class="informations-annotation">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="tab-pane active" id="classes-tab">
+
+                                    <h4 id="nome"></h4>
+
+
+                                    <div class="form-group">
+                                        <label>comment</label>
+                                        <input id="comment" disabled="" type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>isDefinedBy</label>
+                                        <input id="isDefinedBy" disabled="" type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>seeAlso</label>
+                                        <input id="seeAlso" disabled type="text" class="form-control" placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>backwardCompartibleWith</label>
+                                        <input id="backwardCompartibleWith" disabled="" type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>deprecated</label>
+                                        <input id="deprecated" disabled="" type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>incompatibleWith</label>
+                                        <input id="incompatibleWith" disabled type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>priorVersion</label>
+                                        <input id="priorVersion" disabled type="text" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>versionInfo</label>
+                                        <input id="versionInfo" disabled type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+    <a href="{{ route('ontologies.index', app()->getLocale()) }}">
+        <button class="btn btn-success btn-block" type="button">Go back</button>
+    </a>
     </div>
 
 
@@ -367,6 +490,7 @@
         <script type="text/javascript" src="../../grapheditor/js/Actions.js"></script>
 
         <script src="../../grapheditor/src/js/util/mxUtils.js"></script>
+        <script src="../../js/Compiler.js"></script>
         <script type="text/javascript">
             var container = document.getElementById("graph");
             var graph = new Graph(container, null, null, null, null);
@@ -396,109 +520,121 @@
             xmlDoc = parser.parseFromString("<?php echo "$xml"; ?>", "text/xml");
 
             // Esconde os elementos que serão utilizados para clonar
-            $('.informations-no:last').css('display', 'none');
-            $('.informations-aresta:last').css('display', 'none');
+            $('.informations-no:last').hide();
+            $('.informations-aresta:last').hide();
+            $('.informations-annotation:last').hide();
+            $('.informations-instance:last').hide();
 
             for (let i = 0; i < xmlDoc.getElementsByTagName("object").length; i++) {
+
+
+                //Annotation Properties
+                var newel = $('.informations-annotation:first').clone();
+                newel.show();
+                $(newel).insertAfter(".informations-annotation:last");
+
+                $('.informations-annotation:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i].getAttribute(
+                    "label"));
+                $('.informations-annotation:last').find('#comment').val(xmlDoc.getElementsByTagName("object")[i].getAttribute(
+                    "comment"));
+                $('.informations-annotation:last').find('#isDefinedBy').val(xmlDoc.getElementsByTagName("object")[i]
+                    .getAttribute("isDefinedBy"));
+                $('.informations-annotation:last').find('#seeAlso').val(xmlDoc.getElementsByTagName("object")[i].getAttribute(
+                    "seeAlso"));
+                $('.informations-annotation:last').find('#backwardCompartibleWith').val(xmlDoc.getElementsByTagName("object")[i]
+                    .getAttribute("backwardCompartibleWith"));
+                $('.informations-annotation:last').find('#deprecated').val(xmlDoc.getElementsByTagName("object")[i]
+                    .getAttribute("deprecated"));
+                $('.informations-annotation:last').find('#incompatibleWith').val(xmlDoc.getElementsByTagName("object")[i]
+                    .getAttribute("incompatibleWith"));
+                $('.informations-annotation:last').find('#priorVersion').val(xmlDoc.getElementsByTagName("object")[i]
+                    .getAttribute("priorVersion"));
+                $('.informations-annotation:last').find('#versionInfo').val(xmlDoc.getElementsByTagName("object")[i]
+                    .getAttribute("versionInfo"));
+
+                        console.log(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style"));
+
                 if (xmlDoc.getElementsByTagName("object")[i].getAttribute("label") != null) {
 
-                    let SubClassOf;
-                    let DisjointWith;
-                    let Equivalence;
-                    let TargetForKey;
-                    let Instances;
-                    let Domain;
-                    let Range;
-                    let InverseOf;
+                    // Apenas instancias tem o atributo types
+                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("types") != null) {
 
-                    let classe;
+                        var newel = $('.informations-instance:first').clone();
+                        newel.show();
+                        $(newel).insertAfter(".informations-instance:last");
 
-                    // Apenas arestas tem o atributo domain
-                    if (xmlDoc.getElementsByTagName("object")[i].getAttribute("domain") != null) {
-                        var newel = $('.informations-aresta:first').clone();
-                        newel.css('display', 'block')
-                        $(newel).insertAfter(".informations-aresta:last");
+                        $('.informations-instance:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i].getAttribute(
+                                "label"));
 
+                        $('.informations-instance:last').find('#types').val(xmlDoc.getElementsByTagName("object")[i]
+                            .getAttribute("types"));
 
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("SubClassOf") != "")
-                            SubClassOf = xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf");
+                        $('.informations-instance:last').find('#sameAs').val(xmlDoc.getElementsByTagName("object")[i]
+                            .getAttribute("sameAs"));
 
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("DisjointWith") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("DisjointWith") != "")
-                            DisjointWith = xmlDoc.getElementsByTagName("object")[i].getAttribute("DisjointWith");
+                        $('.informations-instance:last').find('#differentAs').val(xmlDoc.getElementsByTagName("object")[i]
+                            .getAttribute("differentAs"));
 
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("Equivalence") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("Equivalence") != "")
-                            Equivalence = xmlDoc.getElementsByTagName("object")[i].getAttribute("Equivalence");
+                        $('.informations-instance:last').find('#objectProperties').val(xmlDoc.getElementsByTagName("object")[i]
+                            .getAttribute("objectProperties"));
 
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("TargetForKey") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("TargetForKey") != "")
-                            TargetForKey = xmlDoc.getElementsByTagName("object")[i].getAttribute("TargetForKey");
+                        $('.informations-instance:last').find('#dataProperties').val(xmlDoc.getElementsByTagName("object")[i]
+                            .getAttribute("dataProperties"));
 
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("domain") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("domain") != "")
-                            Domain = xmlDoc.getElementsByTagName("object")[i].getAttribute("domain");
+                        $('.informations-instance:last').find('#negativeObjectProperties').val(xmlDoc.getElementsByTagName(
+                                "object")[i]
+                            .getAttribute("negativeObjectProperties"));
 
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("range") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("range") != "")
-                            Range = xmlDoc.getElementsByTagName("object")[i].getAttribute("range");
-
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("InverseOf") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("domain") != "")
-                            InverseOf = xmlDoc.getElementsByTagName("object")[i].getAttribute("InverseOf");
+                        $('.informations-instance:last').find('#negativeDataProperties').val(xmlDoc.getElementsByTagName(
+                                "object")[i]
+                            .getAttribute("negativeDataProperties"));
 
 
+                    } else
+                        // Apenas arestas tem o atributo domain
+                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("domain") != null) {
+                            var newel = $('.informations-aresta:first').clone();
+                            newel.show();
+                            $(newel).insertAfter(".informations-aresta:last");
 
-                        $('.informations-aresta:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i].getAttribute(
-                            "label"));
-                        $('.informations-aresta:last').find('#SubClassOf').val(SubClassOf);
-                        $('.informations-aresta:last').find('#DisjointWith').val(DisjointWith);
-                        $('.informations-aresta:last').find('#Equivalence').val(Equivalence);
-                        $('.informations-aresta:last').find('#TargetForKey').val(TargetForKey);
-                        $('.informations-aresta:last').find('#Domain').val(Domain);
-                        $('.informations-aresta:last').find('#Range').val(Range);
-                        $('.informations-aresta:last').find('#InverseOf').val(InverseOf);
+                            $('.informations-aresta:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute(
+                                    "label"));
+                            $('.informations-aresta:last').find('#SubClassOf').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("SubClassOf"));
+                            $('.informations-aresta:last').find('#DisjointWith').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("DisjointWith"));
+                            $('.informations-aresta:last').find('#Equivalence').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("Equivalence"));
+                            $('.informations-aresta:last').find('#TargetForKey').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("TargetForKey"));
+                            $('.informations-aresta:last').find('#Domain').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("Domain"));
+                            $('.informations-aresta:last').find('#Range').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("Range"));
+                            $('.informations-aresta:last').find('#InverseOf').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("InverseOf"));
 
-                    } else {
-                        var newel = $('.informations-no:first').clone();
-                        newel.css('display', 'block')
-                        $(newel).insertAfter(".informations-no:last");
-                        classe = ".informations-no:last";
-
-
-
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("SubClassOf") != "")
-                            SubClassOf = xmlDoc.getElementsByTagName("object")[i].getAttribute("SubClassOf");
-
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("DisjointWith") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("DisjointWith") != "")
-                            DisjointWith = xmlDoc.getElementsByTagName("object")[i].getAttribute("DisjointWith");
-
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("Equivalence") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("Equivalence") != "")
-                            Equivalence = xmlDoc.getElementsByTagName("object")[i].getAttribute("Equivalence");
-
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("TargetForKey") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("TargetForKey") != "")
-                            TargetForKey = xmlDoc.getElementsByTagName("object")[i].getAttribute("TargetForKey");
-
-                        if (xmlDoc.getElementsByTagName("object")[i].getAttribute("Instances") != null || xmlDoc
-                            .getElementsByTagName("object")[i].getAttribute("Instances") != "")
-                            Instances = xmlDoc.getElementsByTagName("object")[i].getAttribute("Instances");
-
-                        $('.informations-no:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i].getAttribute(
-                            "label"));
-                        $('.informations-no:last').find('#SubClassOf').val(SubClassOf);
-                        $('.informations-no:last').find('#DisjointWith').val(DisjointWith);
-                        $('.informations-no:last').find('#Equivalence').val(Equivalence);
-                        $('.informations-no:last').find('#TargetForKey').val(TargetForKey);
-                        $('.informations-no:last').find('#Instances').val(Instances);
-
-                    }
+                        } else {
+                            var newel = $('.informations-no:first').clone();
+                            newel.show();
+                            $(newel).insertAfter(".informations-no:last");
 
 
+                            $('.informations-no:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i].getAttribute(
+                                "label"));
+                            $('.informations-no:last').find('#SubClassOf').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("SubClassOf"));
+                            $('.informations-no:last').find('#DisjointWith').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("DisjointWith"));
+                            $('.informations-no:last').find('#Equivalence').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("Equivalence"));
+                            $('.informations-no:last').find('#TargetForKey').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("TargetForKey"));
+                            $('.informations-no:last').find('#Instances').val(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("Instances"));
+
+                        }
                 }
             }
         </script>

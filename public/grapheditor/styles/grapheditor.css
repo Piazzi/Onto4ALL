@@ -239,6 +239,12 @@ aside {
 
 /* /--------------------------------------------ONTO4ALL------------------------------------------------------------*/
 
+.iri-link:hover{
+	color:#337ab7;
+}
+.iri-link:focus{
+	border-color:#d2d6de !important;
+}
 
 .geEditor {
 	font-family:Helvetica,Arial,sans-serif;
