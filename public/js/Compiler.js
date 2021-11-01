@@ -70,9 +70,9 @@ function removePreviousConsoleMessages() {
 function resetVariables() {
     previousCells = classes.concat(relations).concat(instances);
     (classes = []),
-    (relations = []),
-    (instances = []),
-    (datatypeProperties = []);
+        (relations = []),
+        (instances = []),
+        (datatypeProperties = []);
     (warningsCount = 0), (basicErrorsCount = 0), (conceptualErrorsCount = 0);
     compilerCounter++;
 }
@@ -306,9 +306,9 @@ function compileClass(classCell) {
             // Shows a error message if two classes has the same relation between them more than one time
             let connectedRelations = classCell.edges.filter(
                 (relation) =>
-                relation.target !== null &&
-                relation.source !== null &&
-                relation.getAttribute("label") !== ""
+                    relation.target !== null &&
+                    relation.source !== null &&
+                    relation.getAttribute("label") !== ""
             );
             for (let i = 0; i < connectedRelations.length; i++) {
                 for (let j = 0; j < connectedRelations.length; j++) {
@@ -458,7 +458,7 @@ function compileInstance(instance) {
         });
     }
     */
-   
+
 }
 
 /**
@@ -732,6 +732,26 @@ function updateSaveButtonInFrontEnd(saved) {
     if (compilerCounter > 1) saveOntology.style.visibility = "visible";
 }
 
+
+/**
+ * Update the save button error in the front end
+ */
+function updateSaveButtonErrorInFrontEnd() {
+    let message = "";
+    let icon = document.createElement("i");
+    icon.className = "fa fa-fw fa-cloud-upload";
+    // Updates the save file button
+    if (getLanguage() == "pt") message = "Ocorreu um erro ao salvar as alterações";
+    else message = "An error occurred saving changes";
+    saveOntology.classList.add("unsaved");
+    saveOntology.classList.remove("saved");
+    saveOntology.innerHTML = message;
+    saveOntology.prepend(icon);
+
+    // shows the button only if the user has made chances in the empty diagram
+    if (compilerCounter > 1) saveOntology.style.visibility = "visible";
+}
+
 /**
  * Updates the counters in the front end
  * @param warningsCount
@@ -906,7 +926,7 @@ function getCellsNamesById(ids) {
  * @param {mxCell} element
  */
 function setErrorFlag(element) {
-    if(element != undefined && !element.style.includes("error=true;"))
+    if (element != undefined && !element.style.includes("error=true;"))
         element.setStyle(element.style + "error=true;");
 }
 
@@ -918,9 +938,8 @@ function setErrorFlag(element) {
  */
 function setElementColor(element) {
 
-    if (element.style.includes("error=true;"))
-    {
-        if(!element.style.includes("strokeColor=#d73925;")){
+    if (element.style.includes("error=true;")) {
+        if (!element.style.includes("strokeColor=#d73925;")) {
             editor.graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, '#d73925', [element])
         }
     }
@@ -928,13 +947,13 @@ function setElementColor(element) {
     else {
         element.setStyle(element.style.replace("error=true;", ""));
         let color;
-        if(element.style.includes('Relation'))
+        if (element.style.includes('Relation'))
             color = '#004C99';
-        else if(element.style.includes('Class'))
+        else if (element.style.includes('Class'))
             color = '#f39c12';
-        else if(element.style.includes('Instance'))
+        else if (element.style.includes('Instance'))
             color = '#663399';
-        else if(element.style.includes('DatatypeProperty'))
+        else if (element.style.includes('DatatypeProperty'))
             color = '#006633';
         else
             return
