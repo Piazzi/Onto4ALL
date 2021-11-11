@@ -60,6 +60,11 @@
                             <a onclick="favoriteOntology()" value="0" title="Favorite ontology" href="#" id="favorite-ontology" class="geItem"></a>
                         </li>
                         <li>
+                            <div class="autosave">
+                                <input type="checkbox" id="switch" /><label for="switch"></label> <p> {{__('Autosave')}} </p>
+                            </div>
+                        </li>
+                        <li>
                             <a id="save-ontology" class=" btn btn-default unsaved">
                                 <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
                             </a>
