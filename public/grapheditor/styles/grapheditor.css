@@ -1812,12 +1812,14 @@ div.picker { z-index: 10007; }
 
 .autosave {
 	display: flex;
-    margin-top: 17px;
+    margin-top: 16px;
 }
 
-.autosave p {
+.autosave h5 {
 	color: #fff;
-	font-size: 10px;
+	font-size: 14px;
+	padding-left: 8px;
+	margin: 0 0 16px;
 }
 
 .autosave input[type=checkbox]{

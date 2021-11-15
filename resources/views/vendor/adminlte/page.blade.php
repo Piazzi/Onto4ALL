@@ -61,7 +61,7 @@
                         </li>
                         <li>
                             <div class="autosave">
-                                <input type="checkbox" id="switch" /><label for="switch"></label> <p> {{__('Autosave')}} </p>
+                                <input type="checkbox" id="switch" /><label for="switch"></label> <h5> {{__('Autosave')}} </h5>
                             </div>
                         </li>
                         <li>
