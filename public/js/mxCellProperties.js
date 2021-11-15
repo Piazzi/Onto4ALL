@@ -26,7 +26,7 @@ function getSelectedCell(cell) {
         inputs = datatypePropertyInputs;
     } else return;
 
-    setInputs(cell);
+    setPropertiesInputs(cell);
 }
 
 /**
@@ -138,7 +138,7 @@ function updateTabs(cellType) {
  * @param {string} name
  * @param {string} value
  */
-function updateInput(name, value) {
+function updatePropertyInput(name, value) {
     currentCell.setAttribute(name, value);
 }
 
@@ -146,7 +146,7 @@ function updateInput(name, value) {
  * Sets the cells properties in their correpondent front end inputs
  * @param {mxCell} cell
  */
-function setInputs(cell) {
+function setPropertiesInputs(cell) {
     let cellProperties = cell.value.attributes;
     console.log(cellProperties);
     for (let i = 0; i < cellProperties.length; i++) {
@@ -408,4 +408,23 @@ function debounce(callback, wait) {
             callback.apply(this, args);
         }, wait);
     };
+}
+
+const annotationsTab = document.getElementById('annotations-tab');
+
+function createNewProperty(label){
+    const formGroup = document.createElement('div');
+    formGroup.classList.add('form-group');
+    const newPropertyLabel = document.createElement('label', label);
+    const newPropertyInput = document.createElement('input', '');
+    newPropertyLabel.innerText = label;
+    newPropertyInput.classList.add('form-control');
+    newPropertyInput.id = label;
+    newPropertyInput.addEventListener('onchange', () => {
+        updateInput(this.id, this.value)
+    })
+    annotationInputs[label, ''];
+    formGroup.appendChild(newPropertyLabel);
+    formGroup.appendChild(newPropertyInput);
+    annotationsTab.appendChild(formGroup);
 }
