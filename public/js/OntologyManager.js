@@ -158,6 +158,62 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
+// Request to save automatically the current ontology 
+// Update form
+$(".tab-content :input").bind('keydown keyup', function (e) {
+
+    if ($("#switch").is(":checked")) {
+        let CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        // Fires the Ajax request when the button is clicked
+
+        document.getElementById('save-ontology').innerHTML = '<div  class="overlay"><i style="color: white !important;" class="fa fa-spinner fa-spin"></i></div>';
+        document.getElementById('save-ontology').style.backgroundColor = "#00a65a";
+        document.getElementById('save-ontology').style.borderColor = "#00a65a";
+        $.ajax({
+            /* the route pointing to the post function */
+            url: '/' + getLanguage() + '/updateOrCreate',
+            type: 'POST',
+            /* send the csrf-token and the input to the controller */
+            data: {
+                _token: CSRF_TOKEN,
+                id: document.getElementById('id').value,
+                xml_string: new XMLSerializer().serializeToString(editor.getGraphXml()),
+                name: document.getElementById('name-input').value,
+                publication_date: document.getElementById('publication-date').value,
+                last_uploaded: document.getElementById('last-uploaded').value,
+                description: document.getElementById('description').value,
+                link: document.getElementById('link').value,
+                domain: document.getElementById('ontology-domain').value,
+                general_purpose: document.getElementById('general-purpose').value,
+                profile_users: document.getElementById('profile-users').value,
+                intended_use: document.getElementById('intended-use').value,
+                type_of_ontology: document.getElementById('type-of-ontology').value,
+                degree_of_formality: document.getElementById('degree-of-formality').value,
+                scope: document.getElementById('scope').value,
+                competence_questions: document.getElementById('competence-questions').value,
+                namespace: $("#namespace-select").val().toString(),
+                collaborators: $("#collaborators-select").val()
+            },
+
+            dataType: 'JSON',
+            /* remind that 'data' is the response of the OntologyController */
+            success: function (data) {
+                updateSaveButtonInFrontEnd(true);
+                document.getElementById('id').value = data['id'];
+                document.getElementById('title').textContent = document.getElementById('name-input').value + ' | Onto4ALL - Ontology Graphical Editor';
+                document.getElementById('last-update').innerHTML = '<span class="time"><i class="fa fa-clock-o"></i> ' + 'Last update: ' + data['updated_at'];;
+            },
+
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(JSON.stringify(jqXHR));
+                console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+
+                updateSaveButtonErrorInFrontEnd();
+            }
+        })
+    }
+});
+
 // Reads the current ontology XML and then writes the report on a string for download
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('download-ontology-report').addEventListener('click', function () {
