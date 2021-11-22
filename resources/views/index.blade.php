@@ -24,22 +24,22 @@
             </span>
         </a>
 
-        <span id="classes" title="{{__('The number of classes in your current ontology')}}" data-widget="collapse">
+        <span id="classes" title="{{__('The number of classes in your current ontology')}}" data-widget="collapse" style="color: #f39c12">
             <i class="fa fa-fw fa-circle-o"></i>
             <span id="classes-count"> 0</span>
         </span>
 
-        <span id="relations" title="{{__('The number of relations in your current ontology')}}" data-widget="collapse">
+        <span id="relations" title="{{__('The number of relations in your current ontology')}}" data-widget="collapse" style="color: #3c8dbc">
             <i class="fa fa-1.5x fa-fw fa-exchange"></i>
             <span id="relations-count"> 0</span>
         </span>
-        <span id="datatypeProperties" title="{{__('The number of datatypeproperties in your current ontology')}}" data-widget="collapse">
+        <span id="datatypeProperties" title="{{__('The number of datatypeproperties in your current ontology')}}" data-widget="collapse" style="color: #00a65a">
             <i class="fa fa-fw fa-long-arrow-right"></i>
             <span id="datatypeproperties-count"> 0</span>
         </span>
 
-        <span id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse">
-            <i class="fa fa-fw fa-diamond"></i>
+        <span id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse" style="color: rebeccapurple">
+            <i class="fa fa-fw fa-circle-thin"></i>
             <span id="instances-count"> 0</span>
         </span>
 
@@ -105,7 +105,7 @@
             <li><a id="annotations-nav" href="#annotations-tab" data-toggle="tab" style="color: darkred"><i class="fa fa-fw fa-book"></i>
                     Annotation Properties</a></li>
             <li><a id="datatype-properties-nav" href="#datatype-properties-tab" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
-            <li><a id="individuals-nav" href="#individuals-tab" data-toggle="tab" style="color: rebeccapurple"><i class="fa fa-fw fa-user"></i> Individuals</a></li>
+            <li><a id="instances-nav" href="#instances-tab" data-toggle="tab" style="color: rebeccapurple"><i class="fa fa-fw fa-circle-thin"></i> Instances</a></li>
             <li style="visibility: hidden; display:none"><a id="empty-nav" href="#empty-tab" data-toggle="tab" ></a></li>
 
         </ul>
@@ -277,7 +277,7 @@
             </div>
 
 
-            <div class="tab-pane" id="individuals-tab">
+            <div class="tab-pane" id="instances-tab">
                 <div class="form-group">
                     <label>types</label>
                     <select id="types" data-placeholder="Select Datatypes" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
@@ -319,13 +319,13 @@
                 </div>
                 <div class="form-group">
                     <label>sameAs</label>
-                    <select id="sameAs" data-placeholder="Select Individuals" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
+                    <select id="sameAs" data-placeholder="Select instances" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>differentAs</label>
-                    <select id="differentAs" data-placeholder="Select Individuals" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
+                    <select id="differentAs" data-placeholder="Select instances" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>

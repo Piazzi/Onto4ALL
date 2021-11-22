@@ -44,7 +44,7 @@ function updateTabs(cellType) {
                 .getElementById("datatype-properties-nav")
                 .classList.add("tab-disabled");
             document
-                .getElementById("individuals-nav")
+                .getElementById("instances-nav")
                 .classList.add("tab-disabled");
             document
                 .getElementById("classes-nav")
@@ -61,7 +61,7 @@ function updateTabs(cellType) {
                 .getElementById("classes-nav")
                 .classList.add("tab-disabled");
             document
-                .getElementById("individuals-nav")
+                .getElementById("instances-nav")
                 .classList.add("tab-disabled");
             document
                 .getElementById("datatype-properties-nav")
@@ -75,7 +75,7 @@ function updateTabs(cellType) {
             break;
 
         case "Instance":
-            document.getElementById("individuals-nav").click();
+            document.getElementById("instances-nav").click();
             document
                 .getElementById("classes-nav")
                 .classList.add("tab-disabled");
@@ -86,7 +86,7 @@ function updateTabs(cellType) {
                 .getElementById("datatype-properties-nav")
                 .classList.add("tab-disabled");
             document
-                .getElementById("individuals-nav")
+                .getElementById("instances-nav")
                 .classList.remove("tab-disabled");
             document
                 .getElementById("annotations-nav")
@@ -102,7 +102,7 @@ function updateTabs(cellType) {
                 .getElementById("object-properties-nav")
                 .classList.add("tab-disabled");
             document
-                .getElementById("individuals-nav")
+                .getElementById("instances-nav")
                 .classList.add("tab-disabled");
             document
                 .getElementById("datatype-properties-nav")
@@ -127,7 +127,7 @@ function updateTabs(cellType) {
                 .getElementById("datatype-properties-nav")
                 .classList.add("tab-disabled");
             document
-                .getElementById("individuals-nav")
+                .getElementById("instances-nav")
                 .classList.add("tab-disabled");
             break;
     }
