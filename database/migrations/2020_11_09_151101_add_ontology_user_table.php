@@ -18,7 +18,7 @@ class AddOntologyUserTable extends Migration
             $table->unsignedBigInteger('ontology_id');
             $table->unsignedInteger('user_id');
             $table->foreign('ontology_id')->references('id')->on('ontologies')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
