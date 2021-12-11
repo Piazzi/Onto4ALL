@@ -38,13 +38,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fires the Ajax request when the button is clicked
     // Open the selected ontology
-    $(".openOntology").click(function () {
+
+    function updateOntology(id) {
         $.ajax({
             /* the route pointing to the post function */
             url: '/openOntology',
             type: 'POST',
             /* send the csrf-token and the input to the controller */
-            data: { _token: CSRF_TOKEN, id: this.getAttribute('id') },
+            data: { _token: CSRF_TOKEN, id: id },
             dataType: 'JSON',
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
@@ -94,7 +95,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 updateSaveButtonErrorInFrontEnd();
             }
         })
+    }
+
+    $(".openOntology").click(function () {
+        updateOntology(this.getAttribute('id'));
     });
+
+
+    // Update ontology automatically
+    loop();
+    function loop() {
+        setTimeout(function() {
+            if ($("#switch").is(":checked")) {
+                if (document.getElementById('id').value > 0) {
+                    updateOntology(document.getElementById('id').value);
+                }
+            }
+            loop();
+        }, 3000);
+    }
+
 });
 
 
