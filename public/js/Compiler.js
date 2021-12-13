@@ -718,6 +718,10 @@ function updateSaveButtonInFrontEnd(saved) {
         saveOntology.classList.add("saved");
         saveOntology.innerHTML = message;
         saveOntology.prepend(icon);
+
+        if (document.getElementById('id').value > 0) {
+            socket.emit('updateOntology', document.getElementById('id').value);
+        }
     } else {
         if (getLanguage() == "pt")
             message = "Alterações não salvas. Clique aqui para salvar";

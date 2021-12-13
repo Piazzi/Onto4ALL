@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Ontology;
-use App\Observers\OntologyObserver;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -28,7 +26,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         //parent::boot();
-        Ontology::observe(OntologyObserver::class);
 
         //
     }

@@ -1,5 +1,9 @@
 var ontologyName = document.getElementById("ontology-name");
 
+const ip_address = '127.0.0.1';
+const socket_port = '3000'; // porta node
+let socket = io(ip_address + ":" + socket_port);
+
 function saveName(event) {
     if (event.key == 'Enter') {
         document.getElementById('save-ontology').click();
@@ -101,20 +105,11 @@ document.addEventListener("DOMContentLoaded", function () {
         updateOntology(this.getAttribute('id'));
     });
 
-
-    // Update ontology automatically
-    loop();
-    function loop() {
-        setTimeout(function() {
-            if ($("#switch").is(":checked")) {
-                if (document.getElementById('id').value > 0) {
-                    updateOntology(document.getElementById('id').value);
-                }
-            }
-            loop();
-        }, 3000);
-    }
-
+    socket.on('updateOntology', (ontologyID) => {
+        if (ontologyID == document.getElementById('id').value) {
+            updateOntology(document.getElementById('id').value);
+        }
+    });
 });
 
 
