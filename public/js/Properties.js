@@ -1,5 +1,89 @@
+
 //editor.graph.getSelectionCell()
 var currentCell;
+const ontologyId = document.getElementById("id");
+const iriLink = document.getElementById("IRI-link");
+
+let inputs;
+const selectInputs = [
+    "Equivalence",
+    "DisjointWith",
+    "equivalentTo",
+    "subpropertyOf",
+    "inverseOf",
+    "disjointWith",
+    "sameAs",
+    "differentAs",
+];
+const checkboxInputs = [
+    "functional",
+    "inverseFunctional",
+    "transitive",
+    "symetric",
+    "asymmetric",
+    "reflexive",
+    "irreflexive",
+];
+
+// Properties for each cell
+const classInputs = {
+    SubClassOf: document.getElementById("SubClassOf"),
+    Equivalence: document.getElementById("Equivalence"),
+    Instances: document.getElementById("Instances"),
+    TargetForKey: document.getElementById("TargetForKey"),
+    DisjointWith: document.getElementById("DisjointWith"),
+    Constraint: document.getElementById("Constraint"),
+};
+
+const relationInputs = {
+    domain: document.getElementById("domain"),
+    range: document.getElementById("range"),
+    equivalentTo: document.getElementById("equivalentTo"),
+    subpropertyOf: document.getElementById("subpropertyOf"),
+    inverseOf: document.getElementById("inverseOf"),
+    disjointWith: document.getElementById("disjointWith-relations"),
+    functional: document.getElementById("functional"),
+    inverseFunctional: document.getElementById("inverseFunctional"),
+    transitive: document.getElementById("transitive"),
+    symetric: document.getElementById("symetric"),
+    asymmetric: document.getElementById("asymmetric"),
+    reflexive: document.getElementById("reflexive"),
+    irreflexive: document.getElementById("irreflexive"),
+};
+
+const annotationInputs = {
+    IRI: document.getElementById("IRI"),
+    label: document.getElementById("label"),
+    comment: document.getElementById("comment"),
+    isDefinedBy: document.getElementById("isDefinedBy"),
+    seeAlso: document.getElementById("seeAlso"),
+    backwardCompatibleWith: document.getElementById("backwardCompatibleWith"),
+    deprecated: document.getElementById("deprecated"),
+    incompatibleWith: document.getElementById("incompatibleWith"),
+    priorVersion: document.getElementById("priorVersion"),
+    versionInfo: document.getElementById("versionInfo"),
+};
+
+const datatypePropertyInputs = {
+    value: document.getElementById("value-datatype-properties"),
+    domain: document.getElementById("domain-datatype-properties"),
+    range: document.getElementById("range-datatype-properties"),
+    equivalentTo: document.getElementById("equivalentTo-datatype-properties"),
+    subpropertyOf: document.getElementById("subpropertyOf-datatype-properties"),
+    disjointWith: document.getElementById("disjointWith-datatype-properties"),
+    functional: document.getElementById("functional-datatype-properties"),
+    datatype: document.getElementById("datatype"),
+};
+
+const instanceInputs = {
+    types: document.getElementById("types"),
+    sameAs: document.getElementById("sameAs"),
+    differentAs: document.getElementById("differentAs"),
+    objectProperties: document.getElementById("objectProperties"),
+    dataProperties: document.getElementById("dataProperties"),
+    negativeObjectProperties: document.getElementById("negativeObjectProperties"),
+    negativeDataProperties: document.getElementById("negativeDataProperties"),
+};
 
 /**
  * Function called when a mxCell is selected in the editor
@@ -147,61 +231,71 @@ function updatePropertyInput(name, value) {
  * @param {mxCell} cell
  */
 function setPropertiesInputs(cell) {
-    let cellProperties = cell.value.attributes;
+    const cellProperties = cell.value.attributes;
     console.log(cellProperties);
+    setCellIRI(cellProperties);
+
     for (let i = 0; i < cellProperties.length; i++) {
         // set properties
         if (inputs.hasOwnProperty(cellProperties[i].name)) {
-            // if the property has a select input
+            // select
             if (selectInputs.includes(cellProperties[i].name)) {
                 createSelectOptions(cell, cellProperties[i].name);
-                $(document).ready(function () {
-                    $("#" + cellProperties[i].name)
-                        .select2({
-                            theme: "classic",
-                            width: "resolve",
-                            placeholder: "",
-                            allowClear: true,
-                        })
-                        .val(cellProperties[i].value.split(","))
-                        .trigger("change");
-                });
+                setSelectValue(cellProperties[i]);
             }
-            // if the property has a checkbox input
-            else if (checkboxInputs.includes(cellProperties[i].name)) {
-                if (cellProperties[i].value == "true")
-                    inputs[cellProperties[i].name].checked = true;
-                else inputs[cellProperties[i].name].checked = false;
-            } else
+            // checkbox
+            else if (checkboxInputs.includes(cellProperties[i].name))
+                cellProperties[i].value === "true" ? inputs[cellProperties[i].name].checked = true : inputs[cellProperties[i].name].checked = false;
+            // string
+            else
                 inputs[cellProperties[i].name].value = cellProperties[i].value;
         }
 
         // set annotations
-        if (annotationInputs.hasOwnProperty(cellProperties[i].name)) {
-            // autocomplete IRI
-            if (cellProperties[i].name == "label") {
-                console.log(document.getElementById("id"));
-                iriValue =
-                    "https://onto4alleditor.com/" +
-                    getLanguage() +
-                    "/ontologies/" +
-                    document.getElementById("id").value +
-                    "#" +
-                    annotationInputs["label"].value;
-                annotationInputs[cellProperties[i].name].value = iriValue;
-                currentCell.setAttribute("IRI", iriValue);
-                document.getElementById("IRI-link").href = iriValue;
-            }
-
-            annotationInputs[cellProperties[i].name].value =
-                cellProperties[i].value;
-        }
+        if (annotationInputs.hasOwnProperty(cellProperties[i].name))
+            annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
     }
+}
+
+function setSelectValue(cellProperties) {
+    $(document).ready(function () {
+        $("#" + cellProperties.name)
+            .select2({
+                theme: "classic",
+                width: "resolve",
+                placeholder: "",
+                allowClear: true,
+            })
+            .val(cellProperties.value.split(","))
+            .trigger("change");
+    });
+}
+
+/**
+ * Set the IRI for the given value
+ * @param {string} value
+ * @returns
+ */
+function createCellIRI(value) {
+    return "https://onto4alleditor.com/" +
+    getLanguage() +
+    "/ontologies/" +
+    ontologyId.value +
+    "#" +
+    value;
+}
+
+function setCellIRI(cellProperties){
+    let iriValue = createCellIRI(cellProperties["label"].value);
+    annotationInputs["label"].value = iriValue;
+    currentCell.setAttribute("IRI", iriValue);
+    iriLink.href = iriValue;
 }
 
 /**
  * Create the select options for the given property
  * @param {mxCell} cell
+ * @param propertyName
  */
 function createSelectOptions(cell, propertyName) {
     select = document.getElementById(propertyName);
@@ -210,7 +304,7 @@ function createSelectOptions(cell, propertyName) {
     let options = [];
     if (cell.isEdge()) {
         options = relations;
-        if (propertyName == "inverseOf") {
+        if (propertyName === "inverseOf") {
             select.removeAttribute("multiple");
             options = getInverseOfOptions();
         }
@@ -229,7 +323,7 @@ function createSelectOptions(cell, propertyName) {
         );
         // removes the class Thing from the options
         options = options.filter((e) =>
-            getLanguage() == "en"
+            getLanguage() === "en"
                 ? e.getAttribute("label").toUpperCase() !== "THING"
                 : e.getAttribute("label").toUpperCase() !== "COISA"
         );
@@ -253,6 +347,8 @@ function createSelectOptions(cell, propertyName) {
         option.innerHTML = element.getAttribute("label");
         select.appendChild(option);
     });
+
+
 }
 
 /**
@@ -279,7 +375,7 @@ function getInverseOfOptions() {
         let inverseOf = relation.getAttribute("inverseOf").split(",");
         removeItemAll(inverseOf, "");
         removeItemAll(inverseOf, "null");
-        if (inverseOf != "null" && inverseOf != "")
+        if (inverseOf !== "null" && inverseOf !== "")
             inverseOfValues.push(
                 getCellById(inverseOf[0]).getAttribute("label")
             );
@@ -296,88 +392,7 @@ function getInverseOfOptions() {
     return options;
 }
 
-let inputs;
-const selectInputs = [
-    "Equivalence",
-    "DisjointWith",
-    "equivalentTo",
-    "subpropertyOf",
-    "inverseOf",
-    "disjointWith",
-    "sameAs",
-    "differentAs",
-];
-const checkboxInputs = [
-    "functional",
-    "inverseFunctional",
-    "transitive",
-    "symetric",
-    "asymmetric",
-    "reflexive",
-    "irreflexive",
-];
 
-// Properties for each cell
-const classInputs = {
-    SubClassOf: document.getElementById("SubClassOf"),
-    Equivalence: document.getElementById("Equivalence"),
-    Instances: document.getElementById("Instances"),
-    TargetForKey: document.getElementById("TargetForKey"),
-    DisjointWith: document.getElementById("DisjointWith"),
-    Constraint: document.getElementById("Constraint"),
-};
-
-const relationInputs = {
-    domain: document.getElementById("domain"),
-    range: document.getElementById("range"),
-    equivalentTo: document.getElementById("equivalentTo"),
-    subpropertyOf: document.getElementById("subpropertyOf"),
-    inverseOf: document.getElementById("inverseOf"),
-    disjointWith: document.getElementById("disjointWith-relations"),
-    functional: document.getElementById("functional"),
-    inverseFunctional: document.getElementById("inverseFunctional"),
-    transitive: document.getElementById("transitive"),
-    symetric: document.getElementById("symetric"),
-    asymmetric: document.getElementById("asymmetric"),
-    reflexive: document.getElementById("reflexive"),
-    irreflexive: document.getElementById("irreflexive"),
-};
-
-const annotationInputs = {
-    IRI: document.getElementById("IRI"),
-    label: document.getElementById("label"),
-    comment: document.getElementById("comment"),
-    isDefinedBy: document.getElementById("isDefinedBy"),
-    seeAlso: document.getElementById("seeAlso"),
-    backwardCompatibleWith: document.getElementById("backwardCompatibleWith"),
-    deprecated: document.getElementById("deprecated"),
-    incompatibleWith: document.getElementById("incompatibleWith"),
-    priorVersion: document.getElementById("priorVersion"),
-    versionInfo: document.getElementById("versionInfo"),
-};
-
-const datatypePropertyInputs = {
-    value: document.getElementById("value-datatype-properties"),
-    domain: document.getElementById("domain-datatype-properties"),
-    range: document.getElementById("range-datatype-properties"),
-    equivalentTo: document.getElementById("equivalentTo-datatype-properties"),
-    subpropertyOf: document.getElementById("subpropertyOf-datatype-properties"),
-    disjointWith: document.getElementById("disjointWith-datatype-properties"),
-    functional: document.getElementById("functional-datatype-properties"),
-    datatype: document.getElementById("datatype"),
-};
-
-const instanceInputs = {
-    types: document.getElementById("types"),
-    sameAs: document.getElementById("sameAs"),
-    differentAs: document.getElementById("differentAs"),
-    objectProperties: document.getElementById("objectProperties"),
-    dataProperties: document.getElementById("dataProperties"),
-    negativeObjectProperties: document.getElementById(
-        "negativeObjectProperties"
-    ),
-    negativeDataProperties: document.getElementById("negativeDataProperties"),
-};
 
 // Add keyup events for the given textArea
 let constraintInput = classInputs.Constraint;
@@ -390,6 +405,7 @@ constraintInput.addEventListener("keyup", function () {
         document.getElementById("help-text").childNodes[1].nodeValue =
             "Checando os axiomas, aguarde um momento...";
 });
+
 // Call the Class Expression Edior / Axiom Editor 2 seconds
 // after the user stops typing
 constraintInput.addEventListener(
@@ -427,4 +443,5 @@ function createNewProperty(label){
     formGroup.appendChild(newPropertyLabel);
     formGroup.appendChild(newPropertyInput);
     annotationsTab.appendChild(formGroup);
+    currentCell.setAttribute(label, "");
 }
