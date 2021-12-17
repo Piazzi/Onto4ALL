@@ -1,5 +1,9 @@
 var ontologyName = document.getElementById("ontology-name");
 
+const ip_address = '127.0.0.1';
+const socket_port = '3000'; // porta node
+let socket = io(ip_address + ":" + socket_port);
+
 function saveName(event) {
     if (event.key == 'Enter') {
         document.getElementById('save-ontology').click();
@@ -38,13 +42,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Fires the Ajax request when the button is clicked
     // Open the selected ontology
-    $(".openOntology").click(function () {
+
+    function updateOntology(id) {
         $.ajax({
             /* the route pointing to the post function */
             url: '/openOntology',
             type: 'POST',
             /* send the csrf-token and the input to the controller */
-            data: { _token: CSRF_TOKEN, id: this.getAttribute('id') },
+            data: { _token: CSRF_TOKEN, id: id },
             dataType: 'JSON',
             /* remind that 'data' is the response of the OntologyController */
             success: function (data) {
@@ -98,6 +103,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 updateSaveButtonErrorInFrontEnd();
             }
         })
+    }
+
+    $(".openOntology").click(function () {
+        updateOntology(this.getAttribute('id'));
+    });
+
+    socket.on('updateOntology', (ontologyID) => {
+        if (ontologyID == document.getElementById('id').value) {
+            updateOntology(document.getElementById('id').value);
+        }
     });
 });
 
