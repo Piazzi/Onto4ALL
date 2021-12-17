@@ -441,6 +441,8 @@
     $xml = str_replace('"', '\"', $ontology->xml_string);
     @endphp
 
+    <div id="scroll"></div>
+
 @stop
 
 @section('footer')
@@ -492,6 +494,17 @@
         <script src="../../grapheditor/src/js/util/mxUtils.js"></script>
         <script src="../../js/Compiler.js"></script>
         <script type="text/javascript">
+            $(document).ready(function() {
+                if ($(location).attr('hash') != null) {
+
+                    $($(location).attr('hash')).parent().parent().parent().parent().parent().parent().parent().collapse('show');
+
+                    $('html, body').animate({
+                        scrollTop: $($(location).attr('hash')).offset().top
+                    }, 'slow');
+                }
+            });
+
             var container = document.getElementById("graph");
             var graph = new Graph(container, null, null, null, null);
 
@@ -552,8 +565,6 @@
                 $('.informations-annotation:last').find('#versionInfo').val(xmlDoc.getElementsByTagName("object")[i]
                     .getAttribute("versionInfo"));
 
-                        console.log(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("style"));
-
                 if (xmlDoc.getElementsByTagName("object")[i].getAttribute("label") != null) {
 
                     // Apenas instancias tem o atributo types
@@ -563,7 +574,11 @@
                         newel.show();
                         $(newel).insertAfter(".informations-instance:last");
 
-                        $('.informations-instance:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i].getAttribute(
+                        $('.informations-instance:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i]
+                            .getAttribute(
+                                "label"));
+                        $('.informations-instance:last').find('#nome').attr('id', xmlDoc.getElementsByTagName("object")[i]
+                            .getAttribute(
                                 "label"));
 
                         $('.informations-instance:last').find('#types').val(xmlDoc.getElementsByTagName("object")[i]
@@ -598,20 +613,31 @@
                             $(newel).insertAfter(".informations-aresta:last");
 
                             $('.informations-aresta:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute("label"));
+
+                            $('.informations-aresta:last').find('#nome').attr('id', xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute(
                                     "label"));
+
+
                             $('.informations-aresta:last').find('#SubClassOf').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("SubClassOf"));
+
                             $('.informations-aresta:last').find('#DisjointWith').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("DisjointWith"));
+
                             $('.informations-aresta:last').find('#Equivalence').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("Equivalence"));
+
                             $('.informations-aresta:last').find('#TargetForKey').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("TargetForKey"));
+
                             $('.informations-aresta:last').find('#Domain').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("Domain"));
+
                             $('.informations-aresta:last').find('#Range').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("Range"));
+
                             $('.informations-aresta:last').find('#InverseOf').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("InverseOf"));
 
@@ -623,14 +649,24 @@
 
                             $('.informations-no:last').find('#nome').text(xmlDoc.getElementsByTagName("object")[i].getAttribute(
                                 "label"));
+
+                            $('.informations-no:last').find('#nome').attr('id', xmlDoc.getElementsByTagName("object")[i]
+                                .getAttribute(
+                                    "label"));
+
+
                             $('.informations-no:last').find('#SubClassOf').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("SubClassOf"));
+
                             $('.informations-no:last').find('#DisjointWith').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("DisjointWith"));
+
                             $('.informations-no:last').find('#Equivalence').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("Equivalence"));
+
                             $('.informations-no:last').find('#TargetForKey').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("TargetForKey"));
+
                             $('.informations-no:last').find('#Instances').val(xmlDoc.getElementsByTagName("object")[i]
                                 .getAttribute("Instances"));
 
