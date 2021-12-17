@@ -21,7 +21,9 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.1",
+    "express": "^4.17.1",
     "mxgraph": "file:mxgraph",
-    "save-svg-as-png": "^1.4.17"
+    "save-svg-as-png": "^1.4.17",
+    "socket.io": "^4.4.0"
   }
 }

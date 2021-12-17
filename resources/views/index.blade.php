@@ -1107,6 +1107,7 @@
 <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
+<script src="https://cdn.socket.io/4.0.1/socket.io.min.js" integrity="sha384-LzhRnpGmQP+lOvWruF/lgkcqD+WDVt9fU3H4BWmwP5u5LTmkUGafMcpZKNObVMLU" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{asset('js/OntologyManager.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/Cell.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous">
