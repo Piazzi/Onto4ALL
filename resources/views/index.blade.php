@@ -151,6 +151,7 @@
                         <button onclick="createNewProperty(document.getElementById('new-property-label').value);" type="button" class="btn btn-success btn-flat">Create</button>
                         </span>
                     </div>
+                    <label id="created-property-message" style="visibility: hidden; color: #00a65a" class="control-label has-success" for="inputSuccess"><i class="fa fa-check"></i> Property created! </label>
                 </div>
                 <div class="form-group">
                     <label>IRI</label> <a id="IRI-link" target="_blank" href=""><i title="copy link" class="fa fa-fw fa-link"></i></a>
@@ -192,7 +193,7 @@
                     <label>versionInfo</label>
                     <input id="versionInfo" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
-                
+
             </div>
 
             <div class="tab-pane" id="object-properties-tab">
@@ -460,7 +461,7 @@
                     {{__('if you had any problem with this feature.')}}
                 </p>
                 <img class="img-max-width" alt="export" src="{{asset('css/images/warningConsole.png')}}">
-               
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
@@ -492,7 +493,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
@@ -1169,7 +1170,7 @@
 
 
     // ONTO4ALL JQUERY SCRIPTS
-    
+
     function onReady(callback) {
         var intervalId = window.setInterval(function () {
             if (document.getElementsByTagName('body')[0] !== undefined) {
@@ -1188,13 +1189,13 @@
         setVisible('#loading', false);
     });
 
-    document.addEventListener("DOMContentLoaded", function() { 
+    document.addEventListener("DOMContentLoaded", function() {
 
     // Select2 Plugin
     $(document).ready(function () {
         $('.js-example-basic-multiple').select2(
             {theme: 'classic'}
-            
+
         );
         $('.js-example-tags').select2({
             theme: 'classic',

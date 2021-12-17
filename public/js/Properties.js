@@ -3,6 +3,8 @@
 var currentCell;
 const ontologyId = document.getElementById("id");
 const iriLink = document.getElementById("IRI-link");
+const annotationsTab = document.getElementById('annotations-tab');
+const createdPropertyMessage = document.getElementById('created-property-message');
 
 let inputs;
 const selectInputs = [
@@ -51,7 +53,7 @@ const relationInputs = {
     irreflexive: document.getElementById("irreflexive"),
 };
 
-const annotationInputs = {
+let annotationInputs = {
     IRI: document.getElementById("IRI"),
     label: document.getElementById("label"),
     comment: document.getElementById("comment"),
@@ -227,7 +229,7 @@ function updatePropertyInput(name, value) {
 }
 
 /**
- * Sets the cells properties in their correpondent front end inputs
+ * Sets the cells properties in their correspondent front end inputs
  * @param {mxCell} cell
  */
 function setPropertiesInputs(cell) {
@@ -426,22 +428,51 @@ function debounce(callback, wait) {
     };
 }
 
-const annotationsTab = document.getElementById('annotations-tab');
 
 function createNewProperty(label){
     const formGroup = document.createElement('div');
-    formGroup.classList.add('form-group');
+    formGroup.classList.add('form-group', 'input-group');
     const newPropertyLabel = document.createElement('label', label);
     const newPropertyInput = document.createElement('input', '');
+    const deleteButtonContainer = document.createElement('span');
+    deleteButtonContainer.classList.add('input-group-btn');
+    deleteButtonContainer.style.verticalAlign = "bottom";
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('btn', 'btn-danger', 'btn-flat');
+    deleteButton.textContent = "Delete"
+
+    deleteButtonContainer.appendChild(deleteButton);
+
+
     newPropertyLabel.innerText = label;
     newPropertyInput.classList.add('form-control');
     newPropertyInput.id = label;
     newPropertyInput.addEventListener('onchange', () => {
-        updateInput(this.id, this.value)
+        updatePropertyInput(this.id, this.value)
     })
-    annotationInputs[label, ''];
+
+    annotationInputs[label] = "";
+
     formGroup.appendChild(newPropertyLabel);
     formGroup.appendChild(newPropertyInput);
+    formGroup.appendChild(deleteButtonContainer);
+
     annotationsTab.appendChild(formGroup);
     currentCell.setAttribute(label, "");
+
+    // remove property
+    deleteButtonContainer.addEventListener('click', () => {
+        deleteButtonContainer.parentElement.remove();
+        delete currentCell[deleteButtonContainer.previousElementSibling.id];
+    })
+
+    dispatchSuccessMessage();
+}
+
+function dispatchSuccessMessage() {
+    createdPropertyMessage.style.visibility = "visible";
+    setTimeout(
+        function() {
+            createdPropertyMessage.style.visibility = "hidden";
+        }, 5000);
 }
