@@ -78,6 +78,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Select the collaborators on the <select> tag
                 $('#collaborators-select').val(data['collaborators']).trigger('change');
                 
+                //Allow to click on the IRI input and set route
+                document.getElementById('ontology-iri').disabled =false;
+                document.getElementById('iri-link').setAttribute("href", "https://onto4alleditor.com/en/ontologies/"+data['id']);
+                
                 //Show when the ontology was last updated
                 document.getElementById('last-update').innerHTML = '<span class="time"><i class="fa fa-clock-o"></i> ' + 'Last update: ' + data['last_update'];
                 //Update the little star on the navbar
@@ -104,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Fires the Ajax request when the button is clicked
 
     document.getElementById('save-ontology').addEventListener('click', function () {
-        document.getElementById('save-ontology').innerHTML='<div  class="overlay"><i style="color: white !important;" class="fa fa-refresh fa-spin"></i></div>';
+        document.getElementById('save-ontology').innerHTML='<div  class="overlay"><i style="color: white !important;" class="fa fa-spinner fa-spin"></i></div>';
         document.getElementById('save-ontology').style.backgroundColor = "#00a65a";
         document.getElementById('save-ontology').style.borderColor = "#00a65a";
         $.ajax({
@@ -186,11 +190,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 // Downloads a .txt file containing all the errors that the user made in the current ontology
 document.getElementById('download-errors-txt').addEventListener('click', function(){
-    // let texts = document.querySelectorAll(".direct-chat-text").textContent;
     let consoleMessages = document.getElementsByClassName('direct-chat-text');
-    let txts;
+    let txts = "";
     for (let i = 0; i < consoleMessages.length; i++) 
         txts = txts + consoleMessages[i].textContent;
+    
     this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(txts);
 });
 
