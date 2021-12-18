@@ -1,6 +1,6 @@
 var ontologyName = document.getElementById("ontology-name");
 
-const ip_address = '127.0.0.1';
+const ip_address = 'https://onto4alleditor.com/en';
 const socket_port = '3000'; // porta node
 let socket = io(ip_address + ":" + socket_port);
 
