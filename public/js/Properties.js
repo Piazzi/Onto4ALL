@@ -430,6 +430,9 @@ function debounce(callback, wait) {
 
 
 function createNewProperty(label){
+    if(!validateLabel(label))
+        return  alert('Invalid label');
+
     const formGroup = document.createElement('div');
     formGroup.classList.add('form-group', 'input-group');
     const newPropertyLabel = document.createElement('label', label);
@@ -475,4 +478,14 @@ function dispatchSuccessMessage() {
         function() {
             createdPropertyMessage.style.visibility = "hidden";
         }, 5000);
+}
+
+/**
+ * Validate if the current label is already an annotation property,
+ * or it's an attribute from mxCell object.
+ * @param label
+ * @returns {boolean}
+ */
+function validateLabel(label) {
+    return !Object.keys(currentCell).includes(label) && !Object.values(currentCell.value.attributes);
 }
