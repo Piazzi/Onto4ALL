@@ -226,6 +226,7 @@ function updateTabs(cellType) {
  */
 function updatePropertyInput(name, value) {
     currentCell.setAttribute(name, value);
+    console.log(name, value);
 }
 
 /**
@@ -413,7 +414,7 @@ function createNewProperty(label){
     const formGroup = document.createElement('div');
     formGroup.classList.add('form-group', 'input-group');
     const newPropertyLabel = document.createElement('label', label);
-    const newPropertyInput = document.createElement('input', '');
+    const newPropertyInput = document.createElement('input');
     const deleteButtonContainer = document.createElement('span');
     deleteButtonContainer.classList.add('input-group-btn');
     deleteButtonContainer.style.verticalAlign = "bottom";
@@ -427,10 +428,9 @@ function createNewProperty(label){
     newPropertyLabel.innerText = label;
     newPropertyInput.classList.add('form-control');
     newPropertyInput.id = label;
-    newPropertyInput.addEventListener('onchange', () => {
-        updatePropertyInput(this.id, this.value)
-    })
-
+    newPropertyInput.onchange = function (){
+        updatePropertyInput(this.id, this.value);
+    }
     annotationInputs[label] = "";
 
     formGroup.appendChild(newPropertyLabel);
