@@ -379,7 +379,7 @@ function getInverseOfOptions() {
         removeItemAll(inverseOf, "null");
         if (inverseOf !== "null" && inverseOf !== "")
             inverseOfValues.push(
-                getCellById(inverseOf[0]).getAttribute("label")
+                getCellById(inverseOf[0])?.getAttribute("label")
             );
     });
 
