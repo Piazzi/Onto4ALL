@@ -92,7 +92,6 @@ const instanceInputs = {
  * @param {mxCell} cell
  */
 function getSelectedCell(cell) {
-    console.log(currentCell);
     currentCell = cell;
     if (currentCell == null) return updateTabs();
 
@@ -226,7 +225,6 @@ function updateTabs(cellType) {
  */
 function updatePropertyInput(name, value) {
     currentCell.setAttribute(name, value);
-    console.log(name, value);
 }
 
 /**
@@ -235,9 +233,8 @@ function updatePropertyInput(name, value) {
  */
 function setPropertiesInputs(cell) {
     const cellProperties = cell.value.attributes;
-    console.log(cellProperties);
     setCellIRI(cellProperties);
-
+    console.log(cellProperties);
     for (let i = 0; i < cellProperties.length; i++) {
         // set properties
         if (inputs.hasOwnProperty(cellProperties[i].name)) {
@@ -257,6 +254,29 @@ function setPropertiesInputs(cell) {
         // set annotations
         if (annotationInputs.hasOwnProperty(cellProperties[i].name))
             annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
+
+        // if the property is not a default one
+        if(!relationInputs.hasOwnProperty(cellProperties[i].name) &&
+            !classInputs.hasOwnProperty(cellProperties[i].name) &&
+            !annotationInputs.hasOwnProperty(cellProperties[i].name) &&
+            document.getElementById(cellProperties[i].name) === null)
+        {
+            createNewProperty(cellProperties[i].name, cellProperties[i].value);
+            console.log("input a ser criado: "+cellProperties[i].name);
+        }
+    }
+    removeNotUsedCreatedPropertiesInputs(cellProperties);
+}
+
+function removeNotUsedCreatedPropertiesInputs(cellProperties){
+    const elements = document.getElementsByClassName("created-property");
+    const propertyNames = Object.values(cellProperties).map(property => property.name);
+    for (let i = 0; i < elements.length; i++){
+        if(!propertyNames.includes(elements[i].id)){
+            console.log("input a ser excluido: " +elements[i].id);
+            elements[i].parentElement.remove();
+
+        }
     }
 }
 
@@ -301,7 +321,7 @@ function setCellIRI(cellProperties){
  * @param propertyName
  */
 function createSelectOptions(cell, propertyName) {
-    select = document.getElementById(propertyName);
+    let select = document.getElementById(propertyName);
     if (select == null) return;
     if (select.options.length > 0) removeSelectOptions(select);
     let options = [];
@@ -406,10 +426,9 @@ function debounce(callback, wait) {
     };
 }
 
-
-function createNewProperty(label){
-    if(!validateLabel(label))
-        return  alert('Invalid label');
+function createNewProperty(label, value = ""){
+    if(!validateLabel(label) && document.getElementById(label))
+        return alert('Invalid label');
 
     const formGroup = document.createElement('div');
     formGroup.classList.add('form-group', 'input-group');
@@ -426,12 +445,12 @@ function createNewProperty(label){
 
 
     newPropertyLabel.innerText = label;
-    newPropertyInput.classList.add('form-control');
+    newPropertyInput.classList.add('form-control',  "created-property");
     newPropertyInput.id = label;
     newPropertyInput.onchange = function (){
         updatePropertyInput(this.id, this.value);
     }
-    annotationInputs[label] = "";
+    //annotationInputs[label] = value;
 
     formGroup.appendChild(newPropertyLabel);
     formGroup.appendChild(newPropertyInput);
@@ -467,7 +486,8 @@ function dispatchSuccessMessage() {
  * @returns {boolean}
  */
 function validateLabel(label) {
-    return !Object.keys(currentCell).includes(label) && !Object.values(currentCell.value.attributes).includes(label);
+    const propertyNames = Object.values(currentCell.value.attributes).map(property => property.name);
+    return !Object.keys(currentCell).includes(label) && !propertyNames.includes(label);
 }
 
 // Add keyup events for the given textArea
