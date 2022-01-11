@@ -90,50 +90,7 @@
         </div>
         
     </section>
-    <div class="container">
-        <h2 class="text-black mt-0 row justify-content-center" style="padding-top:100px" >{{__('About The Users')}}</h2>
-        <hr class="divider my-4"/>
-            <div class="row">
-                <div class="col-lg-4  text-center">
-                    <div class="mt-5 text-black">
-                        <div class="info-box" >
-                        <!-- Apply any bg-* class to to the icon to color it -->
-                            <span class="info-box-icon bg-green"><i class="fa  fa-users"></i></span>
-                            <div class="info-box-content">
-                                <span >{{__('Amount of Users')}}</span>
-                                <span class="info-box-number">+800</span>
-                            </div>
-                        <!-- /.info-box-content -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4  text-center">
-                    <div class="mt-5  text-black">
-                        <div class="info-box">
-                        <!-- Apply any bg-* class to to the icon to color it -->
-                            <span class="info-box-icon bg-green"><i class="fa fa-object-group"></i></span>
-                            <div class="info-box-content">
-                                <span >{{__('Ontologies')}}</span>
-                                <span class="info-box-number">+1200</span>
-                            </div>
-                        <!-- /.info-box-content -->
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4  text-center">
-                    <div class="mt-5  text-black">
-                        <div class="info-box" >
-                        <!-- Apply any bg-* class to to the icon to color it -->
-                            <span class="info-box-icon bg-green"><i class="fa  fa-share-alt"></i></span>
-                            <div class="info-box-content">
-                                <span >{{__('Shared Ontologies')}}</span>
-                                <span class="info-box-number">+520</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
-            </div>
-    </div>
+    
 
     <!-- Services section-->
     <section class="page-section" id="features">
