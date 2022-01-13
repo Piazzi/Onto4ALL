@@ -2,7 +2,6 @@ var ontologyName = document.getElementById("ontology-name");
 
 const ip_address = 'https://onto4alleditor.com/en';
 const socket_port = '3000'; // porta node
-let socket = io(ip_address + ":" + socket_port);
 
 function saveName(event) {
     if (event.key == 'Enter') {
@@ -101,15 +100,18 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
 
-    $(".openOntology").click(function () {
-        updateOntology(this.getAttribute('id'));
-    });
+    if (window.location.origin == ip_address) {
+        let socket = io(ip_address + ":" + socket_port);
+        $(".openOntology").click(function () {
+            updateOntology(this.getAttribute('id'));
+        });
 
-    socket.on('updateOntology', (ontologyID) => {
-        if (ontologyID == document.getElementById('id').value) {
-            updateOntology(document.getElementById('id').value);
-        }
-    });
+        socket.on('updateOntology', (ontologyID) => {
+            if (ontologyID == document.getElementById('id').value) {
+                updateOntology(document.getElementById('id').value);
+            }
+        });
+    }
 });
 
 
