@@ -1052,6 +1052,57 @@
 
 <!--./Class Expression Editor Modal -->
 
+
+<!--.Chat -->
+
+<div class="chat-ontology">
+  <div class="box box-primary direct-chat direct-chat-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">Chat</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <div class="box-body" style="">
+      <div class="direct-chat-messages">
+        <div class="direct-chat-msg">
+          <div class="direct-chat-info clearfix">
+            <span class="direct-chat-name pull-left">Vinicius Corbelli</span>
+            <span class="direct-chat-timestamp pull-right">13 Jan 2:00</span>
+          </div>
+          <img class="direct-chat-img" src="/css/images/LogoDark.png" alt="Imagem de perfil">
+          <div class="direct-chat-text">
+            Mensagem 1 2 3 4
+          </div>
+        </div>
+
+        <div class="direct-chat-msg right">
+          <div class="direct-chat-info clearfix">
+            <span class="direct-chat-name pull-right">Larrisa</span>
+            <span class="direct-chat-timestamp pull-left">13 Jan 2:05</span>
+          </div>
+          <img class="direct-chat-img" src="/css/images/LogoDark.png" alt="Imagem de perfil">
+          <div class="direct-chat-text">
+            Mensagem 1 2 3 4
+          </div>
+        </div>
+      </div>
+
+    <div class="box-footer" style="">
+        <div class="input-group">
+          <input type="text" name="message" placeholder="Digite a mensagem..." class="form-control">
+              <span class="input-group-btn">
+                <a href='javascript:;' class="btn btn-primary btn-flat">Enviar</a>
+              </span>
+        </div>
+    </div>
+  </div>
+</div>
+  <!--./Chat -->
+
 <!-- LOADS MXGRAPH GRAPHEDITOR AND ITS FUNCTIONS -->
 
 <script type="text/javascript">
