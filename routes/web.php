@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OntologyClassController;
 use App\Http\Controllers\OntologyController;
@@ -97,6 +98,7 @@ Route::group([
     Route::get('/admin/{id}', [AdminController::class, 'edit'])->name('admin.edit')->middleware('can:eAdmin');
     Route::put('/admin/{userId}', [AdminController::class, 'update'])->name('admin.update')->middleware('can:eAdmin');
     Route::any('/admin/search', [AdminController::class, 'search'])->name('admin.search')->middleware('can:eAdmin');
+
 });
 
 
@@ -111,6 +113,9 @@ Route::get('/thesaurus/download/{userId}/{thesauruId}', [ThesauruController::cla
 // mxGraph Routes (don't remove)
 Route::get('/open');
 Route::post('/save');
+
+ // Chat
+ Route::post('/updateChat/{id}', [ChatController::class, 'updateChat'] )->middleware('can:eModelador');
 
 // Socialite routes
 //Route::get('/redirect', 'SocialAuthFacebookController@redirect');

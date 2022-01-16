@@ -1055,7 +1055,7 @@
 
 <!--.Chat -->
 
-<div class="chat-ontology">
+<div class="chat-ontology hidden" id='chat'>
   <div class="box box-primary direct-chat direct-chat-primary">
     <div class="box-header with-border">
       <h3 class="box-title">Chat</h3>
@@ -1066,38 +1066,19 @@
         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
       </div>
     </div>
-    <div class="box-body" style="">
-      <div class="direct-chat-messages">
-        <div class="direct-chat-msg">
-          <div class="direct-chat-info clearfix">
-            <span class="direct-chat-name pull-left">Vinicius Corbelli</span>
-            <span class="direct-chat-timestamp pull-right">13 Jan 2:00</span>
-          </div>
-          <img class="direct-chat-img" src="/css/images/LogoDark.png" alt="Imagem de perfil">
-          <div class="direct-chat-text">
-            Mensagem 1 2 3 4
-          </div>
-        </div>
-
-        <div class="direct-chat-msg right">
-          <div class="direct-chat-info clearfix">
-            <span class="direct-chat-name pull-right">Larrisa</span>
-            <span class="direct-chat-timestamp pull-left">13 Jan 2:05</span>
-          </div>
-          <img class="direct-chat-img" src="/css/images/LogoDark.png" alt="Imagem de perfil">
-          <div class="direct-chat-text">
-            Mensagem 1 2 3 4
-          </div>
-        </div>
-      </div>
+    <div class="box-body" id='chat-ontology'>
+        <p>Carregando...</p>
+    </div>
 
     <div class="box-footer" style="">
-        <div class="input-group">
-          <input type="text" name="message" placeholder="Digite a mensagem..." class="form-control">
-              <span class="input-group-btn">
-                <a href='javascript:;' class="btn btn-primary btn-flat">Enviar</a>
-              </span>
-        </div>
+        <form action="#" method="post" id='form_send_msg' autocomplete="off">
+            <div class="input-group">
+                <input type="text" name="message" id='msg' autocomplete="off" placeholder="Digite a mensagem..." class="form-control">
+                <span class="input-group-btn">
+                    <a hred='javascript:;' id='send_msg' class="btn btn-primary btn-flat">Enviar</a>
+                </span>
+            </div>
+        </form>
     </div>
   </div>
 </div>
@@ -1222,9 +1203,76 @@
         document.querySelector(selector).style.display = visible ? 'block' : 'none';
     }
 
+    var id = document.getElementById('id').value;
+
+    function updateChat() {
+        //if (id > 0) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'text',
+                url: '/updateChat/' . id,
+                async: true,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(r) {
+                    $("#chat-ontology").html(r);
+                },
+                error: function(e) {
+                    console.log("Ocorreu um erro no update do chat: ");
+                    console.log(e)
+                }
+            });
+        //}
+    }
+
+    $("#send_msg").click(function() {
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            data: $('form[id="form_send_msg"]').serialize(),
+            url: '/sendChat/' . id,
+            async: true,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(r) {
+                if (r.status == "SUCESSO") {
+                    $("#msg").val("");
+                }
+                if (r.status == "ERRO") {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: r.mensagem,
+                        footer: '<a href="/">Deseja recarregar a página?</a>'
+                    });
+                }
+            },
+            error: function(e) {
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Ocorreu um erro ao enviar a mensagem',
+                    footer: '<a href="/">Deseja recarregar a página?</a>'
+                });
+
+            }
+        });
+    });
+
     onReady(function () {
         setVisible('body', true);
         setVisible('#loading', false);
+
+        $("#chat").removeClass('hidden');
+        if (id > 0) {
+            updateChat();
+        } else {
+            $("#chat-ontology").html('');
+        }
+
     });
 
     document.addEventListener("DOMContentLoaded", function() { 
@@ -1275,6 +1323,7 @@
             }
         });
     });
+
 
 </script>
 
