@@ -1073,7 +1073,7 @@
     <div class="box-footer" style="">
         <form action="#" method="post" id='form_send_msg' autocomplete="off">
             <div class="input-group">
-                <input type="text" name="message" id='msg' autocomplete="off" placeholder="Digite a mensagem..." class="form-control">
+                <input type="text" name="message" id='message' autocomplete="off" placeholder="Digite a mensagem..." class="form-control">
                 <span class="input-group-btn">
                     <a hred='javascript:;' id='send_msg' class="btn btn-primary btn-flat">Enviar</a>
                 </span>
@@ -1203,10 +1203,8 @@
         document.querySelector(selector).style.display = visible ? 'block' : 'none';
     }
 
-    var id = document.getElementById('id').value;
-
-    function updateChat() {
-        //if (id > 0) {
+    function updateChat(id) {
+        if (id > 0) {
             $.ajax({
                 type: 'POST',
                 dataType: 'text',
@@ -1223,41 +1221,47 @@
                     console.log(e)
                 }
             });
-        //}
+        }
     }
 
+    var ontologyId = document.getElementById('id').value;
     $("#send_msg").click(function() {
         $.ajax({
             type: 'POST',
             dataType: 'JSON',
-            data: $('form[id="form_send_msg"]').serialize(),
-            url: '/sendChat/' . id,
+            data: $('form[id="form_send_msg"]').serialize() + "&ontologyId=" + ontologyId,
+            url: '/sendChat',
             async: true,
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(r) {
                 if (r.status == "SUCESSO") {
-                    $("#msg").val("");
+
+                    var d = new Date,
+                    dataFormatada = [d.getDate(),
+                            d.getMonth()+1,
+                            d.getFullYear()].join('/')+' '+
+                            [d.getHours(),
+                            d.getMinutes(),
+                            d.getSeconds()].join(':');
+
+                    $('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">{{ Auth::user()->name }}</span><span class="direct-chat-timestamp pull-left">' + dataFormatada +'</span></div><img class="direct-chat-img" src="/css/images/LogoDark.png" alt="Imagem de perfil"><div class="direct-chat-text">' + $("#message").val() + '</div></div>').insertAfter($("#chat-ontology").parent().find('.box-body').last());
+
+                    $("#message").val("");
+
+                    if (document.getElementById('id').value > 0 && window.location.origin == ip_address)) {
+                        socket.emit('updateChat', document.getElementById('id').value);
+                    }
+
                 }
                 if (r.status == "ERRO") {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: r.mensagem,
-                        footer: '<a href="/">Deseja recarregar a página?</a>'
-                    });
+                    console.log("Ocorreu um erro no envio da mensagem: " + r.mensagem);
                 }
             },
             error: function(e) {
-
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Ocorreu um erro ao enviar a mensagem',
-                    footer: '<a href="/">Deseja recarregar a página?</a>'
-                });
-
+                console.log("Ajax erro: ");
+                console.log(e)
             }
         });
     });
@@ -1267,8 +1271,17 @@
         setVisible('#loading', false);
 
         $("#chat").removeClass('hidden');
-        if (id > 0) {
+        if (ontologyId > 0) {
             updateChat();
+
+            if (window.location.origin == ip_address) {
+                socket.on('updateChat', (ontologyID) => {
+                if (ontologyID == document.getElementById('id').value) {
+                    updateChat(document.getElementById('id').value);
+                }
+            }
+        });
+
         } else {
             $("#chat-ontology").html('');
         }

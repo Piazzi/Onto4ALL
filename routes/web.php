@@ -116,6 +116,7 @@ Route::post('/save');
 
  // Chat
  Route::post('/updateChat/{id}', [ChatController::class, 'updateChat'] )->middleware('can:eModelador');
+ Route::post('/sendChat', [ChatController::class, 'sendChat'] )->middleware('can:eModelador');
 
 // Socialite routes
 //Route::get('/redirect', 'SocialAuthFacebookController@redirect');

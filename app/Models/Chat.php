@@ -9,6 +9,13 @@ class Chat extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'message',
+        'ontology_id',
+        'user_id',
+        'created_at',
+    ];
+
     /*************************** Relations **********************************/
 
     /**
