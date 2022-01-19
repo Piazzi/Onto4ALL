@@ -90,6 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 else
                     document.getElementById('favorite-ontology').innerHTML = '<i class="fa fa-fw fa-star-o"></i>';
                 updateSaveButtonInFrontEnd(true);
+
+                updateChat(data['id']);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(JSON.stringify(jqXHR));
@@ -100,11 +102,12 @@ document.addEventListener("DOMContentLoaded", function () {
         })
     }
 
+    $(".openOntology").click(function () {
+        updateOntology(this.getAttribute('id'));
+    });
+
     if (window.location.origin == ip_address) {
         let socket = io(ip_address + ":" + socket_port);
-        $(".openOntology").click(function () {
-            updateOntology(this.getAttribute('id'));
-        });
 
         socket.on('updateOntology', (ontologyID) => {
             if (ontologyID == document.getElementById('id').value) {

@@ -1865,3 +1865,12 @@ div.picker { z-index: 10007; }
 	margin-bottom: 0;
 	width: 400px!important;
   }
+
+  .chat-ontology .box-body {
+	max-height: 280px;
+    overflow-y: scroll;
+  }
+
+  .direct-chat-messages {
+	height: auto;
+  }

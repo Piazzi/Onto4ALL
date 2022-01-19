@@ -115,7 +115,7 @@ Route::get('/open');
 Route::post('/save');
 
  // Chat
- Route::post('/updateChat/{id}', [ChatController::class, 'updateChat'] )->middleware('can:eModelador');
+ Route::post('/updateChat', [ChatController::class, 'updateChat'] )->middleware('can:eModelador');
  Route::post('/sendChat', [ChatController::class, 'sendChat'] )->middleware('can:eModelador');
 
 // Socialite routes

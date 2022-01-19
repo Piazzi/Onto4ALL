@@ -26,4 +26,14 @@ class Chat extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
+    /**
+     * One to many relation with user Model.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function ontology()
+    {
+        return $this->belongsTo(Ontology::class);
+    }
 }

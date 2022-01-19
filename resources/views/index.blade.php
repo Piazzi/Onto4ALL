@@ -470,7 +470,7 @@
                 <h4 class="modal-title">{{__('Edit Current Ontology')}}</h4>
             </div>
             <div class="modal-body">
-                <input id="id" name="id" type="hidden">
+                <input id="id" name="id" type="hidden" value=''>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -1067,6 +1067,7 @@
       </div>
     </div>
     <div class="box-body" id='chat-ontology'>
+        <div class="direct-chat-msg"></div>
         <p>Carregando...</p>
     </div>
 
@@ -1207,9 +1208,8 @@
         if (id > 0) {
             $.ajax({
                 type: 'POST',
-                dataType: 'text',
-                url: '/updateChat/' . id,
-                async: true,
+                url: '/updateChat',
+                data: 'ontology_id=' + id,
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
@@ -1224,12 +1224,11 @@
         }
     }
 
-    var ontologyId = document.getElementById('id').value;
     $("#send_msg").click(function() {
         $.ajax({
             type: 'POST',
             dataType: 'JSON',
-            data: $('form[id="form_send_msg"]').serialize() + "&ontologyId=" + ontologyId,
+            data: $('form[id="form_send_msg"]').serialize() + "&ontology_id=" + document.getElementById('id').value,
             url: '/sendChat',
             async: true,
             headers: {
@@ -1246,17 +1245,17 @@
                             d.getMinutes(),
                             d.getSeconds()].join(':');
 
-                    $('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">{{ Auth::user()->name }}</span><span class="direct-chat-timestamp pull-left">' + dataFormatada +'</span></div><img class="direct-chat-img" src="/css/images/LogoDark.png" alt="Imagem de perfil"><div class="direct-chat-text">' + $("#message").val() + '</div></div>').insertAfter($("#chat-ontology").parent().find('.box-body').last());
+                    $('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">{{ Auth::user()->name }}</span><span class="direct-chat-timestamp pull-left">' + dataFormatada +'</span></div><img class="direct-chat-img" src="/css/images/LogoDark.png" alt="Imagem de perfil"><div class="direct-chat-text">' + $("#message").val() + '</div></div>').insertAfter($(".direct-chat-msg").last());
 
                     $("#message").val("");
 
-                    if (document.getElementById('id').value > 0 && window.location.origin == ip_address)) {
+                    if (document.getElementById('id').value > 0 && window.location.origin == ip_address) {
                         socket.emit('updateChat', document.getElementById('id').value);
                     }
 
                 }
                 if (r.status == "ERRO") {
-                    console.log("Ocorreu um erro no envio da mensagem: " + r.mensagem);
+                    alert(r.mensagem);
                 }
             },
             error: function(e) {
@@ -1271,19 +1270,19 @@
         setVisible('#loading', false);
 
         $("#chat").removeClass('hidden');
-        if (ontologyId > 0) {
-            updateChat();
+        if (document.getElementById('id').value > 0) {
+            updateChat(document.getElementById('id').value);
 
             if (window.location.origin == ip_address) {
                 socket.on('updateChat', (ontologyID) => {
-                if (ontologyID == document.getElementById('id').value) {
-                    updateChat(document.getElementById('id').value);
-                }
+                    if (ontologyID == document.getElementById('id').value) {
+                        updateChat(document.getElementById('id').value);
+                    }
+                });
             }
-        });
 
         } else {
-            $("#chat-ontology").html('');
+            $("#chat-ontology").html('<div class="direct-chat-msg"></div>');
         }
 
     });
