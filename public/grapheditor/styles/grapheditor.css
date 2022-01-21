@@ -74,8 +74,13 @@
 	 padding-top: 50px !important;
  }
 
- .control-sidebar input, textarea {
-	 border-radius: 5px;
+.control-sidebar label {
+  font-weight: 500;
+}
+
+ .control-sidebar input, textarea, input, button {
+	 border-radius: 5px !important;
+     border-width: 0px 0px 1px 0px !important;
  }
 
  .nav-tabs-custom li {
@@ -129,7 +134,7 @@
 }
 
 #ontology-name {
-	pointer-events: none; 
+	pointer-events: none;
 	color: #FFFFFF;
 }
 .toolbar-icon {
@@ -232,6 +237,14 @@ aside {
 	width: auto !important;
 	height: auto !important;
 }
+
+.select2-container--classic .select2-selection--multiple, .select2-selection--single,  .select2-selection__arrow {
+    border-width: 0px 0px 1px 0px !important;
+    background-image: -webkit-linear-gradient(top, #fff, #fff 100%) !important;
+    border-color: #d2d6de;
+}
+
+
 /*
 .geMenubarContainer, .geDiagramContainer,  .geSidebarContainer, .gePaletteContainer, .geFooterContainer, .geToolbarContainer, .geSidebarTooltip, .geFormatContainer{
 	top: 40px !important;
@@ -259,10 +272,10 @@ aside {
        font-size: inherit;
 }
 .geEditor input {
-       border-width: 2px;
+       border-width: 1px;
 }
 .geEditor select {
-       border-width: 1px;
+       border-width: 1px ;
 }
 .geEditor div.mxTooltip {
 	background: whiteSmoke;
@@ -1762,7 +1775,7 @@ html td.mxWindowTitle {
 
 
 
-/* ----------------------------------- DARK AND MINIMALIST SCROLLBAR -----------------------------------*/ 
+/* ----------------------------------- DARK AND MINIMALIST SCROLLBAR -----------------------------------*/
 
 body { overflow:hidden; }
 div.picker { z-index: 10007; }
