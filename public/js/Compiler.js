@@ -2,7 +2,6 @@
 var classes = [],
     relations = [],
     instances = [],
-    datatypeProperties = [],
     previousCells = [],
     compilerCounter = 0;
 
@@ -42,10 +41,8 @@ function compileCells() {
         } else if (cell.style.includes("Instance")) {
             instances.push(cell);
             compileInstance(cell);
-        } else if (cell.style.includes("DatatypeProperty")) {
-            datatypeProperties.push(cell);
-            compileDatatypeProperty(cell);
-        } else continue;
+        }
+        else continue;
 
         setElementColor(cell);
     }
@@ -71,42 +68,11 @@ function resetVariables() {
     previousCells = classes.concat(relations).concat(instances);
     (classes = []),
         (relations = []),
-        (instances = []),
-        (datatypeProperties = []);
+        (instances = []);
     (warningsCount = 0), (basicErrorsCount = 0), (conceptualErrorsCount = 0);
     compilerCounter++;
 }
 
-/**
- * Searches for errors in the datatype property
- * @param {mxCell} datatypeProperty
- */
-function compileDatatypeProperty(datatypeProperty) {
-    let label = datatypeProperty.getAttribute("label");
-    if (datatypeProperty.source == null) {
-        basicErrorsCount++;
-        if (getLanguage() === "pt")
-            sendWarningMessage(
-                "O tipo de dado " +
-                label.bold() +
-                " (ID: " +
-                datatypeProperty.id +
-                ") não está conectada a uma classe",
-                "Erro Basico",
-                datatypeProperty
-            );
-        else
-            sendWarningMessage(
-                "The datatype property " +
-                label.bold() +
-                " (ID: " +
-                datatypeProperty.id +
-                ") it is not connected to a class",
-                "Basic Error",
-                datatypeProperty
-            );
-    }
-}
 
 /**
  * Searches for errors in the relation
@@ -402,12 +368,12 @@ function compileClass(classCell) {
 
     /*
     if( classCell.getAttribute("label") !== 'Thing' && classCell.getAttribute("label") !== 'Coisa')
-    {    
+    {
         // Search for missing properties in each class element
         let missingClassProperties = "";
         //if(classCell.getAttribute('definition') === "")
         //    missingClassProperties = missingClassProperties + ' definition,';
-            
+
         if ((classCell.getAttribute("SubClassOf") === ""))
             missingClassProperties = missingClassProperties + ' SubClassOf';
 
@@ -421,7 +387,7 @@ function compileClass(classCell) {
             else
                 sendWarningMessage('In the ' + classCell.getAttribute("label").bold() + ' Class, you did not fill the following properties: ' + missingClassProperties.bold() + '',  'Basic Error');
                 missingClassProperties = "";
-        }   
+        }
     }*/
     if (classCell.getAttribute("DisjointWith") !== "")
         autoCompleteProperty(classCell, "DisjointWith");
@@ -569,7 +535,7 @@ function getLanguage() {
  */
 function getElementsNames(category = "Class") {
     let names = [];
-    let relationsLength = relations.length, classesLength = classes.length, instancesLength = instances.length, datatypePropertiesLength = datatypeProperties.length;
+    let relationsLength = relations.length, classesLength = classes.length, instancesLength = instances.length;
     if (category === "Relation") {
         for (let i = 0; i < relationsLength; i++)
             names.push(relations[i].getAttribute("label"));
@@ -579,9 +545,6 @@ function getElementsNames(category = "Class") {
     } else if (category === "Instance") {
         for (let i = 0; i < instancesLength; i++)
             names.push(instances[i].getAttribute("label"));
-    } else if (category === "DatatypeProperty") {
-        for (let i = 0; i < datatypePropertiesLength; i++)
-            names.push(datatypeProperties[i].getAttribute("label"));
     }
     return names;
 }
@@ -779,8 +742,7 @@ function updateCountersInFrontEnd(
     document.querySelector("#classes-count").textContent = classes.length;
     document.querySelector("#relations-count").textContent = relations.length;
     document.querySelector("#instances-count").textContent = instances.length;
-    document.querySelector("#datatypeproperties-count").textContent =
-        datatypeProperties.length;
+
 }
 
 /**
@@ -944,7 +906,7 @@ function setErrorFlag(element) {
 
 /**
  * Given the element set it's border color if it's a class/instance property
- * or fill color if it's a relation/datatype property based if the element
+ * or fill color if it's a relation property based if the element
  * has any error or warning attached to it
  * @param {mxCell} element
  */
@@ -965,8 +927,6 @@ function setElementColor(element) {
             color = '#f39c12';
         else if (element.style.includes('Instance'))
             color = '#663399';
-        else if (element.style.includes('DatatypeProperty'))
-            color = '#006633';
         else
             return
         editor.graph.setCellStyles(mxConstants.STYLE_STROKECOLOR, color, [element])
@@ -976,7 +936,7 @@ function setElementColor(element) {
 
 /**
  * Reset the element error flag
- * @param {mxCell} element 
+ * @param {mxCell} element
  */
 function resetElementErrorFlag(element) {
     element.setStyle(element.style.replace("error=true;", ""));

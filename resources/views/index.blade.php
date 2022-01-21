@@ -33,10 +33,6 @@
             <i class="fa fa-1.5x fa-fw fa-exchange"></i>
             <span id="relations-count"> 0</span>
         </span>
-        <span id="datatypeProperties" title="{{__('The number of datatypeproperties in your current ontology')}}" data-widget="collapse" style="color: #00a65a">
-            <i class="fa fa-fw fa-long-arrow-right"></i>
-            <span id="datatypeproperties-count"> 0</span>
-        </span>
 
         <span id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse" style="color: rebeccapurple">
             <i class="fa fa-fw fa-circle-thin"></i>
