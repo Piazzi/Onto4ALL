@@ -439,7 +439,9 @@ function createNewProperty(label, value = ""){
     deleteButtonContainer.style.verticalAlign = "bottom";
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('btn', 'btn-danger', 'btn-flat');
-    deleteButton.textContent = "Delete"
+    const trashIcon = document.createElement("i");
+    trashIcon.classList.add('fa', 'fa-fw','fa-trash-o');
+    deleteButton.appendChild(trashIcon);
 
     deleteButtonContainer.appendChild(deleteButton);
 
