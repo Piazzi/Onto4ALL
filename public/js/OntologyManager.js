@@ -82,6 +82,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Select the collaborators on the <select> tag
                 $('#collaborators-select').val(data['collaborators']).trigger('change');
 
+                $('#message').removeAttr("disabled");
+                $('#send_msg').removeAttr("disabled");
+
                 //Show when the ontology was last updated
                 document.getElementById('last-update').innerHTML = '<span class="time"><i class="fa fa-clock-o"></i> ' + 'Last update: ' + data['last_update'];
                 //Update the little star on the navbar

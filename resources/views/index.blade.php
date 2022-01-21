@@ -1056,27 +1056,28 @@
 <!--.Chat -->
 
 <div class="chat-ontology hidden" id='chat'>
-  <div class="box box-primary direct-chat direct-chat-primary">
+  <div class="box box-primary direct-chat direct-chat-primary collapsed-box">
     <div class="box-header with-border">
       <h3 class="box-title">Chat</h3>
 
       <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" data-placement="top" title="{{__('With this chat it is possible to send this real chat to all the people who send a message in time editing this ontology, in addition, the messages are stored and can be read in the future.')}}"><i class="fa fa-question"></i>
+        </button>
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
         </button>
         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
       </div>
     </div>
     <div class="box-body" id='chat-ontology'>
         <div class="direct-chat-msg"></div>
-        <p>Carregando...</p>
     </div>
 
     <div class="box-footer" style="">
         <form action="#" method="post" id='form_send_msg' autocomplete="off">
             <div class="input-group">
-                <input type="text" name="message" id='message' autocomplete="off" placeholder="Digite a mensagem..." class="form-control">
+                <input type="text" name="message" id='message' autocomplete="off" placeholder="{{__('Enter message...')}}." class="form-control" disabled>
                 <span class="input-group-btn">
-                    <a hred='javascript:;' id='send_msg' class="btn btn-primary btn-flat">Enviar</a>
+                    <a hred='javascript:;' id='send_msg' class="btn btn-primary btn-flat" disabled>{{__('Send')}}</a>
                 </span>
             </div>
         </form>
@@ -1190,6 +1191,10 @@
 
 
     // ONTO4ALL JQUERY SCRIPTS
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
     
     function onReady(callback) {
         var intervalId = window.setInterval(function () {
@@ -1225,44 +1230,49 @@
     }
 
     $("#send_msg").click(function() {
-        $.ajax({
-            type: 'POST',
-            dataType: 'JSON',
-            data: $('form[id="form_send_msg"]').serialize() + "&ontology_id=" + document.getElementById('id').value,
-            url: '/sendChat',
-            async: true,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(r) {
-                if (r.status == "SUCESSO") {
+        if (!$("#send_msg").is('[disabled]')) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'JSON',
+                data: $('form[id="form_send_msg"]').serialize() + "&ontology_id=" + document.getElementById('id').value,
+                url: '/sendChat',
+                async: true,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(r) {
+                    if (r.status == "SUCESSO") {
 
-                    var d = new Date,
-                    dataFormatada = [d.getDate(),
-                            d.getMonth()+1,
-                            d.getFullYear()].join('/')+' '+
-                            [d.getHours(),
-                            d.getMinutes(),
-                            d.getSeconds()].join(':');
+                        var d = new Date,
+                        dataFormatada = [d.getDate(),
+                                d.getMonth()+1,
+                                d.getFullYear()].join('/')+' '+
+                                [d.getHours(),
+                                d.getMinutes(),
+                                d.getSeconds()].join(':');
 
-                    $('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">{{ Auth::user()->name }}</span><span class="direct-chat-timestamp pull-left">' + dataFormatada +'</span></div><img class="direct-chat-img" src="/css/images/LogoDark.png" alt="Imagem de perfil"><div class="direct-chat-text">' + $("#message").val() + '</div></div>').insertAfter($(".direct-chat-msg").last());
+                        $('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">{{ Auth::user()->name }}</span><span class="direct-chat-timestamp pull-left">' + dataFormatada +'</span></div><img class="direct-chat-img" src="/css/images/LogoDark.png" alt="Imagem de perfil"><div class="direct-chat-text">' + $("#message").val() + '</div></div>').insertAfter($(".direct-chat-msg").last());
 
-                    $("#message").val("");
+                        $("#message").val("");
 
-                    if (document.getElementById('id').value > 0 && window.location.origin == ip_address) {
-                        socket.emit('updateChat', document.getElementById('id').value);
+                        if (document.getElementById('id').value > 0 && window.location.origin == ip_address) {
+                            socket.emit('updateChat', document.getElementById('id').value);
+                        }
+
                     }
-
+                    if (r.status == "ERRO") {
+                        if (getLanguage() == "pt")
+                            message = "Não foi possivel enviar a mensagem, tente novamente mais tarde.";
+                                else message = "Não foi possivel enviar a mensagem, tente novamente mais tarde.";
+                        alert(message);
+                    }
+                },
+                error: function(e) {
+                    console.log("Ajax erro: ");
+                    console.log(e)
                 }
-                if (r.status == "ERRO") {
-                    alert(r.mensagem);
-                }
-            },
-            error: function(e) {
-                console.log("Ajax erro: ");
-                console.log(e)
-            }
-        });
+            });
+        }
     });
 
     onReady(function () {
