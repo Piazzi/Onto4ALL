@@ -481,7 +481,7 @@
                 <h4 class="modal-title">{{__('Edit Current Ontology')}}</h4>
             </div>
             <div class="modal-body">
-                <input id="id" name="id" type="hidden">
+                <input id="id" name="id" type="hidden" value=''>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -1065,6 +1065,39 @@
 
 <!--./Class Expression Editor Modal -->
 
+
+<!--.Chat -->
+
+<div class="chat-ontology hidden" id='chat'>
+  <div class="box box-primary direct-chat direct-chat-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">Chat</h3>
+
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+        </button>
+        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+    <div class="box-body" id='chat-ontology'>
+        <div class="direct-chat-msg"></div>
+        <p>Carregando...</p>
+    </div>
+
+    <div class="box-footer" style="">
+        <form action="#" method="post" id='form_send_msg' autocomplete="off">
+            <div class="input-group">
+                <input type="text" name="message" id='message' autocomplete="off" placeholder="Digite a mensagem..." class="form-control">
+                <span class="input-group-btn">
+                    <a hred='javascript:;' id='send_msg' class="btn btn-primary btn-flat">Enviar</a>
+                </span>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+  <!--./Chat -->
+
 <!-- LOADS MXGRAPH GRAPHEDITOR AND ITS FUNCTIONS -->
 
 <script type="text/javascript">
@@ -1118,7 +1151,6 @@
 <script type="text/javascript" src="{{asset('js/Compiler.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
-<script src="https://cdn.socket.io/4.0.1/socket.io.min.js" integrity="sha384-LzhRnpGmQP+lOvWruF/lgkcqD+WDVt9fU3H4BWmwP5u5LTmkUGafMcpZKNObVMLU" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{{asset('js/OntologyManager.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/Properties.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous">
@@ -1185,9 +1217,87 @@
         document.querySelector(selector).style.display = visible ? 'block' : 'none';
     }
 
+    function updateChat(id) {
+        if (id > 0) {
+            $.ajax({
+                type: 'POST',
+                url: '/updateChat',
+                data: 'ontology_id=' + id,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(r) {
+                    $("#chat-ontology").html(r);
+                },
+                error: function(e) {
+                    console.log("Ocorreu um erro no update do chat: ");
+                    console.log(e)
+                }
+            });
+        }
+    }
+
+    $("#send_msg").click(function() {
+        $.ajax({
+            type: 'POST',
+            dataType: 'JSON',
+            data: $('form[id="form_send_msg"]').serialize() + "&ontology_id=" + document.getElementById('id').value,
+            url: '/sendChat',
+            async: true,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(r) {
+                if (r.status == "SUCESSO") {
+
+                    var d = new Date,
+                    dataFormatada = [d.getDate(),
+                            d.getMonth()+1,
+                            d.getFullYear()].join('/')+' '+
+                            [d.getHours(),
+                            d.getMinutes(),
+                            d.getSeconds()].join(':');
+
+                    $('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">{{ Auth::user()->name }}</span><span class="direct-chat-timestamp pull-left">' + dataFormatada +'</span></div><img class="direct-chat-img" src="/css/images/LogoDark.png" alt="Imagem de perfil"><div class="direct-chat-text">' + $("#message").val() + '</div></div>').insertAfter($(".direct-chat-msg").last());
+
+                    $("#message").val("");
+
+                    if (document.getElementById('id').value > 0 && window.location.origin == ip_address) {
+                        socket.emit('updateChat', document.getElementById('id').value);
+                    }
+
+                }
+                if (r.status == "ERRO") {
+                    alert(r.mensagem);
+                }
+            },
+            error: function(e) {
+                console.log("Ajax erro: ");
+                console.log(e)
+            }
+        });
+    });
+
     onReady(function () {
         setVisible('body', true);
         setVisible('#loading', false);
+
+        $("#chat").removeClass('hidden');
+        if (document.getElementById('id').value > 0) {
+            updateChat(document.getElementById('id').value);
+
+            if (window.location.origin == ip_address) {
+                socket.on('updateChat', (ontologyID) => {
+                    if (ontologyID == document.getElementById('id').value) {
+                        updateChat(document.getElementById('id').value);
+                    }
+                });
+            }
+
+        } else {
+            $("#chat-ontology").html('<div class="direct-chat-msg"></div>');
+        }
+
     });
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -1238,6 +1348,7 @@
             }
         });
     });
+
 
 </script>
 

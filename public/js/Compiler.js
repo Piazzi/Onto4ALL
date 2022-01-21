@@ -723,8 +723,10 @@ function updateSaveButtonInFrontEnd(saved) {
         saveOntology.innerHTML = message;
         saveOntology.prepend(icon);
 
-        if (document.getElementById('id').value > 0) {
-            socket.emit('updateOntology', document.getElementById('id').value);
+        if (window.location.origin == ip_address) {
+            if (document.getElementById('id').value > 0) {
+                socket.emit('updateOntology', document.getElementById('id').value);
+            }
         }
     } else {
         if (getLanguage() == "pt")

@@ -1863,3 +1863,20 @@ div.picker { z-index: 10007; }
 	left: calc(100% - 2px);
 	transform: translateX(-100%);
 }
+
+.chat-ontology {
+	position: fixed;
+	bottom: 0px;
+	z-index: 9999999;
+	margin-bottom: 0;
+	width: 400px!important;
+  }
+
+  .chat-ontology .box-body {
+	max-height: 280px;
+    overflow-y: scroll;
+  }
+
+  .direct-chat-messages {
+	height: auto;
+  }
