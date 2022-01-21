@@ -463,11 +463,14 @@ function createNewProperty(label, value = ""){
 
     // remove property
     deleteButtonContainer.addEventListener('click', () => {
-        deleteButtonContainer.parentElement.remove();
-        // remove from interface
-        delete currentCell[deleteButtonContainer.previousElementSibling.id];
-        // remove from mxGraph object
-        delete currentCell.value.removeAttribute(deleteButtonContainer.previousElementSibling.id);
+        if(confirm("Are you sure you want to delete this property?")) {
+            deleteButtonContainer.parentElement.remove();
+            // remove from interface
+            delete currentCell[deleteButtonContainer.previousElementSibling.id];
+            // remove from mxGraph object
+            delete currentCell.value.removeAttribute(deleteButtonContainer.previousElementSibling.id);
+        }
+        else return;
     })
 
     dispatchSuccessMessage();
