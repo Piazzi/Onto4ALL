@@ -154,10 +154,10 @@ function compileRelation(relation) {
 
     // Autocomplete the domain and range properties
     if (relation.source !== null)
-        relation.setAttribute("domain", relation.source.getAttribute("label"));
+        relation.setAttribute("domain", extractContent(relation.source.getAttribute("label")));
     else relation.setAttribute("domain", "");
     if (relation.target !== null)
-        relation.setAttribute("range", relation.target.getAttribute("label"));
+        relation.setAttribute("range", extractContent(relation.target.getAttribute("label")));
     else relation.setAttribute("range", "");
 
     // Search for missing properties in each relation element
@@ -263,7 +263,7 @@ function compileClass(classCell) {
                 isSubClassOf++;
                 classCell.setAttribute(
                     "SubClassOf",
-                    relation.target.getAttribute("label")
+                    extractContent(relation.target.getAttribute("label"))
                 );
             }
         });
@@ -940,5 +940,16 @@ function setElementColor(element) {
  */
 function resetElementErrorFlag(element) {
     element.setStyle(element.style.replace("error=true;", ""));
+
+}
+
+/**
+ * Get the text content from a HTML string
+ * @param html
+ * @returns {string}
+ */
+function extractContent(html) {
+    return new DOMParser().parseFromString(html, "text/html") .
+        documentElement . textContent;
 
 }

@@ -155,7 +155,7 @@
                 </div>
                 <div class="form-group">
                     <label>label</label>
-                    <input id="label" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
+                    <input id="label" type="text" class="form-control" placeholder=""disabled onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>comment</label>

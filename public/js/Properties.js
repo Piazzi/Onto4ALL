@@ -5,6 +5,7 @@ const ontologyId = document.getElementById("id");
 const iriLink = document.getElementById("IRI-link");
 const annotationsTab = document.getElementById('annotations-tab');
 const createdPropertyMessage = document.getElementById('created-property-message');
+const propertyLabel = document.getElementById("label");
 
 let inputs;
 const selectInputs = [
@@ -55,7 +56,6 @@ const relationInputs = {
 
 let annotationInputs = {
     IRI: document.getElementById("IRI"),
-    label: document.getElementById("label"),
     comment: document.getElementById("comment"),
     isDefinedBy: document.getElementById("isDefinedBy"),
     seeAlso: document.getElementById("seeAlso"),
@@ -232,6 +232,8 @@ function updatePropertyInput(name, value) {
  * @param {mxCell} cell
  */
 function setPropertiesInputs(cell) {
+    // sanitize label string
+    propertyLabel.value = extractContent(cell.value.getAttribute('label'));
     const cellProperties = cell.value.attributes;
     setCellIRI(cellProperties);
     console.log(cellProperties);
@@ -309,8 +311,7 @@ function createCellIRI(value) {
 }
 
 function setCellIRI(cellProperties){
-    let iriValue = createCellIRI(cellProperties["label"].value);
-    annotationInputs["label"].value = iriValue;
+    let iriValue = createCellIRI(extractContent(currentCell.value));
     currentCell.setAttribute("IRI", iriValue);
     iriLink.href = iriValue;
 }
