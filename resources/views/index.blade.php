@@ -81,14 +81,14 @@
 <!-- Right Sidebar -->
 <aside class="control-sidebar control-sidebar-light control-sidebar-open">
     <div class="btn-group" style="display: flex; flex-direction: row; align-content: stretch; justify-content: space-evenly;">
-            <a class="btn btn-default" style="width: 100%;" download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
+            <a class="btn " style="width: 100%;" download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
                 <i class="fa fa-fw fa-file-text-o"></i>
             </a>
 
-            <a class="btn btn-default" style="width: 100%;" id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" data-toggle="modal" data-target="#methodology-menu">
+            <a class="btn " style="width: 100%;" id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" data-toggle="modal" data-target="#methodology-menu">
                 <i class="fa fa-fw fa-info-circle"></i>
             </a>
-            <a class="btn btn-default"  style="width: 100%;" id="tips-icon" title="{{__('Tips')}}" href="#"  data-toggle="modal" data-target="#tips-menu">
+            <a class="btn "  style="width: 100%;" id="tips-icon" title="{{__('Tips')}}" href="#"  data-toggle="modal" data-target="#tips-menu">
                 <i class="fa fa-fw fa-search"></i>
             </a>
     </div>
