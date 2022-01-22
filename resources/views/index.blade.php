@@ -9,7 +9,7 @@
 @section('content')
 
 <!-- Warning Console -->
-<div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box">
+<div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box" >
     <div id="warnings-console-header" class="box-header">
         <h3 class="box-title">{{__('Warnings Console')}}</h3>
 
@@ -17,12 +17,21 @@
             <i class="fa fa-fw fa-question-circle" title="{{__('Click to see more information!')}}"></i>
         </a>
 
-
         <a download="ontology-errors.txt" href="#" id="download-errors-txt">
-            <span>
-                <i class="fa fa-download" title="{{__('Downloads a .txt file containing all the current warnings in the ontology')}}"></i>
-            </span>
+            <i class="fa fa-download" title="{{__('Downloads a .txt file containing all the current warnings in the ontology')}}"></i>
         </a>
+
+        <a download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
+            <i class="fa fa-fw fa-file-text-o"></i>
+        </a>
+
+        <a id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" data-toggle="modal" data-target="#methodology-menu">
+            <i class="fa fa-fw fa-info-circle"></i>
+        </a>
+        <a  id="tips-icon" title="{{__('Tips')}}" href="#"  data-toggle="modal" data-target="#tips-menu">
+            <i class="fa fa-fw fa-search"></i>
+        </a>
+
 
         <span id="classes" title="{{__('The number of classes in your current ontology')}}" data-widget="collapse" style="color: #f39c12">
             <i class="fa fa-fw fa-circle-o"></i>
@@ -39,6 +48,7 @@
             <span id="instances-count"> 0</span>
         </span>
 
+        
 
         <div class="box-tools pull-right">
 
@@ -80,18 +90,39 @@
 
 <!-- Right Sidebar -->
 <aside class="control-sidebar control-sidebar-light control-sidebar-open">
-    <div class="btn-group" style="display: flex; flex-direction: row; align-content: stretch; justify-content: space-evenly;">
-            <a class="btn " style="width: 100%;" download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
-                <i class="fa fa-fw fa-file-text-o"></i>
-            </a>
+    
 
-            <a class="btn " style="width: 100%;" id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" data-toggle="modal" data-target="#methodology-menu">
-                <i class="fa fa-fw fa-info-circle"></i>
-            </a>
-            <a class="btn "  style="width: 100%;" id="tips-icon" title="{{__('Tips')}}" href="#"  data-toggle="modal" data-target="#tips-menu">
-                <i class="fa fa-fw fa-search"></i>
-            </a>
+    <!--.Chat -->
+    <div class="chat-ontology hidden" id='chat'>
+    <div class="box box-solid direct-chat direct-chat-primary collapsed-box" style="margin-bottom: 0px;">
+        <div class="box-header with-border">
+        <h3 class="box-title"><i class="fa fa-fw fa-wechat"></i> Chat</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" data-placement="bottom" title="{{__('Chat with other collaborators of this ontology, messages are saved and can be read at any time between collaborators.')}}"><i class="fa fa-question"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-fw fa-expand"></i>
+            </button>
+        </div>
+        </div>
+        <div class="box-body" id='chat-ontology'>
+            <div class="direct-chat-msg"></div>
+        </div>
+
+        <div class="box-footer" style="">
+            <form action="#" method="post" id='form_send_msg' autocomplete="off">
+                <div class="input-group">
+                    <input type="text" name="message" id='message' autocomplete="off" placeholder="{{__('Enter message...')}}." class="form-control" disabled>
+                    <span class="input-group-btn">
+                        <a hred='javascript:;' id='send_msg' class="btn btn-primary " disabled>{{__('Send')}}</a>
+                    </span>
+                </div>
+            </form>
+        </div>
     </div>
+    </div>
+    <!--./Chat -->
+
     <!-- Tabs -->
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
@@ -1062,38 +1093,7 @@
 <!--./Class Expression Editor Modal -->
 
 
-<!--.Chat -->
 
-<div class="chat-ontology hidden" id='chat'>
-  <div class="box box-primary direct-chat direct-chat-primary collapsed-box">
-    <div class="box-header with-border">
-      <h3 class="box-title">Chat</h3>
-
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" data-placement="top" title="{{__('With this chat it is possible to send this real chat to all the people who send a message in time editing this ontology, in addition, the messages are stored and can be read in the future.')}}"><i class="fa fa-question"></i>
-        </button>
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-        </button>
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-      </div>
-    </div>
-    <div class="box-body" id='chat-ontology'>
-        <div class="direct-chat-msg"></div>
-    </div>
-
-    <div class="box-footer" style="">
-        <form action="#" method="post" id='form_send_msg' autocomplete="off">
-            <div class="input-group">
-                <input type="text" name="message" id='message' autocomplete="off" placeholder="{{__('Enter message...')}}." class="form-control" disabled>
-                <span class="input-group-btn">
-                    <a hred='javascript:;' id='send_msg' class="btn btn-primary btn-flat" disabled>{{__('Send')}}</a>
-                </span>
-            </div>
-        </form>
-    </div>
-  </div>
-</div>
-  <!--./Chat -->
 
 <!-- LOADS MXGRAPH GRAPHEDITOR AND ITS FUNCTIONS -->
 

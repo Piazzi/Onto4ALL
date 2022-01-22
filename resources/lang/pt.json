@@ -490,7 +490,7 @@
     "General Information": "Informações Gerais",
     "Save the ontology first to see its IRI": "Salve a ontologia primeiro para poder ver o IRI",
     "Untitled Ontology": "Ontologia não nomeada",
-    "With this chat it is possible to send this real chat to all the people who send a message in time editing this ontology, in addition, the messages are stored and can be read in the future.": "Com este chat é possível enviar mensagem em tempo real para todas as pessoas que estiverem editando esta ontologia, além disso as mensagens são armazendas e podem ser lidas no futuro.",
+    "Chat with other collaborators of this ontology, messages are saved and can be read at any time between collaborators.": "Converse com outros colaboradores dessa ontologia, as mensagens são salvas e podem ser lidas a qualquer momento entre os colaboradores.",
     "Enter message...": "Digite a mensagem..."
 }
 
