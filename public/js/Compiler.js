@@ -691,6 +691,11 @@ function updateSaveButtonInFrontEnd(saved) {
                 socket.emit('updateOntology', document.getElementById('id').value);
             }
         }
+
+
+        $('#message').removeAttr("disabled");
+        $('#send_msg').removeAttr("disabled");
+
     } else {
         if (getLanguage() == "pt")
             message = "Alterações não salvas. Clique aqui para salvar";

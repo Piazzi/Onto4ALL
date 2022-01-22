@@ -27,7 +27,6 @@ class ChatController extends Controller
     public function updateChat(Request $request)
     {
         $mesagens = Chat::select()->where('ontology_id', $request->ontology_id)->latest("created_at")->limit(150)->orderBy("id")->get();
-
         /*$ontology = $mesagens->ontology;
 
         if (Auth::user()->id == $ontology['user_id'] || $ontology->users->contains(Auth::user()->id)) {*/
@@ -53,19 +52,15 @@ class ChatController extends Controller
                         $retorno['status'] = "SUCESSO";
                     } else {
                         $retorno['status'] = "ERRO";
-                        $retorno['mensagem'] = "Você precisa estar logado para enviar uma mensagem!";
                     }
                 } else {
                     $retorno['status'] = "ERRO";
-                    $retorno['mensagem'] = "Você deve escrever uma mensagem para enviar!";
                 }
             } else {
                 $retorno['status'] = "ERRO";
-                $retorno['mensagem'] = "Você não pode enviar mensagem nesta ontologia.";
             }
         } else {
             $retorno['status'] = "ERRO";
-            $retorno['mensagem'] = "Você deve salvar a ontologia antes de enviar uma mensagem.";
         }
 
         echo json_encode($retorno);
