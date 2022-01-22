@@ -15,6 +15,13 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('updateOntology', ontologyID)
     });
 
+    socket.on('updateChat', (ontologyID) => {
+        //console.log(ontologyID);
+
+        //io.sockets.emit('updateOntology', ontologyID)
+        socket.broadcast.emit('updateChat', ontologyID)
+    });
+
     socket.on('disconnect',  (socket) => {
         //console.log('Desconectado');
     });

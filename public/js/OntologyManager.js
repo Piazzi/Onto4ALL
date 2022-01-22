@@ -1,8 +1,7 @@
 var ontologyName = document.getElementById("ontology-name");
 
-const ip_address = '127.0.0.1';
+const ip_address = 'https://onto4alleditor.com/en';
 const socket_port = '3000'; // porta node
-let socket = io(ip_address + ":" + socket_port);
 
 function saveName(event) {
     if (event.key == 'Enter') {
@@ -82,6 +81,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // Select the collaborators on the <select> tag
                 $('#collaborators-select').val(data['collaborators']).trigger('change');
+
+                $('#message').removeAttr("disabled");
+                $('#send_msg').removeAttr("disabled");
                 
                 //Allow to click on the IRI input and set route
                 document.getElementById('ontology-iri').disabled =false;
@@ -95,6 +97,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 else
                     document.getElementById('favorite-ontology').innerHTML = '<i class="fa fa-fw fa-star-o"></i>';
                 updateSaveButtonInFrontEnd(true);
+
+                updateChat(data['id']);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log(JSON.stringify(jqXHR));
@@ -109,11 +113,15 @@ document.addEventListener("DOMContentLoaded", function () {
         updateOntology(this.getAttribute('id'));
     });
 
-    socket.on('updateOntology', (ontologyID) => {
-        if (ontologyID == document.getElementById('id').value) {
-            updateOntology(document.getElementById('id').value);
-        }
-    });
+    if (window.location.origin == ip_address) {
+        let socket = io(ip_address + ":" + socket_port);
+
+        socket.on('updateOntology', (ontologyID) => {
+            if (ontologyID == document.getElementById('id').value) {
+                updateOntology(document.getElementById('id').value);
+            }
+        });
+    }
 });
 
 

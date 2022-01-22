@@ -723,9 +723,16 @@ function updateSaveButtonInFrontEnd(saved) {
         saveOntology.innerHTML = message;
         saveOntology.prepend(icon);
 
-        if (document.getElementById('id').value > 0) {
-            socket.emit('updateOntology', document.getElementById('id').value);
+        if (window.location.origin == ip_address) {
+            if (document.getElementById('id').value > 0) {
+                socket.emit('updateOntology', document.getElementById('id').value);
+            }
         }
+
+
+        $('#message').removeAttr("disabled");
+        $('#send_msg').removeAttr("disabled");
+
     } else {
         if (getLanguage() == "pt")
             message = "Alterações não salvas. Clique aqui para salvar";
