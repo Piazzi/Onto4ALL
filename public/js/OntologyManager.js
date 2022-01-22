@@ -84,7 +84,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 $('#message').removeAttr("disabled");
                 $('#send_msg').removeAttr("disabled");
-
+                
+                //Allow to click on the IRI input and set route
+                document.getElementById('ontology-iri').disabled =false;
+                document.getElementById('iri-link').setAttribute("href", "https://onto4alleditor.com/en/ontologies/"+data['id']);
+                
                 //Show when the ontology was last updated
                 document.getElementById('last-update').innerHTML = '<span class="time"><i class="fa fa-clock-o"></i> ' + 'Last update: ' + data['last_update'];
                 //Update the little star on the navbar

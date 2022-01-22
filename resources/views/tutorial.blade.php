@@ -1,5 +1,13 @@
 @extends('adminlte::page')
 
+<style>
+.credits-section{padding:20px}
+.credits-section img{padding-top:20px;padding-bottom:5px}
+.credits-section td{padding-right:20px;}
+.credits-table{text-align: center;}
+.ufjf-logo{text-align:center; padding-top:150px}
+</style>
+
 @section('title', 'AdminLTE')
 
 @section('content_header')
@@ -540,10 +548,37 @@
                     <dd>{{__('Onto4All was developed by')}} <a href="https://github.com/Piazzi/">Lucas Piazzi</a>{{__(', as part of a Scientific Initiation project linked to the Computer Science Department of the Federal University of Juiz de Fora (UFJF), also composed of')}}
                         <a href="professorfabriciomendonca.com.br/">Dr Fabrício Martins Mendonça</a>{{__('(Project Advisor)')}},
                         <a href="https://github.com/carvalhotiago">Tiago Carvalho</a>,<a href="https://github.com/pedroalves4">Pedro Henrique Alves</a>.
+                    <div class="credits-section">
+                        <table class="credits-table">
+                            <tr>
+                                <td><img alt="Fabrício Mendonça" src="{{asset('css/images/Landing-Page/Foto (1).png')}}"></td>
+                                <td><img alt="Lucas Piazzi" src="{{asset('css/images/Landing-Page/Foto (2).png')}}"></td>
+                                <td><img alt="Maurício Almeida" src="{{asset('css/images/Landing-Page/Foto (3).png')}}"></td>
+                                <td><img alt="Eduardo Felipe" src="{{asset('css/images/Landing-Page/Foto (4).png')}}"></td>
+                            </tr>
+                            <tr>
+                                <td>Fabrício<br>Mendonça</td>
+                                <td>Lucas<br>Piazzi</td>
+                                <td>Maurício<br>Almeida</td>
+                                <td>Eduardo<br>Feipe</td>
+                            </tr>
+                            <tr>
+                                <td><img alt="Jeanne Emygdio" src="{{asset('css/images/Landing-Page/Foto (5).png')}}"></td>
+                                <td><img alt="Larissa Fazza" src="{{asset('css/images/Landing-Page/Foto (6).png')}}"></td>
+                                <td><img alt="Guilherme Noronha" src="{{asset('css/images/Landing-Page/Foto (7).png')}}"></td>
+                                <td><img alt="Vinicius Corbelli" src="{{asset('css/images/Landing-Page/Foto (8).png')}}"></td>
+                            </tr>
+                            <tr>
+                                <td>Jeanne<br>Emygdio</td>
+                                <td>Larissa<br>Fazza</td>
+                                <td>Guilherme<br>Noronha</td>
+                                <td>Vinicius<br>Corbelli</td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 ufjf-logo">
                     <img alt="ufjf" src="{{asset('css/images/Landing-Page/ufjf.png')}}">
-
                 </div>
             </div>
 
