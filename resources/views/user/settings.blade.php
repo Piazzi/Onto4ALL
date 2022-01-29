@@ -26,10 +26,88 @@
 
 @section('content')
 
+<style>
+
+.d-none {
+  display: none !important;
+}
+
+.profile-user-img {
+  border: 3px solid #adb5bd;
+  margin: 0 auto;
+  padding: 3px;
+  width: 100px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.img-circle {
+  border-radius: 50%;
+}
+
+.box-profile {
+  position: relative;
+  width: 100%;
+  max-width: 150px;
+  text-align: center;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.box-profile:hover .overlay {
+  opacity: 1;
+}
+
+.box-profile:focus .overlay {
+  opacity: 1;
+}
+
+</style>
+
     <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Account Settings')}}</h3>
         </div>
+
+        <div class="box-profile">
+            <form id="form-delete-picture" action="{{ route('user.deletePicture', ['locale'=> app()->getLocale(), 'user' => Auth::user()->id]) }}" method="post">
+                @csrf
+                @method('delete')
+            </form>
+            <form id="form-update-picture" action="{{ route('user.updatePicture', ['locale'=> app()->getLocale(), 'user' => Auth::user()->id]) }}" method="post"
+                enctype="multipart/form-data">
+                @csrf
+                @method('put')
+                <input type="file" name="profile_path" id="profile" class="d-none">
+                <img src="{{ asset('storage/img/profile/' . Auth::user()->profile_path) }}" id="previewProfile"
+                    alt="User profile picture" class="profile-user-img img-fluid img-circle">
+                <div class="overlay">
+                    <div class="row">
+                        <a href="javascript:;" id="btnEditProfile" class="" title="Editar">
+                            <i class="fa fa-pencil text-dark fa-2x"></i>
+                        </a>
+                        @if (Auth::user()->profile_path != 'profile_default.png')
+                            <a href="javascript:;" id="btnDeleteProfile" class="ml-4" title="Excluir">
+                                <i class="fa fa-trash text-dark fa-2x"></i>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <form role="form" action="{{route('user.update', ['locale'=> app()->getLocale(), 'user' => Auth::user()->id])}}" method="post">
             @csrf
             @method('PATCH')
@@ -114,3 +192,30 @@
 @section('footer')
     .
 @stop
+
+@push('js')
+    <script>
+
+        function filePreview(input, previewProfile) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $(previewProfile).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+
+        $("#type").attr("disabled", true);
+        $("#btnEditProfile").click(function() {
+            $("#profile").click();
+        });
+        $("#btnDeleteProfile").click(function() {
+            $('#form-delete-picture').submit();
+        });
+        $("#profile").change(function() {
+            filePreview(this, '#previewProfile');
+            $('#form-update-picture').submit();
+        });
+    </script>
+@endpush

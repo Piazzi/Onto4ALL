@@ -114,14 +114,14 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                    aria-expanded="true">
                                     <!-- The user image in the navbar-->
-                                    <i class="fa fa-user"></i>
+                                    <img class="img-circle profile-user-img-menu" style="width: 20px" src="{{ asset("storage/img/profile/" . Auth::user()->profile_path) }}" alt="Imagem de perfil">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs">{{Auth::user()->name}}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li style="background-color: #222d32;"  class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
-                                        <img src="{{asset('css/images/LogoDark.png')}}" class="img-circle"
+                                        <img src="{{ asset('storage/img/profile/' . Auth::user()->profile_path) }}" class="img-circle"
                                              alt="User Image">
                                         <p>
                                             {{Auth::user()->name}}

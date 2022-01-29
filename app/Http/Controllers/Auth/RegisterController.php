@@ -70,7 +70,12 @@ class RegisterController extends Controller
             'ontology' => 'bfo'
         ]);
         $user->categoria = 'modelador';
+
+        $data = User::saveImg($data, 'profile_path', 'public/img/profile/');
+        $user->profile_path = $data['profile_path'];
+
         $user->save();
+
         return $user;
     }
 

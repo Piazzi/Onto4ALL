@@ -61,6 +61,8 @@ Route::group([
     Route::resource('/user', UserController::class)->middleware('can:eModelador');
     Route::get('/change_password/{id}', [UserController::class, 'changePassword'])->name('user.editPassword')->middleware('can:eModelador');
     Route::put('/update_password/{id}', [UserController::class, 'updatePassword'])->name('user.updatePassword')->middleware('can:eModelador');
+    Route::delete('/delete_picture/{user}', [UserController::class, 'deletePicture'])->name('user.deletePicture')->middleware('can:eModelador');
+    Route::put('/update_picture/{user}', [UserController::class, 'updatePicture'])->name('user.updatePicture')->middleware('can:eModelador');
     Route::any('/ontology_relation/search', [OntologyRelationController::class, 'search'])->name('ontology_relation.search')->middleware('can:eAdmin');
     Route::resource('/ontology_relation', OntologyRelationController::class)->middleware('can:eAdmin');
     Route::any('/ontology_class/search', [OntologyClassController::class, 'search'])->name('ontology_class.search')->middleware('can:eAdmin');

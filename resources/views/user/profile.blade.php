@@ -21,7 +21,7 @@
             <!-- Profile Image -->
             <div class="box box-success">
                 <div class="box-body box-profile">
-                    <img class="profile-user-img img-responsive img-circle" src="{{asset('css/images/LogoMini.png')}}"
+                    <img class="profile-user-img img-responsive img-circle" src="{{ asset('storage/img/profile/' . Auth::user()->profile_path) }}"
                          alt="User profile picture">
 
                     <h3 class="profile-username text-center">{{$user->name}}</h3>

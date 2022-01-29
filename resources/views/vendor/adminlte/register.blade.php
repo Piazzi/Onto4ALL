@@ -95,6 +95,7 @@
                         </span>
                                 @endif
                             </div>
+                            <input type="file" name="profile_path">
                             <button style="background-color: #064c72;" type="submit"
                                     class="btn btn-primary btn-block btn-flat"
                             >{{ __('Register') }}</button>
