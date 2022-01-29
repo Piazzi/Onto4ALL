@@ -476,7 +476,9 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>IRI</label>
-                            <input class="form-control" type="text" id="ontology-iri"  disabled value="{{__('Save the ontology first to see its IRI')}}" >
+                            <a id="iri-link">
+                                <input title="Open Link" class="form-control iri-link" type="button" style="text-align:left" id="ontology-iri"  disabled value="{{__('Save the ontology first to see its IRI')}}" >
+                            </a>
                         </div>
                     </div>
                 </div>
