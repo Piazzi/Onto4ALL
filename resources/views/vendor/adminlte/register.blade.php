@@ -95,7 +95,11 @@
                         </span>
                                 @endif
                             </div>
-                            <input type="file" name="profile_path">
+
+                            <div class="form-group has-feedback {{ $errors->has('profile_path') ? 'has-error' : '' }}">
+                                <input type="file" name="profile_path" class="form-control">
+                            </div>
+
                             <button style="background-color: #064c72;" type="submit"
                                     class="btn btn-primary btn-block btn-flat"
                             >{{ __('Register') }}</button>
