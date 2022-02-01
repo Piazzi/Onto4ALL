@@ -26,56 +26,6 @@
 
 @section('content')
 
-<style>
-
-.d-none {
-  display: none !important;
-}
-
-.profile-user-img {
-  border: 3px solid #adb5bd;
-  margin: 0 auto;
-  padding: 3px;
-  width: 100px;
-}
-
-.img-fluid {
-  max-width: 100%;
-  height: auto;
-}
-
-.img-circle {
-  border-radius: 50%;
-}
-
-.box-profile {
-  position: relative;
-  width: 100%;
-  max-width: 150px;
-  text-align: center;
-}
-.overlay {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: 0.3s ease;
-}
-
-.box-profile:hover .overlay {
-  opacity: 1;
-}
-
-.box-profile:focus .overlay {
-  opacity: 1;
-}
-
-</style>
-
     <div class="box box-primary">
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Account Settings')}}</h3>
