@@ -30,6 +30,34 @@
         <div class="box-header with-border">
             <h3 class="box-title">{{__('Account Settings')}}</h3>
         </div>
+
+        <div class="box-profile">
+            <form id="form-delete-picture" action="{{ route('user.deletePicture', ['locale'=> app()->getLocale(), 'user' => Auth::user()->id]) }}" method="post">
+                @csrf
+                @method('delete')
+            </form>
+            <form id="form-update-picture" action="{{ route('user.updatePicture', ['locale'=> app()->getLocale(), 'user' => Auth::user()->id]) }}" method="post"
+                enctype="multipart/form-data">
+                @csrf
+                @method('put')
+                <input type="file" name="profile_path" id="profile" class="d-none">
+                <img src="{{ asset('storage/img/profile/' . Auth::user()->profile_path) }}" id="previewProfile"
+                    alt="User profile picture" class="profile-user-img img-fluid img-circle">
+                <div class="overlay">
+                    <div class="row">
+                        <a href="javascript:;" id="btnEditProfile" class="" title="Editar">
+                            <i class="fa fa-pencil text-dark fa-2x"></i>
+                        </a>
+                        @if (Auth::user()->profile_path != 'profile_default.png')
+                            <a href="javascript:;" id="btnDeleteProfile" class="ml-4" title="Excluir">
+                                <i class="fa fa-trash text-dark fa-2x"></i>
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </form>
+        </div>
+
         <form role="form" action="{{route('user.update', ['locale'=> app()->getLocale(), 'user' => Auth::user()->id])}}" method="post">
             @csrf
             @method('PATCH')
@@ -114,3 +142,30 @@
 @section('footer')
     .
 @stop
+
+@push('js')
+    <script>
+
+        function filePreview(input, previewProfile) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $(previewProfile).attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+
+        $("#type").attr("disabled", true);
+        $("#btnEditProfile").click(function() {
+            $("#profile").click();
+        });
+        $("#btnDeleteProfile").click(function() {
+            $('#form-delete-picture').submit();
+        });
+        $("#profile").change(function() {
+            filePreview(this, '#previewProfile');
+            $('#form-update-picture').submit();
+        });
+    </script>
+@endpush
