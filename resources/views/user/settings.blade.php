@@ -40,15 +40,15 @@
                 enctype="multipart/form-data">
                 @csrf
                 @method('put')
-                <input type="file" name="profile_path" id="profile" class="d-none">
-                <img src="{{ asset('storage/img/profile/' . Auth::user()->profile_path) }}" id="previewProfile"
+                <input type="file" name="avatar_url" id="profile" class="d-none">
+                <img src="{{ asset('storage/img/profile/' . Auth::user()->avatar_url) }}" id="previewProfile"
                     alt="User profile picture" class="profile-user-img img-fluid img-circle">
                 <div class="overlay">
                     <div class="row">
                         <a href="javascript:;" id="btnEditProfile" class="" title="Editar">
                             <i class="fa fa-pencil text-dark fa-2x"></i>
                         </a>
-                        @if (Auth::user()->profile_path != 'profile_default.png')
+                        @if (Auth::user()->avatar_url != 'profile_default.png')
                             <a href="javascript:;" id="btnDeleteProfile" class="ml-4" title="Excluir">
                                 <i class="fa fa-trash text-dark fa-2x"></i>
                             </a>

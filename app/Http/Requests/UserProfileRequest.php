@@ -24,13 +24,13 @@ class UserProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'profile_path' => 'required|image|mimes:jpg,jpeg,png,bmp,svg,webp|max:5120',
+            'avatar_url' => 'required|image|mimes:jpg,jpeg,png,bmp,svg,webp|max:5120',
         ];
     }
 
     public function attributes(){
         return[
-            'profile_path' => 'imagem',
+            'avatar_url' => 'imagem',
         ];
     }
 }
