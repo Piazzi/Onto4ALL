@@ -96,8 +96,8 @@
                                 @endif
                             </div>
 
-                            <div class="form-group has-feedback {{ $errors->has('profile_path') ? 'has-error' : '' }}">
-                                <input type="file" name="profile_path" class="form-control">
+                            <div class="form-group has-feedback {{ $errors->has('avatar_url') ? 'has-error' : '' }}">
+                                <input type="file" name="avatar_url" class="form-control">
                             </div>
 
                             <button style="background-color: #064c72;" type="submit"

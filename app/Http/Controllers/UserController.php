@@ -139,9 +139,9 @@ class UserController extends Controller
         $user = User::find($id);
 
         $data = $request->validated();
-        $data = User::saveImg($data, 'profile_path', 'public/img/profile/', $user->profile_path);
+        $data = User::saveImg($data, 'avatar_url', 'public/img/profile/', $user->avatar_url);
 
-        $user->profile_path = $data['profile_path'];
+        $user->avatar_url = $data['avatar_url'];
         $user->save();
 
         return redirect()->back()->with('success', true);
@@ -153,8 +153,8 @@ class UserController extends Controller
             return view('lockscreen');
         $user = User::find($id);
 
-        User::deleteImg($user->profile_path, 'public/img/profile/');
-        $user->profile_path = "profile_default.png";
+        User::deleteImg($user->avatar_url, 'public/img/profile/');
+        $user->avatar_url = "profile_default.png";
         $user->save();
 
         return redirect()->back()->with('success', true);

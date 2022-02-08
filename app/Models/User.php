@@ -33,7 +33,7 @@ class User extends Authenticatable
         'email',
         'password',
         'ontology',
-        'profile_path'
+        'avatar_url'
     ];
 
     protected $guarded = [
@@ -86,13 +86,13 @@ class User extends Authenticatable
 
     /*************************** Functions **********************************/
 
-    public static function saveImg($data, $name, $diretorio, $imgAntiga = '')
+    public static function saveImg($data, $name, $patch, $oldPatch = '')
     {
         if (isset($data[$name]) && is_file($data[$name])) {
             $imgName = $data[$name]->getClientOriginalName();
             $imgName = hash('sha256', $imgName . strval(time())) . '.' . $data[$name]->getClientOriginalExtension();
-            User::deleteImg($imgAntiga, $diretorio);
-            $data[$name]->storeAs($diretorio, $imgName);
+            User::deleteImg($oldPatch, $patch);
+            $data[$name]->storeAs($patch, $imgName);
             $data[$name] = $imgName;
         } else {
             unset($data[$name]);
@@ -100,10 +100,10 @@ class User extends Authenticatable
 
         return $data;
     }
-    public static function deleteImg($imgName, $diretorio)
+    public static function deleteImg($imgName, $patch)
     {
         if ($imgName != '' && $imgName != 'profile_default.png') {
-            Storage::delete($diretorio . $imgName);
+            Storage::delete($patch . $imgName);
         }
     }
 }

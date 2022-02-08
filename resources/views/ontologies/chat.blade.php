@@ -11,7 +11,7 @@
                     <span
                         class="direct-chat-timestamp pull-right">{{ date('d/m/Y h:m:s', strtotime($message->created_at)) }}</span>
                 </div>
-                <img class="direct-chat-img" src="{{ asset('storage/img/profile/' . $message->user->profile_path) }}" alt="Imagem de perfil">
+                <img class="direct-chat-img" src="{{ asset('storage/img/profile/' . $message->user->avatar_url) }}" alt="Imagem de perfil">
                 <div class="direct-chat-text">
                     {{ $message->message }}
                 </div>
@@ -25,7 +25,7 @@
                     <span
                         class="direct-chat-timestamp pull-left">{{ date('d/m/Y h:m:s', strtotime($message->created_at)) }}</span>
                 </div>
-                <img class="direct-chat-img" src="{{ asset('storage/img/profile/' . $message->user->profile_path) }}" alt="Imagem de perfil">
+                <img class="direct-chat-img" src="{{ asset('storage/img/profile/' . $message->user->avatar_url) }}" alt="Imagem de perfil">
                 <div class="direct-chat-text">
                     {{ $message->message }}
                 </div>

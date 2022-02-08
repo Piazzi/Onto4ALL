@@ -14,7 +14,7 @@ class AddProfilePathColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('profile_path')->default("profile_default.png");
+            $table->string('avatar_url')->default("profile_default.png");
         });
     }
 
@@ -26,7 +26,7 @@ class AddProfilePathColumnToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('favourite');
+            $table->dropColumn('avatar_url');
         });
     }
 }
