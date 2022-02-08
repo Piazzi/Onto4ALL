@@ -147,14 +147,24 @@
                         <option value="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</option>
                     </select>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label>{{__('Collaborators')}}</label>
                     <select id="collaborators-select" style="width: 100%" class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
                         @foreach($users as $user)
-                            <option @foreach($ontology->users as $collaborator) @if($collaborator->id == $user->id)selected @endif @endforeach value="{{$user->id}}">{{$user->name}}</option>
+                            <option @foreach($ontology->users as $collaborator) @if($collaborator->id == $user->id)selected @endif @endforeach value="{{$user->id}}" data-image="/storage/img/profile/profile_default.png">{{$user->name}}</option>
+                        @endforeach
+                    </select>
+                </div>-->
+
+                <div class="form-group">
+                    <label>{{__('Collaborators')}}</label>
+                    <select id="collaborators-select" class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
+                        @foreach($users as $user)
+                            <option @foreach($ontology->users as $collaborator) @if($collaborator->id == $user->id)selected @endif @endforeach value="{{$user->id}}" data-image="/storage/img/profile/profile_default.png">{{$user->name}}</option>
                         @endforeach
                     </select>
                 </div>
+
                 <button class="btn btn-success btn-block" type="submit">Submit</button>
             </form>
         </div>
@@ -163,14 +173,39 @@
     <script>
         //$('#collaborators-select').val(data['collaborators']).trigger('change');
         $(document).ready(function () {
-            $('.js-example-basic-multiple').select2({
-                theme: 'classic'
-            });
             $('.js-example-tags').select2({
                 theme: 'classic',
                 tags: true
             });
         });
+
+        function formatState (opt) {
+            if (!opt.id) {
+                return opt.text.toUpperCase();
+            }
+
+            var optimage = $(opt.element).attr('data-image'); 
+
+            if(!optimage){
+                return opt.text.toUpperCase();
+            } else {   
+                return $('<span><img class="img-circle"" src="' + optimage + '" width="30px" /> ' + opt.text.toUpperCase() + '</span>');
+            }
+
+        };
+    
+        $("#collaborators-select").select2({
+            theme: 'classic',
+            width: "100%",
+            templateResult: formatState,
+            templateSelection: function (option) {
+                return option.text;
+            },
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+
     </script>
 @stop
 

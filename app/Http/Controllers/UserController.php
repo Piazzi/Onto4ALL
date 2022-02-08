@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserProfileRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\UpdateUserRequest;
 
@@ -128,6 +129,35 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('user.edit', ['locale' => $locale, 'user'=> Auth::user()->id])->with('Sucess', 'Your password has been changed');
 
+    }
+
+
+    public function updatePicture(UserProfileRequest $request,  $locale, $id)
+    {
+        if($id != Auth::user()->id)
+            return view('lockscreen');
+        $user = User::find($id);
+
+        $data = $request->validated();
+        $data = User::saveImg($data, 'avatar_url', 'public/img/profile/', $user->avatar_url);
+
+        $user->avatar_url = $data['avatar_url'];
+        $user->save();
+
+        return redirect()->back()->with('success', true);
+    }
+
+    public function deletePicture($locale, $id)
+    {
+        if($id != Auth::user()->id)
+            return view('lockscreen');
+        $user = User::find($id);
+
+        User::deleteImg($user->avatar_url, 'public/img/profile/');
+        $user->avatar_url = "profile_default.png";
+        $user->save();
+
+        return redirect()->back()->with('success', true);
     }
 
 

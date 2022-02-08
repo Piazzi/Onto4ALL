@@ -9,6 +9,7 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -27,10 +28,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
-        'ontology'
+        'ontology',
+        'avatar_url'
     ];
 
     protected $guarded = [
@@ -79,6 +82,29 @@ class User extends Authenticatable
     public function thesaurus()
     {
         return $this->hasMany(Thesauru::class);
+    }
+
+    /*************************** Functions **********************************/
+
+    public static function saveImg($data, $name, $patch, $oldPatch = '')
+    {
+        if (isset($data[$name]) && is_file($data[$name])) {
+            $imgName = $data[$name]->getClientOriginalName();
+            $imgName = hash('sha256', $imgName . strval(time())) . '.' . $data[$name]->getClientOriginalExtension();
+            User::deleteImg($oldPatch, $patch);
+            $data[$name]->storeAs($patch, $imgName);
+            $data[$name] = $imgName;
+        } else {
+            unset($data[$name]);
+        }
+
+        return $data;
+    }
+    public static function deleteImg($imgName, $patch)
+    {
+        if ($imgName != '' && $imgName != 'profile_default.png') {
+            Storage::delete($patch . $imgName);
+        }
     }
 }
 
