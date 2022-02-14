@@ -85,26 +85,15 @@ function compileDatatypeProperty(datatypeProperty) {
     let label = datatypeProperty.getAttribute("label");
     if (datatypeProperty.source == null) {
         basicErrorsCount++;
-        if (getLanguage() === "pt")
-            sendWarningMessage(
-                "O tipo de dado " +
-                label.bold() +
-                " (ID: " +
-                datatypeProperty.id +
-                ") não está conectada a uma classe",
-                "Erro Basico",
-                datatypeProperty
-            );
-        else
-            sendWarningMessage(
-                "The datatype property " +
-                label.bold() +
-                " (ID: " +
-                datatypeProperty.id +
-                ") it is not connected to a class",
-                "Basic Error",
-                datatypeProperty
-            );
+        sendWarningMessage(
+            getTranslation("The datatype property") + " " +
+            label.bold() +
+            " (ID: " +
+            datatypeProperty.id +
+            ") " + getTranslation("it is not connected to a class"),
+            getTranslation("Basic Error"),
+            datatypeProperty
+        );
     }
 }
 
@@ -121,26 +110,15 @@ function compileRelation(relation) {
         relation.source === null
     ) {
         basicErrorsCount++;
-        if (getLanguage() === "pt")
-            sendWarningMessage(
-                "A relação " +
-                label.bold() +
-                " (ID: " +
-                relation.id +
-                ") não está conectada a duas classes",
-                "Erro Basico",
-                relation
-            );
-        else
-            sendWarningMessage(
-                "The relation " +
-                label.bold() +
-                " (ID: " +
-                relation.id +
-                ") it is not fully connected to 2 classes",
-                "Basic Error",
-                relation
-            );
+        sendWarningMessage(
+            getTranslation("The relation") + " " + 
+            label.bold() +
+            " (ID: " +
+            relation.id +
+            ") " + getTranslation("it is not fully connected to 2 classes"),
+            getTranslation("Basic Error"),
+            relation
+        );
     }
 
     if (relation.source !== null && relation.target !== null) {
@@ -151,26 +129,15 @@ function compileRelation(relation) {
                 relation.target.style.includes("Class")
             ) {
                 conceptualErrorsCount++;
-                if (getLanguage() === "pt")
-                    sendWarningMessage(
-                        "Você não pode ter uma relação instancia_um entre duas classes (" +
-                        relation.source.getAttribute("label").bold() +
-                        ", " +
-                        relation.target.getAttribute("label").bold() +
-                        "). A relação precisa estar entre uma classe e uma instância. ",
-                        "Erro Conceitual",
-                        relation
-                    );
-                else
-                    sendWarningMessage(
-                        "You cant have a instance_of relation between two classes (" +
-                        relation.source.getAttribute("label").bold() +
-                        ", " +
-                        relation.target.getAttribute("label").bold() +
-                        "). It must be between one class and one instance. ",
-                        "Conceptual Error",
-                        relation
-                    );
+                sendWarningMessage(
+                    getTranslation("You cant have a instance_of relation between two classes") + " (" +
+                    relation.source.getAttribute("label").bold() +
+                    ", " +
+                    relation.target.getAttribute("label").bold() +
+                    "). " + getTranslation("It must be between one class and one instance. "),
+                    "Conceptual Error",
+                    relation
+                );
             }
         }
 
@@ -215,32 +182,18 @@ function compileRelation(relation) {
 
     if (missingRelationProperties !== "") {
         warningsCount++;
-        if (getLanguage() === "pt")
-            sendWarningMessage(
-                "Na relação " +
-                relation.getAttribute("label").bold() +
-                "(ID: " +
-                relation.id.bold() +
-                ")" +
-                ", você não preencheu as seguintes propriedades: " +
-                missingRelationProperties.bold() +
-                "",
-                "Má Prática",
-                relation
-            );
-        else
-            sendWarningMessage(
-                "In the " +
-                relation.getAttribute("label").bold() +
-                "(ID: " +
-                relation.id.bold() +
-                ")" +
-                " Relation, you did not fill the following properties: " +
-                missingRelationProperties.bold() +
-                "",
-                "Bad Practice",
-                relation
-            );
+        sendWarningMessage(
+            getTranslation("In the") + " " +
+            relation.getAttribute("label").bold() +
+            "(ID: " +
+            relation.id.bold() +
+            ")" +
+            getTranslation(" Relation, you did not fill the following properties:") + " " +
+            missingRelationProperties.bold() +
+            "",
+            getTranslation("Bad Practice"),
+            relation
+        );
         missingRelationProperties = "";
     }
 }
@@ -263,22 +216,13 @@ function compileClass(classCell) {
                 classesToCompare[i].getAttribute("label")
             ) {
                 conceptualErrorsCount++;
-                if (getLanguage() === "pt")
-                    sendWarningMessage(
-                        "Você não pode ter duas classes com o mesmo nome, você tem duas classes chamadas " +
-                        classCell.getAttribute("label").bold() +
-                        ".",
-                        "Erro Conceitual",
-                        classCell
-                    );
-                else
-                    sendWarningMessage(
-                        "You can not have two classes with the same name, you have two classes named " +
-                        classCell.getAttribute("label").bold() +
-                        ".",
-                        "Conceptual Error",
-                        classCell
-                    );
+                sendWarningMessage(
+                    getTranslation("You can not have two classes with the same name, you have two classes named") + " " +
+                    classCell.getAttribute("label").bold() +
+                    ".",
+                    getTranslation("Conceptual Error"),
+                    classCell
+                );
             }
         }
     }
@@ -327,34 +271,19 @@ function compileClass(classCell) {
                         connectedRelations[j].source.getAttribute("label")
                     ) {
                         basicErrorsCount++;
-                        if (getLanguage() === "pt")
-                            sendWarningMessage(
-                                "Você não pode ter duas relações iguais apontando para as mesmas classes. Esse erro ocorre nas seguintes classes: " +
-                                connectedRelations[i].source.getAttribute(
-                                    "label"
-                                ) +
-                                " e " +
-                                connectedRelations[i].target.getAttribute(
-                                    "label"
-                                ) +
-                                ".",
-                                "Erro Básico",
-                                classCell
-                            );
-                        else
-                            sendWarningMessage(
-                                "You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes: " +
-                                connectedRelations[i].source.getAttribute(
-                                    "label"
-                                ) +
-                                " and " +
-                                connectedRelations[i].target.getAttribute(
-                                    "label"
-                                ) +
-                                ".",
-                                "Basic Error",
-                                classCell
-                            );
+                        sendWarningMessage(
+                            getTranslation("You can't have 2 equal relations pointing to the same classes. This error occurs in the following classes:") + " " +
+                            connectedRelations[i].source.getAttribute(
+                                "label"
+                            ) +
+                            " " + getTranslation("and") + " " +
+                            connectedRelations[i].target.getAttribute(
+                                "label"
+                            ) +
+                            ".",
+                            getTranslation("Basic Error"),
+                            classCell
+                        );
                         connectedRelations.splice(i, 1);
                         connectedRelations.splice(j, 1);
                     }
@@ -376,26 +305,15 @@ function compileClass(classCell) {
             });
             if (inheritanceCount > 1) {
                 warningsCount++;
-                if (getLanguage() == "pt")
-                    sendWarningMessage(
-                        "Classes não podem ter herança múltipla. Sua classe " +
-                        classCell.getAttribute("label") +
-                        "(ID: " +
-                        classCell.id +
-                        ") não pode ser o domínio de mais de uma relação is_a",
-                        "Má Prática",
-                        classCell
-                    );
-                else
-                    sendWarningMessage(
-                        "A class can't have multiple inheritance. Your " +
-                        classCell.getAttribute("label") +
-                        "(ID: " +
-                        classCell.id +
-                        ") class can't be the domain of more than one is_a relation",
-                        "Bad Practice",
-                        classCell
-                    );
+                sendWarningMessage(
+                    getTranslation("A class can't have multiple inheritance. Your") + " " +
+                    classCell.getAttribute("label") +
+                    "(ID: " +
+                    classCell.id +
+                    ") " + getTranslation("class can't be the domain of more than one is_a relation"),
+                    getTranslation("Bad Practice"),
+                    classCell
+                );
             }
         }
     }
@@ -476,22 +394,13 @@ function compileLabel(cell) {
     // Check if the label contains a Acronym
     if (/^([a-z]\.)+/i.test(label)) {
         warningsCount++;
-        if (getLanguage() === "pt")
-            sendWarningMessage(
-                "É recomendável que os nomes não tenham acrônimos. (" +
-                label.bold() +
-                ")",
-                "Má Prática",
-                cell
-            );
-        else
-            sendWarningMessage(
-                "It is recommended that the labels do not have acronyms. (" +
-                label.bold() +
-                ")",
-                "Bad Practice",
-                cell
-            );
+        sendWarningMessage(
+            getTranslation("It is recommended that the labels do not have acronyms.") + " (" +
+            label.bold() +
+            ")",
+            getTranslation("Bad Practice"),
+            cell
+        );
     }
 }
 
@@ -716,8 +625,7 @@ function updateSaveButtonInFrontEnd(saved) {
     icon.className = "fa fa-fw fa-cloud-upload";
     // Updates the save file button
     if (saved) {
-        if (getLanguage() == "pt") message = "Todas as alterações foram salvas";
-        else message = "All changes saved";
+        message = getTranslation("All changes saved");
         saveOntology.classList.remove("unsaved");
         saveOntology.classList.add("saved");
         saveOntology.innerHTML = message;
@@ -734,9 +642,7 @@ function updateSaveButtonInFrontEnd(saved) {
         $('#send_msg').removeAttr("disabled");
 
     } else {
-        if (getLanguage() == "pt")
-            message = "Alterações não salvas. Clique aqui para salvar";
-        else message = "Unsaved changes. Click here to save";
+        message = getTranslation("Unsaved changes. Click here to save");
         saveOntology.classList.remove("saved");
         saveOntology.classList.add("unsaved");
         saveOntology.innerHTML = message;
@@ -756,8 +662,7 @@ function updateSaveButtonErrorInFrontEnd() {
     let icon = document.createElement("i");
     icon.className = "fa fa-fw fa-cloud-upload";
     // Updates the save file button
-    if (getLanguage() == "pt") message = "Ocorreu um erro ao salvar as alterações";
-    else message = "An error occurred saving changes";
+    message = getTranslation("An error occurred saving changes");
     saveOntology.classList.add("unsaved");
     saveOntology.classList.remove("saved");
     saveOntology.innerHTML = message;
@@ -818,8 +723,7 @@ function updateConsoleColors(
             "#00a65a",
             "important"
         );
-        let message = "You dont have any warnings.";
-        if (getLanguage() === "pt") message = "Voce não tem nenhum aviso";
+        let message = getTranslation("You dont have any warnings.");
         directChatMessages.innerHTML +=
             '<img id="no-warning-img" class="direct-chat-img" src="/css/images/LogoMini.png" alt="Message User Image"><div id="no-warning-text" class="direct-chat-text">' +
             message +
@@ -840,16 +744,10 @@ function thingClassExists() {
             return true;
 
     basicErrorsCount++;
-    if (getLanguage() === "pt")
-        sendWarningMessage(
-            "É necessário que toda ontologia tenha uma classe chamada Coisa. Adicione uma classe Coisa a sua ontologia.",
-            "Erro Conceitual"
-        );
-    else
-        sendWarningMessage(
-            "It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology.",
-            "Conceptual Error"
-        );
+    sendWarningMessage(
+        getTranslation("It is necessary that every ontology has a class called Thing. Add a Thing class to your ontology."),
+        getTranslation("Conceptual Error")
+    );
 }
 
 /**
@@ -864,7 +762,7 @@ function addThingClassToCurrentOntology() {
     annotations.forEach((element) => {
         object.setAttribute(element, "");
     });
-    object.setAttribute("label", getLanguage() == "en" ? "Thing" : "Coisa");
+    object.setAttribute("label", getTranslation("Thing"));
     editor.graph.insertVertex(
         editor.graph.getDefaultParent(),
         null,

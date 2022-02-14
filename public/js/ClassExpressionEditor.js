@@ -82,26 +82,17 @@ function changeTooltipText(axiomIsValid) {
     let language = getLanguage();
     switch (axiomIsValid) {
         case true:
-            if (language === 'en')
-                tooltipText.childNodes[1].nodeValue = 'The axioms are valid!'; // get only the text node, not the other inner HTML tags
-            else
-                tooltipText.childNodes[1].nodeValue = 'Os axiomas são válidos!';
+            tooltipText.childNodes[1].nodeValue = getTranslation('The axioms are valid!'); // get only the text node, not the other inner HTML tags
             tooltipText.style.color = 'green';
             icon.className = "fa fa-fw fa-check";
             break;
         case false:
-            if (language === 'en')
-                tooltipText.childNodes[1].nodeValue = 'The axioms are not valid!';
-            else
-                tooltipText.childNodes[1].nodeValue = 'Os axioma não são válidos!';
+            tooltipText.childNodes[1].nodeValue = getTranslation('The axioms are not valid!');
             tooltipText.style.color = 'red';
             icon.className = "fa fa-fw fa-close";
             break;
         case 'empty':
-            if (language === 'en')
-                tooltipText.childNodes[1].nodeValue = 'None axiom to check!';
-            else
-                tooltipText.childNodes[1].nodeValue = 'Nenhum axioma para checar!';
+            tooltipText.childNodes[1].nodeValue = getTranslation('None axiom to check!');
             tooltipText.style.color = 'black';
             icon.className = "fa fa-fw fa-info-circle";
             break;
