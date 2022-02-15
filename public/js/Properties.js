@@ -346,10 +346,7 @@ function createSelectOptions(cell, propertyName) {
                 e.getAttribute("label") !== cell.getAttribute("label")
         );
         // removes the class Thing from the options
-        options = options.filter((e) =>
-            getLanguage() === "en"
-                ? e.getAttribute("label").toUpperCase() !== "THING"
-                : e.getAttribute("label").toUpperCase() !== "COISA"
+        options = options.filter((e) => getTranslation("THING")
         );
     }
 
@@ -500,12 +497,8 @@ function validateLabel(label) {
 let constraintInput = classInputs.Constraint;
 constraintInput.addEventListener("keyup", function () {
     document.getElementById("help-text-icon").className = "fa fa-fw fa-clock-o";
-    if (getLanguage() === "en")
-        document.getElementById("help-text").childNodes[1].nodeValue =
-            "Checking the axioms, please wait...";
-    else
-        document.getElementById("help-text").childNodes[1].nodeValue =
-            "Checando os axiomas, aguarde um momento...";
+    document.getElementById("help-text").childNodes[1].nodeValue =
+        getTranslation("Checking the axioms, please wait...");
 });
 
 // Call the Class Expression Edior / Axiom Editor 2 seconds

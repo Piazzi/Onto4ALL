@@ -1270,10 +1270,7 @@
 
                     }
                     if (r.status == "ERRO") {
-                        if (getLanguage() == "pt")
-                            message = "Não foi possivel enviar a mensagem, tente novamente mais tarde.";
-                                else message = "Não foi possivel enviar a mensagem, tente novamente mais tarde.";
-                        alert(message);
+                        alert(getTranslate("Unable to send the message, please try again later."));
                     }
                 },
                 error: function(e) {

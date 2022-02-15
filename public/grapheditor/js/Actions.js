@@ -78,10 +78,7 @@ Actions.prototype.init = function()
 			}
 			catch (e)
 			{
-				if(getLanguage() == 'pt')
-					mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message + '. Prezado usuário, o formato da ontologia a ser importada não é compatível com o Onto4AllEditor. Essa versão do editor aceita importações nos seguintes formatos: OWL/XML, .XML');
-				else
-					mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message + '. Dear user, the format of the ontology to be imported is not compatible with Onto4AllEditor. This version of the editor accepts imports in the following formats: OWL / XML, .XML');
+				mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message + '. ' + getTranslation("Dear user, the format of the ontology to be imported is not compatible with Onto4AllEditor. This version of the editor accepts imports in the following formats: OWL / XML, .XML"));
 				console.log(e);
 			}
 		}));

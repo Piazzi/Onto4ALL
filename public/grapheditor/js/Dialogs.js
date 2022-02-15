@@ -1489,7 +1489,7 @@ var EditDataDialog = function(ui, cell)
 	
 	let span = document.createElement('span');
 	span.classList.add('help-block');
-	span.textContent = getLanguage() == 'en' ? '(The property name must be only numbers and letters)' : '(O nome da propriedade pode conter apenas letras e números)';
+	span.textContent = getTranslation('(The property name must be only numbers and letters)');
 	
 	dialog.appendChild(dialogBottom);
 	dialogBottom.appendChild(span);
@@ -1564,10 +1564,7 @@ var EditDataDialog = function(ui, cell)
 	 * @param textArea
 	 */
 	function addHelpText(textArea) {
-		if(getLanguage() === 'en')
-			textArea.insertAdjacentHTML('afterend','<p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> None axiom to check! </p>');
-		else
-			textArea.insertAdjacentHTML('afterend','<p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> Nenhum axioma para checar </p>');
+		textArea.insertAdjacentHTML('afterend','<p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> ' + getTranslate("Nenhum axioma para checar") + ' </p>');
 
 	}
 
@@ -1591,10 +1588,7 @@ var EditDataDialog = function(ui, cell)
 	function addKeyupEvents(textArea) {
 		textArea.addEventListener('keyup', function () {
 			document.getElementById('help-text-icon').className = "fa fa-fw fa-clock-o";
-			if(getLanguage() === 'en')
-				document.getElementById('help-text').childNodes[1].nodeValue = 'Checking the axioms, please wait...';
-			else
-				document.getElementById('help-text').childNodes[1].nodeValue = 'Checando os axiomas, aguarde um momento...';
+			document.getElementById('help-text').childNodes[1].nodeValue = getTranslation('Checking the axioms, please wait...');
 		});
 		// Call the Class Expression Edior / Axiom Editor 2 seconds
 		// after the user stops typing
@@ -1665,7 +1659,7 @@ var EditDataDialog = function(ui, cell)
 		} else {
 			options = classes.filter(e => e.id !== cell.id && e.getAttribute('label') !== cell.getAttribute('label'));
 			// removes the class Thing from the options
-			options = options.filter(e => getLanguage() == 'en' ? e.getAttribute('label').toUpperCase() !== 'THING' : e.getAttribute('label').toUpperCase() !== 'COISA');
+			options = options.filter(e => e.getAttribute('label').toUpperCase() !== getTranslation('THING'));
 		} 
 		
 		// remove duplicated options
@@ -1696,20 +1690,12 @@ var EditDataDialog = function(ui, cell)
         let placeholder;
         if(name === 'inverseOf')
         {
-            if(getLanguage() == 'pt')
-                placeholder = 'Selecione uma relação';
-            else
-                placeholder = 'Select one relation';
+            placeholder = getTranslation('Select one relation');
         }
         else if (name === 'equivalentProperty')
-            if(getLanguage() == 'pt')
-                placeholder = 'Selecione uma ou mais relações';
-            else
-                placeholder = 'Select one or more relations';
-        else if(getLanguage() == 'pt')
-            placeholder = 'Selecione uma ou mais classes';
+            placeholder = getTranslation('Select one or more relations');
         else
-            placeholder = 'Select one or more classes';
+            placeholder = getTranslation('Select one or more classes');
 
        
 		// select the options according to the property value
