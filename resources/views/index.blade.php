@@ -8,6 +8,9 @@
 
 @section('content')
 
+<div id="example"></div>
+<script src="{{ asset('js/app.js') }}"></script>
+
 <!-- Warning Console -->
 <div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box">
     <div id="warnings-console-header" class="box-header">
