@@ -194,7 +194,7 @@
                 <section class="sidebar" style="height: auto">
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu tree" data-widget="tree">
-                        <li class="header">{{__('MAIN NAVIGATION')}}</li>
+                        <li class="header">{{__('ONTOLOGIES')}}</li>
                         <li  @if(Route::currentRouteName() == 'home') class="active" @endif >
                             <a title="{{__('Ontology Editor')}}" href="{{route('home', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-object-group "></i>
@@ -202,9 +202,10 @@
                         </li>
                         <li  @if(Route::currentRouteName() == 'ontologies.index') class="active" @endif  >
                             <a title="{{__('My Ontologies')}}" href="{{route('ontologies.index', app()->getLocale())}}">
-                                <i class="fa fa-fw fa-folder-open "></i>
+                                <i class="fa fa-fw  fa-file-code-o "></i>
                                 <span>{{__('My Ontologies')}}</span></a>
                         </li>
+                        <li class="header">{{__('THESAURUS')}}</li>
                         <li @if(Route::currentRouteName() == 'thesaurus-editor') class="active" @endif>
                             <a title="{{__('Thesaurus Editor')}}" href="{{route('thesaurus-editor', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-book " ></i>
@@ -212,7 +213,7 @@
                         </li>
                         <li @if(Route::currentRouteName() == 'thesaurus.index') class="active" @endif>
                             <a title="{{__('My Thesaurus')}}" href="{{route('thesaurus.index', app()->getLocale())}}">
-                                <i class="fa fa-fw fa-folder-open "></i>
+                                <i class="fa fa-fw fa-bookmark"></i>
                                 <span>{{__('My Thesaurus')}}</span></a>
                         </li>
                         <li class="header">{{__('INFO')}}</li>
@@ -225,11 +226,6 @@
                             <a title="{{__('Tutorial')}}" target="_blank" href="{{route('tutorial', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-info-circle "></i>
                                 <span>{{__('Tutorial')}}</span></a>
-                        </li>
-                        <li @if(Route::currentRouteName() == 'aboutUs') class="active" @endif>
-                            <a title="{{__('About Us')}}" href="{{route('aboutUs', app()->getLocale())}}">
-                                <i class="fa fa-fw fa-institution" ></i>
-                                <span>{{__('About Us')}}</span></a>
                         </li>
                         @can('eAdmin')
                             <li class="header">{{__('ADMIN PANEL')}}</li>

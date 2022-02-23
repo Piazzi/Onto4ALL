@@ -12,7 +12,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 
 <!-- Warning Console -->
-<div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box">
+<div id="warnings-console" class="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box" >
     <div id="warnings-console-header" class="box-header">
         <h3 class="box-title">{{__('Warnings Console')}}</h3>
 
@@ -20,32 +20,38 @@
             <i class="fa fa-fw fa-question-circle" title="{{__('Click to see more information!')}}"></i>
         </a>
 
-
         <a download="ontology-errors.txt" href="#" id="download-errors-txt">
-            <span>
-                <i class="fa fa-download" title="{{__('Downloads a .txt file containing all the current warnings in the ontology')}}"></i>
-            </span>
+            <i class="fa fa-download" title="{{__('Downloads a .txt file containing all the current warnings in the ontology')}}"></i>
         </a>
 
-        <span id="classes" title="{{__('The number of classes in your current ontology')}}" data-widget="collapse">
+        <a download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
+            <i class="fa fa-fw fa-file-text-o"></i>
+        </a>
+
+        <a id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" data-toggle="modal" data-target="#methodology-menu">
+            <i class="fa fa-fw fa-info-circle"></i>
+        </a>
+        <a  id="tips-icon" title="{{__('Tips')}}" href="#"  data-toggle="modal" data-target="#tips-menu">
+            <i class="fa fa-fw fa-search"></i>
+        </a>
+
+
+        <span id="classes" title="{{__('The number of classes in your current ontology')}}" data-widget="collapse" style="color: #f39c12">
             <i class="fa fa-fw fa-circle-o"></i>
             <span id="classes-count"> 0</span>
         </span>
 
-        <span id="relations" title="{{__('The number of relations in your current ontology')}}" data-widget="collapse">
+        <span id="relations" title="{{__('The number of relations in your current ontology')}}" data-widget="collapse" style="color: #3c8dbc">
             <i class="fa fa-1.5x fa-fw fa-exchange"></i>
             <span id="relations-count"> 0</span>
         </span>
-        <span id="datatypeProperties" title="{{__('The number of datatypeproperties in your current ontology')}}" data-widget="collapse">
-            <i class="fa fa-fw fa-long-arrow-right"></i>
-            <span id="datatypeproperties-count"> 0</span>
-        </span>
 
-        <span id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse">
-            <i class="fa fa-fw fa-diamond"></i>
+        <span id="instances" title="{{__('The number of instances in your current ontology')}}" data-widget="collapse" style="color: rebeccapurple">
+            <i class="fa fa-fw fa-circle-thin"></i>
             <span id="instances-count"> 0</span>
         </span>
 
+        
 
         <div class="box-tools pull-right">
 
@@ -87,18 +93,39 @@
 
 <!-- Right Sidebar -->
 <aside class="control-sidebar control-sidebar-light control-sidebar-open">
-    <div class="btn-group" style="display: flex; flex-direction: row; align-content: stretch; justify-content: space-evenly;">
-            <a class="btn btn-default" style="width: 100%;" download="ontology-report.txt" href="#" id="download-ontology-report" title="{{__('Download a report with all the information of your current ontology')}}">
-                <i class="fa fa-fw fa-file-text-o"></i>
-            </a>
+    
 
-            <a class="btn btn-default" style="width: 100%;" id="methodology-icon" title="{{__('Methodology OntoForInfoScience')}}" href="#" data-toggle="modal" data-target="#methodology-menu">
-                <i class="fa fa-fw fa-info-circle"></i>
-            </a>
-            <a class="btn btn-default"  style="width: 100%;" id="tips-icon" title="{{__('Tips')}}" href="#"  data-toggle="modal" data-target="#tips-menu">
-                <i class="fa fa-fw fa-search"></i>
-            </a>
+    <!--.Chat -->
+    <div class="chat-ontology hidden" id='chat'>
+    <div class="box box-solid direct-chat direct-chat-primary collapsed-box" style="margin-bottom: 0px;">
+        <div class="box-header with-border">
+        <h3 class="box-title"><i class="fa fa-fw fa-wechat"></i> Chat</h3>
+
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" data-placement="bottom" title="{{__('Chat with other collaborators of this ontology, messages are saved and can be read at any time between collaborators.')}}"><i class="fa fa-question"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-fw fa-expand"></i>
+            </button>
+        </div>
+        </div>
+        <div class="box-body" id='chat-ontology'>
+            <div class="direct-chat-msg"></div>
+        </div>
+
+        <div class="box-footer" style="">
+            <form action="#" method="post" id='form_send_msg' autocomplete="off">
+                <div class="input-group">
+                    <input type="text" name="message" id='message' autocomplete="off" placeholder="{{__('Enter message...')}}." class="form-control" disabled>
+                    <span class="input-group-btn">
+                        <a hred='javascript:;' id='send_msg' class="btn btn-primary " disabled>{{__('Send')}}</a>
+                    </span>
+                </div>
+            </form>
+        </div>
     </div>
+    </div>
+    <!--./Chat -->
+
     <!-- Tabs -->
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
@@ -108,7 +135,7 @@
             <li><a id="annotations-nav" href="#annotations-tab" data-toggle="tab" style="color: darkred"><i class="fa fa-fw fa-book"></i>
                     Annotation Properties</a></li>
             <li><a id="datatype-properties-nav" href="#datatype-properties-tab" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
-            <li><a id="individuals-nav" href="#individuals-tab" data-toggle="tab" style="color: rebeccapurple"><i class="fa fa-fw fa-user"></i> Individuals</a></li>
+            <li><a id="instances-nav" href="#instances-tab" data-toggle="tab" style="color: rebeccapurple"><i class="fa fa-fw fa-circle-thin"></i> Instances</a></li>
             <li style="visibility: hidden; display:none"><a id="empty-nav" href="#empty-tab" data-toggle="tab" ></a></li>
 
         </ul>
@@ -116,25 +143,25 @@
             <div class="tab-pane active" id="classes-tab">
                 <div class="form-group">
                     <label>SubClassOf</label>
-                    <input id="SubClassOf" disabled type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="SubClassOf" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>Equivalence</label>
-                    <select id="Equivalence" data-placeholder="Select Classes" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="Equivalence" data-placeholder="Select Classes" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Instances</label>
-                    <input id="Instances" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="Instances" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>TargetForKey</label>
-                    <input id="TargetForKey" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="TargetForKey" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>DisjointWith</label>
-                    <select id="DisjointWith" data-placeholder="Select Classes" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="DisjointWith" data-placeholder="Select Classes" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
@@ -147,121 +174,132 @@
 
             <div class="tab-pane " id="annotations-tab">
                 <div class="form-group">
+                    <label>New property</label>
+                    <div class="input-group input-group-sm">
+                        <input id="new-property-label" type="text" class="form-control"  placeholder="Property name" >
+                        <span class="input-group-btn">
+                        <button onclick="createNewProperty(document.getElementById('new-property-label').value);" type="button" class="btn btn-success btn-flat">Create</button>
+                        </span>
+                    </div>
+                    <label id="created-property-message" style="visibility: hidden; color: #00a65a" class="control-label has-success" for="inputSuccess"><i class="fa fa-check"></i> Property created! </label>
+                </div>
+                <div class="form-group">
                     <label>IRI</label> <a id="IRI-link" target="_blank" href=""><i title="copy link" class="fa fa-fw fa-link"></i></a>
-                    <input id="IRI" type="text" class="form-control" placeholder="" disabled onchange="updateInput(this.id, this.value)">
+                    <input id="IRI" type="text" class="form-control" placeholder="" disabled onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>label</label>
-                    <input id="label" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="label" type="text" class="form-control" placeholder=""disabled onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>comment</label>
-                    <input id="comment" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="comment" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>isDefinedBy</label>
-                    <input id="isDefinedBy" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="isDefinedBy" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>seeAlso</label>
-                    <input id="seeAlso" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="seeAlso" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>backwardCompartibleWith</label>
-                    <input id="backwardCompatibleWith" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="backwardCompatibleWith" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>deprecated</label>
-                    <input id="deprecated" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="deprecated" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>incompatibleWith</label>
-                    <input id="incompatibleWith" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="incompatibleWith" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>priorVersion</label>
-                    <input id="priorVersion" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="priorVersion" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>versionInfo</label>
-                    <input id="versionInfo" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="versionInfo" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
+
             </div>
 
             <div class="tab-pane" id="object-properties-tab">
                 <div class="form-group">
                     <label>domain</label>
-                    <input id="domain" disabled type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="domain" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>range</label>
-                    <input id="range" disabled type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="range" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>equivalentTo</label>
-                    <select id="equivalentTo" data-placeholder="Select Relations" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="equivalentTo" data-placeholder="Select Relations" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
-                    <select id="subpropertyOf" data-placeholder="Select Relation" style="width: 100%; " class="js-example-basic-multiple" onchange="updateInput(this.id, this.value)">
+                    <select id="subpropertyOf" data-placeholder="Select Relation" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>inverseOf</label>
-                    <select id="inverseOf" data-placeholder="Select Relation" style="width: 100%; " class="js-example-basic-multiple" onchange="updateInput(this.id, this.value)">
+                    <select id="inverseOf" data-placeholder="Select Relation" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
-                    <select id="disjointWith-relations" data-placeholder="Select Relations" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="disjointWith-relations" data-placeholder="Select Relations" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                            <input id="functional" type="checkbox" onchange="updateInput(this.id, this.checked)">
+                            <input id="functional" type="checkbox" onchange="updatePropertyInput(this.id, this.checked)">
                             Functional
                         </label>
                     </div>
 
                     <div class="checkbox">
                         <label>
-                            <input id="inverseFunctional" type="checkbox" onchange="updateInput(this.id, this.checked)">
+                            <input id="inverseFunctional" type="checkbox" onchange="updatePropertyInput(this.id, this.checked)">
                             Inverse Functional
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input id="transitive" type="checkbox" onchange="updateInput(this.id, this.checked)">
+                            <input id="transitive" type="checkbox" onchange="updatePropertyInput(this.id, this.checked)">
                             Transitive
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input id="symetric" type="checkbox" onchange="updateInput(this.id, this.checked)">
+                            <input id="symetric" type="checkbox" onchange="updatePropertyInput(this.id, this.checked)">
                             Symetric
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input id="asymmetric" type="checkbox" onchange="updateInput(this.id, this.checked)">
+                            <input id="asymmetric" type="checkbox" onchange="updatePropertyInput(this.id, this.checked)">
                             Asymmetric
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input id="reflexive" type="checkbox" onchange="updateInput(this.id, this.checked)">
+                            <input id="reflexive" type="checkbox" onchange="updatePropertyInput(this.id, this.checked)">
                             Reflexive
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input id="irreflexive" type="checkbox" onchange="updateInput(this.id, this.checked)">
+                            <input id="irreflexive" type="checkbox" onchange="updatePropertyInput(this.id, this.checked)">
                             Irreflexive
                         </label>
                     </div>
@@ -270,10 +308,10 @@
             </div>
 
 
-            <div class="tab-pane" id="individuals-tab">
+            <div class="tab-pane" id="instances-tab">
                 <div class="form-group">
                     <label>types</label>
-                    <select id="types" data-placeholder="Select Datatypes" style="width: 100%; " class="js-example-basic-multiple" onchange="updateInput(this.id, this.value)">
+                    <select id="types" data-placeholder="Select Datatypes" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
                         <option>owl:rational</option>
                         <option>owl:real</option>
                         <option>rdf:PlainLiteral</option>
@@ -312,31 +350,31 @@
                 </div>
                 <div class="form-group">
                     <label>sameAs</label>
-                    <select id="sameAs" data-placeholder="Select Individuals" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="sameAs" data-placeholder="Select instances" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>differentAs</label>
-                    <select id="differentAs" data-placeholder="Select Individuals" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput(this.id, $('#'+this.id).val())">
+                    <select id="differentAs" data-placeholder="Select instances" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>objectProperties</label>
-                    <input id="objectProperties" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="objectProperties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>dataProperties</label>
-                    <input id="dataProperties" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="dataProperties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>negativeObjectProperties</label>
-                    <input id="negativeObjectProperties" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="negativeObjectProperties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>negativeDataProperties</label>
-                    <input id="negativeDataProperties" type="text" class="form-control" placeholder="" onchange="updateInput(this.id, this.value)">
+                    <input id="negativeDataProperties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
 
             </div>
@@ -345,45 +383,45 @@
             <div class="tab-pane" id="datatype-properties-tab">
                 <div class="form-group">
                     <label>Value</label>
-                    <input id="value-datatype-properties" type="text" class="form-control" placeholder="" onchange="updateInput('value', this.value)">
+                    <input id="value-datatype-properties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput('value', this.value)">
                 </div>
                 <div class="form-group">
                     <label>domain</label>
-                    <input id="domain-datatype-properties" disabled type="text" class="form-control" placeholder="" onchange="updateInput('domain', this.value)">
+                    <input id="domain-datatype-properties" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput('domain', this.value)">
                 </div>
                 <div class="form-group">
                     <label>range</label>
-                    <input id="range-datatype-properties" disabled type="text" class="form-control" placeholder="" onchange="updateInput('range', this.value)">
+                    <input id="range-datatype-properties" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput('range', this.value)">
                 </div>
                 <div class="form-group">
                     <label>equivalentTo</label>
-                    <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput('equivalentTo', $('#'+this.id).val())">
+                    <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('equivalentTo', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
-                    <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput('subpropertyOf', $('#'+this.id).val())">
+                    <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('subpropertyOf', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
-                    <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updateInput('disjointWith', $('#'+this.id).val())">
+                    <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('disjointWith', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                            <input id="functional-datatype-properties" type="checkbox" onchange="updateInput('functional', this.checked)">
+                            <input id="functional-datatype-properties" type="checkbox" onchange="updatePropertyInput('functional', this.checked)">
                             Functional
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label>datatype</label>
-                    <select id="datatype" data-placeholder="Select Datatypes" style="width: 100%; " class="js-example-basic-multiple" name="" onchange="updateInput(this.id, this.value)">
+                    <select id="datatype" data-placeholder="Select Datatypes" style="width: 100%; " class="js-example-basic-multiple" name="" onchange="updatePropertyInput(this.id, this.value)">
                         <option>owl:rational</option>
                         <option>owl:real</option>
                         <option>rdf:PlainLiteral</option>
@@ -453,7 +491,7 @@
                     {{__('if you had any problem with this feature.')}}
                 </p>
                 <img class="img-max-width" alt="export" src="{{asset('css/images/warningConsole.png')}}">
-               
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Close')}}</button>
@@ -485,7 +523,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
@@ -1043,7 +1081,7 @@
             </div>
             <div class="modal-body">
                 <label>Constraint</label>
-                <textarea placeholder="Separate your axioms with semicolon ; e.g: &#13;&#10; Man subClassOf People ; &#13;&#10; Woman subClassOf People ;" style="width: 100%;" id="Constraint" rows="4" onchange="updateInput(this.id, this.value)"> </textarea>
+                <textarea placeholder="Separate your axioms with semicolon ; e.g: &#13;&#10; Man subClassOf People ; &#13;&#10; Woman subClassOf People ;" style="width: 100%;" id="Constraint" rows="4" onchange="updatePropertyInput(this.id, this.value)"> </textarea>
                 <label>Axioms:</label>
                 <div id="highlight-constraint-text"> </div>
                 <p id="help-text"><i id="help-text-icon" class="fa fa-fw fa-info-circle"></i> {{__('None axiom to check!')}} </p>
@@ -1058,38 +1096,7 @@
 <!--./Class Expression Editor Modal -->
 
 
-<!--.Chat -->
 
-<div class="chat-ontology hidden" id='chat'>
-  <div class="box box-primary direct-chat direct-chat-primary collapsed-box">
-    <div class="box-header with-border">
-      <h3 class="box-title">Chat</h3>
-
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" data-placement="top" title="{{__('With this chat it is possible to send this real chat to all the people who send a message in time editing this ontology, in addition, the messages are stored and can be read in the future.')}}"><i class="fa fa-question"></i>
-        </button>
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
-        </button>
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-      </div>
-    </div>
-    <div class="box-body" id='chat-ontology'>
-        <div class="direct-chat-msg"></div>
-    </div>
-
-    <div class="box-footer" style="">
-        <form action="#" method="post" id='form_send_msg' autocomplete="off">
-            <div class="input-group">
-                <input type="text" name="message" id='message' autocomplete="off" placeholder="{{__('Enter message...')}}." class="form-control" disabled>
-                <span class="input-group-btn">
-                    <a hred='javascript:;' id='send_msg' class="btn btn-primary btn-flat" disabled>{{__('Send')}}</a>
-                </span>
-            </div>
-        </form>
-    </div>
-  </div>
-</div>
-  <!--./Chat -->
 
 <!-- LOADS MXGRAPH GRAPHEDITOR AND ITS FUNCTIONS -->
 
@@ -1145,7 +1152,7 @@
 <script type="text/javascript" src="{{asset('js/Converter.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/ClassExpressionEditor.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/OntologyManager.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/Cell.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/Properties.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous">
 </script>
 
@@ -1299,13 +1306,13 @@
 
     });
 
-    document.addEventListener("DOMContentLoaded", function() { 
+    document.addEventListener("DOMContentLoaded", function() {
 
     // Select2 Plugin
     $(document).ready(function () {
         $('.js-example-basic-multiple').select2(
             {theme: 'classic'}
-            
+
         );
         $('.js-example-tags').select2({
             theme: 'classic',

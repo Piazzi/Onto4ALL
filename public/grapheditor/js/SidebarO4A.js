@@ -1042,7 +1042,6 @@ Sidebar.prototype.addThesauruAdvancedPalette = function(expand)
 var classProperties = ['SubClassOf','Constraint','DisjointWith','Equivalence','TargetForKey','Instances'];
 var relationProperties = ['domain','range','inverseOf','equivalentTo','subpropertyOf','disjointWith','functional','inverseFunctional','transitive','symetric','asymmetric','reflexive','irreflexive'];
 var annotations = ['IRI','label','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','deprecated','incompatibleWith','backwardCompatibleWith'];
-var datatypeProperties = ['value','domain','range','inverseOf','equivalentTo','subpropertyOf','disjointWith','functional','datatype'];
 var instanceProperties = ['types','sameAs','differentAs','objectProperties','dataProperties','negativeObjectProperties','negativeDataProperties']
 //var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
 
@@ -1062,12 +1061,6 @@ let instanceObject = mxUtils.createXmlDocument().createElement('object');
 instanceObject.setAttribute('label','Instance');
 instanceProperties.forEach(element => {instanceObject.setAttribute( element, '');});
 annotations.forEach(element => {instanceObject.setAttribute( element, '');});
-
-
-let datatypePropertyObject = mxUtils.createXmlDocument().createElement('object');
-datatypePropertyObject.setAttribute('label', 'new_datatype_property');
-datatypeProperties.forEach(element => {datatypePropertyObject.setAttribute( element, '');});
-annotations.forEach(element => {datatypePropertyObject.setAttribute( element, '');});
 
 
 /**
