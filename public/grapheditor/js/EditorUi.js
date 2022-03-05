@@ -1059,18 +1059,21 @@ EditorUi.prototype.exportFile = function(fileName, data, format) {
 
 	if(fileName.split('.')[1] !== format)
 		fileName = fileName + format;
-
+    console.log('Teste export')
 	if(format === 'owl')
 	{
 		return $.ajax({
 			/* the route pointing to the post function */
-			url: '/exportOWL',
+            //http://200.17.70.211:13951/owlapi/webapi/ontology/read
+            ///exportOWL
+			url: '/http://200.17.70.211:13951/owlapi/webapi/ontology/read',
 			type: 'POST',
 			/* send the csrf-token and the input to the controller */
 			data: {
 				_token: $('meta[name="csrf-token"]').attr('content'),
 				fileName: fileName,
-				xml:data
+				xml:data,
+                json: getCurrentOntologyInJSON()
 			},
 			dataType: 'JSON',
 			success: function (owlString) {
@@ -4017,7 +4020,7 @@ EditorUi.prototype.isCompatibleString = function(data)
  */
 EditorUi.prototype.saveFile = function(forceDialog)
 {
-	
+
 	document.getElementById('save-ontology').click();
 	/*
 	if (!forceDialog && this.editor.filename != null)
