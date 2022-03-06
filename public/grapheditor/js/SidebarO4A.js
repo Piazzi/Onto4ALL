@@ -1103,9 +1103,9 @@ Sidebar.prototype.addBasicOntologyPalette = function(expand)
 	instance.setAttribute('label', getTranslation('Instance'));
 	fns.push(this.createVertexTemplateEntry('ellipse;whiteSpace=wrap;html=1;aspect=fixed;strokeColor=#663399;Instance;', 60, 60, instance, 'Instance', null, null, 'circle'));
 
-	let datatypeProperty = datatypePropertyObject.cloneNode(true);
+	/*let datatypeProperty = datatypePropertyObject.cloneNode(true);
 	datatypeProperty.setAttribute('label', getTranslation('new_datatype_property'));
-    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=sysMLLost;endSize=12;edgeStyle=none;strokeColor=#006633;DatatypeProperty;', 160, 0, datatypeProperty, 'Datatype Property', null, 'uml sequence message call invoke dispatch'));
+    fns.push(this.createEdgeTemplateEntry('html=1;verticalAlign=bottom;endArrow=sysMLLost;endSize=12;edgeStyle=none;strokeColor=#006633;DatatypeProperty;', 160, 0, datatypeProperty, 'Datatype Property', null, 'uml sequence message call invoke dispatch'));*/
 
     this.addPaletteFunctions(paletteName, paletteName, (expand != null) ? expand : true, fns);
 };
