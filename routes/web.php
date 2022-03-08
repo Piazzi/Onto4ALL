@@ -120,6 +120,9 @@ Route::post('/save');
  Route::post('/updateChat', [ChatController::class, 'updateChat'] )->middleware('can:eModelador');
  Route::post('/sendChat', [ChatController::class, 'sendChat'] )->middleware('can:eModelador');
 
+ // Ontology
+ Route::get('/getOntologies', [OntologyController::class, 'getOntologies'] )->middleware('can:eModelador');
+
 // Socialite routes
 //Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 //Route::get('/callback', 'SocialAuthFacebookController@callback');

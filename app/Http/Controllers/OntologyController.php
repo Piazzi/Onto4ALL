@@ -485,4 +485,19 @@ class OntologyController extends Controller
             return response()->json($response);
         }
     }
+
+
+    /**
+     * Return ontologies by user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getOntologies()
+    {
+        $ontologies = Ontology::where('user_id', '=', Auth::user()->id)->orderBy('updated_at','desc')->get();
+        // Get all ontologies shared or created by the user
+        $ontologies = $ontologies->concat(Auth::user()->ontologies)->unique()->sortByDesc('updated_at');
+
+        return response()->json($ontologies);
+    }
 }

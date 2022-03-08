@@ -118,9 +118,8 @@ function OntologyForm(props) {
                         <div className="form-group">
                             <label>{Collaborators}</label>
                             <span>- {Insert_usernames_to_share_your_ontology_with_other_Onto4ALL_users}</span> <strong style={{color: '#761c19'}}>({Collaborators_will_be_able_to_edit_this_ontology})</strong>
-                            <select data-placeholder="{Insert_usernames_here}" id="collaborators-select" style={{width: '100%'}} className="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
-                               {optionUsers}
-                               <option>AAA</option>
+                            <select data-placeholder={Insert_usernames_here} id="collaborators-select" style={{width: '100%'}} className="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
+                               <option dangerouslySetInnerHTML={{__html: optionUsers}}/>
                             </select>
                         </div>
                     </div>

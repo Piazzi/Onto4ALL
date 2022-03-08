@@ -41,6 +41,7 @@
     const Publication_Date = '{{__('Publication Date')}}';
     const Last_Uploaded = '{{__('Last Uploaded')}}';
     const Created_By = '{{__('Created By')}}';
+    const Last_update = '{{__('Last update')}}';
     const Description = '{{__('Description')}}';
     const Link = '{{__('Link')}}';
     const Domain = '{{__('Domain')}}';
@@ -58,7 +59,7 @@
     const You = '{{__('You')}}';
     const Save_Changes = '{{__('Save Changes')}}';
     const Insert_usernames_here = '{{__('Insert usernames here')}}';
-    const Methodology = '{{__('Methodology')}}';
+    const methodology = '{{__('Methodology')}}';
     const Specification_of_the_ontology = '{{__('Specification of the ontology')}}';
     const Acquisition_and_extraction_of_knowledge = '{{__('Acquisition and extraction of knowledge')}}';
     const Conceptualization = '{{__('Conceptualization')}}';
@@ -106,6 +107,13 @@
     const to_specify_ontological_relations_consisting_of_the_application_of_a_defined_set_of_rules_and_principles_carrying_out_the_transformation_of_conceptual_relations_into_formal_relations_in_the_Onto4AllEditor_this_activity_must_be_performed_in_the_editor_clicking_under_a_class_or_relation_with_the_right_button_of_the_mouse_and_choosing_the_function_Edit_Properties_in_the_submenu_or_selecting_the_relation_and_pressing_CTRL_M = "{{__('to specify ontological relations, consisting of the application of a defined set of rules and principles carrying out the transformation of conceptual relations into formal relations (in the Onto4AllEditor, this activity must be performed in the editor, clicking under a class or relation with the right button of the mouse and choosing the function Edit Properties in the submenu (or selecting the relation and pressing CTRL + M)).')}}";
     const The_evaluation_of_the_ontology_correspond_to_the_application_of_a_set_of_criteria_allowing_one_to_perform_both_the_ontological_validation_validation_of_the_correspondence_between_ontology_and_the_real_world_and_the_ontological_verification_analysis_of_the_ontology_with_respect_to_the_correctness_of_its_construction_Examples_of_validation_criteria_are_non_recursivity_in_definitions_the_specification_of_different_types_of_part_of_relations_the_definition_of_inverse_relations_and_the_creation_of_the_cardinalitiesIn_the_Onto4AllEditor_the_Phase_6_is_performed_automatically_by_the_editor_through_of_the_functionality_Warnings_Console_that_suggests_good_modeling_practices_for_the_current_drawn_ontology = "{{__('The evaluation of the ontology correspond to the application of a set of criteria allowing one to perform both the ontological validation (validation of the correspondence between ontology and the real world) and the ontological verification (analysis of the ontology with respect to the correctness_of_its_construction_Examples_of_validation_criteria_are_non-recursivity_in_definitions_the_specification_of_different_types_of_part_of_relations_the_definition_of_inverse_relations_and_the_creation_of_the_cardinalitiesIn_the_Onto4AllEditor_the_Phase_6_is_performed_automatically_by_the_editor_through_of_the_functionality_Warnings_Console_that_suggests_good_modeling_practices_for_the_current_drawn_ontology')}}";
     const importIMG = "{{asset('css/images/Methodology/import.png')}}";
+    const Ontology_Manager = '{{__('Ontology Manager!')}}';
+    const You_dont_have_any_ontologies_saved_in_our_ontology_manager_yet = '{{__('You dont have any ontologies saved in our ontology manager yet!')}}';
+    const was_updated = '{{__('was updated!')}}';
+    const was_created = '{{__('was created!')}}';
+    const Open_in_the_editor = '{{__('Open in the editor')}}';
+    const Search_for_tips = '{{__('Search for tips')}}';
+    const External_Ontology_Databases = '{{__('External Ontology Databases')}}';
 
     var optionUsers = '';
     @foreach($users as $user)
@@ -115,6 +123,8 @@
             optionUsers += '<option value="{{$user->id}}">{{$user->name}}</option>';
         @endif
     @endforeach
+
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     
 </script>
 
@@ -141,249 +151,12 @@
 
 
 <!-- Ontology Manager -->
-<div class="modal fade" id="ontology-manager" style="display: none;">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">{{__('Ontology Manager')}}</h4>
-
-            </div>
-            <div class="modal-body">
-                @if($ontologies->count() == 0)
-                <p>{{__('You dont have any ontologies saved in our ontology manager yet')}}</p>
-                @else
-                <ul class="timeline">
-                    @foreach($ontologies as $ontology)
-                    <li>
-                        <i class="fa fa-object-group bg-green"></i>
-
-                        <div class="timeline-item">
-                            <span class="time"><i class="fa fa-user"></i> {{__('Created By')}}:
-                                {{$ontology->user->name}}</span>
-                            <span class="time"><i class="fa fa-clock-o"></i> {{__('Last update')}}:
-                                {{date("d-m-Y | H:i e", strtotime($ontology->updated_at))}}</span>
-                            @if($ontology->favourite == 1)
-                            <span class="time"><i style="color: #f39c12" class="fa fa-fw fa-star"></i></span>
-                            @endif
-
-                            <h3 class="timeline-header">
-                                <a class="openOntology" data-dismiss="modal" id="{{$ontology->id}}" href="">{{$ontology->name}}</a>
-                                @if($ontology->created_at !== $ontology->updated_at)
-                                {{__('was updated')}}
-                                @else
-                                {{__('was created')}}
-                                @endif
-                            </h3>
-
-                            <div class="timeline-body">
-                                @if($ontology->description)
-                                <strong><i class="fa fa-book margin-r-5"></i>{{__('Description')}}</strong>
-                                <p class="text-muted">
-                                    {{$ontology->description}}
-                                </p>
-                                @endif
-                            </div>
-                            <div class="timeline-footer">
-                                <a data-dismiss="modal" id="{{$ontology->id}}" class="btn btn-default editor-timeline-item openOntology" href="#"><i class="fa fa-fw fa-object-group"></i> {{__('Open in the editor')}}</a>
-                            </div>
-                        </div>
-                    </li>
-                    @endforeach
-                    @endif
-                </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('Close')}}</button>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+<div id='ontologyManager'></div>
+<!-- Ontology Manager -->
 
 <!-- Tips Menu Modal -->
-<div class="modal fade" id="tips-menu" style="display: none;">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-                <h4 style="text-align: center" class="modal-title">{{__('Tips')}}</h4>
-
-            </div>
-            <div class="modal-body">
-
-                <div style="margin-bottom: 10px" id="searchBar" class="input-group input-group-sm">
-                    <input value="" id="search-tip-input" type="text" class="form-control" placeholder="{{__('Search for tips')}}">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search-plus"></i></button>
-                    </div>
-                </div>
-                <div id="menu-wrapper">
-                    <div class="tab-content">
-                        <div id="menu-scroll">
-                            <div id="control-sidebar-theme-demo-options-tab table-search" class="tab-pane active table-search">
-                                @foreach($relations as $ontologyRelation)
-                                <div id="tipSearch" class="box box-default collapsed-box box-solid relation-box">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title title">{{$ontologyRelation->name}} <i class="fa fa-fw fa-long-arrow-right"></i></h3>
-                                        <div class="box-tools pull-right">
-                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="box-body">
-                                        <dl>
-                                            <dt>Definition</dt>
-                                            <dd>{{$ontologyRelation->definition}}</dd>
-                                            @if($ontologyRelation->semi_formal_definition)
-                                            <dt>Semi Formal Definition</dt>
-                                            <dd>{{$ontologyRelation->semi_formal_definition}}</dd>
-                                            @endif
-                                            @if($ontologyRelation->formal_definition)
-                                            <dt>Formal Definition</dt>
-                                            <dd>{{$ontologyRelation->formal_definition}}</dd>
-                                            @endif
-                                            <dt>Domain</dt>
-                                            <dd>{{$ontologyRelation->domain}}</dd>
-                                            <dt>Range</dt>
-                                            <dd>{{$ontologyRelation->range}}</dd>
-                                            <dt>Example Of Usage</dt>
-                                            <dd>{{$ontologyRelation->example_of_usage}}</dd>
-                                            @if($ontologyRelation->imported_from)
-                                            <dt>Imported From</dt>
-                                            <dd>
-                                                <a target="_blank" href="{{$ontologyRelation->imported_from}}">{{$ontologyRelation->imported_from}}</a>
-                                            </dd>
-                                            @endif
-                                            <dt>ID</dt>
-                                            <dd>{{$ontologyRelation->relation_id}}</dd>
-                                            @if(app()->getLocale() =='pt' && $ontologyRelation->label_pt)
-                                            <dt>Label PT</dt>
-                                            <dd>{{$ontologyRelation->label_pt}}</dd>
-                                            @else
-                                            <dt>Label</dt>
-                                            <dd>{{$ontologyRelation->label}}</dd>
-                                            @endif
-                                            @if($ontologyRelation->synonyms)
-                                            <dt>Synonyms</dt>
-                                            <dd>{{$ontologyRelation->synonyms}}</dd>
-                                            @endif
-                                            @if($ontologyRelation->is_defined_by)
-                                            <dt>Is Defined By</dt>
-                                            <dd>{{$ontologyRelation->is_defined_by}}</dd>
-                                            @endif
-                                            @if($ontologyRelation->comments)
-                                            <dt>Editor Note (comments)</dt>
-                                            <dd>{{$ontologyRelation->comments}}</dd>
-                                            @endif
-                                            @if($ontologyRelation->inverse_of)
-                                            <dt>Inverse Of</dt>
-                                            <dd>{{$ontologyRelation->inverse_of}}</dd>
-                                            @endif
-                                            @if($ontologyRelation->subproperty_of)
-                                            <dt>Subproperty Of</dt>
-                                            <dd>{{$ontologyRelation->subproperty_of}}</dd>
-                                            @endif
-                                            @if($ontologyRelation->superproperty_of)
-                                            <dt>Superproperty Of</dt>
-                                            <dd>{{$ontologyRelation->superproperty_of}}</dd>
-                                            @endif
-                                            <dt>Ontology</dt>
-                                            <dd>{{strtoupper($ontologyRelation->ontology)}}</dd>
-                                        </dl>
-                                    </div>
-                                </div>
-                                @endforeach
-                                @foreach ($classes as $class)
-                                <div id="tipSearch" class="box box-success collapsed-box box-solid">
-                                    <div class="box-header with-border">
-                                        <h3 class="box-title title">{{$class->name}} <i class="fa fa-fw fa-circle-thin"></i>
-                                        </h3>
-                                        <div class="box-tools pull-right">
-                                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                                        </div>
-                                    </div>
-                                    <div class="box-body">
-                                        <dl>
-                                            <dt>Definition</dt>
-                                            <dd>{{$class->definition}}</dd>
-                                            @if($class->semi_formal_definition)
-                                            <dt>Semi Formal Definition</dt>
-                                            <dd>{{$class->semi_formal_definition}}</dd>
-                                            @endif
-                                            @if($class->formal_definition)
-                                            <dt>Formal Definition (has_associated_axiom)</dt>
-                                            <dd>{{$class->formal_definition}}</dd>
-                                            @endif
-                                            <dt>ID</dt>
-                                            <dd>{{$class->class_id}}</dd>
-                                            @if($class->subclass)
-                                            <dt>SubClassOf</dt>
-                                            <dd>{{$class->subclass}}</dd>
-                                            @endif
-                                            @if($class->synonyms)
-                                            <dt>Synonyms (has_synonym)</dt>
-                                            <dd>{{$class->synonyms}}</dd>
-                                            @endif
-                                            <dt>Example Of Usage</dt>
-                                            <dd>{{$class->example_of_usage}}</dd>
-                                            @if($class->imported_from)
-                                            <dt>Imported From</dt>
-                                            <dd>
-                                                <a target="_blank" href="{{$class->imported_from}}">{{$class->imported_from}}</a>
-                                            </dd>
-                                            @endif
-                                            @if(app()->getLocale() =='pt' && $ontologyRelation->label_pt)
-                                            <dt>Label PT</dt>
-                                            <dd>{{$ontologyRelation->label_pt}}</dd>
-                                            @else
-                                            <dt>Label</dt>
-                                            <dd>{{$ontologyRelation->label}}</dd>
-                                            @endif
-                                            @if($class->elucidation)
-                                            <dt>Elucidation</dt>
-                                            <dd>{{$class->elucidation}}</dd>
-                                            @endif
-                                            @if($class->is_defined_by)
-                                            <dt>Is Defined By</dt>
-                                            <dd>{{$class->is_defined_by}}</dd>
-                                            @endif
-                                            @if($class->disjoint_with)
-                                            <dt>Disjoint With</dt>
-                                            <dd>{{$class->disjoint_with}}</dd>
-                                            @endif
-                                            @if($class->comments)
-                                            <dt>Editor Note (comments)</dt>
-                                            <dd>{{$class->comments}}</dd>
-                                            @endif
-                                            <dt>Ontology</dt>
-                                            <dd>{{strtoupper($class->ontology)}}</dd>
-                                        </dl>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{__('Close')}}</button>
-                {{__('External Ontology Databases')}}:
-                <a href="http://www.ontobee.org/" target="_blank"> OntoBee | </a>
-                <a href="https://bioportal.bioontology.org/" target="_blank"> BioPortal | </a>
-                <a href="https://www.ebi.ac.uk/ols/index" target="_blank"> Ontology Lookup Service (OLS) | </a>
-                <a href="http://swoogle.umbc.edu/2006/" target="_blank"> Swoogle | </a>
-                <a href="http://resources.si.washington.edu/fma_browser1/" target="_blank"> Foundational Model Anatomy
-                    Browser </a>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+<div id='tips'></div>
+<!-- Tips Menu Modal -->
 
 <!-- Methodology Menu Modal -->
 <div id='methodology'></div>

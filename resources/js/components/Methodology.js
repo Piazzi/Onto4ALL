@@ -9,7 +9,7 @@ function Methodology(props) {
                     <div className="modal-header">
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true"></span></button>
-                        <h4 style={{textAlign: 'center'}} className="modal-title">{Methodology}</h4>
+                        <h4 style={{textAlign: 'center'}} className="modal-title">{methodology}</h4>
 
                     </div>
                     <div className="modal-body">

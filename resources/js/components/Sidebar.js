@@ -5,6 +5,9 @@ function Siderbar(props) {
     return (
         <aside className="control-sidebar control-sidebar-light control-sidebar-open">
 
+            <div id='chat'></div>
+
+            <div id='properties'></div>
 
         </aside>
     );
