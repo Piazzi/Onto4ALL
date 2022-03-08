@@ -488,3 +488,30 @@ function getCurrentOntologyInJSON() {
 
     return JSON.stringify(json);
 }
+
+function xmlToOwl(fileName) {
+    $.ajax({
+        /* the route pointing to the post function */
+        //http://200.17.70.211:13951/owlapi/webapi/ontology/read
+        ///exportOWL
+        url: 'http://200.17.70.211:13951/owlapi/webapi/ontology/format',
+        type: 'POST',
+
+        /* send the csrf-token and the input to the controller */
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            fileName: fileName,
+            //xml:,
+            json: getCurrentOntologyInJSON(),
+        },
+        crossDomain: true,
+        dataType: 'JSONP',
+        success: function (owlString) {
+            console.log(owlString)
+            return owlString;
+        },
+    }).done(function( data ) {
+        console.log(data)
+    });
+
+}
