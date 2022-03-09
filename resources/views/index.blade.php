@@ -15,7 +15,7 @@
     const Downloads_a_txt_file_containing_all_the_current_warnings_in_the_ontology = '{{__('Downloads a .txt file containing all the current warnings in the ontology')}}'
     const Download_a_report_with_all_the_information_of_your_current_ontology = '{{__('Download a report with all the information of your current ontology')}}';
     const Methodology_OntoForInfoScience = '{{__('Methodology OntoForInfoScience')}}';
-    const Tips = '{{__('Tips')}}';
+    const tips = '{{__('Tips')}}';
     const The_number_of_classes_in_your_current_ontology = '{{__('The number of classes in your current ontology')}}';
     const The_number_of_relations_in_your_current_ontology = '{{__('The number of relations in your current ontology')}}';
     const The_number_of_instances_in_your_current_ontology = '{{__('The number of instances in your current ontology')}}';

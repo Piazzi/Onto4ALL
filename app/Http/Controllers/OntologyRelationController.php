@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\OntologyRelation;
 use App\Http\Requests\OntologyRelationStoreRequest;
-
+use Illuminate\Support\Facades\Auth;
 
 class OntologyRelationController extends Controller
 {
@@ -113,5 +113,17 @@ class OntologyRelationController extends Controller
     {
         $relations = OntologyRelation::where('name','Like',  '%' .$request->search. '%')->paginate(10);
         return view('ontology-relation.ontology-relation', compact('relations'));
+    }
+
+    /**
+     * Return relations by user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getRelations()
+    {
+        $relations = OntologyRelation::select()->whereIn('ontology', explode(',',Auth::user()->ontology))->get();
+
+        return response()->json($relations);
     }
 }

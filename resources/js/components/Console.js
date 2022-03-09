@@ -22,7 +22,7 @@ function Console(props) {
                 <a id="methodology-icon" title={Methodology_OntoForInfoScience} href="#" data-toggle="modal" data-target="#methodology-menu">
                     <i className="fa fa-fw fa-info-circle"></i>
                 </a>
-                <a  id="tips-icon" title={Tips} href="#"  data-toggle="modal" data-target="#tips-menu">
+                <a  id="tips-icon" title={tips} href="#"  data-toggle="modal" data-target="#tips-menu">
                     <i className="fa fa-fw fa-search"></i>
                 </a>
 

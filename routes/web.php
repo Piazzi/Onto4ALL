@@ -122,6 +122,8 @@ Route::post('/save');
 
  // Ontology
  Route::get('/getOntologies', [OntologyController::class, 'getOntologies'] )->middleware('can:eModelador');
+ Route::get('/getRelations', [OntologyRelationController::class, 'getRelations'] )->middleware('can:eModelador');
+ Route::get('/getClasses', [OntologyClassController::class, 'getClasses'] )->middleware('can:eModelador');
 
 // Socialite routes
 //Route::get('/redirect', 'SocialAuthFacebookController@redirect');

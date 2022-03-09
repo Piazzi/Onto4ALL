@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\OntologyClass;
 use App\Http\Requests\OntologyClassStoreRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OntologyClassController extends Controller
 {
@@ -112,5 +113,17 @@ class OntologyClassController extends Controller
     {
         $classes = OntologyClass::where('name','Like',  '%' .$request->search. '%')->paginate(10);
         return view('ontology-class.ontology-class', compact('classes'));
+    }
+
+    /**
+     * Return classes by user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getClasses()
+    {
+        $classes = OntologyClass::select()->whereIn('ontology', explode(',',Auth::user()->ontology))->get();
+
+        return response()->json($classes);
     }
 }
