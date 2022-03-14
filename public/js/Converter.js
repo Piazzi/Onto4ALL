@@ -403,7 +403,7 @@ function getCurrentOntologyInJSON() {
         ontologyId = document.getElementById("id").value;
     }
 
-    let json = {
+    let ontology = {
         "id": "https://onto4all.com/en/ontologies/"+ ontologyId,
         "filetype": "OWL",
         "classes": [],
@@ -414,7 +414,7 @@ function getCurrentOntologyInJSON() {
 
 
     classes.forEach((e) => {
-        json.classes.push({
+        ontology.classes.push({
             "Name": e.value.getAttribute('label'),
             "SubClassOf": e.value.getAttribute('SubClassOf'),
             "EquivalentTo": e.value.getAttribute('EquivalentTo'),
@@ -437,7 +437,7 @@ function getCurrentOntologyInJSON() {
     });
 
     relations.forEach((e) => {
-        json["object properties"].push({
+        ontology["object properties"].push({
                 "Name": e.value.getAttribute('label'),
                 "domain": e.value.getAttribute('domain'),
                 "range": e.value.getAttribute('range'),
@@ -461,7 +461,7 @@ function getCurrentOntologyInJSON() {
     });
 
     instances.forEach((e) => {
-        json.individuals.push({
+        ontology.individuals.push({
                 "Name": e.value.getAttribute('label'),
                 "types": e.value.getAttribute('types'),
                 "sameAs": e.value.getAttribute('sameAs'),
@@ -485,8 +485,7 @@ function getCurrentOntologyInJSON() {
         );
     });
 
-
-    return JSON.stringify(json);
+    return JSON.stringify(cleanObject(ontology));
 }
 
 function xmlToOwl(fileName) {
@@ -514,4 +513,32 @@ function xmlToOwl(fileName) {
         console.log(data)
     });
 
+}
+
+/**
+ * Remove empty and null values from the entire object
+ * @param {*} object
+ * @returns
+ */
+function cleanObject(object) {
+    Object
+        .entries(object)
+        .forEach(([k, v]) => {
+            if (v && typeof v === 'object')
+                cleanObject(v);
+            if (v &&
+                typeof v === 'object' &&
+                !Object.keys(v).length ||
+                v === null ||
+                v === undefined ||
+                v === "" ||
+                v.length === 0
+            ) {
+                if (Array.isArray(object))
+                    object.splice(k, 1);
+                else if (!(v instanceof Date))
+                    delete object[k];
+            }
+        });
+    return object;
 }
