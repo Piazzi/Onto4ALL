@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 
 
 var bind = __webpack_require__(7);
-var isBuffer = __webpack_require__(23);
+var isBuffer = __webpack_require__(25);
 
 /*global toString:true*/
 
@@ -383,7 +383,7 @@ module.exports = {
 if (false) {
   module.exports = require('./cjs/react.production.min.js');
 } else {
-  module.exports = __webpack_require__(46);
+  module.exports = __webpack_require__(48);
 }
 
 
@@ -428,7 +428,7 @@ if (false) {
   checkDCE();
   module.exports = require('./cjs/react-dom.production.min.js');
 } else {
-  module.exports = __webpack_require__(50);
+  module.exports = __webpack_require__(51);
 }
 
 
@@ -467,7 +467,7 @@ module.exports = g;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 var utils = __webpack_require__(0);
-var normalizeHeaderName = __webpack_require__(25);
+var normalizeHeaderName = __webpack_require__(27);
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -14292,10 +14292,10 @@ process.umask = function() { return 0; };
 
 
 var utils = __webpack_require__(0);
-var settle = __webpack_require__(26);
-var buildURL = __webpack_require__(28);
-var parseHeaders = __webpack_require__(29);
-var isURLSameOrigin = __webpack_require__(30);
+var settle = __webpack_require__(28);
+var buildURL = __webpack_require__(30);
+var parseHeaders = __webpack_require__(31);
+var isURLSameOrigin = __webpack_require__(32);
 var createError = __webpack_require__(10);
 
 module.exports = function xhrAdapter(config) {
@@ -14376,7 +14376,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(31);
+      var cookies = __webpack_require__(33);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -14460,7 +14460,7 @@ module.exports = function xhrAdapter(config) {
 "use strict";
 
 
-var enhanceError = __webpack_require__(27);
+var enhanceError = __webpack_require__(29);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -14630,9 +14630,9 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 var printWarning = function() {};
 
 if (true) {
-  var ReactPropTypesSecret = __webpack_require__(47);
+  var ReactPropTypesSecret = __webpack_require__(49);
   var loggedTypeFailures = {};
-  var has = __webpack_require__(48);
+  var has = __webpack_require__(50);
 
   printWarning = function(text) {
     var message = 'Warning: ' + text;
@@ -14725,14 +14725,112 @@ module.exports = checkPropTypes;
 
 /***/ }),
 /* 15 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(16);
-module.exports = __webpack_require__(45);
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
 
+
+
+function Chat(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'chat-ontology' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box box-solid direct-chat direct-chat-primary collapsed-box', style: { marginBottom: '0px' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-header with-border' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', { className: 'box-title' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-wechat' }), ' Chat'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-tools pull-right' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'btn btn-box-tool', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: Chat_with_other_collaborators_of_this_ontology_messages_are_saved_and_can_be_read_at_any_time_between_collaborators }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-question' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'btn btn-box-tool', 'data-widget': 'collapse' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-expand' })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-body', id: 'chat-ontology' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'direct-chat-msg' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-footer' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('form', { action: '#', method: 'post', id: 'form_send_msg', autoComplete: 'off' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'message', id: 'message', autoComplete: 'off', placeholder: Enter_message, className: 'form-control', disabled: true }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'input-group-btn' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { hred: 'javascript:;', id: 'send_msg', className: 'btn btn-primary ', disabled: true }, Send)))))));
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Chat);
+
+if (document.getElementById('chat')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Chat, null), document.getElementById('chat'));
+}
 
 /***/ }),
 /* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _createClass = function () {
+    function defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+        }
+    }return function (Constructor, protoProps, staticProps) {
+        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+    };
+}();
+
+function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+    }
+}
+
+function _possibleConstructorReturn(self, call) {
+    if (!self) {
+        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }return call && ((typeof call === "undefined" ? "undefined" : _typeof(call)) === "object" || typeof call === "function") ? call : self;
+}
+
+function _inherits(subClass, superClass) {
+    if (typeof superClass !== "function" && superClass !== null) {
+        throw new TypeError("Super expression must either be null or a function, not " + (typeof superClass === "undefined" ? "undefined" : _typeof(superClass)));
+    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+}
+
+
+
+
+var Properties = function (_React$Component) {
+    _inherits(Properties, _React$Component);
+
+    function Properties() {
+        _classCallCheck(this, Properties);
+
+        return _possibleConstructorReturn(this, (Properties.__proto__ || Object.getPrototypeOf(Properties)).apply(this, arguments));
+    }
+
+    _createClass(Properties, [{
+        key: 'render',
+        value: function render() {
+
+            function updatePropertyInput(id, value) {
+                console.log('erro');
+            }
+
+            function createNewProperty(newPropertyLabel) {
+                console.log('erro2');
+            }
+
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'nav-tabs-custom' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('ul', { className: 'nav nav-tabs' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'classes-nav', href: '#classes-tab', 'data-toggle': 'tab', style: { color: '#f39c12' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-circle-thin' }), ' Classes')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'object-properties-nav', href: '#object-properties-tab', 'data-toggle': 'tab', style: { color: '#3c8dbc' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-exchange' }), ' Object Properties')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'annotations-nav', href: '#annotations-tab', 'data-toggle': 'tab', style: { color: 'darkred' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-book' }), 'Annotation Properties')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'datatype-properties-nav', href: '#datatype-properties-tab', 'data-toggle': 'tab', style: { color: '#00a65a' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-long-arrow-right' }), ' Datatype Properties')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'instances-nav', href: '#instances-tab', 'data-toggle': 'tab', style: { color: 'rebeccapurple' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-circle-thin' }), ' Instances')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', { style: { visibility: 'hidden', display: 'none' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'empty-nav', href: '#empty-tab', 'data-toggle': 'tab' }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-content' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane active', id: 'classes-tab' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'SubClassOf'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'SubClassOf', disabled: true, type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'Equivalence'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'Equivalence', 'data-placeholder': 'Select Classes', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'Instances'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'Instances', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'TargetForKey'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'TargetForKey', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'DisjointWith'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'DisjointWith', 'data-placeholder': 'Select Classes', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'Constraint'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { 'data-toggle': 'modal', 'data-target': '#ClassExpressionEditorModal', type: 'button', className: 'btn btn-default btn-block' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-folder-open' }), ' Class Expression Editor'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane ', id: 'annotations-tab' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'New property'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-group input-group-sm' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'new-property-label', type: 'text', className: 'form-control', placeholder: 'Property name' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'input-group-btn' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { onClick: /*createNewProperty(document.getElementById('new-property-label').value)*/createNewProperty(1), type: 'button', className: 'btn btn-success btn-flat' }, 'Create'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', { id: 'created-property-message', style: { visibility: 'hidden', color: '#00a65a' }, className: 'control-label has-success', htmlFor: 'inputSuccess' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-check' }), ' Property created! ')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'IRI'), ' ', __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'IRI-link', target: '_blank', href: '' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { title: 'copy link', className: 'fa fa-fw fa-link' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'IRI', type: 'text', className: 'form-control', placeholder: '', disabled: true, onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'label'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'label', type: 'text', className: 'form-control', placeholder: '', disabled: true, onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'comment'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'comment', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'isDefinedBy'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'isDefinedBy', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'seeAlso'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'seeAlso', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'backwardCompartibleWith'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'backwardCompatibleWith', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'deprecated'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'deprecated', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'incompatibleWith'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'incompatibleWith', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'priorVersion'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'priorVersion', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'versionInfo'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'versionInfo', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane', id: 'object-properties-tab' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'domain'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'domain', disabled: true, type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'range'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'range', disabled: true, type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'equivalentTo'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'equivalentTo', 'data-placeholder': 'Select Relations', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'subpropertyOf'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'subpropertyOf', 'data-placeholder': 'Select Relation', style: { width: 100 }, className: 'js-example-basic-multiple', onChange: updatePropertyInput(this.id, this.value) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'inverseOf'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'inverseOf', 'data-placeholder': 'Select Relation', style: { width: 100 }, className: 'js-example-basic-multiple', onChange: updatePropertyInput(this.id, this.value) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'disjointWith'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'disjointWith-relations', 'data-placeholder': 'Select Relations', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'functional', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Functional')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'inverseFunctional', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Inverse Functional')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'transitive', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Transitive')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'symetric', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Symetric')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'asymmetric', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Asymmetric')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'reflexive', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Reflexive')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'irreflexive', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Irreflexive')))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane', id: 'instances-tab' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'types'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'types', 'data-placeholder': 'Select Datatypes', style: { width: 100 }, className: 'js-example-basic-multiple', onChange: updatePropertyInput(this.id, this.value) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'owl:rational'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'owl:real'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdf:PlainLiteral'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdf:XMLLiteral'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdfs:Literal'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:anyURI'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:base64Binary'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:boolean'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:byte'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:dateTime'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:dateTimeStamp'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:decimal'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:double'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:float'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:hexBinary'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:int'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:integer'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:language'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:long'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:Name'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:NCName'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:negativeInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:NMTOKEN'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:nonNegativeInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:nonPositiveInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:normalizedString'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:positiveInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:short'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:string'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:token'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedByte'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedInt'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedLong'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedShort'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'sameAs'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'sameAs', 'data-placeholder': 'Select instances', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'differentAs'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'differentAs', 'data-placeholder': 'Select instances', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'objectProperties'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'objectProperties', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'dataProperties'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'dataProperties', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'negativeObjectProperties'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'negativeObjectProperties', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'negativeDataProperties'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'negativeDataProperties', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane', id: 'datatype-properties-tab' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'Value'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'value-datatype-properties', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput('value', this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'domain'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'domain-datatype-properties', disabled: true, type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput('domain', this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'range'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'range-datatype-properties', disabled: true, type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput('range', this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'equivalentTo'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'equivalentTo-datatype-properties', 'data-placeholder': 'Select Datatype Properties', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput('equivalentTo', $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'subpropertyOf'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'subpropertyOf-datatype-properties', 'data-placeholder': 'Select Datatype Properties', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput('subpropertyOf', $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'disjointWith'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'disjointWith-datatype-properties', 'data-placeholder': 'Select Datatype Properties', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput('disjointWith', $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'functional-datatype-properties', type: 'checkbox', onChange: updatePropertyInput('functional', this.checked) }), 'Functional'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'datatype'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'datatype', 'data-placeholder': 'Select Datatypes', style: { width: 100 }, className: 'js-example-basic-multiple', name: '', onChange: updatePropertyInput(this.id, this.value) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'owl:rational'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'owl:real'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdf:PlainLiteral'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdf:XMLLiteral'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdfs:Literal'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:anyURI'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:base64Binary'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:boolean'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:byte'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:dateTime'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:dateTimeStamp'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:decimal'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:double'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:float'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:hexBinary'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:int'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:integer'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:language'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:long'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:Name'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:NCName'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:negativeInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:NMTOKEN'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:nonNegativeInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:nonPositiveInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:normalizedString'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:positiveInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:short'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:string'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:token'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedByte'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedInt'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedLong'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedShort')))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane', id: 'empty-tab', style: { textAlign: 'center', paddingTop: 100, paddingBottom: 100 } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-3x fa-hand-pointer-o' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', null, Select_a_element_in_your_ontology))));
+        }
+    }]);
+
+    return Properties;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (Properties);
+
+if (document.getElementById('properties')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Properties, null), document.getElementById('properties'));
+}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(18);
+module.exports = __webpack_require__(47);
+
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -14742,9 +14840,9 @@ module.exports = __webpack_require__(45);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(17);
+__webpack_require__(19);
 
-window.Vue = __webpack_require__(39);
+window.Vue = __webpack_require__(41);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -14752,18 +14850,18 @@ window.Vue = __webpack_require__(39);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(43));
+Vue.component('example-component', __webpack_require__(45));
 
 var app = new Vue({
   el: '#app'
 });
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(18);
+window._ = __webpack_require__(20);
 window.Popper = __webpack_require__(5).default;
 
 /**
@@ -14775,7 +14873,7 @@ window.Popper = __webpack_require__(5).default;
 try {
   window.$ = window.jQuery = __webpack_require__(6);
 
-  __webpack_require__(20);
+  __webpack_require__(22);
 } catch (e) {}
 
 /**
@@ -14784,7 +14882,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(21);
+window.axios = __webpack_require__(23);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -14820,7 +14918,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -32034,10 +32132,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(19)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(21)(module)))
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -32065,7 +32163,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -36428,13 +36526,13 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(22);
+module.exports = __webpack_require__(24);
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36442,7 +36540,7 @@ module.exports = __webpack_require__(22);
 
 var utils = __webpack_require__(0);
 var bind = __webpack_require__(7);
-var Axios = __webpack_require__(24);
+var Axios = __webpack_require__(26);
 var defaults = __webpack_require__(4);
 
 /**
@@ -36477,14 +36575,14 @@ axios.create = function create(instanceConfig) {
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(12);
-axios.CancelToken = __webpack_require__(37);
+axios.CancelToken = __webpack_require__(39);
 axios.isCancel = __webpack_require__(11);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(38);
+axios.spread = __webpack_require__(40);
 
 module.exports = axios;
 
@@ -36493,7 +36591,7 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports) {
 
 /*!
@@ -36510,7 +36608,7 @@ module.exports = function isBuffer (obj) {
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36518,8 +36616,8 @@ module.exports = function isBuffer (obj) {
 
 var defaults = __webpack_require__(4);
 var utils = __webpack_require__(0);
-var InterceptorManager = __webpack_require__(32);
-var dispatchRequest = __webpack_require__(33);
+var InterceptorManager = __webpack_require__(34);
+var dispatchRequest = __webpack_require__(35);
 
 /**
  * Create a new instance of Axios
@@ -36596,7 +36694,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36615,7 +36713,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36648,7 +36746,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36676,7 +36774,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36749,7 +36847,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36809,7 +36907,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36884,7 +36982,7 @@ module.exports = (
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36944,7 +37042,7 @@ module.exports = (
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37003,18 +37101,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(0);
-var transformData = __webpack_require__(34);
+var transformData = __webpack_require__(36);
 var isCancel = __webpack_require__(11);
 var defaults = __webpack_require__(4);
-var isAbsoluteURL = __webpack_require__(35);
-var combineURLs = __webpack_require__(36);
+var isAbsoluteURL = __webpack_require__(37);
+var combineURLs = __webpack_require__(38);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -37096,7 +37194,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37123,7 +37221,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37144,7 +37242,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37165,7 +37263,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37229,7 +37327,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37263,18 +37361,18 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 if (false) {
   module.exports = require('./vue.common.prod.js')
 } else {
-  module.exports = __webpack_require__(40)
+  module.exports = __webpack_require__(42)
 }
 
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49287,10 +49385,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(41).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(43).setImmediate))
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -49346,7 +49444,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(42);
+__webpack_require__(44);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -49360,7 +49458,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -49553,10 +49651,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(8)))
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var normalizeComponent = __webpack_require__(44)
+var normalizeComponent = __webpack_require__(46)
 /* script */
 var __vue_script__ = null
 /* template */
@@ -49583,7 +49681,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -49692,7 +49790,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49700,14 +49798,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["default"] = App;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Chat__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ClassExpressionEditor__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Console__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Methodology__ = __webpack_require__(57);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Modal__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_OntologyForm__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_OntologyManager__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Properties__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Chat__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ClassExpressionEditor__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Console__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Methodology__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Modal__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_OntologyForm__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_OntologyManager__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Properties__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Sidebar__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Tips__ = __webpack_require__(63);
 //require('./bootstrap');
@@ -49725,11 +49823,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 function App() {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__components_Sidebar__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_Chat__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_ClassExpressionEditor__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Console__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Methodology__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_Modal__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_OntologyForm__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_OntologyManager__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_Properties__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__components_Tips__["a" /* default */], null));
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Console__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__components_Sidebar__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_Modal__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_OntologyForm__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_OntologyManager__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_10__components_Tips__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_ClassExpressionEditor__["a" /* default */], null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__components_Methodology__["a" /* default */], null));
 }
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51648,7 +51746,7 @@ exports.version = ReactVersion;
 
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51667,36 +51765,14 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, exports) {
 
 module.exports = Function.call.bind(Object.prototype.hasOwnProperty);
 
 
 /***/ }),
-/* 49 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-
-
-
-function Chat(props) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'chat-ontology' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box box-solid direct-chat direct-chat-primary collapsed-box', style: { marginBottom: '0px' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-header with-border' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', { className: 'box-title' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-wechat' }), ' Chat'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-tools pull-right' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'btn btn-box-tool', 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: Chat_with_other_collaborators_of_this_ontology_messages_are_saved_and_can_be_read_at_any_time_between_collaborators }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-question' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'btn btn-box-tool', 'data-widget': 'collapse' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-expand' })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-body', id: 'chat-ontology' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'direct-chat-msg' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-footer' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('form', { action: '#', method: 'post', id: 'form_send_msg', autoComplete: 'off' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { type: 'text', name: 'message', id: 'message', autoComplete: 'off', placeholder: Enter_message, className: 'form-control', disabled: true }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'input-group-btn' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { hred: 'javascript:;', id: 'send_msg', className: 'btn btn-primary ', disabled: true }, Send)))))));
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (Chat);
-
-if (document.getElementById('chat')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Chat, null), document.getElementById('chat'));
-}
-
-/***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51719,9 +51795,9 @@ if (true) {
 
 var React = __webpack_require__(1);
 var _assign = __webpack_require__(13);
-var Scheduler = __webpack_require__(51);
+var Scheduler = __webpack_require__(52);
 var checkPropTypes = __webpack_require__(14);
-var tracing = __webpack_require__(53);
+var tracing = __webpack_require__(54);
 
 var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED; // Prevent newer renderers from RTE when used with older react package versions.
 // Current owner and dispatcher used to share the same ref,
@@ -76715,7 +76791,7 @@ exports.version = ReactVersion;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76724,12 +76800,12 @@ exports.version = ReactVersion;
 if (false) {
   module.exports = require('./cjs/scheduler.production.min.js');
 } else {
-  module.exports = __webpack_require__(52);
+  module.exports = __webpack_require__(53);
 }
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77594,7 +77670,7 @@ exports.unstable_wrapCallback = unstable_wrapCallback;
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77603,12 +77679,12 @@ exports.unstable_wrapCallback = unstable_wrapCallback;
 if (false) {
   module.exports = require('./cjs/scheduler-tracing.production.min.js');
 } else {
-  module.exports = __webpack_require__(54);
+  module.exports = __webpack_require__(55);
 }
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77964,7 +78040,7 @@ exports.unstable_wrap = unstable_wrap;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -77986,7 +78062,7 @@ if (document.getElementById('classExpressionEditor')) {
 }
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -77998,17 +78074,17 @@ if (document.getElementById('classExpressionEditor')) {
 
 
 function Console(props) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'warnings-console-header', className: 'box-header' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', { className: 'box-title' }, Warnings_Console), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: '#', 'data-target': '#warningsConsole', 'data-toggle': 'modal', 'aria-expanded': 'false' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-question-circle', title: Click_to_see_more_information })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { download: 'ontology-errors.txt', href: '#', id: 'download-errors-txt' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-download', title: Downloads_a_txt_file_containing_all_the_current_warnings_in_the_ontology })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { download: 'ontology-report.txt', href: '#', id: 'download-ontology-report', title: Download_a_report_with_all_the_information_of_your_current_ontology }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-file-text-o' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'methodology-icon', title: Methodology_OntoForInfoScience, href: '#', 'data-toggle': 'modal', 'data-target': '#methodology-menu' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-info-circle' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'tips-icon', title: tips, href: '#', 'data-toggle': 'modal', 'data-target': '#tips-menu' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-search' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'classes', title: The_number_of_classes_in_your_current_ontology, 'data-widget': 'collapse', style: { color: '#f39c12' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-circle-o' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'classes-count' }, ' 0')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'relations', title: The_number_of_relations_in_your_current_ontology, 'data-widget': 'collapse', style: { color: '#3c8dbc' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-1.5x fa-fw fa-exchange' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'relations-count' }, ' 0')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'instances', title: The_number_of_instances_in_your_current_ontology, 'data-widget': 'collapse', style: { color: 'rebeccapurple' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-circle-thin' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'instances-count' }, ' 0')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-tools pull-right' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'errors', title: The_number_of_errors_in_your_current_ontology, 'data-widget': 'collapse', className: 'badge bg-green', 'data-original-title': 'Errors' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-close' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'error-count' }, ' 0')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'warnings', title: The_number_of_warnings_in_your_current_ontology, 'data-widget': 'collapse', className: 'badge bg-green', 'data-original-title': 'Warnings' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-warning' }, ' '), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'warnings-count' }, ' 0')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { id: 'open-warnings-console', type: 'button', className: 'btn btn-box-tool', 'data-widget': 'collapse' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-expand' })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { 'data-widget': 'collapse', className: 'box-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'direct-chat-messages' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'direct-chat-msg' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'direct-chat-info clearfix' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'direct-chat-name pull-right' }, Welcome), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'direct-chat-timestamp pull-left' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { id: 'no-warning-img', className: 'direct-chat-img', src: LogoMini, alt: 'Message User Image' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'no-warning-text', className: 'direct-chat-text' }, You_dont_have_any_warnings)))));
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box', id: 'warnings-console' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'warnings-console-header', className: 'box-header' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', { className: 'box-title' }, Warnings_Console), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: '#', 'data-target': '#warningsConsole', 'data-toggle': 'modal', 'aria-expanded': 'false' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-question-circle', title: Click_to_see_more_information })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { download: 'ontology-errors.txt', href: '#', id: 'download-errors-txt' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-download', title: Downloads_a_txt_file_containing_all_the_current_warnings_in_the_ontology })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { download: 'ontology-report.txt', href: '#', id: 'download-ontology-report', title: Download_a_report_with_all_the_information_of_your_current_ontology }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-file-text-o' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'methodology-icon', title: Methodology_OntoForInfoScience, href: '#', 'data-toggle': 'modal', 'data-target': '#methodology-menu' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-info-circle' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'tips-icon', title: tips, href: '#', 'data-toggle': 'modal', 'data-target': '#tips-menu' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-search' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'classes', title: The_number_of_classes_in_your_current_ontology, 'data-widget': 'collapse', style: { color: '#f39c12' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-circle-o' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'classes-count' }, ' 0')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'relations', title: The_number_of_relations_in_your_current_ontology, 'data-widget': 'collapse', style: { color: '#3c8dbc' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-1.5x fa-fw fa-exchange' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'relations-count' }, ' 0')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'instances', title: The_number_of_instances_in_your_current_ontology, 'data-widget': 'collapse', style: { color: 'rebeccapurple' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-circle-thin' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'instances-count' }, ' 0')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-tools pull-right' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'errors', title: The_number_of_errors_in_your_current_ontology, 'data-widget': 'collapse', className: 'badge bg-green', 'data-original-title': 'Errors' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-close' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'error-count' }, ' 0')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'warnings', title: The_number_of_warnings_in_your_current_ontology, 'data-widget': 'collapse', className: 'badge bg-green', 'data-original-title': 'Warnings' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-warning' }, ' '), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { id: 'warnings-count' }, ' 0')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { id: 'open-warnings-console', type: 'button', className: 'btn btn-box-tool', 'data-widget': 'collapse' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-expand' })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { 'data-widget': 'collapse', className: 'box-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'direct-chat-messages' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'direct-chat-msg' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'direct-chat-info clearfix' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'direct-chat-name pull-right' }, Welcome), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'direct-chat-timestamp pull-left' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('img', { id: 'no-warning-img', className: 'direct-chat-img', src: LogoMini, alt: 'Message User Image' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'no-warning-text', className: 'direct-chat-text' }, You_dont_have_any_warnings)))));
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Console);
 
-if (document.getElementById('warnings-console')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Console, null), document.getElementById('warnings-console'));
+if (document.getElementById('console')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Console, null), document.getElementById('console'));
 }
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -78030,7 +78106,7 @@ if (document.getElementById('methodology')) {
 }
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -78052,7 +78128,7 @@ if (document.getElementById('modal')) {
 }
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -78074,7 +78150,7 @@ if (document.getElementById('ontologyForm')) {
 }
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -78157,8 +78233,8 @@ var OntologyManager = function (_React$Component) {
         value: function render() {
             var ontologies = this.state.ontologies;
 
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal fade', id: 'ontology-manager', style: { display: 'none' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-dialog modal-lg' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-content' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-header' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { 'aria-hidden': 'true' }, '\xD7')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h4', { className: 'modal-title' }, Ontology_Manager)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-body' }, ontologies == null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', null, You_dont_have_any_ontologies_saved_in_our_ontology_manager_yet) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('ul', { className: 'timeline' }, ontologies.forEach(function (ontology) {
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-object-group bg-green' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'timeline-item' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'time' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-user' }), ' ', Created_By, ':', ontology['user'['name']]), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'time' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-clock-o' }), ' ', Last_update, ':', ontology['updated_at']), ontology['favourite'] == 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'time' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { style: { color: '#f39c12' }, className: 'fa fa-fw fa-star' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', { className: 'timeline-header' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { className: 'openOntology', 'data-dismiss': 'modal', id: ontology['id'], href: '' }, ontology['name']), ontology['created_at'] !== ontology['updated_at'] ? { was_updated: was_updated } : { was_created: was_created }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'timeline-body' }, ontology['description'] != null && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('strong', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-book margin-r-5' }), Description), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'text-muted' }, ontology['description']))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'timeline-footer' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { 'data-dismiss': 'modal', id: ontology['id'], className: 'btn btn-default editor-timeline-item openOntology', href: '#' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-object-group' }), ' ', Open_in_the_editor))));
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal fade', id: 'ontology-manager', style: { display: 'none' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-dialog modal-lg' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-content' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-header' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { 'aria-hidden': 'true' }, '\xD7')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h4', { className: 'modal-title' }, Ontology_Manager)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-body' }, ontologies == null ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', null, You_dont_have_any_ontologies_saved_in_our_ontology_manager_yet) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('ul', { className: 'timeline' }, ontologies.map(function (ontology, index) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-object-group bg-green' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'timeline-item' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'time' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-user' }), ' ', Created_By, ':', ontology.user.name), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'time' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-clock-o' }), ' ', Last_update, ':', ontology.updated_at), ontology.favourite == 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'time' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { style: { color: '#f39c12' }, className: 'fa fa-fw fa-star' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', { className: 'timeline-header' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { className: 'openOntology', 'data-dismiss': 'modal', id: ontology.id, href: '' }, ontology.name), ontology.created_at !== ontology.updated_at ? { was_updated: was_updated } : { was_created: was_created }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'timeline-body' }, ontology.description != null && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('strong', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-book margin-r-5' }), Description), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('p', { className: 'text-muted' }, ontology.description))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'timeline-footer' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { 'data-dismiss': 'modal', id: ontology.id, className: 'btn btn-default editor-timeline-item openOntology', href: '#' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-object-group' }), ' ', Open_in_the_editor))));
             }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-footer' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'btn btn-default pull-left', 'data-dismiss': 'modal' }, Close)))));
         }
     }]);
@@ -78173,28 +78249,6 @@ if (document.getElementById('ontologyManager')) {
 }
 
 /***/ }),
-/* 61 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-
-
-
-function Properties(props) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'nav-tabs-custom' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('ul', { className: 'nav nav-tabs' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'classes-nav', href: '#classes-tab', 'data-toggle': 'tab', style: { color: '#f39c12' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-circle-thin' }), ' Classes')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'object-properties-nav', href: '#object-properties-tab', 'data-toggle': 'tab', style: { color: '#3c8dbc' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-exchange' }), ' Object Properties')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'annotations-nav', href: '#annotations-tab', 'data-toggle': 'tab', style: { color: 'darkred' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-book' }), 'Annotation Properties')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'datatype-properties-nav', href: '#datatype-properties-tab', 'data-toggle': 'tab', style: { color: '#00a65a' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-long-arrow-right' }), ' Datatype Properties')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'instances-nav', href: '#instances-tab', 'data-toggle': 'tab', style: { color: 'rebeccapurple' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-circle-thin' }), ' Instances')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('li', { style: { visibility: 'hidden', display: 'none' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'empty-nav', href: '#empty-tab', 'data-toggle': 'tab' }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-content' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane active', id: 'classes-tab' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'SubClassOf'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'SubClassOf', disabled: true, type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'Equivalence'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'Equivalence', 'data-placeholder': 'Select Classes', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'Instances'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'Instances', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'TargetForKey'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'TargetForKey', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'DisjointWith'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'DisjointWith', 'data-placeholder': 'Select Classes', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'Constraint'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { 'data-toggle': 'modal', 'data-target': '#ClassExpressionEditorModal', type: 'button', className: 'btn btn-default btn-block' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-folder-open' }), ' Class Expression Editor'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane ', id: 'annotations-tab' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'New property'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-group input-group-sm' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'new-property-label', type: 'text', className: 'form-control', placeholder: 'Property name' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { className: 'input-group-btn' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { onClick: createNewProperty(document.getElementById('new-property-label').value), type: 'button', className: 'btn btn-success btn-flat' }, 'Create'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', { id: 'created-property-message', style: { visibility: 'hidden', color: '#00a65a' }, className: 'control-label has-success', htmlFor: 'inputSuccess' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-check' }), ' Property created! ')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'IRI'), ' ', __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { id: 'IRI-link', target: '_blank', href: '' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { title: 'copy link', className: 'fa fa-fw fa-link' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'IRI', type: 'text', className: 'form-control', placeholder: '', disabled: true, onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'label'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'label', type: 'text', className: 'form-control', placeholder: '', disabled: true, onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'comment'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'comment', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'isDefinedBy'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'isDefinedBy', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'seeAlso'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'seeAlso', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'backwardCompartibleWith'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'backwardCompatibleWith', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'deprecated'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'deprecated', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'incompatibleWith'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'incompatibleWith', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'priorVersion'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'priorVersion', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'versionInfo'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'versionInfo', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane', id: 'object-properties-tab' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'domain'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'domain', disabled: true, type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'range'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'range', disabled: true, type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'equivalentTo'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'equivalentTo', 'data-placeholder': 'Select Relations', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'subpropertyOf'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'subpropertyOf', 'data-placeholder': 'Select Relation', style: { width: 100 }, className: 'js-example-basic-multiple', onChange: updatePropertyInput(this.id, this.value) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'inverseOf'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'inverseOf', 'data-placeholder': 'Select Relation', style: { width: 100 }, className: 'js-example-basic-multiple', onChange: updatePropertyInput(this.id, this.value) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'disjointWith'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'disjointWith-relations', 'data-placeholder': 'Select Relations', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'functional', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Functional')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'inverseFunctional', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Inverse Functional')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'transitive', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Transitive')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'symetric', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Symetric')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'asymmetric', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Asymmetric')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'reflexive', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Reflexive')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'irreflexive', type: 'checkbox', onChange: updatePropertyInput(this.id, this.checked) }), 'Irreflexive')))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane', id: 'instances-tab' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'types'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'types', 'data-placeholder': 'Select Datatypes', style: { width: 100 }, className: 'js-example-basic-multiple', onChange: updatePropertyInput(this.id, this.value) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'owl:rational'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'owl:real'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdf:PlainLiteral'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdf:XMLLiteral'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdfs:Literal'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:anyURI'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:base64Binary'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:boolean'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:byte'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:dateTime'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:dateTimeStamp'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:decimal'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:double'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:float'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:hexBinary'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:int'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:integer'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:language'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:long'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:Name'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:NCName'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:negativeInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:NMTOKEN'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:nonNegativeInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:nonPositiveInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:normalizedString'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:positiveInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:short'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:string'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:token'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedByte'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedInt'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedLong'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedShort'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'sameAs'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'sameAs', 'data-placeholder': 'Select instances', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'differentAs'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'differentAs', 'data-placeholder': 'Select instances', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput(this.id, $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'objectProperties'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'objectProperties', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'dataProperties'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'dataProperties', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'negativeObjectProperties'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'negativeObjectProperties', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'negativeDataProperties'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'negativeDataProperties', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput(this.id, this.value) }))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane', id: 'datatype-properties-tab' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'Value'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'value-datatype-properties', type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput('value', this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'domain'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'domain-datatype-properties', disabled: true, type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput('domain', this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'range'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'range-datatype-properties', disabled: true, type: 'text', className: 'form-control', placeholder: '', onChange: updatePropertyInput('range', this.value) })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'equivalentTo'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'equivalentTo-datatype-properties', 'data-placeholder': 'Select Datatype Properties', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput('equivalentTo', $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'subpropertyOf'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'subpropertyOf-datatype-properties', 'data-placeholder': 'Select Datatype Properties', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput('subpropertyOf', $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'disjointWith'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'disjointWith-datatype-properties', 'data-placeholder': 'Select Datatype Properties', style: { width: 100 }, className: 'js-example-basic-multiple', multiple: true, onChange: updatePropertyInput('disjointWith', $('#' + this.id).val()) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'checkbox' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'functional-datatype-properties', type: 'checkbox', onChange: updatePropertyInput('functional', this.checked) }), 'Functional'))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'form-group' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('label', null, 'datatype'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('select', { id: 'datatype', 'data-placeholder': 'Select Datatypes', style: { width: 100 }, className: 'js-example-basic-multiple', name: '', onChange: updatePropertyInput(this.id, this.value) }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'owl:rational'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'owl:real'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdf:PlainLiteral'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdf:XMLLiteral'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'rdfs:Literal'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:anyURI'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:base64Binary'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:boolean'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:byte'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:dateTime'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:dateTimeStamp'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:decimal'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:double'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:float'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:hexBinary'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:int'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:integer'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:language'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:long'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:Name'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:NCName'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:negativeInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:NMTOKEN'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:nonNegativeInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:nonPositiveInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:normalizedString'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:positiveInteger'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:short'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:string'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:token'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedByte'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedInt'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedLong'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('option', null, 'xsd:unsignedShort')))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-pane', id: 'empty-tab', style: { textAlign: center, paddingTop: 100, paddingBottom: 100 } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-3x fa-hand-pointer-o' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', null, Select_a_element_in_your_ontology))));
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (Properties);
-
-if (document.getElementById('properties')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Properties, null), document.getElementById('properties'));
-}
-
-/***/ }),
 /* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -78203,17 +78257,22 @@ if (document.getElementById('properties')) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Chat__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Properties__ = __webpack_require__(16);
 
 
 
-function Siderbar(props) {
-    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('aside', { className: 'control-sidebar control-sidebar-light control-sidebar-open' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'chat' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'properties' }));
+
+
+
+function Sidebar(props) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('aside', { className: 'control-sidebar control-sidebar-light control-sidebar-open' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Chat__["a" /* default */], { id: 'chat' }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Properties__["a" /* default */], { id: 'properties' }));
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (Siderbar);
+/* harmony default export */ __webpack_exports__["a"] = (Sidebar);
 
-if (document.getElementById('siderbar')) {
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Siderbar, null), document.getElementById('siderbar'));
+if (document.getElementById('sidebar')) {
+    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Sidebar, null), document.getElementById('sidebar'));
 }
 
 /***/ }),
@@ -78321,10 +78380,10 @@ var Tips = function (_React$Component) {
                 relations = _state.relations,
                 classes = _state.classes;
 
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal fade', id: 'tips-menu', style: { display: 'none' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-dialog modal-lg' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-content' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-header' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { 'aria-hidden': 'true' }, '\xD7')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h4', { style: { textAlign: 'center' }, className: 'modal-title' }, tips)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { style: { marginBottom: '10px' }, id: 'searchBar', className: 'input-group input-group-sm' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'search-tip-input', type: 'text', className: 'form-control', placeholder: Search_for_tips }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-group-btn' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'submit', className: 'btn btn-default' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-search-plus' })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'menu-wrapper' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-content' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'menu-scroll' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'control-sidebar-theme-demo-options-tab table-search', className: 'tab-pane active table-search' }, relations.forEach(function (ontologyRelation) {
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'tipSearch', className: 'box box-default collapsed-box box-solid relation-box' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-header with-border' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', { className: 'box-title title' }, ontologyRelation['name'], ' ', __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-long-arrow-right' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-tools pull-right' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'btn btn-box-tool', 'data-widget': 'collapse' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus' })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dl', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Definition'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['definition']), ontologyRelation['semi_formal_definition'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Semi Formal Definition'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['semi_formal_definition'])), ontologyRelation['formal_definition'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Formal Definition'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['formal_definition'])), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Domain'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['domain']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Range'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['range']), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Example Of Usage'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['example_of_usage']), ontologyRelation['imported_from'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Imported From'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { target: '_blank', href: ontologyRelation['imported_from'] }, ontologyRelation['imported_from']))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'ID'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['relation_id']), getLanguage() === 'pt' && $ontologyRelation['label_pt'] ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Label PT'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['label_pt'])) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Label'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['label'])), ontologyRelation['synonyms'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Synonyms'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['synonyms'])), ontologyRelation['is_defined_by'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Is Defined By'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['is_defined_by'])), ontologyRelation['comments'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Editor Note (comments)'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['comments'])), ontologyRelation['inverse_of'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Inverse Of'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['inverse_of'])), ontologyRelation['subproperty_of'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Subproperty Of'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['subproperty_of'])), ontologyRelation['superproperty_of'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Superproperty Of'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['superproperty_of'])), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Ontology'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation['ontology']))));
-            }), classes.forEach(function (classe) {
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'tipSearch', className: 'box box-success collapsed-box box-solid' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-header with-border' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', { className: 'box-title title' }, classe['name'], ' ', __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-circle-thin' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-tools pull-right' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'btn btn-box-tool', 'data-widget': 'collapse' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus' })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dl', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Definition'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['definition']), classe['semi_formal_definition'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Semi Formal Definition'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['semi_formal_definition'])), classe['formal_definition'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Formal Definition (has_associated_axiom)'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['formal_definition'])), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'ID'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['class_id']), classe['subclass'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'SubClassOf'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['subclass'])), classe['synonyms'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Synonyms (has_synonym)'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['synonyms'])), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Example Of Usage'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['example_of_usage']), classe['imported_from'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Imported From'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { target: '_blank', href: '{classe[\'imported_from\']}' }, classe['imported_from']))), getLanguage() === 'pt' && $classe['label_pt'] ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Label PT'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['label_pt'])) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Label'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['label'])), classe['elucidation'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Elucidation'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['elucidation'])), classe['is_defined_by'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Is Defined By'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['is_defined_by'])), classe['disjoint_with'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Disjoint With'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['disjoint_with'])), classe['comments'] && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Editor Note (comments)'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['comments'])), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Ontology'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe['ontology']))));
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal fade', id: 'tips-menu', style: { display: 'none' } }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-dialog modal-lg' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-content' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-header' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'close', 'data-dismiss': 'modal', 'aria-label': 'Close' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('span', { 'aria-hidden': 'true' }, '\xD7')), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h4', { style: { textAlign: 'center' }, className: 'modal-title' }, tips)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { style: { marginBottom: '10px' }, id: 'searchBar', className: 'input-group input-group-sm' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'search-tip-input', type: 'text', className: 'form-control', placeholder: Search_for_tips }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'input-group-btn' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'submit', className: 'btn btn-default' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-search-plus' })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'menu-wrapper' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'tab-content' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'menu-scroll' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'control-sidebar-theme-demo-options-tab table-search', className: 'tab-pane active table-search' }, relations.map(function (ontologyRelation, index) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'tipSearch', className: 'box box-default collapsed-box box-solid relation-box' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-header with-border' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', { className: 'box-title title' }, ontologyRelation.name, ' ', __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-long-arrow-right' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-tools pull-right' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'btn btn-box-tool', 'data-widget': 'collapse' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus' })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dl', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Definition'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.definition), ontologyRelation.semi_formal_definition && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Semi Formal Definition'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.semi_formal_definition)), ontologyRelation.formal_definition && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Formal Definition'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.formal_definition)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Domain'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.domain), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Range'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.range), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Example Of Usage'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.example_of_usage), ontologyRelation.imported_from && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Imported From'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { target: '_blank', href: ontologyRelation.imported_from }, ontologyRelation.imported_from))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'ID'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.relation_id), getLanguage() === 'pt' && $ontologyRelation.label_pt ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Label PT'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.label_pt)) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Label'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.label)), ontologyRelation.synonyms && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Synonyms'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.synonyms)), ontologyRelation.is_defined_by && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Is Defined By'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.is_defined_by)), ontologyRelation.comments && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Editor Note (comments)'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.comments)), ontologyRelation.inverse_of && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Inverse Of'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.inverse_of)), ontologyRelation.subproperty_of && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Subproperty Of'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.subproperty_of)), ontologyRelation.superproperty_of && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Superproperty Of'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.superproperty_of)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Ontology'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, ontologyRelation.ontology))));
+            }), classes.map(function (classe, index) {
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { id: 'tipSearch', className: 'box box-success collapsed-box box-solid' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-header with-border' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('h3', { className: 'box-title title' }, classe.name, ' ', __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-fw fa-circle-thin' })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-tools pull-right' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'btn btn-box-tool', 'data-widget': 'collapse' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-plus' })))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'box-body' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dl', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Definition'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.definition), classe.semi_formal_definition && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Semi Formal Definition'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.semi_formal_definition)), classe.formal_definition && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Formal Definition (has_associated_axiom)'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.formal_definition)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'ID'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.class_id), classe.subclass && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'SubClassOf'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.subclass)), classe.synonyms && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Synonyms (has_synonym)'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.synonyms)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Example Of Usage'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.example_of_usage), classe.imported_from && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Imported From'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { target: '_blank', href: '{classe.imported_from}' }, classe.imported_from))), getLanguage() === 'pt' && $classe.label_pt ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Label PT'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.label_pt)) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Label'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.label)), classe.elucidation && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Elucidation'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.elucidation)), classe.is_defined_by && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Is Defined By'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.is_defined_by)), classe.disjoint_with && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Disjoint With'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.disjoint_with)), classe.comments && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Editor Note (comments)'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.comments)), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dt', null, 'Ontology'), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('dd', null, classe.ontology))));
             })))))), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'modal-footer' }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('button', { type: 'button', className: 'btn btn-default pull-left', 'data-dismiss': 'modal' }, Close), External_Ontology_Databases, ':', __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: 'http://www.ontobee.org/', target: '_blank' }, ' OntoBee | '), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: 'https://bioportal.bioontology.org/', target: '_blank' }, ' BioPortal | '), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: 'https://www.ebi.ac.uk/ols/index', target: '_blank' }, ' Ontology Lookup Service (OLS) | '), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: 'http://swoogle.umbc.edu/2006/', target: '_blank' }, ' Swoogle | '), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('a', { href: 'http://resources.si.washington.edu/fma_browser1/', target: '_blank' }, ' Foundational Model Anatomy Browser ')))));
         }
     }]);

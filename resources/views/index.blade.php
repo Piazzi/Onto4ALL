@@ -131,39 +131,39 @@
 <div class="hidden" id="app"></div>
 
 <!-- Warning Console -->
-<div id="warnings-console"></div>
+<Console id='console'></Console>
 <!--  ./Warning Console -->
 
 
 <!-- Right Sidebar -->
-<div id="siderbar"></div>
+<Sidebar id='sidebar'></Sidebar>
 <!--./ Right Sidebar -->
 
 
 <!-- Error Console Info modal -->
-<div id='modal'></div>
+<Modal id='modal'></Modal>
 <!--./Warning Console Info modal -->
 
 <!-- Edit Ontology -->
-<div id='ontologyForm'></div>
+<OntologyForm id='ontologyForm'></OntologyForm>
 <!-- Edit Ontology -->
 
 
 
 <!-- Ontology Manager -->
-<div id='ontologyManager'></div>
+<OntologyManager id='ontologyManager'></OntologyManager>
 <!-- Ontology Manager -->
 
 <!-- Tips Menu Modal -->
-<div id='tips'></div>
+<Tips id='tips'></Tips>
 <!-- Tips Menu Modal -->
 
 <!-- Methodology Menu Modal -->
-<div id='methodology'></div>
+<Methodology id='methodology'></Methodology>
 <!-- Methodology Menu Modal -->
 
 <!-- Class Expression Editor Modal -->
-<div id='classExpressionEditor'></div>
+<ClassExpressionEditor id='classExpressionEditor'></ClassExpressionEditor>
 <!--./Class Expression Editor Modal -->
 
 <script src="{{ asset('js/app.js') }}"></script>

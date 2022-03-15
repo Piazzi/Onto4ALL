@@ -50,22 +50,22 @@ class OntologyManager extends React.Component {
                             <p>{You_dont_have_any_ontologies_saved_in_our_ontology_manager_yet}</p>
                             ) : (
                             <ul className="timeline">
-                                {ontologies.forEach(ontology => {
+                                {ontologies.map((ontology, index) => (
                                 <li>
                                     <i className="fa fa-object-group bg-green"></i>
 
                                     <div className="timeline-item">
                                         <span className="time"><i className="fa fa-user"></i> {Created_By}:
-                                            {ontology['user'['name']]}</span>
+                                            {ontology.user.name}</span>
                                         <span className="time"><i className="fa fa-clock-o"></i> {Last_update}:
-                                            {ontology['updated_at']}</span>
-                                        {ontology['favourite'] == 1 &&
+                                            {ontology.updated_at}</span>
+                                        {ontology.favourite == 1 &&
                                         <span className="time"><i style={{color: '#f39c12'}} className="fa fa-fw fa-star"></i></span>
                                         }
 
                                         <h3 className="timeline-header">
-                                            <a className="openOntology" data-dismiss="modal" id={ontology['id']} href="">{ontology['name']}</a>
-                                            {ontology['created_at'] !== ontology['updated_at'] ? (
+                                            <a className="openOntology" data-dismiss="modal" id={ontology.id} href="">{ontology.name}</a>
+                                            {ontology.created_at !== ontology.updated_at ? (
                                             {was_updated}
                                             ) : (
                                             {was_created}
@@ -73,21 +73,21 @@ class OntologyManager extends React.Component {
                                         </h3>
 
                                         <div className="timeline-body">
-                                            {ontology['description'] != null &&
+                                            {ontology.description != null &&
                                             <div>
                                                 <strong><i className="fa fa-book margin-r-5"></i>{Description}</strong>
                                                 <p className="text-muted">
-                                                    {ontology['description']}
+                                                    {ontology.description}
                                                 </p>
                                             </div>
                                             }
                                         </div>
                                         <div className="timeline-footer">
-                                            <a data-dismiss="modal" id={ontology['id']} className="btn btn-default editor-timeline-item openOntology" href="#"><i className="fa fa-fw fa-object-group"></i> {Open_in_the_editor}</a>
+                                            <a data-dismiss="modal" id={ontology.id} className="btn btn-default editor-timeline-item openOntology" href="#"><i className="fa fa-fw fa-object-group"></i> {Open_in_the_editor}</a>
                                         </div>
                                     </div>
                                 </li>
-                                })}
+                                ))}
                             </ul>
                             )}
                         </div>

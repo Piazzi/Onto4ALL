@@ -15,16 +15,14 @@ import Tips from './components/Tips';
 export default function App() {
     return(
         <div>
-            <Sidebar />
-            <Chat />
-            <ClassExpressionEditor />
             <Console />
-            <Methodology />
+            <Sidebar />
             <Modal />
             <OntologyForm />
             <OntologyManager />
-            <Properties />
             <Tips />
+            <ClassExpressionEditor />
+            <Methodology />
         </div>
     )
 }

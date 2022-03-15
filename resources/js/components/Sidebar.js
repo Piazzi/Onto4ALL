@@ -1,20 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-function Siderbar(props) {
+import Chat from './Chat';
+import Properties from './Properties';
+
+function Sidebar(props) {
     return (
         <aside className="control-sidebar control-sidebar-light control-sidebar-open">
 
-            <div id='chat'></div>
-
-            <div id='properties'></div>
+            <Chat id='chat'></Chat>
+            <Properties id='properties'></Properties>
 
         </aside>
     );
 }
 
-export default Siderbar;
+export default Sidebar;
 
-if (document.getElementById('siderbar')) {
-    ReactDOM.render(<Siderbar />, document.getElementById('siderbar'));
+if (document.getElementById('sidebar')) {
+    ReactDOM.render(<Sidebar />, document.getElementById('sidebar'));
 }

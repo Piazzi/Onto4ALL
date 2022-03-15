@@ -54,7 +54,7 @@ class Tips extends React.Component {
     }
     render() {
 
-        const { relations, classes } = this.state;
+        var { relations, classes } = this.state;
 
         return (
             <div className="modal fade" id="tips-menu" style={{display: 'none'}}>
@@ -62,7 +62,7 @@ class Tips extends React.Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span></button>
+                                <span aria-hidden="true"></span></button>
                             <h4 style={{textAlign: 'center'}} className="modal-title">{tips}</h4>
 
                         </div>
@@ -78,10 +78,10 @@ class Tips extends React.Component {
                                 <div className="tab-content">
                                     <div id="menu-scroll">
                                         <div id="control-sidebar-theme-demo-options-tab table-search" className="tab-pane active table-search">
-                                            {relations.forEach(ontologyRelation => {
+                                            {relations.map((ontologyRelation, index) => (
                                             <div id="tipSearch" className="box box-default collapsed-box box-solid relation-box">
                                                 <div className="box-header with-border">
-                                                    <h3 className="box-title title">{ontologyRelation['name']} <i className="fa fa-fw fa-long-arrow-right"></i></h3>
+                                                    <h3 className="box-title title">{ontologyRelation.name} <i className="fa fa-fw fa-long-arrow-right"></i></h3>
                                                     <div className="box-tools pull-right">
                                                         <button type="button" className="btn btn-box-tool" data-widget="collapse"><i className="fa fa-plus"></i></button>
                                                     </div>
@@ -89,94 +89,94 @@ class Tips extends React.Component {
                                                 <div className="box-body">
                                                     <dl>
                                                         <dt>Definition</dt>
-                                                        <dd>{ontologyRelation['definition']}</dd>
+                                                        <dd>{ontologyRelation.definition}</dd>
 
-                                                        {ontologyRelation['semi_formal_definition'] &&
+                                                        {ontologyRelation.semi_formal_definition &&
                                                         <div>
                                                         <dt>Semi Formal Definition</dt>
-                                                        <dd>{ontologyRelation['semi_formal_definition']}</dd>
+                                                        <dd>{ontologyRelation.semi_formal_definition}</dd>
                                                         </div>
                                                         }
                                                         
-                                                        {ontologyRelation['formal_definition'] &&
+                                                        {ontologyRelation.formal_definition &&
                                                         <div>
                                                         <dt>Formal Definition</dt>
-                                                        <dd>{ontologyRelation['formal_definition']}</dd>
+                                                        <dd>{ontologyRelation.formal_definition}</dd>
                                                         </div>
                                                         }
                                                         <dt>Domain</dt>
-                                                        <dd>{ontologyRelation['domain']}</dd>
+                                                        <dd>{ontologyRelation.domain}</dd>
                                                         <dt>Range</dt>
-                                                        <dd>{ontologyRelation['range']}</dd>
+                                                        <dd>{ontologyRelation.range}</dd>
                                                         <dt>Example Of Usage</dt>
-                                                        <dd>{ontologyRelation['example_of_usage']}</dd>
-                                                        {ontologyRelation['imported_from'] &&
+                                                        <dd>{ontologyRelation.example_of_usage}</dd>
+                                                        {ontologyRelation.imported_from &&
                                                         <div>
                                                         <dt>Imported From</dt>
                                                         <dd>
-                                                            <a target="_blank" href={ontologyRelation['imported_from']}>{ontologyRelation['imported_from']}</a>
+                                                            <a target="_blank" href={ontologyRelation.imported_from}>{ontologyRelation.imported_from}</a>
                                                         </dd>
                                                         </div>
                                                         }
                                                         <dt>ID</dt>
-                                                        <dd>{ontologyRelation['relation_id']}</dd>
-                                                        {getLanguage() === 'pt' && $ontologyRelation['label_pt'] ? (
+                                                        <dd>{ontologyRelation.relation_id}</dd>
+                                                        {getLanguage() === 'pt' && $ontologyRelation.label_pt ? (
                                                          <div>
                                                         <dt>Label PT</dt>
-                                                        <dd>{ontologyRelation['label_pt']}</dd>
+                                                        <dd>{ontologyRelation.label_pt}</dd>
                                                         </div>
                                                         ) : (
                                                         <div>
                                                         <dt>Label</dt>
-                                                        <dd>{ontologyRelation['label']}</dd>
+                                                        <dd>{ontologyRelation.label}</dd>
                                                         </div>
                                                         )}
-                                                        {ontologyRelation['synonyms'] &&
+                                                        {ontologyRelation.synonyms &&
                                                         <div>
                                                         <dt>Synonyms</dt>
-                                                        <dd>{ontologyRelation['synonyms']}</dd>
+                                                        <dd>{ontologyRelation.synonyms}</dd>
                                                         </div>
                                                         }
-                                                        {ontologyRelation['is_defined_by'] &&
+                                                        {ontologyRelation.is_defined_by &&
                                                         <div>
                                                         <dt>Is Defined By</dt>
-                                                        <dd>{ontologyRelation['is_defined_by']}</dd>
+                                                        <dd>{ontologyRelation.is_defined_by}</dd>
                                                         </div>
                                                         }
-                                                        {ontologyRelation['comments'] &&
+                                                        {ontologyRelation.comments &&
                                                         <div>
                                                         <dt>Editor Note (comments)</dt>
-                                                        <dd>{ontologyRelation['comments']}</dd>
+                                                        <dd>{ontologyRelation.comments}</dd>
                                                         </div>
                                                         }
-                                                        {ontologyRelation['inverse_of'] &&
+                                                        {ontologyRelation.inverse_of &&
                                                         <div>
                                                         <dt>Inverse Of</dt>
-                                                        <dd>{ontologyRelation['inverse_of']}</dd>
+                                                        <dd>{ontologyRelation.inverse_of}</dd>
                                                         </div>
                                                         }
-                                                        {ontologyRelation['subproperty_of'] &&
+                                                        {ontologyRelation.subproperty_of &&
                                                         <div>
                                                         <dt>Subproperty Of</dt>
-                                                        <dd>{ontologyRelation['subproperty_of']}</dd>
+                                                        <dd>{ontologyRelation.subproperty_of}</dd>
                                                         </div>
                                                         }
-                                                        {ontologyRelation['superproperty_of'] &&
+                                                        {ontologyRelation.superproperty_of &&
                                                         <div>
                                                         <dt>Superproperty Of</dt>
-                                                        <dd>{ontologyRelation['superproperty_of']}</dd>
+                                                        <dd>{ontologyRelation.superproperty_of}</dd>
                                                         </div>
                                                         }
                                                         <dt>Ontology</dt>
-                                                        <dd>{ontologyRelation['ontology']}</dd>
+                                                        <dd>{ontologyRelation.ontology}</dd>
                                                     </dl>
                                                 </div>
                                             </div>
-                                            })}
-                                            {classes.forEach(classe => {
+                                            ))}
+                                            {classes.map((classe, index) => (  
                                             <div id="tipSearch" className="box box-success collapsed-box box-solid">
                                                 <div className="box-header with-border">
-                                                    <h3 className="box-title title">{classe['name']} <i className="fa fa-fw fa-circle-thin"></i>
+                                                    <h3 className="box-title title">{classe.name} <i className="fa fa-fw fa-circle-thin"></i>
                                                     </h3>
                                                     <div className="box-tools pull-right">
                                                         <button type="button" className="btn btn-box-tool" data-widget="collapse"><i className="fa fa-plus"></i></button>
@@ -185,84 +185,84 @@ class Tips extends React.Component {
                                                 <div className="box-body">
                                                     <dl>
                                                         <dt>Definition</dt>
-                                                        <dd>{classe['definition']}</dd>
-                                                        {classe['semi_formal_definition'] &&
+                                                        <dd>{classe.definition}</dd>
+                                                        {classe.semi_formal_definition &&
                                                         <div>
                                                         <dt>Semi Formal Definition</dt>
-                                                        <dd>{classe['semi_formal_definition']}</dd>
+                                                        <dd>{classe.semi_formal_definition}</dd>
                                                         </div>
                                                         }
-                                                        {classe['formal_definition'] &&
+                                                        {classe.formal_definition &&
                                                         <div>
                                                         <dt>Formal Definition (has_associated_axiom)</dt>
-                                                        <dd>{classe['formal_definition']}</dd>
+                                                        <dd>{classe.formal_definition}</dd>
                                                         </div>
                                                         }
                                                         <dt>ID</dt>
-                                                        <dd>{classe['class_id']}</dd>
-                                                        {classe['subclass'] &&
+                                                        <dd>{classe.class_id}</dd>
+                                                        {classe.subclass &&
                                                         <div>
                                                         <dt>SubClassOf</dt>
-                                                        <dd>{classe['subclass']}</dd>
+                                                        <dd>{classe.subclass}</dd>
                                                         </div>
                                                         }
-                                                        {classe['synonyms'] &&
+                                                        {classe.synonyms &&
                                                         <div>
                                                         <dt>Synonyms (has_synonym)</dt>
-                                                        <dd>{classe['synonyms']}</dd>
+                                                        <dd>{classe.synonyms}</dd>
                                                         </div>
                                                         }
                                                         <dt>Example Of Usage</dt>
-                                                        <dd>{classe['example_of_usage']}</dd>
-                                                        {classe['imported_from'] &&
+                                                        <dd>{classe.example_of_usage}</dd>
+                                                        {classe.imported_from &&
                                                         <div>
                                                         <dt>Imported From</dt>
                                                         <dd>
-                                                            <a target="_blank" href="{classe['imported_from']}">{classe['imported_from']}</a>
+                                                            <a target="_blank" href="{classe.imported_from}">{classe.imported_from}</a>
                                                         </dd>
                                                         </div>
                                                         }
-                                                        {getLanguage() === 'pt' && $classe['label_pt'] ? (
+                                                        {getLanguage() === 'pt' && $classe.label_pt ? (
                                                          <div>
                                                         <dt>Label PT</dt>
-                                                        <dd>{classe['label_pt']}</dd>
+                                                        <dd>{classe.label_pt}</dd>
                                                         </div>
                                                         ) : (
                                                         <div>
                                                         <dt>Label</dt>
-                                                        <dd>{classe['label']}</dd>
+                                                        <dd>{classe.label}</dd>
                                                         </div>
                                                         )}
-                                                        {classe['elucidation'] &&
+                                                        {classe.elucidation &&
                                                         <div>
                                                         <dt>Elucidation</dt>
-                                                        <dd>{classe['elucidation']}</dd>
+                                                        <dd>{classe.elucidation}</dd>
                                                         </div>
                                                         }
-                                                        {classe['is_defined_by'] &&
+                                                        {classe.is_defined_by &&
                                                         <div>
                                                         <dt>Is Defined By</dt>
-                                                        <dd>{classe['is_defined_by']}</dd>
+                                                        <dd>{classe.is_defined_by}</dd>
                                                         </div>
                                                         }
-                                                        {classe['disjoint_with'] &&
+                                                        {classe.disjoint_with &&
                                                         <div>
                                                         <dt>Disjoint With</dt>
-                                                        <dd>{classe['disjoint_with']}</dd>
+                                                        <dd>{classe.disjoint_with}</dd>
                                                         </div>
                                                         }
-                                                        {classe['comments'] &&
+                                                        {classe.comments &&
                                                         <div>
                                                         <dt>Editor Note (comments)</dt>
-                                                        <dd>{classe['comments']}</dd>
+                                                        <dd>{classe.comments}</dd>
                                                         </div>
                                                         }
                                                         <dt>Ontology</dt>
-                                                        <dd>{classe['ontology']}</dd>
+                                                        <dd>{classe.ontology}</dd>
                                                     </dl>
                                                 </div>
                                             </div>
-                                            })}
+                                            ))}
                                         </div>
                                     </div>
                                 </div>

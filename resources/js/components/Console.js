@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 function Console(props) {
     return (
-        <div className="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box" >
+        <div className="box box-default box-solid direct-chat direct-chat-warning no-warnings collapsed-box" id="warnings-console">
             <div id="warnings-console-header" className="box-header">
                 <h3 className="box-title">{Warnings_Console}</h3>
 
@@ -84,6 +84,6 @@ function Console(props) {
 
 export default Console;
 
-if (document.getElementById('warnings-console')) {
-    ReactDOM.render(<Console />, document.getElementById('warnings-console'));
+if (document.getElementById('console')) {
+    ReactDOM.render(<Console />, document.getElementById('console'));
 }
