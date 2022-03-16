@@ -410,27 +410,31 @@ function getCurrentOntologyInJSON() {
         "object properties": [],
         "data properties": [],
         "individuals": [],
+        "constraints": [],
     };
 
 
     classes.forEach((e) => {
+
+        ontology.constraints.push(e.value.getAttribute('Constraint'))
+
         ontology.classes.push({
             "Name": e.value.getAttribute('label'),
-            "SubClassOf": e.value.getAttribute('SubClassOf'),
-            "EquivalentTo": e.value.getAttribute('EquivalentTo'),
-            "Instances": e.value.getAttribute('Instances'),
-            "TargetForKey": e.value.getAttribute('TargetForKey'),
-            "DisjointWith": e.value.getAttribute('DisjointWith'),
-            "Constraint ": e.value.getAttribute('Constraint '),
+            "SubClassOf": e.value.getAttribute('SubClassOf').split(),
+            "EquivalentTo": e.value.getAttribute('EquivalentTo')?.split(),
+            "Instances": e.value.getAttribute('Instances')?.split(),
+            "TargetForKey": e.value.getAttribute('TargetForKey')?.split(),
+            "DisjointWith": e.value.getAttribute('DisjointWith')?.split(),
+            "Constraint ": e.value.getAttribute('Constraint')?.split(),
             "Annotation": {
-                "comment": e.value.getAttribute('comment'),
-                "isDefinedBy": e.value.getAttribute('isDefinedBy'),
-                "seeAlso": e.value.getAttribute('seeAlso'),
-                "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith'),
-                "deprecated": e.value.getAttribute('deprecated'),
-                "incompatibleWith": e.value.getAttribute('incompatibleWith'),
-                "priorVersion": e.value.getAttribute('priorVersion'),
-                "versionInfo": e.value.getAttribute('versionInfo'),
+                "comment": e.value.getAttribute('comment')?.split(),
+                "isDefinedBy": e.value.getAttribute('isDefinedBy')?.split(),
+                "seeAlso": e.value.getAttribute('seeAlso')?.split(),
+                "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith')?.split(),
+                "deprecated": e.value.getAttribute('deprecated')?.split(),
+                "incompatibleWith": e.value.getAttribute('incompatibleWith')?.split(),
+                "priorVersion": e.value.getAttribute('priorVersion')?.split(),
+                "versionInfo": e.value.getAttribute('versionInfo')?.split(),
             }
             },
         )
@@ -439,21 +443,21 @@ function getCurrentOntologyInJSON() {
     relations.forEach((e) => {
         ontology["object properties"].push({
                 "Name": e.value.getAttribute('label'),
-                "domain": e.value.getAttribute('domain'),
-                "range": e.value.getAttribute('range'),
-                "equivalentTo": e.value.getAttribute('equivalentTo'),
-                "subpropertyOf": e.value.getAttribute('subpropertyOf'),
-                "inverseOf": e.value.getAttribute('inverseOf'),
-                "disjointWith ": e.value.getAttribute('disjointWith '),
+                "domain": e.value.getAttribute('domain')?.split(),
+                "range": e.value.getAttribute('range')?.split(),
+                "equivalentTo": e.value.getAttribute('equivalentTo')?.split(),
+                "subpropertyOf": e.value.getAttribute('subpropertyOf')?.split(),
+                "inverseOf": e.value.getAttribute('inverseOf')?.split(),
+                "disjointWith ": e.value.getAttribute('disjointWith')?.split(),
                 "Annotation": {
-                    "comment": e.value.getAttribute('comment'),
-                    "isDefinedBy": e.value.getAttribute('isDefinedBy'),
-                    "seeAlso": e.value.getAttribute('seeAlso'),
-                    "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith'),
-                    "deprecated": e.value.getAttribute('deprecated'),
-                    "incompatibleWith": e.value.getAttribute('incompatibleWith'),
-                    "priorVersion": e.value.getAttribute('priorVersion'),
-                    "versionInfo": e.value.getAttribute('versionInfo'),
+                    "comment": e.value.getAttribute('comment')?.split(),
+                    "isDefinedBy": e.value.getAttribute('isDefinedBy')?.split(),
+                    "seeAlso": e.value.getAttribute('seeAlso')?.split(),
+                    "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith')?.split(),
+                    "deprecated": e.value.getAttribute('deprecated')?.split(),
+                    "incompatibleWith": e.value.getAttribute('incompatibleWith')?.split(),
+                    "priorVersion": e.value.getAttribute('priorVersion')?.split(),
+                    "versionInfo": e.value.getAttribute('versionInfo')?.split(),
                 }
             },
         );
@@ -463,46 +467,41 @@ function getCurrentOntologyInJSON() {
     instances.forEach((e) => {
         ontology.individuals.push({
                 "Name": e.value.getAttribute('label'),
-                "types": e.value.getAttribute('types'),
-                "sameAs": e.value.getAttribute('sameAs'),
-                "differentAs": e.value.getAttribute('differentAs'),
-                "objectProperties": e.value.getAttribute('objectProperties'),
-                "dataProperties": e.value.getAttribute('dataProperties'),
-                "negativeObjectProperties": e.value.getAttribute('negativeObjectProperties'),
-                "negativeDataProperties": e.value.getAttribute('negativeDataProperties'),
+                "types": e.value.getAttribute('types')?.split(),
+                "sameAs": e.value.getAttribute('sameAs')?.split(),
+                "differentAs": e.value.getAttribute('differentAs')?.split(),
+                "objectProperties": e.value.getAttribute('objectProperties')?.split(),
+                "dataProperties": e.value.getAttribute('dataProperties')?.split(),
+                "negativeObjectProperties": e.value.getAttribute('negativeObjectProperties')?.split(),
+                "negativeDataProperties": e.value.getAttribute('negativeDataProperties')?.split(),
                 "Annotation": {
-                    "comment": e.value.getAttribute('comment'),
-                    "isDefinedBy": e.value.getAttribute('isDefinedBy'),
-                    "seeAlso": e.value.getAttribute('seeAlso'),
-                    "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith'),
-                    "deprecated": e.value.getAttribute('deprecated'),
-                    "incompatibleWith": e.value.getAttribute('incompatibleWith'),
-                    "priorVersion": e.value.getAttribute('priorVersion'),
-                    "versionInfo": e.value.getAttribute('versionInfo'),
+                    "comment": e.value.getAttribute('comment')?.split(),
+                    "isDefinedBy": e.value.getAttribute('isDefinedBy')?.split(),
+                    "seeAlso": e.value.getAttribute('seeAlso')?.split(),
+                    "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith')?.split(),
+                    "deprecated": e.value.getAttribute('deprecated')?.split(),
+                    "incompatibleWith": e.value.getAttribute('incompatibleWith')?.split(),
+                    "priorVersion": e.value.getAttribute('priorVersion')?.split(),
+                    "versionInfo": e.value.getAttribute('versionInfo')?.split(),
                 }
 
             },
         );
     });
-
+    if(ontology.constraints.length == 0)
+        delete ontology.constraints
     return JSON.stringify(cleanObject(ontology));
 }
 
 function xmlToOwl(fileName) {
     $.ajax({
-        /* the route pointing to the post function */
-        //http://200.17.70.211:13951/owlapi/webapi/ontology/read
-        ///exportOWL
+
         url: 'http://200.17.70.211:13951/owlapi/webapi/ontology/format',
         type: 'POST',
 
-        /* send the csrf-token and the input to the controller */
-        data: {
-            _token: $('meta[name="csrf-token"]').attr('content'),
-            fileName: fileName,
-            //xml:,
-            json: getCurrentOntologyInJSON(),
-        },
+      
+        body: getCurrentOntologyInJSON(),
+
         crossDomain: true,
         dataType: 'JSONP',
         success: function (owlString) {
