@@ -76,12 +76,12 @@ class LoginTest extends TestCase
        $user = User::factory()->create([
             'password' => bcrypt($password = 'teste'),
         ]);
-        
+
         $response = $this->from('/pt/login')->post('/pt/login', [
             'email' => $user->email,
             'password' => 'erro',
         ]);
-        
+
         $response->assertRedirect('/pt/login');
         $response->assertSessionHasErrors('email');
         $this->assertTrue(session()->hasOldInput('email'));
@@ -94,12 +94,12 @@ class LoginTest extends TestCase
        $user = User::factory()->create([
             'password' => bcrypt($password = 'teste'),
         ]);
-        
+
         $response = $this->from('/en/login')->post('/en/login', [
             'email' => $user->email,
             'password' => 'erro',
         ]);
-        
+
         $response->assertRedirect('/en/login');
         $response->assertSessionHasErrors('email');
         $this->assertTrue(session()->hasOldInput('email'));
@@ -112,13 +112,13 @@ class LoginTest extends TestCase
         $user = User::factory()->create([
             'password' => bcrypt($password = 'teste'),
         ]);
-        
+
         $response = $this->post('/pt/login', [
             'email' => $user->email,
             'password' => $password,
             'remember' => 'on',
         ]);
-        
+
         $response->assertRedirect('/pt/home');
         $this->assertAuthenticatedAs($user);
     }
@@ -128,13 +128,13 @@ class LoginTest extends TestCase
         $user = User::factory()->create([
             'password' => bcrypt($password = 'teste'),
         ]);
-        
+
         $response = $this->post('/en/login', [
             'email' => $user->email,
             'password' => $password,
             'remember' => 'on',
         ]);
-        
+
         $response->assertRedirect('/en/home');
         $this->assertAuthenticatedAs($user);
     }
@@ -167,17 +167,5 @@ class LoginTest extends TestCase
 
         $response->assertRedirect('/');
     }
-
-    public function test_user_can_register_en()
-    {
-        $faker = \Faker\Factory::create();
-        $response = $this->post('/en/register', [
-            'name' => $faker->name,
-            'email' => $faker->unique()->safeEmail,
-            'password' => bcrypt($password = 'teste'),
-            'remember_token' => str_random(10),
-        ]);
-
-        $response->assertRedirect('/');
-    }
+    
 }
