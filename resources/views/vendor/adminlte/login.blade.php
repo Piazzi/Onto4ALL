@@ -161,7 +161,7 @@
 						<div class="row">
 							<h4 style="text-align: center;color:#444444 !important"><strong>Version</strong> Beta 4.0.1</h4>
 							<a style="display: block;" href="{{route('landing-page', app()->getLocale())}}" class="text-center">
-								<span style="color:darkgrey; font-size:small"><i class="fa fa-fw fa-arrow-left"></i>{{__('Go back to main page')}}</span>
+								<span style="font-size:small"><i class="fa fa-fw fa-arrow-left"></i>{{__('Go back to main page')}}</span>
 							</a>
 						</div>
 					</div>
