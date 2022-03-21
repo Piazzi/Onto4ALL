@@ -56,7 +56,7 @@ class OntologyManager extends React.Component {
 
                                     <div className="timeline-item">
                                         <span className="time"><i className="fa fa-user"></i> {Created_By}:
-                                            {ontology.user.name}</span>
+                                            {/*ontology.user.name*/ontology.user_id}</span>
                                         <span className="time"><i className="fa fa-clock-o"></i> {Last_update}:
                                             {ontology.updated_at}</span>
                                         {ontology.favourite == 1 &&
@@ -65,11 +65,7 @@ class OntologyManager extends React.Component {
 
                                         <h3 className="timeline-header">
                                             <a className="openOntology" data-dismiss="modal" id={ontology.id} href="">{ontology.name}</a>
-                                            {ontology.created_at !== ontology.updated_at ? (
                                             {was_updated}
-                                            ) : (
-                                            {was_created}
-                                            )}
                                         </h3>
 
                                         <div className="timeline-body">

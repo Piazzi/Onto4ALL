@@ -125,7 +125,7 @@ function OntologyForm(props) {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-default pull-left" data-dismiss="modal">{Close}</button>
-                        <button onClick={document.getElementById('save-ontology').click()} type="button" className="btn btn-success pull-right" data-dismiss="modal">{Save_Changes}</button>
+                        <button onClick={() => document.getElementById('save-ontology').click()} type="button" className="btn btn-success pull-right" data-dismiss="modal">{Save_Changes}</button>
                     </div>
                 </div>
             </div>

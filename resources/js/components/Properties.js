@@ -4,15 +4,6 @@ import ReactDOM from 'react-dom';
 class Properties extends React.Component {
 
     render() {
-
-        function updatePropertyInput (id, value) {
-            console.log('erro');
-        }
-
-        function createNewProperty(newPropertyLabel) {
-            console.log('erro2');
-        }
-
         return (
             <div className="nav-tabs-custom">
                 <ul className="nav nav-tabs">
@@ -30,25 +21,25 @@ class Properties extends React.Component {
                     <div className="tab-pane active" id="classes-tab">
                         <div className="form-group">
                             <label>SubClassOf</label>
-                            <input id="SubClassOf" disabled type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="SubClassOf" disabled type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>Equivalence</label>
-                            <select id="Equivalence" data-placeholder="Select Classes" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={updatePropertyInput(this.id, $('#'+this.id).val())}>
+                            <select id="Equivalence" data-placeholder="Select Classes" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
                                 <option></option>
                             </select>
                         </div>
                         <div className="form-group">
                             <label>Instances</label>
-                            <input id="Instances" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="Instances" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>TargetForKey</label>
-                            <input id="TargetForKey" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="TargetForKey" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>DisjointWith</label>
-                            <select id="DisjointWith" data-placeholder="Select Classes" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={updatePropertyInput(this.id, $('#'+this.id).val())}>
+                            <select id="DisjointWith" data-placeholder="Select Classes" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
                                 <option></option>
                             </select>
                         </div>
@@ -65,50 +56,50 @@ class Properties extends React.Component {
                             <div className="input-group input-group-sm">
                                 <input id="new-property-label" type="text" className="form-control"  placeholder="Property name" ></input>
                                 <span className="input-group-btn">
-                                <button onClick={/*createNewProperty(document.getElementById('new-property-label').value)*/createNewProperty(1)} type="button" className="btn btn-success btn-flat">Create</button>
+                                <button onClick={() => createNewProperty(document.getElementById('new-property-label').value)} type="button" className="btn btn-success btn-flat">Create</button>
                                 </span>
                             </div>
                             <label id="created-property-message" style={{visibility: 'hidden', color: '#00a65a'}} className="control-label has-success" htmlFor="inputSuccess"><i className="fa fa-check"></i> Property created! </label>
                         </div>
                         <div className="form-group">
                             <label>IRI</label> <a id="IRI-link" target="_blank" href=""><i title="copy link" className="fa fa-fw fa-link"></i></a>
-                            <input id="IRI" type="text" className="form-control" placeholder="" disabled onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="IRI" type="text" className="form-control" placeholder="" disabled onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>label</label>
-                            <input id="label" type="text" className="form-control" placeholder=""disabled onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="label" type="text" className="form-control" placeholder=""disabled onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>comment</label>
-                            <input id="comment" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="comment" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>isDefinedBy</label>
-                            <input id="isDefinedBy" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="isDefinedBy" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>seeAlso</label>
-                            <input id="seeAlso" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="seeAlso" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>backwardCompartibleWith</label>
-                            <input id="backwardCompatibleWith" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="backwardCompatibleWith" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>deprecated</label>
-                            <input id="deprecated" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="deprecated" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>incompatibleWith</label>
-                            <input id="incompatibleWith" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="incompatibleWith" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>priorVersion</label>
-                            <input id="priorVersion" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="priorVersion" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>versionInfo</label>
-                            <input id="versionInfo" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="versionInfo" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
 
                     </div>
@@ -116,77 +107,77 @@ class Properties extends React.Component {
                     <div className="tab-pane" id="object-properties-tab">
                         <div className="form-group">
                             <label>domain</label>
-                            <input id="domain" disabled type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="domain" disabled type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>range</label>
-                            <input id="range" disabled type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="range" disabled type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>equivalentTo</label>
-                            <select id="equivalentTo" data-placeholder="Select Relations" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={updatePropertyInput(this.id, $('#'+this.id).val())}>
+                            <select id="equivalentTo" data-placeholder="Select Relations" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
                                 <option></option>
                             </select>
                         </div>
                         <div className="form-group">
                             <label>subpropertyOf</label>
-                            <select id="subpropertyOf" data-placeholder="Select Relation" style={{width: 100}} className="js-example-basic-multiple" onChange={updatePropertyInput(this.id, this.value)}>
+                            <select id="subpropertyOf" data-placeholder="Select Relation" style={{width: 100}} className="js-example-basic-multiple" onChange={() => updatePropertyInput(this.id, this.value)}>
                                 <option></option>
                             </select>
                         </div>
                         <div className="form-group">
                             <label>inverseOf</label>
-                            <select id="inverseOf" data-placeholder="Select Relation" style={{width: 100}} className="js-example-basic-multiple" onChange={updatePropertyInput(this.id, this.value)}>
+                            <select id="inverseOf" data-placeholder="Select Relation" style={{width: 100}} className="js-example-basic-multiple" onChange={() => updatePropertyInput(this.id, this.value)}>
                                 <option></option>
                             </select>
                         </div>
                         <div className="form-group">
                             <label>disjointWith</label>
-                            <select id="disjointWith-relations" data-placeholder="Select Relations" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={updatePropertyInput(this.id, $('#'+this.id).val())}>
+                            <select id="disjointWith-relations" data-placeholder="Select Relations" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
                                 <option></option>
                             </select>
                         </div>
                         <div className="form-group">
                             <div className="checkbox">
                                 <label>
-                                    <input id="functional" type="checkbox" onChange={updatePropertyInput(this.id, this.checked)}></input>
+                                    <input id="functional" type="checkbox" onChange={() => updatePropertyInput(this.id, this.checked)}></input>
                                     Functional
                                 </label>
                             </div>
 
                             <div className="checkbox">
                                 <label>
-                                    <input id="inverseFunctional" type="checkbox" onChange={updatePropertyInput(this.id, this.checked)}></input>
+                                    <input id="inverseFunctional" type="checkbox" onChange={() => updatePropertyInput(this.id, this.checked)}></input>
                                     Inverse Functional
                                 </label>
                             </div>
                             <div className="checkbox">
                                 <label>
-                                    <input id="transitive" type="checkbox" onChange={updatePropertyInput(this.id, this.checked)}></input>
+                                    <input id="transitive" type="checkbox" onChange={() => updatePropertyInput(this.id, this.checked)}></input>
                                     Transitive
                                 </label>
                             </div>
                             <div className="checkbox">
                                 <label>
-                                    <input id="symetric" type="checkbox" onChange={updatePropertyInput(this.id, this.checked)}></input>
+                                    <input id="symetric" type="checkbox" onChange={() => updatePropertyInput(this.id, this.checked)}></input>
                                     Symetric
                                 </label>
                             </div>
                             <div className="checkbox">
                                 <label>
-                                    <input id="asymmetric" type="checkbox" onChange={updatePropertyInput(this.id, this.checked)}></input>
+                                    <input id="asymmetric" type="checkbox" onChange={() => updatePropertyInput(this.id, this.checked)}></input>
                                     Asymmetric
                                 </label>
                             </div>
                             <div className="checkbox">
                                 <label>
-                                    <input id="reflexive" type="checkbox" onChange={updatePropertyInput(this.id, this.checked)}></input>
+                                    <input id="reflexive" type="checkbox" onChange={() => updatePropertyInput(this.id, this.checked)}></input>
                                     Reflexive
                                 </label>
                             </div>
                             <div className="checkbox">
                                 <label>
-                                    <input id="irreflexive" type="checkbox" onChange={updatePropertyInput(this.id, this.checked)}></input>
+                                    <input id="irreflexive" type="checkbox" onChange={() => updatePropertyInput(this.id, this.checked)}></input>
                                     Irreflexive
                                 </label>
                             </div>
@@ -198,7 +189,7 @@ class Properties extends React.Component {
                     <div className="tab-pane" id="instances-tab">
                         <div className="form-group">
                             <label>types</label>
-                            <select id="types" data-placeholder="Select Datatypes" style={{width: 100}} className="js-example-basic-multiple" onChange={updatePropertyInput(this.id, this.value)}>
+                            <select id="types" data-placeholder="Select Datatypes" style={{width: 100}} className="js-example-basic-multiple" onChange={() => updatePropertyInput(this.id, this.value)}>
                                 <option>owl:rational</option>
                                 <option>owl:real</option>
                                 <option>rdf:PlainLiteral</option>
@@ -237,31 +228,31 @@ class Properties extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>sameAs</label>
-                            <select id="sameAs" data-placeholder="Select instances" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={updatePropertyInput(this.id, $('#'+this.id).val())}>
+                            <select id="sameAs" data-placeholder="Select instances" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
                                 <option></option>
                             </select>
                         </div>
                         <div className="form-group">
                             <label>differentAs</label>
-                            <select id="differentAs" data-placeholder="Select instances" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={updatePropertyInput(this.id, $('#'+this.id).val())}>
+                            <select id="differentAs" data-placeholder="Select instances" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
                                 <option></option>
                             </select>
                         </div>
                         <div className="form-group">
                             <label>objectProperties</label>
-                            <input id="objectProperties" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="objectProperties" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>dataProperties</label>
-                            <input id="dataProperties" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="dataProperties" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>negativeObjectProperties</label>
-                            <input id="negativeObjectProperties" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="negativeObjectProperties" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>negativeDataProperties</label>
-                            <input id="negativeDataProperties" type="text" className="form-control" placeholder="" onChange={updatePropertyInput(this.id, this.value)}></input>
+                            <input id="negativeDataProperties" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput(this.id, this.value)}></input>
                         </div>
 
                     </div>
@@ -270,45 +261,45 @@ class Properties extends React.Component {
                     <div className="tab-pane" id="datatype-properties-tab">
                         <div className="form-group">
                             <label>Value</label>
-                            <input id="value-datatype-properties" type="text" className="form-control" placeholder="" onChange={updatePropertyInput('value', this.value)}></input>
+                            <input id="value-datatype-properties" type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput('value', this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>domain</label>
-                            <input id="domain-datatype-properties" disabled type="text" className="form-control" placeholder="" onChange={updatePropertyInput('domain', this.value)}></input>
+                            <input id="domain-datatype-properties" disabled type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput('domain', this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>range</label>
-                            <input id="range-datatype-properties" disabled type="text" className="form-control" placeholder="" onChange={updatePropertyInput('range', this.value)}></input>
+                            <input id="range-datatype-properties" disabled type="text" className="form-control" placeholder="" onChange={() => updatePropertyInput('range', this.value)}></input>
                         </div>
                         <div className="form-group">
                             <label>equivalentTo</label>
-                            <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={updatePropertyInput('equivalentTo', $('#'+this.id).val())}>
+                            <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput('equivalentTo', $('#'+this.id).val())}>
                                 <option></option>
                             </select>
                         </div>
                         <div className="form-group">
                             <label>subpropertyOf</label>
-                            <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={updatePropertyInput('subpropertyOf', $('#'+this.id).val())}>
+                            <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput('subpropertyOf', $('#'+this.id).val())}>
                                 <option></option>
                             </select>
                         </div>
                         <div className="form-group">
                             <label>disjointWith</label>
-                            <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={updatePropertyInput('disjointWith', $('#'+this.id).val())}>
+                            <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput('disjointWith', $('#'+this.id).val())}>
                                 <option></option>
                             </select>
                         </div>
                         <div className="form-group">
                             <div className="checkbox">
                                 <label>
-                                    <input id="functional-datatype-properties" type="checkbox" onChange={updatePropertyInput('functional', this.checked)}></input>
+                                    <input id="functional-datatype-properties" type="checkbox" onChange={() => updatePropertyInput('functional', this.checked)}></input>
                                     Functional
                                 </label>
                             </div>
                         </div>
                         <div className="form-group">
                             <label>datatype</label>
-                            <select id="datatype" data-placeholder="Select Datatypes" style={{width: 100}} className="js-example-basic-multiple" name="" onChange={updatePropertyInput(this.id, this.value)}>
+                            <select id="datatype" data-placeholder="Select Datatypes" style={{width: 100}} className="js-example-basic-multiple" name="" onChange={() => updatePropertyInput(this.id, this.value)}>
                                 <option>owl:rational</option>
                                 <option>owl:real</option>
                                 <option>rdf:PlainLiteral</option>
