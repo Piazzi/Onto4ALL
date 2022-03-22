@@ -249,7 +249,7 @@
             <div class="row">
 
                 <div class="col-lg-12 mr-auto text-center">
-                    <i class="fas fa-envelope fa-3x mb-3 "></i>
+                    <i style="color:064c72" class="fas fa-envelope fa-3x mb-3 "></i>
                     <a class="d-block">info@onto4alleditor.com</a>
                 </div>
             </div>
