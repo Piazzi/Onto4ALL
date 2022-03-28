@@ -250,7 +250,7 @@ function setPropertiesInputs(cell) {
                 cellProperties[i].value === "true" ? inputs[cellProperties[i].name].checked = true : inputs[cellProperties[i].name].checked = false;
             // string
             else
-                inputs[cellProperties[i].name].value = cellProperties[i].value;
+                inputs[cellProperties[i].name] = cellProperties[i].value;
         }
 
         // set annotations

@@ -1,8 +1,5 @@
 var ontologyName = document.getElementById("ontology-name");
 
-const ip_address = 'https://onto4alleditor.com/en';
-const socket_port = '3000'; // porta node
-
 function saveName(event) {
     if (event.key == 'Enter') {
         document.getElementById('save-ontology').click();
@@ -36,7 +33,7 @@ function favoriteOntology() {
 }
 
 // Request to open an ontology
-document.addEventListener("DOMContentLoaded", function () {
+//document.addEventListener("DOMContentLoaded", function () {
     let CSRF_TOKEN = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     // Fires the Ajax request when the button is clicked
@@ -113,6 +110,10 @@ document.addEventListener("DOMContentLoaded", function () {
         updateOntology(this.getAttribute('id'));
     });
 
+    function openOntology(id) {
+        updateOntology(id);
+    }
+
     if (window.location.origin == ip_address) {
         let socket = io(ip_address + ":" + socket_port);
 
@@ -122,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-});
+//});
 
 
 // Request to save the current ontology 

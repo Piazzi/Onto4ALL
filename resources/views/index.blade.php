@@ -115,15 +115,6 @@
     const Search_for_tips = '{{__('Search for tips')}}';
     const External_Ontology_Databases = '{{__('External Ontology Databases')}}';
 
-    var optionUsers = '';
-    @foreach($users as $user)
-        @if($user->id == Auth::user()->id)
-            optionUsers += '<option value="{{$user->id}}" selected="selected" locked="locked">{{__("You")}}</option>';
-        @else
-            optionUsers += '<option value="{{$user->id}}">{{$user->name}}</option>';
-        @endif
-    @endforeach
-
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     
 </script>
@@ -199,6 +190,15 @@
     mxLoadResources = false;
 </script>
 
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+<script>
+    const ip_address = 'https://onto4all.com/';
+    const socket_port = '3000'; // porta node
+
+    if (window.location.origin == ip_address) {
+        let socket = io(ip_address + ":" + socket_port);
+    }
+</script>
 
 <!-- MxGraph -->
 <script type="text/javascript" src="{{asset('grapheditor/js/Init.js')}}"></script>

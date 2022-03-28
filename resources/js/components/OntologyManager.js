@@ -79,7 +79,7 @@ class OntologyManager extends React.Component {
                                             }
                                         </div>
                                         <div className="timeline-footer">
-                                            <a data-dismiss="modal" id={ontology.id} className="btn btn-default editor-timeline-item openOntology" href="#"><i className="fa fa-fw fa-object-group"></i> {Open_in_the_editor}</a>
+                                            <a data-dismiss="modal" id={ontology.id} className="btn btn-default editor-timeline-item openOntology" onClick={() => openOntology(ontology.id)} href="#"><i className="fa fa-fw fa-object-group"></i> {Open_in_the_editor}</a>
                                         </div>
                                     </div>
                                 </li>

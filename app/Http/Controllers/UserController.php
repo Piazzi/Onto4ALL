@@ -160,5 +160,34 @@ class UserController extends Controller
         return redirect()->back()->with('success', true);
     }
 
+    /**
+     * Return collaborators.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getCollaborators()
+    {
+        $users = User::all();
+        $optionUsers = [];
+        
+        foreach($users as $user) {
+            if($user->id == Auth::user()->id) {
+                $optionUsers[] = array(
+                    'value' => $user->id,
+                    'selected' => 'selected',
+                    'locked' => 'locked',
+                    'text' => 'You'
+                );
+            } else {
+                $optionUsers[] = array(
+                    'value' => $user->id,
+                    'text' => $user->name
+                );
+            }
+        }
+
+        return response()->json($optionUsers);
+    }
+
 
 }
