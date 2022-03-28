@@ -195,7 +195,7 @@ function rdfToXml(owlDoc)
     console.log(numberOfElements);
 
     // Creates the Class and relations nodes
-    try 
+    try
     {
         for(let i = 0; i < owlDoc.getElementsByTagName("owl:Class").length; i++)
         {
@@ -391,5 +391,153 @@ function insertPropertyOnNode(nodeName, label, value)
 function clearXmlDocument() {
     if(xmlDoc.firstChild.firstChild !== null)
         xmlDoc.documentElement.removeChild(xmlDoc.getElementsByTagName("root")[0]);
+}
 
+/**
+ * Return the current ontology in JSON Format
+ */
+function getCurrentOntologyInJSON() {
+    let ontologyId = document.getElementById("id").value;
+    if(ontologyId == '') {
+        document.getElementById("save-ontology").click()
+        ontologyId = document.getElementById("id").value;
+    }
+
+    let ontology = {
+        "id": "https://onto4all.com/en/ontologies/"+ ontologyId,
+        "filetype": "OWL",
+        "classes": [],
+        "object properties": [],
+        "data properties": [],
+        "individuals": [],
+        "constraints": [],
+    };
+
+
+    classes.forEach((e) => {
+
+        ontology.constraints.push(e.value.getAttribute('Constraint'))
+
+        ontology.classes.push({
+            "Name": e.value.getAttribute('label'),
+            "SubClassOf": e.value.getAttribute('SubClassOf').split(),
+            "EquivalentTo": e.value.getAttribute('EquivalentTo')?.split(),
+            "Instances": e.value.getAttribute('Instances')?.split(),
+            "TargetForKey": e.value.getAttribute('TargetForKey')?.split(),
+            "DisjointWith": e.value.getAttribute('DisjointWith')?.split(),
+            "Constraint ": e.value.getAttribute('Constraint')?.split(),
+            "Annotation": {
+                "comment": e.value.getAttribute('comment')?.split(),
+                "isDefinedBy": e.value.getAttribute('isDefinedBy')?.split(),
+                "seeAlso": e.value.getAttribute('seeAlso')?.split(),
+                "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith')?.split(),
+                "deprecated": e.value.getAttribute('deprecated')?.split(),
+                "incompatibleWith": e.value.getAttribute('incompatibleWith')?.split(),
+                "priorVersion": e.value.getAttribute('priorVersion')?.split(),
+                "versionInfo": e.value.getAttribute('versionInfo')?.split(),
+            }
+            },
+        )
+    });
+
+    relations.forEach((e) => {
+        ontology["object properties"].push({
+                "Name": e.value.getAttribute('label'),
+                "domain": e.value.getAttribute('domain')?.split(),
+                "range": e.value.getAttribute('range')?.split(),
+                "equivalentTo": e.value.getAttribute('equivalentTo')?.split(),
+                "subpropertyOf": e.value.getAttribute('subpropertyOf')?.split(),
+                "inverseOf": e.value.getAttribute('inverseOf')?.split(),
+                "disjointWith ": e.value.getAttribute('disjointWith')?.split(),
+                "Annotation": {
+                    "comment": e.value.getAttribute('comment')?.split(),
+                    "isDefinedBy": e.value.getAttribute('isDefinedBy')?.split(),
+                    "seeAlso": e.value.getAttribute('seeAlso')?.split(),
+                    "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith')?.split(),
+                    "deprecated": e.value.getAttribute('deprecated')?.split(),
+                    "incompatibleWith": e.value.getAttribute('incompatibleWith')?.split(),
+                    "priorVersion": e.value.getAttribute('priorVersion')?.split(),
+                    "versionInfo": e.value.getAttribute('versionInfo')?.split(),
+                }
+            },
+        );
+
+    });
+
+    instances.forEach((e) => {
+        ontology.individuals.push({
+                "Name": e.value.getAttribute('label'),
+                "types": e.value.getAttribute('types')?.split(),
+                "sameAs": e.value.getAttribute('sameAs')?.split(),
+                "differentAs": e.value.getAttribute('differentAs')?.split(),
+                "objectProperties": e.value.getAttribute('objectProperties')?.split(),
+                "dataProperties": e.value.getAttribute('dataProperties')?.split(),
+                "negativeObjectProperties": e.value.getAttribute('negativeObjectProperties')?.split(),
+                "negativeDataProperties": e.value.getAttribute('negativeDataProperties')?.split(),
+                "Annotation": {
+                    "comment": e.value.getAttribute('comment')?.split(),
+                    "isDefinedBy": e.value.getAttribute('isDefinedBy')?.split(),
+                    "seeAlso": e.value.getAttribute('seeAlso')?.split(),
+                    "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith')?.split(),
+                    "deprecated": e.value.getAttribute('deprecated')?.split(),
+                    "incompatibleWith": e.value.getAttribute('incompatibleWith')?.split(),
+                    "priorVersion": e.value.getAttribute('priorVersion')?.split(),
+                    "versionInfo": e.value.getAttribute('versionInfo')?.split(),
+                }
+
+            },
+        );
+    });
+    if(ontology.constraints.length == 0)
+        delete ontology.constraints
+    return JSON.stringify(cleanObject(ontology));
+}
+
+function xmlToOwl(fileName) {
+    $.ajax({
+
+        url: 'http://200.17.70.211:13951/owlapi/webapi/ontology/format',
+        type: 'POST',
+
+      
+        body: getCurrentOntologyInJSON(),
+
+        crossDomain: true,
+        dataType: 'JSONP',
+        success: function (owlString) {
+            console.log(owlString)
+            return owlString;
+        },
+    }).done(function( data ) {
+        console.log(data)
+    });
+
+}
+
+/**
+ * Remove empty and null values from the entire object
+ * @param {*} object
+ * @returns
+ */
+function cleanObject(object) {
+    Object
+        .entries(object)
+        .forEach(([k, v]) => {
+            if (v && typeof v === 'object')
+                cleanObject(v);
+            if (v &&
+                typeof v === 'object' &&
+                !Object.keys(v).length ||
+                v === null ||
+                v === undefined ||
+                v === "" ||
+                v.length === 0
+            ) {
+                if (Array.isArray(object))
+                    object.splice(k, 1);
+                else if (!(v instanceof Date))
+                    delete object[k];
+            }
+        });
+    return object;
 }

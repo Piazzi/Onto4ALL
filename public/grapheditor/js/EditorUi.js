@@ -1060,25 +1060,10 @@ EditorUi.prototype.exportFile = function(fileName, data, format) {
 	if(fileName.split('.')[1] !== format)
 		fileName = fileName + format;
 
+    let stringFile;
 	if(format === 'owl')
-	{
-		return $.ajax({
-			/* the route pointing to the post function */
-			url: '/exportOWL',
-			type: 'POST',
-			/* send the csrf-token and the input to the controller */
-			data: {
-				_token: $('meta[name="csrf-token"]').attr('content'),
-				fileName: fileName,
-				xml:data
-			},
-			dataType: 'JSON',
-			success: function (owlString) {
-				return createDownloadLink(owlString);
-			},
-		})
-
-	}
+        stringFile = xmlToOwl(fileName);
+    createDownloadLink(stringFile)
 
 	function createDownloadLink(owlString)
 	{
@@ -4017,7 +4002,7 @@ EditorUi.prototype.isCompatibleString = function(data)
  */
 EditorUi.prototype.saveFile = function(forceDialog)
 {
-	
+
 	document.getElementById('save-ontology').click();
 	/*
 	if (!forceDialog && this.editor.filename != null)
