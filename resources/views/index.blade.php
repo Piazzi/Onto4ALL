@@ -114,6 +114,7 @@
     const Open_in_the_editor = '{{__('Open in the editor')}}';
     const Search_for_tips = '{{__('Search for tips')}}';
     const External_Ontology_Databases = '{{__('External Ontology Databases')}}';
+    const user_id = '{{ Auth::user()->id }}';
 
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     

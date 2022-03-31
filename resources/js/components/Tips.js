@@ -79,7 +79,7 @@ class Tips extends React.Component {
                                     <div id="menu-scroll">
                                         <div id="control-sidebar-theme-demo-options-tab table-search" className="tab-pane active table-search">
                                             {relations.map((ontologyRelation, index) => (
-                                            <div id="tipSearch" className="box box-default collapsed-box box-solid relation-box">
+                                            <div key={index} id="tipSearch" className="box box-default collapsed-box box-solid relation-box">
                                                 <div className="box-header with-border">
                                                     <h3 className="box-title title">{ontologyRelation.name} <i className="fa fa-fw fa-long-arrow-right"></i></h3>
                                                     <div className="box-tools pull-right">
@@ -174,7 +174,7 @@ class Tips extends React.Component {
                                             </div>
                                             ))}
                                             {classes.map((classe, index) => (  
-                                            <div id="tipSearch" className="box box-success collapsed-box box-solid">
+                                            <div key={index} id="tipSearch" className="box box-success collapsed-box box-solid">
                                                 <div className="box-header with-border">
                                                     <h3 className="box-title title">{classe.name} <i className="fa fa-fw fa-circle-thin"></i>
                                                     </h3>

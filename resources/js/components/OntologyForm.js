@@ -153,7 +153,8 @@ class OntologyForm extends React.Component {
                                 <span>- {Insert_usernames_to_share_your_ontology_with_other_Onto4ALL_users}</span> <strong style={{color: '#761c19'}}>({Collaborators_will_be_able_to_edit_this_ontology})</strong>
                                 <select data-placeholder={Insert_usernames_here} id="collaborators-select" style={{width: '100%'}} className="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
                                 {collaborators.map((option, index) => (
-                                    <option value={option.value} selected={option.selected} locked={option.locked}>{option.text}</option>
+                                    <option key={index} value={option.value} locked={option.locked}>{option.text}</option>
+
                                 ))}
                                 </select>
                             </div>

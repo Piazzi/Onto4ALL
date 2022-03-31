@@ -51,7 +51,7 @@ class OntologyManager extends React.Component {
                             ) : (
                             <ul className="timeline">
                                 {ontologies.map((ontology, index) => (
-                                <li>
+                                <li key={index}>
                                     <i className="fa fa-object-group bg-green"></i>
 
                                     <div className="timeline-item">

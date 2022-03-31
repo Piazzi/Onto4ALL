@@ -174,7 +174,6 @@ class UserController extends Controller
             if($user->id == Auth::user()->id) {
                 $optionUsers[] = array(
                     'value' => $user->id,
-                    'selected' => 'selected',
                     'locked' => 'locked',
                     'text' => 'You'
                 );
