@@ -17,4 +17,4 @@ jobs:
         server: ftp.onto4all.com
         username:  u198149674
         password: ontO4aLL!
-        server-dir: domains/onto4all.com/public_html
+        server-dir: domains/onto4all.com/public_html/
