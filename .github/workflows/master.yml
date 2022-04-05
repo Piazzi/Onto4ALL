@@ -15,6 +15,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ftp://185.211.7.232
-        username:  u198149674
-        password: otnO4aLL!
-        server-dir: public_html/
+        username:  u198149674.user198149674
+        password: onto4@LL
+        server-dir: /
