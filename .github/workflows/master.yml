@@ -14,7 +14,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
-        server: ftp://onto4all.com
-        username:  u198149674
-        password: ontO4aLL!
-        server-dir: /
+        server: ftp.onto4all.com
+        username:  u198149674.user198149674
+        password: onto4@LL
+        server-dir: public_html/
