@@ -106,7 +106,7 @@
                         </form>
                         <div class="auth-links">
                             <a href="{{route('login', app()->getLocale())}}"
-                               class="text-center">{{ __('I already have a account') }}</a>
+                               class="text-center" style="color:#444444">{{ __('I already have a account') }}</a>
                         </div>
                     </div>
                     <!-- /.form-box -->
