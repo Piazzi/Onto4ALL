@@ -1,12 +1,5 @@
 var ontologyName = document.getElementById("ontology-name");
 
-function saveName(event) {
-    if (event.key == 'Enter') {
-        document.getElementById('save-ontology').click();
-        $('.name-input').blur();
-    }
-}
-
 function favoriteOntology() {
     $.ajax({
         /* the route pointing to the post function */

@@ -9,6 +9,7 @@ class OntologyManager extends React.Component {
         this.state = {
             ontologies: [],
         };
+        this.submitForm = this.submitForm.bind(this);
     }
 
     componentDidMount() {
@@ -30,7 +31,13 @@ class OntologyManager extends React.Component {
             .catch(function(error) {
                 console.log(error);
             });
+
     }
+
+    submitForm() {
+        console.log(1)
+    }
+    
     render() {
 
         const { ontologies } = this.state;
@@ -41,7 +48,7 @@ class OntologyManager extends React.Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span></button>
+                                <span aria-hidden="true"></span></button>
                             <h4 className="modal-title">{Ontology_Manager}</h4>
 
                         </div>
@@ -101,4 +108,18 @@ export default OntologyManager;
 
 if (document.getElementById('ontologyManager')) {
     ReactDOM.render(<OntologyManager />, document.getElementById('ontologyManager'));
+}
+
+export function saveName(event) {
+    if (event.key == 'Enter') {
+        document.getElementById('save-ontology').click();
+        $('.name-input').blur();
+    }
+}
+
+export const saveName = (event) => {
+    if (event.key == 'Enter') {
+        document.getElementById('save-ontology').click();
+        $('.name-input').blur();
+    }
 }

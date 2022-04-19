@@ -121,6 +121,7 @@
 </script>
 
 <div class="hidden" id="app"></div>
+<script src="{{ asset('js/app.js') }}"></script>
 
 <!-- Warning Console -->
 <Console id='console'></Console>
