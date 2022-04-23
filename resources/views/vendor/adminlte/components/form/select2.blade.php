@@ -15,9 +15,9 @@
 @push('js')
 <script>
 
-    $(() => {
+    /*$(() => {
         $('#{{ $id }}').select2( @json($config) );
-    })
+    })*/
 
 </script>
 @endpush

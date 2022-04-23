@@ -1,9 +1,52 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
+import Select from 'react-select'
 
 class Properties extends React.Component {
 
     render() {
+
+        const option = [
+        ]
+
+        const optionTypes = [
+            { value:'', label:'owl:rational' },
+            { value:'', label:'owl:real' },
+            { value:'', label:'rdf:PlainLiteral' },
+            { value:'', label:'rdf:XMLLiteral' },
+            { value:'', label:'rdfs:Literal' },
+            { value:'', label:'xsd:anyURI' },
+            { value:'', label:'xsd:base64Binary' },
+            { value:'', label:'xsd:boolean' },
+            { value:'', label:'xsd:byte' },
+            { value:'', label:'xsd:dateTime' },
+            { value:'', label:'xsd:dateTimeStamp' },
+            { value:'', label:'xsd:decimal' },
+            { value:'', label:'xsd:double' },
+            { value:'', label:'xsd:float' },
+            { value:'', label:'xsd:hexBinary' },
+            { value:'', label:'xsd:int' },
+            { value:'', label:'xsd:integer' },
+            { value:'', label:'xsd:language' },
+            { value:'', label:'xsd:long' },
+            { value:'', label:'xsd:Name' },
+            { value:'', label:'xsd:NCName' },
+            { value:'', label:'xsd:negativeInteger' },
+            { value:'', label:'xsd:NMTOKEN' },
+            { value:'', label:'xsd:nonNegativeInteger' },
+            { value:'', label:'xsd:nonPositiveInteger' },
+            { value:'', label:'xsd:normalizedString' },
+            { value:'', label:'xsd:positiveInteger' },
+            { value:'', label:'xsd:short' },
+            { value:'', label:'xsd:string' },
+            { value:'', label:'xsd:token' },
+            { value:'', label:'xsd:unsignedByte' },
+            { value:'', label:'xsd:unsignedInt' },
+            { value:'', label:'xsd:unsignedLong' },
+            { value:'', label:'xsd:unsignedShort' },
+        ]
+
         return (
             <div className="nav-tabs-custom">
                 <ul className="nav nav-tabs">
@@ -25,9 +68,13 @@ class Properties extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>Equivalence</label>
-                            <select id="Equivalence" data-placeholder="Select Classes" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                isMulti
+                                options={option}
+                                inputId="Equivalence"
+                                onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}
+                            />
                         </div>
                         <div className="form-group">
                             <label>Instances</label>
@@ -39,9 +86,13 @@ class Properties extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>DisjointWith</label>
-                            <select id="DisjointWith" data-placeholder="Select Classes" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                isMulti
+                                options={option}
+                                inputId="DisjointWith"
+                                onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}
+                            />
                         </div>
                         <div className="form-group">
                             <label>Constraint</label>
@@ -115,27 +166,41 @@ class Properties extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>equivalentTo</label>
-                            <select id="equivalentTo" data-placeholder="Select Relations" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                isMulti
+                                options={option}
+                                inputId="equivalentTo"
+                                onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}
+                            />
                         </div>
                         <div className="form-group">
                             <label>subpropertyOf</label>
-                            <select id="subpropertyOf" data-placeholder="Select Relation" style={{width: 100}} className="js-example-basic-multiple" onChange={() => updatePropertyInput(this.id, this.value)}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                options={option}
+                                inputId="subpropertyOf"
+                                onChange={() => updatePropertyInput(this.id, this.value)}
+                            />
                         </div>
                         <div className="form-group">
                             <label>inverseOf</label>
-                            <select id="inverseOf" data-placeholder="Select Relation" style={{width: 100}} className="js-example-basic-multiple" onChange={() => updatePropertyInput(this.id, this.value)}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                options={option}
+                                inputId="inverseOf"
+                                onChange={() => updatePropertyInput(this.id, this.value)}
+                            />
                         </div>
                         <div className="form-group">
                             <label>disjointWith</label>
-                            <select id="disjointWith-relations" data-placeholder="Select Relations" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                isMulti
+                                options={option}
+                                inputId="disjointWith-relations"
+                                onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}
+                            />
                         </div>
                         <div className="form-group">
                             <div className="checkbox">
@@ -189,54 +254,32 @@ class Properties extends React.Component {
                     <div className="tab-pane" id="instances-tab">
                         <div className="form-group">
                             <label>types</label>
-                            <select id="types" data-placeholder="Select Datatypes" style={{width: 100}} className="js-example-basic-multiple" onChange={() => updatePropertyInput(this.id, this.value)}>
-                                <option>owl:rational</option>
-                                <option>owl:real</option>
-                                <option>rdf:PlainLiteral</option>
-                                <option>rdf:XMLLiteral</option>
-                                <option>rdfs:Literal</option>
-                                <option>xsd:anyURI</option>
-                                <option>xsd:base64Binary</option>
-                                <option>xsd:boolean</option>
-                                <option>xsd:byte</option>
-                                <option>xsd:dateTime</option>
-                                <option>xsd:dateTimeStamp</option>
-                                <option>xsd:decimal</option>
-                                <option>xsd:double</option>
-                                <option>xsd:float</option>
-                                <option>xsd:hexBinary</option>
-                                <option>xsd:int</option>
-                                <option>xsd:integer</option>
-                                <option>xsd:language</option>
-                                <option>xsd:long</option>
-                                <option>xsd:Name</option>
-                                <option>xsd:NCName</option>
-                                <option>xsd:negativeInteger</option>
-                                <option>xsd:NMTOKEN</option>
-                                <option>xsd:nonNegativeInteger</option>
-                                <option>xsd:nonPositiveInteger</option>
-                                <option>xsd:normalizedString</option>
-                                <option>xsd:positiveInteger</option>
-                                <option>xsd:short</option>
-                                <option>xsd:string</option>
-                                <option>xsd:token</option>
-                                <option>xsd:unsignedByte</option>
-                                <option>xsd:unsignedInt</option>
-                                <option>xsd:unsignedLong</option>
-                                <option>xsd:unsignedShort</option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                options={optionTypes}
+                                inputId="types"
+                                onChange={() => updatePropertyInput(this.id, this.value)}
+                            />
                         </div>
                         <div className="form-group">
                             <label>sameAs</label>
-                            <select id="sameAs" data-placeholder="Select instances" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                isMulti
+                                options={option}
+                                inputId="sameAs"
+                                onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}
+                            />
                         </div>
                         <div className="form-group">
                             <label>differentAs</label>
-                            <select id="differentAs" data-placeholder="Select instances" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                isMulti
+                                options={option}
+                                inputId="differentAs"
+                                onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}
+                            />
                         </div>
                         <div className="form-group">
                             <label>objectProperties</label>
@@ -273,21 +316,33 @@ class Properties extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>equivalentTo</label>
-                            <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput('equivalentTo', $('#'+this.id).val())}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                isMulti
+                                options={option}
+                                inputId="equivalentTo-datatype-properties"
+                                onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}
+                            />
                         </div>
                         <div className="form-group">
                             <label>subpropertyOf</label>
-                            <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput('subpropertyOf', $('#'+this.id).val())}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                isMulti
+                                options={option}
+                                inputId="subpropertyOf-datatype-properties"
+                                onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}
+                            />
                         </div>
                         <div className="form-group">
                             <label>disjointWith</label>
-                            <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style={{width: 100}} className="js-example-basic-multiple" multiple onChange={() => updatePropertyInput('disjointWith', $('#'+this.id).val())}>
-                                <option></option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                isMulti
+                                options={option}
+                                inputId="disjointWith-datatype-properties"
+                                onChange={() => updatePropertyInput(this.id, $('#'+this.id).val())}
+                            />
                         </div>
                         <div className="form-group">
                             <div className="checkbox">
@@ -299,42 +354,12 @@ class Properties extends React.Component {
                         </div>
                         <div className="form-group">
                             <label>datatype</label>
-                            <select id="datatype" data-placeholder="Select Datatypes" style={{width: 100}} className="js-example-basic-multiple" name="" onChange={() => updatePropertyInput(this.id, this.value)}>
-                                <option>owl:rational</option>
-                                <option>owl:real</option>
-                                <option>rdf:PlainLiteral</option>
-                                <option>rdf:XMLLiteral</option>
-                                <option>rdfs:Literal</option>
-                                <option>xsd:anyURI</option>
-                                <option>xsd:base64Binary</option>
-                                <option>xsd:boolean</option>
-                                <option>xsd:byte</option>
-                                <option>xsd:dateTime</option>
-                                <option>xsd:dateTimeStamp</option>
-                                <option>xsd:decimal</option>
-                                <option>xsd:double</option>
-                                <option>xsd:float</option>
-                                <option>xsd:hexBinary</option>
-                                <option>xsd:int</option>
-                                <option>xsd:integer</option>
-                                <option>xsd:language</option>
-                                <option>xsd:long</option>
-                                <option>xsd:Name</option>
-                                <option>xsd:NCName</option>
-                                <option>xsd:negativeInteger</option>
-                                <option>xsd:NMTOKEN</option>
-                                <option>xsd:nonNegativeInteger</option>
-                                <option>xsd:nonPositiveInteger</option>
-                                <option>xsd:normalizedString</option>
-                                <option>xsd:positiveInteger</option>
-                                <option>xsd:short</option>
-                                <option>xsd:string</option>
-                                <option>xsd:token</option>
-                                <option>xsd:unsignedByte</option>
-                                <option>xsd:unsignedInt</option>
-                                <option>xsd:unsignedLong</option>
-                                <option>xsd:unsignedShort</option>
-                            </select>
+                            <Select
+                                closeMenuOnSelect={false}
+                                options={optionTypes}
+                                inputId="datatype"
+                                onChange={() => updatePropertyInput(this.id, this.value)}
+                            />
                         </div>
                     </div>
 

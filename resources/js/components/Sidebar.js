@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
+import Select from 'react-select'
 
 import Chat from './Chat';
 import Properties from './Properties';

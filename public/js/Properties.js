@@ -284,7 +284,7 @@ function removeNotUsedCreatedPropertiesInputs(cellProperties){
 
 function setSelectValue(cellProperties) {
     $(document).ready(function () {
-        $("#" + cellProperties.name)
+        /*$("#" + cellProperties.name)
             .select2({
                 theme: "classic",
                 width: "resolve",
@@ -292,7 +292,7 @@ function setSelectValue(cellProperties) {
                 allowClear: true,
             })
             .val(cellProperties.value.split(","))
-            .trigger("change");
+            .trigger("change");*/
     });
 }
 
@@ -324,7 +324,7 @@ function setCellIRI(cellProperties){
 function createSelectOptions(cell, propertyName) {
     let select = document.getElementById(propertyName);
     if (select == null) return;
-    if (select.options.length > 0) removeSelectOptions(select);
+    select.value = '';
     let options = [];
     if (cell.isEdge()) {
         options = relations;
@@ -494,20 +494,20 @@ function validateLabel(label) {
 }
 
 // Add keyup events for the given textArea
-let constraintInput = classInputs.Constraint;
+/*let constraintInput = classInputs.Constraint;
 constraintInput.addEventListener("keyup", function () {
     document.getElementById("help-text-icon").className = "fa fa-fw fa-clock-o";
     document.getElementById("help-text").childNodes[1].nodeValue =
         getTranslation("Checking the axioms, please wait...");
-});
+});*/
 
 // Call the Class Expression Edior / Axiom Editor 2 seconds
 // after the user stops typing
-constraintInput.addEventListener(
+/*constraintInput.addEventListener(
     "keyup",
     debounce(() => {
         // code you would like to run 2000ms after the keyup event has stopped firing
         // further keyup events reset the timer, as expected
         validateAxiom();
     }, 2000)
-);
+);*/

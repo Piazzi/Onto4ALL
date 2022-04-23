@@ -173,10 +173,10 @@
     <script>
         //$('#collaborators-select').val(data['collaborators']).trigger('change');
         $(document).ready(function () {
-            $('.js-example-tags').select2({
+            /*$('.js-example-tags').select2({
                 theme: 'classic',
                 tags: true
-            });
+            });*/
         });
 
         function formatState (opt) {
@@ -194,7 +194,7 @@
 
         };
     
-        $("#collaborators-select").select2({
+        /*$("#collaborators-select").select2({
             theme: 'classic',
             width: "100%",
             templateResult: formatState,
@@ -204,7 +204,7 @@
             escapeMarkup: function (m) {
                 return m;
             }
-        });
+        });*/
 
     </script>
 @stop

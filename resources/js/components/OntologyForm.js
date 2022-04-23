@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
+import Select from 'react-select'
 
 class OntologyForm extends React.Component {
 
@@ -34,6 +36,14 @@ class OntologyForm extends React.Component {
     render() {
 
         const { collaborators } = this.state;
+
+        const optionsNamespace = [
+            { value: 'http://www.w3.org/2002/07/owl#', label: 'http://www.w3.org/2002/07/owl#' },
+            { value: 'http://www.w3.org/1999/02/22-rdf-syntax-ns', label: 'http://www.w3.org/1999/02/22-rdf-syntax-ns' },
+            { value: 'http://www.w3.org/2000/01/rdf-schema#', label: 'http://www.w3.org/2000/01/rdf-schema#' },
+            { value: 'http://www.w3.org/XML/1998/namespace', label: 'http://www.w3.org/XML/1998/namespace' },
+            { value: 'http://www.w3.org/2001/XMLSchema#', label: 'http://www.w3.org/2001/XMLSchema#' }
+        ]
 
         return (
             <div className="modal fade" id="edit-ontology-modal" style={{display: 'none'}}>
@@ -140,23 +150,22 @@ class OntologyForm extends React.Component {
                             </div>
                             <div className="form-group">
                                 <label>{Namespaces}</label>
-                                <select data-placeholder="{{__('Insert used namespaces here')}}" id="namespace-select" style={{width: '100%'}} className="js-example-basic-multiple js-example-tags" name="namespace[]" multiple="multiple">
-                                    <option value="http://www.w3.org/2002/07/owl#">http://www.w3.org/2002/07/owl#</option>
-                                    <option value="http://www.w3.org/1999/02/22-rdf-syntax-ns">http://www.w3.org/1999/02/22-rdf-syntax-ns</option>
-                                    <option value="http://www.w3.org/2000/01/rdf-schema#">http://www.w3.org/2000/01/rdf-schema#</option>
-                                    <option value="http://www.w3.org/XML/1998/namespace">http://www.w3.org/XML/1998/namespace</option>
-                                    <option value="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</option>
-                                </select>
+                                <Select
+                                    closeMenuOnSelect={false}
+                                    isMulti
+                                    options={optionsNamespace}
+                                    inputId="namespace-select"
+                                />
                             </div>
                             <div className="form-group">
                                 <label>{Collaborators}</label>
                                 <span>- {Insert_usernames_to_share_your_ontology_with_other_Onto4ALL_users}</span> <strong style={{color: '#761c19'}}>({Collaborators_will_be_able_to_edit_this_ontology})</strong>
-                                <select data-placeholder={Insert_usernames_here} id="collaborators-select" style={{width: '100%'}} className="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
-                                {collaborators.map((option, index) => (
-                                    <option key={index} value={option.value} locked={option.locked}>{option.text}</option>
-
-                                ))}
-                                </select>
+                                <Select
+                                    closeMenuOnSelect={false}
+                                    isMulti
+                                    options={collaborators}
+                                    inputId="collaborators-select"
+                                />
                             </div>
                         </div>
                         <div className="modal-footer">
