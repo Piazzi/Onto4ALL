@@ -100,9 +100,6 @@
                                 <input type="file" name="avatar_url" class="form-control">
                             </div>
 
-                            <button style="background-color: #064c72;" type="submit"
-                                    class="btn btn-primary btn-block btn-flat"
-                            >{{ __('Register') }}</button>
                         </form>
                         <div class="auth-links">
                             <a href="{{route('login', app()->getLocale())}}"
