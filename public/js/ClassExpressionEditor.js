@@ -16,7 +16,7 @@ function validateAxiom() {
     }
 
     let xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://cors-anywhere.herokuapp.com/https://whispering-gorge-06411.herokuapp.com/webapi/ontology/valid", true);
+    xhttp.open("POST", "https://200.17.70.211:13951/owlapi/webapi/ontology/valid", true);
     xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhttp.setRequestHeader('Access-Control-Allow-Methods', 'POST');
     xhttp.setRequestHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
