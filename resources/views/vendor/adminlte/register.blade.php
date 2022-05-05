@@ -96,9 +96,11 @@
                                 @endif
                             </div>
 
-                            <div class="form-group has-feedback {{ $errors->has('avatar_url') ? 'has-error' : '' }}">
-                                <input type="file" name="avatar_url" class="form-control">
-                            </div>
+                     
+                            
+                              <button style="background-color: #064c72;" type="submit"
+                                    class="btn btn-primary btn-block btn-flat"
+                            >{{ __('Register') }}</button>
 
                         </form>
                         <div class="auth-links">
