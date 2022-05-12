@@ -3,6 +3,8 @@
 @section('adminlte_css')
     <link rel="stylesheet"
           href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">
+    <link rel="stylesheet"
+          href="{{ asset('css/admin-pages.css')}} ">
     @stack('css')
     @yield('css')
 @stop
@@ -60,6 +62,11 @@
                             <a onclick="favoriteOntology()" value="0" title="Favorite ontology" href="#" id="favorite-ontology" class="geItem"></a>
                         </li>
                         <li>
+                            <div class="autosave">
+                                <input type="checkbox" id="switch" /><label for="switch"></label> <h5> {{__('Autosave')}} </h5>
+                            </div>
+                        </li>
+                        <li>
                             <a id="save-ontology" class=" btn btn-default unsaved">
                                 <i class="fa fa-fw fa-cloud-upload"></i> {{__('Unsaved changes. Click here to save')}}
                             </a>
@@ -109,14 +116,14 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                    aria-expanded="true">
                                     <!-- The user image in the navbar-->
-                                    <i class="fa fa-user"></i>
+                                    <img class="img-circle profile-user-img-menu" style="width: 20px" src="{{ asset("storage/img/profile/" . Auth::user()->avatar_url) }}" alt="Imagem de perfil">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs">{{Auth::user()->name}}</span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li style="background-color: #222d32;"  class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
-                                        <img src="{{asset('css/images/LogoDark.png')}}" class="img-circle"
+                                        <img src="{{ asset('storage/img/profile/' . Auth::user()->avatar_url) }}" class="img-circle"
                                              alt="User Image">
                                         <p>
                                             {{Auth::user()->name}}
@@ -187,7 +194,7 @@
                 <section class="sidebar" style="height: auto">
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu tree" data-widget="tree">
-                        <li class="header">{{__('MAIN NAVIGATION')}}</li>
+                        <li class="header">{{__('ONTOLOGIES')}}</li>
                         <li  @if(Route::currentRouteName() == 'home') class="active" @endif >
                             <a title="{{__('Ontology Editor')}}" href="{{route('home', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-object-group "></i>
@@ -195,9 +202,10 @@
                         </li>
                         <li  @if(Route::currentRouteName() == 'ontologies.index') class="active" @endif  >
                             <a title="{{__('My Ontologies')}}" href="{{route('ontologies.index', app()->getLocale())}}">
-                                <i class="fa fa-fw fa-folder-open "></i>
+                                <i class="fa fa-fw  fa-file-code-o "></i>
                                 <span>{{__('My Ontologies')}}</span></a>
                         </li>
+                        <li class="header">{{__('THESAURUS')}}</li>
                         <li @if(Route::currentRouteName() == 'thesaurus-editor') class="active" @endif>
                             <a title="{{__('Thesaurus Editor')}}" href="{{route('thesaurus-editor', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-book " ></i>
@@ -205,7 +213,7 @@
                         </li>
                         <li @if(Route::currentRouteName() == 'thesaurus.index') class="active" @endif>
                             <a title="{{__('My Thesaurus')}}" href="{{route('thesaurus.index', app()->getLocale())}}">
-                                <i class="fa fa-fw fa-folder-open "></i>
+                                <i class="fa fa-fw fa-bookmark"></i>
                                 <span>{{__('My Thesaurus')}}</span></a>
                         </li>
                         <li class="header">{{__('INFO')}}</li>
@@ -218,11 +226,6 @@
                             <a title="{{__('Tutorial')}}" target="_blank" href="{{route('tutorial', app()->getLocale())}}">
                                 <i class="fa fa-fw fa-info-circle "></i>
                                 <span>{{__('Tutorial')}}</span></a>
-                        </li>
-                        <li @if(Route::currentRouteName() == 'aboutUs') class="active" @endif>
-                            <a title="{{__('About Us')}}" href="{{route('aboutUs', app()->getLocale())}}">
-                                <i class="fa fa-fw fa-institution" ></i>
-                                <span>{{__('About Us')}}</span></a>
                         </li>
                         @can('eAdmin')
                             <li class="header">{{__('ADMIN PANEL')}}</li>
@@ -300,9 +303,9 @@
         @hasSection('footer')
             <footer class="main-footer">
                 <div class="pull-right hidden-xs">
-                    <b>Version</b> Beta 4.0.1
+                    <b>Version</b> Beta 4.2.0
                 </div>
-                <strong>Copyright © 2018-2021 <a href="https://onto4alleditor.com">Onto4ALL</a>.</strong> All rights
+                <strong>Copyright © 2018-2022 <a href="https://onto4alleditor.com">Onto4ALL</a>.</strong> All rights
                 reserved
                 @yield('footer')
             </footer>

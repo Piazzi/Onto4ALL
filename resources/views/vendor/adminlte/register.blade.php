@@ -95,13 +95,17 @@
                         </span>
                                 @endif
                             </div>
-                            <button style="background-color: #064c72;" type="submit"
+
+                     
+                            
+                              <button style="background-color: #064c72;" type="submit"
                                     class="btn btn-primary btn-block btn-flat"
                             >{{ __('Register') }}</button>
+
                         </form>
                         <div class="auth-links">
                             <a href="{{route('login', app()->getLocale())}}"
-                               class="text-center">{{ __('I already have a account') }}</a>
+                               class="text-center" style="color:#444444">{{ __('I already have a account') }}</a>
                         </div>
                     </div>
                     <!-- /.form-box -->

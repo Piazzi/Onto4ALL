@@ -72,10 +72,16 @@
 	 overflow-y: auto !important;
 	 padding-top: 0px !important;
 	 padding-top: 50px !important;
+     border-left: 0px solid #d2d6de
  }
 
- .control-sidebar input, textarea {
-	 border-radius: 5px;
+.control-sidebar label {
+  font-weight: 500;
+}
+
+ .control-sidebar input, textarea, input, button {
+	 border-radius: 5px !important;
+     border-width: 0px 0px 1px 0px !important;
  }
 
  .nav-tabs-custom li {
@@ -129,7 +135,7 @@
 }
 
 #ontology-name {
-	pointer-events: none; 
+	pointer-events: none;
 	color: #FFFFFF;
 }
 .toolbar-icon {
@@ -232,6 +238,74 @@ aside {
 	width: auto !important;
 	height: auto !important;
 }
+
+.select2-container--classic .select2-selection--multiple, .select2-selection--single,  .select2-selection__arrow {
+    border-width: 0px 0px 1px 0px !important;
+    background-image: -webkit-linear-gradient(top, #fff, #fff 100%) !important;
+    border-color: #d2d6de;
+}
+
+/* Switch autosave */
+
+.autosave {
+	display: flex;
+    margin-top: 16px;
+}
+
+.autosave h5 {
+	color: #fff;
+	font-size: 14px;
+	padding-left: 8px;
+	margin: 0 0 16px;
+}
+
+.autosave input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.autosave label {
+	cursor: pointer;
+	width: 30px;
+	height: 14px;
+	background: grey;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+.autosave label:after {
+	content: '';
+	position: absolute;
+	left: 2px;
+	width: 14px;
+	height: 14px;
+	background: #fff;
+	border-radius: 14px;
+	transition: 0.3s;
+}
+
+.autosave input:checked + label {
+	background: rgb(0, 166, 90);;
+}
+
+.autosave input:checked + label:after {
+	left: calc(100% - 2px);
+	transform: translateX(-100%);
+}
+
+.chat-ontology .box-body {
+	max-height: 280px;
+    overflow-y: scroll;
+}
+
+.direct-chat-messages {
+	height: auto;
+}
+
+
+
 /*
 .geMenubarContainer, .geDiagramContainer,  .geSidebarContainer, .gePaletteContainer, .geFooterContainer, .geToolbarContainer, .geSidebarTooltip, .geFormatContainer{
 	top: 40px !important;
@@ -259,10 +333,10 @@ aside {
        font-size: inherit;
 }
 .geEditor input {
-       border-width: 2px;
+       border-width: 1px;
 }
 .geEditor select {
-       border-width: 1px;
+       border-width: 1px ;
 }
 .geEditor div.mxTooltip {
 	background: whiteSmoke;
@@ -531,7 +605,7 @@ aside {
 	background:transparent;
 }
 .geToolbarContainer {
-	border-bottom:1px solid #dadce0;
+	/*border-bottom:1px solid #dadce0*/;
 }
 .geSidebarContainer .geToolbarContainer {
 	background:transparent;
@@ -543,7 +617,7 @@ aside {
 }
 .geToolbar {
 	padding:1px 0px 0px 6px;
-	border-top:1px solid #dadce0;
+	/*border-top:1px solid #dadce0*/;
 	-webkit-box-shadow: inset 0 1px 0 0 #fff;
 	-moz-box-shadow: inset 0 1px 0 0 #fff;
 	box-shadow: inset 0 1px 0 0 #fff;
@@ -551,7 +625,7 @@ aside {
 }
 .geToolbarContainer .geSeparator {
 	float:left;
-	width:1px;
+	/*width:1px*/;
 	height:20px;
 	background:#e5e5e5;
 	margin-left:6px;
@@ -600,7 +674,7 @@ div.mxWindow .geButton {
 	background-color:#f1f3f4;
 }
 .geSidebar {
-	border-bottom:1px solid #e5e5e5;
+	/*border-bottom:1px solid #e5e5e5*/;
 	padding:6px;
 	padding-left:10px;
 	_padding:2px;
@@ -611,7 +685,7 @@ div.mxWindow .geButton {
 .geSidebarContainer .geTitle {
 	display:block;
 	font-size:13px;
-	border-bottom:1px solid #e5e5e5;
+	/*border-bottom:1px solid #e5e5e5*/;
 	font-weight:500;
 	padding:8px 0px 8px 14px;
 	margin:0px;
@@ -1762,7 +1836,7 @@ html td.mxWindowTitle {
 
 
 
-/* ----------------------------------- DARK AND MINIMALIST SCROLLBAR -----------------------------------*/ 
+/* ----------------------------------- DARK AND MINIMALIST SCROLLBAR -----------------------------------*/
 
 body { overflow:hidden; }
 div.picker { z-index: 10007; }
@@ -1813,3 +1887,4 @@ div.picker { z-index: 10007; }
 	cursor:pointer;
 	margin:5px;
 }
+

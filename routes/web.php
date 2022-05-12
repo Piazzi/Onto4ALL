@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OntologyClassController;
 use App\Http\Controllers\OntologyController;
@@ -60,6 +61,8 @@ Route::group([
     Route::resource('/user', UserController::class)->middleware('can:eModelador');
     Route::get('/change_password/{id}', [UserController::class, 'changePassword'])->name('user.editPassword')->middleware('can:eModelador');
     Route::put('/update_password/{id}', [UserController::class, 'updatePassword'])->name('user.updatePassword')->middleware('can:eModelador');
+    Route::delete('/delete_picture/{user}', [UserController::class, 'deletePicture'])->name('user.deletePicture')->middleware('can:eModelador');
+    Route::put('/update_picture/{user}', [UserController::class, 'updatePicture'])->name('user.updatePicture')->middleware('can:eModelador');
     Route::any('/ontology_relation/search', [OntologyRelationController::class, 'search'])->name('ontology_relation.search')->middleware('can:eAdmin');
     Route::resource('/ontology_relation', OntologyRelationController::class)->middleware('can:eAdmin');
     Route::any('/ontology_class/search', [OntologyClassController::class, 'search'])->name('ontology_class.search')->middleware('can:eAdmin');
@@ -67,6 +70,7 @@ Route::group([
 
     // Ontologies CRUD
     Route::resource('/ontologies', OntologyController::class)->middleware('can:eModelador');
+
     Route::get('/ontologies/download/{userId}/{ontologyId}', [OntologyController::class, 'downloadXML'])->name('ontologies.download')->middleware('can:eModelador');
     Route::get('/ontologies/downloadOWL/{userId}/{ontologyId}', [OntologyController::class, 'downloadOWL'])->name('ontologies.downloadOWL')->middleware('can:eModelador');
     Route::get('/ontologies/downloadSVG/{userId}/{ontologyId}', [OntologyController::class, 'downloadSVG'])->name('ontologies.downloadSVG')->middleware('can:eModelador');
@@ -96,6 +100,7 @@ Route::group([
     Route::get('/admin/{id}', [AdminController::class, 'edit'])->name('admin.edit')->middleware('can:eAdmin');
     Route::put('/admin/{userId}', [AdminController::class, 'update'])->name('admin.update')->middleware('can:eAdmin');
     Route::any('/admin/search', [AdminController::class, 'search'])->name('admin.search')->middleware('can:eAdmin');
+
 });
 
 
@@ -110,6 +115,10 @@ Route::get('/thesaurus/download/{userId}/{thesauruId}', [ThesauruController::cla
 // mxGraph Routes (don't remove)
 Route::get('/open');
 Route::post('/save');
+
+ // Chat
+ Route::post('/updateChat', [ChatController::class, 'updateChat'] )->middleware('can:eModelador');
+ Route::post('/sendChat', [ChatController::class, 'sendChat'] )->middleware('can:eModelador');
 
 // Socialite routes
 //Route::get('/redirect', 'SocialAuthFacebookController@redirect');

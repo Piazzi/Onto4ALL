@@ -16,7 +16,7 @@ function validateAxiom() {
     }
 
     let xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://cors-anywhere.herokuapp.com/https://whispering-gorge-06411.herokuapp.com/webapi/ontology/valid", true);
+    xhttp.open("POST", "https://200.17.70.211:13951/owlapi/webapi/ontology/valid", true);
     xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhttp.setRequestHeader('Access-Control-Allow-Methods', 'POST');
     xhttp.setRequestHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
@@ -82,26 +82,17 @@ function changeTooltipText(axiomIsValid) {
     let language = getLanguage();
     switch (axiomIsValid) {
         case true:
-            if (language === 'en')
-                tooltipText.childNodes[1].nodeValue = 'The axioms are valid!'; // get only the text node, not the other inner HTML tags
-            else
-                tooltipText.childNodes[1].nodeValue = 'Os axiomas são válidos!';
+            tooltipText.childNodes[1].nodeValue = getTranslation('The axioms are valid!'); // get only the text node, not the other inner HTML tags
             tooltipText.style.color = 'green';
             icon.className = "fa fa-fw fa-check";
             break;
         case false:
-            if (language === 'en')
-                tooltipText.childNodes[1].nodeValue = 'The axioms are not valid!';
-            else
-                tooltipText.childNodes[1].nodeValue = 'Os axioma não são válidos!';
+            tooltipText.childNodes[1].nodeValue = getTranslation('The axioms are not valid!');
             tooltipText.style.color = 'red';
             icon.className = "fa fa-fw fa-close";
             break;
         case 'empty':
-            if (language === 'en')
-                tooltipText.childNodes[1].nodeValue = 'None axiom to check!';
-            else
-                tooltipText.childNodes[1].nodeValue = 'Nenhum axioma para checar!';
+            tooltipText.childNodes[1].nodeValue = getTranslation('None axiom to check!');
             tooltipText.style.color = 'black';
             icon.className = "fa fa-fw fa-info-circle";
             break;
