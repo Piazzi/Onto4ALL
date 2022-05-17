@@ -16,7 +16,7 @@ function validateAxiom() {
     }
 
     let xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://cors-anywhere.herokuapp.com/https://whispering-gorge-06411.herokuapp.com/webapi/ontology/valid", true);
+    xhttp.open("POST", "https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/valid", true);
     xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
     xhttp.setRequestHeader('Access-Control-Allow-Methods', 'POST');
     xhttp.setRequestHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
@@ -106,7 +106,7 @@ function changeTooltipText(axiomIsValid) {
  *  Instances = Purple
  *  DatatypeProperty = Green
  *  [some, only, exactly, min, max, value] = Orange
- * @param {string} params 
+ * @param {string} params
  */
 function highlightSyntax(input) {
     let words = input.value.split(" ");
@@ -114,7 +114,7 @@ function highlightSyntax(input) {
     let html = "";
     for (let i = 0; i < words.length; i++){
         if(words[i] == ";"){
-            html += '<br>'; 
+            html += '<br>';
             continue;
         }
         html += ' <span style="color:'+getWordColor(words[i])+';font-weight: bolder; display: inline-block; line-break: anywhere;">'+words[i]+'</span> ' ;
@@ -124,7 +124,7 @@ function highlightSyntax(input) {
 
 /**
  * Return the correct color to be used in the word
- * @param {string} word 
+ * @param {string} word
  */
 function getWordColor(word) {
     word = removeLineBreaks(word);
@@ -132,13 +132,11 @@ function getWordColor(word) {
         return '#f39c12';
     else if(relations.some(e => e.getAttribute('label') === word))
         return '#3c8dbc';
-    else if(datatypeProperties.some(e => e.getAttribute('label') === word))
-        return '#00a65a';
     else if(instances.some(e => e.getAttribute('label') === word))
         return 'rebeccapurple';
     else if(word == 'some' || word == 'only' || word == 'exactly' || word == 'min' || word == 'max' || word == 'value' || word == 'SubClassOf')
         return 'black';
-    else 
+    else
         return 'red';
 }
 

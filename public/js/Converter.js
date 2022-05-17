@@ -496,14 +496,14 @@ function getCurrentOntologyInJSON() {
 function xmlToOwl(fileName) {
     $.ajax({
 
-        url: 'http://200.17.70.211:13951/owlapi/webapi/ontology/format',
+        url: 'https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/format',
         type: 'POST',
 
-      
+
         body: getCurrentOntologyInJSON(),
 
         crossDomain: true,
-        dataType: 'JSONP',
+        dataType: 'JSON',
         success: function (owlString) {
             console.log(owlString)
             return owlString;
