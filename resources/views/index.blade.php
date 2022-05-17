@@ -109,7 +109,7 @@
             <div class="direct-chat-msg"></div>
         </div>
 
-        <div class="box-footer" style="">
+        <div class="box-footer">
             <form action="#" method="post" id='form_send_msg' autocomplete="off">
                 <div class="input-group">
                     <input type="text" name="message" id='message' autocomplete="off" placeholder="{{__('Enter message...')}}." class="form-control" disabled>
@@ -613,13 +613,14 @@
                 </div>
                 <div class="form-group">
                     <label>{{__('Collaborators')}}</label>
-                    <span>- {{__('Insert usernames to share your ontology with other Onto4ALL users')}}</span> <strong style="color: #761c19">({{__('Collaborators will be able to edit this ontology')}})</strong>
-                    <select data-placeholder="{{__('Insert usernames here')}}" id="collaborators-select" style="width: 100%; " class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
+                    <span>- {{__('Insert the email accounts to share your ontology with other Onto4ALL users')}}</span> <strong style="color: #761c19">({{__('Collaborators will be able to edit this ontology')}})</strong>
+                    <select data-placeholder="{{__('Insert email accounts here')}}" id="collaborators-select" style="width: 100%;" class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
+                        <option disabled style="color:#761c19" value="Disabled">{{__('Search for the users')}}</option>
                         @foreach($users as $user)
                         @if($user->id == Auth::user()->id)
                         <option value="{{$user->id}}" selected="selected" locked="locked">{{__('You')}}</option>
                         @else
-                        <option value="{{$user->id}}">{{$user->name}}</option>
+                        <option value="{{$user->id}}">{{$user->email}}</option>
                         @endif
                         @endforeach
                     </select>

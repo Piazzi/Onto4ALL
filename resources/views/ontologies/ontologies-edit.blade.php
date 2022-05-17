@@ -159,8 +159,13 @@
                 <div class="form-group">
                     <label>{{__('Collaborators')}}</label>
                     <select id="collaborators-select" class="js-example-basic-multiple" name="collaborators[]" multiple="multiple">
+                        <option disabled style="color:#761c19" value="Disabled">{{__('Search for the users')}}</option>
                         @foreach($users as $user)
-                            <option @foreach($ontology->users as $collaborator) @if($collaborator->id == $user->id)selected @endif @endforeach value="{{$user->id}}" data-image="/storage/img/profile/profile_default.png">{{$user->name}}</option>
+                        @if($user->id == Auth::user()->id)
+                        <option value="{{$user->id}}" selected="selected" locked="locked">{{__('You')}}</option>
+                        @else
+                            <option @foreach($ontology->users as $collaborator) @if($collaborator->id == $user->id)selected @endif @endforeach value="{{$user->id}}" data-image="/storage/img/profile/profile_default.png">{{$user->email}}</option>
+                        @endif
                         @endforeach
                     </select>
                 </div>

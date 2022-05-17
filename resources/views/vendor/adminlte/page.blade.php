@@ -134,7 +134,7 @@
                                     <li class="user-body">
                                         <div class="row">
                                             <div class="col-xs-4 text-center border-right">
-                                                <a class="user-body-link" href="{{route('user.edit', ['user' => Auth::user()->id, 'locale' => app()->getLocale()])}}"> Tutorial</a>
+                                                <a class="user-body-link" href="{{route('tutorial', app()->getLocale())}}"> Tutorial</a>
                                             </div>
                                             <div class="col-xs-4 text-center border-right">
                                                 <a class="user-body-link" href="{{route('ontologies.index', app()->getLocale())}}">{{__('Ontologies')}}</a>

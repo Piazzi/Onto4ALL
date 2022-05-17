@@ -548,6 +548,7 @@
                     <dd>{{__('Onto4All was developed by')}} <a href="https://github.com/Piazzi/">Lucas Piazzi</a>{{__(', as part of a Scientific Initiation project linked to the Computer Science Department of the Federal University of Juiz de Fora (UFJF), also composed of')}}
                         <a href="professorfabriciomendonca.com.br/">Dr Fabrício Martins Mendonça</a>{{__('(Project Advisor)')}},
                         <a href="https://github.com/carvalhotiago">Tiago Carvalho</a>,<a href="https://github.com/pedroalves4">Pedro Henrique Alves</a>.
+                        <dd>{{__('Currently, the Onto4ALL team is composed of 8 people:')}}
                     <div class="credits-section">
                         <table class="credits-table">
                             <tr>
@@ -557,10 +558,10 @@
                                 <td><img alt="Eduardo Felipe" src="{{asset('css/images/Landing-Page/Foto (4).png')}}"></td>
                             </tr>
                             <tr>
-                                <td>Fabrício<br>Mendonça</td>
-                                <td>Lucas<br>Piazzi</td>
-                                <td>Maurício<br>Almeida</td>
-                                <td>Eduardo<br>Feipe</td>
+                                <td><a href="https://www.linkedin.com/in/fabr%C3%ADcio-martins-mendon%C3%A7a-96a9a363/" target="_blank">Fabrício<br>Mendonça</a></td>
+                                <td><a href="https://www.linkedin.com/in/lucas-piazzi/" target="_blank" >Lucas<br>Piazzi</a></td>
+                                <td><a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4736072J0&tokenCaptchar=03AGdBq25bgaGokp1PzAEdVTbO5iCQ_ejIXJQKBvhPuYqSLqIabmHgZlIud-EGU4onu_8Zsvhrcfg_ipOG8oU7WQctRjm7GcCJN0o2h4_Lr0H4nc8yWN-bpAdNMK1_P4VhyS4wxtiikTiPcRf7X2do-3oTwYchjh9Op2C8hNr9pEDpgFeo40Y9KjkSzZolLvQn3YU_xVIuFzT3b5h_6EJRrzw0w_UNDX3f2Whthk0eVUJ9SK_-A3QpmHrsqbSp1E1w655fkopURzkvM0PyltCPlZfacuGPSvMNDttiQZHG9aP3TEk0dnLY_8M3nDZad5oyzt8L1uVX62dlzMIEWvi9I04pTWdJbo3ZOcGbK_rrDyBtuY6NLvgzqia0-30xefOc1rVvPZPWH0mxcR6zdQbcHcbtufMjFVMfI427IcpxGijj6hXg42wZqpfZ2BiZ2jPsMgoPVjd0XcrnZpmHLqg5bIEh5lmagUbRpZX4BevqnQbOCYXrDyZmCrQNSlSr_NHh_LWyO-YY_K2JKoZmAMoI0IOKqO1BPCJkLg" target="_blank">Maurício<br>Almeida</a></td>
+                                <td><a href="http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4273313Y0&tokenCaptchar=03AGdBq25Qv2JKb1ZAQoxcXgvyyy-2BOeyQTk_K5XfIAsxDC2qKGXGfGHkgIZkNm5-y8JHpmMgInLZQRAHNcahyAmiSRHSzXk-HCEXxgjA9XPyCqrQj9BaCXVLC03OhwkhD5RmtmehObJs-VqxuDKJ5RB7Z80Agl6Xcj1QIVbMrS1Uu65I-J26DzmXrGjZR08dC-soqNMGpiOWs_ErNsUYLG9SdAJUoNNR3STVR0KMpcX0QVoE1VUurna9fqw7LDcxXnMGyzL4thQ3Dpn4J92O628fxwCoWWgZ-gz7K8XXtc1XtZOG7VOejQc0NubpuYZ3bbxpC-qoAdUHpdgw-soOuxAVXOchkEHAkdyvENXMMdcAh4wirrMeV0YmNJhUX0f9ZIGRkzq6Hn7RC78-31taBgqGqZy1IxlX_xtHD3YsEWtMY-792Za8ZqBYuWq9kpwoOKkg3ynZM56BniukseakG4KtIDgH-BaNu4h6UGjKnw0FI8lygeo-qWl72ZvL5SIezj2RGhNhENOQ3aK6OU0ZDjJrwOelA_NHcg" target="_blank">Eduardo<br>Felipe</a></td>
                             </tr>
                             <tr>
                                 <td><img alt="Jeanne Emygdio" src="{{asset('css/images/Landing-Page/Foto (5).png')}}"></td>
@@ -569,10 +570,10 @@
                                 <td><img alt="Vinicius Corbelli" src="{{asset('css/images/Landing-Page/Foto (8).png')}}"></td>
                             </tr>
                             <tr>
-                                <td>Jeanne<br>Emygdio</td>
-                                <td>Larissa<br>Fazza</td>
-                                <td>Guilherme<br>Noronha</td>
-                                <td>Vinicius<br>Corbelli</td>
+                                <td><a href="https://www.linkedin.com/in/jeannelouizeemygdio/" target="_blank">Jeanne<br>Emygdio</a></td>
+                                <td><a href="https://www.linkedin.com/in/larissa-rezende-fazza-8a9b28204/" target="_blank">Larissa<br>Fazza</a></td>
+                                <td><a href="https://www.linkedin.com/in/noronha2001/?locale=pt_BR" target="_blank">Guilherme<br>Noronha</a></td>
+                                <td><a href="https://www.linkedin.com/in/viniciuscorbelli/" target="_blank">Vinicius<br>Corbelli</a></td>
                             </tr>
                         </table>
                     </div>
