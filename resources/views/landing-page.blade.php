@@ -274,8 +274,7 @@
                     </div>
                     <div class="col-md-3">
                         <p class="text-white mb-4"> MENDONÇA, F. M.; CASTRO, L. P. ; SOUZA, JAIRO ; ALMEIDA, M. B. ;
-                            FELIPE, E. R. . Onto4AllEditor: Um Editor Web Gráfico de Ontologias Direcionado a Diferentes
-                            Tipos de Desenvolvedores de Ontologias (Onto4AllEditor: A Graphical Web Ontology Editor
+                            FELIPE, E. R. . (Onto4AllEditor: A Graphical Web Ontology Editor
                             Oriented Different Types of Ontology Developers). In: XIII Seminar on Ontology Research in
                             Brazil (ONTOBRAS 2020), 2020, Vitória - ES. Proceedings of the XIII Seminar on Ontology
                             Research in Brazil, 2020. v. 1. p. 104-119.
@@ -311,12 +310,10 @@
 
                             <div class="box-body">
                             <ul>
-                            <li>Lorem ipsum dolor sit amet</li>
-                            <li>Consectetur adipiscing elit</li>
-                            <li>Integer molestie lorem at massa</li>
-                            <li>Facilisis in pretium nisl aliquet</li>
-                            <li>Nulla volutpat aliquam velit
-
+                            <li>{{__("Master's classes at Universidade Federal de Juiz de Fora (UFJF)")}}</li>
+                            <li>{{__("Master's classes at Universidade Federal do Paraná (UFPR)")}}</li>
+                            <li>{{__("Master's classes at Universidade Federal do Espirito Santo (UFES)")}}</li>
+                            <li>{{__("Master's classes at Universidade Federal de Minas Gerais (UFMG)")}}</li>
                             </ul>
                             </div>
 
@@ -349,8 +346,12 @@
 
                     <div class="col-lg-12 mr-auto text-center">
                         <i class="fas fa-envelope fa-3x mb-3 "></i>
-                        <a style="color: #064c72" href="mailto:info@onto4alleditor.com"
-                            class="d-block">info@onto4alleditor.com</a>
+                        <a style="color: #064c72" href="mailto:lpiazzi@ice.ufjf.br"
+                            class="d-block">
+                            lpiazzi@ice.ufjf.br</a>
+                            <a style="color: #064c72" href="mailto:fabricio.mendonca@ice.ufjf.br"
+                            class="d-block">
+                            fabricio.mendonca@ice.ufjf.br </a>
                     </div>
                 </div>
             </div>
@@ -412,7 +413,7 @@
         <!-- Footer-->
         <footer class="bg-light py-5">
             <div class="container">
-                <div class="small text-center text-muted">Copyright © 2021 - Onto4ALL Editor</div>
+                <div class="small text-center text-muted">Copyright © 2022 - Onto4ALL Editor</div>
             </div>
         </footer>
         <!-- Bootstrap core JS-->
