@@ -493,25 +493,19 @@ function getCurrentOntologyInJSON() {
     return JSON.stringify(cleanObject(ontology));
 }
 
-function xmlToOwl(fileName) {
-    $.ajax({
+function xmlToOwl() {
 
-        url: 'https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/format',
-        type: 'POST',
-
-
-        body: getCurrentOntologyInJSON(),
-
-        crossDomain: true,
-        dataType: 'JSON',
-        success: function (owlString) {
-            console.log(owlString)
-            return owlString;
+    fetch("https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/format", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
         },
-    }).done(function( data ) {
-        console.log(data)
-    });
-
+        body: JSON.stringify(getCurrentOntologyInJSON()),
+      })
+        .then((response) => response.text())
+        .then((text) => console.log(text))
+        .catch((erro) => console.log(erro));
 }
 
 /**

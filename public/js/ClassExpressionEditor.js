@@ -15,37 +15,57 @@ function validateAxiom() {
         return;
     }
 
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/valid", true);
-    xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
-    xhttp.setRequestHeader('Access-Control-Allow-Methods', 'POST');
-    xhttp.setRequestHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
-    xhttp.setRequestHeader("Content-Type", "application/json");
-
-    xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 202) {
-            if (this.responseText === "true") {
-                changeInputBorderColor(userInput, "green");
-                changeTooltipText(true);
-            } else {
-                changeInputBorderColor(userInput, "red");
-                changeTooltipText(false);
+    fetch("https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/valid", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(
+            {
+                "id": "https://onto4alleditor.com/en/ontologies/" + document.getElementById('id').value,
+                "outformat": "OWL",
+                "ontoclass": getElementsNames(),
+                // split the axioms after each ';' and then remove empty/whitespace strings from the array
+                "ontoaxioms": userInput.value.split(';').filter(e => String(e).trim()),
+                "ontoproperties": ""
             }
-        } else {
-            changeInputBorderColor(userInput, "yellow");
-            //return alert('The server is not available at moment, try again later')
-        }
-    };
-    let data =
-        {
-            "id": "https://onto4alleditor.com/en/ontologies/" + document.getElementById('id').value,
-            "outformat": "OWL",
-            "ontoclass": getElementsNames(),
-            // split the axioms after each ';' and then remove empty/whitespace strings from the array
-            "ontoaxioms": userInput.value.split(';').filter(e => String(e).trim()),
-            "ontoproperties": ""
-        };
-    xhttp.send(JSON.stringify(data));
+        ),
+      })
+        .then((response) => response.text())
+        .then((text) => console.log(text))
+        .catch((erro) => console.log(erro));
+    // let xhttp = new XMLHttpRequest();
+    // xhttp.open("POST", "https://cors-anywhere.herokuapp.com/https://whispering-gorge-06411.herokuapp.com/webapi/ontology/valid", true);
+    // xhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+    // xhttp.setRequestHeader('Access-Control-Allow-Methods', 'POST');
+    // xhttp.setRequestHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers');
+    // xhttp.setRequestHeader("Content-Type", "application/json");
+
+    // xhttp.onreadystatechange = function () {
+    //     if (this.readyState === 4 && this.status === 202) {
+    //         if (this.responseText === "true") {
+    //             changeInputBorderColor(userInput, "green");
+    //             changeTooltipText(true);
+    //         } else {
+    //             changeInputBorderColor(userInput, "red");
+    //             changeTooltipText(false);
+    //         }
+    //     } else {
+    //         changeInputBorderColor(userInput, "yellow");
+    //         //return alert('The server is not available at moment, try again later')
+    //     }
+    // };
+    // let data =
+    //     {
+    //         "id": "https://onto4alleditor.com/en/ontologies/" + document.getElementById('id').value,
+    //         "outformat": "OWL",
+    //         "ontoclass": getElementsNames(),
+    //         // split the axioms after each ';' and then remove empty/whitespace strings from the array
+    //         "ontoaxioms": userInput.value.split(';').filter(e => String(e).trim()),
+    //         "ontoproperties": ""
+    //     };
+    // xhttp.send(JSON.stringify(data));
 }
 
 /**
