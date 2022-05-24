@@ -497,6 +497,7 @@ function xmlToOwl() {
 
     fetch("https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/format", {
         method: "POST",
+        mode: "no-cors",
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
