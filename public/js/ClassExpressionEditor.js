@@ -33,10 +33,8 @@ function validateAxiom() {
             }
         ),
       })
-        .then((response) => response.text())
-        .then((text) => {
+        .then((response) => {
             console.log(response.text());
-            console.log(text);
             // valida se a requisição falhou
             if (!response.ok) {
                 changeInputBorderColor(userInput, "yellow");
@@ -54,6 +52,10 @@ function validateAxiom() {
                 changeInputBorderColor(userInput, "red");
                 changeTooltipText(false);
             }
+        })
+        .then((text) => {
+            console.log(text);
+
         })
         .catch((erro) => console.log(erro));
     // let xhttp = new XMLHttpRequest();
