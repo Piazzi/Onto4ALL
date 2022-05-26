@@ -497,14 +497,13 @@ function xmlToOwl() {
 
     fetch("https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/format", {
         method: "POST",
-        mode: "no-cors",
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(getCurrentOntologyInJSON()),
       })
-        .then((response) => response.text())
+        .then((response) => console.log(response))
         .then((text) => console.log(text))
         .catch((erro) => console.log(erro));
 }
