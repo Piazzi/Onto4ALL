@@ -33,7 +33,7 @@ function validateAxiom() {
         ),
       })
         .then((response) => {
-            console.log(response.text());
+            console.log(response);
             // valida se a requisição falhou
             if (!response.ok) {
                 changeInputBorderColor(userInput, "yellow");
