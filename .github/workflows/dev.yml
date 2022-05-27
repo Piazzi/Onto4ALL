@@ -17,4 +17,4 @@ jobs:
         server: ftp.onto4all.com
         username:  u198149674.subdominio_dev
         password: Onto4@ll
-        server-dir: /
+        server-dir: public_html/dev
