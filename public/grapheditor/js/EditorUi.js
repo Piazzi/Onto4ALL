@@ -1062,7 +1062,7 @@ EditorUi.prototype.exportFile = function(fileName, data, format) {
 
     let stringFile;
 	if(format === 'owl')
-        stringFile = xmlToOwl(fileName);
+        stringFile = xmlToOwl();
     createDownloadLink(stringFile)
 
 	function createDownloadLink(owlString)
