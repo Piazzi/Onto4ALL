@@ -503,7 +503,7 @@ function xmlToOwl() {
         },
         body: JSON.stringify(getCurrentOntologyInJSON()),
       })
-        .then((response) => response.text())
+        .then((response) => console.log(response))
         .then((text) => console.log(text))
         .catch((erro) => console.log(erro));
 }

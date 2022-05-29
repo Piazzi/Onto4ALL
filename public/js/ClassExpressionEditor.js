@@ -32,8 +32,30 @@ function validateAxiom() {
             }
         ),
       })
-        .then((response) => response.text())
-        .then((text) => console.log(text))
+        .then((response) => {
+            console.log(response);
+            // valida se a requisição falhou
+            if (!response.ok) {
+                changeInputBorderColor(userInput, "yellow");
+                return new Error("falhou a requisição"); // cairá no catch da promise
+            }
+
+            // verificando pelo status
+            if (response.status === 404) {
+                return new Error("não encontrou qualquer resultado");
+            }
+            if (response.status === 200) {
+                changeInputBorderColor(userInput, "green");
+                changeTooltipText(true);
+            } else {
+                changeInputBorderColor(userInput, "red");
+                changeTooltipText(false);
+            }
+        })
+        .then((text) => {
+            console.log(text);
+
+        })
         .catch((erro) => console.log(erro));
     // let xhttp = new XMLHttpRequest();
     // xhttp.open("POST", "https://cors-anywhere.herokuapp.com/https://whispering-gorge-06411.herokuapp.com/webapi/ontology/valid", true);
