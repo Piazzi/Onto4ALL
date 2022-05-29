@@ -71,7 +71,7 @@ class RegisterController extends Controller
         ]);
         $user->categoria = 'modelador';
 
-        //$data = User::saveImg($data, 'avatar_url', 'public_html/img/profile/');
+        //$data = User::saveImg($data, 'avatar_url', 'public/img/profile/');
         //$user->avatar_url = $data['avatar_url'];
 
         $user->save();
