@@ -32,7 +32,7 @@
     "Notifications":"Notificações",
     "See all the notifications":"Ver todas as notificações",
     "New Notifications":"Novas Notificações",
-    "Update notifications page":"Recarregar página de notitificações", 
+    "Update notifications page":"Recarregar página de notitificações",
     "View":"Visualizar",
     "Title":"Título",
     "Date":"Data",
@@ -42,7 +42,7 @@
     "Onto4ALL Bug Report":"Relatório de erro Onto4All",
     "Onto4All Suggestion":"Sugestão Onto4All",
     "Onto4All Question":"Pergunta Onto4All",
-    "Onto4ALL Other":"Outro Onto4All", 
+    "Onto4ALL Other":"Outro Onto4All",
 
     "See the message you received":"Veja a mensagem que você recebeu",
     "Read Message":"Ler Mensagem",
@@ -53,11 +53,11 @@
     "New Ontology shared with you":"Nova Ontologia compartilhada",
     "The user ": "O usuário ",
     " shared with you the ontology ":" compartilhou com você a ontologia ",
-    
+
     "A new Ontology has been shared with you": "Uma nova ontologia foi compartilhada com você",
     "New Ontology!": "Nova Ontologia!",
     "Hello,": "Olá",
-    "The user": "O usuário", 
+    "The user": "O usuário",
     "shared with you the ontology": "compartilhou com você a ontologia",
     "You can access it from the Ontology Manager menu on the Ontology Editor page or on the My Ontologies page": "Você pode acessá-la no menu Gerenciador de Ontologias na página Editor de Ontologias ou na página Minhas Ontologias.",
 
@@ -457,7 +457,7 @@
     "Degree of Formality":"Grau de Formalidade",
     "Scope":"Escopo",
     "Competence Questions":"Questões de Competência",
-    
+
 
     "Alert": "Aviso",
     "This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.": "Este editor está em teste beta, podem ocorrer bugs. Estamos trabalhando para implementar novos recursos e corrigir bugs, se você tiver algum problema entre em contato conosco através do menu de ajuda.",
@@ -494,6 +494,9 @@
 
     "Currently, the Onto4ALL team is composed of 8 people:":"Atualmente, o time é composto por 8 pessoas:",
     "Chat with other collaborators of this ontology, messages are saved and can be read at any time between collaborators.": "Converse com outros colaboradores dessa ontologia, as mensagens são salvas e podem ser lidas a qualquer momento entre os colaboradores.",
-    "Enter message...": "Digite a mensagem..."
+    "Enter message...": "Digite a mensagem...",
+    "Papers we published so far:": "Artigos que publicamos até agora",
+    "Universities using our editor": "Universidades usando nosso editor",
+    "We have many users across the globe, mainly in universities. In special": "Temos muitos usuários em todo o mundo, principalmente em universidades. Em especial:"
 }
 
