@@ -18,11 +18,3 @@ jobs:
         username:  u198149674.dev
         password: onto4@LL
         server-dir: /
-
-    - name: Get latest code
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
-      with:
-        server: ftp.onto4all.com
-        username:  u198149674.public
-        password: ONTO4all
-        server-dir: ./public/
