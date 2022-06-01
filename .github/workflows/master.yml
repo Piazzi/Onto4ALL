@@ -2,20 +2,19 @@ on:
     push:
         branches:
             - master
-name: Deploy website on push
+name: 🚀 Deploy website on push
 jobs:
   web-deploy:
-    name: Deploy
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Get latest code
+    - name: 🚚 Get latest code
       uses: actions/checkout@v2
     
-    - name: Sync files
+    - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ftp.onto4all.com
-        username:  u198149674.dev
-        password: onto4@LL
+        username:  u198149674.master
+        password: Onto4@LL
         server-dir: /
-        exclude: /public/
