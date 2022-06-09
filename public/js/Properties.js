@@ -18,7 +18,6 @@ const selectInputs = [
     "sameAs",
     "differentAs",
     "domain-data-properties",
-    "range-data-properties"
 ];
 const checkboxInputs = [
     "functional",
@@ -68,8 +67,7 @@ let annotationInputs = {
     versionInfo: document.getElementById("versionInfo"),
 };
 
-const dataPropertyInputs = {
-    value: document.getElementById("value-data-properties"),
+var dataPropertyInputs = {
     domain: document.getElementById("domain-data-properties"),
     range: document.getElementById("range-data-properties"),
     equivalentTo: document.getElementById("equivalentTo-data-properties"),
@@ -217,9 +215,9 @@ function setPropertiesInputs(cell) {
     propertyLabel.value = extractContent(cell.value.getAttribute('label'));
     const cellProperties = cell.value.attributes;
     setCellIRI(cellProperties);
-    console.log(cellProperties);
     for (let i = 0; i < cellProperties.length; i++) {
         // set properties
+
         if (inputs.hasOwnProperty(cellProperties[i].name)) {
             // select
             if (selectInputs.includes(cellProperties[i].name)) {
@@ -237,6 +235,16 @@ function setPropertiesInputs(cell) {
         // set annotations
         if (annotationInputs.hasOwnProperty(cellProperties[i].name))
             annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
+
+        // set datapropertiees
+        if (dataPropertyInputs.hasOwnProperty(cellProperties[i].name)) {
+            dataPropertyInputs[cellProperties[i].name].value = cellProperties[i].value;
+        }
+
+        if (cellProperties[i].name == 'domain-data-properties') {
+            createSelectOptions(cell, cellProperties[i].name);
+            setSelectValue(cellProperties[i]);
+        }
 
         // if the property is not a default one
         if(!relationInputs.hasOwnProperty(cellProperties[i].name) &&
@@ -321,6 +329,19 @@ function createSelectOptions(cell, propertyName) {
                 e.getAttribute("label") !== cell.getAttribute("label")
         );
     } else {
+        options = classes.filter(
+            (e) =>
+                e.id !== cell.id &&
+                e.getAttribute("label") !== cell.getAttribute("label")
+        );
+        // removes the class Thing from the options
+        options = options.filter((e) => getTranslation("THING")
+        );
+    }
+
+    // domain property of classes and instances
+    if(propertyName == 'domain' && !cell.isEdge()) {
+        classes = classes.concat(Instances);
         options = classes.filter(
             (e) =>
                 e.id !== cell.id &&

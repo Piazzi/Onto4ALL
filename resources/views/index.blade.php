@@ -386,8 +386,41 @@
                 </div>
                 <div class="form-group">
                     <label>range</label>
-                    <select id="range-data-properties" data-placeholder="Select Class or Instance" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
-                        <option></option>
+                    <select id="range-data-properties" data-placeholder="Select Datatype" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
+                        <option>owl:rational</option>
+                        <option>owl:real</option>
+                        <option>rdf:PlainLiteral</option>
+                        <option>rdf:XMLLiteral</option>
+                        <option>rdfs:Literal</option>
+                        <option>xsd:anyURI</option>
+                        <option>xsd:base64Binary</option>
+                        <option>xsd:boolean</option>
+                        <option>xsd:byte</option>
+                        <option>xsd:dateTime</option>
+                        <option>xsd:dateTimeStamp</option>
+                        <option>xsd:decimal</option>
+                        <option>xsd:double</option>
+                        <option>xsd:float</option>
+                        <option>xsd:hexBinary</option>
+                        <option>xsd:int</option>
+                        <option>xsd:integer</option>
+                        <option>xsd:language</option>
+                        <option>xsd:long</option>
+                        <option>xsd:Name</option>
+                        <option>xsd:NCName</option>
+                        <option>xsd:negativeInteger</option>
+                        <option>xsd:NMTOKEN</option>
+                        <option>xsd:nonNegativeInteger</option>
+                        <option>xsd:nonPositiveInteger</option>
+                        <option>xsd:normalizedString</option>
+                        <option>xsd:positiveInteger</option>
+                        <option>xsd:short</option>
+                        <option>xsd:string</option>
+                        <option>xsd:token</option>
+                        <option>xsd:unsignedByte</option>
+                        <option>xsd:unsignedInt</option>
+                        <option>xsd:unsignedLong</option>
+                        <option>xsd:unsignedShort</option>
                     </select>
                 </div>
                 <div class="form-group">
