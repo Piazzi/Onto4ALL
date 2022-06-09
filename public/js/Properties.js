@@ -339,9 +339,10 @@ function createSelectOptions(cell, propertyName) {
         );
     }
 
+    console.log(propertyName);
     // domain property of classes and instances
-    if(propertyName == 'domain' && !cell.isEdge()) {
-        classes = classes.concat(Instances);
+    if(propertyName == 'domain-data-properties' && !cell.isEdge()) {
+        classes = classes.concat(instances);
         options = classes.filter(
             (e) =>
                 e.id !== cell.id &&
