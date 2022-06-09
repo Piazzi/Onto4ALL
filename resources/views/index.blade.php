@@ -48,7 +48,7 @@
             <span id="instances-count"> 0</span>
         </span>
 
-        
+
 
         <div class="box-tools pull-right">
 
@@ -90,7 +90,7 @@
 
 <!-- Right Sidebar -->
 <aside class="control-sidebar control-sidebar-light control-sidebar-open">
-    
+
 
     <!--.Chat -->
     <div class="chat-ontology hidden" id='chat'>
@@ -131,7 +131,7 @@
             <li><a id="object-properties-nav" href="#object-properties-tab" data-toggle="tab" style="color: #3c8dbc"><i class="fa fa-fw fa-exchange"></i> Object Properties</a></li>
             <li><a id="annotations-nav" href="#annotations-tab" data-toggle="tab" style="color: darkred"><i class="fa fa-fw fa-book"></i>
                     Annotation Properties</a></li>
-            <li><a id="datatype-properties-nav" href="#datatype-properties-tab" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
+            <li><a id="data-properties-nav" href="#data-properties-tab" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Data Properties</a></li>
             <li><a id="instances-nav" href="#instances-tab" data-toggle="tab" style="color: rebeccapurple"><i class="fa fa-fw fa-circle-thin"></i> Instances</a></li>
             <li style="visibility: hidden; display:none"><a id="empty-nav" href="#empty-tab" data-toggle="tab" ></a></li>
 
@@ -377,41 +377,41 @@
             </div>
 
 
-            <div class="tab-pane" id="datatype-properties-tab">
+            <div class="tab-pane" id="data-properties-tab">
                 <div class="form-group">
                     <label>Value</label>
-                    <input id="value-datatype-properties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput('value', this.value)">
+                    <input id="value-data-properties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput('value', this.value)">
                 </div>
                 <div class="form-group">
                     <label>domain</label>
-                    <input id="domain-datatype-properties" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput('domain', this.value)">
+                    <input id="domain-data-properties" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput('domain', this.value)">
                 </div>
                 <div class="form-group">
                     <label>range</label>
-                    <input id="range-datatype-properties" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput('range', this.value)">
+                    <input id="range-data-properties" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput('range', this.value)">
                 </div>
                 <div class="form-group">
                     <label>equivalentTo</label>
-                    <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('equivalentTo', $('#'+this.id).val())">
+                    <select id="equivalentTo-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('equivalentTo', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
-                    <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('subpropertyOf', $('#'+this.id).val())">
+                    <select id="subpropertyOf-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('subpropertyOf', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
-                    <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('disjointWith', $('#'+this.id).val())">
+                    <select id="disjointWith-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('disjointWith', $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                            <input id="functional-datatype-properties" type="checkbox" onchange="updatePropertyInput('functional', this.checked)">
+                            <input id="functional-data-properties" type="checkbox" onchange="updatePropertyInput('functional', this.checked)">
                             Functional
                         </label>
                     </div>
@@ -1205,7 +1205,7 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
-    
+
     function onReady(callback) {
         var intervalId = window.setInterval(function () {
             if (document.getElementsByTagName('body')[0] !== undefined) {
