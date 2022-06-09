@@ -379,16 +379,16 @@
 
             <div class="tab-pane" id="data-properties-tab">
                 <div class="form-group">
-                    <label>Value</label>
-                    <input id="value-data-properties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput('value', this.value)">
-                </div>
-                <div class="form-group">
                     <label>domain</label>
-                    <input id="domain-data-properties" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput('domain', this.value)">
+                    <select multiple id="domain-data-properties" data-placeholder="Select Class or Instance" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
+                        <option></option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>range</label>
-                    <input id="range-data-properties" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput('range', this.value)">
+                    <select id="range-data-properties" data-placeholder="Select Class or Instance" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
+                        <option></option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>equivalentTo</label>
@@ -417,7 +417,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>datatype</label>
+                    <label>datatype properties</label>
                     <select id="datatype" data-placeholder="Select Datatypes" style="width: 100%; " class="js-example-basic-multiple" name="" onchange="updatePropertyInput(this.id, this.value)">
                         <option>owl:rational</option>
                         <option>owl:real</option>

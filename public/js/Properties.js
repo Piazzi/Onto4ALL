@@ -17,6 +17,8 @@ const selectInputs = [
     "disjointWith",
     "sameAs",
     "differentAs",
+    "domain-data-properties",
+    "range-data-properties"
 ];
 const checkboxInputs = [
     "functional",
@@ -106,10 +108,8 @@ function getSelectedCell(cell) {
     } else if (style.includes("Instance")) {
         updateTabs("Instance");
         inputs = instanceInputs;
-    } else if (style.includes("DatatypeProperty")) {
-        updateTabs("DatatypeProperty");
-        inputs = dataPropertyInputs;
-    } else return;
+    }
+     else return;
 
     setPropertiesInputs(cell);
 }

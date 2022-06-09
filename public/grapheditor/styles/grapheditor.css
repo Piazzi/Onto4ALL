@@ -1888,24 +1888,3 @@ div.picker { z-index: 10007; }
 	margin:5px;
 }
 
-
-/*syling select 2 from collaborators in the edit blade menu*/
-
-
-.select2-container--classic.select2-container--open .select2-dropdown{
-	height:30px;
-}
-.select2-container--classic .select2-results>.select2-results__options{
-	height:30px;
-}
-.select2-container--classic .select2-results__option--highlighted.select2-results__option--selectable{
-	background-color: #E4E4E4;
-	color: #333333;
-}
-.select2-container--classic .select2-results__option--highlighted.select2-results__option--selectable:hover{
-	background-color: #064c72;
-	color: #eee;
-}
-.select2-container--classic.select2-container--open .select2-dropdown{
-	border-color:#E4E4E4;
-}
