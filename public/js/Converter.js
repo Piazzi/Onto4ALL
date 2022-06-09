@@ -495,17 +495,23 @@ function getCurrentOntologyInJSON() {
 
 function xmlToOwl() {
 
-    fetch("https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/format", {
-        method: "POST",
-        headers: {
-            Accept: "text/plain, */*",
-            "Content-Type": "text/plain",
-        },
-        body: JSON.stringify(getCurrentOntologyInJSON()),
-      })
-        .then((response) => console.log(response))
-        .then((text) => console.log(text))
-        .catch((erro) => console.log(erro));
+    (async () => {
+        const rawResponse = await fetch(
+            "https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/format",
+            {
+                method: "POST",
+                headers: {
+                    Accept: "text/plain, */*",
+                    "Content-Type": "text/plain",
+                },
+                body: JSON.stringify(getCurrentOntologyInJSON()),
+            }
+        );
+        console.log(rawResponse);
+        const content = await rawResponse.text();
+        console.log(content);
+
+    })();
 }
 
 /**
