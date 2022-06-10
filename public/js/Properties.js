@@ -331,24 +331,27 @@ function createSelectOptions(cell, propertyName) {
                 e.getAttribute("label") !== cell.getAttribute("label")
         );
     } else {
-        options = classes.filter(
-            (e) =>
-                e.id !== cell.id &&
-                e.getAttribute("label") !== cell.getAttribute("label")
-        );
+        console.log("caiu");
+
+        if (propertyName == "domain-data-properties") {
+            console.log("caiu dentor");
+
+            options = classes.concat(instances);
+            // removes the class Thing from the options
+            options = options.filter((e) => getTranslation("THING"));
+        } else {
+            options = classes.filter(
+                (e) =>
+                    e.id !== cell.id &&
+                    e.getAttribute("label") !== cell.getAttribute("label")
+            );
+        }
         // removes the class Thing from the options
-        options = options.filter((e) => getTranslation("THING")
-        );
+        options = options.filter((e) => getTranslation("THING"));
     }
 
     console.log(propertyName);
     // domain property of classes and instances
-    if(propertyName == 'domain-data-properties' && !cell.isEdge()) {
-        classes = classes.concat(instances);
-        // removes the class Thing from the options
-        options = options.filter((e) => getTranslation("THING")
-        );
-    }
 
     // remove duplicated options
     options = options.reduce((unique, o) => {
@@ -368,8 +371,6 @@ function createSelectOptions(cell, propertyName) {
         option.innerHTML = element.getAttribute("label");
         select.appendChild(option);
     });
-
-
 }
 
 /**
