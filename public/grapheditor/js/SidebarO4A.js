@@ -1043,7 +1043,7 @@
  var relationProperties = ['domain','range','inverseOf','equivalentTo','subpropertyOf','disjointWith','functional','inverseFunctional','transitive','symetric','asymmetric','reflexive','irreflexive'];
  var annotations = ['IRI','label','seeAlso','isDefinedBy','comment','versionInfo','priorVersion','deprecated','incompatibleWith','backwardCompatibleWith'];
  var instanceProperties = ['types','sameAs','differentAs','objectProperties','dataProperties','negativeObjectProperties','negativeDataProperties']
- var dataProperties = ['domain-data-properties','range-data-properties','equivalentTo','subpropertyOf','disjointWith','functional','datatype'];
+ var dataProperties = ['label-data-properties','domain-data-properties','range-data-properties','equivalentTo','subpropertyOf','disjointWith','functional','datatype'];
 
  //var thesaurusProperties = ['altLabel','broader','narrower','prefLabel','related','subject','scopeNote','broadMatch','changeNote','definition','editorialNote','hiddenLabel','historyNote','note', 'topConceptOf'];
 

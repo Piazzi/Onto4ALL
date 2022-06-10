@@ -379,6 +379,10 @@
 
             <div class="tab-pane" id="data-properties-tab">
                 <div class="form-group">
+                    <label>Label</label>
+                    <input id="label-data-properties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
+                </div>
+                <div class="form-group">
                     <label>domain</label>
                     <select multiple id="domain-data-properties" data-placeholder="Select Class or Instance" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
                         <option></option>

@@ -75,6 +75,7 @@ var dataPropertyInputs = {
     disjointWith: document.getElementById("disjointWith-data-properties"),
     functional: document.getElementById("functional-data-properties"),
     datatype: document.getElementById("datatype"),
+    label: document.getElementById("label-data-properties"),
 };
 
 const instanceInputs = {
@@ -250,6 +251,7 @@ function setPropertiesInputs(cell) {
         if(!relationInputs.hasOwnProperty(cellProperties[i].name) &&
             !classInputs.hasOwnProperty(cellProperties[i].name) &&
             !annotationInputs.hasOwnProperty(cellProperties[i].name) &&
+            !dataPropertyInputs.hasOwnProperty(cellProperties[i].name) &&
             document.getElementById(cellProperties[i].name) === null)
         {
             createNewProperty(cellProperties[i].name, cellProperties[i].value);
