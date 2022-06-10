@@ -75,7 +75,7 @@ var dataPropertyInputs = {
     disjointWith: document.getElementById("disjointWith-data-properties"),
     functional: document.getElementById("functional-data-properties"),
     datatype: document.getElementById("datatype"),
-    label: document.getElementById("label-data-properties"),
+    labelDataProperty: document.getElementById("label-data-properties"),
 };
 
 const instanceInputs = {
@@ -345,11 +345,6 @@ function createSelectOptions(cell, propertyName) {
     // domain property of classes and instances
     if(propertyName == 'domain-data-properties' && !cell.isEdge()) {
         classes = classes.concat(instances);
-        options = classes.filter(
-            (e) =>
-                e.id !== cell.id &&
-                e.getAttribute("label") !== cell.getAttribute("label")
-        );
         // removes the class Thing from the options
         options = options.filter((e) => getTranslation("THING")
         );
