@@ -416,7 +416,8 @@ function getCurrentOntologyInJSON() {
 
     classes.forEach((e) => {
 
-        ontology.constraints.push(e.value.getAttribute('Constraint'))
+        if(!!e.value.getAttribute('Constraint').trim())
+            ontology.constraints.push(e.value.getAttribute('Constraint'))
 
         ontology.classes.push({
             "Name": e.value.getAttribute('label'),
@@ -493,6 +494,18 @@ function getCurrentOntologyInJSON() {
     return JSON.stringify(cleanObject(ontology));
 }
 
+function downloadFile(owlString) {
+
+    const link = window.document.createElement('a');
+    link.href = window.URL.createObjectURL(new Blob([owlString], {type: 'text/plain;charset=utf-8;'}));
+    link.download = 'test.owl';
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+}
+
 function xmlToOwl() {
 
     (async () => {
@@ -504,12 +517,13 @@ function xmlToOwl() {
                     Accept: "text/plain, */*",
                     "Content-Type": "text/plain",
                 },
-                body: JSON.stringify(getCurrentOntologyInJSON()),
+                body: getCurrentOntologyInJSON(),
             }
         );
         console.log(rawResponse);
         const content = await rawResponse.text();
         console.log(content);
+        //downloadFile(content);
 
     })();
 }
