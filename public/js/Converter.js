@@ -416,8 +416,10 @@ function getCurrentOntologyInJSON() {
 
     classes.forEach((e) => {
 
-        if(!!e.value.getAttribute('Constraint').trim())
-            ontology.constraints.push(e.value.getAttribute('Constraint'))
+        let constraint = e.value.getAttribute('Constraint');
+        if(!!constraint.trim()) {
+            ontology.constraints.push( constraint.replace(';',''));
+        }
 
         ontology.classes.push({
             "Name": e.value.getAttribute('label'),
@@ -498,7 +500,7 @@ function downloadFile(owlString) {
 
     const link = window.document.createElement('a');
     link.href = window.URL.createObjectURL(new Blob([owlString], {type: 'text/plain;charset=utf-8;'}));
-    link.download = 'test.owl';
+    link.download = 'ontology.owl';
 
     document.body.appendChild(link);
     link.click();
@@ -523,7 +525,7 @@ function xmlToOwl() {
         console.log(rawResponse);
         const content = await rawResponse.text();
         console.log(content);
-        //downloadFile(content);
+        downloadFile(content);
 
     })();
 }
