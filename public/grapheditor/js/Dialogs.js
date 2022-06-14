@@ -697,6 +697,7 @@ EditDiagramDialog.showNewWindowOption = true;
 
 var exportFormats = [
 	'OWL',
+	'XML',
 	'TURTLE',
 	'SINTAXEDL',
 	'SINTAXEDLHTML',
@@ -805,13 +806,13 @@ var ExportDialog = function(editorUi)
 		})
 	}
 
-	if (ExportDialog.showXmlOption)
-	{
-		var xmlOption = document.createElement('option');
-		xmlOption.setAttribute('value', 'xml');
-		mxUtils.write(xmlOption, mxResources.get('formatXml'));
-		imageFormatSelect.appendChild(xmlOption);
-	}
+	// if (ExportDialog.showXmlOption)
+	// {
+	// 	var xmlOption = document.createElement('option');
+	// 	xmlOption.setAttribute('value', 'xml');
+	// 	mxUtils.write(xmlOption, mxResources.get('formatXml'));
+	// 	imageFormatSelect.appendChild(xmlOption);
+	// }
 
 	td = document.createElement('td');
 	td.appendChild(imageFormatSelect);
@@ -1292,7 +1293,7 @@ ExportDialog.saveLocalFile = function(editorUi, data, filename, format)
 
 		// ONTO4ALL METHOD
 		if (format == 'svg')
-			return EditorUi.prototype.exportFile(filename, data, 'svg');
+			return EditorUi.prototype.exportFile(filename, data, 'SVG');
 
 		return EditorUi.prototype.exportFile( filename, data, format);
 	

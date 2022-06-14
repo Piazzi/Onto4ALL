@@ -1061,9 +1061,9 @@ EditorUi.prototype.exportFile = function(fileName, data, format) {
 		fileName = fileName + format;
 
     let stringFile;
-	if(exportFormats.includes(format)) {
-        convertTo(format);
-	}
+	
+    convertTo(data, format);
+	
     // createDownloadLink(stringFile)
 
 	// function createDownloadLink(owlString)

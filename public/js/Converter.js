@@ -496,10 +496,10 @@ function getCurrentOntologyInJSON(format) {
     return JSON.stringify(cleanObject(ontology));
 }
 
-function downloadFile(owlString, format) {
+function downloadFile(content, format) {
 
     const link = window.document.createElement('a');
-    link.href = window.URL.createObjectURL(new Blob([owlString], {type: 'text/plain;charset=utf-8;'}));
+    link.href = window.URL.createObjectURL(new Blob([content], {type: 'text/plain;charset=utf-8;'}));
     link.download = 'ontology.'+format.toLowerCase();
 
     document.body.appendChild(link);
@@ -508,8 +508,13 @@ function downloadFile(owlString, format) {
     document.body.removeChild(link);
 }
 
-function convertTo(format) {
-    console.log( getCurrentOntologyInJSON(format));
+function convertTo(data, format) {
+    console.log(data);
+    if(format == 'XML' || format == 'SVG') {
+        downloadFile(data, format);
+        return;
+    }
+
     (async () => {
         const rawResponse = await fetch(
             "https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/format",
