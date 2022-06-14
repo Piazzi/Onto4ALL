@@ -217,7 +217,6 @@ function setPropertiesInputs(cell) {
     const cellProperties = cell.value.attributes;
     setCellIRI(cellProperties);
     for (let i = 0; i < cellProperties.length; i++) {
-
         // set normal properties
         if (inputs.hasOwnProperty(cellProperties[i].name)) {
             // select
@@ -227,38 +226,47 @@ function setPropertiesInputs(cell) {
             }
             // checkbox
             else if (checkboxInputs.includes(cellProperties[i].name))
-                cellProperties[i].value === "true" ? inputs[cellProperties[i].name].checked = true : inputs[cellProperties[i].name].checked = false;
+                cellProperties[i].value === "true"
+                    ? (inputs[cellProperties[i].name].checked = true)
+                    : (inputs[cellProperties[i].name].checked = false);
             // string
-            else
-                inputs[cellProperties[i].name].value = cellProperties[i].value;
+            else inputs[cellProperties[i].name].value = cellProperties[i].value;
         }
 
         // set annotations
         if (annotationInputs.hasOwnProperty(cellProperties[i].name))
-            annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
+            annotationInputs[cellProperties[i].name].value =
+                cellProperties[i].value;
 
         // set datapropertiees
         if (dataProperties.includes(cellProperties[i].name)) {
-            console.log(cellProperties[i].name);
             dataPropertyInputs[cellProperties[i].name].value = cellProperties[i].value;
-        }
+            // checkbox
+            if (cellProperties[i].name == 'functional')
+                cellProperties[i].value === "true" ? (dataPropertyInputs[cellProperties[i].name].checked = true) : (dataPropertyInputs[cellProperties[i].name].checked = false);
 
-        // RANGE, LABELm etc N ATUALIZAM, somente domain
+            // select
+            if (cellProperties[i].name == "domain-data-properties") {
+                createSelectOptions(cell, cellProperties[i].name);
+                setSelectValue(cellProperties[i]);
+            }
 
-        if (cellProperties[i].name == 'domain-data-properties') {
-            createSelectOptions(cell, cellProperties[i].name);
-            setSelectValue(cellProperties[i]);
+            const datatypeSelect = ['range-data-properties','equivalentTo','subpropertyOf','disjointWith','functional','datatype'];
+            if(datatypeSelect.includes(cellProperties[i].name)) {
+                setSelectValue(cellProperties[i]);
+            }
         }
 
         // if the property is not a default one
-        if(!relationInputs.hasOwnProperty(cellProperties[i].name) &&
+        if (
+            !relationInputs.hasOwnProperty(cellProperties[i].name) &&
             !classInputs.hasOwnProperty(cellProperties[i].name) &&
             !annotationInputs.hasOwnProperty(cellProperties[i].name) &&
             !dataPropertyInputs.hasOwnProperty(cellProperties[i].name) &&
-            document.getElementById(cellProperties[i].name) === null)
-        {
+            document.getElementById(cellProperties[i].name) === null
+        ) {
             createNewProperty(cellProperties[i].name, cellProperties[i].value);
-            console.log("input a ser criado: "+cellProperties[i].name);
+            console.log("input a ser criado: " + cellProperties[i].name);
         }
     }
     removeNotUsedCreatedPropertiesInputs(cellProperties);

@@ -429,19 +429,19 @@
                 </div>
                 <div class="form-group">
                     <label>equivalentTo</label>
-                    <select id="equivalentTo-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('equivalentTo', $('#'+this.id).val())">
+                    <select id="equivalentTo-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
-                    <select id="subpropertyOf-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('subpropertyOf', $('#'+this.id).val())">
+                    <select id="subpropertyOf-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
-                    <select id="disjointWith-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('disjointWith', $('#'+this.id).val())">
+                    <select id="disjointWith-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>

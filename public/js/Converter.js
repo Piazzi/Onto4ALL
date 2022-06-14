@@ -493,6 +493,7 @@ function getCurrentOntologyInJSON(format) {
     });
     if(ontology.constraints.length == 0)
         delete ontology.constraints
+    console.log(ontology);
     return JSON.stringify(cleanObject(ontology));
 }
 
