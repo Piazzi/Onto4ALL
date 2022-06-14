@@ -68,9 +68,9 @@ let annotationInputs = {
 };
 
 var dataPropertyInputs = {
-    domain: document.getElementById("domain-data-properties"),
-    range: document.getElementById("range-data-properties"),
-    labelDataProperty: document.getElementById("label-data-properties"),
+    "domain-data-properties": document.getElementById("domain-data-properties"),
+    "range-data-properties": document.getElementById("range-data-properties"),
+    "label-data-properties": document.getElementById("label-data-properties"),
     equivalentTo: document.getElementById("equivalentTo-data-properties"),
     subpropertyOf: document.getElementById("subpropertyOf-data-properties"),
     disjointWith: document.getElementById("disjointWith-data-properties"),
@@ -238,7 +238,7 @@ function setPropertiesInputs(cell) {
             annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
 
         // set datapropertiees
-        if (dataPropertyInputs.hasOwnProperty(cellProperties[i].name)) {
+        if (dataProperties.includes(cellProperties[i].name)) {
             console.log(cellProperties[i].name);
             dataPropertyInputs[cellProperties[i].name].value = cellProperties[i].value;
         }
