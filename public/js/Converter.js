@@ -396,7 +396,7 @@ function clearXmlDocument() {
 /**
  * Return the current ontology in JSON Format
  */
-function getCurrentOntologyInJSON() {
+function getCurrentOntologyInJSON(format) {
     let ontologyId = document.getElementById("id").value;
     if(ontologyId == '') {
         document.getElementById("save-ontology").click()
@@ -405,7 +405,7 @@ function getCurrentOntologyInJSON() {
 
     let ontology = {
         "id": "https://onto4all.com/en/ontologies/"+ ontologyId,
-        "filetype": "OWL",
+        "filetype": format,
         "classes": [],
         "object properties": [],
         "data properties": [],
@@ -496,11 +496,11 @@ function getCurrentOntologyInJSON() {
     return JSON.stringify(cleanObject(ontology));
 }
 
-function downloadFile(owlString) {
+function downloadFile(owlString, format) {
 
     const link = window.document.createElement('a');
     link.href = window.URL.createObjectURL(new Blob([owlString], {type: 'text/plain;charset=utf-8;'}));
-    link.download = 'ontology.owl';
+    link.download = 'ontology.'+format.toLowerCase();
 
     document.body.appendChild(link);
     link.click();
@@ -508,8 +508,8 @@ function downloadFile(owlString) {
     document.body.removeChild(link);
 }
 
-function xmlToOwl() {
-
+function convertTo(format) {
+    console.log( getCurrentOntologyInJSON(format));
     (async () => {
         const rawResponse = await fetch(
             "https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/format",
@@ -519,13 +519,13 @@ function xmlToOwl() {
                     Accept: "text/plain, */*",
                     "Content-Type": "text/plain",
                 },
-                body: getCurrentOntologyInJSON(),
+                body: getCurrentOntologyInJSON(format),
             }
         );
         console.log(rawResponse);
         const content = await rawResponse.text();
         console.log(content);
-        downloadFile(content);
+        downloadFile(content, format);
 
     })();
 }

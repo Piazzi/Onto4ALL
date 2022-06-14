@@ -70,12 +70,12 @@ let annotationInputs = {
 var dataPropertyInputs = {
     domain: document.getElementById("domain-data-properties"),
     range: document.getElementById("range-data-properties"),
+    labelDataProperty: document.getElementById("label-data-properties"),
     equivalentTo: document.getElementById("equivalentTo-data-properties"),
     subpropertyOf: document.getElementById("subpropertyOf-data-properties"),
     disjointWith: document.getElementById("disjointWith-data-properties"),
     functional: document.getElementById("functional-data-properties"),
     datatype: document.getElementById("datatype"),
-    labelDataProperty: document.getElementById("label-data-properties"),
 };
 
 const instanceInputs = {
@@ -217,8 +217,8 @@ function setPropertiesInputs(cell) {
     const cellProperties = cell.value.attributes;
     setCellIRI(cellProperties);
     for (let i = 0; i < cellProperties.length; i++) {
-        // set properties
 
+        // set normal properties
         if (inputs.hasOwnProperty(cellProperties[i].name)) {
             // select
             if (selectInputs.includes(cellProperties[i].name)) {
@@ -239,8 +239,11 @@ function setPropertiesInputs(cell) {
 
         // set datapropertiees
         if (dataPropertyInputs.hasOwnProperty(cellProperties[i].name)) {
+            console.log(cellProperties[i].name);
             dataPropertyInputs[cellProperties[i].name].value = cellProperties[i].value;
         }
+
+        // RANGE, LABELm etc N ATUALIZAM, somente domain
 
         if (cellProperties[i].name == 'domain-data-properties') {
             createSelectOptions(cell, cellProperties[i].name);
@@ -331,10 +334,8 @@ function createSelectOptions(cell, propertyName) {
                 e.getAttribute("label") !== cell.getAttribute("label")
         );
     } else {
-        console.log("caiu");
 
         if (propertyName == "domain-data-properties") {
-            console.log("caiu dentor");
 
             options = classes.concat(instances);
             // removes the class Thing from the options
@@ -350,7 +351,6 @@ function createSelectOptions(cell, propertyName) {
         options = options.filter((e) => getTranslation("THING"));
     }
 
-    console.log(propertyName);
     // domain property of classes and instances
 
     // remove duplicated options
