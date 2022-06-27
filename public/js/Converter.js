@@ -493,9 +493,9 @@ function getCurrentOntologyInJSON() {
     return JSON.stringify(cleanObject(ontology));
 }
 
-function xmlToOwl() {
+function xmlConvert(format) {
 
-    fetch("https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/format", {
+    fetch("https://onto4all.repesq.ufjf.br/"+format+"api/webapi/ontology/format", {
         method: "POST",
         headers: {
             Accept: "text/plain, */*",
