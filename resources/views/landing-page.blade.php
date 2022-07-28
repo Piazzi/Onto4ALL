@@ -344,7 +344,7 @@
                 </div>
                 <div class="row">
 
-                <div class="col-lg-12 mr-auto text-center">
+                <div class="col-lg-6 mr-auto text-center">
                     <div class="col-lg-12 mr-auto text-center">
                         <i class="fas fa-envelope fa-3x mb-3 "></i>
                             <a style="color: #064c72" href="mailto:lpiazzi@ice.ufjf.br"
@@ -354,6 +354,13 @@
                             class="d-block">
                             fabricio.mendonca@ice.ufjf.br </a>
                             <a style="color: #064c72" href="mailto:info@onto4all.com" class="d-block">info@onto4all.com</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mr-auto text-center">
+                    <div class="col-lg-12 mr-auto text-center">
+                        <i class="fab fa-linkedin fa-3x mb-3"></i>
+                        <a style="color: #064c72" href="https://www.linkedin.com/company/onto4all/" class="d-block" target="_blank"> Onto4ALL </a>
                     </div>
                 </div>
             </div>
