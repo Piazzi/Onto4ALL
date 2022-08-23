@@ -328,7 +328,7 @@
             </div>
             <div class="row">
 
-                <div class="col-lg-6 mr-auto text-center">
+            <div class="col-lg-6 mr-auto text-center">
                     <i style="color:#064c72"class="fas fa-envelope fa-3x mb-3 "></i>
                     <a class="d-block">info@onto4alleditor.com</a>
                 </div>
@@ -338,10 +338,9 @@
                         <i style="color:#064c72" class="fab fa-linkedin fa-3x mb-3"></i>
                         <a style="color:#000000" href="https://www.linkedin.com/company/onto4all/" class="d-block" target="_blank"> Onto4ALL </a>
                     </div>
-                </div>
+
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- Credits section-->
     <section id="credits" class="page-section">

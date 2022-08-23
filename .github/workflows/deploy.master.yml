@@ -1,8 +1,5 @@
-on: 
-    push:
-        branches:
-            - dev
-name: Deploy website on push
+on: push
+name: Deploy website on push on master
 jobs:
   web-deploy:
     name: Deploy
@@ -15,6 +12,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@4.3.0
       with:
         server: ftp.onto4all.com
-        username:  u198149674.subdominio_dev
-        password: Onto4@ll
-        server-dir: /
+        username: u198149674.master
+        password: Deploy@onto4a31
+        
