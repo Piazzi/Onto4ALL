@@ -62,18 +62,39 @@ Actions.prototype.init = function()
 			try
 			{
 				var doc = mxUtils.parseXml(xml);
-				// Verifies if the uploaded file is a OWL file
-				let fileExtension = filename.split('.').pop();
-				if(fileExtension === 'owl' || fileExtension === 'owx')
-				{/*
-					if(doc.documentElement.nodeName === 'rdf:RDF')
-						editor.graph.setSelectionCells(editor.graph.importGraphModel(rdfToXml(doc.documentElement)));
-					else
-					*/
-						editor.graph.setSelectionCells(editor.graph.importGraphModel(owlToXml(doc.documentElement)));
-				}
-				else
-					editor.graph.setSelectionCells(editor.graph.importGraphModel(doc.documentElement));
+				var xmlText = new XMLSerializer().serializeToString(doc);
+
+				(async () => {
+					const rawResponse = await fetch(
+						"http://localhost:8080/owlapi/webapi/ontology/read",
+						{
+							method: "POST",
+							headers: {
+								"Content-Type": "text/plain"
+							},
+							body: xmlText,
+						}
+					);
+					console.log(rawResponse);
+					const content = await rawResponse.text();
+					const json = JSON.parse(content);
+					console.log(json)
+					if (json['Status'] == 'OK') {
+						try {
+							editor.graph.setSelectionCells(editor.graph.importGraphModel(jsonToXml(json['Ontology'])));
+						}catch(e) {
+							mxUtils.alert(getTranslation("There was an error importing the ontology, please try again later."));
+							console.log(e);
+						}
+					} else {
+						msg = '';
+						$.each(json['Error'],function(i, error){
+							msg += error + ", ";
+						});
+						msg = msg.substring(0, msg.length - 2);
+						mxUtils.alertgetTranslation("There was an error importing the ontology, please try again later." + " Erro: " + msg);
+					}
+				})();
 
 			}
 			catch (e)

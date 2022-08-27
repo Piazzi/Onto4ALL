@@ -95,6 +95,7 @@ var dictionary = {
         "role_of": "é_papel_de",
         "disposition_of": "é_disposição_de",
         "function_of": "é_função_de",
+        "There was an error importing the ontology, please try again later.": "Ocorreu um erro ao importar a ontologia, tente novamente mais tarde."
     }
 };
 
