@@ -699,23 +699,8 @@ var exportFormats = [
 	'OWL',
 	'XML',
 	'TURTLE',
-	'SINTAXEDL',
-	'SINTAXEDLHTML',
-	'SINTAXEFUNCIONAL',
-	'KRSS',
-	'DOCUMENTOLATEX',
-	'N3',
 	'SINTAXEMANCHESTER',
-	'NQUAD',
-	'NTRIPLA',
-	'OBO',
-	'RDFJSON',
-	'RDFJSONLD',
-	'RDFXML',
-	'RIOTURTLE',
-	'RIORDFXML',
-	'TRIG',
-	'TRIX'
+	'RDFXML'
 ]
 
 /**
