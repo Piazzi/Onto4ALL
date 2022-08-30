@@ -13,8 +13,8 @@ let positionCounter = 0;
 propertyTransition = {
     "Name": 'label',
     "SubClassOf": 'SubClassOf',
-    "EquivalentClasses": 'equivalentTo',
-    "EquivalentObjectProperties": 'equivalentTo',
+    "EquivalentClasses": 'Equivalence',
+    "EquivalentObjectProperties": 'Equivalence',
     "Instances": 'Instances', //
     "TargetForKey": 'TargetForKey', //
     "DisjointClasses": 'DisjointWith',
@@ -31,7 +31,6 @@ propertyTransition = {
     "DataPropertyAssertion": 'dataProperties',
     "InverseFunctionalObjectProperty": 'negativeObjectProperties',
     "InverseDataPropertyAssertion": 'negativeDataProperties',
-    
     "comment": 'comment', //
     "isDefinedBy": 'isDefinedBy', //
     "seeAlso": 'seeAlso', //
@@ -280,7 +279,7 @@ function getNode(name)
     }
     // Find object
     for(let i = 0; i < xmlDoc.getElementsByTagName("object").length; i++) {
-        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("value") === name)
+        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") === name)
             return xmlDoc.getElementsByTagName("object")[i];
     }
 }
@@ -293,26 +292,39 @@ function getNode(name)
  function insertPropertiesOnNode(nodeName, properties)
  {
      let node = getNode(nodeName);
+     if (!node) {
+        return;
+     }
      //When the properties are not filled yet this function creates a new node
      // called 'object' and sets the given node as a child
      let object = xmlDoc.createElement("object");
      // Sets the attributes for the new node following the mxGraph pattern.
      // The object receives the value and id properties from the node. This attributes
      // are removed from the original node after that.
-     object.setAttribute("label", node.getAttribute("value"));
      object.setAttribute("id", node.getAttribute("id"));
 
      node.removeAttribute("value");
      node.removeAttribute("id");
 
+     // set propertie default
      object.setAttribute('DisjointWith', '');
      // sets the remaining properties
      $.each(properties,function(propertyLabel, propertyValue){
 
         if (propertyValue instanceof Array) {
             propertyValue = propertyValue.filter(function(e) { return e !== nodeName })
+            let propertyValues = [];
             if (propertyValue.length > 0) {
-                var propertyValues = propertyValue.join(',');
+                
+                // normalize to properties for id
+                $.each(propertyValue,function(i, value){
+                    let nodeProp = getNode(value, true);
+                    if (nodeProp) {
+                        propertyValues.push(nodeProp.getAttribute("id"));
+                    }
+                });
+                propertyValues = propertyValues.join(',');
+
                 object.setAttribute(propertyTransition[propertyLabel], propertyValues);
             }
         } else {
@@ -520,7 +532,6 @@ function cleanObject(object) {
     let classes = json['classes'].concat(json['individuals']);
     $.each(classes,function(i, classe){
         createClassNode(classe['Name']);
-        //console.log('createClassNode(' + classe['Name'] + ')');
     });
 
     // Reads all SubClassOf nodes to create is_a relation nodes

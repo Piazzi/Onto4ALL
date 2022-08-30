@@ -57,13 +57,10 @@ Actions.prototype.init = function()
 			ui.hideDialog();
 		}));
 
-		window.openFile.setConsumer(mxUtils.bind(this, function(xml, filename)
+		window.openFile.setConsumer(mxUtils.bind(this, function(ontology, filename)
 		{
 			try
 			{
-				var doc = mxUtils.parseXml(xml);
-				var xmlText = new XMLSerializer().serializeToString(doc);
-
 				(async () => {
 					const rawResponse = await fetch(
 						"http://localhost:8080/owlapi/webapi/ontology/read",
@@ -72,7 +69,7 @@ Actions.prototype.init = function()
 							headers: {
 								"Content-Type": "text/plain"
 							},
-							body: xmlText,
+							body: ontology,
 						}
 					);
 					console.log(rawResponse);
@@ -92,7 +89,7 @@ Actions.prototype.init = function()
 							msg += error + ", ";
 						});
 						msg = msg.substring(0, msg.length - 2);
-						mxUtils.alertgetTranslation("There was an error importing the ontology, please try again later." + " Erro: " + msg);
+						mxUtils.alert(getTranslation("There was an error importing the ontology, please try again later.") + " Erro: " + msg);
 					}
 				})();
 
