@@ -63,7 +63,7 @@ Actions.prototype.init = function()
 			{
 				(async () => {
 					const rawResponse = await fetch(
-						"http://localhost:8080/owlapi/webapi/ontology/read",
+						"https://onto4all.repesq.ufjf.br/owlapi/webapi/ontology/read",
 						{
 							method: "POST",
 							headers: {
