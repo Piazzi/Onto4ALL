@@ -17,6 +17,7 @@ const selectInputs = [
     "disjointWith",
     "sameAs",
     "differentAs",
+    "domain-data-properties",
 ];
 const checkboxInputs = [
     "functional",
@@ -66,14 +67,14 @@ let annotationInputs = {
     versionInfo: document.getElementById("versionInfo"),
 };
 
-const datatypePropertyInputs = {
-    value: document.getElementById("value-datatype-properties"),
-    domain: document.getElementById("domain-datatype-properties"),
-    range: document.getElementById("range-datatype-properties"),
-    equivalentTo: document.getElementById("equivalentTo-datatype-properties"),
-    subpropertyOf: document.getElementById("subpropertyOf-datatype-properties"),
-    disjointWith: document.getElementById("disjointWith-datatype-properties"),
-    functional: document.getElementById("functional-datatype-properties"),
+var dataPropertyInputs = {
+    "domain-data-properties": document.getElementById("domain-data-properties"),
+    "range-data-properties": document.getElementById("range-data-properties"),
+    "label-data-properties": document.getElementById("label-data-properties"),
+    equivalentTo: document.getElementById("equivalentTo-data-properties"),
+    subpropertyOf: document.getElementById("subpropertyOf-data-properties"),
+    disjointWith: document.getElementById("disjointWith-data-properties"),
+    functional: document.getElementById("functional-data-properties"),
     datatype: document.getElementById("datatype"),
 };
 
@@ -106,10 +107,8 @@ function getSelectedCell(cell) {
     } else if (style.includes("Instance")) {
         updateTabs("Instance");
         inputs = instanceInputs;
-    } else if (style.includes("DatatypeProperty")) {
-        updateTabs("DatatypeProperty");
-        inputs = datatypePropertyInputs;
-    } else return;
+    }
+     else return;
 
     setPropertiesInputs(cell);
 }
@@ -126,8 +125,8 @@ function updateTabs(cellType) {
                 .getElementById("object-properties-nav")
                 .classList.add("tab-disabled");
             document
-                .getElementById("datatype-properties-nav")
-                .classList.add("tab-disabled");
+                .getElementById("data-properties-nav")
+                .classList.remove("tab-disabled");
             document
                 .getElementById("instances-nav")
                 .classList.add("tab-disabled");
@@ -149,7 +148,7 @@ function updateTabs(cellType) {
                 .getElementById("instances-nav")
                 .classList.add("tab-disabled");
             document
-                .getElementById("datatype-properties-nav")
+                .getElementById("data-properties-nav")
                 .classList.add("tab-disabled");
             document
                 .getElementById("object-properties-nav")
@@ -168,29 +167,10 @@ function updateTabs(cellType) {
                 .getElementById("object-properties-nav")
                 .classList.add("tab-disabled");
             document
-                .getElementById("datatype-properties-nav")
-                .classList.add("tab-disabled");
-            document
-                .getElementById("instances-nav")
+                .getElementById("data-properties-nav")
                 .classList.remove("tab-disabled");
             document
-                .getElementById("annotations-nav")
-                .classList.remove("tab-disabled");
-            break;
-
-        case "DatatypeProperty":
-            document.getElementById("datatype-properties-nav").click();
-            document
-                .getElementById("classes-nav")
-                .classList.add("tab-disabled");
-            document
-                .getElementById("object-properties-nav")
-                .classList.add("tab-disabled");
-            document
                 .getElementById("instances-nav")
-                .classList.add("tab-disabled");
-            document
-                .getElementById("datatype-properties-nav")
                 .classList.remove("tab-disabled");
             document
                 .getElementById("annotations-nav")
@@ -209,7 +189,7 @@ function updateTabs(cellType) {
                 .getElementById("annotations-nav")
                 .classList.add("tab-disabled");
             document
-                .getElementById("datatype-properties-nav")
+                .getElementById("data-properties-nav")
                 .classList.add("tab-disabled");
             document
                 .getElementById("instances-nav")
@@ -236,9 +216,8 @@ function setPropertiesInputs(cell) {
     propertyLabel.value = extractContent(cell.value.getAttribute('label'));
     const cellProperties = cell.value.attributes;
     setCellIRI(cellProperties);
-    console.log(cellProperties);
     for (let i = 0; i < cellProperties.length; i++) {
-        // set properties
+        // set normal properties
         if (inputs.hasOwnProperty(cellProperties[i].name)) {
             // select
             if (selectInputs.includes(cellProperties[i].name)) {
@@ -247,24 +226,47 @@ function setPropertiesInputs(cell) {
             }
             // checkbox
             else if (checkboxInputs.includes(cellProperties[i].name))
-                cellProperties[i].value === "true" ? inputs[cellProperties[i].name].checked = true : inputs[cellProperties[i].name].checked = false;
+                cellProperties[i].value === "true"
+                    ? (inputs[cellProperties[i].name].checked = true)
+                    : (inputs[cellProperties[i].name].checked = false);
             // string
-            else
-                inputs[cellProperties[i].name].value = cellProperties[i].value;
+            else inputs[cellProperties[i].name].value = cellProperties[i].value;
         }
 
         // set annotations
         if (annotationInputs.hasOwnProperty(cellProperties[i].name))
-            annotationInputs[cellProperties[i].name].value = cellProperties[i].value;
+            annotationInputs[cellProperties[i].name].value =
+                cellProperties[i].value;
+
+        // set datapropertiees
+        if (dataProperties.includes(cellProperties[i].name)) {
+            dataPropertyInputs[cellProperties[i].name].value = cellProperties[i].value;
+            // checkbox
+            if (cellProperties[i].name == 'functional')
+                cellProperties[i].value === "true" ? (dataPropertyInputs[cellProperties[i].name].checked = true) : (dataPropertyInputs[cellProperties[i].name].checked = false);
+
+            // select
+            if (cellProperties[i].name == "domain-data-properties") {
+                createSelectOptions(cell, cellProperties[i].name);
+                setSelectValue(cellProperties[i]);
+            }
+
+            const datatypeSelect = ['range-data-properties','equivalentTo','subpropertyOf','disjointWith','functional','datatype'];
+            if(datatypeSelect.includes(cellProperties[i].name)) {
+                setSelectValue(cellProperties[i]);
+            }
+        }
 
         // if the property is not a default one
-        if(!relationInputs.hasOwnProperty(cellProperties[i].name) &&
+        if (
+            !relationInputs.hasOwnProperty(cellProperties[i].name) &&
             !classInputs.hasOwnProperty(cellProperties[i].name) &&
             !annotationInputs.hasOwnProperty(cellProperties[i].name) &&
-            document.getElementById(cellProperties[i].name) === null)
-        {
+            !dataPropertyInputs.hasOwnProperty(cellProperties[i].name) &&
+            document.getElementById(cellProperties[i].name) === null
+        ) {
             createNewProperty(cellProperties[i].name, cellProperties[i].value);
-            console.log("input a ser criado: "+cellProperties[i].name);
+            console.log("input a ser criado: " + cellProperties[i].name);
         }
     }
     removeNotUsedCreatedPropertiesInputs(cellProperties);
@@ -340,15 +342,24 @@ function createSelectOptions(cell, propertyName) {
                 e.getAttribute("label") !== cell.getAttribute("label")
         );
     } else {
-        options = classes.filter(
-            (e) =>
-                e.id !== cell.id &&
-                e.getAttribute("label") !== cell.getAttribute("label")
-        );
+
+        if (propertyName == "domain-data-properties") {
+
+            options = classes.concat(instances);
+            // removes the class Thing from the options
+            options = options.filter((e) => getTranslation("THING"));
+        } else {
+            options = classes.filter(
+                (e) =>
+                    e.id !== cell.id &&
+                    e.getAttribute("label") !== cell.getAttribute("label")
+            );
+        }
         // removes the class Thing from the options
-        options = options.filter((e) => getTranslation("THING")
-        );
+        options = options.filter((e) => getTranslation("THING"));
     }
+
+    // domain property of classes and instances
 
     // remove duplicated options
     options = options.reduce((unique, o) => {
@@ -368,8 +379,6 @@ function createSelectOptions(cell, propertyName) {
         option.innerHTML = element.getAttribute("label");
         select.appendChild(option);
     });
-
-
 }
 
 /**
@@ -393,13 +402,16 @@ function getInverseOfOptions() {
 
     // push the relations that is an inverse of another
     relations.forEach((relation) => {
-        let inverseOf = relation.getAttribute("inverseOf").split(",");
-        removeItemAll(inverseOf, "");
-        removeItemAll(inverseOf, "null");
-        if (inverseOf !== "null" && inverseOf !== "")
-            inverseOfValues.push(
-                getCellById(inverseOf[0])?.getAttribute("label")
-            );
+        let inverseOf = relation.getAttribute("inverseOf");
+        if (inverseOf) {
+            inverseOf = inverseOf.split(",");
+            removeItemAll(inverseOf, "");
+            removeItemAll(inverseOf, "null");
+            if (inverseOf !== "null" && inverseOf !== "")
+                inverseOfValues.push(
+                    getCellById(inverseOf[0])?.getAttribute("label")
+                );
+        }
     });
 
     // build the options and includes the current cell inverseOf as a selected option

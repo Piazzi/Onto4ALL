@@ -10,6 +10,37 @@ let idCounter = 2;
 let positions = [];
 let positionCounter = 0;
 
+propertyTransition = {
+    "Name": 'label',
+    "SubClassOf": 'SubClassOf',
+    "EquivalentClasses": 'Equivalence',
+    "EquivalentObjectProperties": 'Equivalence',
+    "Instances": 'Instances', //
+    "TargetForKey": 'TargetForKey', //
+    "DisjointClasses": 'DisjointWith',
+    "Constraint ": 'Constraint', //
+    "ObjectPropertyDomain": 'domain',
+    "ObjectPropertyRange": 'range',
+    "SubObjectPropertyOf": 'subpropertyOf',
+    "InverseObjectProperties": 'inverseOf',
+    "InverseFunctionalObjectProperty": 'inverseOf',
+    "types": 'types', //
+    "SameIndividual": 'sameAs',
+    "DifferentIndividuals": 'differentAs',
+    "DisjointObjectProperties": 'objectProperties',
+    "DataPropertyAssertion": 'dataProperties',
+    "InverseFunctionalObjectProperty": 'negativeObjectProperties',
+    "InverseDataPropertyAssertion": 'negativeDataProperties',
+    "comment": 'comment', //
+    "isDefinedBy": 'isDefinedBy', //
+    "seeAlso": 'seeAlso', //
+    "backwardCompatibleWith": 'backwardCompatibleWith', //
+    "deprecated": 'deprecated', //
+    "incompatibleWith": 'incompatibleWith', //
+    "priorVersion": 'priorVersion', //
+    "versionInfo": 'versionInfo', //
+}
+
 /**
  * Generate the position of each element that will be inserted
  * into the editor. The elements will be inserted in a circle format
@@ -98,130 +129,6 @@ function createRootAndMxCellNodes()
     root.appendChild(mxCell2);
 }
 
-
-/**
- * Converts a OWL file to a mxgraph XML File
- * @param owlDoc
- */
-function owlToXml(owlDoc)
-{
-    clearXmlDocument();
-    setMxGraphModelAttributes();
-    createRootAndMxCellNodes();
-    generatePositions(owlDoc.getElementsByTagName("Declaration").length);
-
-    // Starts the conversion of the OWL file by reading all declaration nodes
-    // Each of this nodes will become a class, relation or instance node on the XML file
-    for(let i = 0; i < owlDoc.getElementsByTagName("Declaration").length; i++)
-    {
-        // Reads all the Declaration nodes and create the new nodes after that
-        if(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].nodeName === 'Class')
-           createClassNode(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].getAttribute("IRI"));
-        else if(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].nodeName === 'ObjectProperty')
-           createRelationNode(owlDoc.getElementsByTagName("Declaration")[i].childNodes[1].getAttribute("IRI"));
-    }
-
-    // Reads all SubClassOf nodes to create is_a relation nodes
-    // and Sets the attributes of previous created relations
-    for(let i = 0; i < owlDoc.getElementsByTagName("SubClassOf").length; i++)
-    {
-        if(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].nodeName === 'Class' &&
-           owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].nodeName === 'Class')
-        {
-
-            // Create a is_a relation and set the source and target attributes
-            let isA = createRelationNode("is_a");
-            let source = getNode(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].getAttribute("IRI"));
-            let target = getNode(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].getAttribute("IRI"));
-            isA.setAttribute("source", source.getAttribute("id"));
-            isA.setAttribute("target", target.getAttribute("id"));
-
-        }
-        else if(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].nodeName === 'Class' && (
-                owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].nodeName === 'ObjectSomeValuesFrom' ||
-                owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].nodeName === 'ObjectAllValuesFrom'))
-        {
-            // finds the relation and set the source and target attributes
-            let relation = getNode(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].childNodes[1].getAttribute("IRI"));
-            let source = getNode(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[1].getAttribute("IRI"));
-            let target = getNode(owlDoc.getElementsByTagName("SubClassOf")[i].childNodes[3].childNodes[3].getAttribute("IRI"));
-            relation.setAttribute("source", source.getAttribute("id"));
-            relation.setAttribute("target", target.getAttribute("id"));
-
-        }
-    }
-
-
-    // Reads all AnnotationAssertion nodes to fill properties on classes and relations
-    for(let i = 0; i < owlDoc.getElementsByTagName("AnnotationAssertion").length;i++)
-    {
-        if(owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes[1].getAttribute("IRI"))
-        {
-            let propertyLabel = owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes[1].getAttribute("IRI").split("#").pop();
-            let nodeName = owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes[3].childNodes[0].nodeValue;
-            let propertyValue = owlDoc.getElementsByTagName("AnnotationAssertion")[i].childNodes[5].childNodes[0].nodeValue;
-            //console.log("LABEL", propertyLabel, "NODE NAME", cleanString(nodeName), "VALUE", propertyValue);
-            insertPropertyOnNode(cleanString(nodeName), propertyLabel, propertyValue);
-
-        }
-
-    }
-
-    console.log(xmlDoc.documentElement);
-    return xmlDoc.documentElement;
-}
-
-/**
- * Converts a RDF/XML file to mxgraph XML
- * @param owlDoc
- */
-function rdfToXml(owlDoc)
-{
-    clearXmlDocument();
-    setMxGraphModelAttributes();
-    createRootAndMxCellNodes();
-    let numberOfElements = 0;
-
-    // Gets the total number of elements
-    for(let i = 0; i < owlDoc.getElementsByTagName("owl:Class").length; i++)
-        if(owlDoc.getElementsByTagName("owl:Class")[i].parentNode.nodeName === 'rdf:RDF')
-            numberOfElements++;
-
-    for(let i = 0; i < owlDoc.getElementsByTagName("owl:ObjectProperty").length; i++)
-        if(owlDoc.getElementsByTagName("owl:ObjectProperty")[i].parentNode.nodeName === 'rdf:RDF')
-            numberOfElements++;
-
-    generatePositions(numberOfElements);
-    console.log(numberOfElements);
-
-    // Creates the Class and relations nodes
-    try
-    {
-        for(let i = 0; i < owlDoc.getElementsByTagName("owl:Class").length; i++)
-        {
-            if(owlDoc.getElementsByTagName("owl:Class")[i].parentNode.nodeName === 'rdf:RDF' && owlDoc.getElementsByTagName("owl:Class")[i].childNodes.length !== 0)
-            {
-                console.log(owlDoc.getElementsByTagName("owl:Class")[i].childNodes[1].textContent);
-                createClassNode(owlDoc.getElementsByTagName("owl:Class")[i].childNodes[1].textContent);
-            }
-        }
-
-        for(let i = 0; i < owlDoc.getElementsByTagName("owl:ObjectProperty").length;i++)
-        {
-            if(owlDoc.getElementsByTagName("owl:ObjectProperty")[i].parentNode.nodeName === 'rdf:RDF' && owlDoc.getElementsByTagName("owl:ObjectProperty")[i].childNodes.length !== 0)
-            {
-                console.log(owlDoc.getElementsByTagName("owl:ObjectProperty")[i].childNodes[1].textContent);
-                createRelationNode(owlDoc.getElementsByTagName("owl:ObjectProperty")[i].childNodes[1].textContent);
-            }
-        }
-    } catch (e) {
-        console.log(e);
-    }
-
-    console.log(xmlDoc.documentElement);
-    return xmlDoc.documentElement;
-}
-
 /**
  * Creates a Class Node for the XML file
  * @param name
@@ -234,7 +141,7 @@ function createClassNode(name)
     idCounter++;
 
     // Sets each attribute following the default pattern of the editor
-    classNode.setAttribute("value", cleanString(name));
+    classNode.setAttribute("value", name);
     classNode.setAttribute("style", "ellipse;whiteSpace=wrap;html=1;aspect=fixed;Class;");
     classNode.setAttribute("vertex", "1");
     classNode.setAttribute("parent", "1");
@@ -247,7 +154,6 @@ function createClassNode(name)
 /**
  * Creates a Relation Node for the XML file
  * @param name
- * @param name (optional parameter)
  */
 function createRelationNode(name)
 {
@@ -260,7 +166,7 @@ function createRelationNode(name)
     if(name === "is_a")
         relationNode.setAttribute("value", "is_a");
     else
-        relationNode.setAttribute("value", cleanString(name));
+        relationNode.setAttribute("value", name);
 
     relationNode.setAttribute("style", "html=1;verticalAlign=bottom;endArrow=block;Relation;");
     relationNode.setAttribute("edge", "1");
@@ -274,16 +180,41 @@ function createRelationNode(name)
 }
 
 /**
- * Removes the # of the IRI attribute in nodes
- * from OWL file
- * @param string
- * @returns {*}
+ * Creates a Relation Node for the XML file
+ * @param name
+ * @param source
+ * @param target
  */
-function cleanString(string)
-{
-    return string.replace('#','');
-}
+ function createRelationNodeClass(name, source, target)
+ {
+     let relationNode = xmlDoc.createElement("mxCell");
 
+     source = getNode(source);
+     target = getNode(target);
+     relationNode.setAttribute("source", source.getAttribute("id"));
+     relationNode.setAttribute("target", target.getAttribute("id"));
+ 
+     // Sets the attributes for a relation node
+     relationNode.setAttribute("style", "html=1;verticalAlign=bottom;endArrow=block;Relation;");
+     relationNode.setAttribute("edge", "1");
+     relationNode.setAttribute("parent", "1");
+     relationNode.appendChild(createMxGeometryNode("relation"));
+ 
+     //When the properties are not filled yet this function creates a new node
+     // called 'object' and sets the given node as a child
+     let object = xmlDoc.createElement("object");
+     // Sets the attributes for the new node following the mxGraph pattern.
+     // The object receives the value and id properties from the node. This attributes
+     // are removed from the original node after that.
+     object.setAttribute("label", name);
+     object.setAttribute("id", idCounter);
+     idCounter++;
+
+     object.appendChild(relationNode);
+     xmlDoc.getElementsByTagName("root")[0].appendChild(object);
+ 
+     return object;
+ }
 
 /**
  * Create a MxGeometry Node for the XML file
@@ -341,49 +272,70 @@ function createMxPointNode()
  */
 function getNode(name)
 {
-    for(let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++)
-        if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") === cleanString(name))
+    // Find mxCell
+    for(let i = 0; i < xmlDoc.getElementsByTagName("mxCell").length; i++) {
+        if(xmlDoc.getElementsByTagName("mxCell")[i].getAttribute("value") === name)
             return xmlDoc.getElementsByTagName("mxCell")[i];
+    }
+    // Find object
+    for(let i = 0; i < xmlDoc.getElementsByTagName("object").length; i++) {
+        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") === name)
+            return xmlDoc.getElementsByTagName("object")[i];
+    }
 }
 
 /**
- * Inserts a property on a given node.
+ * Inserts a properties on a given node.
  * @param nodeName
- * @param label
- * @param value
+ * @param properties
  */
-function insertPropertyOnNode(nodeName, label, value)
-{
-    let node = getNode(nodeName);
-    //When the properties are not filled yet this function creates a new node
-    // called 'object' and sets the given node as a child
-    if(node.parentNode.nodeName !== 'object')
-    {
-        let object = xmlDoc.createElement("object");
-        // Sets the attributes for the new node following the mxGraph pattern.
-        // The object receives the value and id properties from the node. This attributes
-        // are removed from the original node after that.
-        object.setAttribute("label", node.getAttribute("value"));
-        object.setAttribute("id", node.getAttribute("id"));
-        object.setAttribute(label, value);
-        node.removeAttribute("value");
-        node.removeAttribute("id");
+ function insertPropertiesOnNode(nodeName, properties)
+ {
+     let node = getNode(nodeName);
+     if (!node) {
+        return;
+     }
+     //When the properties are not filled yet this function creates a new node
+     // called 'object' and sets the given node as a child
+     let object = xmlDoc.createElement("object");
+     // Sets the attributes for the new node following the mxGraph pattern.
+     // The object receives the value and id properties from the node. This attributes
+     // are removed from the original node after that.
+     object.setAttribute("id", node.getAttribute("id"));
 
-        // sets the remaining properties
-        object.setAttribute(label, value);
+     node.removeAttribute("value");
+     node.removeAttribute("id");
 
-        object.appendChild(node);
-        xmlDoc.getElementsByTagName("root")[0].appendChild(object);
-    }
-    else
-    {
-        // finds the object node and set the attributes
-        for(let i = 0; xmlDoc.getElementsByTagName("object").length;i++)
-            if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") === nodeName)
-                xmlDoc.getElementsByTagName("object")[i].setAttribute(label,value);
-    }
+     // set propertie default
+     object.setAttribute('DisjointWith', '');
+     // sets the remaining properties
+     $.each(properties,function(propertyLabel, propertyValue){
 
-}
+        if (propertyValue instanceof Array) {
+            propertyValue = propertyValue.filter(function(e) { return e !== nodeName })
+            let propertyValues = [];
+            if (propertyValue.length > 0) {
+                
+                // normalize to properties for id
+                $.each(propertyValue,function(i, value){
+                    let nodeProp = getNode(value, true);
+                    if (nodeProp) {
+                        propertyValues.push(nodeProp.getAttribute("id"));
+                    }
+                });
+                propertyValues = propertyValues.join(',');
+
+                object.setAttribute(propertyTransition[propertyLabel], propertyValues);
+            }
+        } else {
+            object.setAttribute(propertyTransition[propertyLabel], propertyValue);
+        }
+     });
+
+     object.appendChild(node);
+     xmlDoc.getElementsByTagName("root")[0].appendChild(object);
+ 
+ }
 
 /**
  * Clears the xml Doc root node for a new importation
@@ -396,7 +348,7 @@ function clearXmlDocument() {
 /**
  * Return the current ontology in JSON Format
  */
-function getCurrentOntologyInJSON() {
+function getCurrentOntologyInJSON(format) {
     let ontologyId = document.getElementById("id").value;
     if(ontologyId == '') {
         document.getElementById("save-ontology").click()
@@ -405,7 +357,7 @@ function getCurrentOntologyInJSON() {
 
     let ontology = {
         "id": "https://onto4all.com/en/ontologies/"+ ontologyId,
-        "filetype": "OWL",
+        "filetype": format,
         "classes": [],
         "object properties": [],
         "data properties": [],
@@ -416,7 +368,10 @@ function getCurrentOntologyInJSON() {
 
     classes.forEach((e) => {
 
-        ontology.constraints.push(e.value.getAttribute('Constraint'))
+        let constraint = e.value.getAttribute('Constraint');
+        if(!!constraint.trim()) {
+            ontology.constraints.push( constraint.replace(';',''));
+        }
 
         ontology.classes.push({
             "Name": e.value.getAttribute('label'),
@@ -490,10 +445,28 @@ function getCurrentOntologyInJSON() {
     });
     if(ontology.constraints.length == 0)
         delete ontology.constraints
+    console.log(ontology);
     return JSON.stringify(cleanObject(ontology));
 }
 
-function xmlToOwl() {
+function downloadFile(content, format) {
+
+    const link = window.document.createElement('a');
+    link.href = window.URL.createObjectURL(new Blob([content], {type: 'text/plain;charset=utf-8;'}));
+    link.download = 'ontology.'+format.toLowerCase();
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+}
+
+function convertTo(data, format) {
+    console.log(data);
+    if(format == 'XML' || format == 'SVG') {
+        downloadFile(data, format);
+        return;
+    }
 
     (async () => {
         const rawResponse = await fetch(
@@ -504,12 +477,13 @@ function xmlToOwl() {
                     Accept: "text/plain, */*",
                     "Content-Type": "text/plain",
                 },
-                body: JSON.stringify(getCurrentOntologyInJSON()),
+                body: getCurrentOntologyInJSON(format),
             }
         );
         console.log(rawResponse);
         const content = await rawResponse.text();
         console.log(content);
+        downloadFile(content, format);
 
     })();
 }
@@ -541,3 +515,69 @@ function cleanObject(object) {
         });
     return object;
 }
+
+/**
+ * Converts a JSON to a mxgraph XML File
+ * @param json
+ */
+ function jsonToXml(json)
+ {
+    clearXmlDocument();
+    setMxGraphModelAttributes();
+    createRootAndMxCellNodes();
+    generatePositions(json['classes'].length + json['individuals'].length);
+
+    // Starts the conversion of the OWL file by reading all declaration nodes
+    // Each of this nodes will become a class, relation or instance node on the XML file
+    let classes = json['classes'].concat(json['individuals']);
+    $.each(classes,function(i, classe){
+        createClassNode(classe['Name']);
+    });
+
+    // Reads all SubClassOf nodes to create is_a relation nodes
+    // and Sets the attributes of previous created relations
+    $.each(json['classes'],function(i, classe){
+        if (classe['SubClassOf']) {
+            let repetition = 0;
+            for(let i = 0; i < classe['SubClassOf'].length; i++)
+            {
+                // Checks if it's a self loop, it only happens if the subclass appears twice
+                if (classe['SubClassOf'][i] == classe['Name']) {
+                    repetition++;
+                    if (repetition == 1) {
+                        continue;
+                    }
+                }
+                createRelationNodeClass("is_a", classe['Name'], classe['SubClassOf'][i]);
+            }
+        }
+    });
+
+    // Reads all Object Properties to create relation nodes
+    // and Sets the attributes of previous created relations
+    $.each(json['object properties'],function(i, instance){
+        if (instance['Name'] != 'is_a') {
+            if (instance['ObjectPropertyDomain'] && instance['ObjectPropertyRange']) {
+                $.each(relations['ObjectPropertyDomain'],function(i, domain){
+                    $.each(relations['ObjectPropertyRange'],function(i, range){
+                        createRelationNodeClass(instance['Name'], domain, range);
+                    });
+                });
+            } else {
+                createRelationNode(instance['Name']);
+            }
+        }
+    });
+
+    // Reads all AnnotationAssertion nodes to fill properties on classes and relations
+    let properties = json['classes'].concat(json['individuals'], json['object properties']);
+    $.each(properties,function(i, propertie){
+        if (propertie['Name'] != 'is_a') {
+            insertPropertiesOnNode(propertie['Name'], propertie);
+        }
+    });
+
+    console.log(xmlDoc.documentElement)
+    return xmlDoc.documentElement;
+
+ }

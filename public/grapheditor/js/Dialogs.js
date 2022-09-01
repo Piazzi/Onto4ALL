@@ -695,6 +695,29 @@ var EditDiagramDialog = function(editorUi)
  */
 EditDiagramDialog.showNewWindowOption = true;
 
+var exportFormats = [
+	'OWL',
+	'XML',
+	'TURTLE',
+	'SINTAXEDL',
+	'SINTAXEDLHTML',
+	'SINTAXEFUNCIONAL',
+	'KRSS',
+	'DOCUMENTOLATEX',
+	'N3',
+	'SINTAXEMANCHESTER',
+	'NQUAD',
+	'NTRIPLA',
+	'OBO',
+	'RDFJSON',
+	'RDFJSONLD',
+	'RDFXML',
+	'RIOTURTLE',
+	'RIORDFXML',
+	'TRIG',
+	'TRIX'
+]
+
 /**
  * Constructs a new export dialog.
  */
@@ -773,22 +796,23 @@ var ExportDialog = function(editorUi)
 	mxUtils.write(svgOption, mxResources.get('formatSvg'));
 	imageFormatSelect.appendChild(svgOption);
 
-	/** OWL OPTION **/
 	if(window.location.pathname === '/en/home' || window.location.pathname === '/pt/home')
 	{
-		var owlOption = document.createElement('option');
-		owlOption.setAttribute('value', 'owl');
-		mxUtils.write(owlOption, 'OWL');
-		imageFormatSelect.appendChild(owlOption);
+		exportFormats.forEach((format) => {
+			const option = document.createElement('option');
+			option.setAttribute('value', format);
+			mxUtils.write(option, format);
+			imageFormatSelect.appendChild(option);
+		})
 	}
 
-	if (ExportDialog.showXmlOption)
-	{
-		var xmlOption = document.createElement('option');
-		xmlOption.setAttribute('value', 'xml');
-		mxUtils.write(xmlOption, mxResources.get('formatXml'));
-		imageFormatSelect.appendChild(xmlOption);
-	}
+	// if (ExportDialog.showXmlOption)
+	// {
+	// 	var xmlOption = document.createElement('option');
+	// 	xmlOption.setAttribute('value', 'xml');
+	// 	mxUtils.write(xmlOption, mxResources.get('formatXml'));
+	// 	imageFormatSelect.appendChild(xmlOption);
+	// }
 
 	td = document.createElement('td');
 	td.appendChild(imageFormatSelect);
@@ -1004,7 +1028,7 @@ var ExportDialog = function(editorUi)
 			heightInput.setAttribute('disabled', 'true');
 			borderInput.setAttribute('disabled', 'true');
 		}
-		else if (imageFormatSelect.value === 'owl')
+		else if (exportFormats.includes(imageFormatSelect.value.toLocaleUpperCase()))
 		{
 			zoomInput.setAttribute('disabled', 'true');
 			widthInput.setAttribute('disabled', 'true');
@@ -1206,8 +1230,7 @@ ExportDialog.showXmlOption = true;
 ExportDialog.exportFile = function(editorUi, name, format, bg, s, b, dpi)
 {
 	var graph = editorUi.editor.graph;
-
-	if (format == 'xml' || format == 'owl')
+	if (exportFormats.includes(format))
 	{
     	ExportDialog.saveLocalFile(editorUi, mxUtils.getXml(editorUi.editor.getGraphXml()), name, format);
 	}
@@ -1270,12 +1293,10 @@ ExportDialog.saveLocalFile = function(editorUi, data, filename, format)
 
 		// ONTO4ALL METHOD
 		if (format == 'svg')
-			return EditorUi.prototype.exportFile(filename, data, 'svg');
-		else if (format == 'xml')
-			return EditorUi.prototype.exportFile( filename, data, 'xml');
-		else if(format == 'owl')
-			return EditorUi.prototype.exportFile( filename, data, 'owl');
+			return EditorUi.prototype.exportFile(filename, data, 'SVG');
 
+		return EditorUi.prototype.exportFile( filename, data, format);
+	
 		//  MXGRAPH 4.2.0 METHOD
 		/*
 		var req = new mxXmlRequest(SAVE_URL, 'xml=' + encodeURIComponent(data) + '&filename=' +

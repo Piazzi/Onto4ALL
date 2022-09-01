@@ -28,58 +28,49 @@
 		<h3 style="text-align: center;"><strong style="color: red;">{{__('Error')}}:</strong> {{__('You can only access this software using the following browsers: Google Chrome, Firefox')}}.</h3>
 	</div>
 	<div class="content">
+
 		<div class="row">
 			<div class="col-md-4">
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
 				<div class="box box-default" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; border-radius: 15px; ">
 					<div class="box-header with-border" style="text-align: center;">
 						<i class="fa fa-warning"></i>
 						<h3 class="box-title">Alerts</h3>
 					</div>
 					<!-- /.box-header -->
-					<div class="box-body" >
-						<div class="callout ">
-                            <h4><i class="fa fa-fw fa-wrench"></i> {{__('Beta')}}!</h4>
-                            <p> {{__('This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.')}}</p>
-                        </div>
-
-                        <div class="callout ">
-                            <h4><i class="fa fa-fw fa-chrome"></i> Use {{__('Google Chrome')}}!</h4>
-                            <p>   {{__('We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.')}}</p>
-                        </div>
-
+					<div class="box-body">
 						<div class="callout callout-success" style="background-color:#62a0bb !important">
 							<span class="pull-right-container">
 								<small class="label pull-right bg-red">new</small>
 							</span>
-							<h4><i class="fa fa-fw fa-flask"></i> {{__('Upcoming Features')}}!</h4>
-							<ul>
-								<li>Dark Mode for the ontology editor (and for the entire system in the future)</li>
-								<li>Autosave</li>
-								<li>Import and Export ontologies in
-								<ul>
-									<li>RDF/XML</li>
-									<li>TURTLE</li>
-									<li>OWL/XML</li>
-									<li>SINTAXEMANCHESTER</li>
-								</ul>
-								</li>
-								<li>Real time collaboration</li>
-								<li>Live chat between collaborators</li>
-							</ul>
-							Any sugestion? Contact us
+							<h4><i class="fa fa-fw fa-flask"></i> {{__('Editor\'s review survey')}}!</h4>
+							<strong><a target="_blank" href="https://forms.gle/iDe2fwN6BrJuMzyd6"><h4>{{__('Click here to answer the survey, it doesn\'t take 5 minutes')}}</h4></a></strong>
+						</div>
+						<div class="callout ">
+							<h4><i class="fa fa-fw fa-wrench"></i> {{__('Beta')}}!</h4>
+							<p> {{__('This editor is in beta testing, bugs can happen. We are working to implement new features and fix bugs, if you have any problem please contact us through the help menu.')}}</p>
 						</div>
 
-                        <div class="callout ">
-                            <h4><i class="icon fa fa-money"></i> {{__('Donate')}}</h4>
-                            <p>{{__('Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!')}}</p>
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                                <input type="hidden" name="cmd" value="_s-xclick"/>
-                                <input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN"/>
-                                <input class="center-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
-                                       title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button"/>
-                                <img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1"/>
-                            </form>
-                        </div>
+						<div class="callout ">
+							<h4><i class="fa fa-fw fa-chrome"></i> Use {{__('Google Chrome')}}!</h4>
+							<p> {{__('We strongly recommend using google chrome to run the editor, as we are not still able to run enough tests in other browsers.')}}</p>
+						</div>
+						<div class="callout ">
+							<h4><i class="icon fa fa-money"></i> {{__('Donate')}}</h4>
+							<p>{{__('Hello! If the editor was helpful to you, please consider making a small donation via PayPal. Thank you!')}}</p>
+							<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+								<input type="hidden" name="cmd" value="_s-xclick" />
+								<input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN" />
+								<input class="center-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+								<img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
+							</form>
+						</div>
 					</div>
 					<!-- /.box-body -->
 				</div>
@@ -141,15 +132,14 @@
 								<button type="button" class="btn btn-default btn-block">{{__('Register')}}</button>
 							</a>
 							@endif
-							
+
 							<a onclick="document.getElementById('donate').submit()" class="text-center">
 								<button style="color: #064c72 !important" type="button" class="btn btn-default btn-block"><i class="fa fa-fw fa-paypal"></i>{{__('Donate')}}
 									<form id="donate" style="visibility: hidden; height: 0px" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-										<input type="hidden" name="cmd" value="_s-xclick"/>
-										<input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN"/>
-										<input class="center-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit"
-											title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button"/>
-										<img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1"/>
+										<input type="hidden" name="cmd" value="_s-xclick" />
+										<input type="hidden" name="hosted_button_id" value="WE94D2BSERZNN" />
+										<input class="center-image" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+										<img alt="" border="0" src="https://www.paypal.com/en_BR/i/scr/pixel.gif" width="1" height="1" />
 									</form>
 								</button>
 							</a>
@@ -169,7 +159,6 @@
 				</div><!-- /.login-box -->
 			</div>
 			<div class="col-md-4">
-				
 			</div>
 		</div>
 	</div>

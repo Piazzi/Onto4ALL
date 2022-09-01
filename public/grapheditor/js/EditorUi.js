@@ -1061,33 +1061,34 @@ EditorUi.prototype.exportFile = function(fileName, data, format) {
 		fileName = fileName + format;
 
     let stringFile;
-	if(format === 'owl')
-        stringFile = xmlToOwl();
-    createDownloadLink(stringFile)
+	
+    convertTo(data, format);
+	
+    // createDownloadLink(stringFile)
 
-	function createDownloadLink(owlString)
-	{
-		var xmltext = data;
-		if(owlString)
-		{
-			xmltext = owlString;
-		}
+	// function createDownloadLink(owlString)
+	// {
+	// 	var xmltext = data;
+	// 	if(owlString)
+	// 	{
+	// 		xmltext = owlString;
+	// 	}
 
-		var pom = document.createElement('a');
+	// 	var pom = document.createElement('a');
 
-		var filename = fileName;
-		var bb = new Blob([xmltext], {type: 'text/plain'});
+	// 	var filename = fileName;
+	// 	var bb = new Blob([xmltext], {type: 'text/plain'});
 
-		pom.setAttribute('href', window.URL.createObjectURL(bb));
-		pom.setAttribute('download', filename);
+	// 	pom.setAttribute('href', window.URL.createObjectURL(bb));
+	// 	pom.setAttribute('download', filename);
 
-		pom.dataset.downloadurl = ['text/plain', pom.download, pom.href].join(':');
-		pom.draggable = true;
-		pom.classList.add('dragout');
-		pom.click();
-		pom.remove();
-	}
-	return createDownloadLink();
+	// 	pom.dataset.downloadurl = ['text/plain', pom.download, pom.href].join(':');
+	// 	pom.draggable = true;
+	// 	pom.classList.add('dragout');
+	// 	pom.click();
+	// 	pom.remove();
+	// }
+	// return createDownloadLink();
 };
 
 /**

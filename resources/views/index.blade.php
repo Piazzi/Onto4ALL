@@ -48,7 +48,7 @@
             <span id="instances-count"> 0</span>
         </span>
 
-        
+
 
         <div class="box-tools pull-right">
 
@@ -90,7 +90,7 @@
 
 <!-- Right Sidebar -->
 <aside class="control-sidebar control-sidebar-light control-sidebar-open">
-    
+
 
     <!--.Chat -->
     <div class="chat-ontology hidden" id='chat'>
@@ -131,7 +131,7 @@
             <li><a id="object-properties-nav" href="#object-properties-tab" data-toggle="tab" style="color: #3c8dbc"><i class="fa fa-fw fa-exchange"></i> Object Properties</a></li>
             <li><a id="annotations-nav" href="#annotations-tab" data-toggle="tab" style="color: darkred"><i class="fa fa-fw fa-book"></i>
                     Annotation Properties</a></li>
-            <li><a id="datatype-properties-nav" href="#datatype-properties-tab" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Datatype Properties</a></li>
+            <li><a id="data-properties-nav" href="#data-properties-tab" data-toggle="tab" style="color: #00a65a"><i class="fa fa-fw fa-long-arrow-right"></i> Data Properties</a></li>
             <li><a id="instances-nav" href="#instances-tab" data-toggle="tab" style="color: rebeccapurple"><i class="fa fa-fw fa-circle-thin"></i> Instances</a></li>
             <li style="visibility: hidden; display:none"><a id="empty-nav" href="#empty-tab" data-toggle="tab" ></a></li>
 
@@ -377,47 +377,84 @@
             </div>
 
 
-            <div class="tab-pane" id="datatype-properties-tab">
+            <div class="tab-pane" id="data-properties-tab">
                 <div class="form-group">
-                    <label>Value</label>
-                    <input id="value-datatype-properties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput('value', this.value)">
+                    <label>Label</label>
+                    <input id="label-data-properties" type="text" class="form-control" placeholder="" onchange="updatePropertyInput(this.id, this.value)">
                 </div>
                 <div class="form-group">
                     <label>domain</label>
-                    <input id="domain-datatype-properties" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput('domain', this.value)">
+                    <select multiple id="domain-data-properties" data-placeholder="Select Class or Instance" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
+                        <option></option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>range</label>
-                    <input id="range-datatype-properties" disabled type="text" class="form-control" placeholder="" onchange="updatePropertyInput('range', this.value)">
+                    <select id="range-data-properties" data-placeholder="Select Datatype" style="width: 100%; " class="js-example-basic-multiple" onchange="updatePropertyInput(this.id, this.value)">
+                        <option>owl:rational</option>
+                        <option>owl:real</option>
+                        <option>rdf:PlainLiteral</option>
+                        <option>rdf:XMLLiteral</option>
+                        <option>rdfs:Literal</option>
+                        <option>xsd:anyURI</option>
+                        <option>xsd:base64Binary</option>
+                        <option>xsd:boolean</option>
+                        <option>xsd:byte</option>
+                        <option>xsd:dateTime</option>
+                        <option>xsd:dateTimeStamp</option>
+                        <option>xsd:decimal</option>
+                        <option>xsd:double</option>
+                        <option>xsd:float</option>
+                        <option>xsd:hexBinary</option>
+                        <option>xsd:int</option>
+                        <option>xsd:integer</option>
+                        <option>xsd:language</option>
+                        <option>xsd:long</option>
+                        <option>xsd:Name</option>
+                        <option>xsd:NCName</option>
+                        <option>xsd:negativeInteger</option>
+                        <option>xsd:NMTOKEN</option>
+                        <option>xsd:nonNegativeInteger</option>
+                        <option>xsd:nonPositiveInteger</option>
+                        <option>xsd:normalizedString</option>
+                        <option>xsd:positiveInteger</option>
+                        <option>xsd:short</option>
+                        <option>xsd:string</option>
+                        <option>xsd:token</option>
+                        <option>xsd:unsignedByte</option>
+                        <option>xsd:unsignedInt</option>
+                        <option>xsd:unsignedLong</option>
+                        <option>xsd:unsignedShort</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>equivalentTo</label>
-                    <select id="equivalentTo-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('equivalentTo', $('#'+this.id).val())">
+                    <select id="equivalentTo-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>subpropertyOf</label>
-                    <select id="subpropertyOf-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('subpropertyOf', $('#'+this.id).val())">
+                    <select id="subpropertyOf-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>disjointWith</label>
-                    <select id="disjointWith-datatype-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput('disjointWith', $('#'+this.id).val())">
+                    <select id="disjointWith-data-properties" data-placeholder="Select Datatype Properties" style="width: 100%; " class="js-example-basic-multiple" multiple onchange="updatePropertyInput(this.id, $('#'+this.id).val())">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                            <input id="functional-datatype-properties" type="checkbox" onchange="updatePropertyInput('functional', this.checked)">
+                            <input id="functional-data-properties" type="checkbox" onchange="updatePropertyInput('functional', this.checked)">
                             Functional
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>datatype</label>
+                    <label>datatype properties</label>
                     <select id="datatype" data-placeholder="Select Datatypes" style="width: 100%; " class="js-example-basic-multiple" name="" onchange="updatePropertyInput(this.id, this.value)">
                         <option>owl:rational</option>
                         <option>owl:real</option>
@@ -1205,7 +1242,7 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
-    
+
     function onReady(callback) {
         var intervalId = window.setInterval(function () {
             if (document.getElementsByTagName('body')[0] !== undefined) {
