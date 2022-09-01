@@ -11,34 +11,34 @@ let positions = [];
 let positionCounter = 0;
 
 propertyTransition = {
-    "Name": 'label',
-    "SubClassOf": 'SubClassOf',
-    "EquivalentClasses": 'Equivalence',
-    "EquivalentObjectProperties": 'Equivalence',
-    "Instances": 'Instances', //
-    "TargetForKey": 'TargetForKey', //
-    "DisjointClasses": 'DisjointWith',
-    "Constraint ": 'Constraint', //
-    "ObjectPropertyDomain": 'domain',
-    "ObjectPropertyRange": 'range',
-    "SubObjectPropertyOf": 'subpropertyOf',
-    "InverseObjectProperties": 'inverseOf',
-    "InverseFunctionalObjectProperty": 'inverseOf',
-    "types": 'types', //
-    "SameIndividual": 'sameAs',
-    "DifferentIndividuals": 'differentAs',
-    "DisjointObjectProperties": 'objectProperties',
-    "DataPropertyAssertion": 'dataProperties',
-    "InverseFunctionalObjectProperty": 'negativeObjectProperties',
-    "InverseDataPropertyAssertion": 'negativeDataProperties',
-    "comment": 'comment', //
-    "isDefinedBy": 'isDefinedBy', //
-    "seeAlso": 'seeAlso', //
-    "backwardCompatibleWith": 'backwardCompatibleWith', //
-    "deprecated": 'deprecated', //
-    "incompatibleWith": 'incompatibleWith', //
-    "priorVersion": 'priorVersion', //
-    "versionInfo": 'versionInfo', //
+    'Name': 'label',
+    'SubClassOf': 'SubClassOf',
+    'EquivalentClasses': 'Equivalence',
+    'EquivalentObjectProperties': 'Equivalence',
+    'Instances': 'Instances', //
+    'TargetForKey': 'TargetForKey', //
+    'DisjointClasses': 'DisjointWith',
+    'Constraint ': 'Constraint', //
+    'ObjectPropertyDomain': 'domain',
+    'ObjectPropertyRange': 'range',
+    'SubObjectPropertyOf': 'subpropertyOf',
+    'InverseObjectProperties': 'inverseOf',
+    'InverseFunctionalObjectProperty': 'inverseOf',
+    'types': 'types', //
+    'SameIndividual': 'sameAs',
+    'DifferentIndividuals': 'differentAs',
+    'DisjointObjectProperties': 'objectProperties',
+    'DataPropertyAssertion': 'dataProperties',
+    'InverseFunctionalObjectProperty': 'negativeObjectProperties',
+    'InverseDataPropertyAssertion': 'negativeDataProperties',
+    'comment': 'comment', //
+    'isDefinedBy': 'isDefinedBy', //
+    'seeAlso': 'seeAlso', //
+    'backwardCompatibleWith': 'backwardCompatibleWith', //
+    'deprecated': 'deprecated', //
+    'incompatibleWith': 'incompatibleWith', //
+    'priorVersion': 'priorVersion', //
+    'versionInfo': 'versionInfo', //
 }
 
 /**
