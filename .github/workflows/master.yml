@@ -1,5 +1,6 @@
 on: push
-name: Deploy website on push on master
+branches: master
+name: Deploy website on push
 jobs:
   web-deploy:
     name: Deploy
@@ -9,9 +10,8 @@ jobs:
       uses: actions/checkout@v2
     
     - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      uses: SamKirkland/FTP-Deploy-Action@4.3.2
       with:
         server: ftp.onto4all.com
         username: u198149674.master
-        password: Deploy@onto4a31
-        
+        password: Onto4@31
