@@ -16,3 +16,4 @@ jobs:
         server: ftp.onto4all.com
         username: u198149674.master
         password: Onto4@31
+        server-dir: /
