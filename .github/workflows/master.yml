@@ -18,4 +18,4 @@ jobs:
         password: Onto4@31
         server-dir: /
         exclude:  
-          - public/**
+          - ./public/**
