@@ -273,7 +273,7 @@
         </section>
 
          <!-- Map section -->
-         <section class="page-section" id="contact">
+         <section class="page-section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 text-center">
