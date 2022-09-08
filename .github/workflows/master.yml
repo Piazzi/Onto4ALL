@@ -17,7 +17,7 @@ jobs:
         username: u198149674.master
         password: Onto4@31
         server-dir: /
-        exclude:  public/**
+        
     
     - name: Deploy public into public_html
       uses: SamKirkland/FTP-Deploy-Action@4.3.2
