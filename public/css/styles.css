@@ -10010,7 +10010,7 @@ hr.light {
 #mainNav .navbar-nav .nav-item .nav-link.active {
   color: #064c72 !important;
 }
-/* @media (min-width: 992px) {
+@media (min-width: 992px) {
   #mainNav {
     box-shadow: none;
     background-color: transparent;
@@ -10026,7 +10026,7 @@ hr.light {
     padding: 0 1rem;
   }
   #mainNav .navbar-nav .nav-item .nav-link:hover {
-    color: #fff;
+    color: #62a0bb;
   }
   #mainNav .navbar-nav .nav-item:last-child .nav-link {
     padding-right: 0;
@@ -10046,8 +10046,8 @@ hr.light {
   }
   #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link:hover {
     color: #62a0bb;
-  } 
- } */
+  }
+}
 
 header.masthead {
   padding-top: 10rem;
