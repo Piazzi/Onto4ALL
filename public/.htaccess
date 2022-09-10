@@ -24,10 +24,3 @@
     RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
     
 </IfModule>
-
-# php -- BEGIN cPanel-generated handler, do not edit
-# Defina o pacote “ea-php72” como a linguagem padrão de programação “PHP”.
-<IfModule mime_module>
-  AddHandler application/x-httpd-ea-php72 .php .php7 .phtml
-</IfModule>
-# php -- END cPanel-generated handler, do not edit

@@ -67,7 +67,8 @@ Actions.prototype.init = function()
 						{
 							method: "POST",
 							headers: {
-								"Content-Type": "text/plain"
+								Accept: "text/plain, */*",
+								"Content-Type": "text/plain",
 							},
 							body: ontology,
 						}
