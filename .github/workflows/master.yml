@@ -17,5 +17,7 @@ jobs:
         username: u198149674.master
         password: Onto4@31
         server-dir: /
-        exclude: |
-          public/**
+        exclude:
+          - public/**
+        paths-ignore:
+          - '//public_html/**'
