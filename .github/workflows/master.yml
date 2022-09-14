@@ -19,4 +19,8 @@ jobs:
         username: u198149674.master
         password: Onto4@31
         server-dir: /
-        exclude: public/**
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+          public/**
