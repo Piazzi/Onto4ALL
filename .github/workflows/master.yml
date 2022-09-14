@@ -16,34 +16,6 @@ jobs:
         server: ftp.onto4all.com
         username: u198149674.master
         password: Onto4@31
-        local-dir:
-          - .github/
-          - .app/
-          - bootstrap/
-          - config/
-          - database/
-          - resources/
-          - routes/
-          - storage/
-          - tests/
-          - vendor/
-          # - .cpanel.yml/
-          # - .editorconfig/
-          # - .env/
-          # - .env.example/
-          # - .gitattributes/
-          # - .gitignore/
-          # - artisan/
-          # - composer.json/
-          # - composer.lock/
-          # - LICENSE/
-          # - package-lock.json/
-          # - package.json/
-          # - phpunit.xml/
-          # - phpunit.xml.bak/
-          # - README.md/
-          # - server.js/
-          # - server.php/
-          # - webpack.mix.js/
-          # - yarn.lock/
         server-dir: /
+        exclude: |
+          public/**
