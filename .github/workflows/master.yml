@@ -1,6 +1,10 @@
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - '/public_html/**'
+    
+    path
 name: Deploy website on push
 jobs:
   web-deploy:
@@ -19,5 +23,3 @@ jobs:
         server-dir: /
         exclude:
           - public/**
-        paths-ignore:
-          - '/public_html/**'
