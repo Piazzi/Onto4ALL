@@ -20,4 +20,4 @@ jobs:
         exclude:
           - public/**
         paths-ignore:
-          - '//public_html/**'
+          - '/public_html/**'
