@@ -3,8 +3,6 @@ on:
     branches: [ master ]
     paths-ignore:
       - '/public_html/**'
-    
-    path
 name: Deploy website on push
 jobs:
   web-deploy:
