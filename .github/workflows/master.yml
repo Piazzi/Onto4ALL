@@ -2,7 +2,7 @@ on:
   push:
     branches: [ master ]
     paths-ignore:
-      - 'public_html/**'
+      - '//public_html/**'
 name: Deploy website on push
 jobs:
   web-deploy:
@@ -19,8 +19,5 @@ jobs:
         username: u198149674.master
         password: Onto4@31
         server-dir: /
-        # exclude: |
-        #   **/.git*
-        #   **/.git*/**
-        #   **/node_modules/**
-        #   public/**
+        exclude: |
+          public/**
