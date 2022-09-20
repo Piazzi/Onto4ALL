@@ -13,6 +13,10 @@
     margin-left: auto;
     margin-right: auto;
 }
+.center-image:hover {
+    overflow: hidden;
+    zoom: 102%;
+}
 
 .full-width {
     width: 100%;
