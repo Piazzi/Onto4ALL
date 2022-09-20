@@ -1,20 +1,20 @@
-on:
-  push:
-    branches: [ master ]
-name: Deploy public on website on push
-jobs:
-  web-deploy:
-    name: Deploy
-    runs-on: ubuntu-latest
-    steps:
-    - name: Get latest code
-      uses: actions/checkout@v2
+# on:
+#   push:
+#     branches: [ master ]
+# name: Deploy public on website on push
+# jobs:
+#   web-deploy:
+#     name: Deploy
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Get latest code
+#       uses: actions/checkout@v2
     
-    - name: Deploy public into public_html
-      uses: SamKirkland/FTP-Deploy-Action@4.3.2
-      with:
-        server: ftp.onto4all.com
-        username: u198149674.master
-        password: Onto4@31
-        local-dir: public/
-        server-dir: /public_html/
+#     - name: Deploy public into public_html
+#       uses: SamKirkland/FTP-Deploy-Action@4.3.2
+#       with:
+#         server: ftp.onto4all.com
+#         username: u198149674.master
+#         password: Onto4@31
+#         local-dir: public/
+#         server-dir: /public_html/
