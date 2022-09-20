@@ -10029,7 +10029,7 @@ hr.light {
     color: #62a0bb;
   }
   #mainNav .navbar-nav .nav-item:last-child .nav-link {
-    padding-right: 0;
+    padding-right: 8;
   }
   #mainNav.navbar-scrolled {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
