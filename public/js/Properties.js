@@ -402,13 +402,16 @@ function getInverseOfOptions() {
 
     // push the relations that is an inverse of another
     relations.forEach((relation) => {
-        let inverseOf = relation.getAttribute("inverseOf").split(",");
-        removeItemAll(inverseOf, "");
-        removeItemAll(inverseOf, "null");
-        if (inverseOf !== "null" && inverseOf !== "")
-            inverseOfValues.push(
-                getCellById(inverseOf[0])?.getAttribute("label")
-            );
+        let inverseOf = relation.getAttribute("inverseOf");
+        if (inverseOf) {
+            inverseOf = inverseOf.split(",");
+            removeItemAll(inverseOf, "");
+            removeItemAll(inverseOf, "null");
+            if (inverseOf !== "null" && inverseOf !== "")
+                inverseOfValues.push(
+                    getCellById(inverseOf[0])?.getAttribute("label")
+                );
+        }
     });
 
     // build the options and includes the current cell inverseOf as a selected option
