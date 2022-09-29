@@ -1005,27 +1005,13 @@ var ExportDialog = function(editorUi)
 		{
 			nameInput.value = name + '.' + imageFormatSelect.value;
 		}
-
-		if (imageFormatSelect.value === 'xml')
-		{
+		if (imageFormatSelect.value != 'svg'){
 			zoomInput.setAttribute('disabled', 'true');
 			widthInput.setAttribute('disabled', 'true');
 			heightInput.setAttribute('disabled', 'true');
 			borderInput.setAttribute('disabled', 'true');
-		}
-		else if (exportFormats.includes(imageFormatSelect.value.toLocaleUpperCase()))
-		{
-			zoomInput.setAttribute('disabled', 'true');
-			widthInput.setAttribute('disabled', 'true');
-			heightInput.setAttribute('disabled', 'true');
-			borderInput.setAttribute('disabled', 'true');
-		}
-		else
-		{
-			zoomInput.removeAttribute('disabled');
-			widthInput.removeAttribute('disabled');
-			heightInput.removeAttribute('disabled');
-			borderInput.removeAttribute('disabled');
+			dpiSelect.setAttribute('disabled', 'true');
+			customDpi.setAttribute('disabled', 'true');
 		}
 
 		if (imageFormatSelect.value === 'png' || imageFormatSelect.value === 'svg')
@@ -1037,10 +1023,14 @@ var ExportDialog = function(editorUi)
 			transparentCheckbox.setAttribute('disabled', 'disabled');
 		}
 
-		if (imageFormatSelect.value === 'png')
+		if (imageFormatSelect.value === 'svg')
 		{
 			dpiSelect.removeAttribute('disabled');
-			customDpi.removeAttribute('disabled');
+			customDpi.removeAttribute('disabled');	
+			zoomInput.removeAttribute('disabled');
+			widthInput.removeAttribute('disabled');
+			heightInput.removeAttribute('disabled');
+			borderInput.removeAttribute('disabled');
 		}
 		else
 		{
