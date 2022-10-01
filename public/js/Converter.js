@@ -191,8 +191,13 @@ function createRelationNode(name)
 
      source = getNode(source);
      target = getNode(target);
-     relationNode.setAttribute("source", source.getAttribute("id"));
-     relationNode.setAttribute("target", target.getAttribute("id"));
+
+     if (source) {
+        relationNode.setAttribute("source", source.getAttribute("id"));
+     }
+     if (target) {
+        relationNode.setAttribute("target", target.getAttribute("id"));
+     }
  
      // Sets the attributes for a relation node
      relationNode.setAttribute("style", "html=1;verticalAlign=bottom;endArrow=block;Relation;");
@@ -558,9 +563,10 @@ function cleanObject(object) {
     $.each(json['object properties'],function(i, instance){
         if (instance['Name'] != 'is_a') {
             if (instance['ObjectPropertyDomain'] && instance['ObjectPropertyRange']) {
-                $.each(relations['ObjectPropertyDomain'],function(i, domain){
-                    $.each(relations['ObjectPropertyRange'],function(i, range){
-                        createRelationNodeClass(instance['Name'], domain, range);
+                $.each(instance['ObjectPropertyDomain'],function(i, domain){
+                    $.each(instance['ObjectPropertyRange'],function(i, range){
+                        if (domain != instance['Name'] && range != instance['Name'])
+                            createRelationNodeClass(instance['Name'], domain, range);
                     });
                 });
             } else {
