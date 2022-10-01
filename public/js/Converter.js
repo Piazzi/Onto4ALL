@@ -211,6 +211,7 @@ function createRelationNode(name)
      // Sets the attributes for the new node following the mxGraph pattern.
      // The object receives the value and id properties from the node. This attributes
      // are removed from the original node after that.
+     name += ' ';
      object.setAttribute("label", name);
      object.setAttribute("id", idCounter);
      idCounter++;
@@ -565,8 +566,9 @@ function cleanObject(object) {
             if (instance['ObjectPropertyDomain'] && instance['ObjectPropertyRange']) {
                 $.each(instance['ObjectPropertyDomain'],function(i, domain){
                     $.each(instance['ObjectPropertyRange'],function(i, range){
-                        if (domain != instance['Name'] && range != instance['Name'])
+                        if (domain != instance['Name'] && range != instance['Name']) {
                             createRelationNodeClass(instance['Name'], domain, range);
+                        }
                     });
                 });
             } else {
