@@ -211,7 +211,6 @@ function createRelationNode(name)
      // Sets the attributes for the new node following the mxGraph pattern.
      // The object receives the value and id properties from the node. This attributes
      // are removed from the original node after that.
-     name += ' ';
      object.setAttribute("label", name);
      object.setAttribute("id", idCounter);
      idCounter++;
@@ -285,7 +284,7 @@ function getNode(name)
     }
     // Find object
     for(let i = 0; i < xmlDoc.getElementsByTagName("object").length; i++) {
-        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("label") === name)
+        if(xmlDoc.getElementsByTagName("object")[i].getAttribute("name") === name)
             return xmlDoc.getElementsByTagName("object")[i];
     }
 }
@@ -314,6 +313,8 @@ function getNode(name)
 
      // set propertie default
      object.setAttribute('DisjointWith', '');
+     object.setAttribute('name', nodeName);
+     object.setAttribute('label', nodeName);
      // sets the remaining properties
      $.each(properties,function(propertyLabel, propertyValue){
 
@@ -331,10 +332,14 @@ function getNode(name)
                 });
                 propertyValues = propertyValues.join(',');
 
-                object.setAttribute(propertyTransition[propertyLabel], propertyValues);
+                if (propertyTransition[propertyLabel]) {
+                    object.setAttribute(propertyTransition[propertyLabel], propertyValues);
+                }
             }
         } else {
-            object.setAttribute(propertyTransition[propertyLabel], propertyValue);
+            if (propertyTransition[propertyLabel]) {
+                object.setAttribute(propertyTransition[propertyLabel], propertyValue);
+            }
         }
      });
 
