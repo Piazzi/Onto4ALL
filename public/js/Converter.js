@@ -11,7 +11,7 @@ let positions = [];
 let positionCounter = 0;
 
 propertyTransition = {
-    'Name': 'label',
+    'label': 'label',
     'SubClassOf': 'SubClassOf',
     'EquivalentClasses': 'Equivalence',
     'EquivalentObjectProperties': 'Equivalence',
@@ -31,8 +31,8 @@ propertyTransition = {
     'DataPropertyAssertion': 'dataProperties',
     'InverseFunctionalObjectProperty': 'negativeObjectProperties',
     'InverseDataPropertyAssertion': 'negativeDataProperties',
-    'comment': 'comment', //
-    'isDefinedBy': 'isDefinedBy', //
+    'comment': 'comment',
+    'isDefinedBy': 'isDefinedBy',
     'seeAlso': 'seeAlso', //
     'backwardCompatibleWith': 'backwardCompatibleWith', //
     'deprecated': 'deprecated', //
