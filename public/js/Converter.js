@@ -33,12 +33,12 @@ propertyTransition = {
     'InverseDataPropertyAssertion': 'negativeDataProperties',
     'comment': 'comment',
     'isDefinedBy': 'isDefinedBy',
-    'seeAlso': 'seeAlso', //
+    'seeAlso': 'seeAlso',
     'backwardCompatibleWith': 'backwardCompatibleWith', //
     'deprecated': 'deprecated', //
     'incompatibleWith': 'incompatibleWith', //
-    'priorVersion': 'priorVersion', //
-    'versionInfo': 'versionInfo', //
+    'priorVersion': 'priorVersion',
+    'versionInfo': 'versionInfo',
 }
 
 /**

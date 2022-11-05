@@ -59,6 +59,7 @@ Actions.prototype.init = function()
 
 		window.openFile.setConsumer(mxUtils.bind(this, function(ontology, filename)
 		{
+        	setVisible('#loading', true);
 			try
 			{
 				(async () => {
@@ -92,6 +93,7 @@ Actions.prototype.init = function()
 						msg = msg.substring(0, msg.length - 2);
 						mxUtils.alert(getTranslation("There was an error importing the ontology, please try again later.") + " Erro: " + msg);
 					}
+					setVisible('#loading', false);
 				})();
 
 			}
@@ -99,6 +101,7 @@ Actions.prototype.init = function()
 			{
 				mxUtils.alert(mxResources.get('invalidOrMissingFile') + ': ' + e.message + '. ' + getTranslation("Dear user, the format of the ontology to be imported is not compatible with Onto4AllEditor. This version of the editor accepts imports in the following formats: OWL / XML, .XML"));
 				console.log(e);
+				setVisible('#loading', false);
 			}
 		}));
 
