@@ -1,6 +1,7 @@
 var dictionary = {
     "pt": {
         "THING": "COISA",
+        "Thing": "Coisa",
         "Checking the axioms, please wait...": "Checando os axiomas, aguarde um momento...",
         "The axioms are valid!": "Os axiomas são válidos!",
         "The axioms are not valid!": "Os axioma não são válidos!",
