@@ -1007,14 +1007,18 @@ var ExportDialog = function(editorUi)
 		}
 		if (imageFormatSelect.value != 'svg'){
 			zoomInput.setAttribute('disabled', 'true');
+			zoomInput.style.opacity = '0.5';
 			widthInput.setAttribute('disabled', 'true');
+			widthInput.style.opacity = '0.5';
 			heightInput.setAttribute('disabled', 'true');
+			heightInput.style.opacity = '0.5';
 			borderInput.setAttribute('disabled', 'true');
+			borderInput.style.opacity = '0.5';
 			dpiSelect.setAttribute('disabled', 'true');
 			customDpi.setAttribute('disabled', 'true');
 		}
 
-		if (imageFormatSelect.value === 'png' || imageFormatSelect.value === 'svg')
+		if (imageFormatSelect.value === 'svg')
 		{
 			transparentCheckbox.removeAttribute('disabled');
 		}
@@ -1028,9 +1032,13 @@ var ExportDialog = function(editorUi)
 			dpiSelect.removeAttribute('disabled');
 			customDpi.removeAttribute('disabled');	
 			zoomInput.removeAttribute('disabled');
+			zoomInput.style.opacity = '1.0';
 			widthInput.removeAttribute('disabled');
+			widthInput.style.opacity = '1.0';
 			heightInput.removeAttribute('disabled');
+			heightInput.style.opacity = '1.0';
 			borderInput.removeAttribute('disabled');
+			borderInput.style.opacity = '1.0';
 		}
 		else
 		{
