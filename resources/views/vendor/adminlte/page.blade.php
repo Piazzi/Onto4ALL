@@ -123,7 +123,7 @@
                                 <ul class="dropdown-menu">
                                     <!-- The user image in the menu -->
                                     <li style="background-color: #222d32;"  class="user-header @if(Route::currentRouteName() == 'thesaurus-editor')  thesauru-box @endif">
-                                        <img src="{{ asset('storage/img/profile/' . Auth::user()->avatar_url) }}" class="img-circle"
+                                        <img src="{{ file_exists(asset('storage/img/profile/' . Auth::user()->avatar_url)) ? asset('storage/img/profile/' . Auth::user()->avatar_url) : asset("css/images/profile_default.png") }}" class="img-circle"
                                              alt="User Image">
                                         <p>
                                             {{Auth::user()->name}}
