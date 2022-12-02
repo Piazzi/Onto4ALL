@@ -1298,7 +1298,7 @@
                                 d.getMinutes(),
                                 d.getSeconds()].join(':');
 
-                        $('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">{{ Auth::user()->name }}</span><span class="direct-chat-timestamp pull-left">' + dataFormatada +'</span></div><img class="direct-chat-img" src="{{ asset("storage/img/profile/" . Auth::user()->avatar_url) }}" alt="Imagem de perfil"><div class="direct-chat-text">' + $("#message").val() + '</div></div>').insertAfter($(".direct-chat-msg").last());
+                        $('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-name pull-right">{{ Auth::user()->name }}</span><span class="direct-chat-timestamp pull-left">' + dataFormatada +'</span></div><img class="direct-chat-img" src="{{ file_exists(asset("storage/img/profile/" . Auth::user()->avatar_url)) ? asset("storage/img/profile/" . Auth::user()->avatar_url) : asset("css/images/profile_default.png") }}" alt="Imagem de perfil"><div class="direct-chat-text">' + $("#message").val() + '</div></div>').insertAfter($(".direct-chat-msg").last());
 
                         $("#message").val("");
 

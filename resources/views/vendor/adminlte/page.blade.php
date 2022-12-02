@@ -116,7 +116,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                    aria-expanded="true">
                                     <!-- The user image in the navbar-->
-                                    <img class="img-circle profile-user-img-menu" style="width: 20px" src="{{ asset("storage/img/profile/" . Auth::user()->avatar_url) }}" alt="Imagem de perfil">
+                                    <img class="img-circle profile-user-img-menu" style="width: 20px" src="{{ file_exists(asset("storage/img/profile/" . Auth::user()->avatar_url)) ? asset("storage/img/profile/" . Auth::user()->avatar_url) : asset("css/images/profile_default.png") }}" alt="Imagem de perfil">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs">{{Auth::user()->name}}</span>
                                 </a>
