@@ -384,30 +384,39 @@ function getCurrentOntologyInJSON(format) {
             ontology.constraints.push( constraint.replace(';',''));
         }
 
-        ontology.classes.push({
+        let classe = {
             "Name": e.value.getAttribute('label'),
             "SubClassOf": e.value.getAttribute('SubClassOf').split(),
             "EquivalentTo": e.value.getAttribute('EquivalentTo')?.split(),
             "Instances": e.value.getAttribute('Instances')?.split(),
             "TargetForKey": e.value.getAttribute('TargetForKey')?.split(),
             "DisjointWith": e.value.getAttribute('DisjointWith')?.split(),
-            "Constraint ": e.value.getAttribute('Constraint')?.split(),
-            "Annotation": {
-                "comment": e.value.getAttribute('comment')?.split(),
-                "isDefinedBy": e.value.getAttribute('isDefinedBy')?.split(),
-                "seeAlso": e.value.getAttribute('seeAlso')?.split(),
-                "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith')?.split(),
-                "deprecated": e.value.getAttribute('deprecated')?.split(),
-                "incompatibleWith": e.value.getAttribute('incompatibleWith')?.split(),
-                "priorVersion": e.value.getAttribute('priorVersion')?.split(),
-                "versionInfo": e.value.getAttribute('versionInfo')?.split(),
-            }
-            },
-        )
+            "Constraint": e.value.getAttribute('Constraint')?.split(),
+            "Annotation": []
+        };
+        if (e.value.getAttribute('comment'))
+            classe.Annotation.push({ "Property": "rdfs:comment", "Text": e.value.getAttribute('comment'), "Language": getLanguage() });
+        if (e.value.getAttribute('isDefinedBy'))
+            classe.Annotation.push({ "Property": "rdfs:isDefinedBy", "Text": e.value.getAttribute('isDefinedBy'), "Language": getLanguage() });
+        if (e.value.getAttribute('seeAlso'))
+            classe.Annotation.push({ "Property": "rdfs:seeAlso", "Text": e.value.getAttribute('seeAlso'), "Language": getLanguage() });
+        if (e.value.getAttribute('backwardCompatibleWith'))
+            classe.Annotation.push({ "Property": "rdfs:backwardCompatibleWith", "Text": e.value.getAttribute('backwardCompatibleWith'), "Language": getLanguage() });
+        if (e.value.getAttribute('deprecated'))
+            classe.Annotation.push({ "Property": "rdfs:deprecated", "Text": e.value.getAttribute('deprecated'), "Language": getLanguage() });
+        if (e.value.getAttribute('incompatibleWith'))
+            classe.Annotation.push({ "Property": "rdfs:incompatibleWith", "Text": e.value.getAttribute('incompatibleWith'), "Language": getLanguage() });
+        if (e.value.getAttribute('priorVersion'))
+            classe.Annotation.push({ "Property": "owl:priorVersion", "Text": e.value.getAttribute('priorVersion'), "Language": getLanguage() });
+        if (e.value.getAttribute('versionInfo'))
+            classe.Annotation.push({ "Property": "owl:versionInfo", "Text": e.value.getAttribute('versionInfo'), "Language": getLanguage() });
+    
+        ontology.classes.push(classe);
+    
     });
 
     relations.forEach((e) => {
-        ontology["object properties"].push({
+        let relation = {
                 "Name": e.value.getAttribute('label'),
                 "domain": e.value.getAttribute('domain')?.split(),
                 "range": e.value.getAttribute('range')?.split(),
@@ -415,23 +424,31 @@ function getCurrentOntologyInJSON(format) {
                 "subpropertyOf": e.value.getAttribute('subpropertyOf')?.split(),
                 "inverseOf": e.value.getAttribute('inverseOf')?.split(),
                 "disjointWith ": e.value.getAttribute('disjointWith')?.split(),
-                "Annotation": {
-                    "comment": e.value.getAttribute('comment')?.split(),
-                    "isDefinedBy": e.value.getAttribute('isDefinedBy')?.split(),
-                    "seeAlso": e.value.getAttribute('seeAlso')?.split(),
-                    "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith')?.split(),
-                    "deprecated": e.value.getAttribute('deprecated')?.split(),
-                    "incompatibleWith": e.value.getAttribute('incompatibleWith')?.split(),
-                    "priorVersion": e.value.getAttribute('priorVersion')?.split(),
-                    "versionInfo": e.value.getAttribute('versionInfo')?.split(),
-                }
-            },
-        );
+                "Annotation": []
+        };
 
+        if (e.value.getAttribute('comment'))
+           relation.Annotation.push({ "Property": "rdfs:comment", "Text": e.value.getAttribute('comment'), "Language": getLanguage() });
+        if (e.value.getAttribute('isDefinedBy'))
+           relation.Annotation.push({ "Property": "rdfs:isDefinedBy", "Text": e.value.getAttribute('isDefinedBy'), "Language": getLanguage() });
+        if (e.value.getAttribute('seeAlso'))
+           relation.Annotation.push({ "Property": "rdfs:seeAlso", "Text": e.value.getAttribute('seeAlso'), "Language": getLanguage() });
+        if (e.value.getAttribute('backwardCompatibleWith'))
+           relation.Annotation.push({ "Property": "rdfs:backwardCompatibleWith", "Text": e.value.getAttribute('backwardCompatibleWith'), "Language": getLanguage() });
+        if (e.value.getAttribute('deprecated'))
+           relation.Annotation.push({ "Property": "rdfs:deprecated", "Text": e.value.getAttribute('deprecated'), "Language": getLanguage() });
+        if (e.value.getAttribute('incompatibleWith'))
+           relation.Annotation.push({ "Property": "rdfs:incompatibleWith", "Text": e.value.getAttribute('incompatibleWith'), "Language": getLanguage() });
+        if (e.value.getAttribute('priorVersion'))
+           relation.Annotation.push({ "Property": "owl:priorVersion", "Text": e.value.getAttribute('priorVersion'), "Language": getLanguage() });
+        if (e.value.getAttribute('versionInfo'))
+           relation.Annotation.push({ "Property": "owl:versionInfo", "Text": e.value.getAttribute('versionInfo'), "Language": getLanguage() });
+
+        ontology["object properties"].push(relation);
     });
 
     instances.forEach((e) => {
-        ontology.individuals.push({
+        let individual = {
                 "Name": e.value.getAttribute('label'),
                 "types": e.value.getAttribute('types')?.split(),
                 "sameAs": e.value.getAttribute('sameAs')?.split(),
@@ -440,20 +457,30 @@ function getCurrentOntologyInJSON(format) {
                 "dataProperties": e.value.getAttribute('dataProperties')?.split(),
                 "negativeObjectProperties": e.value.getAttribute('negativeObjectProperties')?.split(),
                 "negativeDataProperties": e.value.getAttribute('negativeDataProperties')?.split(),
-                "Annotation": {
-                    "comment": e.value.getAttribute('comment')?.split(),
-                    "isDefinedBy": e.value.getAttribute('isDefinedBy')?.split(),
-                    "seeAlso": e.value.getAttribute('seeAlso')?.split(),
-                    "backwardCompatibleWith": e.value.getAttribute('backwardCompatibleWith')?.split(),
-                    "deprecated": e.value.getAttribute('deprecated')?.split(),
-                    "incompatibleWith": e.value.getAttribute('incompatibleWith')?.split(),
-                    "priorVersion": e.value.getAttribute('priorVersion')?.split(),
-                    "versionInfo": e.value.getAttribute('versionInfo')?.split(),
-                }
+                "Annotation": []
+        };
 
-            },
-        );
+        if (e.value.getAttribute('comment'))
+           individual.Annotation.push({ "Property": "rdfs:comment", "Text": e.value.getAttribute('comment'), "Language": getLanguage() });
+        if (e.value.getAttribute('isDefinedBy'))
+           individual.Annotation.push({ "Property": "rdfs:isDefinedBy", "Text": e.value.getAttribute('isDefinedBy'), "Language": getLanguage() });
+        if (e.value.getAttribute('seeAlso'))
+           individual.Annotation.push({ "Property": "rdfs:seeAlso", "Text": e.value.getAttribute('seeAlso'), "Language": getLanguage() });
+        if (e.value.getAttribute('backwardCompatibleWith'))
+           individual.Annotation.push({ "Property": "rdfs:backwardCompatibleWith", "Text": e.value.getAttribute('backwardCompatibleWith'), "Language": getLanguage() });
+        if (e.value.getAttribute('deprecated'))
+           individual.Annotation.push({ "Property": "rdfs:deprecated", "Text": e.value.getAttribute('deprecated'), "Language": getLanguage() });
+        if (e.value.getAttribute('incompatibleWith'))
+           individual.Annotation.push({ "Property": "rdfs:incompatibleWith", "Text": e.value.getAttribute('incompatibleWith'), "Language": getLanguage() });
+        if (e.value.getAttribute('priorVersion'))
+           individual.Annotation.push({ "Property": "owl:priorVersion", "Text": e.value.getAttribute('priorVersion'), "Language": getLanguage() });
+        if (e.value.getAttribute('versionInfo'))
+           individual.Annotation.push({ "Property": "owl:versionInfo", "Text": e.value.getAttribute('versionInfo'), "Language": getLanguage() });
+
+        ontology.individuals.push(individual);
+
     });
+
     if(ontology.constraints.length == 0)
         delete ontology.constraints
     console.log(ontology);
