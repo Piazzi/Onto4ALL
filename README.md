@@ -26,20 +26,19 @@
 * Ctype PHP Extension 
 * JSON PHP Extension + Banco de dados (MySQL, SQLite) + Servidor web (Apache)
 * Composer. 
+* Docker Desktop 
 
 ##### Passo a passo 
 
 1. Clone o repositório para seu computador; 
 
-2. Dentro da pasta principal do projeto crie um arquivo com o nome: **.env**; (Você pode pular os passos 2 e 3 entrando dentro da pasta através de um terminal e usando o comando "copy .env.example .env ")
+2. Execute o Docker Desktop
 
-3. Copie o conteúdo do arquivo **.env.example** para o arquivo **.env** recém criado; 
+3. Dentro da pasta principal do projeto, execute o comando **docker-compose up --build** 
 
-4. Acesse o repositório com um terminal e execute o comando: **composer install**; 
+4. Verifique se as imagens do PHP, Apache e database estão rodando corretamente.
 
-5. Ainda no terminal, gere uma application key com o comando: **php artisan key:generate**; 
-
-6. Configure o arquivo **.env** com as configurações do banco de dados local; 
+5. Configure o arquivo **.env** com as configurações do banco de dados local; 
 
 **Exemplo:**
 
@@ -52,14 +51,10 @@ DB_USERNAME=seu_username
 DB_PASSWORD=sua_password
 
 ````
- 
-7. No terminal, execute as migrations com o comando: **php artisan migrate --seed**; 
 
-*Obs: A flag "--seed" serve apenas para seedar o banco, caso você não queira o banco preenchido remova essa flag do comando* 
+6. Para executar o projeto, use o comando: **php artisan serve**;
 
-8. Para executar o projeto, use o comando: **php artisan serve**;
-
-10. Acesse a URL indicada no terminal;
+7. Acesse a URL indicada no terminal;
 
 #### Desenvolvimento 
 
