@@ -7,7 +7,7 @@
 
 <h3 align="center" style="margin-top: 10px;">
   🔗 <b>Access the editor for free:</b> 
-  <a href="https://onto4alleditor.com/" style="color: #2d3748; background-color: #e2e8f0; padding: 5px 12px; border-radius: 4px; text-decoration: none; font-weight: bold; border: 1px solid #cbd5e0;">
+  <a href="https://onto4all.com/" style="color: #2d3748; background-color: #e2e8f0; padding: 5px 12px; border-radius: 4px; text-decoration: none; font-weight: bold; border: 1px solid #cbd5e0;">
     https://onto4all.com/
   </a>
 </h3>
